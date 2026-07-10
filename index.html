@@ -623,5 +623,31 @@ footer .inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px
   }
 })();
 </script>
+  <style id="anim-enhance">
+    [data-reveal]{opacity:0;transform:translateY(42px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s ease;will-change:opacity,transform;}
+    [data-reveal].is-in{opacity:1;transform:none;filter:none;}
+    [data-reveal="left"]{transform:translateX(-64px);}
+    [data-reveal="right"]{transform:translateX(64px);}
+    [data-reveal="scale"]{transform:scale(.86);}
+    [data-reveal="pop"]{transform:scale(.6);opacity:0;}
+    [data-reveal="rotate"]{transform:translateY(40px) rotate(-6deg);}
+    [data-reveal="blur"]{opacity:0;filter:blur(14px);transform:translateY(24px);}
+    [data-reveal="flip"]{transform:perspective(800px) rotateX(-70deg);transform-origin:top center;opacity:0;}
+    [data-reveal="left"].is-in,[data-reveal="right"].is-in,[data-reveal="scale"].is-in,[data-reveal="pop"].is-in,[data-reveal="rotate"].is-in,[data-reveal="blur"].is-in,[data-reveal="flip"].is-in{transform:none;opacity:1;filter:none;}
+    [data-reveal="pop"],[data-reveal="flip"]{transition:opacity .6s ease,transform .7s cubic-bezier(.34,1.56,.64,1),filter .6s ease;}
+    @media (prefers-reduced-motion:reduce){[data-reveal]{transition:none!important;opacity:1!important;transform:none!important;filter:none!important;}}
+    </style>
+  <script>
+    (function(){
+      var els=document.querySelectorAll('[data-reveal]');
+      document.querySelectorAll('h2[data-reveal]').forEach(function(e){e.setAttribute('data-reveal','pop');});
+      document.querySelectorAll('.eyebrow[data-reveal]').forEach(function(e){e.setAttribute('data-reveal','blur');});
+      document.querySelectorAll('.roi-cards>[data-reveal],.pb-item[data-reveal],.fl[data-reveal],.domain[data-reveal],.prg[data-reveal],.t-row[data-reveal]').forEach(function(e,i){e.setAttribute('data-reveal', i%2? 'right':'left');});
+      els.forEach(function(el){var sibs=Array.prototype.filter.call(el.parentElement.children,function(c){return c.hasAttribute('data-reveal');});el.style.transitionDelay=Math.min(sibs.indexOf(el),6)*80+'ms';});
+      var obs=new IntersectionObserver(function(ent){ent.forEach(function(e){e.target.classList.toggle('is-in', e.isIntersecting);});},{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
+      els.forEach(function(t){t.classList.remove('is-in');obs.observe(t);});
+    })();
+  </script>
+  </script>
 </body>
 </html>

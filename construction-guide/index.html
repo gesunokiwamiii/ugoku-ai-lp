@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×建設業界 活用術10選と最新業界トレンド分析｜初心者でもわかる完全ガイド ― UGOKU AI</title>
+<meta name="description" content="建設業のプロが解説。AI×建設業界の活用術10選と、2024年問題・i-Construction 2.0・人手不足を背景にした最新トレンドを、初心者にもわかりやすく。書類・積算・安全管理・技術継承まで、仕事と私生活の使い方、そして自立型AI（AIエージェント）が加わると何が変わるかを、注意点つきで案内役のうごく君が見える化します。">
+
+<!-- ▼ 公開前に設定：本ページを置く実際のURL（og-image.pngも同じ場所に） -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×建設業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta property="og:description" content="現場のプロが解説。建設業のAI活用術10選＋最新トレンド。書類・積算・安全・技術継承、仕事も私生活も。自立型AIが加わると何が変わる？初心者向けに見える化。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/construction-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/construction-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×建設業界 活用術10選と最新業界トレンド分析 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×建設業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta name="twitter:description" content="現場のプロが解説。建設業のAI活用術10選＋最新トレンド。仕事も私生活も、自立型AIが加わると何が変わる？初心者向けに見える化。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/construction-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    /* 建設テーマ用アクセント（既存トークンは変えず、割り当て用に追加） */
+    --field:#C9761A; --office:#2E7D6B; --safety:#D24B3E; --data:#3E6FB0; --agent:#EAA800;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの追い風 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+  .role .num{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:22px;color:var(--accent);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+
+  /* トレンド指標 */
+  .stat-grid{display:grid;gap:12px;margin:6px 0 8px;}
+  @media(min-width:600px){.stat-grid{grid-template-columns:repeat(3,1fr);}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px;box-shadow:var(--shadow-sm);text-align:center;}
+  .stat .big{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:26px;color:var(--ember-2);line-height:1.2;}
+  .stat .big small{font-size:14px;color:var(--ink);}
+  .stat .lab{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:600;}
+  .src{font-size:11.5px;color:var(--ink-soft);opacity:.85;margin:8px 0 0;}
+  .src a{color:var(--ember-2);}
+
+  /* ゼネコン最前線ミニリスト */
+  .front{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px;}
+  .front li{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:var(--shadow-sm);font-size:14px;}
+  .front li b{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--pine);display:inline-block;margin-right:4px;}
+  .front li .metric{color:var(--ember-2);font-weight:800;}
+
+  /* STEP（活用術） */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 自立型AIが加わると（エージェント枠） */
+  .agent{position:relative;margin:14px 0 2px;border-radius:14px;padding:16px 18px 16px;color:#F3F5F1;overflow:hidden;
+    background:radial-gradient(120% 130% at 100% -20%, rgba(234,168,0,.32), transparent 55%),linear-gradient(150deg,var(--pine-2),var(--pine-deep));
+    box-shadow:var(--shadow-sm);}
+  .agent .at{display:flex;align-items:center;gap:8px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--ember);margin-bottom:6px;letter-spacing:.02em;}
+  .agent p{margin:0;font-size:13.8px;color:#EDE6D4;}
+  .agent p b{color:#fff;background:rgba(234,168,0,.22);padding:0 4px;border-radius:4px;}
+
+  /* 仕事/私生活 split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* ロードマップ */
+  .road{display:grid;gap:13px;}
+  @media(min-width:720px){.road{grid-template-columns:repeat(3,1fr);}}
+  .road .rc{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 18px 16px;box-shadow:var(--shadow-sm);border-top:4px solid var(--pine);}
+  .road .rc .rt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.08em;color:var(--ember-2);margin-bottom:6px;}
+  .road .rc h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 8px;}
+  .road .rc ul{list-style:none;margin:0;padding:0;}
+  .road .rc li{position:relative;padding:4px 0 4px 16px;font-size:13.4px;color:#3B463E;}
+  .road .rc li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（注意点・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×建設業界 活用ガイド</span>
+      <h1>建設業のAI活用、<br><span class="hl">現場のプロ</span>が10個に絞って教えます。</h1>
+      <p class="lead">むずかしい話はナシ。<b>書類・積算・安全・技術継承</b>まで、今日から効く使い方10選。さらに<b>自立型AI（AIエージェント）</b>が加わると現場はどう変わるかも、注意点つきで見える化します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「専門用語で挫折しない」ように、先回りして解説します。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">活用術を見る <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「建設業でAIって、大手ゼネコンの話でしょ？」——いいえ、いちばん効くのは<b>中小・一人親方</b>です。この記事を上から読むだけで、次のことがわかります。</p>
+        <ul class="checklist">
+          <li>いま建設業界でAIが伸びている「本当の理由」（最新トレンド）</li>
+          <li>スマホひとつで今日から試せる、活用術10選と注意点</li>
+          <li>仕事だけでなく、私生活でも使える切り口</li>
+          <li>「自立型AI」が加わると、現場が次にどう変わるか</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの追い風 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる ─ なぜ今なのか</div>
+    <h2 class="sec-title">建設業をAIへ押す「3つの追い風」</h2>
+    <p class="sec-sub">AIは流行りではなく、業界の構造課題への「答え」として広がっています。まずこの3つを押さえましょう。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--safety);">
+        <div class="ic">⏰</div>
+        <h4><span class="num">01</span> 2024年問題</h4>
+        <p>2024年4月から建設業にも残業の上限規制が適用。限られた時間で成果を出す「省力化」が、経営の最重要テーマになりました。</p>
+      </div>
+      <div class="role" style="--accent:var(--field);">
+        <div class="ic">👷</div>
+        <h4><span class="num">02</span> 深刻な人手不足</h4>
+        <p>職人の高齢化と若手離れで、慢性的な担い手不足。国は2040年度までに現場の省人化3割・生産性1.5倍を掲げています。</p>
+      </div>
+      <div class="role" style="--accent:var(--data);">
+        <div class="ic">📐</div>
+        <h4><span class="num">03</span> i-Construction 2.0</h4>
+        <p>国交省が主導するデジタル化。直轄工事のICT活用は約87%に。ドローン測量・BIM・AIが「三位一体」で標準になりつつあります。</p>
+      </div>
+    </div>
+    <p class="src">出典：国土交通省「i-Construction 2.0」（2024年4月）ほか各種業界レポート（2025〜2026年）を要約。数値は各発表時点のものです。</p>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">MARKET TREND</div>
+    <h2 class="sec-title">まず、業界のいまを「数字」で掴む</h2>
+    <p class="sec-sub">感覚ではなく、伸びている事実から。建設AI市場は、これから数年で一気に立ち上がります。</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="big">2倍<small>超</small></div>
+        <div class="lab">建設AI市場<br>2025年 → 2030年の成長見通し</div>
+      </div>
+      <div class="stat">
+        <div class="big">約87<small>%</small></div>
+        <div class="lab">国交省 直轄工事の<br>ICT活用率</div>
+      </div>
+      <div class="stat">
+        <div class="big">1.5<small>倍</small></div>
+        <div class="lab">2040年度までの<br>生産性向上目標</div>
+      </div>
+    </div>
+    <p class="src">建設AI市場は2025年の約111億ドルから2030年に約243億ドルへ拡大する見通し（複数の市場調査）。ICT活用率・生産性目標は国土交通省 i-Construction 2.0 に基づく。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 この記事の結論</span>
+      <p>建設業のAIは、もう「導入するか」ではなく<strong>「どこから始めるか」</strong>の段階です。大手の派手な事例より、まずは<strong>書類・積算・写真整理</strong>——毎日の“面倒”を1つ、AIに任せてみることが、いちばん確実な第一歩です。</p>
+    </div>
+
+    <!-- ゼネコン最前線 -->
+    <h3 class="blk">大手の「最前線」を、ざっくり掴む</h3>
+    <p class="sec-sub" style="margin-bottom:6px;">まず、業界がどこまで来ているか。中小がマネる必要はありませんが、「向かう先」を知るのは大事です。</p>
+    <ul class="front">
+      <li><b>竹中工務店「デジタル棟梁」</b>：熟練者の判断ノウハウを学んだAIが、若手監督の「どうすれば？」に過去の類似案件から答える。<span class="metric">技術継承の切り札</span>として注目。</li>
+      <li><b>清水建設 ─ 鉄筋の画像検査</b>：スマホ撮影→AIが外観チェック。目視で1カ所<span class="metric">約5分 → 20〜30秒</span>に短縮したと報告。</li>
+      <li><b>鹿島 ─ ドローン×AI画像認識</b>：資材の位置を自動で把握し図面へ反映。資材確認を<span class="metric">約75%削減</span>したと報告。</li>
+      <li><b>大成建設「T-iROBO Rebar」</b>：自律走行で鉄筋を結束するロボット。1日あたり<span class="metric">約1.5人分</span>の省力効果。</li>
+      <li><b>大林組「WellnessBOX」</b>：ウェアラブルの心拍・体温から<span class="metric">熱中症・疲労リスクを予測</span>し監督へ通知。</li>
+    </ul>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>これらはロボットや専用機の話。でも安心して。次からの「活用術10選」は、<b>スマホとChatGPT／Claudeだけ</b>で、今日から真似できるものばかりだよ。</div>
+    </div>
+
+    <!-- ═══ 活用術10選 ═══ -->
+    <h3 class="blk" id="ten">建設業のAI活用術 10選（初心者向け・注意点つき）</h3>
+    <p class="sec-sub">各項目は「①どう使う → ②仕事での例 → ⚠️注意点 → 🤖自立型AIが加わると」の順。上から効果が出やすい順に並べています。</p>
+
+    <!-- 01 書類・報告書 -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>1</b></div>
+        <div><span class="st-chip">DOCUMENTS ─ 書類・報告書</span><div class="st-ttl">日報・議事録・安全書類を“下書き”させる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">建設業の残業の多くは「書類」。ここは生成AI（ChatGPT・Claude）が最も早く効き、中小からゼネコンまで最も導入が進んでいる領域です。走り書きのメモを渡すだけで、体裁の整った文書に変わります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 現場メモ → 日報に整えるコピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは建設現場の施工管理者です。以下のメモを、
+①本日の作業内容 ②進捗率 ③明日の予定 ④連絡・懸念事項
+の4項目で、簡潔な日報に整えてください。専門用語はそのままで。
+【メモ】
+<span class="fill">〔ここに走り書きのメモを貼り付け〕</span></pre>
+        </div>
+        <ul class="use">
+          <li><b>議事録</b>：打合せの録音メモから「決定事項・宿題（担当・期限つき）」を自動整理</li>
+          <li><b>安全書類</b>：作業手順書・KY記録・リスクアセスメントのたたき台づくり</li>
+          <li><b>作業手順書</b>：ベテランの口頭説明を、新人向けの手順書に清書</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          発注者名・住所・個人情報・図面番号などの<b>機密は入力しない</b>のが基本。AIの下書きは必ず現場責任者が確認し、数値・寸法・法令の適否は人がチェックしてから提出を。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>単なる清書から一歩進み、<b>写真・音声・位置情報を受け取って日報を自動作成</b>し、遅れがあれば工程表まで下書き修正するAIエージェントが登場しつつあります。人は「承認するだけ」に近づきます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 見積・積算 -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>2</b></div>
+        <div><span class="st-chip">ESTIMATE ─ 見積・積算</span><div class="st-ttl">見積・積算の“たたき台”と説明文をつくる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">図面や写真から数量を拾い出す「AI積算」は急速に進化中。専用ツールは有料ですが、まずは無料のAIで<b>見積項目の抜け漏れチェック</b>や<b>お客様向けの内訳説明文</b>から始めるのが現実的です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 見積の抜け漏れチェックコピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは建設業の積算担当です。以下の工事の見積項目を確認し、
+一般的に計上漏れしやすい費用（諸経費・仮設・処分費・運搬など）を
+チェックリスト形式で挙げてください。
+【工事内容】
+<span class="fill">〔外構・改修など工事の概要を貼り付け〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIが出す単価や数量は<b>そのまま使わない</b>こと。相場観の参考・チェック用途に留め、最終的な金額は自社の実績単価と積算根拠で確定を。数字の「もっともらしい間違い」に要注意です。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>図面PDFを渡すと<b>数量を自動拾い出し→過去見積と照合→見積書を生成</b>まで一気通貫。担当者は根拠の確認と価格判断に集中でき、人手不足の積算部門を大きく補完します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 契約書・約款 -->
+    <div class="step" style="--accent:var(--data);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>3</b></div>
+        <div><span class="st-chip">CONTRACT ─ 契約・約款</span><div class="st-ttl">契約書・約款の“要点”を読み解く</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">長い契約書や約款こそ、要約が得意なClaudeの出番。工事請負契約書のひな型作成や、リスク条項の洗い出しに使えます（作成は約1分で下書きが出ます）。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 契約書のリスク要点まとめコピー</span><button class="cb-btn">コピー</button></div>
+<pre>添付（またはこの文章）の工事請負契約書を読み、
+自社（請負側）にとって不利になりうる条項を、
+「①該当箇所 ②何がリスクか ③確認すべき点」の形で
+やさしい言葉で5つ挙げてください。
+<span class="fill">〔ここに契約書の本文を貼り付け／PDFを添付〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIの読み解きは<b>法的な最終判断ではありません</b>。重要な契約は必ず専門家（弁護士・行政書士）に確認を。守秘義務のある契約書の入力可否は、取引先ルールも要チェック。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>過去契約のデータベースと連携し、<b>新しい契約書を自動でリスク採点</b>。危険な条項があれば修正案まで提示し、社内の法務チェックを高速化します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 採用・求人 -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>4</b></div>
+        <div><span class="st-chip">RECRUIT ─ 採用・求人</span><div class="st-ttl">求人票・SNS募集で“人を集める”</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">人手不足の建設業で、いちばん反響が大きいのが採用系コンテンツ。「きつそう」のイメージを覆す、伝わる募集文づくりはAIの得意分野です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">求人</span>採用まわり</div>
+            <ul>
+              <li>求人票の「仕事の魅力」欄を3案生成</li>
+              <li>未経験者に響く募集文・スカウト文</li>
+              <li>面接の質問リスト・評価シート作成</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">発信</span>SNS・採用ブランディング</div>
+            <ul>
+              <li>現場の1日を紹介するSNS投稿の下書き</li>
+              <li>採用サイトの「先輩の声」記事の構成案</li>
+              <li>YouTube・ショート動画の台本たたき台</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          給与・待遇などの<b>条件は必ず事実で</b>。AIが盛った表現をそのまま載せると、入社後のミスマッチや信用低下に。最後は自社の言葉で温度を足しましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>応募者の履歴書を<b>自動でスコアリング</b>し、面接日程の調整メールまで自動送信。担当者のバイアスを減らし、採用の初動を速めます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 現場写真・検査 -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>5</b></div>
+        <div><span class="st-chip">PHOTO ─ 写真・記録</span><div class="st-ttl">現場写真の整理と、記録の自動化</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">撮りためた大量の現場写真。AIに説明させれば<b>写真台帳のコメント</b>や<b>進捗報告文</b>が一気に作れます。画像認識AIは検査（鉄筋・ひび割れ等）でも実用段階に入っています。</p>
+        <ul class="use">
+          <li><b>写真台帳</b>：写真を渡して「工種・箇所・状況」の説明文を自動生成</li>
+          <li><b>報告書</b>：before/after写真から、施主向けの進捗レポート下書き</li>
+          <li><b>不具合の一次判断</b>：ひび割れ写真から考えられる原因と確認事項の整理</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          写真に<b>人の顔・ナンバープレート・近隣情報</b>が写り込んでいないか確認を。AIの検査判定は補助であり、<b>合否の最終判断は有資格者</b>が行うのが原則です。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>ドローンやカメラが<b>24時間 自律巡回</b>し、AIが進捗・異常・資材位置を検知して図面や台帳を自動更新。人が現場に出向く回数そのものを減らします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 安全管理 -->
+    <div class="step" style="--accent:var(--safety);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>6</b></div>
+        <div><span class="st-chip">SAFETY ─ 安全管理</span><div class="st-ttl">KY活動・ヒヤリハットを“質”で底上げ</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">マンネリ化しがちなKY（危険予知）活動。AIに作業内容を伝えれば、見落としがちな危険を網羅的に洗い出してくれます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 KY（危険予知）の観点出しコピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは建設現場の安全担当者です。以下の作業について、
+考えられる危険（墜落・転倒・挟まれ・感電・熱中症など）と、
+それぞれの具体的な対策を、KYミーティングで使える形で挙げてください。
+【本日の作業】
+<span class="fill">〔例：2階外部足場の解体作業〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIの指摘は<b>網羅性の補助</b>。現場固有の条件（天候・地盤・第三者動線）は、実際に現地を見た人が最終判断を。安全は「AI任せ」にしないのが鉄則です。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>ウェアラブルやカメラのデータから<b>熱中症・危険行動をリアルタイム検知</b>して警告。天候悪化を検知したら作業計画の見直しまで自動で提案します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 技術継承・教育 -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>7</b></div>
+        <div><span class="st-chip">SKILL ─ 技術継承・教育</span><div class="st-ttl">ベテランの“暗黙知”を、資産に変える</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「見て覚えろ」が通じない時代。ベテランの経験をAIで言語化・体系化すれば、若手の独り立ちが早まり、ベテランの価値もむしろ高まります。多言語スタッフへの展開にも有効です。</p>
+        <ul class="use">
+          <li><b>マニュアル化</b>：職人へのヒアリングメモを、写真つき手順書に整える</li>
+          <li><b>教育クイズ</b>：安全・段取りの確認テストを自動作成</li>
+          <li><b>多言語対応</b>：手順書をやさしい日本語＋英語・ベトナム語などに翻訳</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIの翻訳・要約は<b>誤りが混じる前提</b>で。安全に関わる指示は、必ず母語話者や有資格者のダブルチェックを。ニュアンスの取り違えが事故につながらないように。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>社内文書を横断検索できる<b>「相談役AI」</b>が常駐。若手が現場で「この納まり、どうする？」と聞けば、過去の類似案件から最適解を提示します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 顧客・営業 -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>8</b></div>
+        <div><span class="st-chip">SALES ─ 顧客・営業</span><div class="st-ttl">提案文・クチコミ返信で“信頼”を積む</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">元請け・施主とのやり取りは、印象で決まります。角の立たないメール、伝わる提案文、Googleクチコミへの丁寧な返信——文章まわりはAIが最も得意なところです。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 クチコミへの返信コピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは丁寧な工務店の担当者です。以下のGoogleクチコミに、
+感謝を伝え、誠実さが伝わる返信を150字以内・敬語で書いてください。
+【クチコミ】
+<span class="fill">〔お客様の口コミ本文を貼り付け〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          クレーム対応をAIに丸投げしない。<b>事実確認と謝意は人の責任</b>で。返信に個人情報や工事の詳細を書きすぎないよう、公開前に必ず読み返しを。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>問い合わせを<b>自動で一次対応</b>し、内容に応じて見積依頼・現地調査の日程調整まで進めるAIが登場。取りこぼしを減らし、受注の初速を上げます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 図面・BIM -->
+    <div class="step" style="--accent:var(--data);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>9</b></div>
+        <div><span class="st-chip">BIM ─ 図面・設計</span><div class="st-ttl">図面・BIMは「入り口」から触ってみる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">BIM/CIMは今後の建築確認でも標準化が進む重要テーマ。中小がいきなり本格導入は不要ですが、<b>言葉から設計の考え方を整理する</b>使い方なら今日から始められます。</p>
+        <ul class="use">
+          <li><b>プラン検討</b>：条件を伝えて「間取り・動線の考え方」を複数案で整理</li>
+          <li><b>用語の理解</b>：BIM・CIM・確認申請の変更点を、やさしく解説してもらう</li>
+          <li><b>ZEB・省エネ</b>：断熱・設備の選択肢とコスト感の比較表づくり</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIが出す寸法・法規・構造は<b>そのまま設計に使わない</b>。あくまで発想の整理まで。確認申請・構造計算は必ず有資格者・専用ソフトで。制度は毎年変わる点にも注意を。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>設計条件を渡すと<b>コストと省エネ性能を同時評価</b>し、最適案を自動で比較提示。ZEB化計画づくりなど、複雑な意思決定を加速します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 経営・助成金 -->
+    <div class="step" style="--accent:var(--safety);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>10</b></div>
+        <div><span class="st-chip">MANAGEMENT ─ 経営・資金</span><div class="st-ttl">経営・資金繰り・補助金/助成金に効かせる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">見落とされがちですが、経営側こそAIの効果大。数字の整理から、補助金・助成金の申請書づくりまで、社長の“右腕”になります。じつはAI研修そのものに使える助成金もあります。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">経営</span>会社の数字・申請</div>
+            <ul>
+              <li>試算表を渡して「気になる点」を要約</li>
+              <li>補助金・助成金の申請書の下書き・要件整理</li>
+              <li>事業計画・経営方針の文章化</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span>社長の暮らしにも</div>
+            <ul>
+              <li>確定申告や各種手続きの流れをやさしく解説</li>
+              <li>家族への手紙・スピーチ・お礼状の下書き</li>
+              <li>子どもの自由研究・宿題の「なぜ？」に回答</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          補助金・助成金は<b>要件と期限が命</b>。AIの情報は古い場合があるため、最終確認は必ず公式（各省庁・労働局）の最新公募要領で。会社の数字を入力する際は機密管理にも配慮を。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>会計データと連携し、<b>資金繰りの異常を自動で察知</b>して通知。使える補助金を条件に合わせて提案し、申請書のたたき台まで用意します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 自立型AI 深掘り ═══ -->
+    <h3 class="blk" id="agent">「自立型AI（AIエージェント）」で、現場はこう変わる</h3>
+    <p class="sec-sub">ここまでは「人が質問し、AIが答える」使い方。次の主役は、<b>AIが自ら判断して動く</b>エージェントです。近い将来の現場を、具体的に描いてみます。</p>
+
+    <div class="keystone" style="border-left-color:var(--data);">
+      <span class="kl" style="background:#E4EDF6;color:#2A527F;">🤖 いまと、これから</span>
+      <p><strong>いま：</strong>ChatGPTに「日報を書いて」と頼む（対話型）。<br><strong>これから：</strong>現場の写真・天気・資材の状況をAIが自分で見て、<strong>日報を書き、遅れを予測し、工程表を組み替え、代替の資材を手配</strong>——人は「承認するだけ」。これが自立型（エージェント型）です。</p>
+    </div>
+
+    <div class="split" style="margin-top:14px;">
+      <div class="col work"><div class="ch"><span class="badge-mini">近未来</span>できるようになること</div>
+        <ul>
+          <li>天候変化を検知して、工程を自動で組み替える</li>
+          <li>資材の納期遅延を予測し、代替調達を自動手配</li>
+          <li>見積・施工計画・書類作成を横断的に代行</li>
+          <li>老朽インフラのAI点検・予知保全</li>
+        </ul>
+      </div>
+      <div class="col life"><div class="ch"><span class="badge-mini">求められる力</span>人の役割はこう変わる</div>
+        <ul>
+          <li>作業者から「AIオーケストレーター」へ</li>
+          <li>AIに正しく任せ、成果を検収する力</li>
+          <li>最終判断と責任は、引き続き人が持つ</li>
+          <li>ベテランの経験は“AIの先生”として価値が上がる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:16px;">
+      <div class="wt">⚠️ 自立型AIの注意点</div>
+      「自動で動く」ほど、<b>間違ったまま進むリスク</b>も大きくなります。①重要な判断には人の承認を挟む、②扱うデータの範囲と権限を明確にする、③責任の所在を先に決める——この3つを設計してから任せるのが安全です。いきなり全自動ではなく、<b>小さく試して広げる</b>のが鉄則。
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>怖がらなくて大丈夫。エージェントも、最初は「日報の下書き」みたいな小さな仕事から。信頼できたら少しずつ任せる範囲を広げる——人と新人職人の関係と、じつは同じだよ。</div>
+    </div>
+
+    <!-- ═══ はじめ方ロードマップ ═══ -->
+    <h3 class="blk" id="start">初心者のための「合理的な始め方」3ステップ</h3>
+    <p class="sec-sub">全部を一度にやろうとして挫折するのが、いちばんの失敗。順番を守れば、無理なく定着します。</p>
+    <div class="road">
+      <div class="rc">
+        <div class="rt">STEP 1 ─ 今週</div>
+        <h4>まず“1つ”試す</h4>
+        <ul>
+          <li>ChatGPTかClaudeに登録（無料）</li>
+          <li>「日報の下書き」だけ任せてみる</li>
+          <li>うまくいったら社内に共有</li>
+        </ul>
+      </div>
+      <div class="rc">
+        <div class="rt">STEP 2 ─ 今月</div>
+        <h4>“型”を作って広げる</h4>
+        <ul>
+          <li>効いた使い方をテンプレ化</li>
+          <li>議事録・見積説明・KYへ横展開</li>
+          <li>入力してよい情報のルールを決める</li>
+        </ul>
+      </div>
+      <div class="rc">
+        <div class="rt">STEP 3 ─ 数ヶ月</div>
+        <h4>“仕組み”にする</h4>
+        <ul>
+          <li>助成金を使って研修・定着化</li>
+          <li>自社データと連携し始める</li>
+          <li>自立型AIの導入を検討</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>まず「はじめてのAI活用ガイド」でChatGPT・Claudeの登録を済ませておくと、この記事の活用術をすぐ試せるよ。下の関連リンクからどうぞ。</div>
+    </div>
+
+    <!-- ═══ 私生活アイデア ═══ -->
+    <h3 class="blk">仕事だけじゃない。私生活でも効く使い方</h3>
+    <p class="sec-sub">建設業で身につけたAIの使い方は、そのまま暮らしにも活きます。家族や趣味の時間も、少しラクに。</p>
+    <div class="ideas">
+      <div class="idea"><h4><span class="e">🏠</span>暮らし・家庭で</h4><ul>
+        <li>役所の書類や制度の意味をやさしく解説</li>
+        <li>家計・確定申告の流れを整理</li>
+        <li>手紙・スピーチ・お礼状の下書き</li>
+        <li>旅行や休日プランの相談</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">🔧</span>趣味・DIYで</h4><ul>
+        <li>自宅のちょっとした修理・DIYの手順相談</li>
+        <li>工具や資材の選び方を比較</li>
+        <li>庭・エクステリアのプラン出し</li>
+        <li>車・バイクのメンテ手順の下調べ</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">📚</span>学び・子育てで</h4><ul>
+        <li>子どもの宿題の「なぜ？」を噛み砕いて説明</li>
+        <li>資格勉強（施工管理技士等）の要点まとめ</li>
+        <li>英会話・語学の練習相手に</li>
+        <li>読書メモ・感想文を整える</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">💬</span>コミュニケーションで</h4><ul>
+        <li>町内会・組合の案内文の下書き</li>
+        <li>言いにくいお願い・お断りを角が立たない表現に</li>
+        <li>スピーチ・挨拶文づくり</li>
+        <li>SNS投稿のネタ出し・下書き</li>
+      </ul></div>
+    </div>
+
+    <!-- ═══ よくある落とし穴 ═══ -->
+    <h3 class="blk">導入で“つまずく”よくある落とし穴</h3>
+    <div class="compact">
+      <details open><summary>「完璧な答え」を最初から期待してしまう</summary><div class="ans">AIは下書き職人。一発で完成を求めず、「もっと短く」「現場向けに」と会話で直していくのが正解です。60点の下書きを80点に磨くのが人の仕事。</div></details>
+      <details><summary>機密情報を、そのまま入力してしまう</summary><div class="ans">発注者情報・図面番号・個人情報・社外秘は入力しないのが基本。会社で使うなら「入力してよい情報」の社内ルールを先に決めましょう。</div></details>
+      <details><summary>数字・法令・寸法を鵜呑みにする</summary><div class="ans">AIはもっともらしく間違えます（ハルシネーション）。積算・法規・構造など「間違えたら事故・損失」の領域は、必ず人と専用ソフトで最終確認を。</div></details>
+      <details><summary>いきなり全社・全自動でやろうとする</summary><div class="ans">失敗の典型。まず1人・1業務で試し、効いたら横展開。自立型AIも「小さく試して広げる」。定着には助成金活用の研修が有効です。</div></details>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>ITが苦手でも、うちの会社で使えますか？</summary><div class="ans">使えます。スマホでChatGPT・Claudeに話しかけるだけ。まずは「日報の下書き」など、いちばん面倒な1業務から。パソコンが得意でない方こそ、時短効果を実感しやすい領域です。</div></details>
+      <details><summary>無料でどこまでできますか？</summary><div class="ans">この記事の活用術の多くは、ChatGPT・Claudeの無料版で試せます。使う量が増えたら月額プラン（各20ドル前後）で快適に。AI積算やBIMなど専用ツールは別途費用がかかります。</div></details>
+      <details><summary>AIに仕事を奪われませんか？</summary><div class="ans">少なくとも今は逆です。ベテランの経験をAIが体系化することで、その価値はむしろ高まる方向。人には「最終判断」と「責任」という、AIに任せられない役割が残ります。</div></details>
+      <details><summary>研修に使える助成金はありますか？</summary><div class="ans">AI・DXの研修は、人材開発支援助成金など公的支援の対象になる場合があります。要件・期限は年度で変わるため、最新の公募要領で確認を。UGOKU AIの無料診断でも、活用の入り口をご案内できます。</div></details>
+      <details><summary>何から始めればいいか、やっぱり決められません</summary><div class="ans">それが普通です。だからこそ「無料AI化診断」を用意しました。数分の回答で、あなたの会社の“面倒な作業”のうち、どこからAI化すると効くかが見えてきます。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まず登録するなら</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを今日から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ 現場PR・採用動画づくりにも</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">あわせて読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ チラシ・SNS・図面資料づくりに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.mlit.go.jp/" target="_blank" rel="noopener"><span class="r-ic">📐</span><span><span class="r-k">公式サイト</span><span class="r-t">国土交通省（i-Construction）<small>／ 建設DXの最新の制度・方針</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの現場の“面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「何から始めれば」で止まっている建設業の方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事のデータ・事例は2025〜2026年時点の公表情報に基づく要約です。各サービスの画面や手順、制度は提供元・行政の更新により変わることがあります。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Coworkって何？活かし方10選｜“任せて終わる”AI同僚のはじめ方 ― UGOKU AI</title>
+<meta name="description" content="Claude Cowork（クロード・コワーク）を初心者にもわかるように解説。チャットとの違い、各プランの予算感、仕事と遊びで“任せて終わる”活かし方10選、そこにAIが加わる可能性と注意点まで、案内役のうごく君がやさしく視える化します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="Claude Coworkって何？活かし方10選｜“任せて終わる”AI同僚のはじめ方 ― UGOKU AI">
+<meta property="og:description" content="むずかしい話はナシ。指示して席を立つだけで成果物が返る“AI同僚”Claude Cowork。仕事も遊びも変わる活かし方10選を、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claude Cowork 活かし方10選 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Coworkって何？活かし方10選 ― UGOKU AI">
+<meta name="twitter:description" content="指示して席を立つだけで成果物が返る“AI同僚”Cowork。仕事も遊びも変わる活かし方10選を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+
+    <div class="hero-inner">
+      <span class="eyebrow">CLAUDE COWORK 活かし方ガイド</span>
+      <h1>「AIに<span class="hl">丸ごと任せる</span>」って、<br>こういうこと。<br>Cowork 活かし方<span class="hl">10選</span></h1>
+      <p class="lead">Claude Cowork（クロード・コワーク）は、<b>指示して席を立つと、成果物が仕上がって返ってくる</b>“AI同僚”。チャットの一歩先、あなたのPCの中で実際に手を動かします。仕事も遊びも、今日から。</p>
+      <div class="guidehint">
+        <svg class="msc" width="30" height="30"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「むずかしそう」を、10コの具体例で先回りして解きほぐします。</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#list" class="btn btn-primary">活かし方10選を見る<span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する<span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<section class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「Coworkって、普通のClaudeと何が違うの？」——そこから、やさしく。この記事を上から読むだけで、次のことがわかります。</p>
+        <ul class="checklist">
+          <li>チャット・Cowork・Claude Code、3つの違いがスッキリわかる</li>
+          <li>自分に合うプランと、毎月いくらかかるかの予算感がつかめる</li>
+          <li>仕事と遊び、それぞれで「任せて終わる」使い方が10コわかる</li>
+          <li>“AIに任せる”ときに気をつける注意点まで、一緒に押さえられる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3つの違い ═══ -->
+<section class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、「チャット」と「Cowork」の<br>違いをざっくり掴もう</h2>
+    <p class="sec-sub">同じClaudeでも、役割がまるで違います。ここだけ押さえれば、あとはスイスイ読めます。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt)">
+        <div class="ic">💬</div>
+        <h4>いつもの<span>チャット</span></h4>
+        <p>質問すると、文章で答えてくれる<b>相談役</b>。文章づくり・要約・翻訳が得意。あなたのPCのファイルには触りません。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude)">
+        <div class="ic">🤝</div>
+        <h4>Claude <span>Cowork</span></h4>
+        <p>指示すると計画を立て、<b>PCの中で実際に手を動かす“同僚”</b>。ファイルを読み書きし、成果物を仕上げて返します。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine-2)">
+        <div class="ic">⌨️</div>
+        <h4>Claude <span>Code</span></h4>
+        <p>Coworkと<b>同じ技術基盤</b>。こちらは黒い画面（ターミナル）を使う開発者向け。Coworkはその力を“ノーコード”で使えるようにしたものです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 記事本体 ═══ -->
+<section class="article" id="guide">
+  <div class="wrap">
+
+    <div class="keystone">
+      <span class="kl">🔑 この記事の“核”</span>
+      <p>チャットは「<strong>聞いて、答えをもらう</strong>」。Coworkは「<strong>頼んで、終わった成果物を受け取る</strong>」。<br>あなたは指示して席を立つだけ。フォルダ整理も、集計も、議事録も、Claudeが自分で計画して仕上げます。</p>
+    </div>
+
+    <h3 class="blk">Coworkの正体を、もう少しだけ</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 6px;">難しくありません。次の2つだけ知っておけば十分です。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>“ターミナル不要”の作業AI</h4>
+        <p>開発者向けの <b>Claude Code</b> と同じ仕組みを、パソコン・スマホの普通の画面から使えるようにしたもの。<b>プログラミングの知識はいりません</b>。デスクトップアプリ（Mac／Windows）から使います。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>“許可したフォルダ”だけを触る</h4>
+        <p>Coworkが読み書きできるのは、<b>あなたが選んで許可したフォルダの中だけ</b>。勝手にPC全体を触ることはありません。まずは専用フォルダを1つ作って渡す——これが安全な第一歩です。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>Coworkの作業はAnthropicのサーバー上でも動くから（リモート実行・ベータ）、PCを閉じても続くよ。2026年7月からはWeb・スマホでも順次使えるようになって、外出先から様子を見られるようになったんだ。</div>
+    </div>
+
+    <h3 class="blk">まず気になる「予算感」— 各プランの目安</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 6px;">Coworkは<b>有料プラン（Pro／Max／Team／Enterprise）</b>で使えます。無料プランでは使えません。まずはProで十分、が結論です。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead>
+            <tr><th>プラン</th><th>月額の目安※</th><th>Cowork</th><th>こんな人に</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Free</th><td class="mid">無料</td><td>×</td><td class="mid">まずチャットでお試し。Coworkは非対応</td></tr>
+            <tr><th>Pro</th><td><b>$20/月</b><br><span class="mid">≒3,100円〜（年払い月$17相当）</span></td><td class="win">◎ 入門の本命</td><td>個人で毎日使う人の“最初の一台”</td></tr>
+            <tr><th>Max 5x</th><td>$100/月<br><span class="mid">≒15,500円</span></td><td class="win">◎</td><td>1日に何度も回すヘビーユーザー</td></tr>
+            <tr><th>Max 20x</th><td>$200/月<br><span class="mid">≒31,000円</span></td><td class="win">◎</td><td>並列でガンガン任せる上級者</td></tr>
+            <tr><th>Team</th><td>$25/席・月〜<br><span class="mid">≒3,900円〜（少人数から）</span></td><td class="win">◎</td><td>チームで共有・管理して使う会社</td></tr>
+            <tr><th>Enterprise</th><td class="mid">個別見積り</td><td class="win">◎</td><td>統制・大規模導入が必要な組織</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn" style="margin-top:14px;">
+        <div class="wt">⚠️ 予算のときに知っておくこと</div>
+        料金は<b>米ドル建て・税別</b>で、円換算は為替で変動します（上記は1ドル≒155円の概算）。またCoworkは複数手順を実行するため<b>通常のチャットより使用量（利用枠）を多く消費</b>し、枠はチャット・Code・Desktopと共有です。最新の金額・条件は必ず<b>公式の料金ページ</b>でご確認を。
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>迷ったら<b>Proでスタート</b>。「Proでも上限にすぐ当たる…」と感じてからMaxに上げれば、払いすぎを防げるよ。会社でみんな使うならTeamで管理機能が付いてくる。</div>
+    </div>
+
+    <h3 class="blk" id="list">仕事も遊びも変わる。Cowork 活かし方10選</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 8px;">同業・先行ユーザーの人気の使い方をトレースして、初心者がつまずかない順に10コ厳選しました。各項目に<b>「仕事／遊び」「＋AIでこうなる」「注意点」</b>を付けています。プロンプトはコピペOK。<code>〔　〕</code>の部分だけ、自分の言葉に置き換えてください。</p>
+    <!-- 01 -->
+    <div class="step" style="--accent:var(--claude)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>1</b></div>
+        <div><span class="st-chip">FILE ORGANIZE ｜ お片付け</span><div class="st-ttl">散らかったフォルダを、自動でお片付け</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Coworkの“定番の一歩目”。ダウンロードやデスクトップに溜まったファイルを、種類・日付・内容で仕分けし、わかりやすい名前にリネームまで。数百ファイルでもサクサク。まず「どう分類する？」と確認してくれるので安心です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>請求書・見積書・契約書を「取引先／年月」で自動仕分け</li>
+            <li>撮りためた現場写真を、日付と案件名でフォルダ分け＆リネーム</li>
+            <li>バラバラの資料を「提案書／議事録／請求」で棚卸し</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>スマホから来た写真を「年・イベント」で自動アルバム化</li>
+            <li>ダウンロードした音楽・PDF・ZIPを種類別にスッキリ</li>
+            <li>レシピや切り抜き画像を、ジャンル別フォルダに整理</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre>このフォルダの中身を整理してください。まず<span class="fill">〔種類（請求書/写真/資料）〕</span>ごとに分類案を提案し、私がOKしたら、
+「<span class="fill">〔年月＿取引先＿種類〕</span>」の形でリネームして、サブフォルダに振り分けてください。実行の前に、変更内容の一覧を見せてください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <div class="flow"><span class="b">ただ移動する</span><span class="ar">→</span><span class="b">中身を読んで判断</span><span class="ar">→</span><span class="b">命名ルールごと提案</span></div>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">単なる自動振り分けと違い、Coworkは<b>ファイルの中身を読んで意味で分類</b>します。「この請求書はA社の5月分」まで理解して名前を付けられるのが、AIならではの強みです。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>ファイルの移動・リネームは<b>元に戻しにくい</b>操作。最初は<b>コピーを入れた専用フォルダ</b>で試し、必ず「実行前に一覧を見せて」と添えましょう。大事な原本は別途バックアップを。</div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="step" style="--accent:var(--chatgpt)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>2</b></div>
+        <div><span class="st-chip">EXTRACT ｜ 読み取り一覧化</span><div class="st-ttl">PDF・領収書・名刺を読み取って、一覧表に</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">紙をスマホで撮った画像やPDFの束を渡すと、書いてある情報を読み取って、Excelや表にまとめてくれます。手入力の“めんどう”がまるごと消える、効果を実感しやすい使い方です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>領収書の画像から「日付・店名・金額・費目」を抽出して経費表に</li>
+            <li>もらった名刺を撮って、会社・氏名・連絡先の一覧に</li>
+            <li>請求書PDFから金額と支払期日を拾って、支払管理表に</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>買い物レシートを撮りためて、月ごとの家計簿に自動集計</li>
+            <li>お店のメニュー写真から、行きたい店リスト＆予算メモ</li>
+            <li>手書きのメモや年賀状を読み取って、住所録に</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre>このフォルダの<span class="fill">〔領収書の画像〕</span>を1枚ずつ読み取り、「日付／店名／金額／<span class="fill">〔費目〕</span>」の列で
+Excel（.xlsx）に一覧化してください。読み取れなかった項目は空欄にして、最後に合計金額も出してください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">レイアウトがバラバラの紙でも、<b>「どこに何が書いてあるか」をAIが判断</b>して拾えます。費目の自動振り分けや、合計・月別集計まで“ついでに”やってくれるのが人力との差です。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>読み取りは<b>100%正確とは限りません</b>（ハルシネーション）。金額・日付など<b>お金や税に関わる数字は必ず自分で照合</b>を。個人情報を含む画像は、扱ってよいか社内ルールを確認しましょう。</div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="step" style="--accent:var(--pine-2)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>3</b></div>
+        <div><span class="st-chip">DATA ｜ 集計・突合・グラフ</span><div class="st-ttl">Excel・CSVの集計と突合、グラフ化まで丸ごと</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「関数が苦手」「2つの表の照合が地獄」——そんな表計算の面倒を、日本語の指示だけで。複数ファイルの合算、重複チェック、2表の突合（マッチング）、グラフ入りレポートまで一気通貫です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>店舗別・月別の売上CSVを合算して、比較グラフ付きレポートに</li>
+            <li>発注リストと入荷リストを突合して、差分（未入荷）を抽出</li>
+            <li>アンケート結果を集計して、要点コメント付きでまとめる</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>家計簿CSVを費目別に集計して、使いすぎを可視化</li>
+            <li>体重・歩数・睡眠の記録を折れ線グラフでトレンド化</li>
+            <li>ゲームの戦績や推し活の記録を、月別ランキング表に</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre>このフォルダにある<span class="fill">〔複数の売上CSV〕</span>を1つにまとめ、<span class="fill">〔店舗・月〕</span>ごとに集計してください。
+前月比と合計を出し、棒グラフを付けたExcelレポートにして。気づいた点があれば3行でコメントも添えてください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">数字を出すだけでなく、<b>「先月より○○店が伸びている」といった気づきの言語化</b>までAIがやります。関数を知らなくても、分析レポートの“完成品”が返ってくるのが決定的な違いです。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>元データの列名や形式がバラバラだと、集計を誤ることがあります。<b>最初に小さなサンプルで試して、合計値が合うか検算</b>を。出てきたグラフの数字も一度は自分の目でチェックしましょう。</div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="step" style="--accent:var(--claude)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>4</b></div>
+        <div><span class="st-chip">MEETING ｜ 議事録・ToDo</span><div class="st-ttl">文字起こし→議事録＋ToDo＋お礼メールまで一気に</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">会議の録音・文字起こしや動画を渡すと、①決定事項 ②やること（担当・期限）③次回の宿題、へ整形。さらに参加者への<b>お礼＋要点共有メールの下書き</b>まで、続けて作れます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>1時間の会議録を、A4一枚の議事録に圧縮</li>
+            <li>「誰が・いつまでに」のToDoリストを自動抽出</li>
+            <li>取引先へ送る、要点まとめ＋お礼メールの下書き</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>YouTube講義やセミナー動画の要点を、学習ノートに</li>
+            <li>PTA・町内会・サークルの打合せメモをきれいに整形</li>
+            <li>気になる対談・ポッドキャストの要約を作って積読解消</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre>この文字起こしを議事録にしてください。「①決定事項 ②やること（担当・期限つき）③次回の宿題」の3項目で。
+そのあと、<span class="fill">〔参加者/取引先〕</span>へ送るお礼＋要点共有メールの下書きも、丁寧な敬語で200字程度で作ってください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「話した内容の整理」で終わらず、<b>次のアクション（ToDo）とメール送付までを一続きの成果物</b>にできます。会議が終わった瞬間に、共有できる状態が手元にあるイメージです。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>文字起こしの聞き間違いはそのまま議事録に乗ります。<b>決定事項・金額・日程は原本と突き合わせ</b>を。メールは送信前に必ず人が最終チェック。機密性の高い会議は取り扱いに注意しましょう。</div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="step" style="--accent:var(--ember-2)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>5</b></div>
+        <div><span class="st-chip">RESEARCH ｜ 調査→資料化</span><div class="st-ttl">調べて“資料の形”まで仕上げる（比較表・スライド）</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Coworkの得意技。単に「調べて答える」ではなく、<b>調べた結果を、比較表・企画書・スライドという“見せられる形”まで書き出す</b>ところまでが一連の作業です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>競合サービスを調べて、料金・機能の比較表に</li>
+            <li>企画のたたき台を、そのままスライド（PowerPoint）に</li>
+            <li>市場・トレンドを調査して、要点レポートにまとめる</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>旅行先を比較して、日程・予算入りのプラン表に</li>
+            <li>買いたい家電を条件で比較して、おすすめ表に</li>
+            <li>推し活・趣味の情報を、見やすいまとめ資料に</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre><span class="fill">〔比較したい対象（例：3つのサービス）〕</span>について調べ、「価格・特徴・向いている人」で比較表にしてください。
+そのうえで、初心者向けに<span class="fill">〔おすすめ〕</span>を1つ選んで理由を添え、5枚程度のスライドにまとめてください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「情報収集」と「資料作成」という<b>別々だった2つの作業が、1回の指示でつながります</b>。空き時間に頼んでおけば、戻ってきたときには“配れる資料”ができています。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>調べた情報が<b>最新・正確とは限りません</b>。価格や仕様など重要な事実は<b>一次情報（公式サイト）で裏取り</b>を。そのまま提出せず、必ず自分の視点で一度読み直してから使いましょう。</div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="step" style="--accent:var(--pine-2)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>6</b></div>
+        <div><span class="st-chip">SCHEDULE ｜ 予約実行</span><div class="st-ttl">毎朝・毎週の定型業務を、予約して自動実行</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「Scheduled tasks（スケジュール）」を使うと、決まった時間に決まった作業を自動で。“毎回やるけど地味に面倒”を、寝ている間・出勤前に片付けておけます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>毎朝、業界ニュースを集めて要約ブリーフィングを作成</li>
+            <li>毎週金曜、売上スプレッドシートを更新してレポート化</li>
+            <li>月初に、前月の定型レポートを自動で下書き</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>毎朝、天気×今日の予定×ニュースを1枚のメモに</li>
+            <li>毎週、家計簿の集計と使いすぎアラートを自動作成</li>
+            <li>推しの新着情報を定期チェックしてまとめる</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre>毎朝<span class="fill">〔7時〕</span>に、<span class="fill">〔業界名〕</span>の主要ニュースを3〜5件集めて、見出し＋2行要約のブリーフィングを
+このフォルダにテキストで保存する——という作業を、スケジュールタスクとして設定してください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">単なる“通知”ではなく、<b>毎回きちんと「読める成果物」が仕上がって置かれている</b>のが特徴。曜日や気分に左右されず、品質が一定になります。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>スケジュール実行は<b>PCが起動し、Claudeデスクトップアプリが開いている必要</b>があります（完全なクラウド常駐ではない）。また実行はリアルタイムで見張れないので、<b>まずは要約など“低リスクな作業”から</b>始め、削除・送信・購入などは自動化しないのが安全です。</div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="step" style="--accent:var(--google)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>7</b></div>
+        <div><span class="st-chip">DISPATCH ｜ スマホから遠隔</span><div class="st-ttl">外出先から、スマホで自宅・会社のPCに指示</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「Dispatch（ディスパッチ）」は、スマホのClaudeアプリから、<b>オフィスや自宅で動いているCoworkに遠隔で指示を出す</b>仕組み。移動中や外回りの“スキマ時間”が作業時間に変わります。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>移動中に「あの資料、比較表にしておいて」と先回り指示</li>
+            <li>外回り先から、帰社後に必要な下ごしらえを依頼</li>
+            <li>会社のPCにあるファイルの集計を、出先から着手</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>帰宅前に、家のPCで写真整理や動画変換を起動</li>
+            <li>旅行中、撮った写真の下ごしらえを自宅PCに任せる</li>
+            <li>思いついたアイデアを、その場でPCに“仕込んで”おく</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示（スマホから）</span><button class="cb-btn">コピー</button></div>
+          <pre>（スマホのClaudeアプリ→対象PCを選んで）
+デスクトップの<span class="fill">〔プロジェクト名〕</span>フォルダで、<span class="fill">〔今日の会議メモ〕</span>を議事録に整えておいて。
+帰社したら確認するので、完成したらそのまま置いておいてください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「PCの前に座ってから作業開始」という制約が消えます。<b>思いついた瞬間に指示 → 席に戻ると完成</b>。時間と場所の縛りから解放されるのがDispatchの醍醐味です。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>事前に<b>スマホのClaudeアプリと対象PCの関連付け</b>が必要で、そのPCが起動・アプリ起動中であることが前提です。遠隔ゆえ途中の細かい確認がしづらいので、<b>取り返しのつく作業</b>を選びましょう。</div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="step" style="--accent:var(--chatgpt)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>8</b></div>
+        <div><span class="st-chip">CONNECT ｜ 外部ツール連携</span><div class="st-ttl">Gmail・Slack・Drive・Notionとつないで横断</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">MCP（コネクタ）という仕組みで、GmailやSlack、Google Drive、Notionなど<b>普段使うツールとCoworkを接続</b>。設定は数クリック、プログラミング不要。“アプリをまたぐ面倒”がなくなります。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>Driveの資料を読んで要約し、Gmailの下書きまで作成</li>
+            <li>Slackの議論を拾って、Notionに決定事項を記録</li>
+            <li>受信メールを整理して、返信の下書きをまとめて用意</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>予定・買い物リスト・レシピを1か所に集約</li>
+            <li>家族グループの連絡から、やることリストを抽出</li>
+            <li>気になった記事をNotionにきれいにストック</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre><span class="fill">〔Google Drive〕</span>にある<span class="fill">〔今週の資料〕</span>を読んで要点を3つにまとめ、
+それを本文にした<span class="fill">〔上司〕</span>宛メールの下書きを、Gmailに作成してください。送信はまだしないでください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「Driveで探す→読む→要約→メールを書く」という<b>アプリ間の往復が、1つの指示に集約</b>されます。人が窓口を切り替える手間がゼロになるのが、連携の効果です。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>連携は便利な反面、<b>Coworkに渡す権限は最小限</b>に。<b>送信・削除・購入は「下書きまで」に留め、最終操作は人が</b>行いましょう。接続するアカウントやフォルダは、機密性の低いものから始めるのが安全です。</div>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="step" style="--accent:var(--youtube)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>9</b></div>
+        <div><span class="st-chip">BROWSER ｜ ブラウザ操作</span><div class="st-ttl">ブラウザ操作もお任せ（Claude in Chrome 連携）</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「Claude in Chrome」やComputer use（画面をクリック・入力してアプリ操作／一部プランの研究プレビュー）と組み合わせると、<b>Webページを開いて情報を集め、表にまとめる</b>といったブラウザ作業まで任せられます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>複数サイトから情報を集めて、比較表に自動整理</li>
+            <li>Web上の一覧から必要データを拾って、Excel化</li>
+            <li>定型のフォーム入力・情報転記の下ごしらえ</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>旅行の宿・チケットを横断で下調べして比較表に</li>
+            <li>ほしい商品の価格をサイト横断でチェック</li>
+            <li>イベント情報を集めて、行きたい順リストに</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre><span class="fill">〔ジャンル（例：ノートPC）〕</span>を、<span class="fill">〔予算・条件〕</span>で3つのサイトから探して、
+「製品名・価格・特徴・URL」の比較表にしてください。購入や予約の操作は、私が確認するまで行わないでください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「タブを何個も開いて見比べる」作業を、<b>Claudeがまとめて回って、比較表という結論だけ</b>持ってきてくれます。調べ物の“移動コスト”が消えるイメージです。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>ブラウザ操作は<b>プロンプトインジェクション（Web上の悪意ある指示にAIが乗ってしまう）</b>のリスクがあります。<b>ログイン中のサイトや、購入・送金・削除を伴う操作は特に慎重</b>に。銀行・医療・行政など機密アプリへのアクセスは許可しないのが基本です。Computer useは一部プランの研究プレビュー段階です。</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="step" style="--accent:var(--ember-2)">
+      <div class="step-head">
+        <div class="step-badge"><small>その</small><b>10</b></div>
+        <div><span class="st-chip">CREATE ｜ 自作ツール・暮らし</span><div class="st-ttl">自分だけの道具を作る＆暮らしの“面倒”を任せる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">プログラミング不要で、<b>ちょっとした道具やWebページ、ミニゲームまで作って形にできる</b>のもCoworkの魅力。仕事の小ツールから、暮らしのめんどうまで、幅広く“自分仕様”に。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>こう使う</div><ul>
+            <li>簡単な計算・見積ツールや、社内向けの1枚Webページ</li>
+            <li>よく使う書類のひな形（テンプレ）を自動生成</li>
+            <li>定型メール文・POP・お知らせのたたき台づくり</li>
+          </ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">遊び</span>こう使う</div><ul>
+            <li>子どもと遊べるミニゲームやクイズを作る</li>
+            <li>年賀状・名簿・住所録の整理と宛名リスト化</li>
+            <li>「冷蔵庫の食材で献立」など暮らしの自動化</li>
+          </ul></div>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペで使える指示</span><button class="cb-btn">コピー</button></div>
+          <pre><span class="fill">〔用途（例：来客用の受付メモ）〕</span>に使える、シンプルな<span class="fill">〔1枚のWebページ / 小さな計算ツール〕</span>を作ってください。
+専門用語は避け、あとで自分で文言を直せるように、わかりやすい作りにしてください。</pre>
+        </div>
+        <div class="combo">
+          <h4>＋ AIが加わると、こうなる</h4>
+          <p style="margin:0;font-size:13.6px;color:var(--ink-soft);">「こんな道具があれば」を、<b>外注も勉強もせずに“その日のうちに形”</b>にできます。作って終わりでなく、「ここ直して」と会話で育てていけるのがAIならでは。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>作ったものは<b>公開範囲に注意</b>。個人情報や社外秘を含むページを、うっかり誰でも見られる状態にしないこと。動くものでも、<b>最終的な公開・運用の判断は人が</b>行いましょう。</div>
+      </div>
+    </div>
+    <h3 class="blk">うごく君の「Coworkに任せるコツ」</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 6px;">Coworkは“作業する相手”。次の4つを添えるだけで、返ってくる成果物がグッと良くなります。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>ゴールは何？</b>例：領収書を一覧表に／議事録にする</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>どのフォルダ？</b>例：この専用フォルダの中だけで作業して</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で？</b>例：Excel／スライド／箇条書き5つ</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>実行前に確認して</b>例：変更内容を一覧で見せてから進めて</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>「フォルダを整理して」→ どう分類するか曖昧で、思わぬ整理をされがち</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>「この専用フォルダの領収書を、日付と店名でリネームし、実行前に一覧を見せて」→ 安全で狙いどおり</div>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">📋 そのまま使える“型”</span><button class="cb-btn">コピー</button></div>
+        <pre><span class="fill">〔このフォルダ〕</span>の中で、<span class="fill">〔してほしいこと〕</span>をしてください。
+成果物は<span class="fill">〔形式：Excel/スライド/表〕</span>で。
+削除やリネームなど元に戻しにくい操作は、<span class="fill">実行の前に必ず一覧で見せて</span>から進めてください。</pre>
+      </div>
+    </div>
+
+    <h3 class="blk">もっと任せられる！アイデア集</h3>
+    <div class="ideas">
+      <div class="idea"><h4><span class="e">🏪</span>お店・会社で</h4><ul>
+        <li>領収書・請求書の読み取り→経費表づくり</li>
+        <li>売上・在庫データの集計とレポート化</li>
+        <li>クチコミ返信・SNS投稿・POPの下書き</li>
+        <li>会議録→議事録＋ToDo＋共有メール</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">🧑‍💼</span>デスクワークで</h4><ul>
+        <li>散らかったフォルダの自動仕分け・リネーム</li>
+        <li>2つの表の突合（マッチング）・差分抽出</li>
+        <li>競合調査→比較表→スライドまで一気に</li>
+        <li>毎朝・毎週の定型レポートを予約実行</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">🏠</span>暮らしで</h4><ul>
+        <li>レシートを撮って家計簿に自動集計</li>
+        <li>写真を年・イベント別にアルバム整理</li>
+        <li>旅行プラン表・買い物リストづくり</li>
+        <li>年賀状の宛名・住所録の整理</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">📚</span>学び・趣味で</h4><ul>
+        <li>講義・セミナー動画の要点ノート化</li>
+        <li>体重・歩数・記録のグラフ可視化</li>
+        <li>推し活・コレクションのまとめ資料</li>
+        <li>子どもと遊べるミニゲームづくり</li>
+      </ul></div>
+    </div>
+
+    <h3 class="blk">安全に、かしこく任せるために</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 6px;">Coworkは“実際に手を動かす”ぶん、チャットより一段の注意が必要です。次の6つを守れば安心です。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>専用フォルダから始める</div><p>いきなりPC全体を渡さない。まず「cowork_test」など専用フォルダを作り、コピーしたファイルで試しましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>実行前に一覧で確認</div><p>削除・リネーム・移動など元に戻しにくい操作は、「実行前に変更内容を見せて」と必ず添える習慣を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>機密情報は入れない</div><p>顧客の個人情報・カード番号・社外秘は、原則Coworkに触らせない。会社で使うなら社内ルールも確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>送信・購入は人が最後に</div><p>メール送信・削除・購入・お金が動く操作は自動化せず、下書きまでに留めて、最終ボタンは人が押す。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>結果は鵜呑みにしない</div><p>読み取りや集計を“もっともらしく”間違えることも。数字・名前・日付は必ず自分で照合を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>大事な原本はバックアップ</div><p>ファイル操作を任せる前に、重要データは別にコピー。ネット接続を伴う作業では乗っ取り指示（プロンプトインジェクション）にも注意。</p></div>
+    </div>
+
+    <h3 class="blk">はじめの一歩（今日やること）</h3>
+    <div class="compact">
+      <details open><summary>STEP 1｜有料プラン（まずはPro）に入る</summary><div class="ans">Coworkは有料プラン専用です。個人ならまず<b>Pro（$20/月）</b>でOK。Claudeのデスクトップアプリ（Mac／Windows）を最新版にしておきましょう。</div></details>
+      <details><summary>STEP 2｜「cowork_test」フォルダを1つ作る</summary><div class="ans">整理したいファイルの<b>コピー</b>を入れた専用フォルダを用意し、Coworkにそのフォルダだけを許可します。ここが安全な練習場になります。</div></details>
+      <details><summary>STEP 3｜「その1・フォルダ整理」の指示を試す</summary><div class="ans">この記事の“その1”のコピペ指示を貼るだけ。「実行前に一覧を見せて」を付ければ、初めてでも安心して試せます。</div></details>
+      <details><summary>STEP 4｜1つ「面倒な定型作業」を任せてみる</summary><div class="ans">領収書の一覧化・議事録づくりなど、あなたの“毎回やるけど面倒”を1つ選んで任せる。効果を実感したら、対象を少しずつ広げましょう。</div></details>
+    </div>
+
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>普通のClaude（チャット）と、Coworkの違いは？</summary><div class="ans">チャットは「会話で答えをもらう」相談役。Coworkは「許可したフォルダの中で実際にファイルを読み書きし、成果物を仕上げる」作業役です。“アップロードして・コピペで戻す”手間がなくなり、PCの中で直接手を動かしてくれます。</div></details>
+      <details><summary>無料プランでも使えますか？</summary><div class="ans">Coworkは有料プラン（Pro／Max／Team／Enterprise）専用で、無料プランでは使えません。まずはチャットを無料で試し、「PC作業ごと任せたい」と思ったらProから始めるのがおすすめです。</div></details>
+      <details><summary>Claude Codeと何が違うの？</summary><div class="ans">中身（エージェントの技術基盤）はほぼ同じ、とAnthropicも説明しています。違いは“入口”。Claude Codeは黒い画面（ターミナル）を使う開発者向け、Coworkはその力を<b>ターミナル不要・普通の画面</b>で、非エンジニアでも使えるようにしたものです。</div></details>
+      <details><summary>PCを閉じても作業は続きますか？</summary><div class="ans">Coworkの作業はAnthropicのサーバー上でも動くため（リモート実行・ベータ）、その場合はPCを閉じても続きます。ただし<b>スケジュール実行やPC上のファイル・アプリ操作は、PCが起動しデスクトップアプリが開いていることが前提</b>です。2026年7月からはWeb・スマホでも順次利用できるようになりました。</div></details>
+      <details><summary>入力した内容は学習に使われますか？安全？</summary><div class="ans">学習利用の扱いはプランや設定で異なり、一般に有料プランのデータはモデル学習に使われない方針とされています。とはいえ<b>機密情報は入れない・専用フォルダで使う・送信や購入は人が最後に確認する</b>のが安全の基本。会社利用では社内ルールも合わせて確認しましょう。最新の扱いは公式のヘルプでご確認を。</div></details>
+      <details><summary>毎月いくらかかりますか？</summary><div class="ans">個人向けはPro $20／Max 5x $100／Max 20x $200（いずれも月・税別）、チームはTeam $25/席〜が目安（1ドル≒155円で概算3,100〜31,000円）。米ドル建て・為替変動あり、税も別途。Coworkはチャットより使用量（利用枠）を多く消費します。最新の金額は必ず公式料金ページでご確認ください。</div></details>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ 関連リンク ═══ -->
+<section class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">
+        <span class="r-ic">🚀</span>
+        <span><span class="r-k">シリーズ前編</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでYouTube・ChatGPT・Claude</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">
+        <span class="r-ic">🏠</span>
+        <span><span class="r-k">UGOKU AI 本体</span><span class="r-t">実装研修サービスを見る<small>／ 助成金活用の実装型AI研修</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork" target="_blank" rel="noopener">
+        <span class="r-ic">🤝</span>
+        <span><span class="r-k">公式ヘルプ</span><span class="r-t">Get started with Claude Cowork<small>／ Anthropic公式 ↗</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://claude.com/pricing" target="_blank" rel="noopener">
+        <span class="r-ic">💳</span>
+        <span><span class="r-k">公式・料金</span><span class="r-t">プランと料金を確認する<small>／ 最新の金額はこちら ↗</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“面倒な作業”、<br><span class="hl">Coworkで動かしませんか？</span></h2>
+    <p>「どの作業から任せればいい？」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの仕事に合う“任せどころ”が見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら →</a>
+    </div>
+    <p class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="26" height="26"><use href="#ugoku"/></svg>UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      ※各サービスの画面・料金・手順は、提供元の更新により変わることがあります。掲載の料金・仕様は2026年7月時点の目安です。
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

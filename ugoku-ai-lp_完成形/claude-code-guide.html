@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はじめてのClaude Code導入マニュアル｜Mac・Chromeで0からAIコーディング ― UGOKU AI</title>
+<meta name="description" content="PC初心者・Claude Code初心者へ。Mac（Google Chrome推奨）で、AIがあなたの代わりに作業する『Claude Code』を、0から迷わず導入する、いちばんやさしいマニュアル。料金プランの予算感・仕事と遊びの活かし方・AIが加わる可能性・注意点まで、案内役のうごく君が解説します。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="はじめてのClaude Code導入マニュアル｜Mac・Chromeで0から始めるAIコーディング ― UGOKU AI">
+<meta property="og:description" content="むずかしい話はナシ。Macとブラウザ（Chrome推奨）だけで、今日から。AIに作業を任せる『Claude Code』の始め方を、うごく君が0から解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+
+  /* ═══ Claude Code 追加コンポーネント（元テーマのトークンを継承）═══ */
+  /* ターミナル窓：copyboxと同じ松葉色ベース */
+  .term{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .term .tm-top{display:flex;align-items:center;gap:7px;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .term .tm-top .d{width:11px;height:11px;border-radius:50%;}
+  .term .tm-top .d.r{background:#ED6A5E;}.term .tm-top .d.y{background:var(--ember);}.term .tm-top .d.g{background:#61C554;}
+  .term .tm-top .tl{margin-left:6px;font-family:"SF Mono",Consolas,monospace;font-size:11px;color:#B8AD8E;letter-spacing:.02em;}
+  .term pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.9;white-space:pre-wrap;word-break:break-word;overflow-x:auto;}
+  .term .pr{color:#7BD88F;}
+  .term .cm{color:#fff;font-weight:600;}
+  .term .ok{color:var(--ember);}
+  .term .mut{color:#9A9079;}
+  .term .cur{display:inline-block;width:8px;height:15px;background:#7BD88F;vertical-align:-2px;margin-left:2px;border-radius:1px;animation:tm-blink 1.1s steps(1) infinite;}
+  @keyframes tm-blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion:reduce){.term .cur{animation:none;}}
+
+  /* インラインのキー表示 */
+  kbd{background:#F1EEE4;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 7px;font-size:12px;font-weight:800;color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 料金表の補助 */
+  table.cmp-t td .yen{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember-2);}
+  table.cmp-t td .sm{font-size:11px;color:var(--ink-soft);font-weight:500;}
+  .plan-pill{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:6px;margin-top:5px;}
+  .plan-pill.no{background:#FBECEC;color:#B23A3A;}
+  .plan-pill.best{background:var(--ember-soft);color:var(--ember-2);}
+  table.cmp-t td.ct{text-align:center;}
+
+  /* コマンド早見表 */
+  .cmds{display:grid;gap:10px;margin:10px 0 2px;}
+  @media(min-width:600px){.cmds{grid-template-columns:1fr 1fr;}}
+  .cmd{display:flex;gap:11px;align-items:baseline;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:11px 13px;}
+  .cmd .c{flex:none;font-family:"SF Mono",Consolas,monospace;font-weight:700;font-size:13px;color:var(--pine-deep);background:#F1EEE4;padding:2px 8px;border-radius:6px;}
+  .cmd .d{font-size:13.3px;color:var(--ink-soft);}
+
+  /* 情報ボックス（go 系）: keystone/tipの中間、緑寄り */
+  .infobox{display:flex;gap:12px;align-items:flex-start;background:#EAF3EC;border:1px solid #BFDFC7;border-radius:14px;padding:14px 16px;margin:14px 0 2px;}
+  .infobox .ib-ic{font-size:19px;flex:none;line-height:1.5;}
+  .infobox .ib-t{font-size:13.8px;color:#2C4A34;}
+  .infobox .ib-t b{color:var(--pine);font-weight:800;font-family:"Zen Kaku Gothic New",sans-serif;display:block;font-size:12.5px;margin-bottom:2px;}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+<!-- ═══════════ HERO ═══════════ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU AI<small>案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">はじめてのClaude Code導入マニュアル</span>
+      <h1>「AIに<span class="hl">作業を任せる</span>」を、<br>Macで今日から始める。</h1>
+      <p class="lead">Claude Code（クロード・コード）は、あなたの言葉で頼むだけで、<b>調べる・書く・直す・動かす</b>をAIが代わりに進めてくれる道具。むずかしい専門用語はナシ。<b>MacとGoogle Chrome</b>があれば、0から始められます。</p>
+      <div class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを先回りして教えます。</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#steps">導入手順を見る<span class="arw">↓</span></a>
+        <a class="btn btn-ghost" href="#price">まず料金の予算感を見る</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ うごく君 あいさつ ═══════════ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「コードとか、ターミナルとか、自分には無理そう…」と身構えなくて大丈夫。この記事を上から順に進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>Macに<b>Claude Codeを入れて、自分の名前でログイン</b>できる</li>
+          <li>AIに<b>「〇〇して」と日本語で頼んで、作業を任せる</b>ことができる</li>
+          <li>料金プランの<b>予算感がわかり、自分に合う一枚を選べる</b></li>
+          <li>仕事にも遊びにも使える、<b>安全な使い方の勘どころ</b>がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 3つの役割 ═══════════ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">そもそもClaude Codeって、何が違うの？</h2>
+    <p class="sec-sub">同じ「Claude」でも、入口が3つあります。スマホのアプリと同じで、得意分野と“できること”が違います。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">💬</div>
+        <h4>Claude <span>＝ 相談する・作る</span></h4>
+        <p>ブラウザやアプリでお願いすると、文章・要約・翻訳・アイデアが返ってくる。画面の中で“会話”する使い方。まずはここから。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember);">
+        <div class="ic">🖥️</div>
+        <h4>Claude Code <span>＝ 代わりに作業する</span></h4>
+        <p>あなたのMacの中で、ファイルを読み・書き・整理し・実際に動かしてくれる“作業してくれるAI”。指示するだけで手が動く、今回の主役。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine-2);">
+        <div class="ic">🧩</div>
+        <h4>Claude Desktop <span>＝ 画面で操作する</span></h4>
+        <p>ターミナルが苦手な人向けの逃げ道。同じClaude Codeを、黒い画面ではなくアプリの画面から使えます（後述）。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 記事本体 ═══════════ -->
+<div class="article" id="guide">
+  <div class="wrap">
+
+    <div class="keystone">
+      <span class="kl">💡 はじめる前の大前提</span>
+      <p>Claude Codeを使うには、<strong>有料プランが1つ必要</strong>です。<strong>無料（Free）プランでは使えません。</strong>まず有料プランを契約するのが、すべてのスタートになります。</p>
+    </div>
+
+    <!-- 予算感 -->
+    <h3 class="blk" id="price">各プランの予算感を、先に掴む</h3>
+    <p class="sec-sub">「稟議」や「今月のお小遣い」で判断できるよう、料金の目安をまとめました。迷ったらまずはProで十分です。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>プラン</th><th>月額（税抜）</th><th class="ct">日本円の目安</th><th>こんな人に</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Free<br><span class="plan-pill no">Claude Code 不可</span></th>
+            <td><span class="yen">$0</span></td>
+            <td class="ct">0円</td>
+            <td>まずブラウザのClaudeで会話を試す段階。Claude Codeは付いていません。</td>
+          </tr>
+          <tr>
+            <th>Pro<br><span class="plan-pill best">最初の一枚におすすめ</span></th>
+            <td><span class="yen">$20</span><br><span class="sm">年払い実質$17</span></td>
+            <td class="ct"><span class="yen">約3,000円</span></td>
+            <td>個人で1日に数回〜ほどよく使う人。<b>まずはここから</b>で十分。上位モデルOpusも使えます。</td>
+          </tr>
+          <tr>
+            <th>Max 5x</th>
+            <td><span class="yen">$100</span></td>
+            <td class="ct"><span class="yen">約15,000円</span></td>
+            <td>1日中Claude Codeと対話する、上限が気になり出したヘビーユーザー向け。</td>
+          </tr>
+          <tr>
+            <th>Max 20x</th>
+            <td><span class="yen">$200</span></td>
+            <td class="ct"><span class="yen">約30,000円</span></td>
+            <td>複数の作業を並行でぶん回す、プロ開発者・パワーユーザー向け。</td>
+          </tr>
+          <tr>
+            <th>Team</th>
+            <td><span class="yen">$25</span>/席<br><span class="sm">年払い$20・最低5席〜</span></td>
+            <td class="ct"><span class="yen">約19,000円〜</span><br><span class="sm">(5席合計)</span></td>
+            <td>5名以上のチーム導入。管理機能つき。少人数ならまずPro個別契約が現実的。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">
+      <div class="wt">💴 お金まわりの注意（初心者ほど見落としがち）</div>
+      料金は<b>米ドル建て・クレジットカード決済</b>。日本からの利用は<b>消費税10%が上乗せ</b>され、実際の請求額は<b>為替で毎月少し変動</b>します。円換算はあくまで目安（1ドル150〜160円想定）。最新の正確な金額は必ず<a href="https://claude.com/pricing" target="_blank" rel="noopener">公式の料金ページ</a>で確認を。
+    </div>
+    <div class="infobox">
+      <span class="ib-ic">🧭</span>
+      <div class="ib-t"><b>迷ったら</b>まずはPro（月約3,000円）で1か月お試し。物足りなくなってからMaxに上げれば十分です。プラン変更しても、会話履歴も設定もそのまま引き継がれます。</div>
+    </div>
+
+    <!-- ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>入口は「公式」だけを使う</h4>
+        <p>インストールも契約も、下の手順にある<b>公式サイト・公式コマンド</b>からだけ。偽サイトや広告リンクは踏まないこと。公式ページは<b>ブックマーク</b>しておけば、次から安全・確実です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>ブラウザはGoogle Chromeを既定に</h4>
+        <p>ログイン認証はブラウザで行います。Safariでうまくいかないことがあるため、Chromeを<b>「既定のブラウザ」</b>にしておくと認証がスッと通ります。<a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chromeはこちら</a>から無料で入れられます。</p>
+      </div>
+    </div>
+
+    <!-- STEPS -->
+    <h3 class="blk" id="steps">Mac × Chromeで、0からClaude Codeを導入する</h3>
+    <p class="sec-sub">パソコンが得意でない方でも、今日から触り始められるように作りました。5つのSTEPを上から順にどうぞ。所要時間は15分ほどです。</p>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div><span class="st-chip">CHECK YOUR MAC</span><div class="st-ttl">Macの準備を確認する</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">まず、あなたのMacがClaude Codeを動かせるか、ざっくり確認します。ほとんどの方はそのままでOKです。</p>
+        <ul class="use">
+          <li><b>macOS 13.0（Ventura）以降</b>であること。画面左上の🍎 →「このMacについて」で確認できます。古い場合は先にアップデートを。</li>
+          <li>メモリ<b>4GB以上</b>・インターネット接続があること（近年のMacならほぼ問題なし）。</li>
+          <li>「<b>ターミナル</b>」という黒い画面のアプリを使います。場所は <b>アプリケーション → ユーティリティ → ターミナル</b>。<kbd>⌘</kbd>＋<kbd>スペース</kbd> で検索窓を出し「ターミナル」と打っても開けます。</li>
+        </ul>
+        <div class="infobox">
+          <span class="ib-ic">🐣</span>
+          <div class="ib-t"><b>黒い画面が怖い方へ</b>STEP3で紹介する<b>Claude Desktopアプリ</b>を使えば、ターミナルを開かずに“画面操作”だけで同じClaude Codeが使えます。まずは最後まで読んで、やりやすい方を選んでOKです。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div><span class="st-chip">GET A PLAN</span><div class="st-ttl">有料プランを1つ契約する</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">前提のとおり、Claude Codeは有料プランが必要です。<b>Google Chrome</b>で公式サイトを開いて、まずはProを契約しましょう。</p>
+        <ol class="mini">
+          <li>Chromeで <code>claude.ai</code> を開き、<b>「Continue with Google」</b>でGmailアカウントでログイン（初回は「18歳以上」の確認・規約同意）</li>
+          <li>プラン画面で <b>Pro</b> を選ぶ（迷ったらProでOK・月約3,000円）</li>
+          <li>クレジットカードを登録して契約完了 🎉</li>
+        </ol>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claudeを開いて契約する ↗</a>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>2回目以降も必ず同じ「Googleで続ける」から入ろう。メール＋パスワードで入ると別アカウントになり、契約や履歴が見えなくなるよ（よくある勘違い）。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div><span class="st-chip">INSTALL</span><div class="st-ttl">Claude Codeをインストールする</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いよいよ本体を入れます。ターミナルに<b>1行を貼り付けるだけ</b>。Anthropic公式が推奨する、いちばん簡単な方法です。</p>
+        <ol class="mini">
+          <li>ターミナルを開く（STEP1参照）</li>
+          <li>下のコマンドを<b>まるごとコピー</b>して貼り付け、<kbd>Enter</kbd></li>
+        </ol>
+        <div class="term">
+          <div class="tm-top"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="tl">ターミナル — インストール（推奨）</span></div>
+          <pre><span class="pr">$</span> <span class="cm">curl -fsSL https://claude.ai/install.sh | bash</span></pre>
+        </div>
+        <div class="mini-h">ちゃんと入ったか確認する</div>
+        <p class="desc" style="margin-top:0">次のコマンドでバージョンが表示されればOK 🎉</p>
+        <div class="term">
+          <div class="tm-top"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="tl">ターミナル — 確認</span></div>
+          <pre><span class="pr">$</span> <span class="cm">claude --version</span>
+<span class="mut">2.1.xx (Claude Code)</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">🛠️ うまくいかない時は</div>
+          <code>claude doctor</code> と打つと、どこでつまずいているか自動で診断してくれます。<code>command not found: claude</code> と出たら、ターミナルを一度閉じて開き直すと直ることが多いです。
+        </div>
+        <div class="infobox">
+          <span class="ib-ic">🧩</span>
+          <div class="ib-t"><b>ターミナルが苦手な人の近道</b>黒い画面を使いたくなければ、<b>Claude Desktopアプリ</b>を入れて中の「Code」タブを使う方法も（中身は同じ）。<a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a> からMac版をダウンロードするだけ。まずはこちらでも大丈夫です。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div><span class="st-chip">LOG IN</span><div class="st-ttl">Claude Codeにログインする</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最後に、あなたの契約アカウントと結びつけます。ここで<b>Chromeが活躍</b>します。</p>
+        <ol class="mini">
+          <li>ターミナルで <code>claude</code> と打って <kbd>Enter</kbd></li>
+          <li>ログイン方法を聞かれたら、<b>サブスク（Pro/Maxなど）</b>を選ぶ</li>
+          <li>ブラウザ（Chrome）が自動で開くので、<b>STEP2と同じアカウント</b>で承認</li>
+          <li>ターミナルに戻ると、ログイン完了。以降は聞かれません 🎉</li>
+        </ol>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ブラウザが自動で開かない時は、ターミナルに出る<b>長いURL</b>を <kbd>⌘</kbd> を押しながらクリック、またはコピーしてChromeのアドレス欄に貼ればOKだよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div><span class="st-chip">FIRST SESSION</span><div class="st-ttl">はじめての「お願い」をしてみる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">準備完了！ 作業したいフォルダに移動して <code>claude</code> と打つと、会話が始まります。まずは気軽に話しかけてみましょう。</p>
+        <div class="term">
+          <div class="tm-top"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="tl">ターミナル — はじめての会話</span></div>
+          <pre><span class="pr">$</span> <span class="cm">claude</span>
+<span class="mut">＊ 何をしましょうか？（/help でコマンド一覧）</span>
+<span class="pr">&gt;</span> このフォルダに何が入っているか、日本語で説明して
+<span class="ok">✓</span> 3つのファイルがあります。それぞれの中身は…
+<span class="pr">&gt;</span> <span class="cur"></span></pre>
+        </div>
+        <div class="mini-h">最初に覚えると一気にラクになる4つ</div>
+        <div class="cmds">
+          <div class="cmd"><span class="c">/help</span><span class="d">使えるコマンドの一覧を表示</span></div>
+          <div class="cmd"><span class="c">/init</span><span class="d">このフォルダ用の“お約束メモ”を自動作成</span></div>
+          <div class="cmd"><span class="c">/clear</span><span class="d">話題を変える前に会話をリセット（重要）</span></div>
+          <div class="cmd"><span class="c">/model</span><span class="d">使うAIモデルを切り替える</span></div>
+        </div>
+        <div class="infobox">
+          <span class="ib-ic">✅</span>
+          <div class="ib-t"><b>安心ポイント</b>Claude Codeは<b>ファイルを変更する前に必ず「これで良い？」と確認</b>してくれます。中身を見て、OKなら承認、違えば断って言い直せばOK。勝手に壊されることはありません。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 仕事と遊び -->
+    <h3 class="blk" id="use">仕事にも、遊びにも。任せられること</h3>
+    <p class="sec-sub">「コードを書く道具」と思われがちですが、本質は<b>“ファイルを扱う作業ぜんぶ”の助手</b>。プログラミングを知らなくても、日本語で頼めます。</p>
+    <div class="split">
+      <div class="col work">
+        <div class="ch"><span class="badge-mini">💼 仕事で</span></div>
+        <ul>
+          <li><b>資料・報告書づくり</b>：メモを渡して「読みやすい報告書に整えて」</li>
+          <li><b>表計算・データ整理</b>：CSVやExcelを渡して「重複を消して店舗別に集計して」</li>
+          <li><b>議事録・文字起こし整形</b>：長い記録を「決定事項・宿題つきで整えて」</li>
+          <li><b>マニュアル・FAQ作成</b>：手順メモから清書された文書を自動生成</li>
+          <li><b>フォルダ整理・一括リネーム</b>：散らかったファイルを規則的に並べ替え</li>
+          <li><b>簡単な社内ツール・LP作り</b>：「予約フォームのページを作って」も動く</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch"><span class="badge-mini">🎮 遊び・暮らしで</span></div>
+        <ul>
+          <li><b>家計簿・献立アプリ</b>：「今月の支出をグラフにするページを作って」</li>
+          <li><b>ちょっとしたゲーム作り</b>：「じゃんけんゲームを作って」で完成品が動く</li>
+          <li><b>写真・ファイルの一括整理</b>：日付ごとにフォルダ分け、名前を揃える</li>
+          <li><b>趣味の記録サイト</b>：読書メモ・旅行記録を見やすいページに</li>
+          <li><b>学びの相棒</b>：「このコードが何をしているか初心者向けに説明して」</li>
+          <li><b>“作ってみたい”の入口</b>：思いつきを、その場で形にして試せる</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- AIが加わると -->
+    <h3 class="blk" id="power">ここに“AIが加わる”と、何が変わる？</h3>
+    <p class="sec-sub">Claude Codeのすごさは、単発の作業ではなく<b>「繰り返す作業を丸ごと任せられる」</b>ところ。あなたの仕事のやり方そのものが変わります。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🔁</span>毎日の定型作業が“ゼロ手間”に</h4>
+        <ul>
+          <li>「毎朝この集計をして、この形式でまとめる」を一度教えれば、以降は一声かけるだけ</li>
+          <li>人がやると30分の作業が、数十秒に短縮</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🗂️</span>散らかった情報が“資産”に変わる</h4>
+        <ul>
+          <li>バラバラのメモ・議事録・売上データを読み込ませて横断的に整理</li>
+          <li>「先月と比べてどう？」にすぐ答えられる状態へ</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🚀</span>“作れなかったもの”が作れる</h4>
+        <ul>
+          <li>未経験でも、社内ツール・LP・自動集計の仕組みが自分の手で</li>
+          <li>外注や高価なソフトの前に、まず試せる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧠</span>あなたの“やり方”を覚えていく</h4>
+        <ul>
+          <li><code>/init</code> で作るお約束メモに好みを書けば、毎回同じ品質で</li>
+          <li>使うほど、あなた専用の助手に育つ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>現場のイメージ</b>飲食・建設・小売…どんな業種でも、「日々のExcel・書類・報告」をAIに任せて、人は判断と接客に集中する——これがClaude Codeで起きる一番大きな変化。0→1で触れば、自分の仕事のどこを任せられるかが見えてくるよ。</div>
+    </div>
+
+    <!-- 効くお願いの型 -->
+    <h3 class="blk" id="prompt">うごく君の「効くお願いの型」</h3>
+    <p class="sec-sub">Claude Codeへの頼み方は、次の4つを足すだけで結果が一段よくなります。ふわっと頼まず、具体的に。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>何を</b>例：この売上メモを</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>どうする</b>例：報告書にまとめる</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で</b>例：A4・1枚・箇条書き</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>条件・注意</b>例：専門用語はやさしく</div></div>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">▸ そのまま使えるテンプレ</span></div>
+        <pre><span class="fill">〔このファイル／このフォルダ〕</span>を読んで、
+<span class="fill">〔してほしいこと〕</span>をしてください。
+形式は <span class="fill">〔箇条書き5つ／表／1ページ〕</span>で、
+<span class="fill">〔専門用語はやさしく／数字は正確に〕</span>でお願いします。</pre>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>答えがイマイチでも大丈夫。「もっと短く」「この部分だけ直して」と会話でどんどん修正できるのがAIのいいところ。うまくいかない時は <code>/clear</code> でリセットして、頼み方を具体的にし直すのが一番の近道だよ。</div>
+    </div>
+
+    <!-- 注意点 -->
+    <h3 class="blk" id="caution">安全に、かしこく使うための注意点</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>大事な作業の前は「バックアップ」を</div>
+        <p>AIがファイルを書き換えることも。大切なフォルダは<b>作業前にコピー</b>か<b>git（バージョン管理）で保存点</b>を作れば、いつでも元に戻せて安心です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>「確認画面」は面倒がらずに読む</div>
+        <p>変更前に「これで良い？」と聞いてくれます。<b>中身を見てから承認</b>する習慣を。慣れるまでは“全部おまかせ”にしないのがコツ。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>機密情報は入れない</div>
+        <p>お客様の個人情報・カード番号・社外秘などは、基本的に入力しないのが安全。会社で使うなら<b>社内ルールも確認</b>を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>答えを鵜呑みにしない</div>
+        <p>AIはもっともらしく間違えることも（ハルシネーション）。<b>数字・名前・法律・金額は必ず自分で確認</b>。最終判断は人が。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>“使いすぎ”の上限を知っておく</div>
+        <p>有料プランには<b>「5時間ごと」「1週間ごと」の使用量上限</b>が。話題が変わったら <code>/clear</code> でこまめにリセットすると、ムダな消費を防げます。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>最後は人が決める</div>
+        <p>Claude Codeは下書きと作業の助手。<b>判断と最終チェックは自分で</b>。公式URLはブックマークしておくと安心です。</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk" id="faq">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>プログラミングの知識がなくても使えますか？</summary>
+        <div class="ans">はい。<b>日本語で「〇〇して」と頼むだけ</b>です。コードを書けなくても、資料づくり・表の整理・ファイル整頓など“作業の助手”として十分に使えます。むしろコードが読めない人ほど「説明して」と気軽に頼めるのが強みです。</div>
+      </details>
+      <details>
+        <summary>本当に無料では使えないの？</summary>
+        <div class="ans">Claude Code自体は<b>有料プラン（Pro以上）が必須</b>で、無料プランには含まれていません。ただし<b>ブラウザ版のClaude</b>は無料で試せるので、「AIとの会話」に慣れる練習はそちらで。まずブラウザで慣れて、良さそうならProを契約——が失敗しない順番です。</div>
+      </details>
+      <details>
+        <summary>WindowsのPCしか持っていません。どうすれば？</summary>
+        <div class="ans">この記事はMac向けですが、Claude Codeは<b>Windowsでも使えます</b>。手順が少し異なるので、最新のやり方は<a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">公式のセットアップ手順</a>を参照してください。ターミナルが苦手なら、Windows版の<a href="https://claude.com/download" target="_blank" rel="noopener">Desktopアプリ</a>から始めるのも手です。</div>
+      </details>
+      <details>
+        <summary>ターミナル（黒い画面）がどうしても苦手です。</summary>
+        <div class="ans"><b>Claude Desktopアプリ</b>を使いましょう。<a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a> からMac版を入れると、アプリの「Code」タブで<b>画面操作のまま同じClaude Code</b>が使えます。この記事の「お願いの型」や活用アイデアはそのまま役立ちます。</div>
+      </details>
+      <details>
+        <summary>Proで足りなくなったら、どうなりますか？</summary>
+        <div class="ans">上限に達すると「しばらく待ってから」と表示され、一定時間で回復します。頻繁に当たるようになったら<b>Max 5x（月約15,000円）</b>への移行を検討する合図。プランを上げても<b>履歴・設定はそのまま引き継がれます</b>。</div>
+      </details>
+      <details>
+        <summary>料金や仕様が、記事と違う気がします。</summary>
+        <div class="ans">Claudeの料金・モデル・仕様は<b>更新が速い</b>分野です。この記事は2026年7月時点の情報ですが、最新の正確な内容は必ず<a href="https://claude.com/pricing" target="_blank" rel="noopener">公式の料金ページ</a>と<a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">公式ドキュメント</a>でご確認ください。</div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════ 関連リンク ═══════════ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title">あわせて読む・公式リンク</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/" target="_blank" rel="noopener">
+        <span class="r-ic">📘</span>
+        <span><span class="r-k">シリーズ前編</span><span class="r-t">はじめてのAI活用ガイド<br><small>Googleアカウント1つで YouTube・ChatGPT・Claude を始める</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" target="_blank" rel="noopener">
+        <span class="r-ic">🏠</span>
+        <span><span class="r-k">本体サービス</span><span class="r-t">UGOKU AI 実装研修<br><small>サービス全体を見る／助成金活用の実装型AI研修</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">
+        <span class="r-ic">🤖</span>
+        <span><span class="r-k">Anthropic公式</span><span class="r-t">Claude Code セットアップ<br><small>インストールと動作環境の最新情報↗</small></span></span>
+        <span class="r-arw">↗</span>
+      </a>
+      <a class="rel" href="https://claude.com/pricing" target="_blank" rel="noopener">
+        <span class="r-ic">💳</span>
+        <span><span class="r-k">Anthropic公式</span><span class="r-t">Claude 料金ページ<br><small>プランと最新の正確な価格↗</small></span></span>
+        <span class="r-arw">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cta" id="cta">
+  <div class="wrap">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“面倒な作業”、<br><span class="hl">AIで動かしませんか？</span></h2>
+    <p>「導入したけど、何に使えばいいか分からない」で止まっていませんか。まずは無料のAI化診断から。数分で、あなたの仕事に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a class="btn btn-primary cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" target="_blank" rel="noopener">🩺 無料AI化診断はこちら →</a>
+    </div>
+    <p class="fineprint">所要時間は数分。スマホからそのまま回答できます。</p>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      ※各サービスの画面・手順・料金は、提供元の更新により変わることがあります（本記事は2026年7月時点）。最新情報は各公式ページをご確認ください。
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

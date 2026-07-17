@@ -1481,18 +1481,16 @@
       .flm-title b{background:linear-gradient(90deg,#18d6bd,#ead39a);-webkit-background-clip:text;background-clip:text;color:transparent}
       .flm-desc{margin:0;font-size:13px;color:rgba(199,255,240,.72);letter-spacing:.02em}
       .flm-rows{display:flex;flex-direction:column;gap:14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-      .flm-row{overflow:hidden}
-      .flm-track{display:flex;gap:14px;width:max-content;will-change:transform}
-      .flm-track.l{animation:flmL var(--flm-dur,60s) linear infinite}
-      .flm-track.r{animation:flmR var(--flm-dur,60s) linear infinite}
-      .flm-row:hover .flm-track{animation-play-state:paused}
-      @keyframes flmL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-      @keyframes flmR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+      .flm-row{overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+      .flm-row::-webkit-scrollbar{display:none}
+      .flm-row.grabbing{cursor:grabbing}
+      .flm-track{display:flex;gap:14px;width:max-content;will-change:scroll-position}
       .flm-card{flex:0 0 auto;width:270px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;text-decoration:none;
         background:linear-gradient(135deg,rgba(15,38,34,.92),rgba(9,24,22,.92));
         border:1px solid rgba(200,164,93,.28);box-shadow:0 8px 24px rgba(0,0,0,.35);
         transition:transform .25s cubic-bezier(.22,.61,.36,1),border-color .25s,box-shadow .25s;font-family:'Zen Kaku Gothic New',system-ui,sans-serif}
       .flm-card:hover{transform:translateY(-4px);border-color:rgba(234,211,154,.85);box-shadow:0 14px 34px rgba(24,214,189,.18),0 0 0 1px rgba(234,211,154,.35) inset}
+      .flm-card{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
       .flm-ico{flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;font-size:23px;border-radius:12px;background:radial-gradient(circle at 30% 25%,rgba(24,214,189,.22),rgba(200,164,93,.12));border:1px solid rgba(255,255,255,.08)}
       .flm-tx{display:flex;flex-direction:column;min-width:0;flex:1 1 auto}
       .flm-en{font-size:9.5px;font-weight:800;letter-spacing:.16em;color:#ead39a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1518,7 +1516,7 @@
       <div class="flm-head">
         <span class="flm-kicker">FREE ┃ 無料でAIを学ぶ</span>
         <h2 class="flm-title">パソコンが苦手でも動き出せる、<b>20本の無料ガイド</b></h2>
-        <p class="flm-desc">気になるバナーをタップ。ChatGPT・Claude・Gemini・MEO・SNS・動画まで、うごく君がやさしく解説。</p>
+        <p class="flm-desc">気になるバナーをタップ。横にスワイプ／ドラッグでも探せます。ChatGPT・Claude・Gemini・MEO・SNS・動画まで、うごく君がやさしく解説。</p>
       </div>
       <div class="flm-rows">
     <div class="flm-row">
@@ -1768,6 +1766,95 @@
         <a href="#free-learn">無料ガイド一覧をすべて見る ↓</a>
       </div>
     </section>
+    <script>
+    /* 無料ガイド 横スクロール：自動流し＋手動スワイプ/ドラッグ */
+    (function(){
+      var rows = Array.prototype.slice.call(document.querySelectorAll('.flm .flm-row'));
+      if(!rows.length) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      rows.forEach(function(row){
+        var track = row.querySelector('.flm-track');
+        if(!track) return;
+
+        var dir = track.classList.contains('r') ? -1 : 1;          // l:右へ流す / r:左へ流す
+        var durAttr = getComputedStyle(track).getPropertyValue('--flm-dur') || '64s';
+        var dur = parseFloat(durAttr) || 64;                        // 1セット流れるのにかかる秒数
+        var half = track.scrollWidth / 2;                           // カード1セット分の幅
+        var speed = half > 0 ? half / dur : 30;                     // px/秒
+
+        function recalc(){ half = track.scrollWidth / 2; speed = half > 0 ? half / dur : 30; }
+        window.addEventListener('resize', function(){ clearTimeout(row._rt); row._rt = setTimeout(recalc, 200); });
+        setTimeout(recalc, 800);                                    // フォント/画像確定後に再計測
+
+        if(dir < 0) row.scrollLeft = half;                          // 逆流レーンは1セット分ずらして開始
+
+        var paused = false, interacting = false, hovering = false, resumeTimer = null, last = null;
+
+        function pause(){ paused = true; if(resumeTimer){ clearTimeout(resumeTimer); resumeTimer = null; } }
+        function scheduleResume(delay){
+          if(resumeTimer) clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(function(){ interacting = false; if(!hovering) paused = false; }, delay || 1500);
+        }
+        function wrap(){
+          if(interacting) return;                                   // タッチ慣性を邪魔しない
+          if(row.scrollLeft >= half) row.scrollLeft -= half;
+          else if(row.scrollLeft <= 0) row.scrollLeft += half;
+        }
+        function frame(ts){
+          if(last == null) last = ts;
+          var dt = (ts - last) / 1000; last = ts;
+          if(dt > 0.1) dt = 0.1;                                    // タブ復帰時の飛び防止
+          if(!paused && !interacting && !reduced) row.scrollLeft += dir * speed * dt;
+          wrap();
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+
+        /* ホバーで一時停止（PC） */
+        row.addEventListener('mouseenter', function(){ hovering = true; if(!interacting) pause(); });
+        row.addEventListener('mouseleave', function(){ hovering = false; if(!interacting) scheduleResume(200); });
+
+        /* ホイール/トラックパッド */
+        row.addEventListener('wheel', function(){ pause(); scheduleResume(1600); }, { passive:true });
+
+        /* タッチはネイティブスクロールに任せ、停止/再開だけ制御 */
+        row.addEventListener('touchstart',  function(){ interacting = true; pause(); }, { passive:true });
+        row.addEventListener('touchend',    function(){ scheduleResume(1600); });
+        row.addEventListener('touchcancel', function(){ scheduleResume(1600); });
+
+        /* マウスのドラッグでスクロール（PC） */
+        var dragging = false, startX = 0, startScroll = 0, moved = 0;
+        row.addEventListener('pointerdown', function(e){
+          if(e.pointerType === 'mouse'){
+            dragging = true; moved = 0; startX = e.clientX; startScroll = row.scrollLeft;
+            interacting = true; pause(); row.classList.add('grabbing');
+            try{ row.setPointerCapture(e.pointerId); }catch(_){}
+          } else { interacting = true; pause(); }
+        });
+        row.addEventListener('pointermove', function(e){
+          if(!dragging) return;
+          var dx = e.clientX - startX; moved = Math.max(moved, Math.abs(dx));
+          row.scrollLeft = startScroll - dx;
+        });
+        function endDrag(e){
+          if(dragging){
+            dragging = false; row.classList.remove('grabbing');
+            try{ row.releasePointerCapture(e.pointerId); }catch(_){}
+          }
+          scheduleResume(1200);
+        }
+        row.addEventListener('pointerup', endDrag);
+        row.addEventListener('pointercancel', endDrag);
+        row.addEventListener('pointerleave', function(e){ if(dragging) endDrag(e); });
+
+        /* ドラッグ後の誤クリック（誤遷移）を抑制 */
+        track.addEventListener('click', function(e){
+          if(moved > 6){ e.preventDefault(); e.stopPropagation(); moved = 0; }
+        }, true);
+      });
+    })();
+    </script>
     <!-- ===== /無料でAIを学ぶ 横スクロール・バナー ===== -->
 
     <section class="mist">

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×動画編集 入門マニュアル＆最新トレンド｜スマホ1台で今日から ― UGOKU AI</title>
+<meta name="description" content="動画編集が初めての方へ。スマホ1台で、カット・字幕・ナレーションを“AIで自動化”。テキストから映像を“生成”するSora・Veo・Klingまで、2026年の最新トレンドと、初心者が挫折しない合理的な始め方を、案内役のうごく君がやさしく解説。仕事とプライベートの活かし方・コピペ用プロンプト・著作権の注意点まで網羅。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×動画編集 入門マニュアル＆最新トレンド｜スマホ1台で今日から ― UGOKU AI">
+<meta property="og:description" content="カットも字幕もナレーションもAIで自動。テキストから映像を“生成”する最新トレンドと、初心者の合理的な始め方を、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×動画編集 入門マニュアル＆最新トレンド ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×動画編集 入門マニュアル＆最新トレンド｜スマホ1台で今日から ― UGOKU AI">
+<meta name="twitter:description" content="カットも字幕もナレーションもAIで自動。最新トレンドと初心者の始め方を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+<style>
+  :root{
+    --cut:#0E9E96;  --cut-soft:#DBF1EF;
+    --sub:#2E6FD1;  --sub-soft:#DCE8FA;
+    --voice:#C4623C;--voice-soft:#F6E2D8;
+    --gen:#7A5AF0;  --gen-soft:#E7E1FD;
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×動画編集 入門マニュアル＆最新トレンド</span>
+      <h1>「動画編集、むずかしそう…」を、<span class="hl">今日で終わり</span>にする。</h1>
+      <p class="lead">むずかしい専門用語はナシ。いまは、<strong>カットも字幕もナレーションも“AIが自動”</strong>。撮った素材がなくても、<strong>テキストから映像そのものを“生成”</strong>できる時代です。スマホひとつで、今日から。</p>
+      <div class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-ghost">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-primary">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc" width="80" height="80"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「編集ソフトって難しそう」と身構えなくて大丈夫。この記事を上から順に進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>スマホ1台で、カット・字幕・テロップを“自動”でつけられる</li>
+          <li>AIナレーション・BGM・翻訳で、話さなくても・撮らなくても動画になる</li>
+          <li>テキストから映像を“生成”する（Sora・Veo・Kling）の始め方がわかる</li>
+          <li>2026年の最新トレンドと、著作権など「やってはいけない」もわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、AIが動画でできる“3つのこと”</h2>
+    <p class="sec-sub">全部を一度に覚える必要はありません。AIの助けは、大きく3種類に分かれます。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--cut)">
+        <div class="ic">✂️</div>
+        <h4>編集を<span>自動化</span></h4>
+        <p>長い素材から、いらない所を自動カット。縦型ショートへ自動リフレーム、テロップも自動配置。いちばんの時短。</p>
+      </div>
+      <div class="role" style="--accent:var(--voice)">
+        <div class="ic">💬</div>
+        <h4>字幕・声・<span>翻訳</span></h4>
+        <p>話した声を自動で字幕に。文字を入れれば自然なAI音声が読み上げ。多言語への吹き替えも手間ゼロ。</p>
+      </div>
+      <div class="role" style="--accent:var(--gen)">
+        <div class="ic">🎬</div>
+        <h4>映像を<span>生成</span></h4>
+        <p>テキストや写真から、映像そのものを作る。撮影なしで“素材が手に入る”のが、2026年いちばんの変化。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+
+    <div class="keystone">
+      <span class="kl">💡 大事なのはこれだけ</span>
+      <p>「うまく作ろう」より、まず<strong>1本、最後まで書き出す</strong>。編集の8割はAIがやってくれるので、<strong>初心者ほどAIから始める</strong>のが、いちばんの近道です。</p>
+    </div>
+
+    <!-- ─── 最新トレンド ─── -->
+    <h3 class="blk">2026年、動画×AIで“いま”起きていること</h3>
+    <p class="sec-sub" style="margin-bottom:18px">技術は毎月のように進みますが、初心者が押さえるべき大きな流れは、次の4つです。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🔊</span>「音声まで一緒に生成」が新常識</h4>
+        <ul>
+          <li>セリフ・効果音・BGMを、映像と“同時に”生成できるモデルが主流に</li>
+          <li>無音の映像を作って後から音を足す時代から、一気に前進</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚡</span>“二刀流”ワークフロー</h4>
+        <ul>
+          <li>本編は台本に強いモデル、量産は速くて安いモデル、と使い分けるのが標準に</li>
+          <li>「1本に凝る」より「数を出して選ぶ」発想が主流</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📝</span>“文字を消すように”動画編集</h4>
+        <ul>
+          <li>話した内容が文字（台本）になり、文章を消すと映像も一緒に切れる</li>
+          <li>「あー」「えーと」などの言い淀みもワンタップで一括削除</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📱</span>縦型ショートを“その日のうちに”</h4>
+        <ul>
+          <li>トレンドに乗った動画を、数分〜10分で量産して即投稿できる</li>
+          <li>スピードそのものが、SNSの競争力になっている</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="combo">
+      <h4>🔥 “伸びている投稿”に共通する型（トレースしてわかったこと）</h4>
+      <p class="sec-sub" style="margin:0 0 10px">同業・人気アカウントで、コメント・保存・いいねが多い投稿には、はっきりした共通点があります。真似できる“型”として持っておくと、ニーズをつかみやすくなります。</p>
+      <div class="split" style="margin-top:4px">
+        <div class="col work">
+          <div class="ch">📈 反響が出やすい切り口</div>
+          <ul>
+            <li>ビフォー→アフター（手作業 vs AI）を並べて見せる</li>
+            <li>「知らないと損」「もう手で編集してるの？」の気づき系</li>
+            <li>コピペで今すぐ試せる“プロンプト配布”</li>
+            <li>ツールの“本音レビュー”（ここが惜しい、まで言う）</li>
+          </ul>
+        </div>
+        <div class="col life">
+          <div class="ch">💬 反応を生む仕掛け</div>
+          <ul>
+            <li>最初の2秒で結論・完成形を見せる（離脱を防ぐ）</li>
+            <li>「保存して後で真似してね」と一言そえる</li>
+            <li>コメントで質問を促す（“どのツール使ってる？”）</li>
+            <li>作った過程を30秒に圧縮して見せる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>流行りのツール名を追いかけすぎなくて大丈夫。「誰に・何を・どんな気持ちで届けるか」が先。道具はあとから選べばいいよ。</div>
+    </div>
+
+    <!-- ─── 合理的マニュアル ─── -->
+    <h3 class="blk">はじめての人の、いちばん合理的な進め方</h3>
+    <p class="sec-sub" style="margin-bottom:6px">いきなり全部やると挫折します。<b>①まず1本 → ②自動化 → ③声・翻訳 → ④生成</b> の順で、無理なく力がつきます。</p>
+
+    <div class="keystone" style="margin:16px 0 30px">
+      <span class="kl">🔑 迷わないための1ルール</span>
+      <p>ツールは<strong>ひとつ公式サイトから入れて、ブックマーク</strong>。似た名前の偽アプリや広告に注意。まずは<strong>無料</strong>で触り、必要になってから有料を検討すればOKです。</p>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--cut)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <div class="st-chip">GET STARTED ／ まず1本</div>
+          <div class="st-ttl">「CapCut」で、まず1本つくる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">世界でいちばん使われている無料の動画編集アプリ（月間3.5億人規模）。スマホ・PC・ブラウザ、どれでもOK。まずはここで“最後まで書き出す”体験を。</p>
+        <a class="link-btn" href="https://www.capcut.com/" target="_blank" rel="noopener">CapCut を開く ↗</a>
+        <p class="link-note">スマホは「CapCut」アプリ（提供元：ByteDance）。無料で始められます。</p>
+
+        <div class="mini-h">はじめての手順</div>
+        <ol class="mini">
+          <li>アプリを入れて、Googleアカウントなどでログイン</li>
+          <li>「新しいプロジェクト」で、動画や写真を選ぶ</li>
+          <li>いらない部分をカット、好きなテンプレートを選ぶ</li>
+          <li>右上の「書き出し」で保存 → 完成 🎉</li>
+        </ol>
+
+        <div class="mini-h">基本の使い方</div>
+        <ul class="use">
+          <li><b>分割・削除</b>：バーを合わせて「分割」、いらない所を消す</li>
+          <li><b>テンプレ</b>：人気の“型”を選ぶだけで、プロっぽく仕上がる</li>
+          <li><b>自動字幕</b>：「テキスト→自動字幕」で、話した声がそのまま字幕に</li>
+        </ul>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">集客・発信に</span></div>
+            <ul>
+              <li>商品紹介・お店の告知ショート動画</li>
+              <li>スタッフ向けの作業手順・教育動画</li>
+              <li>求人・採用の“職場の雰囲気”紹介</li>
+              <li>クチコミやお客様の声を、短尺で発信</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">暮らし・趣味に</span></div>
+            <ul>
+              <li>旅行・子どもの成長記録をまとめる</li>
+              <li>趣味・ペットのショート動画</li>
+              <li>イベント・行事のダイジェスト</li>
+              <li>離れた家族に送る近況ムービー</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          無料版のまま「SNSで広告収益を得る」など<b>商用利用</b>だと、規約に触れる場合があります。仕事で使うなら有料プラン（Pro）や規約の確認を。テンプレ内のBGM・素材を、そのまま別の用途へ転用するのもNGです。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>最初から凝らなくてOK。「30秒・1本・書き出す」を一度やると、世界がガラッと変わるよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--sub)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <div class="st-chip">自動化で時短</div>
+          <div class="st-ttl">字幕・テロップ・カットを“自動化”する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここからがAIの本領。話した声を自動で字幕に、長い素材から不要部分を自動カット。手作業なら何時間もかかる工程が、数分の1に。</p>
+        <a class="link-btn" href="https://www.descript.com/" target="_blank" rel="noopener">Descript を開く ↗</a>
+        <p class="link-note">トーク中心の動画は「Descript」が定番（画面は英語ですが操作は直感的）。日本語中心ならCapCutの自動字幕でも十分です。</p>
+
+        <div class="mini-h">“文字を消すように”編集する</div>
+        <ol class="mini">
+          <li>動画を読み込むと、音声が“文字（台本）”になる</li>
+          <li>文章のいらない所を消すと、その映像も一緒に消える</li>
+          <li>「あー」「えーと」などの言い淀みを一括削除</li>
+          <li>字幕・テロップを自動でのせて、書き出し</li>
+        </ol>
+
+        <div class="mini-h">AIにまかせられる自動化</div>
+        <ul class="use">
+          <li><b>自動字幕</b>：話した内容を、そのままテロップに</li>
+          <li><b>フィラー削除</b>：言い淀みをまとめてカット</li>
+          <li><b>自動リフレーム</b>：横動画を縦（ショート）へ自動変換</li>
+          <li><b>ノイズ除去</b>：生活音・エアコン音をAIで軽減</li>
+        </ul>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">効率化に</span></div>
+            <ul>
+              <li>会議・セミナー動画を要点クリップに</li>
+              <li>長い解説を、短尺に自動で要約カット</li>
+              <li>研修動画へ、字幕を一括で入れる</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">整理に</span></div>
+            <ul>
+              <li>撮りためた動画をダイジェスト化</li>
+              <li>VLOGの字幕入れをラクに</li>
+              <li>家族動画の“いい所だけ”を抽出</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          自動字幕は<b>“聞き間違い”が必ず起きます</b>。特に<b>人名・社名・数字・金額</b>は、書き出し前に必ず目視で確認を。AIは下書き、最後の1チェックは人が——が鉄則です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>字幕は「読みやすさが命」。1行は短く、文字色は背景と反対に。それだけで“見られる動画”になるよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--voice)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <div class="st-chip">声と音</div>
+          <div class="st-ttl">ナレーション・BGM・翻訳をAIに任せる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「話すのが苦手」「顔出ししたくない」ならここ。文字を入れるだけで、自然なAI音声がナレーション。多言語への翻訳・吹き替えもできます。</p>
+        <a class="link-btn" href="https://elevenlabs.io/" target="_blank" rel="noopener">ElevenLabs を開く ↗</a>
+        <p class="link-note">AI音声は「ElevenLabs」が高品質。手軽さ重視ならCapCut内の「テキスト読み上げ」でもOKです。</p>
+
+        <div class="mini-h">声をつける手順</div>
+        <ol class="mini">
+          <li>ナレーション原稿を、AI（ChatGPTやClaude）で作る</li>
+          <li>テキスト読み上げで、自然な声に変換する</li>
+          <li>声のトーン・スピード・言語を選ぶ</li>
+          <li>動画にのせて、雰囲気に合うBGMを合わせる</li>
+        </ol>
+
+        <div class="mini-h">AIでできること</div>
+        <ul class="use">
+          <li><b>AIナレーション</b>：原稿を入れるだけで、プロっぽい声に</li>
+          <li><b>多言語対応</b>：日本語の動画を、英語・ベトナム語などへ</li>
+          <li><b>アバター</b>：HeyGen等で“話す人”の映像そのものを生成</li>
+          <li><b>BGM生成</b>：動画の雰囲気に合う曲を、AIで用意</li>
+        </ul>
+
+        <div class="mini-h">仕事での活かし方（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top">
+            <span class="cb-lbl">📋 ナレーション原稿コピー</span>
+            <button class="cb-btn">コピー</button>
+          </div>
+          <pre>あなたはプロの構成作家です。
+30秒の〔商品・サービス名〕紹介動画のナレーション原稿を、
+・つかみ → 特徴を3つ → 行動のうながし の順で
+・話し言葉でやさしく・150字前後 で書いてください。
+【材料】
+<span class="fill">〔アピール点を箇条書きで貼り付け〕</span></pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">多言語・発信に</span></div>
+            <ul>
+              <li>多言語の店内・商品説明ムービー</li>
+              <li>外国人スタッフ向けの手順動画</li>
+              <li>ナレーション付きの会社・店舗紹介</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">趣味・学びに</span></div>
+            <ul>
+              <li>語学学習の教材づくり</li>
+              <li>思い出動画に、あたたかいナレーション</li>
+              <li>字幕翻訳で、海外の家族へ届ける</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AI音声・アバターで<b>“実在の人の声や顔”に似せる</b>のは、肖像権・パブリシティ権の侵害リスクが大きい行為です。有名人や他人の声真似はやめましょう。BGMも<b>著作権フリー／ライセンス済み</b>のものを使うこと。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>原稿はChatGPTやClaude、声はAI読み上げ——これぞ合わせ技。ナレーションは“少しゆっくり”が聞きやすいよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--gen)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <div class="st-chip">生成AI入門</div>
+          <div class="st-ttl">映像そのものを“生成”する（Sora／Veo／Kling）</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">2026年の主役。撮影なしで、テキストや写真から映像そのものを作れます。「撮れないもの」「手元にない素材」も、言葉から生み出せる。まずはCapCut内のAI生成から触るのがいちばん簡単です。</p>
+        <a class="link-btn" href="https://klingai.com/" target="_blank" rel="noopener">Kling AI を開く ↗</a>
+        <p class="link-note">Kling（快手）はSNS量産で人気。最新のKling系モデルはCapCut内からも使えます。台本重視ならSora系、Google連携ならVeo系、と目的で選び分けます。</p>
+
+        <div class="mini-h">はじめての生成の流れ</div>
+        <ol class="mini">
+          <li>「どんな映像がほしいか」を言葉で書く（下の“型”が便利）</li>
+          <li>手元の写真を渡して「これを動かして」もOK（画像→動画）</li>
+          <li>数分待つと、候補の映像が出てくる</li>
+          <li>気に入った1本を選び、CapCutで編集・字幕・音をのせる</li>
+        </ol>
+
+        <div class="mini-h">生成AIでできること</div>
+        <ul class="use">
+          <li><b>テキスト→動画</b>：言葉だけで、短い映像シーンを生成</li>
+          <li><b>画像→動画</b>：1枚の写真を、自然に動かす</li>
+          <li><b>量産</b>：同じ指示で複数パターンを作り、良い所どり</li>
+          <li><b>“撮れない絵”</b>：空撮・季節違い・イメージ映像などを補う</li>
+        </ul>
+
+        <div class="mini-h">仕事での活かし方（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top">
+            <span class="cb-lbl">📋 動画生成プロンプトのコピー</span>
+            <button class="cb-btn">コピー</button>
+          </div>
+          <pre>〔被写体〕が〔何をしている〕シーンを、〔場所・時間帯〕で。
+カメラは〔ゆっくり寄る／横に流れる 等〕。
+雰囲気は〔明るく爽やか／落ち着いた高級感 等〕。尺は〔5秒〕。
+※実在の人物・有名キャラ・ブランドロゴは含めないでください。</pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">素材・広告に</span></div>
+            <ul>
+              <li>商品のイメージ映像（撮影費ゼロ）</li>
+              <li>SNS広告のバリエーションを量産</li>
+              <li>提案資料に差し込む“動くビジュアル”</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">創作・遊びに</span></div>
+            <ul>
+              <li>写真を動かして、思い出をムービーに</li>
+              <li>オリジナルの短いアニメ・物語づくり</li>
+              <li>年賀・お祝い動画など季節の一本</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          <b>「◯◯風」「有名キャラ・実在の人に似せて」は避ける</b>のが安全（著作権・肖像権のリスク）。生成できても“権利がクリアとは限らない”のがポイント。商用で使うなら<b>有料プラン＋利用規約の確認</b>を。物理的にありえない動き（物が溶ける等）が出ることもあるので、変な所は作り直しを。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>生成AIは“1回で完璧”を狙わないのがコツ。同じ指示で3本出して、いちばん良い所だけ使う。数を出せる強みを活かそう。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 使い分け表 -->
+    <h3 class="blk">結局、どのツールを使えばいい？</h3>
+    <p class="sec-sub" style="margin-bottom:14px">「優劣」ではなく「目的の違い」で選ぶのがコツ。迷ったら、まずCapCutひとつでOKです。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead>
+            <tr><th>やりたいこと</th><th>おすすめ</th><th>ひとこと</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>まず1本つくる・迷ったら</th><td class="win">CapCut</td><td class="mid">無料・スマホでOK。最初の一台</td></tr>
+            <tr><th>SNSショートを量産</th><td class="win">CapCut</td><td class="mid">縦型テンプレ＋自動字幕が豊富</td></tr>
+            <tr><th>トーク動画を“文字で”編集</th><td class="win">Descript</td><td class="mid">言い淀み削除が神。長尺向き</td></tr>
+            <tr><th>高品質なAIナレーション</th><td class="win">ElevenLabs</td><td class="mid">多言語・自然な声。手軽さはCapCut</td></tr>
+            <tr><th>映像を“生成”して量産</th><td class="win">Kling</td><td class="mid">速い・安い。CapCut内からも</td></tr>
+            <tr><th>台本のあるドラマ的な映像</th><td class="win">Sora系／Veo系</td><td class="mid">セリフ・音まで一緒に生成</td></tr>
+            <tr><th>本格的な長編・色調整</th><td class="win">DaVinci／Premiere</td><td class="mid">仕上げのプロ向け。無料枠あり</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="combo">
+      <h4>🤝 いいとこ取りの「合わせ技」</h4>
+      <div class="flow">
+        <span class="b">生成AIで素材をつくる</span><span class="ar">→</span>
+        <span class="b">CapCutで編集・字幕</span><span class="ar">→</span>
+        <span class="b">AI音声で声をのせる</span><span class="ar">→</span>
+        <span class="b">自分で最終チェック</span>
+      </div>
+      <p class="sec-sub" style="margin:6px 0 0">素材はKling、編集はCapCut、声はElevenLabs、原稿はChatGPT/Claude。役割を分けると、1つのツールだけより一段いいものができます。ひとことで言えば——<b>まずCapCut、慣れたら生成AIを足す。</b></p>
+    </div>
+
+    <!-- プロンプトの型 -->
+    <h3 class="blk">うごく君の「効く動画生成の型」</h3>
+    <p class="sec-sub" style="margin-bottom:6px">AIへのお願い（プロンプト）は、次の5つを足すだけで、結果が一段よくなります。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>被写体はだれ／なに？</b>例：白いカフェのラテ／笑顔の店員</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>どんな動き？</b>例：湯気が立つ／振り返る</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>カメラは？</b>例：ゆっくり寄る／横に流れる</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>雰囲気・尺は？</b>例：明るく爽やか・5秒</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad">
+          <div class="lb">✕ もったいない例</div>
+          「かっこいい動画つくって」 → 何が出るか運まかせになりがち
+        </div>
+        <div class="c good">
+          <div class="lb">◎ 効く例</div>
+          「湯気の立つラテを、カメラがゆっくり寄る。明るく爽やか・5秒」 → イメージ通りに近づく
+        </div>
+      </div>
+      <div class="copybox" style="margin-top:14px">
+        <div class="cb-top">
+          <span class="cb-lbl">📋 そのまま使えるテンプレ</span>
+          <button class="cb-btn">コピー</button>
+        </div>
+        <pre>〔被写体〕が〔動き〕をしているシーン。
+場所は〔場所・時間帯〕、カメラは〔動き方〕。
+雰囲気は〔トーン〕、尺は〔秒数〕。
+※実在の人物・有名キャラ・ブランドは含めない。</pre>
+      </div>
+    </div>
+
+    <!-- アイデア集 -->
+    <h3 class="blk">もっと使える！活用アイデア集</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>お店・会社で</h4>
+        <ul>
+          <li>メニュー・新商品の紹介ショート</li>
+          <li>求人・採用の“職場紹介”動画</li>
+          <li>クチコミ・お客様の声のまとめ</li>
+          <li>キャンペーン告知の縦型動画</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで</h4>
+        <ul>
+          <li>会議・セミナーの要点クリップ</li>
+          <li>提案資料に差し込む動くビジュアル</li>
+          <li>マニュアル・手順の動画化</li>
+          <li>長い動画の自動要約・字幕入れ</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで</h4>
+        <ul>
+          <li>旅行・行事のダイジェスト</li>
+          <li>子ども・ペットの成長記録</li>
+          <li>写真を動かす思い出ムービー</li>
+          <li>お祝い・季節のあいさつ動画</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・子育てで</h4>
+        <ul>
+          <li>語学・資格の学習用クリップ</li>
+          <li>読み聞かせ・自作の短いお話</li>
+          <li>自由研究・発表のまとめ動画</li>
+          <li>多言語ナレーションで学ぶ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">つまずいたとき・困ったとき</h3>
+    <div class="compact">
+      <details>
+        <summary>書き出した動画がSNSに上げられない</summary>
+        <div class="ans">サイズ・形式が合っていない場合が多いです。CapCutなら「TikTok用」「YouTube用」などの書き出しプリセットを選ぶと確実。縦型は9:16、横型は16:9が基本です。</div>
+      </details>
+      <details>
+        <summary>字幕が間違って表示される</summary>
+        <div class="ans">自動字幕は聞き間違いが起きます。書き出し前に、テロップを一度読み返して修正を。特に固有名詞・数字・金額は要チェックです。</div>
+      </details>
+      <details>
+        <summary>生成した映像が変（人や物が崩れる）</summary>
+        <div class="ans">今のAIが苦手な動きです。指示をシンプルにする・尺を短くする・同じ指示で何本か作って良い所だけ使う、で改善します。「1回で完璧」は狙わないのがコツ。</div>
+      </details>
+      <details>
+        <summary>アプリが重い・固まる</summary>
+        <div class="ans">スマホの空き容量不足がよくある原因。不要な写真やアプリを整理し、Wi-Fi環境で試しましょう。ブラウザ版に切り替えるのも手です。</div>
+      </details>
+    </div>
+
+    <!-- 安全・著作権 -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>他人のIP・実在の人を使わない</div>
+        <p>有名キャラ・ロゴ・芸能人に似せるのはNG。「◯◯風」の指定も避け、オリジナルの被写体で作りましょう。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>BGM・音楽はライセンス確認</div>
+        <p>著作権のある曲を使うと、動画が削除・収益化停止になることも。著作権フリー／ライセンス済みの音源を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>商用利用は有料プラン＋規約</div>
+        <p>広告収益・受注・販売はすべて“商用利用”。無料版のまま使うと規約違反の場合が。仕事で使う前に確認を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>「AIが作った=合法」ではない</div>
+        <p>元の著作物の権利は残ります。SNS投稿は私的利用に当たりません。必要ならAI生成であることを明示すると安心です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>機密情報は入れない</div>
+        <p>お客様の個人情報・社外秘・未公開の素材は、AIに入力しないのが基本。会社で使うなら社内ルールも確認を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>最後は人が決める</div>
+        <p>AIは下書きと素材づくりの相棒。事実・数字・権利の最終チェックと公開の判断は、必ず自分で。</p>
+      </div>
+    </div>
+
+    <!-- よくある質問 -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料でどこまでできますか？</summary>
+        <div class="ans">CapCutは基本無料で、日常的な編集なら十分です。AI音声や動画生成には無料の“お試し枠”があり、たくさん使う方は各ツールの有料プラン（月$10〜20前後が目安）で快適になります。無料枠の内容は変わりやすいので、公式で最新をご確認ください。</div>
+      </details>
+      <details>
+        <summary>スマホだけでも大丈夫？</summary>
+        <div class="ans">大丈夫です。CapCutはスマホアプリが主役。撮影から編集・書き出し・投稿まで、スマホ1台で完結します。最新の生成AIも、CapCut内やアプリから触れます。</div>
+      </details>
+      <details>
+        <summary>センスや専門知識がなくても作れますか？</summary>
+        <div class="ans">作れます。テンプレートを選び、AIに自動化を任せれば、初めてでも“それっぽい”動画になります。大事なのは技術より「誰に何を伝えたいか」。そこが決まれば、道具はAIが助けてくれます。</div>
+      </details>
+      <details>
+        <summary>どのツールから始めればいい？</summary>
+        <div class="ans">迷ったらCapCutから。編集・字幕・簡単なAI生成まで、これ1つで一通り体験できます。「話すのが苦手」ならAI音声、「素材がない」なら生成AI、と必要に応じて足していきましょう。</div>
+      </details>
+      <details>
+        <summary>ツールがどんどん増えて、追いきれません…</summary>
+        <div class="ans">全部を追う必要はありません。名前や新機能より「自分の目的」を軸に、1〜2個を使いこなすのが正解。トレンドは“知っておく”程度でOK。土台ができれば、新しい道具にもすぐ乗り換えられます。</div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">
+        <span class="r-ic">🚀</span>
+        <span class="r-t"><span class="r-k">はじめてのAI活用ガイド</span>Googleアカウント1つで、YouTube・ChatGPT・Claudeを始める<small>／ 入門編</small></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">
+        <span class="r-ic">🏠</span>
+        <span class="r-t"><span class="r-k">UGOKU AI 実装研修（本体）</span>サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://www.capcut.com/" target="_blank" rel="noopener">
+        <span class="r-ic">✂️</span>
+        <span class="r-t"><span class="r-k">公式サイト</span>CapCut ではじめる<small>／ ByteDance 公式 ↗</small></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price">
+        <span class="r-ic">🎓</span>
+        <span class="r-t"><span class="r-k">料金と助成金を見る</span>助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span>
+        <span class="r-arw">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“発信”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「動画、やってみたいけど何から…」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころ（動画・集客・業務）が見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各ツールの画面・機能・料金・無料枠は、提供元の更新により変わることがあります。最新は各公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

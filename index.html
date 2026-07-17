@@ -1488,6 +1488,12 @@
       .flm-row:hover .flm-track{animation-play-state:paused}
       @keyframes flmL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
       @keyframes flmR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+      /* JSが正常起動したときだけ手動スクロール・モードに切り替え（未起動時は上のCSSアニメで必ず表示） */
+      .flm.flm-js .flm-row{overflow-x:auto;overflow-y:hidden;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+      .flm.flm-js .flm-row::-webkit-scrollbar{display:none}
+      .flm.flm-js .flm-row.grabbing{cursor:grabbing}
+      .flm.flm-js .flm-track{animation:none !important;will-change:scroll-position}
+      .flm.flm-js .flm-card{-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
       .flm-card{flex:0 0 auto;width:270px;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;text-decoration:none;
         background:linear-gradient(135deg,rgba(15,38,34,.92),rgba(9,24,22,.92));
         border:1px solid rgba(200,164,93,.28);box-shadow:0 8px 24px rgba(0,0,0,.35);
@@ -1518,7 +1524,7 @@
       <div class="flm-head">
         <span class="flm-kicker">FREE ┃ 無料でAIを学ぶ</span>
         <h2 class="flm-title">パソコンが苦手でも動き出せる、<b>20本の無料ガイド</b></h2>
-        <p class="flm-desc">気になるバナーをタップ。ChatGPT・Claude・Gemini・MEO・SNS・動画まで、うごく君がやさしく解説。</p>
+        <p class="flm-desc">気になるバナーをタップ。横にスワイプ／ドラッグでも探せます。ChatGPT・Claude・Gemini・MEO・SNS・動画まで、うごく君がやさしく解説。</p>
       </div>
       <div class="flm-rows">
     <div class="flm-row">
@@ -1768,6 +1774,82 @@
         <a href="#free-learn">無料ガイド一覧をすべて見る ↓</a>
       </div>
     </section>
+    <script>
+    /* 無料ガイド 横スクロール：CSSアニメ自動流しを保険に残しつつ、JSで「手動スワイプ/ドラッグ＋自動流し」を実現。
+       JSが動かない/計測できない場合は何もせず、CSSアニメのまま表示され続ける（＝消えない）。 */
+    (function(){
+      var section = document.querySelector('.flm');
+      if(!section) return;
+      var rows = Array.prototype.slice.call(section.querySelectorAll('.flm-row'));
+      if(!rows.length) return;
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function makeController(row){
+        var track = row.querySelector('.flm-track');
+        if(!track) return null;
+        var dir = track.classList.contains('r') ? -1 : 1;        // l:右へ / r:左へ
+        var dur = parseFloat(getComputedStyle(track).getPropertyValue('--flm-dur')) || 64;
+        var half = track.scrollWidth / 2;                        // カード1セット分の幅
+        var speed = half / dur;                                  // px/秒（元の流速を踏襲）
+        var paused=false, interacting=false, hovering=false, resumeTimer=null, last=null;
+        var dragging=false, startX=0, startScroll=0, moved=0;
+
+        function recalc(){ half = track.scrollWidth/2; speed = half>0 ? half/dur : 30; }
+        function pause(){ paused=true; if(resumeTimer){clearTimeout(resumeTimer);resumeTimer=null;} }
+        function scheduleResume(d){ if(resumeTimer)clearTimeout(resumeTimer);
+          resumeTimer=setTimeout(function(){ interacting=false; if(!hovering) paused=false; }, d||1500); }
+        function wrap(){ if(interacting)return;
+          if(row.scrollLeft>=half) row.scrollLeft-=half; else if(row.scrollLeft<=0) row.scrollLeft+=half; }
+        function frame(ts){ if(last==null)last=ts; var dt=(ts-last)/1000; last=ts; if(dt>0.1)dt=0.1;
+          if(!paused && !interacting && !reduced) row.scrollLeft += dir*speed*dt;
+          wrap(); requestAnimationFrame(frame); }
+
+        function bindEvents(){
+          window.addEventListener('resize', function(){ clearTimeout(row._rt); row._rt=setTimeout(recalc,200); });
+          row.addEventListener('mouseenter', function(){ hovering=true; if(!interacting) pause(); });
+          row.addEventListener('mouseleave', function(){ hovering=false; if(!interacting) scheduleResume(200); });
+          row.addEventListener('wheel', function(){ pause(); scheduleResume(1600); }, {passive:true});
+          row.addEventListener('touchstart', function(){ interacting=true; pause(); }, {passive:true});
+          row.addEventListener('touchend', function(){ scheduleResume(1600); });
+          row.addEventListener('touchcancel', function(){ scheduleResume(1600); });
+          row.addEventListener('pointerdown', function(e){
+            if(e.pointerType==='mouse'){ dragging=true; moved=0; startX=e.clientX; startScroll=row.scrollLeft;
+              interacting=true; pause(); row.classList.add('grabbing');
+              try{ row.setPointerCapture(e.pointerId); }catch(_){}
+            } else { interacting=true; pause(); }
+          });
+          row.addEventListener('pointermove', function(e){ if(!dragging)return;
+            var dx=e.clientX-startX; moved=Math.max(moved,Math.abs(dx)); row.scrollLeft=startScroll-dx; });
+          function endDrag(e){ if(dragging){ dragging=false; row.classList.remove('grabbing');
+              try{ row.releasePointerCapture(e.pointerId); }catch(_){}} scheduleResume(1200); }
+          row.addEventListener('pointerup', endDrag);
+          row.addEventListener('pointercancel', endDrag);
+          row.addEventListener('pointerleave', function(e){ if(dragging) endDrag(e); });
+          track.addEventListener('click', function(e){ if(moved>6){ e.preventDefault(); e.stopPropagation(); moved=0; } }, true);
+        }
+
+        return { start:function(){ recalc(); if(dir<0) row.scrollLeft=half; bindEvents(); requestAnimationFrame(frame); } };
+      }
+
+      function ready(){ return rows.every(function(r){ var t=r.querySelector('.flm-track'); return t && (t.scrollWidth/2) > 10; }); }
+
+      function boot(){
+        if(!ready()) return false;                 // まだ計測できない → 後で再試行（CSSアニメは動いたまま）
+        var controllers;
+        try{
+          controllers = rows.map(makeController);
+          if(controllers.some(function(c){ return !c; })) return true;   // 予期せぬ構造 → CSSアニメのまま
+        }catch(e){ return true; }                   // 失敗 → CSSアニメのまま（消えない）
+        section.classList.add('flm-js');            // ここで初めてアニメOFF＆手動スクロールON
+        controllers.forEach(function(c){ try{ c.start(); }catch(e){} });
+        return true;
+      }
+
+      function attempt(n){ if(boot()) return; if(n>0) setTimeout(function(){ attempt(n-1); }, 250); }
+      if(document.readyState==='complete') attempt(10);
+      else window.addEventListener('load', function(){ attempt(10); });
+    })();
+    </script>
     <!-- ===== /無料でAIを学ぶ 横スクロール・バナー ===== -->
 
     <section class="mist">

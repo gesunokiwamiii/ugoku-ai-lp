@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×選挙・政治 活用術10選＆最新トレンド｜初心者のためのやさしい実践ガイド ― UGOKU AI</title>
+<meta name="description" content="選挙・政治の現場でAIをどう使う？初心者にもわかるように、最新の業界トレンドと、今日から始める合理的な手順・活用術10選を、案内役のうごく君がやさしく解説。仕事と暮らしでの活かし方、自律型AIの可能性、そして公職選挙法など“守るべきルール”まで、コンプライアンス重視でまとめました。">
+
+<!-- ▼ 公開前に設定：本ページを置く実際のURL（og-image.pngも同じ場所に） -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×選挙・政治 活用術10選＆最新トレンド｜初心者のためのやさしい実践ガイド｜UGOKU AI">
+<meta property="og:description" content="選挙・政治の現場でAIをどう使う？最新トレンドと今日から始める手順・活用術10選を、うごく君がやさしく解説。公職選挙法などのルールもコンプライアンス重視でまとめました。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/election-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/election-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×選挙・政治 活用術10選＆最新トレンド ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×選挙・政治 活用術10選＆最新トレンド｜UGOKU AI">
+<meta name="twitter:description" content="選挙・政治の現場でAIをどう使う？最新トレンドと活用術10選、そして守るべきルールを、うごく君がやさしく解説。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/election-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの現場 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* トレンド */
+  .trend-grid{display:grid;gap:13px;margin-top:6px;}
+  @media(min-width:640px){.trend-grid{grid-template-columns:1fr 1fr;}}
+  .trend{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;box-shadow:var(--shadow-sm);}
+  .trend .th{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin:0 0 6px;display:flex;align-items:center;gap:9px;line-height:1.4;}
+  .trend .th .e{font-size:20px;flex:none;}
+  .trend p{margin:0;font-size:13.6px;color:var(--ink-soft);}
+  .trend p a{color:var(--ember-2);font-weight:700;}
+
+  /* STEP / 活用術 */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+  /* 自律型AIの可能性（シリーズ・パレット内の新カラー枠） */
+  .auto{background:#EFEBDD;border:1px solid #D9CFB4;border-left:4px solid var(--pine);border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .auto .at{font-weight:900;color:var(--pine);display:flex;gap:7px;align-items:center;margin-bottom:4px;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .auto b{color:var(--ember-2);}
+
+  /* 仕事/私生活 split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 比較表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  /* コンプラ/安全 */
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×選挙・政治 やさしい実践ガイド</span>
+      <h1>選挙・政治のAI、<br>「何ができて・<span class="hl">どこまでOK</span>」を今日で掴む。</h1>
+      <p class="lead">情勢分析も、原稿も、住民対応も——いまや現場はAIで動き始めています。むずかしい話はナシ。<b>初心者でも今日から</b>、そして<b>ルールを守って</b>始められるよう、順番に解説します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。便利な使い方と“やってはいけない一線”を、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">活用術10選を読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「AI×政治って、なんだか難しそう・こわそう」と身構えなくて大丈夫。この記事を上から読むだけで、次のことがわかります。</p>
+        <ul class="checklist">
+          <li>選挙・政治の現場で「いま何が起きているか」（最新トレンド）がわかる</li>
+          <li>初心者でも始められる、合理的で安全な進め方がわかる</li>
+          <li>仕事にも私生活にも効く「活用術10選」をコピペで試せる</li>
+          <li><b>公職選挙法など“守るべきルール”</b>と、やってはいけない一線がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの現場 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、AIは「3つの現場」で動いている</h2>
+    <p class="sec-sub">政治・選挙のAIは、ぜんぶ「フェイク」の話ではありません。むしろ大半は、地味で堅実な“仕事の効率化”です。ざっくり3つで掴みましょう。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">📊</div>
+        <h4>調べる・見抜く<br><span>＝ リサーチ＆分析</span></h4>
+        <p>情勢・世論・過去データを要約し、傾向を可視化。偽情報を見抜くファクトチェックにも。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">✍️</div>
+        <h4>つくる・伝える<br><span>＝ 制作＆広報</span></h4>
+        <p>原稿・あいさつ・SNS・広報物の下書き。ゼロから書く負担を大きく減らします。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">👂</div>
+        <h4>聴く・応える<br><span>＝ 対話＆声を集める</span></h4>
+        <p>大量の意見を整理する「ブロードリスニング」、問い合わせ対応、多言語・やさしい日本語化。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">TREND &amp; GUIDE</div>
+    <h2 class="sec-title">AI×選挙・政治 活用術10選＆<br>最新業界トレンド分析</h2>
+    <p class="sec-sub">「便利さ」と「ルール」はセット。この記事は、両方を同じ重さで扱います。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけは</span>
+      <p>選挙・政治でAIを使う大前提は、<strong>「透明性」と「事実をゆがめないこと」</strong>。とくに<strong>2026年7月13日に成立した改正公職選挙法</strong>で、選挙に関するAI生成の画像・動画（実際の撮影と誤認されるおそれのあるもの）には「AIで作成した旨の表示」が義務づけられました（施行は2027年3月1日、翌春の統一地方選から適用）。“見えない加工”は、もうナシ。ここが全ての出発点です。</p>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">はじめる前の、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>AIで作ったら「AI」と明かす</h4>
+        <p>実物と見まちがう画像・音声・動画をAIで作成／改変したら、<b>AI生成である旨を表示</b>。改正公選法の義務であり、信頼を守る最低ラインです。“こっそり”は事故のもと。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>事実をゆがめない・機密は入れない</h4>
+        <p>他人を装う、事実をねじ曲げる、他候補を貶める偽情報——これらは<b>厳禁</b>。あわせて、個人情報・支援者名簿・未公表情報はAIに入力しないのが基本です。</p>
+      </div>
+    </div>
+
+    <!-- ═══ 最新トレンド分析 ═══ -->
+    <h3 class="blk">最新業界トレンド分析（2025→2026）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「反響の大きかった事例」から、いま伸びている使い方を5つに整理しました。マネできる“形”に注目です。</p>
+    <div class="trend-grid">
+      <div class="trend">
+        <div class="th"><span class="e">👂</span>①ブロードリスニング（声の可視化）</div>
+        <p>SNSや意見募集の大量の声をAIで分類・要約し、「みんなの論点」を地図のように見せる手法。都知事選・衆院選特番でも使われ、<a href="https://note.com/annotakahiro24/n/nfd4a855cd1a8" target="_blank" rel="noopener">オープンソースのツール</a>が自治体・政党へ広がりつつあります。</p>
+      </div>
+      <div class="trend">
+        <div class="th"><span class="e">🗣️</span>②対話できるマニフェスト</div>
+        <p>政策を学習したAIアバターが有権者の質問に答える「AIあんの」型。政治を“身近な対話”に変える試みとして反響を集め、音声合成の進化で自然さも急上昇。</p>
+      </div>
+      <div class="trend">
+        <div class="th"><span class="e">📈</span>③情勢分析・議席予測AI</div>
+        <p>世論・SNS・過去データを複数AIで統合する予測が話題に。ただし「ネットの声＝民意」ではなく<b>大きく外すことも</b>。あくまで“参考の一つ”という距離感が定着しつつあります。</p>
+      </div>
+      <div class="trend">
+        <div class="th"><span class="e">🛡️</span>④偽情報・ディープフェイク対策</div>
+        <p>2024年の県知事選以降、偽・誤情報が最大の論点に。<a href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" target="_blank" rel="noopener">電子透かしや検知技術</a>、事業者の削除対応、ファクトチェックの自動化が進んでいます。</p>
+      </div>
+      <div class="trend">
+        <div class="th"><span class="e">🏛️</span>⑤議会・行政の実務効率化</div>
+        <p>議事録・会議録の自動作成、答弁書のたたき台づくりが<b>実用段階</b>へ。<a href="https://maniken.jp/AI/" target="_blank" rel="noopener">「生成AI時代の地方議会研究会」</a>など、現場発の知見共有も本格化しています。</p>
+      </div>
+      <div class="trend">
+        <div class="th"><span class="e">⚖️</span>⑥ルール整備が“待ったなし”</div>
+        <p><a href="https://www.jimin.jp/news/information/213574.html" target="_blank" rel="noopener">改正公選法・情プラ法</a>が2026年成立。AI表示義務、利用者の責務明記、事業者の対策義務化へ。<b>「使う前にルールを見る」</b>が新常識です。</p>
+      </div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>反響が大きい事例の共通点は「隠さない・双方向・わかりやすい」。逆に、こっそり系や煽り系は一時バズっても信頼を失いやすいよ。マネするなら“見せ方の工夫”をね。</div></div>
+
+    <!-- ═══ 活用術10選 ═══ -->
+    <h3 class="blk">仕事にも私生活にも効く「活用術10選」</h3>
+    <p class="sec-sub" style="margin-top:-6px;">各項目に、<b>仕事の現場／暮らしの中</b>での使い方、<b>🤖 自律型AIが加わるとどうなるか</b>、そして<b>⚠️ 注意点（コンプラ）</b>をセットで載せました。</p>
+
+    <!-- 01 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>1</b></div><div><span class="st-chip">RESEARCH</span><div class="st-ttl">情勢・世論のリサーチと要約</div></div></div>
+      <div class="step-body">
+        <p class="desc">ニュース・議事録・アンケートなど「長い資料」を読み込ませ、要点・論点・賛否を数分で整理。情報収集のスピードが段違いになります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 資料を論点マップに整える</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の資料を読み、争点ごとに「①主な意見 ②反対の意見 ③まだ分かっていないこと」に
+整理してください。中立的に、専門用語はやさしく言い換えて。
+<span class="fill">〔ここに記事・議事録・アンケート結果を貼り付け〕</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>地域課題・政策テーマの下調べを一気に</li><li>他自治体の先行事例を比較表に</li><li>長い会議資料を「3分で読める要約」に</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>気になる政策・公約を中立に要約してもらう</li><li>難しい制度を「中学生にもわかる説明」に</li><li>投票の判断材料を自分で整理する</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>指示した論点を、AIが自分でニュースや公開資料を集め続け、<b>毎朝「昨日の動きサマリー」を自動で用意</b>——といった“ずっと調べ続ける調査員”になり得ます。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIは<b>もっともらしく間違えます</b>（ハルシネーション）。数字・固有名詞・発言は必ず一次情報で確認を。要約はあくまで下ごしらえです。</div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>2</b></div><div><span class="st-chip">POLICY DRAFT</span><div class="st-ttl">政策・公約の草案づくり＆改訂管理</div></div></div>
+      <div class="step-body">
+        <p class="desc">政策の骨子や、賛否両論の想定Q&amp;Aをたたき台として量産。修正の履歴を残しながら磨けば、議論の質と透明性が上がります。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>公約・議会質問のたたき台を複数案</li><li>「反対意見からの反論」を先回りで用意</li><li>専門用語だらけの案を住民向けに書き直す</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>町内会・PTA・NPOの提案書づくり</li><li>要望書・陳情の文章を整える</li><li>「自分の考え」を論点ごとに言語化</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>公開の意見（→活用術3）を取り込み、<b>草案を自動でバージョンアップし続ける</b>運用も。誰がどこを直したか履歴で追える“政策のGit管理”が現実になりつつあります。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>草案はあくまで素材。<b>最終決定と責任は必ず人が持つ</b>こと。数字・財源・法令の裏取りは専門家に確認を。「AIが言ったから」は通用しません。</div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>3</b></div><div><span class="st-chip">BROAD LISTENING</span><div class="st-ttl">ブロードリスニング（大量の声の可視化）</div></div></div>
+      <div class="step-body">
+        <p class="desc">数百〜数万件の意見をAIが自動で分類・要約し、「どんな論点があり、どこで賛否が割れるか」を一枚の地図に。少数の声も拾える“逆・演説”の発想です。</p>
+        <a class="link-btn" href="https://note.com/annotakahiro24/n/nfd4a855cd1a8" target="_blank" rel="noopener">代表的な取り組みを見る ↗</a>
+        <p class="link-note">オープンソースの可視化ツールが公開・改良され続けています。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>パブリックコメント・アンケートの整理</li><li>住民説明会の意見を論点別にまとめる</li><li>「サイレントマジョリティ」の把握</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>SNSの賛否を“地図”で俯瞰して冷静に</li><li>署名・意見募集の結果を見やすく共有</li><li>サークル・自治会の意見集約に応用</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>寄せられる声をリアルタイムで分類し続け、<b>「今この論点が急増中」を自動で通知</b>。意見募集が“開きっぱなしの対話”に変わります。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>集める声には<b>偏りやなりすまし</b>があり得ます。「AIがまとめた＝正しい民意」ではありません。個人が特定される投稿の扱い（個人情報保護）にも配慮を。</div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>4</b></div><div><span class="st-chip">SPEECH &amp; TEXT</span><div class="st-ttl">演説・あいさつ・原稿の下書き</div></div></div>
+      <div class="step-body">
+        <p class="desc">伝えたい要点を渡すだけで、場面に合った原稿のたたき台を作成。時間短縮しつつ、自分の言葉で仕上げる余白を残せます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 あいさつ文の下書き</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の要点で、〔場面：会合／街頭／集会〕向けのあいさつを、〔◯分・約◯字〕で。
+誠実で分かりやすく、専門用語は控えめに。誇張や断定は避けてください。
+【伝えたい要点】
+<span class="fill">〔箇条書きで3つほど〕</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>集会・式典のあいさつ、活動報告の原稿</li><li>会報・ニュースレターの記事下書き</li><li>長い話を「刺さる3ポイント」に凝縮</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>PTA・自治会・乾杯のスピーチ</li><li>お礼状・案内文の下書き</li><li>結婚式・送別会の言葉づくり</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>過去の発言・会報を踏まえ、<b>「今週の活動報告」を自動で草稿化</b>。あなたはチェックと“魂入れ”に集中できます。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>実績・数字は必ず事実確認を。<b>他人の文章の丸写しは著作権に注意</b>。最後は必ず自分の言葉に直し、AI任せの棒読みにしないこと。</div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>5</b></div><div><span class="st-chip">SNS &amp; DESIGN</span><div class="st-ttl">SNS投稿・広報物の企画とデザイン</div></div></div>
+      <div class="step-body">
+        <p class="desc">投稿の切り口出し、キャプション、チラシ・バナーのたたき台まで。反響の出やすい“形”を試しながら、発信のハードルを下げます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>投稿ネタ・見出し・ハッシュタグ案</li><li>チラシ・ポスターのレイアウト下書き</li><li>Q&amp;A形式・図解で“わかりやすさ”を追求</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>イベント告知・募集チラシ</li><li>お店・サークルのSNS運用</li><li>写真に合う一言キャプション</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>投稿の反応を見て<b>次の切り口を提案・下書き</b>し、投稿カレンダーを回す“広報アシスタント”に。人は最終確認と公開判断に専念できます。</div>
+        <div class="warn"><div class="wt">⚠️ 最重要の注意点</div>実物と誤認される<b>AI生成の画像・動画には「AIで作成」の表示が法律上の義務</b>（改正公選法・2027年3月施行）。他人の顔・声の無断利用、誤解を招く合成は絶対にNGです。</div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>6</b></div><div><span class="st-chip">Q&amp;A / SUPPORT</span><div class="st-ttl">問い合わせ・相談対応（FAQ・対話AI）</div></div></div>
+      <div class="step-body">
+        <p class="desc">よくある質問への回答づくりや、政策を学習した対話AIで、住民・支援者からの問い合わせに素早く・ていねいに対応します。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>よくある質問と回答（FAQ）を自動作成</li><li>問い合わせメールの下書き・言い換え</li><li>「政策を質問できるAI」で対話を増やす</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>役所の制度・手続きをかみ砕いて理解</li><li>問い合わせ文を角が立たない表現に</li><li>気になる点をAIに“予習質問”</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>24時間、一次対応を自動化。<b>難しい質問だけ人に引き継ぐ</b>“交通整理役”として、対応漏れと待ち時間を減らせます。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIだと隠して人間のふりをさせない（<b>AI対応であることを明示</b>）。誤回答リスクがあるため、公式見解・法的判断は必ず人が確認。個人情報の入力にも注意を。</div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>7</b></div><div><span class="st-chip">MINUTES</span><div class="st-ttl">議事録・会議録・答弁書づくり</div></div></div>
+      <div class="step-body">
+        <p class="desc">録音から文字起こし→要点整理まで。自治体・議会ですでに<b>実用段階</b>に入っている、いちばん堅実な効率化です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 文字起こしを議事録に整える</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の文字起こしを、公式な会議録の体裁に整えてください。
+「①議題 ②主な発言（発言者ごと）③決定事項 ④宿題・持ち越し」の4項目で。
+話し言葉は読みやすく直し、事実は変えないこと。
+<span class="fill">〔ここに文字起こしを貼り付け〕</span></pre>
+        </div>
+        <a class="link-btn" href="https://maniken.jp/AI/" target="_blank" rel="noopener">議会での実践事例を見る ↗</a>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>委員会・会合の要点筆記を時短</li><li>答弁書・想定問答のたたき台生成</li><li>会報「議会だより」の下書き</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>自治会・PTAの議事録づくり</li><li>打ち合わせメモを共有用に整形</li><li>長い会議動画を要点だけに</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>会議が終わると<b>要約・ToDo・次回論点まで自動で配布</b>。「決めたのに誰も動かない」を防ぐ書記＆進行役になります。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>公式記録は<b>必ず人が最終チェック</b>（“魂を入れる”）。録音・音声データの保管や第三者の発言の扱いは、規程と個人情報保護に沿って。</div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>8</b></div><div><span class="st-chip">ACCESSIBILITY</span><div class="st-ttl">多言語・やさしい日本語・アクセシビリティ</div></div></div>
+      <div class="step-body">
+        <p class="desc">同じ情報を、外国人住民・高齢者・障害のある方など<b>誰にでも届く形</b>に変換。「伝わる」を広げる、公共性の高い使い方です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 やさしい日本語に変換</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次のお知らせを「やさしい日本語」に書き直してください。
+短い文、むずかしい言葉は言い換え、漢字にはふりがなの候補も。
+そのあと、〔英語／やさしい英語〕にも翻訳してください。
+<span class="fill">〔ここに元のお知らせを貼り付け〕</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>お知らせ・広報を多言語＆やさしい日本語に</li><li>音声読み上げ用の原稿づくり</li><li>要点の図解・箇条書き化で高齢者にも</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>外国語の案内を日本語で理解</li><li>難しい書類を家族に説明する言葉に</li><li>子ども向けにかみ砕いて説明</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>新しいお知らせが出るたび、<b>複数言語＋やさしい版を自動生成して並べる</b>ことも。情報の“取り残し”を減らせます。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>翻訳・言い換えの<b>誤りは誤解のもと</b>。特に日時・金額・手続き・命に関わる情報は人が確認。公的文書は元の正文もあわせて示すのが安全です。</div>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>9</b></div><div><span class="st-chip">FACT CHECK</span><div class="st-ttl">ファクトチェック・偽情報への備え</div></div></div>
+      <div class="step-body">
+        <p class="desc">出回っている情報の“あやしいポイント”を洗い出し、確認すべき一次情報を整理。<b>広めない・作らない・見抜く</b>ための使い方です。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>拡散情報の論点・出典を整理して検証</li><li>自陣営に関する誤情報への冷静な反論案</li><li>疑わしい画像・動画の“違和感”の洗い出し</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>SNSの噂を「まず確認すべき点」で分解</li><li>家族に届いた怪しい情報の見極め</li><li>“それ本当？”を調べる習慣づけ</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>自陣営や地域名を含む投稿を監視し、<b>「拡散中の誤情報」を早期に検知・通知</b>。初動を早め、被害の拡大を抑えられます。</div>
+        <div class="warn"><div class="wt">⚠️ 最重要の注意点</div>検証目的でも、<b>偽情報・ディープフェイクを自ら作る／拡散するのは絶対NG</b>（改正公選法で明確に禁止）。AIの判定も間違うため、最終判断は必ず一次情報と人の目で。</div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>活用術</small><b>10</b></div><div><span class="st-chip">DATA</span><div class="st-ttl">データ分析・可視化で“傾向”をつかむ</div></div></div>
+      <div class="step-body">
+        <p class="desc">公開されている統計・選挙データ・予算資料などをAIに渡し、表やグラフのたたき台に。数字が苦手でも「傾向」を言葉で説明してもらえます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">現場</span> 仕事で</div>
+            <ul><li>投票率・人口・予算の推移を可視化</li><li>アンケート集計と傾向の要約</li><li>資料用のグラフ・表を素早く用意</li></ul></div>
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 一般の人も</div>
+            <ul><li>地域の統計を「自分ごと」に翻訳</li><li>家計・町内会費など身近な数字の整理</li><li>ニュースの数字の意味を確認</li></ul></div>
+        </div>
+        <div class="auto"><div class="at">🤖 自律型AIが加わると</div>公開データの更新を待ち受け、<b>更新のたびに最新グラフを自動作成</b>。「気づいたら古い資料」を防ぐダッシュボードになります。</div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>使うのは<b>公開・許諾済みのデータ</b>だけ。個人が特定される情報は扱わない。AIの計算・集計ミスもあるため、元データとの突き合わせを忘れずに。</div>
+      </div>
+    </div>
+
+    <!-- 比較：どの場面でどっち -->
+    <div class="cmp">
+      <h3 class="blk">ざっくり早見表：この場面はどのAI？</h3>
+      <p class="sec-sub" style="margin-top:-6px;">「優劣」ではなく「得意の違い」。無料で始められるので、両方持っておくのがおすすめです。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>やりたいこと</th><th>ChatGPT</th><th>Claude</th></tr></thead>
+          <tbody>
+            <tr><th>迷ったとき・まず試す</th><td class="win">◎ 最初の一台</td><td class="mid">○</td></tr>
+            <tr><th>長い議事録・資料の要約</th><td class="mid">○</td><td class="win">◎ 大の得意</td></tr>
+            <tr><th>ていねいな原稿・あいさつ文</th><td class="mid">○</td><td class="win">◎ 定評あり</td></tr>
+            <tr><th>最新情報のWeb検索</th><td class="win">◎</td><td class="mid">○</td></tr>
+            <tr><th>データ集計・グラフ化</th><td class="win">◎ ファイルを渡すだけ</td><td class="mid">○</td></tr>
+            <tr><th>チラシ用の画像づくり</th><td class="win">◎（※AI表示を忘れず）</td><td class="mid">×（生成は不可）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いいとこ取りの「合わせ技」</h4>
+        <div class="flow"><span class="b">ChatGPTで<br>情報収集＆下書き</span><span class="ar">→</span><span class="b">Claudeで<br>ていねいに整える</span><span class="ar">→</span><span class="b">人が<br>事実確認＆最終判断</span></div>
+        <p style="margin:0;font-size:14px;color:var(--ink-soft);">発想と検索はChatGPT、仕上げの日本語はClaude、そして<b style="color:var(--pine);">責任と決定は必ず人。</b>この順番が、速さと信頼を両立させるコツです。</p>
+      </div>
+    </div>
+
+    <!-- プロンプトの型 -->
+    <div class="cmp">
+      <h3 class="blk">うごく君の「効くお願いの型」</h3>
+      <p class="sec-sub" style="margin-top:-6px;">AIへのお願い（プロンプト）は、次の4つを足すだけで結果が一段よくなります。</p>
+      <div class="formula">
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>だれに向けて？</b>例：住民／支援者／初めて聞く人</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>何をしてほしい？</b>例：要約する／原稿を書く</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で？</b>例：3ポイント／表／400字</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>どんなトーン？</b>例：誠実に／中立に／やさしく</div></div>
+        </div>
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ もったいない例</div>「政策をまとめて」<br><span style="color:#8A5A5A;font-size:12.5px;">→ ぼんやりした、使いにくい文章に</span></div>
+          <div class="c good"><div class="lb">◎ 効く例</div>「初めて聞く人向けに、子育て政策を中立に3ポイント・300字で」<br><span style="color:#7A5B12;font-size:12.5px;">→ そのまま使える形に近づく</span></div>
+        </div>
+        <div class="copybox" style="margin-top:14px;">
+          <div class="cb-top"><span class="cb-lbl">📋 そのまま使えるテンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは<span class="fill">〔役割〕</span>です。
+<span class="fill">〔だれに〕</span>向けに、<span class="fill">〔してほしいこと〕</span>を、
+<span class="fill">〔形式：3ポイント/表/字数〕</span>・<span class="fill">〔トーン：中立/誠実〕</span>で作ってください。
+誇張・断定・特定の人を貶める表現は避けてください。
+【材料】
+<span class="fill">〔元になる情報を貼り付け〕</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- アイデア集 -->
+    <div class="cmp">
+      <h3 class="blk">もっと使える！活用アイデア集</h3>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🏛️</span>議員・行政の実務で</h4><ul>
+          <li>議事録・会議録の要点整理</li>
+          <li>答弁・質問の想定問答づくり</li>
+          <li>広報・議会だよりの下書き</li>
+          <li>他自治体の事例リサーチ</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📣</span>陣営・後援会の運営で</h4><ul>
+          <li>活動報告・会報の下書き</li>
+          <li>SNS投稿ネタ・見出し案</li>
+          <li>問い合わせFAQの整備</li>
+          <li>スケジュール・段取りの整理</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🤝</span>地域・団体の活動で</h4><ul>
+          <li>自治会・PTA・NPOの提案書</li>
+          <li>意見募集・アンケートの集約</li>
+          <li>多言語・やさしい日本語の案内</li>
+          <li>要望書・陳情の文章づくり</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🗳️</span>有権者・私生活で</h4><ul>
+          <li>公約・政策を中立に比較・要約</li>
+          <li>制度や手続きをかみ砕いて理解</li>
+          <li>怪しい情報の“まず確認”</li>
+          <li>意見・投書の文章を整える</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- つまずきポイント -->
+    <h3 class="blk">AI×政治で、つまずきやすいポイント</h3>
+    <div class="compact">
+      <details open><summary>「AIがまとめた＝正しい民意」と思い込む</summary><div class="ans">集まる声には偏り・なりすましがあり、AIの分類も完璧ではありません。あくまで“論点を見つける道具”。最終的な判断は、複数の情報源と人の目で。</div></details>
+      <details><summary>事実確認をせずに公開してしまう</summary><div class="ans">AIはもっともらしく間違えます。数字・固有名詞・引用・法令は、必ず一次情報で裏取りを。公開前チェックを工程に組み込みましょう。</div></details>
+      <details><summary>AI生成の画像・動画に表示をつけ忘れる</summary><div class="ans">実物と誤認されるものは、改正公選法で「AIで作成」の表示が義務（2027年3月施行）。“うっかり無表示”が信頼を大きく損ないます。</div></details>
+      <details><summary>機密・個人情報をAIに入力してしまう</summary><div class="ans">支援者名簿・未公表資料・相談内容などは入力しないのが基本。会社・団体の利用ルールと、各サービスのデータ設定も確認を。</div></details>
+    </div>
+
+    <!-- ═══ コンプライアンス（安全に使う） ═══ -->
+    <h3 class="blk">守るために：コンプライアンス6か条</h3>
+    <p class="sec-sub" style="margin-top:-6px;">便利さの前に、これだけは。※本記事は一般的な解説で、法的助言ではありません。実際の運用は必ず選挙管理委員会・弁護士など専門家に確認を。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>AI生成物は「AI」と表示</div><p>実物と誤認されるAI画像・音声・動画は、AIで作成した旨を明示（改正公選法・2027年3月施行）。落選運動なども対象です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>事実をゆがめない</div><p>虚偽の事項の公表や、事実を歪めて選挙の公正を害する行為は禁止。ネット利用者すべての“責務”として明記されました。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>ネット選挙運動のルールを守る</div><p>選挙運動ができる期間・主体・手段（メール送信の制限、18歳未満の選挙運動禁止など）は公職選挙法の定め通りに。迷ったら選管へ。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>なりすまさない・偽らない</div><p>他人の顔・声の無断利用や、AIを人間に見せかける対応はNG。AI対応であることは正直に伝えましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>個人情報・機密を守る</div><p>支援者名簿や相談内容など、個人情報・未公表情報はAIに入力しない。保管・削除も規程に沿って。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>最後は人が決め、説明できる</div><p>AIは下書きと相談相手。判断・責任・説明責任は人が持つ。「どこでAIを使ったか」を説明できる状態にしておきましょう。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>そもそも、選挙でAIを使っても違法になりませんか？</summary><div class="ans">使い方次第です。要約・原稿の下書き・議事録づくり・多言語化などは広く行われています。一方、実物と誤認されるAI生成物は「AI表示」が必要で、事実をゆがめる偽情報の作成・拡散は禁止です。公職選挙法の基本ルール（期間・主体・手段）も守る必要があります。個別の可否は選挙管理委員会や専門家にご確認を。</div></details>
+      <details><summary>初心者は、まず何から始めればいい？</summary><div class="ans">「要約」と「下書き」からがおすすめ。長い資料をChatGPTやClaudeに貼って要点整理を頼むだけで効果を実感できます。当社の姉妹記事「はじめてのAI活用ガイド」で、無料の始め方を解説しています。</div></details>
+      <details><summary>AIの情報は、そのまま信じて大丈夫？</summary><div class="ans">いいえ。AIはもっともらしく間違えます（ハルシネーション）。数字・固有名詞・引用・法令は必ず一次情報で確認してください。AIは“下ごしらえ”、確定は人が行う、が鉄則です。</div></details>
+      <details><summary>入力した内容は漏れませんか？学習に使われる？</summary><div class="ans">扱いはサービスや設定・プランで変わります。気になる場合は各サービスのデータ設定を確認し、個人情報・機密・未公表情報は入力しないのが安全です。団体で使うなら内部ルールも整えましょう。</div></details>
+      <details><summary>「自律型AI（AIエージェント）」って、普通のAIと何が違う？</summary><div class="ans">指示のたびに答える普通のAIに対し、自律型は目標を渡すと自分で手順を考えて動き続けます。「調べ続ける」「更新のたびに作り直す」「異変を通知する」などが可能に。強力な分、暴走や誤作動に備え、人の承認ポイントを必ず挟むのが安全な使い方です。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・出典と次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まず基礎から</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ 発信力を高めたい人へ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.jimin.jp/news/information/213574.html" target="_blank" rel="noopener"><span class="r-ic">⚖️</span><span><span class="r-k">出典・制度</span><span class="r-t">改正公選法・情プラ法のポイント<small>／ AI表示義務など（外部）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://maniken.jp/AI/" target="_blank" rel="noopener"><span class="r-ic">🏛️</span><span><span class="r-k">出典・事例</span><span class="r-t">生成AI時代の地方議会研究会<small>／ 議会・行政の実践事例（外部）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r06/html/nd141210.html" target="_blank" rel="noopener"><span class="r-ic">🛡️</span><span><span class="r-k">出典・公的資料</span><span class="r-t">総務省・偽/誤情報の課題と対策<small>／ 情報通信白書（外部）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの現場の“面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「何から始めれば」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの仕事に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事は一般的な情報提供であり、法的助言ではありません。制度は改正される場合があります。実際の運用は選挙管理委員会・専門家にご確認ください。各サービスの画面や手順も、提供元の更新により変わることがあります。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

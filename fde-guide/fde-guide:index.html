@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>年収5000万円の新職種「FDE」って何？｜テック初心者のためのやさしい解説 ― UGOKU AI</title>
+<meta name="description" content="いま世界のAI業界でいちばん熱い新職種FDE（Forward Deployed Engineer）を、テック初心者にもわかるようにやさしく解説。年収の実態、なぜ800%も求人が増えたのか、そしてその考え方をAIツールで自分の仕事と暮らしに取り入れる方法まで、案内役のうごく君がご案内します。">
+<meta property="og:title" content="年収5000万円の新職種「FDE」って何？｜UGOKU AI">
+<meta property="og:description" content="AI業界でいちばん熱い新職種FDEを初心者にもやさしく。年収の実態・急増の理由・自分の仕事と遊びへの活かし方まで、うごく君が解説します。">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/fde-guide/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="年収5000万円の新職種「FDE」って何？｜UGOKU AI">
+<meta name="twitter:description" content="AI業界でいちばん熱い新職種FDEを初心者にもやさしく。うごく君が解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    
+
+  /* ── FDE記事の追加パーツ（すべて既存トークンで統一） ── */
+  .stat-grid{display:grid;gap:13px;margin:6px 0 4px;}
+  @media(min-width:640px){.stat-grid{grid-template-columns:repeat(3,1fr);}}
+  .stat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--ember));border-radius:16px;padding:18px 14px;text-align:center;box-shadow:var(--shadow-sm);}
+  .stat .n{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:30px;line-height:1.12;}
+  .stat .l{font-size:12px;color:var(--ink-soft);margin-top:6px;line-height:1.6;}
+  .viz{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow-sm);margin:14px 0 4px;}
+  .viz .vh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 3px;}
+  .viz .vc{font-size:12.5px;color:var(--ink-soft);margin:0 0 14px;}
+  .viz .row{display:grid;grid-template-columns:82px 1fr;align-items:center;gap:10px;margin:9px 0;}
+  .viz .row .lab{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .viz .trk{background:#F1EEE4;border-radius:100px;height:26px;overflow:hidden;}
+  .viz .fl{height:100%;border-radius:100px;background:var(--pine);display:flex;align-items:center;justify-content:flex-end;padding-right:11px;color:#fff;font-weight:800;font-size:12.5px;font-family:"Zen Kaku Gothic New",sans-serif;min-width:46px;}
+  .viz .fl.em{background:var(--ember);color:var(--pine-deep);}
+  .viz .src{font-size:11.5px;color:var(--ink-soft);margin:12px 0 0;opacity:.85;}
+  .price{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;white-space:nowrap;}
+  .price small{font-weight:700;color:var(--ink-soft);font-family:inherit;}
+  .free{color:var(--chatgpt);font-weight:900;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .scrollhint{font-size:11.5px;color:var(--ink-soft);opacity:.85;margin:7px 2px 0;}
+  .brandline{display:inline-flex;align-items:center;gap:8px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;color:#fff;padding:5px 13px;border-radius:9px;margin:40px 0 2px;}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">TECH TREND ｜ 新職種解説</span>
+      <h1>「年収<span class="hl">5000万円</span>」の新職種<br><span class="hl">FDE</span>って、いったい何者？</h1>
+      <p class="lead">いま世界のAI業界でいちばん奪い合いになっている職種、それが <b>FDE（Forward Deployed Engineer）</b>。求人は1年で約<b>800%増</b>、トップ人材の年収は<b>$300,000超（約4,500万円）</b>。むずかしい話はナシで、「そもそも何をする人？」から、その考え方をあなたの仕事と暮らしに取り入れる方法まで解説します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「自分には関係ない専門職でしょ」と思った方こそ、ぜひ最後まで。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#what" class="btn btn-primary">FDEを3分で理解する <span class="arw">↓</span></a>
+        <a href="#you" class="btn btn-ghost">自分の仕事に活かす <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「FDE？　自分には関係ない専門職でしょ」と思った方こそ、ぜひ最後まで。この記事を上から順に読むだけで、次のことが分かります。</p>
+        <ul class="checklist">
+          <li>FDEが「何をする人」で、なぜそんなに稼げるのかがわかる</li>
+          <li>ネットでバズっている「年収5000万円」の本当のところがわかる</li>
+          <li>ChatGPT・Claude・Geminiのプランと予算感を一目で選べる</li>
+          <li>FDE的な発想を、あなたの仕事と遊びに取り入れる第一歩がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 30秒でわかる：3つの顔 ═══ -->
+<div class="roles" id="what">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、FDEの「3つの顔」をざっくり掴もう</h2>
+    <p class="sec-sub">FDEは、いままでの「エンジニア」でも「コンサル」でもない“第三の職種”。ざっくり言うと、この3つを1人でこなす人です。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🛠️</div>
+        <h4>エンジニアの<span>顔</span></h4>
+        <p>実際にコードを書いて、AIを“動くもの”に仕上げる。約7割はこの実装作業だと言われます。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">🤝</div>
+        <h4>コンサルの<span>顔</span></h4>
+        <p>お客さんの会社に入り込み、「本当の困りごとは何か」を一緒に見つける。提案だけで終わらせません。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🏁</div>
+        <h4>“最後までやる人”の<span>顔</span></h4>
+        <p>作って終わりではなく、現場で本番運用に乗るまで面倒を見る。だから「戦場のエンジニア」とも。</p>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>ひとことで言うと</b>FDEは「AIを、絵に描いた餅で終わらせず、現場でちゃんと使えるようにする人」。ここだけ覚えて先へ進もう。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article">
+  <div class="wrap">
+
+    <!-- なぜバズるか -->
+    <div class="sec-eyebrow">なぜ今バズっているのか</div>
+    <h2 class="sec-title">SNSがざわつく「3つの事実」を、数字で視える化</h2>
+    <p class="sec-sub">いまFDEは、Xや採用メディアで最も反響の大きいテーマのひとつ。人気の投稿はだいたい、この3つの“驚き”を軸にしています。</p>
+
+    <div class="stat-grid">
+      <div class="stat" style="--accent:var(--pine);"><div class="n" style="color:var(--pine);">約800%</div><div class="l">求人の増加率<br>（2025年1〜9月・LinkedIn）</div></div>
+      <div class="stat" style="--accent:var(--ember);"><div class="n" style="color:var(--ember-2);">8.3倍</div><div class="l">Indeed掲載数<br>643件→5,330件（1年）</div></div>
+      <div class="stat" style="--accent:var(--claude);"><div class="n" style="color:var(--claude);">$1.2M</div><div class="l">トップ層の年収<br>（約1.8億円・株式込み）</div></div>
+    </div>
+
+    <div class="viz">
+      <div class="vh">① 求人数がこの1年で“爆増”した</div>
+      <div class="vc">米Indeedに掲載されたFDE関連の求人件数（棒の長さ＝件数のイメージ）</div>
+      <div class="row"><div class="lab">2025年4月</div><div class="trk"><div class="fl" style="width:14%;">643件</div></div></div>
+      <div class="row"><div class="lab">2026年4月</div><div class="trk"><div class="fl em" style="width:100%;">5,330件</div></div></div>
+      <div class="src">出典：Indeed／Financial Timesの分析ほか（2026年時点）。1年で約8.3倍。</div>
+    </div>
+
+    <div class="rule2" style="margin-top:16px;">
+      <div class="rule-card">
+        <div class="rn">FACT 02</div>
+        <h4>発祥はPalantir、火をつけたのは生成AI</h4>
+        <p>FDEは2011年に米<b>Palantir</b>が生み出した働き方。汎用のAIを渡すだけでは現場で使われないという課題が生成AIブームで表面化し、<b>OpenAI・Anthropic・Google Cloud・Salesforce・Databricks</b>などが奪い合いを開始。マッキンゼーのようなコンサル大手まで参戦しています。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">FACT 03</div>
+        <h4>とにかく給料が高い</h4>
+        <p>Palantirの中央値でも約$207K（約3,100万円）。第一線のAI企業では中堅で$300〜450K、上位で$450〜550K、最上位（Staff/Principal）は<b>$600K〜$1.2M（約9,000万〜1.8億円）</b>との報告も。株式（エクイティ）の比重が大きいのが特徴です。</p>
+      </div>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 「年収5000万円」の正体</div>
+      見出しの<b>5000万円（≒$330K）</b>は、米国トップAI企業の“上位FDE”クラスの水準です。多くは<b>基本給＋株式</b>の合計で、株価や職位で大きく上下します。<b>日本国内はまだ発展途上</b>で、現状は<b>年収600万〜2,000万円</b>のレンジが形づくられている段階。「誰でも即5000万」ではない点は、正直にお伝えします。
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>豆知識</b>ベンチャー投資家a16zは、この現象を「肩書きの裁定取引（job-title arbitrage）」と呼びました。要は「新しい肩書きを付けて、これから伸びる希少な能力に、いち早く高値がついている」ということ。バズるのも納得だね。</div>
+    </div>
+
+    <!-- 従来職種との違い -->
+    <h3 class="blk">「SES」「SIer」「コンサル」と、何が違うの？</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">似た言葉が多くて混乱しがち。FDEの特徴は、次の3点が“ぜんぶそろっている”ことです。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>比べるポイント</th><th>SIer / SES</th><th>ITコンサル</th><th>FDE</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">自社プロダクトを持つ？</th><td class="mid">持たないことが多い</td><td class="mid">持たない</td><td class="win">◎ 自社AI等が武器</td></tr>
+          <tr><th scope="row">課題を自分で定義する？</th><td class="mid">△ 言われた物を作る</td><td class="win">◎ 提案が主</td><td class="win">◎ 発見から担う</td></tr>
+          <tr><th scope="row">実装まで責任を持つ？</th><td class="mid">○ 実装はする</td><td class="mid">× 提案で終わりがち</td><td class="win">◎ 本番運用まで</td></tr>
+          <tr><th scope="row">ざっくりの立ち位置</th><td class="mid">手を動かす人</td><td class="mid">戦略を描く人</td><td class="win">両方を一気通貫でやる人</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← 表は横にスクロールできます</p>
+    <div class="combo">
+      <h4>🧭 覚え方</h4>
+      <p style="margin:0;font-size:14px;"><b>「提案して終わりのコンサルでもなく、言われた物を作るだけのエンジニアでもない」</b>──この“いいとこ取り”がFDE。日本では「ソリューションエンジニア」「実装できるカスタマーサクセス」などの名前でも募集されています。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 本題：あなたにも関係ある ═══ -->
+<div class="article" id="you" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">ここが本題</div>
+    <h2 class="sec-title">実は、FDEは「遠い世界の話」じゃない</h2>
+    <p class="sec-sub">年収5000万円のFDEを雇うのは、大企業でも大変です。でも──その“考え方”だけなら、今日から誰でもマネできます。</p>
+
+    <div class="keystone">
+      <span class="kl">🎯 この記事のいちばん大事なところ</span>
+      <p>FDEの本質は、高度なコードではありません。<strong>「AIを、現場で本当に役立つ形にする」</strong>という姿勢です。いま個人向けAIは、数年前ならFDEしか作れなかったものを、<strong>月3,000円ほど・コードなし</strong>で試せるところまで来ました。目指すのは「自分の会社のミニFDE」です。</p>
+    </div>
+
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🔍</div>
+        <h4>FDE的ステップ<span>1</span></h4>
+        <p>困りごとを見つける。「毎日この作業に30分とられてる」を書き出す。AIに相談するだけでも整理できます。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">⚙️</div>
+        <h4>FDE的ステップ<span>2</span></h4>
+        <p>小さく作って試す。返信文の下書き、集計、要約……まず1つだけAIに任せて、効果を確かめる。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">📈</div>
+        <h4>FDE的ステップ<span>3</span></h4>
+        <p>現場に定着させる。うまくいったらテンプレ化して毎日使う。ここまでやるのが“実装”＝FDE流です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 各プランの予算感 ═══ -->
+<div class="article" id="plans" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">予算感を視える化</div>
+    <h2 class="sec-title">まず「いくらで何ができる？」を、丸ごと一覧に</h2>
+    <p class="sec-sub">ミニFDEの道具は、代表的な3つ（ChatGPT・Claude・Gemini）で十分に始められます。<b>3つとも無料プランあり</b>。本気で使うなら月3,000円前後が主戦場です。（2026年時点・1ドル≒150円換算の目安）</p>
+
+    <span class="brandline" style="background:var(--chatgpt);">💬 ChatGPT（OpenAI）</span>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>プラン</th><th>月額の目安</th><th>ざっくり何ができる</th><th>こんな人に</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Free</th><td><span class="free">0円</span></td><td>基本チャット・Web検索・画像づくりも少し</td><td class="mid">まず試したい全員</td></tr>
+          <tr><th scope="row">Go</th><td><span class="price">約1,400円<small> ($8)</small></span></td><td>Freeより使える回数が増える入門有料</td><td class="mid">軽く毎日使う人</td></tr>
+          <tr><th scope="row">Plus <span class="win">★定番</span></th><td><span class="price">約3,000円<small> ($20)</small></span></td><td>最新モデル・Deep Research・Sora・エージェント機能</td><td class="mid">仕事で本格活用</td></tr>
+          <tr><th scope="row">Pro $100</th><td><span class="price">約16,800円<small> ($100)</small></span></td><td>Plusの5倍の上限（2026年新設の中間プラン）</td><td class="mid">ヘビーに使う人</td></tr>
+          <tr><th scope="row">Pro $200</th><td><span class="price">約30,000円<small> ($200)</small></span></td><td>事実上ほぼ無制限・最高の推論モード</td><td class="mid">研究・最難関</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="brandline" style="background:var(--claude);">📝 Claude（Anthropic）</span>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>プラン</th><th>月額の目安</th><th>ざっくり何ができる</th><th>こんな人に</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Free</th><td><span class="free">0円</span></td><td>主力モデル・Web検索・メモリ・ファイル作成まで（無料で一番実用的との声も）</td><td class="mid">要約・文章づくり</td></tr>
+          <tr><th scope="row">Pro <span class="win">★定番</span></th><td><span class="price">約3,000円<small> ($20/年$17)</small></span></td><td>Cowork・無制限プロジェクト・深いリサーチ</td><td class="mid">長文・丁寧な文章</td></tr>
+          <tr><th scope="row">Max 5x</th><td><span class="price">約16,000円<small> ($100)</small></span></td><td>Proの5倍枠・Claude Code（コード自動化）</td><td class="mid">開発・大量処理</td></tr>
+          <tr><th scope="row">Max 20x</th><td><span class="price">約32,000円<small> ($200)</small></span></td><td>Proの20倍枠・最高出力</td><td class="mid">プロの開発者</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <span class="brandline" style="background:var(--google);">✨ Gemini / Google AI（Google）</span>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>プラン</th><th>月額の目安</th><th>ざっくり何ができる</th><th>こんな人に</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Free</th><td><span class="free">0円</span></td><td>高速モデル・画像生成・15GBストレージ</td><td class="mid">Googleユーザー全員</td></tr>
+          <tr><th scope="row">AI Plus <span class="win">★格安</span></th><td><span class="price">1,200円<small>（円建て）</small></span></td><td>上位モデルに一部アクセス・200GB。為替の影響なし</td><td class="mid">コスパ最優先</td></tr>
+          <tr><th scope="row">AI Pro</th><td><span class="price">2,900円<small> ($19.99)</small></span></td><td>上位モデルフル・Deep Research・5TB・Gmail/Docs連携</td><td class="mid">Google中心の人</td></tr>
+          <tr><th scope="row">AI Ultra</th><td><span class="price">36,400円</span></td><td>動画生成(Veo)フル・最上位モード・大容量</td><td class="mid">動画・研究用途</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="scrollhint">← 各表は横にスクロールできます</p>
+
+    <div class="combo">
+      <h4>🧮 迷ったら、この3行で決める</h4>
+      <p style="margin:0;font-size:14px;">① まず<b>無料</b>で1週間、同じ質問を3つに入れて“肌に合う”ものを選ぶ　→　② 一番なじんだ1つを<b>月3,000円プラン</b>にする　→　③ 上限にぶつかって初めて上位プランを検討。<b>いきなり高いプランは不要</b>です。</p>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>組み合わせのコツ</b>「主役1つ＋補欠1つ」で十分。例）文章＆画像は<b>ChatGPT Plus</b>、長文の要約や整えは<b>Claude</b>を無料で併用、Google中心なら<b>Gemini</b>を足す。3つ以上は使い切れないことが多いよ。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 仕事と遊びで活かす ═══ -->
+<div class="article" id="use" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">機能の使い方</div>
+    <h2 class="sec-title">「仕事」でも「遊び」でも。全機能をこう活かす</h2>
+    <p class="sec-sub">プランを選んだら、あとは使うだけ。FDE的に“現場で効く”使い方を、仕事とプライベートに分けて具体的に。</p>
+
+    <div class="split">
+      <div class="col work">
+        <div class="ch"><span class="badge-mini">仕事</span> デスクワーク・店舗運営に</div>
+        <ul>
+          <li><b>メール・案内文</b>：受け取った文面を貼って「丁寧に150字で返信して」</li>
+          <li><b>議事録・報告書</b>：走り書きメモを「決定事項／ToDo／宿題」に整形</li>
+          <li><b>資料の要約</b>：長いPDFを添付して「中学生でも分かる5点に」</li>
+          <li><b>データ集計</b>：Excelの表を渡して「重複を除いて件数を数える式は？」</li>
+          <li><b>クチコミ返信・SNS・POP</b>：お店の魅力を渡して下書きを3案</li>
+          <li><b>翻訳</b>：外国語スタッフ向けの掲示や海外からの問い合わせ対応</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch"><span class="badge-mini">遊び</span> 暮らし・趣味・学びに</div>
+        <ul>
+          <li><b>献立・買い物</b>：「冷蔵庫に鶏肉・卵・キャベツ。30分の献立3つ」</li>
+          <li><b>旅行プラン</b>：日数・予算・好みを伝えるだけで下調べ完了</li>
+          <li><b>語学の練習相手</b>：「旅行英語をロールプレイして」</li>
+          <li><b>手紙・スピーチ</b>：結婚式や送別会の原稿を下書き→清書</li>
+          <li><b>難しい書類</b>：役所の通知や保険を「やさしく言い換えて」</li>
+          <li><b>考えごとの壁打ち</b>：もやもやを整理する落ち着いた相談相手に</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="blk">コピペで使える「効くお願い」の型</h3>
+    <p class="sec-sub" style="margin-bottom:6px;">「誰に・何を・どんな形で・どんなトーンで」を足すだけで、答えが一段よくなります。</p>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 返信メールの下書き</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>あなたは丁寧なビジネスパーソンです。以下のメールに、
+感謝を伝えつつ日程を確認する返信を、200字以内・敬語で書いてください。
+【元のメール】
+<span class="fill">〔ここに受け取ったメール本文を貼り付け〕</span></pre>
+    </div>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 長い資料を要点にまとめる</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>添付のPDF（またはこの文章）を読み、重要なポイントを
+箇条書き5つにまとめてください。専門用語はやさしく言い換えて。
+<span class="fill">〔ここに長文を貼り付け／またはファイルを添付〕</span></pre>
+    </div>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 “自分の会社の困りごと”をAIに相談する（FDE的な一問）</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>私は<span class="fill">〔業種・立場〕</span>です。毎日または毎週くり返している
+「面倒な作業」を10個あげ、そのうちAIで時短できそうな順に
+並べ替えてください。各項目に「まず何から試すか」も1行で。</pre>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>答えがイマイチでも、あきらめないで。「もっと短く」「やわらかい言い方で」と会話で直していけるのがAIのいいところ。3往復くらいで“ちょうどいい”に近づくよ。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ AIが加わると ═══ -->
+<div class="article" id="ai" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">さらにその先へ</div>
+    <h2 class="sec-title">ここに「AIエージェント」が加わると、何が起きる？</h2>
+    <p class="sec-sub">2026年のAIは「質問に答える」だけでなく、作業を代わりにやってくれる段階へ。FDEがやっていた“実装”に、あなた自身が近づけます。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">🤖 AGENT</div>
+        <h4>エージェント（自動でやる）</h4>
+        <p>ChatGPTの<b>Agent Mode</b>やClaudeの<b>Cowork</b>は「調べて→表にまとめて→下書きまで」を一気通貫で。人間は最後のチェックだけ、が現実に。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">💻 CODE</div>
+        <h4>コードも“話すだけ”で</h4>
+        <p><b>Claude Code</b>のような道具は、専門知識が浅くても「こういう集計ツールが欲しい」と伝えると動くものを作ってくれます。まさにミニFDEの相棒。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">🔎 RESEARCH</div>
+        <h4>深いリサーチを数分で</h4>
+        <p><b>Deep Research</b>系は、何十件もの情報を自動で読み、出典つきのレポートに。市場調査や競合チェックが一気にラクになります。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">🎨 CREATE</div>
+        <h4>画像・動画までひとつづき</h4>
+        <p>Nano Banana・Sora・Veoなどで、チラシ画像やショート動画も。<b>企画→文章→画像</b>を1つの流れで作れる時代です。</p>
+      </div>
+    </div>
+    <div class="keystone" style="margin-top:20px;">
+      <span class="kl">🌱 需要は「これから」創られる</span>
+      <p>できることが毎月増えるということは、<strong>あなたの現場に合った使い道もこれから見つかる</strong>ということ。「うちには関係ない」ではなく「うちなら何に使える？」と問い直すのが、FDE的な発想の第一歩です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 注意点 ═══ -->
+<div class="article" id="caution" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">先回りして注意</div>
+    <h2 class="sec-title">始める前に知っておきたい「落とし穴」</h2>
+    <p class="sec-sub">便利な道具ほど、使い方を間違えると危ない。各項目、うごく君が先回りしてお伝えします。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span> ドル建ては“為替”で変わる</div><p>ChatGPT・Claudeの多くはドル建て。円安が進むと請求額が増えます。Gemini(円建て)は為替の影響を受けにくいのが利点。金額は「目安」と考えて。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span> AIは“もっともらしく”間違える</div><p>ハルシネーション（それっぽい嘘）はゼロにできません。数字・名前・法律・日付は、必ず自分で最終確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span> 機密情報は入れない</div><p>お客様の個人情報・カード番号・社外秘は入力しないのが基本。無料版は特にデータの扱いの保証が弱め。会社で使うなら社内ルールも確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span> “上限”と料金は動く</div><p>プラン内容・利用上限・価格は頻繁に変わります（新プラン新設や広告表示の追加など）。契約直前に必ず公式ページで最終確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span> 最後は人が決める</div><p>AIは下書きと相談相手。判断と責任は人間の側に。FDEが現場で最後まで見届けるのと同じで、“仕上げと決定”はあなたの仕事です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span> “年収5000万”を鵜呑みにしない</div><p>あの数字は米国トップ層＋株式込みの話。日本ではまだ600万〜2,000万円帯が中心です。転職を考えるなら実際の求人で条件を確かめて。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3ステップ ═══ -->
+<div class="article" id="start" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">今日からできる</div>
+    <h2 class="sec-title">「FDE的な発想」を、今日から持つ3ステップ</h2>
+    <p class="sec-sub">難しい転職の話ではありません。あなたの現場で、小さく始める順番です。</p>
+
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div><span class="st-chip">まず無料で触る</span><div class="st-ttl">Googleアカウント1つで、3つのAIにログイン</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">やり方は前回の入門ガイドで全部やさしく解説しています。まだの方は先にこちらから。</p>
+        <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/" class="link-btn">はじめてのAI活用ガイドを読む <span class="arw">↗</span></a>
+      </div>
+    </div>
+
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div><span class="st-chip">困りごとを1つ渡す</span><div class="st-ttl">いちばん面倒な作業を、AIに相談してみる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">上の「FDE的な一問」プロンプトをコピーして貼るだけ。あなたの現場の“実装ネタ”が見つかります。</p>
+      </div>
+    </div>
+
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div><span class="st-chip">現場に定着させる</span><div class="st-ttl">うまくいったらテンプレ化して、毎日使う</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここまでやれば、あなたはもう“自分の会社のミニFDE”。ひとりで難しければ、伴走役に頼るのも手です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FAQ ═══ -->
+<div class="article" id="faq" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">よくある質問</div>
+    <h2 class="sec-title">FDEとAI活用、ここが気になる</h2>
+    <div class="compact">
+      <details><summary>未経験でもFDEに転職できますか？</summary><div class="ans">実装力（コードを書く力）が出発点なので、完全未経験からいきなりは難しめです。ただし日本では「ソリューションエンジニア」「実装できるカスタマーサクセス」など近い名前で募集も増えており、SE・SIer・ITコンサルからの転身ルートが形づくられています。まずは本記事の“ミニFDE”として、AIを現場で使いこなす実績を作るのが近道です。</div></details>
+      <details><summary>本当に年収5000万円もらえるの？</summary><div class="ans">それは米国トップAI企業の“上位クラス”かつ株式（エクイティ）込みの水準です。株価や職位で大きく上下します。日本国内は発展途上で、現状は年収600万〜2,000万円のレンジが中心。数字はあくまで「世界の最前線ではここまで」という目安として捉えてください。</div></details>
+      <details><summary>AIは無料プランだけで仕事に使えますか？</summary><div class="ans">軽めのタスクなら十分可能です。とくにClaude Freeは要約・翻訳・文章づくりに強く、無料でも実用的との評価があります。ただし長時間の連続利用・大きなファイル・最新モデルのフル機能・エージェント機能は有料プランが必要。業務で使うならデータの扱いの保証にも注意し、必要に応じて有料/法人プランを検討してください。</div></details>
+      <details><summary>3つのうち、どれから始めればいい？</summary><div class="ans">迷ったらChatGPTから。画像づくりやWeb検索まで幅広く試せます。長い文章の要約・整えが多い方はClaudeも無料で併用。Gmailやドキュメント中心の方はGeminiが便利です。まず無料で1週間、同じ質問を入れて“肌に合う”ものを選ぶのがおすすめです。</div></details>
+      <details><summary>うちのような小さな会社・お店でも意味ある？</summary><div class="ans">むしろ小規模ほど効果が出やすいです。人手が限られる分、メール・集計・クチコミ返信・多言語対応などをAIに任せると、1人あたりの余力が大きく増えます。「うちには関係ない」ではなく「うちなら何に使える？」と問い直すのが第一歩。無料のAI化診断で使いどころを見つけられます。</div></details>
+      <details><summary>情報が古くなっていないか心配です。</summary><div class="ans">AIのプラン・料金・機能は数か月単位で変わります（本記事は2026年時点の情報です）。契約直前には必ず各社の公式料金ページ（下のリンク）で最新情報を確認してください。「古い記事を鵜呑みにしない」——これもFDE的な慎重さです。</div></details>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>補足</b>本記事の求人数・年収の数値は、Indeed／Financial Times／各社公開求人などの2026年時点の分析にもとづく概算です。実際の条件は企業・時期により異なります。転職検討時は必ず一次情報（各社の採用ページ）をご確認ください。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title">あわせて読む・公式で確かめる</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">
+        <span class="r-ic">📗</span>
+        <span><span class="r-k">シリーズ前回</span><span class="r-t">はじめてのAI活用ガイド<br><small>Googleアカウント1つで、YouTube・ChatGPT・Claudeを今日から</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">
+        <span class="r-ic">🏠</span>
+        <span><span class="r-k">本体サービス</span><span class="r-t">UGOKU AI 実装研修（本体）<br><small>現場で結果を出す“動くAI”。助成金活用の実装型研修</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+      <a class="rel" href="https://chatgpt.com/pricing/" target="_blank" rel="noopener">
+        <span class="r-ic">💬</span>
+        <span><span class="r-k">公式料金</span><span class="r-t">ChatGPT 料金ページ<br><small>最新のプラン・価格・上限をOpenAI公式で確認</small></span></span>
+        <span class="r-arw">↗</span>
+      </a>
+      <a class="rel" href="https://claude.com/pricing" target="_blank" rel="noopener">
+        <span class="r-ic">📝</span>
+        <span><span class="r-k">公式料金</span><span class="r-t">Claude 料金ページ<br><small>Free・Pro・Maxの最新内容をAnthropic公式で確認</small></span></span>
+        <span class="r-arw">↗</span>
+      </a>
+      <a class="rel" href="https://gemini.google/subscriptions/" target="_blank" rel="noopener">
+        <span class="r-ic">✨</span>
+        <span><span class="r-k">公式料金</span><span class="r-t">Gemini / Google AI 料金ページ<br><small>円建てプランの最新内容をGoogle公式で確認</small></span></span>
+        <span class="r-arw">↗</span>
+      </a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price">
+        <span class="r-ic">🎓</span>
+        <span><span class="r-k">料金と助成金</span><span class="r-t">助成金を活用して導入する<br><small>人材開発支援助成金 活用のAI実装研修はこちら</small></span></span>
+        <span class="r-arw">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の<span class="hl">“ミニFDE化”</span>、<br>ここから始めませんか？</h2>
+    <p>「何から始めれば」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの現場に合うAIの使いどころ（＝実装ネタ）が見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・手順・料金は、提供元の更新により変わることがあります。本記事の数値は2026年時点の概算です。最新は各公式ページでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

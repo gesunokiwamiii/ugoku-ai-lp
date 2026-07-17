@@ -2789,6 +2789,179 @@
     <!-- ▼▼ うごく君 入門ガイド 誘導バナー（自動挿入：AI入門＋Googleガイド） ▼▼ -->
 
     <div id="free-learn" style="max-width:960px;margin:40px auto 0;padding:0 20px;text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;"><span style="display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;color:#B8860B;border:1px solid rgba(234,168,0,.5);padding:6px 14px;border-radius:100px;">AIやGoogleが初めての方へ ― 無料の入門ガイド</span></div>
+<!-- ▼▼ うごく君 入門ガイド：ジャンル別タブ・記事インデックス（自動挿入） ▼▼ -->
+<!-- 記事を増やしたら下の UGK_IDX_DATA 配列に1行足すだけでOK。cat=ジャンルID -->
+<div class="ugk-idx" id="ugk-idx">
+  <style>
+    .ugk-idx{
+      --e:#EAA800; --ed:#B8860B; --dk:#2E2815; --tx:#4A3F26; --mut:#8A7A55;
+      --bg:#FCFAF4; --ln:rgba(184,134,11,.16); --pill:#F0E9D8;
+      max-width:960px; margin:18px auto 8px; padding:0 20px; box-sizing:border-box;
+      font-family:"Zen Kaku Gothic New","Noto Sans JP",system-ui,sans-serif;
+    }
+    .ugk-idx *{box-sizing:border-box;}
+    .ugk-idx__box{
+      background:var(--bg); border:1px solid var(--ln); border-radius:18px;
+      padding:16px 14px 8px; box-shadow:0 8px 24px rgba(46,40,21,.06);
+    }
+    .ugk-idx__lead{
+      font-size:13px; font-weight:800; color:var(--tx); text-align:center;
+      margin:2px 0 14px; letter-spacing:.02em;
+    }
+    .ugk-idx__lead b{color:var(--ed);}
+    /* タブ */
+    .ugk-idx__tabs{
+      display:flex; gap:8px; overflow-x:auto; padding:2px 2px 12px;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    }
+    .ugk-idx__tabs::-webkit-scrollbar{display:none;}
+    .ugk-idx__tab{
+      flex:0 0 auto; cursor:pointer; border:1px solid var(--ln);
+      background:var(--pill); color:var(--tx); font-family:inherit;
+      font-size:13px; font-weight:800; letter-spacing:.02em;
+      padding:9px 15px; border-radius:100px; white-space:nowrap; transition:.15s;
+    }
+    .ugk-idx__tab:hover{filter:brightness(.98);}
+    .ugk-idx__tab[aria-selected="true"]{
+      background:linear-gradient(135deg,var(--e),var(--ed));
+      color:#fff; border-color:transparent; box-shadow:0 4px 12px rgba(234,168,0,.32);
+    }
+    .ugk-idx__tab .n{
+      font-size:11px; font-weight:700; opacity:.75; margin-left:5px;
+    }
+    /* パネル */
+    .ugk-idx__panel{padding:2px 2px 6px;}
+    .ugk-idx__grp{margin:0 0 14px;}
+    .ugk-idx__gh{
+      display:flex; align-items:center; gap:8px; font-size:12px; font-weight:800;
+      color:var(--ed); letter-spacing:.06em; margin:4px 4px 8px;
+    }
+    .ugk-idx__gh::after{content:""; flex:1; height:1px; background:var(--ln);}
+    .ugk-idx__list{list-style:none; margin:0; padding:0;}
+    .ugk-idx__item a{
+      display:flex; align-items:center; gap:11px; text-decoration:none;
+      padding:12px 12px; min-height:48px; border-radius:12px;
+      color:var(--dk); transition:.14s; border:1px solid transparent;
+    }
+    .ugk-idx__item a:hover,.ugk-idx__item a:focus-visible{
+      background:#fff; border-color:var(--ln); box-shadow:0 4px 12px rgba(46,40,21,.07);
+    }
+    .ugk-idx__ic{font-size:19px; line-height:1; flex:0 0 auto;}
+    .ugk-idx__tt{
+      flex:1 1 auto; font-size:14.5px; font-weight:700; line-height:1.45;
+    }
+    .ugk-idx__ar{
+      flex:0 0 auto; color:var(--e); font-weight:900; font-size:15px;
+      transition:transform .14s;
+    }
+    .ugk-idx__item a:hover .ugk-idx__ar{transform:translateX(3px);}
+    @media(max-width:520px){
+      .ugk-idx{padding:0 14px;}
+      .ugk-idx__tt{font-size:14px;}
+    }
+  </style>
+
+  <div class="ugk-idx__box">
+    <p class="ugk-idx__lead">読みたいジャンルの<b>タブ</b>を押す → <b>タイトル</b>をタップで記事へ</p>
+    <div class="ugk-idx__tabs" role="tablist" aria-label="無料ガイドのジャンル"></div>
+    <div class="ugk-idx__panel" role="region" aria-live="polite"></div>
+  </div>
+
+  <script>
+  (function(){
+    var BASE = "https://gesunokiwamiii.github.io/ugoku-ai-lp/";
+    // ジャンル定義（表示順）
+    var CATS = [
+      {id:"all",   label:"すべて"},
+      {id:"start", label:"入門・これから"},
+      {id:"gpt",   label:"ChatGPT"},
+      {id:"claude",label:"Claude"},
+      {id:"tools", label:"便利ツール"},
+      {id:"mkt",   label:"集客・SNS・MEO"},
+      {id:"biz",   label:"業種・仕事別"},
+      {id:"ceo",   label:"経営・トレンド"}
+    ];
+    // 記事データ（ic=絵文字, t=タイトル, u=URL(slug), cat=ジャンルID）
+    var DATA = [
+      {ic:"📘", t:"「AIって何から？」を今日で終わりにする入門ガイド", u:"start-guide/",        cat:"start"},
+      {ic:"🤖", t:"2026年後半、今からAIを学ぶ・活かすなら？",        u:"ai-2026-guide/",       cat:"start"},
+      {ic:"✨", t:"ChatGPTが“活きる”10の使いどころ",                u:"chatgpt-10/",          cat:"gpt"},
+      {ic:"💬", t:"ChatGPTって結局なにもの？歴史・哲学・日本との未来", u:"chatgpt-story/",       cat:"gpt"},
+      {ic:"✨", t:"Claudeが“活きる”10のこと",                       u:"claude-10/",           cat:"claude"},
+      {ic:"📖", t:"Claudeの歴史と哲学、日本とのこれから",            u:"claude-guide/",        cat:"claude"},
+      {ic:"🤖", t:"Claude Codeが“活きる”10の使いどころ",           u:"claude-code-10/",      cat:"claude"},
+      {ic:"🚀", t:"「Claude Code」をMacで0から始める導入マニュアル", u:"claude-code-guide.html",cat:"claude"},
+      {ic:"🤝", t:"Claude Coworkって何？活かし方10選",              u:"cowork-10/",           cat:"claude"},
+      {ic:"📗", t:"Googleアカウント、実はこんなに使える。",           u:"google-guide/",        cat:"tools"},
+      {ic:"🌐", t:"Google Chromeって何？歴史・料金・AIまるわかり",   u:"chrome-guide/",        cat:"tools"},
+      {ic:"📒", t:"NotebookLMって何？料金・全機能の使い方",          u:"notebooklm-guide/",    cat:"tools"},
+      {ic:"🎨", t:"Canvaって何？活かし方10選",                      u:"canva-guide/",         cat:"tools"},
+      {ic:"🎬", t:"「動画編集、むずかしそう…」を今日で終わりに。",     u:"video-guide/",         cat:"tools"},
+      {ic:"🧩", t:"Codexって何？活かし方10選",                      u:"codex-guide/",         cat:"tools"},
+      {ic:"🗺️", t:"MEOって何？すぐにできるMEO対策10選",             u:"meo-guide/",           cat:"mkt"},
+      {ic:"📣", t:"SNSマーケって何？すぐにできるSNSマーケ10選",       u:"sns-marketing/",       cat:"mkt"},
+      {ic:"🗂️", t:"AI×事務 ―「事務、まだ手作業ですか？」",          u:"office-guide/",        cat:"biz"},
+      {ic:"📣", t:"AI×広報・広告 ―「発信、でも何を？」",            u:"pr-ad-guide/",         cat:"biz"},
+      {ic:"🧾", t:"AI×経理・財務 ―「経理、まだ手入力ですか？」",      u:"finance-guide/",       cat:"biz"},
+      {ic:"🏗️", t:"AI×建設業界 ―「AIは大手だけ」を今日で終わりに",   u:"construction-guide/",  cat:"biz"},
+      {ic:"👑", t:"トップ経営者のAI活用術10選",                     u:"top-ceo-ai/",          cat:"ceo"},
+      {ic:"🚀", t:"年収5000万円の新職種「FDE」って、何者？",         u:"fde-guide/",           cat:"ceo"}
+    ];
+
+    var root  = document.getElementById("ugk-idx");
+    var tabsEl= root.querySelector(".ugk-idx__tabs");
+    var panel = root.querySelector(".ugk-idx__panel");
+    function catLabel(id){ for(var i=0;i<CATS.length;i++){ if(CATS[i].id===id) return CATS[i].label; } return ""; }
+    function count(id){ if(id==="all") return DATA.length; var c=0; DATA.forEach(function(d){ if(d.cat===id)c++; }); return c; }
+
+    function rowHTML(d){
+      return '<li class="ugk-idx__item"><a href="'+BASE+d.u+'">'
+        +'<span class="ugk-idx__ic">'+d.ic+'</span>'
+        +'<span class="ugk-idx__tt">'+d.t+'</span>'
+        +'<span class="ugk-idx__ar" aria-hidden="true">→</span></a></li>';
+    }
+    function groupHTML(id){
+      var items=DATA.filter(function(d){return d.cat===id;});
+      if(!items.length) return "";
+      return '<div class="ugk-idx__grp"><div class="ugk-idx__gh">'+catLabel(id)+'</div>'
+        +'<ul class="ugk-idx__list">'+items.map(rowHTML).join("")+'</ul></div>';
+    }
+    function render(id){
+      var html="";
+      if(id==="all"){
+        for(var i=1;i<CATS.length;i++){ html+=groupHTML(CATS[i].id); }
+      }else{
+        html='<div class="ugk-idx__grp"><ul class="ugk-idx__list">'
+          +DATA.filter(function(d){return d.cat===id;}).map(rowHTML).join("")
+          +'</ul></div>';
+      }
+      panel.innerHTML=html;
+    }
+
+    CATS.forEach(function(c,i){
+      var b=document.createElement("button");
+      b.className="ugk-idx__tab"; b.type="button"; b.setAttribute("role","tab");
+      b.setAttribute("aria-selected", i===0?"true":"false"); b.dataset.cat=c.id;
+      b.innerHTML=c.label+'<span class="n">'+count(c.id)+'</span>';
+      b.addEventListener("click",function(){
+        tabsEl.querySelectorAll(".ugk-idx__tab").forEach(function(t){t.setAttribute("aria-selected","false");});
+        b.setAttribute("aria-selected","true");
+        render(c.id);
+      });
+      tabsEl.appendChild(b);
+    });
+    render("all");
+  })();
+  </script>
+
+  <noscript>
+    <p style="text-align:center;font-size:13px;color:#8A7A55;">
+      ↓ すべての無料ガイドは、この下のカードからご覧いただけます。
+    </p>
+  </noscript>
+</div>
+<!-- ▲▲ ジャンル別タブ・記事インデックス ここまで ▲▲ -->
+
 <!-- ═══════════════════════════════════════════════════════════════
    UGOKU AI 大元LP 用｜記事誘導バナー（コピペ用ブロック）
    使い方：大元LPの好きな場所（例：サービス紹介の後）に、このブロックを

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×農業・畜産業界 活用術10選と最新業界トレンド分析｜初心者でもわかる完全ガイド ― UGOKU AI</title>
+<meta name="description" content="農業・畜産のプロが解説。AI×農業・畜産の活用術10選と、高齢化・猛暑・スマート農業の最新トレンドを初心者にもわかりやすく。作業日誌・病害虫診断・繁殖管理・直売/ECまで、仕事と私生活の使い方、そして自立型AI（AIエージェント）が加わると何が変わるかを、注意点つきで案内役のうごく君が見える化します。">
+
+<!-- ▼ 公開前に設定：本ページを置く実際のURL（og-image.pngも同じ場所に） -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×農業・畜産業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta property="og:description" content="現場のプロが解説。農業・畜産のAI活用術10選＋最新トレンド。記録・病害虫・繁殖・販売、仕事も私生活も。自立型AIが加わると何が変わる？初心者向けに見える化。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/agri-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/agri-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×農業・畜産業界 活用術10選と最新業界トレンド分析 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×農業・畜産業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta name="twitter:description" content="現場のプロが解説。農業・畜産のAI活用術10選＋最新トレンド。仕事も私生活も、自立型AIが加わると何が変わる？初心者向けに見える化。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/agri-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    /* 建設テーマ用アクセント（既存トークンは変えず、割り当て用に追加） */
+    --field:#C9761A; --office:#2E7D6B; --safety:#D24B3E; --data:#3E6FB0; --agent:#EAA800;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの追い風 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+  .role .num{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:22px;color:var(--accent);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+
+  /* トレンド指標 */
+  .stat-grid{display:grid;gap:12px;margin:6px 0 8px;}
+  @media(min-width:600px){.stat-grid{grid-template-columns:repeat(3,1fr);}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px;box-shadow:var(--shadow-sm);text-align:center;}
+  .stat .big{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:26px;color:var(--ember-2);line-height:1.2;}
+  .stat .big small{font-size:14px;color:var(--ink);}
+  .stat .lab{font-size:12.5px;color:var(--ink-soft);margin-top:5px;font-weight:600;}
+  .src{font-size:11.5px;color:var(--ink-soft);opacity:.85;margin:8px 0 0;}
+  .src a{color:var(--ember-2);}
+
+  /* ゼネコン最前線ミニリスト */
+  .front{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px;}
+  .front li{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px 16px;box-shadow:var(--shadow-sm);font-size:14px;}
+  .front li b{font-family:"Zen Kaku Gothic New",sans-serif;color:var(--pine);display:inline-block;margin-right:4px;}
+  .front li .metric{color:var(--ember-2);font-weight:800;}
+
+  /* STEP（活用術） */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 自立型AIが加わると（エージェント枠） */
+  .agent{position:relative;margin:14px 0 2px;border-radius:14px;padding:16px 18px 16px;color:#F3F5F1;overflow:hidden;
+    background:radial-gradient(120% 130% at 100% -20%, rgba(234,168,0,.32), transparent 55%),linear-gradient(150deg,var(--pine-2),var(--pine-deep));
+    box-shadow:var(--shadow-sm);}
+  .agent .at{display:flex;align-items:center;gap:8px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--ember);margin-bottom:6px;letter-spacing:.02em;}
+  .agent p{margin:0;font-size:13.8px;color:#EDE6D4;}
+  .agent p b{color:#fff;background:rgba(234,168,0,.22);padding:0 4px;border-radius:4px;}
+
+  /* 仕事/私生活 split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* ロードマップ */
+  .road{display:grid;gap:13px;}
+  @media(min-width:720px){.road{grid-template-columns:repeat(3,1fr);}}
+  .road .rc{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:18px 18px 16px;box-shadow:var(--shadow-sm);border-top:4px solid var(--pine);}
+  .road .rc .rt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.08em;color:var(--ember-2);margin-bottom:6px;}
+  .road .rc h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 8px;}
+  .road .rc ul{list-style:none;margin:0;padding:0;}
+  .road .rc li{position:relative;padding:4px 0 4px 16px;font-size:13.4px;color:#3B463E;}
+  .road .rc li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（注意点・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×農業・畜産 活用ガイド</span>
+      <h1>農業・畜産のAI活用、<br><span class="hl">現場のプロ</span>が10個に絞って教えます。</h1>
+      <p class="lead">高価な機械の話は後回し。<b>記録・病害虫・繁殖・販売</b>まで、スマホひとつで今日から効く使い方10選。さらに<b>自立型AI（AIエージェント）</b>が加わると畑と牛舎はどう変わるかも、注意点つきで見える化します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「難しそう」で止まらないよう、先回りして解説します。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">活用術を見る <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「スマート農業って、何百万もする機械のことでしょ？」——いいえ。いちばん先に効くのは<b>頭脳労働（記録・書類・販売）</b>のほうです。この記事を上から読むだけで、次のことがわかります。</p>
+        <ul class="checklist">
+          <li>いま農業・畜産でAIが伸びている「本当の理由」（最新トレンド）</li>
+          <li>設備投資ゼロで今日から試せる、活用術10選と注意点</li>
+          <li>耕種・畜産それぞれの切り口と、私生活での使い道</li>
+          <li>「自立型AI」が加わると、経営が次にどう変わるか</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの追い風 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる ─ なぜ今なのか</div>
+    <h2 class="sec-title">農業・畜産をAIへ押す「3つの追い風」</h2>
+    <p class="sec-sub">AIは流行りではなく、業界の構造課題への「答え」として広がっています。まずこの3つを押さえましょう。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--field);">
+        <div class="ic">👨‍🌾</div>
+        <h4><span class="num">01</span> 高齢化と担い手不足</h4>
+        <p>農水省の調査では、2020年の基幹的農業従事者の平均年齢は67.8歳。ベテランの経験を「次の世代に渡す仕組み」が急務になっています。</p>
+      </div>
+      <div class="role" style="--accent:var(--safety);">
+        <div class="ic">🌡️</div>
+        <h4><span class="num">02</span> 記録的な猛暑・気候変動</h4>
+        <p>近年の猛暑は米の白濁など品質低下を招きました。勘だけでは読めない天候に、データで先回りする必要が出ています。</p>
+      </div>
+      <div class="role" style="--accent:var(--data);">
+        <div class="ic">📈</div>
+        <h4><span class="num">03</span> 「実証」から「投資回収」へ</h4>
+        <p>2025年公表のデータではスマート農業導入法人が前年比約1.5倍。地域の農家が共同で導入する「シェアリング型」も広がっています。</p>
+      </div>
+    </div>
+    <p class="src">出典：農林水産省「スマート農業の展開について」ほか各種業界レポート（2025〜2026年）を要約。数値は各発表時点のものです。</p>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">MARKET TREND</div>
+    <h2 class="sec-title">まず、業界のいまを「数字」で掴む</h2>
+    <p class="sec-sub">感覚ではなく、伸びている事実から。農業AIは「見える化」から「予測と自律制御」の段階へ進んでいます。</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="big">67.8<small>歳</small></div>
+        <div class="lab">基幹的農業従事者の<br>平均年齢（2020年）</div>
+      </div>
+      <div class="stat">
+        <div class="big">約1.5<small>倍</small></div>
+        <div class="lab">スマート農業を導入した<br>農業法人の増加（前年比）</div>
+      </div>
+      <div class="stat">
+        <div class="big">340<small>億ドル</small></div>
+        <div class="lab">世界のスマート農業市場<br>2030年の予測規模</div>
+      </div>
+    </div>
+    <p class="src">世界のスマート農業市場は年平均成長率およそ10.5%で拡大し、2030年に340億ドル超との予測（市場調査各社）。平均年齢は農林水産省の調査に基づく。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 この記事の結論</span>
+      <p>農業・畜産のAIは、もう「導入するか」ではなく<strong>「どこから始めるか」</strong>の段階です。ロボットや高額センサーより先に、まずは<strong>記録・日報・販売文</strong>——毎日の“面倒”を1つ、スマホのAIに任せてみることが、いちばん確実で低リスクな第一歩です。</p>
+    </div>
+
+    <!-- 最前線 -->
+    <h3 class="blk">現場の「最前線」を、ざっくり掴む</h3>
+    <p class="sec-sub" style="margin-bottom:6px;">まず、業界がどこまで来ているか。すぐ真似する必要はありませんが、「向かう先」を知るのは大事です。</p>
+    <ul class="front">
+      <li><b>U-motion（デザミス／NTTテクノクロス）</b>：牛の首に付けたタグで採食・反芻・横臥などを24時間解析。発情・疾病・分娩の兆候を通知し、<span class="metric">見回りを1日約2.6時間削減</span>した導入例も。</li>
+      <li><b>繁殖成績の改善</b>：同システムの導入牧場では<span class="metric">妊娠率が9%→22%</span>に向上、採食量データの活用で淘汰される牛が約3分の1に減ったという報告も。</li>
+      <li><b>みどりクラウド（セラク）</b>：ハウスの温度・湿度・日射をスマホで見える化。低価格センサーで<span class="metric">個人農家の“第一歩”の定番</span>に。</li>
+      <li><b>いろは（スカイマティクス）</b>：ドローン空撮画像をAI解析し<span class="metric">生育ムラを可視化</span>。施肥設計や収量予測へ。生成AIと連携し「今すぐやる作業リスト」を提案する機能も登場。</li>
+      <li><b>天晴れ（国際航業）</b>：人工衛星画像から生育状況を解析し、<span class="metric">圃場ごとの適期</span>を見える化。</li>
+    </ul>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>これらは専用機やセンサーの話。でも安心して。次からの「活用術10選」は、<b>スマホとChatGPT／Claudeだけ</b>で、今日から真似できるものばかりだよ。</div>
+    </div>
+
+    <!-- ═══ 活用術10選 ═══ -->
+    <h3 class="blk" id="ten">農業・畜産のAI活用術 10選（初心者向け・注意点つき）</h3>
+    <p class="sec-sub">各項目は「①どう使う → ②仕事での例 → ⚠️注意点 → 🤖自立型AIが加わると」の順。上から効果が出やすく、始めやすい順に並べています。</p>
+
+    <!-- 01 記録 -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>1</b></div>
+        <div><span class="st-chip">RECORD ─ 記録・日誌</span><div class="st-ttl">作業日誌・栽培記録を“話すだけ”で残す</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">AIで予測をしたいなら、まず記録から。とはいえ手書きの日誌は続きません。スマホの音声入力で話した内容を、AIに整えてもらえば1分で終わります。<b>記録の自動化こそ、あらゆるAI活用の土台</b>です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 つぶやき → 作業日誌に整えるコピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは農業経営の記録係です。以下の音声メモを、
+①圃場・区画 ②作業内容 ③使用資材と量 ④天候・気温
+⑤気づき/次回の課題 の5項目で作業日誌に整えてください。
+表形式で、あとから検索しやすい言葉を選んでください。
+【メモ】
+<span class="fill">〔ここに音声入力した走り書きを貼り付け〕</span></pre>
+        </div>
+        <ul class="use">
+          <li><b>畜産</b>：給餌量・体調・分娩・種付けの記録を、個体番号ごとに整理</li>
+          <li><b>耕種</b>：防除・施肥の履歴を、作物と圃場ごとに一覧化</li>
+          <li><b>振り返り</b>：1年分の日誌を貼り付けて「来season改善すべき点」を要約させる</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          防除履歴などは<b>正確さが命</b>。AIが整えた記録は必ず自分で確認を。とくに農薬名・希釈倍率・使用日は、AIの書き換えミスがないか目視チェックしてから保存しましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>センサーや気象データと連携し、<b>記録を自動で取り、異常だけを知らせる</b>ようになります。人は「毎日書く」から解放され、判断だけに集中できます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 病害虫 -->
+    <div class="step" style="--accent:var(--safety);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>2</b></div>
+        <div><span class="st-chip">DIAGNOSIS ─ 病害虫・生育不良</span><div class="st-ttl">葉の写真から「一次診断」をしてもらう</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「この斑点、なんだろう？」を、その場で相談。ChatGPTやClaudeは写真を読めるので、考えられる病害・害虫と、次に確認すべきポイントを整理してくれます。ベテランに聞く前の“下調べ”が一気に速くなります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 葉の異常を相談するコピー</span><button class="cb-btn">コピー</button></div>
+<pre>この写真は〔作物名〕の葉です。地域は〔県名〕、時期は〔◯月〕、
+最近の天候は〔高温多湿など〕です。
+①考えられる病害虫の候補を可能性の高い順に3つ
+②それぞれの見分け方（次に確認すべき点）
+③一般的にとられる対処の方向性
+を、初心者にわかる言葉で教えてください。
+<span class="fill">〔ここに葉や株の写真を添付〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIの回答は<b>診断ではなく“あたり”をつけるためのもの</b>。実際の防除は、農薬のラベル・登録内容（適用作物・希釈倍率・使用回数）を必ず確認し、迷ったら<b>普及指導員やJA、農業改良普及センター</b>へ。誤った農薬使用は法令違反になります。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>ドローンや定点カメラが<b>圃場を自律巡回して発生を早期検知</b>。ピンポイント防除の指示まで出し、農薬量と作業時間の両方を減らします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 天候・段取り -->
+    <div class="step" style="--accent:var(--data);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>3</b></div>
+        <div><span class="st-chip">PLANNING ─ 天候・段取り</span><div class="st-ttl">天気と作物から「今週の段取り」を組む</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">農業は段取りの仕事。週間予報をAIに貼り付けて条件を伝えれば、防除・収穫・出荷のタイミング案を出してくれます。頭の中の予定を、言葉にして整理する相棒として優秀です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 今週の作業計画コピー</span><button class="cb-btn">コピー</button></div>
+<pre>私は〔県名〕で〔作物名〕を〔面積〕栽培しています。
+今週の天気予報は以下のとおりです。
+この条件で、防除・潅水・収穫・出荷の優先順位を考え、
+月〜日の作業計画案と、雨天時の代替案を作ってください。
+【予報】
+<span class="fill">〔天気アプリの予報をコピーして貼り付け〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIは<b>リアルタイムの天気を持っていない</b>ことがあります。必ず気象庁など公式の最新予報を自分で確認し、その内容を貼り付けて相談を。圃場ごとの地形・水はけといった固有条件は、人が補足しましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>気象データと土壌センサーを自分で読み、<b>潅水・施肥のタイミングを自動判断して制御</b>。ハウスの換気や遮光まで、人が寝ている間に最適化します。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 資材・コスト -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>4</b></div>
+        <div><span class="st-chip">COST ─ 資材・コスト設計</span><div class="st-ttl">肥料・飼料・資材の「比較表」をつくる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">資材高騰が続くいま、コスト管理は経営の生命線。カタログや見積の情報を貼り付ければ、AIが比較表に整えてくれます。「なんとなく去年と同じ」から抜け出す第一歩です。</p>
+        <ul class="use">
+          <li><b>比較表</b>：肥料・飼料の候補を、成分・単価・使いどころで一覧化</li>
+          <li><b>試算</b>：面積や頭数を伝えて、年間の必要量とコストをざっくり計算</li>
+          <li><b>切り替え検討</b>：資材を変えた場合の、メリットと想定リスクを整理</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIが出す<b>単価・成分値・施用量は鵜呑みにしない</b>こと。必ずメーカーの最新カタログやラベルで確認を。とくに飼料設計や肥料設計は、栄養バランスを崩すと大損害につながるため、専門家（獣医師・普及員・飼料メーカー）の確認を挟みましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>在庫と相場を自分で監視し、<b>安いタイミングで発注を提案・手配</b>。使用量の実績から翌年の必要量まで予測し、無駄な在庫を減らします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 畜産 -->
+    <div class="step" style="--accent:var(--safety);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>5</b></div>
+        <div><span class="st-chip">LIVESTOCK ─ 畜産・個体管理</span><div class="st-ttl">繁殖・健康管理を「見逃さない」体制に</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">畜産でAIが最も効くのが、ここ。人が寝ている間も観察を続けられるからです。発情や分娩の兆候、体調の異変を検知できれば、収益と睡眠の両方が守れます。センサー導入前でも、記録の整理と相談から始められます。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">今すぐ</span>生成AIでできること</div>
+            <ul>
+              <li>個体ごとの記録を整理し、異常の傾向を要約</li>
+              <li>種付け・分娩予定日の計算と一覧づくり</li>
+              <li>症状を伝えて、確認すべき点を整理</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">次の段階</span>センサーAIでできること</div>
+            <ul>
+              <li>採食・反芻・横臥から疾病の予兆を検知</li>
+              <li>発情兆候の通知で、授精の適期を逃さない</li>
+              <li>分娩兆候のアラートで、夜間の見回りを削減</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          家畜の<b>診断・治療は獣医師の領域</b>です（獣医師法）。AIの回答はあくまで整理と相談の材料で、投薬や処置の判断に使ってはいけません。異常があれば必ず獣医師へ。家畜伝染病が疑われる場合は、ただちに家畜保健衛生所へ連絡を。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>個体データを常時見張り、<b>異常のある個体だけを優先順位つきで通知</b>。獣医への連絡文の下書きや、繁殖計画の見直しまで自動で提案するようになります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 販売 -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>6</b></div>
+        <div><span class="st-chip">SALES ─ 直売・EC</span><div class="st-ttl">商品説明・POP・ラベルで“売れる言葉”をつくる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">作るのは得意でも、売る言葉は苦手——という声は本当に多い。ここはAIの独壇場です。同じ野菜でも、伝え方ひとつで直売所の回転が変わります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 直売所POP・商品説明コピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは食材の魅力を伝えるコピーライターです。
+以下の作物について、直売所のPOP用に
+①短いキャッチ（15字以内）②説明文（80字程度）
+③おすすめの食べ方 を3パターン作ってください。
+産地の空気感が伝わる、やさしい言葉で。
+【作物の情報】
+<span class="fill">〔品種・特徴・栽培のこだわり・収穫時期〕</span></pre>
+        </div>
+        <ul class="use">
+          <li><b>EC</b>：ふるさと納税・産直サイトの商品ページ文づくり</li>
+          <li><b>同梱物</b>：お客様へのお礼状・保存方法の案内カード</li>
+          <li><b>返信</b>：レビューや問い合わせへの、丁寧な返信文</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          表示には法律があります。<b>「無農薬」は原則使えない表現</b>で、有機・特別栽培には基準と表示ルールがあります（食品表示法・景品表示法）。効能をうたう表現も避け、AIが盛った言葉は必ず事実に直しましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>収穫量や在庫を見ながら<b>販売ページの文言と価格を自動で調整</b>し、注文対応や発送連絡までこなす——販売の“事務方”を丸ごと担う存在になります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 SNS -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>7</b></div>
+        <div><span class="st-chip">SNS ─ 発信・ファンづくり</span><div class="st-ttl">発信を続けて、買ってくれる人と直接つながる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">農家・牧場のSNSは、いま最も反響が大きいジャンルのひとつ。「作業の風景」「収穫の瞬間」「動物の日常」は、それ自体が価値あるコンテンツです。続けるコツは、ネタ出しと下書きをAIに任せること。</p>
+        <ul class="use">
+          <li><b>ネタ出し</b>：今月の作業から、投稿になりそうな話題を30個出してもらう</li>
+          <li><b>下書き</b>：写真の説明を伝えて、投稿文とハッシュタグを生成</li>
+          <li><b>台本</b>：ショート動画・YouTubeの構成案（つかみ→中身→締め）</li>
+          <li><b>継続</b>：月間の投稿カレンダーを作らせて、迷う時間をなくす</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIが作った文をそのまま投稿すると、<b>“よそ行き”で温度が伝わりません</b>。土の匂いや失敗談は人にしか書けない部分。下書きは骨組みと割り切り、最後は自分の言葉を足しましょう。写真の写り込み（他人・車のナンバー）にも配慮を。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>反応の良かった投稿を分析し、<b>次に伸びるテーマを提案して予約投稿まで実行</b>。コメントの一次対応も任せられるようになります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 補助金・経営 -->
+    <div class="step" style="--accent:var(--data);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>8</b></div>
+        <div><span class="st-chip">MANAGEMENT ─ 経営・補助金</span><div class="st-ttl">経営計画・補助金・申告の書類をラクにする</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">見落とされがちですが、ここが最大の時短ポイント。補助金の申請書、経営改善計画、青色申告——「文章を書く仕事」はすべてAIの得意分野です。夜なべの書類仕事が、半分以下になります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 補助金の申請文 下書きコピー</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは補助金申請の支援者です。以下のメモをもとに、
+①現状の課題 ②導入する設備と理由 ③期待される効果（数値つき）
+④地域への波及 の構成で、審査員に伝わる申請文の下書きを
+作ってください。誇張はせず、事実ベースで。
+【メモ】
+<span class="fill">〔経営の現状・導入したいもの・困りごと〕</span></pre>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          補助金は<b>要件と期限が命</b>。AIの持つ制度情報は古い可能性が高いので、必ず農林水産省や自治体の<b>最新の公募要領</b>で確認を。実績や数値を盛るのは絶対にNG。不正受給とみなされる恐れがあります。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>会計データや作業記録と連携し、<b>使える補助金を見つけて要件を照合、申請書のたたき台まで用意</b>。締切の管理も自動で行います。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 人材・技術継承 -->
+    <div class="step" style="--accent:var(--office);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>9</b></div>
+        <div><span class="st-chip">SKILL ─ 人材・技術継承</span><div class="st-ttl">ベテランの“勘”を、伝わる形に変える</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「見て覚えろ」では人が育たない時代。親方の口頭説明をAIで手順書にすれば、新人も外国人材も、同じ品質で作業できるようになります。多言語対応も一瞬です。</p>
+        <ul class="use">
+          <li><b>マニュアル化</b>：ベテランへのヒアリングメモを、写真つき手順書に</li>
+          <li><b>多言語</b>：作業手順を、やさしい日本語＋ベトナム語・インドネシア語などに翻訳</li>
+          <li><b>教育</b>：安全確認や機械操作のチェックリストを自動作成</li>
+          <li><b>採用</b>：求人票や、就農希望者向けの案内文づくり</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIの翻訳は<b>誤りが混じる前提</b>で。とくに農機やトラクターの安全に関わる指示は、母語話者の確認を必ず入れましょう。ニュアンスの取り違えが、重大事故につながりかねません。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>過去の作業記録を学んだ<b>「相談役AI」</b>が常駐。新人が「この時期の追肥どうする？」と聞けば、その圃場の履歴に基づいて答えます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 6次産業 -->
+    <div class="step" style="--accent:var(--field);">
+      <div class="step-head">
+        <div class="step-badge"><small>NO.</small><b>10</b></div>
+        <div><span class="st-chip">6TH INDUSTRY ─ 加工・新商品</span><div class="st-ttl">6次産業化・新商品のアイデアを量産する</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">規格外品をどうするか、加工品で単価を上げられないか。企画の壁打ち相手として、AIは何十案でも黙って出してくれます。「一人で考えて止まる」がなくなります。</p>
+        <ul class="use">
+          <li><b>商品企画</b>：規格外品の活用アイデアを、原価と手間の目安つきで20案</li>
+          <li><b>レシピ</b>：加工品の試作レシピと、量産時の課題整理</li>
+          <li><b>ネーミング</b>：商品名・ブランド名・パッケージのコンセプト案</li>
+          <li><b>販路</b>：想定顧客と、売り先の候補（直売・EC・飲食店）の整理</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          食品の加工・販売には<b>営業許可や食品衛生法の規制</b>があります。AIのアイデアをそのまま商品化せず、保健所への確認を必ず。アレルギー表示・賞味期限の設定も、専門家や検査機関の力を借りましょう。
+        </div>
+        <div class="agent">
+          <div class="at">🤖 自立型AIが加わると</div>
+          <p>市場の売れ筋やトレンドを自分で調べ、<b>収穫予測と突き合わせて商品企画を提案</b>。試作から販路開拓までの工程表まで組み立てます。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 自立型AI 深掘り ═══ -->
+    <h3 class="blk" id="agent">「自立型AI（AIエージェント）」で、経営はこう変わる</h3>
+    <p class="sec-sub">ここまでは「人が質問し、AIが答える」使い方。次の主役は、<b>AIが自ら判断して動く</b>エージェントです。2026年の農業AIは、すでに「予測と自律制御」の段階に入っています。</p>
+
+    <div class="keystone" style="border-left-color:var(--data);">
+      <span class="kl" style="background:#E4EDF6;color:#2A527F;">🤖 いまと、これから</span>
+      <p><strong>いま：</strong>ChatGPTに「日誌を整えて」と頼む（対話型）。<br><strong>これから：</strong>センサーの数値・天気・相場をAIが自分で見て、<strong>潅水を調整し、異常のある個体を知らせ、出荷計画を組み替え、資材を発注</strong>——人は「承認するだけ」。これが自立型（エージェント型）です。</p>
+    </div>
+
+    <div class="split" style="margin-top:14px;">
+      <div class="col work"><div class="ch"><span class="badge-mini">近未来</span>できるようになること</div>
+        <ul>
+          <li>気象の急変を検知し、防除・収穫の予定を自動調整</li>
+          <li>個体・圃場の異常だけを、優先順位つきで通知</li>
+          <li>収量を予測し、出荷先と価格の判断を支援</li>
+          <li>ロボットが収穫適期のものだけを選んで収穫</li>
+        </ul>
+      </div>
+      <div class="col life"><div class="ch"><span class="badge-mini">求められる力</span>人の役割はこう変わる</div>
+        <ul>
+          <li>作業者から「経営判断する人」へ</li>
+          <li>AIに正しく任せ、結果を見極める力</li>
+          <li>最終判断と責任は、引き続き人が持つ</li>
+          <li>ベテランの経験は“AIの先生”として価値が上がる</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:16px;">
+      <div class="wt">⚠️ 自立型AIの注意点</div>
+      「自動で動く」ほど、<b>間違ったまま進むリスク</b>も大きくなります。①農薬・投薬・出荷など重要な判断には人の承認を挟む、②扱うデータの範囲と権限を明確にする、③責任の所在を先に決める——この3つを設計してから任せるのが安全です。また<b>記録が貯まっていないと予測精度は出ません</b>。だからこそ最初の一歩は「記録の自動化」なのです。
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>焦らなくて大丈夫。エージェントも、最初は「日誌の下書き」みたいな小さな仕事から。信頼できたら少しずつ任せる範囲を広げる——新人さんを育てるのと、じつは同じだよ。</div>
+    </div>
+
+    <!-- ═══ はじめ方ロードマップ ═══ -->
+    <h3 class="blk" id="start">初心者のための「合理的な始め方」3ステップ</h3>
+    <p class="sec-sub">全部を一度にやろうとして挫折するのが、いちばんの失敗。順番を守れば、無理なく定着します。</p>
+    <div class="road">
+      <div class="rc">
+        <div class="rt">STEP 1 ─ 今週</div>
+        <h4>まず“1つ”試す</h4>
+        <ul>
+          <li>ChatGPTかClaudeに登録（無料）</li>
+          <li>音声入力で「作業日誌」を任せてみる</li>
+          <li>葉の写真を1枚、相談してみる</li>
+        </ul>
+      </div>
+      <div class="rc">
+        <div class="rt">STEP 2 ─ 今シーズン</div>
+        <h4>“型”を作って広げる</h4>
+        <ul>
+          <li>効いた頼み方をテンプレとして保存</li>
+          <li>販売・SNS・書類へ横展開</li>
+          <li>記録を貯める仕組みを整える</li>
+        </ul>
+      </div>
+      <div class="rc">
+        <div class="rt">STEP 3 ─ 来期</div>
+        <h4>“仕組み”にする</h4>
+        <ul>
+          <li>補助金を使ってセンサー等を検討</li>
+          <li>貯めた記録をAIに分析させる</li>
+          <li>自立型AIの導入を検討</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>まず「はじめてのAI活用ガイド」でChatGPT・Claudeの登録を済ませておくと、この記事の活用術をすぐ試せるよ。下の関連リンクからどうぞ。</div>
+    </div>
+
+    <!-- ═══ 私生活アイデア ═══ -->
+    <h3 class="blk">仕事だけじゃない。私生活でも効く使い方</h3>
+    <p class="sec-sub">農業・畜産で身につけたAIの使い方は、そのまま暮らしにも活きます。忙しい毎日を、少しラクに。</p>
+    <div class="ideas">
+      <div class="idea"><h4><span class="e">🍳</span>食卓・暮らしで</h4><ul>
+        <li>採れすぎた野菜の使い切りレシピを提案</li>
+        <li>保存方法・下処理の疑問にその場で回答</li>
+        <li>家計や確定申告の流れを整理</li>
+        <li>役所の書類や制度の意味をやさしく解説</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">🏡</span>家族・地域で</h4><ul>
+        <li>集落・生産部会の案内文、回覧の下書き</li>
+        <li>言いにくいお願い・お断りを角の立たない表現に</li>
+        <li>寄り合いでの挨拶・スピーチづくり</li>
+        <li>親の介護や相続など、調べにくいことの下調べ</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">📚</span>学び・子育てで</h4><ul>
+        <li>子どもの宿題の「なぜ？」を噛み砕いて説明</li>
+        <li>資格勉強（毒物劇物・大型特殊など）の要点整理</li>
+        <li>農業関連の専門書・論文の要約</li>
+        <li>外国人材との会話練習・翻訳の相棒に</li>
+      </ul></div>
+      <div class="idea"><h4><span class="e">🚜</span>趣味・修理で</h4><ul>
+        <li>農機・軽トラの不調の原因を一緒に考える</li>
+        <li>DIY・小屋づくりの手順や材料の相談</li>
+        <li>家庭菜園や庭木の手入れのコツ</li>
+        <li>旅行や休みの日のプランづくり</li>
+      </ul></div>
+    </div>
+
+    <!-- ═══ よくある落とし穴 ═══ -->
+    <h3 class="blk">導入で“つまずく”よくある落とし穴</h3>
+    <div class="compact">
+      <details open><summary>いきなり高額なセンサーやロボットから入ってしまう</summary><div class="ans">失敗の典型。まずは無料の生成AIで「記録・書類・販売文」から。設備投資は、効果を実感して記録が貯まってからで十分間に合います。</div></details>
+      <details><summary>記録がないのに、AIに予測させようとする</summary><div class="ans">AIは過去のデータから学びます。記録の蓄積がなければ精度は出ません。だからこそ最初の一歩が「記録の自動化」なのです。</div></details>
+      <details><summary>農業の専門用語が通じず、がっかりする</summary><div class="ans">汎用AIは現場用語に弱いことがあります。「〇〇とは△△のことです」と補足を添えるだけで精度が上がります。作物名・地域・時期は必ず伝えましょう。</div></details>
+      <details><summary>農薬・投薬・表示の情報を鵜呑みにする</summary><div class="ans">AIはもっともらしく間違えます。農薬はラベルと登録情報、家畜の治療は獣医師、表示は法令——「間違えたら違反・損害」の領域は、必ず一次情報で確認を。</div></details>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>スマホしか持っていませんが、使えますか？</summary><div class="ans">使えます。むしろスマホが主役です。音声入力で話しかけるだけで日誌が書けますし、その場で葉の写真を撮って相談もできます。パソコンは必須ではありません。</div></details>
+      <details><summary>小規模・家族経営でも意味がありますか？</summary><div class="ans">あります。むしろ事務・申請・販売を一人で抱えている小規模経営ほど、生成AIが肩代わりする余地は大きいです。設備投資ではなく「頭脳労働の圧縮」から入れば、規模に関係なく効果が出ます。</div></details>
+      <details><summary>無料でどこまでできますか？</summary><div class="ans">この記事の活用術の多くは、ChatGPT・Claudeの無料版で試せます。使う量が増えたら月額プラン（各20ドル前後）で快適に。センサーやドローンなど専用ツールは別途費用がかかります。</div></details>
+      <details><summary>補助金は使えますか？</summary><div class="ans">スマート農業関連の補助事業や、研修に使える人材開発支援助成金などが該当する場合があります。要件・期限は年度で変わるため、農林水産省や自治体の最新の公募要領で必ず確認してください。</div></details>
+      <details><summary>何から始めればいいか、やっぱり決められません</summary><div class="ans">それが普通です。だからこそ「無料AI化診断」を用意しました。数分の回答で、あなたの経営の“面倒な作業”のうち、どこからAI化すると効くかが見えてきます。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まず登録するなら</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを今日から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/construction-guide/"><span class="r-ic">🏗️</span><span><span class="r-k">同じ現場シリーズ</span><span class="r-t">AI×建設業界 活用術10選<small>／ 書類・積算・安全・技術継承まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/meo-guide/"><span class="r-ic">📍</span><span><span class="r-k">直売所の集客に</span><span class="r-t">MEO対策10選<small>／ Googleマップで地元のお客様を増やす</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/sns-marketing/"><span class="r-ic">📱</span><span><span class="r-k">発信を強くする</span><span class="r-t">AI×SNSマーケティング<small>／ 産直・ファンづくりの発信術</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/food-guide/"><span class="r-ic">🍽️</span><span><span class="r-k">6次産業化なら</span><span class="r-t">AI×食品・飲食のはじめ方<small>／ 加工品・メニュー・販売の言葉づくりに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/monozukuri-guide/"><span class="r-ic">🏭</span><span><span class="r-k">同じ現場シリーズ</span><span class="r-t">AI×ものづくり 活用術<small>／ 製造・加工の現場を効率化</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/finance-guide/"><span class="r-ic">🧾</span><span><span class="r-k">経営を整える</span><span class="r-t">AI×経理・財務のはじめ方<small>／ 申告・仕訳・経費の手作業をラクに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.maff.go.jp/" target="_blank" rel="noopener"><span class="r-ic">🌾</span><span><span class="r-k">公式サイト</span><span class="r-t">農林水産省<small>／ スマート農業・補助事業の最新情報</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの経営の“面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「何から始めれば」で止まっている農家・牧場の方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの経営に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事のデータ・事例は2025〜2026年時点の公表情報に基づく要約です。各サービスの画面や手順、制度・法令は提供元・行政の更新により変わることがあります。農薬・動物用医薬品・食品表示に関することは、必ず最新の一次情報および専門家にご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

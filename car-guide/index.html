@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×自動車業界 活用術10選＆最新トレンド分析｜初心者でも今日から使える実践マニュアル ― UGOKU AI</title>
+<meta name="description" content="自動車業界のプロが、AI活用のセオリーと2026年最新トレンドを初心者向けに解説。整備工場・中古車販売・板金・ディーラー・部品商まで、仕事で使える活用術10選＋私生活での使い方＋コピペプロンプト＋自律型AI（AIエージェント）で広がる可能性と注意点まで、案内役のうごく君がやさしく網羅します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×自動車業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta property="og:description" content="クルマの仕事は、AIでここまで変わる。整備・販売・板金・ディーラーの現場で今日から使える活用術10選と、2026年の業界トレンドを、うごく君がやさしく解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/car-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/car-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×自動車業界 活用術10選と最新業界トレンド分析 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×自動車業界 活用術10選と最新業界トレンド分析｜UGOKU AI">
+<meta name="twitter:description" content="整備・販売・板金・ディーラー。クルマの現場で今日から使えるAI活用術10選と2026年最新トレンドを、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/car-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style><style>
+  /* ── 本記事だけの追加トーン（既存デザインはそのまま） ── */
+  :root{
+    --car:#1B6EF3; --ev:#12A150; --used:#E8563F; --meo:#7A5AF8;
+    --hr:#0E9BAA; --paint:#D2851B; --parts:#5B6B7C; --agent:#8A3FFC;
+  }
+  .statgrid{display:grid;gap:12px;margin:18px 0 4px;}
+  @media(min-width:560px){.statgrid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:860px){.statgrid{grid-template-columns:repeat(4,1fr);}}
+  .stat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--pine));border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .stat .n{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:26px;line-height:1.2;color:var(--accent,var(--pine));}
+  .stat .n small{font-size:14px;font-weight:800;}
+  .stat .l{font-weight:800;font-size:13.4px;margin:4px 0 3px;}
+  .stat .s{font-size:12px;color:var(--ink-soft);line-height:1.7;}
+  .agentbox{background:linear-gradient(135deg,#F7F3FF,#FDFCFF);border:1px solid #DCCEF7;border-left:5px solid var(--agent);border-radius:14px;padding:15px 17px;margin:14px 0 2px;}
+  .agentbox .at{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.2px;color:var(--agent);display:flex;align-items:center;gap:7px;margin-bottom:5px;letter-spacing:.02em;}
+  .agentbox p{margin:0;font-size:13.8px;color:#3E3550;}
+  .agentbox p+p{margin-top:6px;}
+  .agentbox b{color:#5B21B6;}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);margin:8px 0 8px;}
+  .toc .tt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:2px;}
+  @media(min-width:640px){.toc ol{grid-template-columns:1fr 1fr;gap:2px 18px;}}
+  .toc li{counter-increment:t;position:relative;padding:6px 0 6px 30px;font-size:13.8px;border-bottom:1px dashed var(--line);}
+  .toc li::before{content:counter(t);position:absolute;left:0;top:7px;width:21px;height:21px;border-radius:7px;background:var(--pine);color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .toc a{color:var(--ink);text-decoration:none;font-weight:600;}
+  .toc a:hover{color:var(--ember-2);text-decoration:underline;}
+  .layer{display:grid;gap:13px;margin-top:6px;}
+  @media(min-width:720px){.layer{grid-template-columns:repeat(3,1fr);}}
+  .timeline{list-style:none;margin:10px 0 0;padding:0 0 0 6px;border-left:2px dashed var(--line);}
+  .timeline li{position:relative;padding:0 0 16px 22px;font-size:14px;}
+  .timeline li:last-child{padding-bottom:0;}
+  .timeline li::before{content:"";position:absolute;left:-7px;top:8px;width:12px;height:12px;border-radius:50%;background:var(--ember);border:2px solid #fff;box-shadow:0 0 0 1px var(--line);}
+  .timeline li b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13px;color:var(--ember-2);letter-spacing:.04em;}
+</style>
+
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×自動車業界 完全ガイド</span>
+      <h1>クルマの仕事は、<br>AIで<span class="hl">まだ伸ばせる</span>。</h1>
+      <p class="lead">整備・車検・板金・中古車・ディーラー・部品商。人手が足りない現場ほど、AIは効きます。<b>業界のセオリー・2026年の最新トレンド・今日から始める手順</b>を、専門用語ナシで10のテーマに整理しました。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「どこから触ればいいか」を先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">活用術10選を読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。この記事は「自動車の仕事をしている人」も「クルマに乗るだけの人」も、どちらも読めるように作りました。上から順に読むだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>2026年の自動車業界で、AIが「どこまで来ているか」がわかる</li>
+          <li>整備・販売・板金・事務の現場で使える活用術10個が手に入る</li>
+          <li>コピペでそのまま使えるプロンプト（お願い文）が10個以上ある</li>
+          <li>私生活（車選び・維持費・ドライブ）での使い方もわかる</li>
+          <li>いま話題の「自律型AI（AIエージェント）」で何が変わるかがわかる</li>
+          <li>やってはいけない注意点（安全・法律・信用）を先に押さえられる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 業界を3層で掴む ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、自動車業界を「3つの層」で掴もう</h2>
+    <p class="sec-sub">ひとことで「自動車業界」と言っても、AIの入り方はまったく違います。自分がどの層にいるかで、打ち手が決まります。</p>
+    <div class="layer">
+      <div class="role" style="--accent:var(--parts);">
+        <div class="ic">🏭</div>
+        <h4>つくる層<br><span>＝ メーカー・部品・工場</span></h4>
+        <p>設計・生産・検査。AIは外観検査や需要予測、設計シミュレーションで既に実務投入済み。話題の中心はここですが、<b>中小が真似すべき層ではありません</b>。</p>
+      </div>
+      <div class="role" style="--accent:var(--car);">
+        <div class="ic">🔧</div>
+        <h4>売る・直す層<br><span>＝ 整備・販売・板金・保険</span></h4>
+        <p>いちばん人手が足りず、いちばんAIが効くのにいちばん手つかず。<b>この記事の主戦場です。</b>文章・見積・接客・集客・教育が全部AIで軽くなります。</p>
+      </div>
+      <div class="role" style="--accent:var(--ev);">
+        <div class="ic">🚗</div>
+        <h4>乗る層<br><span>＝ ユーザー・オーナー</span></h4>
+        <p>車選び、維持費、車検の見積比較、保険、ドライブ計画。<b>調べ物と判断の相談役</b>としてAIが強い。業界人も「お客様目線」を知るために必読の層です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ トレンド分析 ═══ -->
+<div class="article">
+  <div class="wrap">
+    <div class="sec-eyebrow">TREND ANALYSIS 2026</div>
+    <h2 class="sec-title">最新業界トレンド分析：<br>いま、どこまで来ているのか</h2>
+    <p class="sec-sub">数字で押さえると、判断がブレません。まずは「事実」から。</p>
+
+    <div class="statgrid">
+      <div class="stat" style="--accent:var(--car);">
+        <div class="n">約2.2<small>兆円</small></div>
+        <div class="l">自動車AI市場（2026年）</div>
+        <div class="s">2026年時点で149.9億ドル規模。2034年に516.8億ドル（年率16.7%成長）との予測。</div>
+      </div>
+      <div class="stat" style="--accent:var(--used);">
+        <div class="n">約22<small>%</small></div>
+        <div class="l">整備業界のDX化率（2026年）</div>
+        <div class="s">裏を返せば8割が未着手。＝ 先に動いた店が圧倒的に有利な「先行優位フェーズ」。</div>
+      </div>
+      <div class="stat" style="--accent:var(--paint);">
+        <div class="n">47.7<small>歳</small></div>
+        <div class="l">整備士の平均年齢（令和7年度）</div>
+        <div class="s">民間整備工場では52.1歳、ディーラーは37.9歳。技術継承と若手採用が最大の経営課題。</div>
+      </div>
+      <div class="stat" style="--accent:var(--ev);">
+        <div class="n">週50<small>万回</small></div>
+        <div class="l">Waymoの有料ロボタクシー乗車</div>
+        <div class="s">2026年3月時点で約3,000台稼働・累計約2億マイル。年末に20都市・週100万回を目標。</div>
+      </div>
+    </div>
+
+    <div class="keystone">
+      <span class="kl">💡 このガイドの結論</span>
+      <p>自動運転やSDVは「大手の話」。でも<strong>整備・販売の現場で使うAIは、月0円〜数千円で今日から始められます</strong>。しかも業界のDX化率は約22%。つまり、<strong>今動けば地域で一番になれる</strong>——それが2026年の自動車業界の現在地です。</p>
+    </div>
+
+    <h3 class="blk">押さえるべき5つの潮流</h3>
+    <div class="rule2">
+      <div class="rule-card" style="border-top:4px solid var(--car);">
+        <div class="rn">TREND 01</div>
+        <h4>クルマが「ソフトで進化する箱」になった（SDV／AI-DV）</h4>
+        <p>SDV（ソフトウェア定義車両）は、機能の大半を<b>後からアップデートできる</b>クルマ。車載ソフトのアーキテクチャは2028年頃に収束するとの見方があり、その先に<b>AI-DV（AI定義車両）</b>という概念も登場しています。整備側の意味は明確で、<b>「診断の主戦場がスパナからソフトへ移る」</b>ということです。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--ev);">
+        <div class="rn">TREND 02</div>
+        <h4>自動運転は「実験」から「営業運転」へ</h4>
+        <p>Waymoは2026年2月に第6世代システムを発表し、コスト削減と厳冬期対応を強化。メルセデスのDRIVE PILOTは<b>量産レベル3</b>として米国で認証済み（作動中の責任はメーカー側と明言）。ただし<b>日本国内での同システム認証は2026年4月時点で未実施</b>——「海外の話」と「国内の実態」は分けて捉えるのが正解です。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--paint);">
+        <div class="rn">TREND 03</div>
+        <h4>故障診断AIが、ベテラン不足を埋めにきた</h4>
+        <p>アイシンは2026年2月のIAAE2026で新型故障診断機を発表。<b>AIによる故障箇所の特定から部品カタログ連携による自動発注まで一気通貫</b>で支援する仕組みで、整備工場のベテラン不足を補う技術として注目されています。診断機は「読む道具」から「考えて手配する道具」へ。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--meo);">
+        <div class="rn">TREND 04</div>
+        <h4>接客・問い合わせの自動化は、すでに数字が出ている</h4>
+        <p>トヨタは公式サイトやディーラー向けにAIチャットボットを導入し24時間対応を実現、<b>FAQ自動化で顧客対応コスト約30%削減</b>を公表。トヨタコネクティッドはプッシュ型バナー＋AIレコメンドで<b>サービス利用者数6倍・自己解決率15%向上</b>。「問い合わせが来る前に解決させる」設計が効いています。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--hr);">
+        <div class="rn">TREND 05</div>
+        <h4>人手不足は「課題」ではなく「市場」になった</h4>
+        <p>整備学校の入学者は10年で半減、平均年齢は上昇。2024年度は整備事業者の休廃業・倒産件数が過去最多となり、人手不足が一因とされています。一方で保有台数は増加傾向。<b>需要は減らず、供給だけが減る</b>——この歪みを埋める道具（AI・DX・教育）に価値が集まる構図です。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--agent);">
+        <div class="rn">TREND 06</div>
+        <h4>そして「自律型AI（AIエージェント）」が来た</h4>
+        <p>従来のAIは<b>聞いたら答える</b>だけ。自律型AIは<b>目的を渡すと、自分で手順を考えて実行する</b>。「入庫予定を見て、対象車の車検案内を作って、下書きまで用意しておいて」が成立し始めています。<b>本記事では各項目に「🤖 自律型AIが加わると」を必ず併記</b>しました。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>ニュースで見る「自動運転」「SDV」は、正直いま自分の店で使う話じゃないんだ。でも“業界がどっちに動いてるか”を知ってると、お客様との会話も採用面接も、ぐっと説得力が出るよ。知識は接客の武器になる。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 活用術10選 ═══ -->
+<div class="article" id="guide" style="padding-top:20px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">10 USE CASES</div>
+    <h2 class="sec-title">AI×自動車業界<br>活用術 10選</h2>
+    <p class="sec-sub">上から順に「効きやすい・始めやすい」順に並べています。全部やる必要はありません。1つ選んで、今週やってみてください。</p>
+
+    <div class="toc">
+      <div class="tt"><svg class="msc" width="22" height="22"><use href="#ugoku"/></svg> この記事で扱う10のテーマ</div>
+      <ol>
+        <li><a href="#u1">警告灯・不具合の「一次切り分け」</a></li>
+        <li><a href="#u2">見積書を“お客様の言葉”に翻訳</a></li>
+        <li><a href="#u3">クチコミ返信とMEO（Google地図対策）</a></li>
+        <li><a href="#u4">車検・点検の入庫案内を自動生成</a></li>
+        <li><a href="#u5">中古車の相場リサーチと販売コメント</a></li>
+        <li><a href="#u6">写真AIで傷・板金の説明と概算</a></li>
+        <li><a href="#u7">サービス情報・社内マニュアルの要約</a></li>
+        <li><a href="#u8">求人票と多国籍スタッフ教育</a></li>
+        <li><a href="#u9">数字の管理（工賃率・在庫・原価）</a></li>
+        <li><a href="#u10">【私生活】車選び・維持費・ドライブ計画</a></li>
+      </ol>
+    </div>
+
+    <!-- 1 -->
+    <div class="step" id="u1" style="--accent:var(--car);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>1</b></div><div><span class="st-chip">DIAGNOSIS ／ 診断の入口</span><div class="st-ttl">警告灯・不具合の「一次切り分け」に使う</div></div></div>
+      <div class="step-body">
+        <p class="desc">お客様からの「なんか変な音がする」「メーターにマークが出た」。この<b>最初の30秒</b>をAIに手伝わせます。診断機の代わりではなく、<b>診断機を当てる前の“当たりをつける”作業</b>です。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>お客様の言葉をそのまま貼る（「朝イチだけカラカラ鳴る」など）</li>
+          <li>車種・年式・走行距離・症状の出る条件を足す</li>
+          <li>「考えられる原因を可能性の高い順に5つ、確認手順つきで」と頼む</li>
+          <li>出てきた候補を<b>自分の経験でふるいにかける</b>（ここが人の仕事）</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 症状ヒアリング → 原因候補の整理</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは経験20年の自動車整備士です。
+以下の症状から、考えられる原因を可能性の高い順に5つ挙げ、
+それぞれ「確認方法」「必要工具」「概算工数」を表にしてください。
+最後に、お客様に確認すべき質問を3つ出してください。
+【車両】<span class="fill">車種／年式／走行距離／グレード</span>
+【症状】<span class="fill">お客様の言葉をそのまま貼り付け</span>
+【出る条件】<span class="fill">冷間時のみ／速度域／天候 など</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>受付フロントが、整備士を呼ぶ前に一次整理できる</li>
+              <li>若手が「何を見ればいいか」の地図を持てる＝教育コストの圧縮</li>
+              <li>電話問い合わせの段階で、必要工数と入庫枠の見当がつく</li>
+              <li>珍しい年式・輸入車で、記憶が薄い領域の補助線になる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 一般ドライバーとして</div>
+            <ul>
+              <li>警告灯の写真を撮って「これは何？走っていい？」と即確認</li>
+              <li>「今すぐ止めるべき／整備工場まで走れる」の判断材料が持てる</li>
+              <li>修理見積が妥当か、質問すべき点を事前に用意できる</li>
+              <li>旅先でのトラブル時、落ち着いて次の一手を選べる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>症状メモを渡すだけで、<b>①原因候補の整理 → ②必要部品の在庫確認 → ③発注下書き → ④入庫枠の空き提案 → ⑤お客様への説明文作成</b>までを一続きで用意する、という流れが現実味を帯びてきます。実際、AIによる故障箇所特定から部品カタログ連携の自動発注まで一気通貫で支援する診断機が2026年に発表されています。</p>
+          <p><b>今できる準備：</b>症状・原因・処置の記録を「文章で」残しておくこと。あなたの工場のデータが、そのまま将来のAIの燃料になります。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 絶対に守る線</div>
+          AIの答えは<b>仮説であって診断ではありません</b>。ブレーキ・操舵・エアバッグ・EVの高電圧系など、安全に直結する部位は必ず有資格者が実車で確認を。「AIがこう言っていたので」はお客様への説明として絶対に使わないこと。信用は一度で失います。
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="step" id="u2" style="--accent:var(--paint);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>2</b></div><div><span class="st-chip">EXPLANATION ／ 説明力</span><div class="st-ttl">見積書を“お客様の言葉”に翻訳する</div></div></div>
+      <div class="step-body">
+        <p class="desc">見積が通らない一番の理由は、金額ではなく<b>「なぜ必要か伝わっていない」</b>こと。部品名の羅列を、そのまま納得できる説明に変換します。整備業でいちばん費用対効果が高い使い方です。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>見積明細（部品名・数量・工賃）をそのまま貼る</li>
+          <li>「今回必須」「次回でも可」「様子見」の3段階に分けてもらう</li>
+          <li>放置した場合のリスクを、専門用語なしで書いてもらう</li>
+          <li>金額の話の前に「安全の話」から並べ替える</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 見積の説明文づくり（そのまま使える）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の整備見積を、車に詳しくないお客様向けの説明文にしてください。
+条件：
+・専門用語は必ず言い換える（例：ブッシュ→ゴム製の緩衝部品）
+・「①今回必須 ②次回車検までに ③様子見」の3段階に分類
+・各項目に「やらないとどうなるか」を1行で
+・不安を煽らず、事実だけを淡々と。最後に合計金額と概算作業時間
+【見積明細】
+<span class="fill">部品名・数量・金額・工賃をそのまま貼り付け</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 高額整備を伝えるときの一文</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>下記の整備内容について、お客様へお伝えする文章を作ってください。
+金額が想定より高くなる見込みのため、
+①なぜ必要か ②今やる場合と先送りした場合の差 ③選択肢（松竹梅）
+の順で、誠実に・押し付けずに。300字程度、丁寧な敬語で。
+【内容】<span class="fill">整備内容と金額を貼り付け</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>説明の巧拙が属人化しなくなる（新人でもベテランの言い回しが使える）</li>
+              <li>電話でなくLINE・メールでも伝わるので、追加整備の承認が早い</li>
+              <li>「言った・言わない」を防ぐ記録が自然に残る</li>
+              <li>次回入庫の予約に繋がる導線（②次回車検までに）が毎回作れる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 一般ドライバーとして</div>
+            <ul>
+              <li>受け取った見積書を貼って「これは何をする作業？」と即翻訳</li>
+              <li>「今やるべき・後でいい」の切り分けを自分で判断できる</li>
+              <li>相場感を調べ、聞くべき質問を準備してから工場に行ける</li>
+              <li>ディーラーと町工場の見積を並べて違いを整理できる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>見積システムから明細を読み取り、<b>説明文の作成 → お客様のLINEへの下書き送信 → 未返信なら3日後にリマインド案を作成</b>まで自動で並べる、という運用が視野に入ります。人がやるのは<b>「送信ボタンを押す判断」だけ</b>になります。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          金額・部品番号・保証条件はAIが平気で書き換えます（もっともらしい嘘＝ハルシネーション）。<b>数字は必ず原本と突き合わせてから送信</b>。お客様の氏名・車台番号・住所などの個人情報は入力しないのが原則です。
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="step" id="u3" style="--accent:var(--meo);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>3</b></div><div><span class="st-chip">MEO ／ 集客の土台</span><div class="st-ttl">クチコミ返信とGoogleマップ対策（MEO）</div></div></div>
+      <div class="step-body">
+        <p class="desc">「◯◯市 車検 安い」で探される時代。看板よりGoogleマップです。しかも整備業界のDX化率は約22%——<b>クチコミに丁寧に返信しているだけで、地域で上位に立てます</b>。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>Googleビジネスプロフィールを整える（営業時間・写真・サービス内容）</li>
+          <li>入庫時に「よろしければ感想を」と一言添える仕組みを作る</li>
+          <li>届いたクチコミを貼って、返信文をAIに作らせる</li>
+          <li>週1回、投稿（新着情報）を1本。ネタもAIに出させる</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 クチコミ返信（高評価・低評価どちらも）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは地域密着の自動車整備工場の店長です。
+以下のクチコミへの返信文を作ってください。
+条件：150字以内／定型文っぽくしない／店名と「車検」「板金」など
+サービス名を自然に1回入れる／低評価の場合は言い訳をせず、
+事実確認の姿勢と改善点、来店へのお詫びを簡潔に。
+【クチコミ】<span class="fill">本文を貼り付け</span>
+【評価】<span class="fill">★の数</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 Googleの新着投稿ネタを1か月分</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>群馬県〇〇市の自動車整備工場です。Googleビジネスプロフィールの
+新着投稿ネタを、季節性を踏まえて1か月分（週1本×4本）作ってください。
+各本文は120字以内、写真の撮影指示を1行添えて。
+売り込み色は3割まで、7割は役に立つ情報で。
+【当店の強み】<span class="fill">車検・板金・レッカー・輸入車対応 など</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>返信の負担が消える＝返信率が上がる＝評価が上がる</li>
+              <li>低評価への冷静な返信は、実は<b>他の見込み客への最高の営業</b></li>
+              <li>写真とサービス欄の記載が整うだけで表示順が動く</li>
+              <li>広告費0円で、地域の検索流入を積み上げられる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 使う側として</div>
+            <ul>
+              <li>整備工場のクチコミをAIに要約させ、良し悪しの傾向を掴む</li>
+              <li>「安さ」と「対応の質」どちらの店かを判断できる</li>
+              <li>自分がクチコミを書くとき、感情でなく事実で書ける</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>新着クチコミを検知したら<b>下書きを作って店長に通知、承認したら投稿</b>。さらに<b>近隣競合の投稿頻度と評価推移を毎月レポート</b>——というところまで見えてきます。トヨタコネクティッドがプッシュ型バナー＋AIレコメンドでサービス利用者数を6倍に伸ばした事例が示すのは、<b>「聞かれる前に届ける」設計の強さ</b>です。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          クチコミの<b>自作自演・報酬付きの依頼はGoogleのポリシー違反</b>で、アカウント停止のリスクがあります。返信文がすべて同じ言い回しになるのも逆効果。AIには「定型文っぽくしないで」と必ず添えてください。
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="step" id="u4" style="--accent:var(--ev);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>4</b></div><div><span class="st-chip">RETENTION ／ 入庫を作る</span><div class="st-ttl">車検・点検の入庫案内を自動で作る</div></div></div>
+      <div class="step-body">
+        <p class="desc">整備業の売上は<b>「思い出してもらえるか」</b>でほぼ決まります。ハガキを出す手間で止まっていた案内を、AIで一気に量産します。効果が数字で出やすい打ち手です。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>顧客リストから「来月車検の車両」を抽出（Excel・車検管理ソフトから）</li>
+          <li>車種・年式・前回整備内容を渡して、案内文を作らせる</li>
+          <li>ハガキ／LINE／SMS、それぞれの文字数に合わせて出し分け</li>
+          <li>反応が良かった文面をメモして、次回のプロンプトに足す</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 車検案内（ハガキ・LINE・SMSの3種同時）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>地域密着の整備工場から送る「車検のご案内」を3パターン作ってください。
+①ハガキ用（250字）②LINE用（120字・絵文字は控えめ）③SMS用（70字）
+条件：早期予約の特典を1つ入れる／不安を煽らない／
+前回整備からの経過に触れて“覚えていてくれた感”を出す。
+【車両】<span class="fill">車種・年式・走行距離</span>
+【前回整備】<span class="fill">実施内容と時期</span>
+【特典】<span class="fill">早期予約割引 など</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 未反応のお客様への2通目</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>車検案内を送って2週間、返信がないお客様への2通目を作ってください。
+しつこくならず、「他店で予約済みなら大丈夫です」という逃げ道を必ず用意し、
+それでも当店を選ぶ理由を1行だけ添える。100字以内、丁寧に。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>案内を出す“心理的ハードル”が消える＝実施率が上がる</li>
+              <li>閑散期に合わせて入庫を平準化でき、工賃売上が安定する</li>
+              <li>オイル交換・タイヤ交換など季節販促にも同じ型が使える</li>
+              <li>スタッフ誰でも同じ品質の案内が出せる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 使う側として</div>
+            <ul>
+              <li>自分の車の点検時期・消耗品の交換目安を管理表にしてもらう</li>
+              <li>「うちの車、次に何を替えるべき？」を年間計画にできる</li>
+              <li>車検費用の積立額をシミュレーションできる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p><b>顧客台帳を毎朝チェックし、45日前・30日前・14日前のタイミングで自動的に文面を用意し、担当者に通知</b>。返信が来たら内容を要約して予約枠の候補まで提示——この「思い出す作業そのもの」を丸ごと任せられるのが自律型AIの本領です。人手不足の店舗ほど、ここに効きます。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          顧客リストを丸ごとAIに貼り付けるのはNG（個人情報保護）。<b>「車種・年式・前回整備内容」だけを渡し、宛名は自社側で差し込む</b>のが安全な運用です。送信頻度の上げすぎもブロックの元。月1回までを目安に。
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="step" id="u5" style="--accent:var(--used);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>5</b></div><div><span class="st-chip">USED CAR ／ 仕入れと販売</span><div class="st-ttl">中古車の相場リサーチと販売コメント</div></div></div>
+      <div class="step-body">
+        <p class="desc">中古車販売は<b>「仕入れの目利き」と「見せ方」</b>の商売。前者はデータ、後者は文章。どちらもAIが強い領域です。すでにスマホAIによる画像査定の実証実験も業界内で進んでいます。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>検索できるAI（Web検索対応のもの）で、車種の相場と流通量を調べる</li>
+          <li>その車種の「買われる理由」「敬遠される理由」を整理させる</li>
+          <li>在庫車の装備・状態を渡して、販売コメントを3案作らせる</li>
+          <li>写真の撮影順・撮るべきアングルまで指示してもらう</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 車種リサーチ（仕入れ判断の材料集め）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>Web検索を使って、以下の車種の中古車市場を分析してください。
+①主な購入層と購入動機 ②よく指摘される弱点・持病
+③競合になる車種3つと比較優位 ④在庫として持つ際の注意点
+⑤販促で強調すべきポイント3つ
+情報源のURLも添えてください。
+【車種】<span class="fill">車種名・年式・グレード・走行距離</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 販売コメント3案（媒体掲載用）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>中古車情報サイトの車両紹介コメントを3案作ってください。
+条件：誇張表現・断定的な品質保証は使わない／
+装備の羅列でなく「その装備で生活がどう変わるか」を書く／
+各案250字以内／狙う客層を1行で明記。
+【車両情報】<span class="fill">車種・年式・走行・装備・整備歴・修復歴の有無</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>不慣れな車種でも、仕入れ判断の材料を10分で揃えられる</li>
+              <li>掲載コメントの質が揃い、問い合わせ率が上がる</li>
+              <li>「なぜこの価格か」を説明できる＝値引き交渉に強くなる</li>
+              <li>SNS・YouTube用の紹介台本にも流用できる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 買う側として</div>
+            <ul>
+              <li>候補車を3台並べて、維持費込みの比較表を作らせる</li>
+              <li>その車種の「持病」を事前に把握して現車確認に臨む</li>
+              <li>ローンと残価設定、どちらが自分に合うかを試算</li>
+              <li>売却時、複数業者の査定額の妥当性を検討できる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p><b>「この条件の車が◯万円以下で出たら教えて」と伝えるだけで、複数サイトを巡回して候補を集め、比較表にして毎朝届ける</b>——という使い方が現実に近づいています。仕入れ担当の“探す時間”がまるごと空く、というインパクトです。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          AIが出す<b>相場価格・年式・スペックは必ず一次情報で裏取り</b>を。特に修復歴・保証・排ガス規制の記載を間違えると景品表示法・古物営業法上の問題に直結します。「AIが書いた文をそのまま掲載」は絶対にやらないこと。
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="step" id="u6" style="--accent:var(--paint);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>6</b></div><div><span class="st-chip">IMAGE AI ／ 板金・鈑金塗装</span><div class="st-ttl">写真AIで、傷の説明と概算の下ごしらえ</div></div></div>
+      <div class="step-body">
+        <p class="desc">スマホで撮った傷の写真をAIに見せて、<b>「損傷の説明文」と「作業内容の候補」</b>を作らせます。査定・見積の分野では、AI画像査定の実証実験が中古車買取の現場で始まっています。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>傷を「全体・寄り・角度違い」の3枚で撮る（明るい場所で）</li>
+          <li>ChatGPTやClaudeに画像を添付して、状態の言語化を頼む</li>
+          <li>「板金／パテ／脱着／全塗装」など作業区分の候補を出させる</li>
+          <li><b>金額は自社の工賃表で自分が決める</b>（AIには決めさせない）</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 損傷写真の説明文づくり</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>添付の写真の車両損傷について、以下を作成してください。
+①損傷の客観的な説明（部位・範囲・凹みの有無・塗装の状態）
+②考えられる作業区分の候補（板金／パテ／部品交換／塗装範囲）
+③お客様に確認すべき質問3つ
+④お客様向けの説明文（150字・専門用語なし）
+※金額は算出しないでください。判断材料の整理までお願いします。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>LINEで送られてきた写真から、来店前に概算の当たりがつく</li>
+              <li>説明文が残るので、保険会社・お客様との認識ズレが減る</li>
+              <li>入庫前後の記録が文章化され、後日のトラブル防止になる</li>
+              <li>新人が「どこを見て何を判断するか」を学べる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> ぶつけてしまったとき</div>
+            <ul>
+              <li>写真から「これは自費／保険どちらが得か」の判断材料を得る</li>
+              <li>等級ダウンを含めた保険利用の損得をシミュレーション</li>
+              <li>板金屋に説明する前に、状況を整理した文章を作れる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>写真が届いた瞬間に<b>損傷の説明 → 作業区分の候補 → 必要部品の在庫と納期確認 → 空き工程への仮予約</b>まで並べて、担当者に「これで進めますか？」と聞いてくる。板金は工程管理が命の商売なので、ここが自動化されると回転率が変わります。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          写真AIは<b>裏側・内部の損傷は絶対に見抜けません</b>。「写真では見えない損傷が見つかる可能性があります」と必ず添えること。<b>AIの出した金額をお客様に提示するのは厳禁</b>。ナンバープレートや人物が写り込んだ写真の扱いにも注意を。
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="step" id="u7" style="--accent:var(--parts);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>7</b></div><div><span class="st-chip">KNOWLEDGE ／ 技術情報</span><div class="st-ttl">サービス情報・社内マニュアルを要約して使う</div></div></div>
+      <div class="step-body">
+        <p class="desc">整備要領書、リコール情報、法改正の通達、メーカーの技術資料。<b>「読む時間がない」を解決する</b>のが、長文読解に強いAI（Claudeなど）の得意分野です。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>PDFやテキストをそのまま添付・貼り付ける</li>
+          <li>「作業者向けに、手順だけ抜き出して」と頼む</li>
+          <li>「うちの工場のチェックシート形式にして」と形を指定する</li>
+          <li>できた資料を印刷して、工場の壁に貼る（これが一番効く）</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 長い技術資料 → 現場の作業手順書へ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>添付の資料を読み、整備現場で使う作業手順書に変換してください。
+条件：
+・作業ステップは番号付きで、1ステップ1動作
+・安全上の注意は【危険】【注意】で明示し、該当ステップの直前に置く
+・必要工具・締付トルク・部品番号は表にまとめる
+・A4片面1枚に収まる分量で
+・記載のない事項は「資料に記載なし」と正直に書く（推測しない）</pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 法改正・通達を「うちへの影響」に翻訳</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の資料について、従業員15名の民間整備工場（指定工場）の
+経営者向けに要約してください。
+①何が変わるのか ②いつから ③自社が具体的にやるべきこと
+④やらなかった場合のリスク ⑤費用が発生しそうな箇所
+最後に「確認すべき公式情報のURL」を添えてください。
+【資料】<span class="fill">通達・改正内容を貼り付け</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>ベテランの頭の中にある知識を、文章として棚卸しできる</li>
+              <li>SDV化で増える一方の電子制御系の資料に、現実的に追いつける</li>
+              <li>社内マニュアル・FAQが「作れる」ようになる（作る気力の問題が消える）</li>
+              <li>朝礼の共有ネタ、勉強会の資料が数分で用意できる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 日常でも同じ技</div>
+            <ul>
+              <li>取扱説明書を貼って「この機能の使い方だけ教えて」</li>
+              <li>保険の約款・契約書を要点だけに圧縮</li>
+              <li>役所の書類や制度説明を、噛み砕いて理解する</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p><b>社内の資料をまとめて読み込ませておき、「◯◯の締付トルクは？」と聞けばその場で答える“社内の物知り”</b>を置ける段階に来ています。さらに自律型なら、リコール情報の更新を監視して該当車両の顧客リストと突き合わせ、通知案まで作る、という動きも設計可能です。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          <b>メーカーの整備要領書には著作権・利用規約があります</b>。社外に出す資料への転載は不可。締付トルクや規定値などの<b>数値は必ず原本で再確認</b>してください。要約は「読む入口」であって、根拠にはなりません。
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="step" id="u8" style="--accent:var(--hr);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>8</b></div><div><span class="st-chip">HR ／ 採用と教育</span><div class="st-ttl">求人票づくりと、多国籍スタッフの教育</div></div></div>
+      <div class="step-body">
+        <p class="desc">整備士の平均年齢は47.7歳（民間整備工場は52.1歳）。整備学校の入学者は10年で半減。<b>「人がいない」ではなく「選ばれていない」</b>という視点に切り替えるところから、AIが手伝えます。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>今の求人票をそのまま貼って「候補者目線での弱点」を指摘させる</li>
+          <li>給与・休日・キャリアパスを具体的な言葉に書き換える</li>
+          <li>面接の質問リストと、評価基準を作らせる</li>
+          <li>入社後の教育資料を、必要な言語に翻訳する</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 求人票の弱点診断と書き直し</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下は自動車整備工場の求人票です。20代の求職者の目線で、
+①応募をためらう箇所を5つ指摘 ②その理由 ③改善案
+を出したうえで、書き直した求人票を作ってください。
+条件：嘘や誇張は書かない／キャリアパスと教育体制を具体化／
+「未経験歓迎」など曖昧な言葉は具体例に置き換える。
+【現在の求人票】<span class="fill">貼り付け</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 多言語の作業手順・安全教育資料</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の作業手順を、日本語（やさしい日本語）とベトナム語・
+ミャンマー語に翻訳してください。
+条件：専門用語には初出時に日本語の原語を括弧で併記／
+安全に関わる箇所は【危険】と明示／短文で、1行1動作。
+最後に、理解度確認用のクイズを5問（3択）付けてください。
+【手順】<span class="fill">貼り付け</span></pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>求人票の“書けなさ”が解消され、応募数が動く</li>
+              <li>外国人スタッフへの安全教育が、言語の壁を越えて届く</li>
+              <li>教育資料が残る＝ベテランが辞めても技術が消えない</li>
+              <li>面接の評価がブレず、採用のミスマッチが減る</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 働く側として</div>
+            <ul>
+              <li>自分の職務経歴書を整備士向けに書き直してもらう</li>
+              <li>面接の想定問答を練習相手として壁打ちする</li>
+              <li>EV・電子制御の学習ロードマップを作ってもらう</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>応募が入ったら<b>①内容を要約 ②評価観点でスコア化 ③面接日程の候補を提示 ④返信メールの下書き</b>まで一気に用意。教育面では、<b>新人ごとの進捗に合わせて次の課題を出し続ける“専属コーチ”</b>が現実味を帯びます。人手不足の店ほど、採用と教育の自動化が効きます。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          <b>採用の合否判断そのものをAIに委ねてはいけません</b>（差別・公平性の問題に直結します）。あくまで整理と下書きまで。翻訳文は、可能なら母語話者のスタッフに一度確認してもらうこと。安全教育の誤訳は事故に直結します。
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="step" id="u9" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>9</b></div><div><span class="st-chip">NUMBERS ／ 経営の数字</span><div class="st-ttl">工賃率・在庫・原価を、数字で握る</div></div></div>
+      <div class="step-body">
+        <p class="desc">整備業の利益は<b>「稼働率×工賃単価×部品粗利」</b>。Excelを貼るだけで、AIが集計も分析も改善案も出します。会計ソフトを入れ替える必要はありません。</p>
+        <div class="mini-h">こう使う</div>
+        <ol class="mini">
+          <li>売上・原価・作業時間のデータをCSVやExcelで書き出す</li>
+          <li><b>個人名・顧客名の列は削除してから</b>AIに渡す</li>
+          <li>「気づきを5つ、改善案を3つ」と頼む</li>
+          <li>グラフ化・月次レポートの型を作らせて、毎月使い回す</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 月次データの分析（Excel/CSVを添付して）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>添付は当社（自動車整備業）の月次データです。以下を出してください。
+①主要指標の推移（売上・粗利率・作業時間あたり売上・稼働率）
+②前月比・前年同月比で目立つ変化を5つ、原因の仮説つきで
+③改善余地の大きい順に施策を3つ、想定効果と必要工数つきで
+④来月の目標値の提案（根拠つき）
+※不明な点は推測せず「データからは判断できない」と書いてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場での効き方</div>
+            <ul>
+              <li>「なんとなく忙しい」が「どの作業が儲かっているか」に変わる</li>
+              <li>工賃単価の見直し根拠が持てる＝値上げの説明ができる</li>
+              <li>部品在庫の滞留・欠品のパターンが見える</li>
+              <li>金融機関・税理士への説明資料が短時間で作れる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 家計でも同じ技</div>
+            <ul>
+              <li>車の年間維持費（税金・保険・車検・燃料）を一覧に</li>
+              <li>「買い替えるか、乗り続けるか」の損益分岐を試算</li>
+              <li>ガソリン代の記録から、燃費改善の余地を出す</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>毎月1日に<b>前月データを自動集計 → 異常値を検知 → レポートを作成 → 経営会議の議題案まで作って通知</b>。「数字を見る時間がない」という最大のボトルネックが消えます。中小企業ほど、この“毎月の定型作業”の自動化が経営インパクトを持ちます。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          <b>顧客名・従業員名・車台番号・口座情報は必ず削除してから</b>渡してください。AIの計算は間違うことがあります（特に大量の行の合計）。<b>重要な数字は必ず表計算ソフトで検算</b>を。会社で使う場合は、社内の利用ルールを先に決めましょう。
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="step" id="u10" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>USE</small><b>10</b></div><div><span class="st-chip">PRIVATE ／ 私生活で</span><div class="st-ttl">車選び・維持費・ドライブ。乗る側のAI活用</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここは業界の方も、そうでない方も。<b>クルマは人生で2番目に高い買い物</b>と言われます。判断の質を上げる相談役として、AIはかなり優秀です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 車選び（維持費込みの比較表）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>Web検索を使って、以下の条件に合う車を5台提案し、比較表にしてください。
+表の項目：車種／新車or中古／車両価格帯／実燃費の目安／
+自動車税／任意保険の目安／3年間の総維持費概算／向いている人。
+最後に、私の条件で「最有力」と「意外な穴場」を1台ずつ、理由つきで。
+【条件】<span class="fill">予算／家族構成／年間走行距離／駐車場サイズ／用途／譲れない点</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ドライブ計画（家族でそのまま使える）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>Web検索を使って、日帰りドライブの計画を立ててください。
+【出発地】<span class="fill">群馬県〇〇市</span>【人数】<span class="fill">大人2・子ども2</span>【時期】<span class="fill">◯月</span>
+条件：運転時間は片道90分以内／トイレ・休憩ポイントを明記／
+子どもが飽きない工夫／雨天時の代替案／概算予算。
+時刻入りのタイムテーブル形式で出してください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">業界の方へ</span> 実は営業に直結</div>
+            <ul>
+              <li>お客様が今どう調べているかが分かる＝先回りできる</li>
+              <li>「AIで調べたら◯◯と出た」と言われた時に、正しく訂正できる</li>
+              <li>比較表の作り方を知ると、自店の提案書の質が上がる</li>
+              <li>ドライブ企画をSNSで発信すれば、そのまま地域の集客ネタに</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 暮らしの中で</div>
+            <ul>
+              <li>任意保険の更新前に、補償内容の過不足をチェック</li>
+              <li>雪道・高速・長距離の運転で気をつける点を事前に確認</li>
+              <li>チャイルドシートやタイヤの選び方を、条件から絞り込む</li>
+              <li>売却時の査定額の相場感を、複数の視点から把握</li>
+            </ul>
+          </div>
+        </div>
+        <div class="agentbox">
+          <div class="at">🤖 自律型AIが加わると</div>
+          <p>「予算◯万円で条件に合う中古車が出たら教えて」と伝えておけば、<b>探し続けて、見つけたら知らせてくれる</b>。旅行なら、<b>天気予報を見て前日に代替案を出してくる</b>。“探す・見張る・思い出す”という人間が苦手な作業を、代わりに持ち続けてくれるのが自律型AIです。</p>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          <b>価格・税額・保険料・法令はAIが最も間違えやすい領域</b>です。必ず公式サイトや販売店で確認を。運転中の操作は厳禁。そして——<b>AIは実車を見ていません</b>。最後は自分の目で見て、乗って決めてください。
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>10個ぜんぶやろうとすると、たいてい0個で終わるんだ。おすすめは<b>2番（見積の説明）</b>か<b>3番（クチコミ返信）</b>。どっちも今日30分で試せて、効果がすぐ目に見えるよ。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 自律型AI 解説 ═══ -->
+<div class="article" style="padding-top:0;">
+  <div class="wrap">
+    <h3 class="blk" id="agent">「自律型AI（AIエージェント）」って、結局なに？</h3>
+    <p class="sec-sub" style="margin-top:-4px;">ここだけは、少しだけ丁寧に。2026年の分かれ目はここにあります。</p>
+
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">これまでのAI</div>
+        <h4>聞いたら、答える（道具）</h4>
+        <p>「メールを書いて」→ 書く。「要約して」→ 要約する。<b>1回のお願いに、1回の答え。</b>指示を出すのは常に人間で、次に何をするかを考えるのも人間です。便利な文房具、という位置づけ。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--agent);">
+        <div class="rn">自律型AI（エージェント）</div>
+        <h4>目的を渡すと、手順を考えて動く（同僚）</h4>
+        <p>「今月の車検対象者に案内を出しておいて」→ <b>リストを見る → 文面を考える → 下書きを作る → 担当者に確認を取る</b>。途中で必要な作業を自分で分解して進みます。人間は<b>目的を決めて、承認するだけ</b>になります。</p>
+      </div>
+    </div>
+
+    <div class="keystone" style="margin-top:24px;">
+      <span class="kl">🤖 経営者が押さえるべき一点</span>
+      <p>自律型AIの本質は「賢さ」ではなく<strong>“作業を持ち続けてくれること”</strong>です。人間は忘れる・面倒がる・後回しにする。AIは忘れません。だから<strong>人手不足の会社ほど、効果が大きい</strong>。整備業界のDX化率が約22%という数字は、裏を返せば<strong>今から始めても十分に先行者になれる</strong>ということです。</p>
+    </div>
+
+    <div class="mini-h" style="margin-top:26px;">導入の現実的な順番（ここを飛ばすと失敗します）</div>
+    <ul class="timeline">
+      <li><b>STEP 0 ／ まず自分が触る</b>経営者・店長が1週間、毎日1回使う。ここを飛ばして「若い子に任せる」と、ほぼ必ず立ち消えます。</li>
+      <li><b>STEP 1 ／ 文章の仕事を渡す</b>見積説明・クチコミ返信・案内文。失敗しても被害が小さく、効果が見えやすい領域から。</li>
+      <li><b>STEP 2 ／ 社内のルールを決める</b>「個人情報は入れない」「数字は必ず検算」の2行でいい。先に決めておくと、後で揉めません。</li>
+      <li><b>STEP 3 ／ 記録を文章で残し始める</b>症状・原因・処置・お客様の反応。この蓄積が、将来AIに渡せる唯一の資産になります。</li>
+      <li><b>STEP 4 ／ 自動化・自律化に進む</b>ここでようやくエージェント。順番を逆にすると、道具だけ立派で誰も使わない状態になります。</li>
+    </ul>
+
+    <!-- 使い分け表 -->
+    <h3 class="blk">自動車の仕事で、どのAIを使う？</h3>
+    <p class="sec-sub" style="margin-top:-4px;">優劣ではなく「得意分野の違い」で選びます。まずは無料版で十分です。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>やりたいこと</th><th>ChatGPT</th><th>Claude</th><th>Gemini</th></tr></thead>
+          <tbody>
+            <tr><th>迷ったとき・まず試す</th><td class="win">◎ 最初の1台</td><td class="mid">○</td><td class="mid">○</td></tr>
+            <tr><th>見積・整備要領書など長文の読解</th><td class="mid">○</td><td class="win">◎ 大の得意</td><td class="mid">○</td></tr>
+            <tr><th>クチコミ返信・案内文の日本語</th><td class="mid">○</td><td class="win">◎ 自然で丁寧</td><td class="mid">○</td></tr>
+            <tr><th>傷・警告灯など写真を見せる</th><td class="win">◎</td><td class="win">◎</td><td class="win">◎</td></tr>
+            <tr><th>相場・車種の最新情報を調べる</th><td class="win">◎ Web検索</td><td class="mid">○</td><td class="win">◎ 検索に強い</td></tr>
+            <tr><th>Excel・CSVの集計と分析</th><td class="win">◎ 渡すだけ</td><td class="mid">○</td><td class="mid">○ スプレッドシート連携</td></tr>
+            <tr><th>チラシ・POPの画像づくり</th><td class="win">◎</td><td>×（生成は不可）</td><td class="win">◎</td></tr>
+            <tr><th>スマホでの使い心地</th><td class="win">◎</td><td class="mid">○</td><td class="win">◎ Android標準</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 現場でいちばん強い「合わせ技」</h4>
+        <div class="flow">
+          <span class="b">ChatGPTで<br>調べる・案を出す</span><span class="ar">→</span>
+          <span class="b">Claudeで<br>お客様向けの文章に整える</span><span class="ar">→</span>
+          <span class="b">自分で<br>数字と事実を検算</span>
+        </div>
+        <p style="margin:0;font-size:14px;">発想と調査はChatGPT、お客様に出す文章はClaude。最後の検算だけは絶対に人間。この3手を守るだけで、事故なく品質が上がります。<b>迷ったら、まず1つ無料で作る。それだけで今日は十分です。</b></p>
+      </div>
+    </div>
+
+    <!-- 効くお願いの型 -->
+    <h3 class="blk">うごく君の「効くお願いの型」（自動車版）</h3>
+    <div class="formula">
+      <p style="margin:0 0 4px;font-size:14.6px;">AIへのお願い（プロンプト）は、次の4つを足すだけで結果が一段よくなります。</p>
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>だれの立場で？</b>例：経験20年の整備士／中古車店の店長</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>だれに向けて？</b>例：車に詳しくないお客様／新人整備士</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で？</b>例：表で／箇条書き5つ／150字／A4一枚</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>やってはいけないことは？</b>例：金額は出さない／推測で書かない</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>「この見積を説明して」<br>→ 教科書みたいな説明が返ってきて、そのままでは使えない</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>「経験20年の整備士として、車に詳しくないお客様向けに、専門用語なしで、必須／次回／様子見の3段階に分けて、金額は原本のまま変えずに説明して」<br>→ そのままお客様に出せる文章になる</div>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">📋 何にでも使える万能テンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+        <pre>あなたは<span class="fill">〔役割：経験20年の整備士 など〕</span>です。
+<span class="fill">〔だれに向けて〕</span>に対して、<span class="fill">〔してほしいこと〕</span>を、
+<span class="fill">〔形式：表／箇条書き5つ／150字〕</span>・<span class="fill">〔トーン：丁寧に／簡潔に〕</span>で作ってください。
+【やってはいけないこと】
+・推測で書かない。分からない箇所は「不明」と書く
+・金額と部品番号は与えた情報から変更しない
+【材料】
+<span class="fill">〔元になる情報を貼り付け〕</span></pre>
+      </div>
+    </div>
+
+    <!-- 発信ネタ -->
+    <h3 class="blk">おまけ：反響が出やすい「発信ネタ」の型</h3>
+    <p class="sec-sub" style="margin-top:-4px;">同業のSNS・YouTubeで伸びている投稿には、共通の型があります。AIに台本を作らせれば、発信のハードルは一気に下がります。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">😱</span>ビフォーアフター型</h4>
+        <ul>
+          <li>「10万km無交換のオイル、見ますか？」</li>
+          <li>錆びたブレーキローターの交換前後</li>
+          <li>板金の修復過程を早回しで</li>
+          <li>→ 視覚的な変化が大きいほど伸びる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">💰</span>お金の本音型</h4>
+        <ul>
+          <li>「車検が高くなる本当の理由」</li>
+          <li>ディーラーと町工場、何が違うのか</li>
+          <li>「この修理、断っていい」ライン</li>
+          <li>→ 損得の話は保存・共有されやすい</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚠️</span>危険喚起型</h4>
+        <ul>
+          <li>「この警告灯が出たら即停車」</li>
+          <li>タイヤのこの状態、実は車検不合格</li>
+          <li>やりがちな整備のNG行為</li>
+          <li>→ コメントと拡散が最も伸びやすい型</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🙋</span>お客様の疑問代弁型</h4>
+        <ul>
+          <li>「聞きにくいけど、実は皆が疑問なこと」</li>
+          <li>整備士に聞いていい質問リスト</li>
+          <li>見積書の見方を1分で</li>
+          <li>→ 「保存しました」が集まる型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 発信ネタと台本を一気に作る</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>地域密着の自動車整備工場のSNS担当です。
+以下4つの型それぞれで、投稿ネタを5本ずつ（合計20本）出してください。
+①ビフォーアフター型 ②お金の本音型 ③危険喚起型 ④疑問代弁型
+各ネタに、
+・タイトル案（20字以内・煽りすぎない）
+・撮影で必要なカット3つ
+・30秒動画の台本（話し言葉で）
+を添えてください。誇張・不安を過度に煽る表現は禁止です。</pre>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>発信は「うまく作る」より「続ける」が全部。台本づくりで止まってた人は、AIに20本まとめて作らせて、撮るだけの状態にしておくと続くよ。</div>
+    </div>
+
+    <!-- 安全に使う -->
+    <h3 class="blk">自動車の現場で、安全にAIを使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>お客様の情報は入れない</div><p>氏名・住所・電話番号・車台番号・ナンバー・カード情報は入力しない。車種と症状だけで、AIは十分に働きます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>安全に関わる判断はしない</div><p>ブレーキ・操舵・エアバッグ・EVの高電圧系。AIの回答は仮説であり、診断ではありません。最終判断は必ず有資格者が実車で。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>数字と法令は必ず裏取り</div><p>締付トルク・規定値・税額・保険料・法改正の内容。AIはもっともらしく間違えます（ハルシネーション）。公式情報で確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>お客様に「AIが」と言わない</div><p>AIは下書きを作る道具。責任を持つのは会社と人です。出した文章の内容は、必ず自分が理解してから渡してください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>メーカー資料の転載に注意</div><p>整備要領書・技術資料には著作権と利用規約があります。社内での理解のために要約するのと、社外に出すのは別の話です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>社内ルールを2行決める</div><p>「個人情報は入れない」「数字は必ず検算」。この2行を紙に貼るだけで、9割の事故は防げます。凝ったルールは守られません。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>60代で、パソコンも得意ではありません。それでも使えますか？</summary><div class="ans">使えます。むしろ<b>スマホの音声入力との相性が抜群</b>です。文字を打たなくても、話しかければ文章になります。まずは「今日の見積の説明文を作って」と一言、声で頼んでみてください。難しい設定は一切ありません。</div></details>
+      <details><summary>無料でどこまでできますか？</summary><div class="ans">この記事に載せた10個は、ほぼすべて無料の範囲で試せます。使う量が増えると回数制限に当たるので、その時点で有料プラン（月20ドル前後）を検討すれば十分です。<b>最初から課金する必要はありません。</b></div></details>
+      <details><summary>入力した内容は、他社に漏れませんか？</summary><div class="ans">学習利用の扱いは、サービス・設定・プランによって変わります。各サービスの設定（データ管理）で学習利用をオフにできる場合があります。ただし<b>最も確実な対策は「機密情報を入れない」こと</b>。会社で使うなら、社内ルールを先に決めるのが安全です。</div></details>
+      <details><summary>AIに仕事を奪われませんか？</summary><div class="ans">整備士の平均年齢は47.7歳、整備学校の入学者は10年で半減、一方で保有台数は増加傾向——<b>この業界の問題は「人が多すぎる」ではなく「人が足りない」</b>です。AIが奪うのは仕事ではなく、書類仕事と探し物の時間。奪われるとしたら、AIを使う同業に顧客を奪われる形でしょう。</div></details>
+      <details><summary>自動運転が普及したら、整備の仕事はなくなりますか？</summary><div class="ans">当面はその逆です。Waymoのような商用ロボタクシーは海外で拡大していますが、メルセデスの量産レベル3システムは日本国内での認証が2026年4月時点で未実施。日本の道路を走る車の大半は当分いまのクルマです。むしろSDV（ソフトで進化する車）化で<b>診断・アップデート・電子制御という新しい整備需要</b>が生まれます。仕事の中身が変わるだけです。</div></details>
+      <details><summary>何から始めるのが正解ですか？</summary><div class="ans">この記事の<b>2番（見積の説明文）</b>を、今週の見積1件で試してください。30分で終わり、効果はその日のお客様の反応で分かります。うまくいったら3番（クチコミ返信）へ。<b>1つずつ、順番に。</b>これが一番の近道です。</div></details>
+      <details><summary>社内に広げるときのコツは？</summary><div class="ans">「ツールを導入する」ではなく<b>「一人の成功例を作る」</b>が正解です。経営者か店長が自分で1か月使い、実際に楽になった事例を朝礼で共有する。その順番でしか定着しません。研修や助成金の活用を検討する場合は、下のフォームからご相談ください。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">← まず読む（基礎）</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで、今日から始める</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">次に読む</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">発信するなら</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ カットも字幕も生成もAIで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">チラシ・POPを作るなら</span><span class="r-t">Canvaって何？活かし方10選<small>／ 使い方・料金・AI活用まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">あわせて読む</span><span class="r-t">Google Chromeって何？<small>／ ブラウザの歴史・料金・AI活用まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/fde-guide/"><span class="r-ic">💼</span><span><span class="r-k">あわせて読む</span><span class="r-t">新職種「FDE」って何？<small>／ 年収5000万円の正体</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="r-ic">💬</span><span><span class="r-k">公式サイト</span><span class="r-t">ChatGPT をはじめる<small>／ OpenAI公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://claude.ai" target="_blank" rel="noopener"><span class="r-ic">📝</span><span><span class="r-k">公式サイト</span><span class="r-t">Claude をはじめる<small>／ Anthropic公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.mlit.go.jp/jidosha/" target="_blank" rel="noopener"><span class="r-ic">🏛️</span><span><span class="r-k">公式情報</span><span class="r-t">国土交通省 自動車関連情報<small>／ 点検整備・法令の一次情報はこちら</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.jaspa.or.jp/" target="_blank" rel="noopener"><span class="r-ic">🔧</span><span><span class="r-k">業界団体</span><span class="r-t">日本自動車整備振興会連合会（JASPA）<small>／ 整備業の制度・資格情報</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの工場の“面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>整備業界のDX化率は、まだ約22%。「何から始めれば」で止まっている今こそ、地域で一番になれるタイミングです。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の業界データは2026年時点で公開されている各種調査・報道を基に構成しています。制度・料金・各サービスの画面や手順は、提供元の更新により変わることがあります。整備・法令に関する最終判断は、必ず一次情報および有資格者の確認をお願いします。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

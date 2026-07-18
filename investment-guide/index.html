@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×投資 活用術10選＆最新業界トレンド分析｜初心者のための合理的マニュアル ― UGOKU AI</title>
+<meta name="description" content="投資がはじめての方へ。生成AIを「調べる・検証する・続ける」の3役で使い倒す活用術10選と、2026年の最新業界トレンド（金融庁のAIエージェント論点整理／エージェンティック・ファイナンス／こどもNISA・iDeCo改正）を、案内役のうごく君がやさしく解説。仕事と私生活の活かし方、コピペで使えるプロンプト、詐欺・ハルシネーションの注意点まで網羅。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×投資 活用術10選＆最新業界トレンド分析｜初心者のための合理的マニュアル ― UGOKU AI">
+<meta property="og:description" content="AIは「当てる機械」ではなく「準備する道具」。投資の活用術10選と2026年の最新トレンド、自律型AIで何が変わるかを、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/investment-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/investment-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×投資 活用術10選＆最新業界トレンド分析 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×投資 活用術10選＆最新業界トレンド分析｜初心者のための合理的マニュアル ― UGOKU AI">
+<meta name="twitter:description" content="AIで投資の“調べる・疑う・続ける”を変える。活用術10選＆2026年最新トレンドを、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/investment-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+<style>
+  :root{
+    --found:#0E9E96; --found-soft:#DBF1EF;
+    --sys:#2E6FD1;   --sys-soft:#DCE8FA;
+    --pick:#C4623C;  --pick-soft:#F6E2D8;
+    --auto:#7A5AF0;  --auto-soft:#E7E1FD;
+    --risk:#B3452C;  --risk-soft:#F8E3DC;
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×投資 活用術10選＆最新業界トレンド分析</span>
+      <h1>「投資、こわい・むずかしい」を、<span class="hl">今日で終わり</span>にする。</h1>
+      <p class="lead">むずかしい専門用語はナシ。いまAIは、<strong>調べる・検証する・続ける</strong>の3つを丸ごと引き受けてくれます。しかも2026年、金融の世界では<strong>「自律型AI（AIエージェント）」がお金を動かす</strong>準備が本当に始まりました。スマホひとつで、今日から。</p>
+      <div class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-ghost">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-primary">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc" width="80" height="80"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「投資はギャンブルでしょ」「損したら怖い」と身構えなくて大丈夫。この記事を上から順に進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>「自分がいくら投資に回していいか」を、AIと5分で出せる</li>
+          <li>NISA・iDeCoの“自分にとっての正解”を、AIに整理してもらえる</li>
+          <li>決算書・英文レポート・目論見書を、AIに読ませて要点だけ受け取れる</li>
+          <li>2026年の最新トレンドと、AI特有の落とし穴（詐欺・ハルシネーション）がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、AIが投資でできる“3つのこと”</h2>
+    <p class="sec-sub">大事なので先に言います。<b>AIは「儲かる銘柄を当てる機械」ではありません。</b>本当に強いのは、次の3つです。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--found)">
+        <div class="ic">🔍</div>
+        <h4>調べる・<span>翻訳する</span></h4>
+        <p>専門用語・目論見書・英文レポート。プロと素人を分けていた「読む量の差」を、AIがほぼゼロにします。</p>
+      </div>
+      <div class="role" style="--accent:var(--pick)">
+        <div class="ic">🧠</div>
+        <h4>決める前に<span>検証する</span></h4>
+        <p>「買いたい」と思った瞬間が一番あぶない。AIに反対意見を言わせて、自分の判断を叩く。ここが一番の価値。</p>
+      </div>
+      <div class="role" style="--accent:var(--auto)">
+        <div class="ic">🔁</div>
+        <h4>続ける仕組みを<span>つくる</span></h4>
+        <p>記録・振り返り・積立の見直し。投資の勝敗を分けるのは才能ではなく「淡々と続けたか」。そこをAIが支えます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+
+    <div class="keystone">
+      <span class="kl">💡 大事なのはこれだけ</span>
+      <p>投資でいちばん強いのは、<strong>増やす技術より「減らさない設計」</strong>。そして<strong>AIは“分析ツール”であって“予言者”ではない</strong>。この2つさえ握っていれば、初心者でも大きく外しません。</p>
+    </div>
+
+    <!-- ─── 最新トレンド ─── -->
+    <h3 class="blk">2026年、投資×AIで“いま”起きていること</h3>
+    <p class="sec-sub" style="margin-bottom:18px">業界の動きは速いですが、初心者が押さえるべき大きな流れは、次の4つです。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏛️</span>金融庁が「AIエージェント」を正面から議論</h4>
+        <ul>
+          <li>金融庁は2026年3月、金融分野でのAI利活用に関する論点整理（ディスカッションペーパー第1.1版）を公表</li>
+          <li>資産運用の相談・コンサルティングなど、本業に近い領域での生成AI活用が展望として示された</li>
+          <li>「2025年＝AIエージェント元年」という位置づけが、公的文書に載る時代に</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🤖</span>“お金の自動運転”＝エージェンティック・ファイナンス</h4>
+        <ul>
+          <li>市場を監視し、ポートフォリオを自動で再調整し、決めた許容範囲の中で発注まで行うAIが議論の中心に</li>
+          <li>保険・ローン・資産管理を横断してAIが使い分ける「エージェンティック・ファイナンス」構想が具体化</li>
+          <li>同時に「誰のエージェントか」を確かめるKYA（Know Your Agents）など、共通インフラの整備が課題に</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📜</span>制度が“さらに使いやすく”動く（2027年1月〜）</h4>
+        <ul>
+          <li>2027年1月から0〜17歳もつみたて投資枠が使える「こどもNISA」（年60万円・生涯600万円）</li>
+          <li>債券を多く含む投資信託が対象商品に追加。株式100%が怖い人でも始めやすく</li>
+          <li>売却時の非課税枠の復活が「翌年」から「当年中」へ前倒し</li>
+          <li>iDeCoも2027年1月拠出分から上限引き上げ＋70歳未満まで加入可能に</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚠️</span>「AIに相談する人」も「AIを使う詐欺」も急増</h4>
+        <ul>
+          <li>生成AI利用者のうち半数超が、お金に関する情報収集や意思決定にAIを使っているとの調査も</li>
+          <li>一方で、AI生成の偽サイト・なりすましメール・SNSの偽アカウントによる投資詐欺が問題に</li>
+          <li>「AIが言ったから」は、いま最も危ない判断理由になりつつある</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="combo">
+      <h4>🔥 “伸びている投稿”に共通する型（トレースしてわかったこと）</h4>
+      <p class="sec-sub" style="margin:0 0 10px">投資系で、コメント・保存・いいねが伸びている発信には、はっきりした共通点があります。真似できる“型”として持っておくと、自分が学ぶときも、自社で発信するときも効きます。</p>
+      <div class="split" style="margin-top:4px">
+        <div class="col work">
+          <div class="ch">📈 反響が出やすい切り口</div>
+          <ul>
+            <li>「毎月3万円を20年」など、具体的な金額と年数で見せる</li>
+            <li>自分の運用実績・失敗談を数字ごと公開する（一番伸びる）</li>
+            <li>制度改正を「で、自分は何をすればいい？」に翻訳する</li>
+            <li>「手数料0.1%と1.5%の差」など、コストの残酷さを可視化</li>
+            <li>コピペで今すぐ試せる“プロンプト配布”</li>
+          </ul>
+        </div>
+        <div class="col life">
+          <div class="ch">💬 反応を生む仕掛け</div>
+          <ul>
+            <li>最初の2秒で結論を出す（「NISAは“枠”であって商品じゃない」）</li>
+            <li>比較表・チェックリストの形にして「保存」を促す</li>
+            <li>コメントで質問を促す（「何歳から始めました？」）</li>
+            <li>“やらかし”を先に言う（信頼が跳ね上がる）</li>
+            <li>断定を避け、必ず「最終判断はご自身で」を添える</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「バズってる投資インフルエンサーが言ってたから」で買うのが、一番あぶない。伸びてる投稿は“型”だけ盗んで、中身は必ず一次情報で確かめようね。</div>
+    </div>
+
+    <!-- ─── 合理的マニュアル ─── -->
+    <h3 class="blk">はじめての人の、いちばん合理的な進め方</h3>
+    <p class="sec-sub" style="margin-bottom:6px">いきなり銘柄選びから入ると、ほぼ失敗します。<b>①土台 → ②制度 → ③積立 → ④個別 → ⑤自動化</b> の順に、AIを相棒にして進めます。</p>
+
+    <div class="keystone" style="margin:16px 0 30px">
+      <span class="kl">🔑 迷わないための1ルール</span>
+      <p>AIの答えは<strong>必ず一次情報（金融庁・目論見書・EDINET）で裏取り</strong>。そして<strong>証券会社の口座開設・入金は、必ず公式サイト／公式アプリから</strong>。検索広告の偽サイトが本当に増えています。</p>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--found)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <div class="st-chip">FOUNDATION ／ 土台をつくる</div>
+          <div class="st-ttl">活用術①：家計を棚卸しして「投資に回していい額」を出す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最初にやるのは銘柄選びではなく、金額の確定です。ここを飛ばした人だけが、暴落時に一番安いところで売ります。AIは家計の整理がとても得意です。</p>
+
+        <div class="mini-h">はじめての手順</div>
+        <ol class="mini">
+          <li>直近3か月分の収入・固定費・変動費をざっくり書き出す（家計簿アプリの月次画面でもOK）</li>
+          <li>ChatGPTかClaudeに貼り付け、下のプロンプトで「生活防衛資金」と「毎月の投資可能額」を出してもらう</li>
+          <li>出てきた額の<b>7割</b>から始める（余裕を残すのがコツ）</li>
+          <li>クレジットカードのリボ・高金利ローンがあれば、投資より先に返済</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 投資可能額を出す</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは中立的なファイナンシャル・プランナーです。以下の家計情報から、
+①生活防衛資金としていくら現金で持つべきか
+②毎月いくらまでなら投資に回して無理がないか
+③先に返済・見直しすべき支出はどれか
+を、理由つきで整理してください。特定の金融商品の推奨はしないでください。
+【家計情報】
+〔手取り月収／ボーナス／家賃・住宅ローン／保険／通信費／その他固定費／
+ 変動費の目安／現在の預貯金／借入（種類・金利・残高）／家族構成・年齢〕</pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">経営者・個人事業主に</span></div>
+            <ul>
+              <li>事業のキャッシュと個人資産を、AIで明確に線引きする</li>
+              <li>役員報酬と会社の内部留保、どちらに置くかの比較整理</li>
+              <li>設備投資・借入返済と、余剰資金の運用の優先順位づけ</li>
+              <li>従業員向けの「iDeCo・企業型DC」の説明資料づくり</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">家計・家族に</span></div>
+            <ul>
+              <li>教育費・住宅・老後の必要額を、年表にして見える化</li>
+              <li>保険の重複をAIに指摘してもらい、浮いた分を積立へ</li>
+              <li>夫婦の家計会議の“たたき台”をAIに作らせる</li>
+              <li>ふるさと納税・控除の取りこぼしチェック</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          年収・口座残高・借入額などは<b>立派な個人情報</b>です。会社のPCや共有アカウントでは入力しない、金額をざっくり丸める、学習に使わせない設定にする——このどれかは必ずやりましょう。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>生活防衛資金は「生活費の6か月分」がよく言われる目安。自営業や収入の波が大きい人は、1年分くらい見ておくと夜よく眠れるよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--sys)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <div class="st-chip">SYSTEM ／ 制度を味方に</div>
+          <div class="st-ttl">活用術②：NISA・iDeCoを「自分の場合」に翻訳させる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">NISAは商品名ではなく<b>「税金がかからない“枠”」</b>。iDeCoは<b>「掛けた分が所得控除になる年金」</b>。どちらを優先すべきかは人によって違います。この“場合分け”こそAIの独壇場です。</p>
+        <a class="link-btn" href="https://www.fsa.go.jp/policy/nisa2/" target="_blank" rel="noopener">金融庁 NISA特設ウェブサイト ↗</a>
+        <a class="link-btn" href="https://www.ideco-koushiki.jp/" target="_blank" rel="noopener">iDeCo公式サイト ↗</a>
+        <p class="link-note">どちらも公的な一次情報。AIの答えは、最後にここで確認するのが鉄則です。</p>
+
+        <div class="mini-h">2026〜2027年、ここが変わる（要点だけ）</div>
+        <ul class="use">
+          <li><b>こどもNISA</b>：2027年1月から0〜17歳もつみたて投資枠が利用可（年60万円／生涯600万円）。12歳以降は要件を満たせば払い出しも可能</li>
+          <li><b>対象商品の拡充</b>：債券を組み入れた投資信託などが追加され、株式一辺倒でない選択がしやすく</li>
+          <li><b>非課税枠の復活が前倒し</b>：売却した枠の復活が「翌年以降」から「当年中」へ</li>
+          <li><b>iDeCo改正</b>：2027年1月の掛金から上限引き上げ（第1号は月7.5万円、企業年金のない会社員は月6.2万円へ）。加入可能年齢も70歳未満まで拡大</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 NISAとiDeCo、自分はどっち優先？</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは制度に詳しい中立のアドバイザーです。日本のNISAとiDeCoについて、
+以下の私の条件で「どちらをどの順番で、いくらずつ使うのが合理的か」を
+メリット・デメリット・注意点を挙げて整理してください。
+最後に「必ず自分で確認すべき点」を箇条書きで示してください。
+※特定の商品名の推奨は不要です。制度改正は年によって変わるため、
+　参照した前提年度も明記してください。
+【私の条件】
+〔年齢／職業（会社員・自営業・公務員など）／企業年金の有無／
+ 年収の目安／扶養家族／お金を使いたい時期（教育費・住宅・老後）／
+ 途中で引き出す可能性の有無〕</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          <b>AIは制度改正の反映が遅れます。</b>「2026年時点」と書いてあっても古い情報を混ぜてくることがあります。金額・年齢・開始時期は、必ず上の公式サイトで突き合わせてください。iDeCoは<b>原則60歳まで引き出せない</b>点も、AIの回答から抜け落ちがちです。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--sys)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <div class="st-chip">COST ／ 中身とコストを見抜く</div>
+          <div class="st-ttl">活用術③：目論見書をAIに読ませ、手数料の差を可視化する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">投資信託の説明書（目論見書）は、初心者が最も投げ出す書類です。ここをAIに読ませると、<b>「何に投資しているか」「毎年いくら引かれるか」</b>が10秒でわかります。長文読解はClaudeが得意です。</p>
+
+        <div class="mini-h">基本の使い方</div>
+        <ul class="use">
+          <li><b>PDFを渡す</b>：目論見書のPDFをそのままアップロードして「5つの箇条書きで」</li>
+          <li><b>コストを聞く</b>：信託報酬・購入時手数料・信託財産留保額をすべて表に</li>
+          <li><b>中身を聞く</b>：投資先の国・資産・上位組入銘柄・為替ヘッジの有無</li>
+          <li><b>比較させる</b>：似た2〜3本を並べて、違いだけを抜き出させる</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 目論見書を10秒で要点化</span><button class="cb-btn">コピー</button></div>
+<pre>添付の投資信託の目論見書を読み、中学生にもわかる言葉で次を表にしてください。
+①何に（国・資産の種類）投資しているか
+②信託報酬（年率）と、その他かかる費用のすべて
+③100万円を1年持った場合、コストで概算いくら引かれるか
+④為替の影響を受けるか／ヘッジの有無
+⑤想定される最大の下落局面と、その時に何が起きるか
+最後に「この商品が向かない人」を3つ挙げてください。</pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>信託報酬は「毎年・自動で・確実に」引かれるコスト。年1.5%と年0.1%の差は、20年積み立てると数百万円になることも。リターンは読めないけど、コストだけは確実に読めるんだ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--found)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <div class="st-chip">RISK ／ 自分の耐性を知る</div>
+          <div class="st-ttl">活用術④：リスク許容度診断と、資産配分（ポートフォリオ）の設計</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">「どれくらい下がっても、売らずにいられるか」。ここを言語化しておくと、暴落時の狼狽売りが激減します。AIに“質問役”をやらせるのが効きます。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 リスク許容度を質問で引き出す</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは中立的な投資教育の講師です。私のリスク許容度を測るために、
+1問ずつ質問してください（一度に全部聞かない）。私の答えを踏まえて、
+最後に「株式◯％：債券◯％：現金◯％」といった資産配分の考え方と、
+その配分で想定される1年間の最大下落幅の目安を、数字の根拠つきで示してください。
+特定の商品名は挙げず、あくまで考え方の整理としてお願いします。</pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">事業のリスク管理にも</span></div>
+            <ul>
+              <li>事業のキャッシュフローと相関しない資産に分散する設計</li>
+              <li>売上が落ちる季節と、取り崩しタイミングの重なりを確認</li>
+              <li>自社株・自社事業への“集中リスク”をAIに指摘させる</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">家族と共有する</span></div>
+            <ul>
+              <li>「30%下がっても続けられるか」を家族と事前に合意</li>
+              <li>子どもの進学時期に合わせた、安全資産の比率設計</li>
+              <li>親世代の資産の置き方を、一緒に整理する</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          AIが出す配分は<b>「一般論の整理」であって、あなた個人への投資助言ではありません</b>。金融商品取引法上の投資助言は登録業者しか行えません。AIの回答は“考えるための材料”として扱ってください。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--found)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <div class="st-chip">SIMULATE ／ 未来を計算する</div>
+          <div class="st-ttl">活用術⑤：積立シミュレーションと「出口」の設計</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">投資は入口より<b>出口（いつ・いくら取り崩すか）</b>のほうが難しい。ここを最初に決めておくと、途中の値動きが怖くなくなります。数字はAI、検算は公式ツールで。</p>
+        <a class="link-btn" href="https://www.fsa.go.jp/policy/nisa2/example/index.html" target="_blank" rel="noopener">金融庁 つみたて／ライフプラン シミュレーター ↗</a>
+        <p class="link-note">金融庁の公式ツール。AIの計算結果は、必ずこちらで検算しましょう。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 積立と取り崩しを一気にシミュレーション</span><button class="cb-btn">コピー</button></div>
+<pre>次の条件で、積立と取り崩しの試算を表にしてください。計算式も併記してください。
+【条件】毎月〔  〕円を〔  〕年間積立、想定利回り年3%・5%・7%の3パターン。
+その後〔  〕歳から毎年〔  〕万円ずつ取り崩す。
+【出してほしいもの】
+①各パターンの最終資産額と、うち元本／運用益の内訳
+②取り崩し開始後、資産が何歳まで持つか
+③開始直後に30%下落した場合、結果がどう変わるか
+④インフレ年2%を考慮した「実質の価値」
+※これは概算であり将来を保証しないことを明記してください。</pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>AIは計算をたまに間違えるよ（本当に）。桁と単位だけは自分の目で確認して、金融庁のシミュレーターで答え合わせするのがおすすめ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" style="--accent:var(--pick)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <div class="st-chip">RESEARCH ／ 一次情報を読む</div>
+          <div class="st-ttl">活用術⑥：決算短信・有価証券報告書をAIで読み解く</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">個別株に進むなら、ここが本丸。これまで数時間かかった決算資料の読み込みが、数分で終わります。<b>プロと個人の情報格差が、いちばん縮んだ領域</b>です。</p>
+        <a class="link-btn" href="https://disclosure2.edinet-fsa.go.jp/WEEK0010.aspx" target="_blank" rel="noopener">EDINET（金融庁の開示システム） ↗</a>
+        <p class="link-note">有価証券報告書などを誰でも無料で閲覧できます。PDFを落としてAIに渡すのが最短ルート。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 決算資料を投資家目線で要約</span><button class="cb-btn">コピー</button></div>
+<pre>添付の決算説明資料（または有価証券報告書）を読み、次を整理してください。
+①売上・営業利益・純利益の前年比と、増減の主因
+②今期予想と、その前提（為替・数量・単価など）
+③リスク情報のうち、業績に直結しそうなもの上位3つ
+④経営陣の説明で、数字の裏づけが弱い箇所
+⑤同業他社と比べるべき指標（ROE・営業利益率・PERなど）と、その調べ方
+推測が混じる箇所は「推測」と明記し、資料に書かれていない事実は書かないでください。</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここに注意</div>
+          <b>株価・時価総額・最新のPERなど「動く数字」をAIに聞くのは危険です。</b>学習時点の古い値や、それらしい創作（ハルシネーション）が返ります。動く数字は必ず証券会社のアプリや取引所で確認を。AIには「渡した資料の中だけで答えて」と指示するのがコツです。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step" style="--accent:var(--pick)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>7</b></div>
+        <div>
+          <div class="st-chip">GLOBAL ／ 世界を毎朝5分で</div>
+          <div class="st-ttl">活用術⑦：英文レポート・海外ニュースを翻訳＆要約させる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">投資の情報は、いまも英語が圧倒的に速くて多い。ここを翻訳AIで埋めるだけで、日本語だけの世界から一段抜け出せます。</p>
+
+        <div class="mini-h">毎朝5分ルーティンの作り方</div>
+        <ol class="mini">
+          <li>気になる企業や指数の英文ニュース・IRページのURLか本文をコピー</li>
+          <li>AIに「日本語で3行＋自分の保有資産への影響」を出させる</li>
+          <li>気になった1点だけ、一次情報にあたる</li>
+          <li>週末に1週間分をまとめて振り返る（STEP9の投資日記へ）</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 海外ニュースを「自分ごと」に変換</span><button class="cb-btn">コピー</button></div>
+<pre>以下の英文記事を、日本語で次の形式にまとめてください。
+①3行要約 ②数字が出てくる箇所はすべて抜き出し
+③この内容が、日本の個人投資家（全世界株式インデックスの積立が中心）に
+　与える影響を、短期・長期に分けて
+④誇張・断定を避け、確度が低い部分は「不確実」と明記
+【記事】
+〔ここに本文またはURLを貼り付け〕</pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ニュースを追うほど売買したくなるのが人間のクセ。積立中心の人は「読むけど、動かさない」が正解だったりするよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8 -->
+    <div class="step" style="--accent:var(--pick)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>8</b></div>
+        <div>
+          <div class="st-chip">DEVIL'S ADVOCATE ／ 自分を疑う</div>
+          <div class="st-ttl">活用術⑧：「買いたい」を止める、反対意見マシンとして使う</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">この記事で<b>いちばん価値があるのがこれ</b>です。AIは褒めるのも得意ですが、頼めば容赦なく反論もしてくれます。買う前に一度、殴られておきましょう。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 悪魔の代弁者プロンプト</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは私の投資判断に反対する立場の、厳しいアナリストです。
+以下の私の投資アイデアについて、賛成意見は一切書かず、
+①この判断が間違っている可能性が最も高い理由を5つ
+②私が見落としている前提・バイアス（確証バイアス、直近の値上がりへの飛びつきなど）
+③これを買った人が過去に大きく損をした典型パターン
+④「買わない」という選択が正解になるシナリオ
+を挙げてください。最後に、判断前に必ず確認すべき事実を3つ示してください。
+【私の投資アイデア】
+〔何を・いくら・なぜ買いたいのかを、そのまま書く〕</pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">仕事 <span class="badge-mini">意思決定すべてに応用可</span></div>
+            <ul>
+              <li>設備投資・出店・採用の判断にも、そのまま使える</li>
+              <li>取引先の与信や、新規事業の前提をAIに叩かせる</li>
+              <li>幹部会議の前に、反対意見を先に出しておく</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">プライベート <span class="badge-mini">大きな買い物に</span></div>
+            <ul>
+              <li>住宅・車・保険の契約前チェック</li>
+              <li>「今すぐ決めて」と急かされた話を、必ず一晩AIに通す</li>
+              <li>知人からの儲け話を、感情抜きで検証する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 9 -->
+    <div class="step" style="--accent:var(--auto)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>9</b></div>
+        <div>
+          <div class="st-chip">ROUTINE ／ 続ける仕組み</div>
+          <div class="st-ttl">活用術⑨：投資日記と月次レビューを、AIで自動化する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">上手い人ほど記録しています。「なぜ買ったか」を書き残し、AIに定期レビューさせると、自分のクセ（高値づかみ・狼狽売り）が数字で見えてきます。</p>
+
+        <div class="mini-h">仕組みの作り方</div>
+        <ol class="mini">
+          <li>スプレッドシートに「日付／銘柄／金額／買った理由／その時の感情」を1行ずつ記録</li>
+          <li>月末にCSVで書き出し、AIに渡してレビューさせる</li>
+          <li>指摘された自分のクセを、翌月のルールに1つだけ足す</li>
+          <li>年1回、資産配分が崩れていないか確認（リバランス）</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 売買ログから自分のクセを暴く</span><button class="cb-btn">コピー</button></div>
+<pre>添付の売買ログ（日付・銘柄・売買・金額・理由・その時の感情）を分析し、
+①勝ちパターンと負けパターンの共通点
+②感情（不安・焦り・高揚）と結果の相関
+③手数料・税金を含めた実質リターン
+④私が繰り返している悪い癖を、厳しめに3つ
+⑤来月から守るべきルールを、3つだけ（多くしない）
+数字は表で、指摘は具体的にお願いします。</pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ルールは3つまで。増やすと守れなくなって、結局ゼロになっちゃう。減らすほど続くよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 10 -->
+    <div class="step" style="--accent:var(--risk)">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>10</b></div>
+        <div>
+          <div class="st-chip">DEFENSE ／ 守りを固める</div>
+          <div class="st-ttl">活用術⑩：AIを使った投資詐欺・偽情報を、AIで見破る</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">生成AIの普及で、詐欺の日本語が驚くほど自然になりました。もう「文章が変だから怪しい」は通用しません。<b>見破り方も、仕組みで持つ</b>必要があります。</p>
+        <a class="link-btn" href="https://www.fsa.go.jp/" target="_blank" rel="noopener">金融庁（免許・登録業者の確認） ↗</a>
+        <p class="link-note">金融庁のサイトで「免許・許可・登録等を受けている業者一覧」を検索できます。ここに無ければ、まず疑ってください。</p>
+
+        <div class="mini-h">典型的な手口（2026年版）</div>
+        <ul class="use">
+          <li><b>AI生成のなりすまし</b>：証券会社・銀行そっくりのメールと偽サイトへ誘導</li>
+          <li><b>SNSの偽アカウント量産</b>：もっともらしい市場分析を大量投稿し、未公開株や怪しい商品へ誘導</li>
+          <li><b>著名人のディープフェイク</b>：有名投資家の顔・声を合成した動画広告</li>
+          <li><b>LINE・チャットへの誘導</b>：「特別枠」「元本保証」「今日まで」の3語が出たら即終了</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 怪しい勧誘を検証する</span><button class="cb-btn">コピー</button></div>
+<pre>以下の投資勧誘の文面を、詐欺の可能性という観点から検証してください。
+①典型的な詐欺の特徴に当てはまる点をすべて指摘
+②日本の法律上、問題になりうる表現（元本保証・断定的判断の提供など）
+③この業者が実在・登録済みかを確認するために、私が自分で調べるべき手順
+④返信・クリックしてよいか、してはいけないか
+断定できない点は「確認が必要」と明記してください。
+【文面】
+〔ここに貼り付け〕</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 絶対に守る3つ</div>
+          <b>①元本保証・絶対儲かるは100%アウト</b>（法律で禁じられています）。<b>②急かされたら降りる</b>。本物の投資機会に「今日まで」はありません。<b>③リンクは踏まず、公式アプリを自分で開く</b>。メールやSNSのリンクからは絶対に入らない。
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── 自律型AI ─── -->
+    <h3 class="blk">そこに「自律型AI（AIエージェント）」が加わると？</h3>
+    <p class="sec-sub" style="margin-bottom:18px">ここまでは<b>AIに“相談する”</b>使い方。次の段階は、AIが<b>自分で調べて・判断して・実行する</b>世界です。金融庁も2026年に論点整理を公表し、業界は本気で準備を始めています。</p>
+
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">✅</span>いま、個人でもできること</h4>
+        <ul>
+          <li>毎朝、指定した情報源を巡回して要約を届けさせる</li>
+          <li>保有資産の一覧を渡し、配分のズレを毎月チェックさせる</li>
+          <li>決算発表日をカレンダーに登録し、資料が出たら要約させる</li>
+          <li>家計データから、積立額の見直し案を毎四半期提案させる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔜</span>すぐそこまで来ていること</h4>
+        <ul>
+          <li>市場を監視し、決めたリスク範囲内でポートフォリオを自動再調整</li>
+          <li>保険・ローン・資産運用を横断して、AIが最適な組み合わせを提案</li>
+          <li>複数のAIが役割分担して、調査→検証→報告まで自走</li>
+          <li>手続き書類の収集から申請まで、例外だけ人間に回す</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⛔</span>まだ任せてはいけないこと</h4>
+        <ul>
+          <li>売買の最終判断そのもの（責任はすべて自分に残ります）</li>
+          <li>証券口座のIDとパスワードを、AIツールに預けること</li>
+          <li>「勝手に取引してくれるAI」を名乗る無登録サービス</li>
+          <li>説明できない根拠でのレバレッジ取引</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🛡️</span>ガードレールの考え方</h4>
+        <ul>
+          <li>権限を絞る：閲覧だけ、提案だけ、実行は人間の承認後</li>
+          <li>上限を決める：1回・1日あたりの金額上限を先に設定</li>
+          <li>止め方を決める：異常時に一発で停止する手順を用意</li>
+          <li>ログを残す：何を根拠に何をしたか、後から追える形で</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="combo">
+      <h4>🧭 まず押さえるべきは「KYA（Know Your Agents）」という考え方</h4>
+      <p class="sec-sub" style="margin:0 0 10px">銀行がお客様の本人確認をするKYCと同じように、これからは<b>「そのAIエージェントは誰の代理で、どこまでの権限を持つのか」</b>を確かめる仕組みが必要になります。シンガポールでは2026年1月、世界経済フォーラムの場でAgentic AI向けのガバナンス枠組みが発表され、①リスクの事前評価と権限の限定 ②人間による実質的な説明責任 ③ライフサイクル全体の技術的管理 が柱に据えられました。</p>
+      <div class="flow">
+        <span class="b">AIが調べる</span><span class="ar">→</span>
+        <span class="b">AIが案を出す</span><span class="ar">→</span>
+        <span class="b">人が承認する</span><span class="ar">→</span>
+        <span class="b">実行・記録</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:13.8px;color:var(--ink-soft)">この「人が承認する」を外さない限り、自律型AIは強力な味方です。外した瞬間に、最大のリスクになります。</p>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc" width="44" height="44"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>会社の業務も同じだよ。「AIに全部やらせる」じゃなくて、「AIが9割やって、人が最後に判を押す」。この設計にした会社だけが、事故らずに速くなってる。</div>
+    </div>
+
+    <!-- ─── 使い分け ─── -->
+    <h3 class="blk">結局、どのAI・どのサービスを使えばいい？</h3>
+    <p class="sec-sub">「優劣」ではなく「得意分野の違い」で選ぶのがコツです。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead>
+            <tr><th>やりたいこと</th><th>ChatGPT</th><th>Claude</th><th>証券アプリ・ロボアド</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>制度の質問・場合分け</th><td class="win">◎</td><td class="win">◎</td><td class="mid">△</td></tr>
+            <tr><th>長い目論見書・有報の読解</th><td class="mid">○</td><td class="win">◎ 大の得意</td><td>×</td></tr>
+            <tr><th>最新の株価・基準価額</th><td class="mid">△ 要確認</td><td class="mid">△ 要確認</td><td class="win">◎ 正確</td></tr>
+            <tr><th>家計データの集計・グラフ化</th><td class="win">◎ ファイルを渡すだけ</td><td class="mid">○</td><td class="mid">○</td></tr>
+            <tr><th>反対意見・バイアス検証</th><td class="win">◎</td><td class="win">◎</td><td>×</td></tr>
+            <tr><th>実際の発注・積立設定</th><td>×</td><td>×</td><td class="win">◎ ここだけは必ず</td></tr>
+            <tr><th>自動リバランス</th><td class="mid">△</td><td class="mid">△</td><td class="win">◎ ロボアドの本領</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いいとこ取りの「合わせ技」</h4>
+        <div class="flow">
+          <span class="b">ChatGPTで<br>制度と家計を整理</span><span class="ar">→</span>
+          <span class="b">Claudeで<br>資料を読み込む</span><span class="ar">→</span>
+          <span class="b">証券アプリで<br>数字を確認・発注</span><span class="ar">→</span>
+          <span class="b">自分で<br>最終判断</span>
+        </div>
+        <p style="margin:6px 0 0;font-size:14px">ひとことで言えば——<b>考える・調べるはAI、事実の確認と最終判断は自分と公式サイト。</b>この線引きだけは、絶対に崩さないでください。</p>
+      </div>
+    </div>
+
+    <!-- ─── プロンプトの型 ─── -->
+    <h3 class="blk">うごく君の「効く投資プロンプトの型」</h3>
+    <div class="formula">
+      <p style="margin:0 0 4px;font-size:15px">投資でAIを使うときは、ふつうの質問に<b>4つの条件</b>を足すだけで、答えの質が一段変わります。</p>
+      <div class="f-grid">
+        <div class="f-item"><span class="no">1</span><span class="t"><b>立場を決める</b>「中立のFP」「反対する立場のアナリスト」など役割を指定</span></div>
+        <div class="f-item"><span class="no">2</span><span class="t"><b>前提を渡す</b>年齢・収入・家族・使う時期。曖昧だと一般論しか返らない</span></div>
+        <div class="f-item"><span class="no">3</span><span class="t"><b>範囲を縛る</b>「渡した資料の中だけで」「推測は推測と明記して」</span></div>
+        <div class="f-item"><span class="no">4</span><span class="t"><b>検証を求める</b>「自分で確認すべき点」「参照した前提年度」を必ず出させる</span></div>
+      </div>
+      <div class="ba">
+        <div class="c bad">
+          <div class="lb">✕ もったいない例</div>
+          「おすすめの投資信託を教えて」<br>→ 古い情報・一般論・断定が混ざり、そのまま信じると危険
+        </div>
+        <div class="c good">
+          <div class="lb">◎ 効く例</div>
+          「40歳会社員・企業年金なし・15年後に教育費。中立の立場で、資産配分の考え方を3案、それぞれのデメリットと“自分で確認すべき点”つきで」<br>→ 判断材料として使える形に近づく
+        </div>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">📋 そのまま使えるテンプレ</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは〔中立的なFP／反対意見を述べるアナリスト〕です。
+【前提】〔年齢・職業・年収の目安・家族構成・資金を使う時期・リスク許容度〕
+【依頼】〔してほしいこと〕を、〔箇条書き／表〕で整理してください。
+【条件】
+・特定の金融商品の推奨はしない
+・断定を避け、確度の低い箇所は「不確実」と明記する
+・数字は計算式を併記する
+・最後に「私が自分で一次情報で確認すべき点」を3つ挙げる
+・参照している制度・データの前提年度を明記する</pre>
+      </div>
+    </div>
+
+    <!-- ─── アイデア集 ─── -->
+    <h3 class="blk">もっと使える！活用アイデア集</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>会社・経営で</h4>
+        <ul>
+          <li>余剰資金の置き場所（定期・国債・投信）の比較整理</li>
+          <li>設備投資と運用、どちらが得かの試算</li>
+          <li>従業員向けの企業型DC・iDeCo説明資料づくり</li>
+          <li>事業承継・退職金設計のたたき台</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>会社員として</h4>
+        <ul>
+          <li>給与明細から、手取りと税・社会保険の内訳を可視化</li>
+          <li>企業型DCの商品ラインナップをAIに比較させる</li>
+          <li>ふるさと納税・医療費控除の取りこぼし確認</li>
+          <li>転職時の退職金・年金の移換手続きの整理</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らし・家族で</h4>
+        <ul>
+          <li>教育費の必要額を、進路パターン別に試算</li>
+          <li>住宅ローンの繰上返済と投資、どちらを優先すべきか</li>
+          <li>保険の重複・過剰をチェックして、浮いた分を積立へ</li>
+          <li>親の資産・相続の論点整理（税理士に相談する前の準備）</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・子育てで</h4>
+        <ul>
+          <li>2027年開始の「こどもNISA」を家族で検討する</li>
+          <li>子どもに複利をたとえ話で説明してもらう</li>
+          <li>金融用語のクイズを出させて、家族で学ぶ</li>
+          <li>お小遣い制度を“運用の練習”として設計する</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ─── 困ったとき ─── -->
+    <h3 class="blk">つまずいたとき・困ったとき</h3>
+    <div class="compact">
+      <details>
+        <summary>AIが言うことと、証券会社のサイトの内容が違う</summary>
+        <div class="ans">ほぼ100%、公式サイトが正しいです。AIは学習時点の古い制度・数字を答えることがあります。制度と金額は金融庁・iDeCo公式・各社の公式ページを最終根拠にしてください。</div>
+      </details>
+      <details>
+        <summary>AIに聞いたら、存在しない商品名や条文が出てきた</summary>
+        <div class="ans">ハルシネーション（もっともらしい創作）です。「渡した資料の中だけで答えて」「出典がないものは書かないで」と条件を足すと激減します。商品名・法令名は必ず検索して実在を確認しましょう。</div>
+      </details>
+      <details>
+        <summary>数字の計算が合わない気がする</summary>
+        <div class="ans">よくあります。「計算式も書いて」と指示し、金融庁のシミュレーターや表計算ソフトで検算を。桁と単位（万円／円）のズレが最も多い失敗です。</div>
+      </details>
+      <details>
+        <summary>暴落して、続ける自信がなくなった</summary>
+        <div class="ans">まずSTEP1に戻り、生活防衛資金が残っているか確認を。残っているなら、慌てて売る必要はありません。AIに「過去の下落とその後の回復年数」を整理させると、感情が少し落ち着きます。それでも眠れないなら、それはリスクの取りすぎのサイン。積立額を減らすのは“負け”ではありません。</div>
+      </details>
+      <details>
+        <summary>情報が多すぎて、何を信じればいいかわからない</summary>
+        <div class="ans">信じる順番を決めましょう。①法令・公的機関（金融庁など）②企業の開示資料（EDINET）③運用会社の公式資料 ④報道 ⑤個人の発信。AIはこの①〜③を読ませる道具として使うのが、いちばん安全で強い使い方です。</div>
+      </details>
+    </div>
+
+    <!-- ─── 安全に ─── -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>AIの回答は「投資助言」ではない</div>
+        <p>金融商品取引法上の投資助言は、登録を受けた業者しか行えません。AIの回答は情報整理であり、結果の責任はすべて自分に帰属します。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>動く数字は必ず公式で確認</div>
+        <p>株価・基準価額・利回り・制度の上限額。これらをAIの記憶に頼るのは事故のもと。証券会社アプリと公式サイトで突き合わせを。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>口座情報・個人情報を入れない</div>
+        <p>ID・パスワード・口座番号・マイナンバーは絶対に入力しない。年収や残高も、丸めた数字で十分です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>「元本保証」「絶対」は詐欺の合図</div>
+        <p>AIが自然な日本語を書ける時代、文章の巧拙で見分けるのは不可能。登録業者かどうかを金融庁で確認する習慣を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>自動化するほど、上限と停止手順を先に</div>
+        <p>自律型AIを使うなら、権限・金額上限・止め方を決めてから。ログが残らない仕組みには任せないこと。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>最後は人が決める</div>
+        <p>AIは調べ役と反対意見役。買う・売る・続けるの判断と、その責任は自分に残ります。迷ったら「動かない」も立派な判断です。</p>
+      </div>
+    </div>
+
+    <!-- ─── FAQ ─── -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>AIに「どの銘柄を買えばいい？」と聞いてもいいですか？</summary>
+        <div class="ans">聞くこと自体は自由ですが、その答えをそのまま実行するのは危険です。AIは最新の株価も、あなたの全財産も、明日の市場も知りません。「銘柄を選ぶ基準を教えて」「この資料をこの観点で分析して」という聞き方に変えると、途端に有用になります。</div>
+      </details>
+      <details>
+        <summary>投資はいくらから始めればいいですか？</summary>
+        <div class="ans">生活に影響しない金額から、が唯一の正解です。月1,000円でも構いません。金額より「口座を開いて、実際に1回買ってみる」ことのほうが、はるかに学習効果があります。慣れてから増やせば十分です。</div>
+      </details>
+      <details>
+        <summary>ロボアドバイザーと、AIに相談するのは何が違うの？</summary>
+        <div class="ans">ロボアドは「実際にお金を預けて、自動で運用・リバランスまでしてくれるサービス」で、手数料がかかります。生成AIは「考える手伝いをする相談相手」で、発注はできません。役割がまったく違うので、併用もできます。</div>
+      </details>
+      <details>
+        <summary>2027年の制度改正を待ってから始めたほうがいい？</summary>
+        <div class="ans">待つ必要はありません。こどもNISAや対象商品の拡充、iDeCoの上限引き上げは「今始めた人にも後から適用される」性質の改正です。運用期間が長いほど複利は効くので、待つことのほうがコストになりがちです。</div>
+      </details>
+      <details>
+        <summary>会社の経営者ですが、会社のお金と個人の投資は分けるべき？</summary>
+        <div class="ans">分けるのが原則です。事業の資金繰りと相場が同時に悪化すると、最悪のタイミングで取り崩すことになります。会社の余剰資金の運用は、流動性（すぐ現金化できるか）を最優先に、個人の資産形成とは別ルールで設計してください。判断の前に、顧問税理士への確認を。</div>
+      </details>
+      <details>
+        <summary>結局、AIは投資の役に立つんですか？</summary>
+        <div class="ans">はっきり役に立ちます。ただし「当てる」のではなく「準備する」領域で。読む・比べる・疑う・記録する——地味な作業を、プロ並みの速度でこなせるようになる。それが、個人投資家にとっての最大の変化です。</div>
+      </details>
+    </div>
+
+    <div class="keystone" style="margin:34px 0 0">
+      <span class="kl">📌 免責</span>
+      <p>本記事は<strong>情報提供を目的としたものであり、特定の金融商品の勧誘や投資助言ではありません</strong>。制度の内容・金額・時期は改正により変わります。実際の判断は、公式情報をご確認のうえ、必要に応じて金融機関・税理士等の専門家にご相談ください。投資には元本割れのリスクがあります。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/finance-guide/"><span class="r-ic">🧾</span><span><span class="r-k">🔁 次に読む（シリーズ周回）</span><span class="r-t">AI×経理・財務 ―「経理、まだ手入力ですか？」<small>／ 数字まわりを丸ごとAIに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">← 前の記事</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ スマホ1台で今日から</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まず基礎から</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで、ChatGPT・Claudeを今日から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🧭</span><span><span class="r-k">あわせて読む</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/marketing-guide/"><span class="r-ic">📈</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×マーケティング 活用術10選＆最新トレンド<small>／ 同じ“10選＋トレンド”構成</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/top-ceo-ai/"><span class="r-ic">👑</span><span><span class="r-k">あわせて読む</span><span class="r-t">トップ経営者のAI活用術10選<small>／ 意思決定の速度を上げる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.fsa.go.jp/policy/nisa2/" target="_blank" rel="noopener"><span class="r-ic">🏛️</span><span><span class="r-k">公式・一次情報</span><span class="r-t">NISA特設ウェブサイト<small>／ 金融庁</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.ideco-koushiki.jp/" target="_blank" rel="noopener"><span class="r-ic">🧓</span><span><span class="r-k">公式・一次情報</span><span class="r-t">iDeCo公式サイト<small>／ 国民年金基金連合会</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.fsa.go.jp/news/r7/sonota/20260303/aidp_version1.1.pdf" target="_blank" rel="noopener"><span class="r-ic">📄</span><span><span class="r-k">公式・一次情報</span><span class="r-t">金融分野におけるAI利活用の論点整理<small>／ 金融庁 AIディスカッションペーパー（第1.1版）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“判断”、<br><span class="hl">AIで速く</span>しませんか？</h2>
+    <p>投資も経営も、勝負を分けるのは「調べる速さ」と「疑う習慣」。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事は情報提供を目的としたもので、投資助言・勧誘ではありません。制度・料金・各サービスの内容は改正や提供元の更新により変わります。最新は各公式サイトでご確認ください。投資は自己責任・元本割れのリスクがあります。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

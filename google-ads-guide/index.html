@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×Google広告 実践運用マニュアル｜初心者でも失敗しない始め方とプロのセオリー ― UGOKU AI</title>
+<meta name="description" content="Google広告をこれから始める方へ。プロが使うセオリーを、初心者でも今日から実行できる手順に分解。CV設計・キーワード・広告文・入札・P-MAX／AI Maxの使い分け・改善サイクルまで、コピペで使えるAIプロンプト付きで解説。自律型AIエージェント時代の可能性と注意点も、案内役のうごく君がやさしくご案内します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×Google広告 実践運用マニュアル｜初心者でも失敗しない始め方とプロのセオリー">
+<meta property="og:description" content="「広告費を溶かす」を、今日で終わりにする。プロのセオリーを初心者向けに分解した実践マニュアル。コピペプロンプト付き。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/google-ads-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/google-ads-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×Google広告 実践運用マニュアル ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×Google広告 実践運用マニュアル｜初心者でも失敗しない始め方とプロのセオリー">
+<meta name="twitter:description" content="CV設計・キーワード・広告文・入札・P-MAX／AI Maxの使い分けまで。コピペプロンプト付きの実践マニュアル。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/google-ads-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×Google広告 実践運用マニュアル</span>
+      <h1>「広告費、溶かした」を、<br><span class="hl">設計</span>で終わりにする。</h1>
+      <p class="lead">Google広告は「出す」より<b>「順番」が9割</b>。プロが必ず踏む段取りを、はじめての方でも今日から実行できる形に分解しました。AIに任せる部分と、人が握る部分も、はっきりさせます。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。初心者が一番つまずく「順番の間違い」を、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「Google広告って、結局いくらかかるの？」「代理店に丸投げしかないの？」——大丈夫です。この記事を上から順にやるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>「1件の問い合わせに、いくらまで払えるか」を数字で決められる</li>
+          <li>検索広告・P-MAX・デマンドジェネレーションの<b>使い分け</b>が分かる</li>
+          <li>キーワード・広告文・除外設定を、AIに下書きさせられる</li>
+          <li>毎週どこを見て、どこを触ればいいかが分かる（＝勘で触らなくなる）</li>
+          <li>自律型AIに任せていい範囲と、人が絶対に握るべき範囲が分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、3つの「役割の違い」を掴もう</h2>
+    <p class="sec-sub">Google広告はひとつの製品ではなく、目的の違う道具の集まりです。ここを混ぜると、必ず費用が溶けます。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🔍</div>
+        <h4><span>検索広告</span> ＝ 今すぐ客を拾う</h4>
+        <p>「前橋 焼肉 予約」のように、もう欲しくて探している人に出す。最も成果に直結しやすく、<b>最初に手をつけるべき場所</b>です。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">🎯</div>
+        <h4><span>P-MAX</span> ＝ 面を広げて掘り起こす</h4>
+        <p>検索・YouTube・ディスプレイ・Discover・Gmail・マップまで、1つのキャンペーンでAIが横断配信。取りこぼしを拾う役。</p>
+      </div>
+      <div class="role" style="--accent:var(--youtube);">
+        <div class="ic">📣</div>
+        <h4><span>デマンドジェネレーション</span> ＝ 知られる・思い出される</h4>
+        <p>YouTube・Discover・Gmailで、まだ探していない人に「そういえば」を作る。指名検索を増やす、種まきの役。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">PRACTICAL MANUAL</div>
+    <h2 class="sec-title">AI時代のGoogle広告、<br>プロが踏む「7つの順番」</h2>
+    <p class="sec-sub">広告運用の会社が実際に使っているセオリーを、専門用語を減らして順番どおりに並べました。上から順に、飛ばさずどうぞ。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 この記事の結論</span>
+      <p>広告の成果を決める最大の分岐点は、クリエイティブでも入札でもなく<strong>「何をコンバージョン（成果）として数えるか」</strong>です。ここが曖昧なままAIに任せると、AIは<strong>間違ったゴールに向かって全力で走ります</strong>。逆にここさえ正しければ、AIは驚くほど働きます。</p>
+    </div>
+
+    <h3 class="blk">始める前に。守るべき、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>「1件いくらまで払えるか」を先に決める</h4>
+        <p>これを決めずに始めるのは、行き先を言わずにタクシーに乗るのと同じ。<b>目標CPA（1件あたりの獲得単価）</b>は、STEP2で計算式どおりに出せます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>触るのは週1回、変えるのは1か所だけ</h4>
+        <p>AIの自動入札は<b>学習</b>で動きます。毎日いじると学習がリセットされ、いつまでも安定しません。「我慢」も立派な運用スキルです。</p>
+      </div>
+    </div>
+
+    <!-- ══ STEP 1 ══ -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip">ACCOUNT &amp; MEASUREMENT</span>
+          <div class="st-ttl">土台をつくる（計測なくして運用なし）</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最初にやるのは広告作りではありません。<b>「成果を数えられる状態」</b>を作ることです。ここを飛ばした運用は、目隠しで的当てをするのと同じです。</p>
+        <a class="link-btn" href="https://ads.google.com/" target="_blank" rel="noopener">Google広告を開く <span class="arw">↗</span></a>
+        <p class="link-note">Googleアカウント（Gmail）でそのままログインできます。まだの方は<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">こちらの入門ガイド</a>から。</p>
+
+        <div class="mini-h">やること（この順番で）</div>
+        <ol class="mini">
+          <li>Google広告アカウントを開設（「エキスパートモード」に切り替える。かんたんモードのままだと設定できる項目が少なくなります）</li>
+          <li>お支払い情報を登録し、<b>アカウント予算上限</b>を設定（暴走の保険）</li>
+          <li><a href="https://analytics.google.com/" target="_blank" rel="noopener">GA4</a>を導入し、Google広告とリンクする</li>
+          <li><b>コンバージョン計測</b>を設定：フォーム送信・電話タップ・LINE登録・予約完了・購入</li>
+          <li><b>拡張コンバージョン</b>をオンにする（計測の取りこぼしを減らす、2026年の必須設定）</li>
+          <li>すべてに「値（円）」を入れる。フォーム=5,000円、電話=8,000円…のように仮でOK</li>
+        </ol>
+
+        <div class="warn">
+          <div class="wt">⚠️ 一番多い失敗</div>
+          「とりあえずクリックが増えたからOK」。クリックは成果ではありません。<b>コンバージョンが計測されていない状態で自動入札を使うと、AIは「クリックしそうな人」に最適化してしまい、買わない人ばかりを集めます。</b>
+        </div>
+
+        <div class="mini-h">AIの使いどころ</div>
+        <p class="desc" style="margin-top:0;">「何をコンバージョンにすべきか」自体が、実は一番迷うところ。AIに 事業の構造を渡して整理させます。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コンバージョン設計を相談する</span><button class="cb-btn">コピー</button></div>
+<pre>あなたはGoogle広告のプロ運用者です。
+以下の事業について、Google広告で計測すべきコンバージョンを
+「主コンバージョン（入札の最適化対象）」と
+「補助コンバージョン（観測のみ）」に分けて提案してください。
+それぞれに、円建ての推定価値と、その根拠も添えてください。
+
+【事業】<span class="fill">〔業種・商品・平均単価・成約率・リピート回数〕</span>
+【今あるお問い合わせ経路】<span class="fill">〔電話／フォーム／LINE／来店 など〕</span></pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>主コンバージョンは<b>1〜2個に絞る</b>のがコツ。あれもこれも「成果」にすると、AIは一番簡単なもの（＝安いけど売上にならない資料請求など）ばかり集めてくるよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 2 ══ -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip">KPI DESIGN</span>
+          <div class="st-ttl">「いくらまで払えるか」を逆算する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">広告費は「余ったお金」ではなく<b>「仕入れ」</b>です。1件のお客様を仕入れる上限価格を決めると、運用の判断がほぼ自動化されます。</p>
+
+        <div class="keystone" style="margin:14px 0 18px;">
+          <span class="kl">🧮 目標CPAの計算式</span>
+          <p style="font-size:15.5px;">① 顧客1人の粗利 ＝ 平均単価 × 粗利率 × リピート回数<br>
+          ② <strong>許容CPA ＝ 顧客1人の粗利 × 広告に回してよい割合（目安30〜50%）</strong><br>
+          ③ 目標CPA ＝ 許容CPA ×（安全率 0.7〜0.8）</p>
+        </div>
+
+        <div class="mini-h">具体例：飲食店（客単価4,000円）で計算すると</div>
+        <ul class="use">
+          <li><b>①</b> 4,000円 × 粗利率60% × 年3回来店 ＝ <b>7,200円</b>（顧客1人の年間粗利）</li>
+          <li><b>②</b> 7,200円 × 40% ＝ <b>2,880円</b>（許容CPA）</li>
+          <li><b>③</b> 2,880円 × 0.75 ＝ <b>約2,100円</b>（目標CPA＝新規1人にかけてよい広告費）</li>
+          <li><b>逆算</b>：月10人ほしい → 月2.1万円。CVRが3%なら、必要クリックは約330。CPCが80円なら月2.6万円が現実的な予算</li>
+        </ul>
+
+        <div class="mini-h">最低予算の考え方</div>
+        <p class="desc" style="margin-top:0;">自動入札は<b>コンバージョン数が学習の燃料</b>です。月のコンバージョンが数件しかないと、AIは学習できません。目安として<b>「目標CPA × 30件 ÷ 月」＝ 理想の月予算</b>。届かない場合は、地域を絞る・キーワードを指名と今すぐ客だけにする・コンバージョン地点を手前（電話タップなど）にずらす、で調整します。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 予算とKPIを一気に逆算する</span><button class="cb-btn">コピー</button></div>
+<pre>あなたはGoogle広告のプロ運用者です。以下の条件で、
+①目標CPA ②必要コンバージョン数 ③必要クリック数 ④推奨月予算
+⑤その予算で学習が回るかの判定 を、計算過程つきで出してください。
+最後に「予算が足りない場合の現実的な打ち手」を3つ挙げてください。
+
+【平均単価】<span class="fill">〔円〕</span> 【粗利率】<span class="fill">〔％〕</span> 【年間リピート】<span class="fill">〔回〕</span>
+【想定CVR】<span class="fill">〔％／不明なら業種平均で仮置き〕</span>
+【想定CPC】<span class="fill">〔円／不明ならキーワードプランナーの値〕</span>
+【月に獲得したい件数】<span class="fill">〔件〕</span></pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「予算いくらがいいですか？」の答えは、業種ではなく<b>この計算式</b>にあるよ。数字が出せない項目は、まず仮の数字でOK。走らせてから直せばいいんだ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 3 ══ -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip">KEYWORD &amp; INTENT</span>
+          <div class="st-ttl">キーワードは「検索意図」で4つに分ける</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">同じ「焼肉」でも、探している人の温度はまるで違います。プロは<b>キーワードそのものより、その裏の意図</b>を見ています。</p>
+
+        <div class="mini-h">検索意図の4分類（温度が高い順）</div>
+        <ul class="use">
+          <li><b>① 指名</b>：「ホルモンしま田 前橋」——すでに知っている。<b>最優先で確保</b>。安く、最も成約する</li>
+          <li><b>② 今すぐ</b>：「前橋 焼肉 個室 予約」——地域＋条件＋行動語。<b>予算の主戦場</b></li>
+          <li><b>③ 比較</b>：「焼肉 ランチ 安い 群馬」——迷い中。差別化の広告文が効く</li>
+          <li><b>④ 情報</b>：「ホルモン 種類 違い」——まだ買わない。広告よりコンテンツ向き</li>
+        </ul>
+
+        <div class="mini-h">マッチタイプの現実的な使い方</div>
+        <ul class="use">
+          <li><b>完全一致</b>：勝ち筋が分かっているキーワード。予算を守りたいならここから</li>
+          <li><b>フレーズ一致</b>：拡張と制御のバランス型。中心はここでOK</li>
+          <li><b>インテントマッチ（部分一致）</b>：発見力は最大。ただし<b>自動入札＋除外キーワードとセットが必須</b>。単体で使うと費用が飛びます</li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ 開始初日に必ずやる「除外キーワード」</div>
+          <b>無料／求人／バイト／中古／自作／やり方／評判 悪い／苦情／2ch／死亡／方法／とは</b> ——このあたりは多くの業種で無駄クリックの温床。さらに<b>自社と関係ない同名商品・他社名</b>も忘れずに。除外は「守りの設定」ではなく、AIへの<b>教育データ</b>です。
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 キーワード案を意図別に生成する</span><button class="cb-btn">コピー</button></div>
+<pre>あなたはGoogle広告のプロ運用者です。
+以下の事業について、キーワード案を
+「指名／今すぐ／比較／情報」の4分類に分け、各10個ずつ提案してください。
+各キーワードに、推奨マッチタイプと、狙う理由を一行で添えてください。
+最後に、この業種で最初に登録すべき除外キーワードを30個、
+「無駄クリック系／求人系／DIY系／ネガティブ系」に分類して出してください。
+
+【事業】<span class="fill">〔業種・商品・エリア・強み〕</span>
+【避けたい客層】<span class="fill">〔例：価格だけで選ぶ客、遠方すぎる客 など〕</span></pre>
+        </div>
+
+        <p class="link-note">※出てきた案は、必ず<a href="https://ads.google.com/intl/ja_jp/home/tools/keyword-planner/" target="_blank" rel="noopener">キーワードプランナー</a>で検索ボリュームとCPC目安を確認してから登録してください。AIは「実際に検索されているか」までは保証しません。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>配信を始めたら、毎週<b>「検索語句レポート」</b>を見よう。実際にどんな言葉で表示されたかが分かる、運用でいちばん価値のある画面だよ。ここから除外と新キーワードが生まれるんだ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 4 ══ -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip">CREATIVE &amp; ASSETS</span>
+          <div class="st-ttl">広告文とアセットは「量 × 差別化」</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">今のGoogle広告は、あなたが渡した素材をAIが<b>組み合わせて配信</b>します。つまり素材が足りないとAIは実力を出せず、素材が平凡だとAIも平凡な広告しか作れません。</p>
+
+        <div class="mini-h">2026年時点の「素材の目安」</div>
+        <ul class="use">
+          <li><b>レスポンシブ検索広告</b>：見出し15本（うち3本はキーワード完全一致）／説明文4本。「固定」は指名・法令表記だけに使う</li>
+          <li><b>P-MAX 1アセットグループあたり</b>：画像15〜20点／動画3〜5本／見出し15／説明文5／ロゴ2〜5点。これを3〜4パターン用意できると学習が安定します</li>
+          <li><b>動画は必須</b>：入れないとGoogleが自動生成した簡易動画が配信されます。自作の縦型15秒があるだけで差がつきます</li>
+        </ul>
+
+        <div class="mini-h">初心者でも書ける「効く広告文」の型</div>
+        <ul class="use">
+          <li><b>数字</b>：創業○年／○名以上／最短○日／○%オフ（根拠が示せるものだけ）</li>
+          <li><b>固有性</b>：「その日の朝にさばいた」「群馬県内6店舗」など、真似できない事実</li>
+          <li><b>不安の先回り</b>：「見積無料」「キャンセル料なし」「駐車場20台」</li>
+          <li><b>行動</b>：「本日中の予約可」「24時間ネット受付」</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 見出し15本＋説明文4本を生成する</span><button class="cb-btn">コピー</button></div>
+<pre>あなたはGoogle広告のプロのコピーライターです。
+レスポンシブ検索広告用に、見出し15本（各全角15文字以内）と
+説明文4本（各全角45文字以内）を作成してください。
+
+条件：
+・見出しのうち3本は、指定キーワードを完全に含める
+・15本は「数字型／固有性型／不安解消型／行動喚起型」に散らす
+・誇大表現（No.1・最安・絶対・完全）は根拠がないので使わない
+・文字数を必ず数え、各案の末尾に(全角○文字)と表記する
+
+【キーワード】<span class="fill">〔主要キーワード〕</span>
+【商品／サービス】<span class="fill">〔内容・価格・特徴〕</span>
+【他社にない事実】<span class="fill">〔真似できない強み〕</span>
+【ターゲット】<span class="fill">〔誰の、どんな困りごとか〕</span></pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ AIの文章をそのまま入稿しない</div>
+          AIは<b>もっともらしく事実を作ります</b>（ハルシネーション）。「業界No.1」「日本初」などの最上級表現は<b>景品表示法</b>、健康・美容・医療系の効果表現は<b>薬機法</b>に触れる可能性があります。数字・実績・効能は、必ず人が裏取りしてから入稿を。<a href="https://support.google.com/adspolicy/" target="_blank" rel="noopener">Google広告ポリシーヘルプ</a>も一度目を通しておきましょう。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>画像は<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/">Canva</a>、動画は<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/">AI動画編集</a>で量産できるよ。「素材が作れないから広告が回らない」は、もう理由にならない時代なんだ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 5 ══ -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip">BIDDING</span>
+          <div class="st-ttl">入札は「階段」で上がる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いきなり目標CPAを設定して失敗する人がとても多い。AIには<b>学習させるデータが要る</b>ので、順番に階段を上ります。</p>
+
+        <div class="mini-h">入札戦略の上げ方（この順番を守る）</div>
+        <ol class="mini">
+          <li><b>クリック数の最大化（上限CPCあり）</b>でスタート。まずデータを集める期間</li>
+          <li>コンバージョンが<b>月30件</b>ほど貯まったら → <b>コンバージョン数の最大化</b>へ</li>
+          <li>CPAが安定してきたら → <b>目標CPA（tCPA）</b>を、実績CPAの<b>±10〜20%以内</b>で設定</li>
+          <li>ECなど売上金額が取れるなら → <b>目標ROAS（tROAS）</b>へ。ROAS目標は実績の90%程度から</li>
+        </ol>
+
+        <div class="warn">
+          <div class="wt">⚠️ 学習期間は「触らない」</div>
+          入札戦略や目標値を変えると、<b>約1〜2週間の学習期間</b>に入り、成果が一時的に乱れます。この間に慌てて再変更すると、永遠に学習が終わりません。<b>変更は週1回・1か所まで</b>。目標CPAを下げるときも、一度に20%以上下げないこと。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>成果が出ないとき、入札をいじりたくなるよね。でも原因の多くは<b>計測・キーワード・LP</b>のどれか。入札は最後に触る場所だと覚えておこう。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ STEP 6 ══ -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip">CAMPAIGN MIX ／ AI MAX</span>
+          <div class="st-ttl">検索・P-MAX・AI Maxをどう組むか</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">2026年のGoogle広告は、<b>P-MAXを主軸に、検索キャンペーン（AI Max）で高意図クエリを補完する</b>構成が定番になりました。ディスプレイや動画を単体で回す比率は下がり、多くがP-MAXに吸収されています。</p>
+
+        <div class="mini-h">予算規模別・おすすめの組み方</div>
+        <ul class="use">
+          <li><b>月5万円未満</b>：検索広告のみ。指名＋今すぐ客キーワードに集中。P-MAXはデータ不足で回りません</li>
+          <li><b>月10〜30万円</b>：検索（指名／一般で分割）＋P-MAX 1本。予算比は検索6：P-MAX4から</li>
+          <li><b>月30万円〜</b>：検索＋P-MAX＋デマンドジェネレーション。指名検索の伸びで種まきの効果を測る</li>
+        </ul>
+
+        <div class="mini-h">AI Max ＝ 検索広告のAI拡張パッケージ</div>
+        <p class="desc" style="margin-top:0;">AI Maxは、検索キャンペーンに<b>クエリ拡張・広告文の動的生成・遷移先URLの自動最適化</b>などを組み込む機能群です。P-MAXが「全チャネル横断」なのに対し、AI Maxは<b>検索ネットワークに特化</b>して獲得を伸ばします。Googleは、同等のCPA／ROAS水準で平均14%程度（入札制限がない場合は27%）のコンバージョン増を示しています。</p>
+
+        <div class="warn">
+          <div class="wt">📅 移行スケジュール（2026年7月時点）</div>
+          <b>2026年9月</b>：自動作成アセット（ACA）と、キャンペーン単位のインテントマッチ設定が AI Max へ自動移行。<br>
+          <b>2027年1月</b>：新規の動的検索広告（DSA）キャンペーン作成が終了。<br>
+          <b>2027年2月</b>：残存するDSAキャンペーンが自動アップグレード。<br>
+          → つまり<b>「知らないうちに設定が変わる」</b>状態。今のうちに対象キャンペーンの棚卸しと、移行前パフォーマンスの記録（スクショ・CSV）を残しておくのが実務上いちばん重要です。
+        </div>
+
+        <div class="mini-h">AI Max・P-MAXを「制御する」ための3つのガードレール</div>
+        <ul class="use">
+          <li><b>除外キーワード</b>：P-MAXでもキャンペーン単位で設定できるようになりました。ブランド除外リストも併用</li>
+          <li><b>チャネル別レポート</b>：P-MAXの配信面（検索／ディスプレイ／YouTube／Gmail／Discover／マップ）別の成果を確認し、偏りを把握する</li>
+          <li><b>最終ページURLの拡張</b>：オフにするか、除外URLを指定。意図しないページに飛ばされる事故を防ぐ</li>
+        </ul>
+
+        <p class="link-note">最新の仕様変更は<a href="https://blog.google/products/ads-commerce/ai-max-new-features/" target="_blank" rel="noopener">Google公式ブログ（AI Max）↗</a>、および<a href="https://business.google.com/jp/accelerate/announcements/pre-gmljp-us-highlight-1/" target="_blank" rel="noopener">Google Marketing Live の発表ページ↗</a>で確認できます。</p>
+      </div>
+    </div>
+
+    <!-- ══ STEP 7 ══ -->
+    <div class="step" style="--accent:var(--pine-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>7</b></div>
+        <div>
+          <span class="st-chip">PDCA</span>
+          <div class="st-ttl">毎週15分の「見る場所」を固定する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">運用とは、思いつきで触ることではなく<b>決まった場所を、決まった頻度で見る</b>ことです。この7項目だけ固定すれば、初心者でも回せます。</p>
+
+        <div class="split">
+          <div class="col work">
+            <div class="ch"><span class="badge-mini">毎週</span>15分でやること</div>
+            <ul>
+              <li>検索語句レポート → 無駄な語句を除外に追加</li>
+              <li>コンバージョン数とCPAを、先週と比較</li>
+              <li>広告文アセットの評価（「低」を差し替え）</li>
+              <li>予算の消化ペースを確認</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch"><span class="badge-mini">毎月</span>30分でやること</div>
+            <ul>
+              <li>目標CPAの見直し（実績±10〜20%で調整）</li>
+              <li>キャンペーン間の予算配分を組み替え</li>
+              <li>LP（着地ページ）のCVRを確認・改善</li>
+              <li>電話・来店など、オフライン成果の突合</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 週次レポートをAIに読ませて診断する</span><button class="cb-btn">コピー</button></div>
+<pre>あなたはGoogle広告のプロ運用者です。
+添付（または下記）の実績データを読み、次の形式で診断してください。
+
+1. 今週の結論（3行以内）
+2. 悪化している指標と、その最も可能性が高い原因（根拠つき）
+3. 今週やるべき施策を、優先度順に3つだけ。各施策に
+   「触る場所・具体的な変更内容・見るべき指標・判定は何日後か」を明記
+4. 今週は「あえて触らない方がよいもの」とその理由
+※学習期間中の変更リスクを必ず考慮すること。
+
+【データ】<span class="fill">〔管理画面のCSV／表を貼り付け〕</span>
+【目標CPA】<span class="fill">〔円〕</span> 【月予算】<span class="fill">〔円〕</span></pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>数字を読むのが苦手でも大丈夫。管理画面のCSVをそのまま貼って「素人にも分かるように、今週やることを3つだけ教えて」と頼めば、AIが翻訳してくれるよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ 使い分け表 ══ -->
+    <h3 class="blk">結局、どれを使えばいい？（早見表）</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">「優劣」ではなく「役割の違い」。目的から逆に引いてください。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead>
+            <tr><th>やりたいこと</th><th>検索広告<br>（＋AI Max）</th><th>P-MAX</th><th>デマンドジェネレーション</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>今すぐ客を取りたい</th><td class="win">◎ 最優先</td><td class="mid">○</td><td>△</td></tr>
+            <tr><th>予算が月5万円未満</th><td class="win">◎ ここだけでよい</td><td>×（学習不足）</td><td>×</td></tr>
+            <tr><th>新規顧客を掘り起こす</th><td class="mid">○</td><td class="win">◎ 得意</td><td class="win">◎ 得意</td></tr>
+            <tr><th>EC・商品点数が多い</th><td class="mid">○</td><td class="win">◎ フィード連携</td><td class="mid">○</td></tr>
+            <tr><th>認知・指名検索を増やす</th><td>△</td><td class="mid">○</td><td class="win">◎ 動画が効く</td></tr>
+            <tr><th>運用の手間を減らしたい</th><td class="mid">○</td><td class="win">◎ 自動化最大</td><td class="mid">○</td></tr>
+            <tr><th>配信内容を細かく制御</th><td class="win">◎ 制御しやすい</td><td>△ ガードレール必須</td><td class="mid">○</td></tr>
+            <tr><th>成果の原因を分析したい</th><td class="win">◎ 検索語句が見える</td><td class="mid">○ チャネル別まで</td><td class="mid">○</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 王道の「合わせ技」</h4>
+        <div class="flow">
+          <span class="b">指名検索<br>で守る</span><span class="ar">＋</span>
+          <span class="b">一般検索<br>で刈り取る</span><span class="ar">＋</span>
+          <span class="b">P-MAX<br>で広げる</span><span class="ar">→</span>
+          <span class="b">指名検索が<br>増えたら成功</span>
+        </div>
+        <p style="margin:6px 0 0;font-size:13.8px;color:var(--ink-soft);">上に広げる施策（P-MAX・動画）の効果は、直接のコンバージョンではなく<b>「指名検索数の増加」</b>に表れます。ここを見ずに「P-MAXは効かない」と切ってしまうのが、初心者の典型的な失敗です。</p>
+      </div>
+    </div>
+
+    <!-- ══ 自律型AI ══ -->
+    <h3 class="blk">ここからが本題。<br>「自律型AI」が加わると、何が変わるのか</h3>
+    <p class="sec-sub">2026年、GoogleはGeminiを軸に「AIが自律的に動くエージェント」へ全面的に舵を切りました。入札やアセット調整といった作業から人が解放される一方で、<b>「AIに何を与え、どこで止めるか」という上流の設計</b>が、これまで以上に成果を分けます。</p>
+
+    <div class="formula">
+      <div class="mini-h" style="margin-top:0;">AI活用の「4段階」— いま自社はどこにいる？</div>
+      <ol class="mini">
+        <li><b>レベル0：手作業</b>／全部人がやる。広告文もキーワードも手打ち。多くの中小企業はまだここ</li>
+        <li><b>レベル1：下書きをAIに</b>／広告文・キーワード案・除外案をAIに作らせ、人が選ぶ。<b>今日から誰でもできる領域</b></li>
+        <li><b>レベル2：判断の補助</b>／管理画面のデータをAIに読ませ、「今週やること」を提案させる。人が実行する</li>
+        <li><b>レベル3：自律実行</b>／AIエージェントがAPI経由でデータを取得し、予算配分・入札・除外の変更まで実行。人は<b>承認と監査</b>だけを行う</li>
+      </ol>
+      <p style="font-size:14px;color:var(--ink-soft);margin:12px 0 0;">現実的なゴールは<b>レベル2の完全定着 → レベル3の部分導入</b>です。いきなりレベル3を目指すと、監査体制がないまま暴走します。</p>
+    </div>
+
+    <div class="mini-h" style="margin-top:26px;">自律型AIで「本当に効く」使い方 5つ</div>
+    <ul class="use">
+      <li><b>① 毎朝の異常検知</b>：前日比でCPA・CV・インプレッションを監視し、閾値を超えたらSlackやメールで通知。人が気づく前に止められる</li>
+      <li><b>② 検索語句の自動仕分け</b>：毎週の検索語句を意味で分類し、除外候補・新規キーワード候補・LP改善のヒントに振り分ける。人手だと最も面倒な作業</li>
+      <li><b>③ アセットの継続生成</b>：成果の良い広告文の共通点を分析し、次の15本を生成 → 低評価アセットと差し替えるループを回す</li>
+      <li><b>④ 問い合わせ内容とのひも付け</b>：電話・フォームの内容をAIが要約・分類し、「どのキーワードから来た人が実際に成約したか」を可視化。ここまで来ると精度が跳ね上がります</li>
+      <li><b>⑤ クロスチャネルの整合</b>：Google広告・GBP（Googleビジネスプロフィール）・SNS・LPの訴求を、AIが横断チェックして矛盾を洗い出す</li>
+    </ul>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 自律型AIに渡す「運用ルール書」のたたき台</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは当社のGoogle広告運用エージェントです。
+以下のルールを厳守して、毎週の運用提案と実行案を出してください。
+
+【絶対に守ること】
+・月予算 <span class="fill">〔円〕</span> を超える変更は提案しない
+・目標CPAの変更は1回あたり±20%以内、月2回まで
+・学習期間中（変更から14日以内）のキャンペーンは触らない
+・新規キーワードの追加は1回5個まで、必ず理由と想定CPCを添える
+・広告文に最上級表現・効能効果の断定表現を使わない
+・実行前に必ず人の承認を求める（承認なしの変更は禁止）
+
+【毎週の出力形式】
+1) 数値サマリー 2) 異常の有無 3) 実行提案（最大3件・優先度つき）
+4) 各提案の想定リスクと、失敗した場合の戻し方
+5) 承認が必要な項目のチェックリスト
+
+【今週のデータ】<span class="fill">〔CSVを貼り付け〕</span></pre>
+    </div>
+
+    <div class="mini-h" style="margin-top:24px;">⚠️ 自律型AIの注意点（ここを外すと事故になります）</div>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>予算の上限は「二重」で守る</div><p>AI側のルールだけでなく、Google広告の<b>アカウント予算上限</b>と、支払いカードの利用限度額でも必ず二重に止めます。指示ミス1回の損失が、そのまま実費になります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>「実行」と「提案」を分ける</div><p>最初は必ず<b>提案までで止める</b>設計に。API連携で実行させる場合も、変更ログを残し、いつでも巻き戻せる状態にしてから。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>顧客情報を入れない</div><p>問い合わせ内容をAIに分析させるときは、<b>氏名・電話番号・住所を必ず削除</b>してから。個人情報保護法と、社内ルールの両方を確認しましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>AIの分析結果も検算する</div><p>AIは計算を間違えます。CPAやROASなど<b>意思決定に直結する数字は、必ず管理画面の実数と突合</b>してから信じること。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>短期の数字だけで判断させない</div><p>AIは目の前の指標を最適化します。「今月のCPA」だけを見せると、<b>指名検索の刈り取りに寄って新規が細る</b>という典型的な劣化が起きます。新規比率も一緒に監視対象へ。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>最終責任は人が持つ</div><p>広告表現の法令違反、誤った請求、ブランド毀損——<b>責任はすべて広告主</b>にあります。AIは免罪符になりません。承認プロセスだけは、絶対に自動化しないこと。</p></div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>自律型AIの価値は「人がいらなくなること」じゃなくて、<b>人が判断だけに集中できること</b>。作業を渡して、判断を握る。この線引きが上手な会社が、いちばん伸びているよ。</div>
+    </div>
+
+    <!-- ══ プロンプトの型 ══ -->
+    <h3 class="blk">広告用「効くお願いの型」</h3>
+    <p class="sec-sub">広告のプロンプトは、日常会話より<b>1つ多い</b>です。数字の前提を渡すこと。これだけで精度が段違いになります。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><span class="no">1</span><span class="t"><b>役割を与える</b>例：あなたはGoogle広告のプロ運用者です</span></div>
+        <div class="f-item"><span class="no">2</span><span class="t"><b>数字の前提を渡す</b>例：目標CPA2,100円／月予算15万円／CVR3%</span></div>
+        <div class="f-item"><span class="no">3</span><span class="t"><b>出力の形を指定</b>例：優先度順に3つ・表形式・全角15文字以内</span></div>
+        <div class="f-item"><span class="no">4</span><span class="t"><b>禁止事項を書く</b>例：最上級表現を使わない／推測は「推測」と明記</span></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>「Google広告の広告文を考えて」<br>→ どこにでもある、当たり障りのない文章が並ぶだけ</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>「前橋の焼肉店。目標CPA2,100円。全角15文字以内の見出しを15本。うち3本に『前橋 焼肉』を含め、最上級表現は禁止。各案に文字数を明記して」<br>→ そのまま入稿に近い精度になる</div>
+      </div>
+
+      <div class="copybox" style="margin-top:16px;">
+        <div class="cb-top"><span class="cb-lbl">📋 万能テンプレ（広告版）</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは<span class="fill">〔役割：Google広告のプロ運用者／コピーライター〕</span>です。
+【前提】業種<span class="fill">〔　〕</span>／商圏<span class="fill">〔　〕</span>／目標CPA<span class="fill">〔　〕</span>円／月予算<span class="fill">〔　〕</span>円
+【目的】<span class="fill">〔何を達成したいか〕</span>
+【出力形式】<span class="fill">〔表／箇条書き○個／文字数制限〕</span>
+【禁止】最上級表現、根拠のない数字、断定的な効果効能
+【不明点】前提が足りない場合は、勝手に決めず先に質問してください</pre>
+      </div>
+    </div>
+
+    <!-- ══ 活用アイデア ══ -->
+    <h3 class="blk">仕事と私生活、どちらでも効く「使い方」</h3>
+    <p class="sec-sub">広告運用で身につくのは<b>「検索意図を読む力」と「数字で逆算する力」</b>。これは仕事以外でも、驚くほど応用が効きます。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>お店・会社で（集客）</h4>
+        <ul>
+          <li>指名検索を守る（社名・店名で他社に取られない）</li>
+          <li>雨の日・平日限定のキャンペーン配信</li>
+          <li>求人広告として、採用エリアを絞って配信</li>
+          <li>GBP（Googleビジネスプロフィール）と連動した来店計測</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで（分析）</h4>
+        <ul>
+          <li>検索語句レポートから、顧客の本音を読み取る</li>
+          <li>広告文のA/Bテスト結果を、そのまま営業トークに転用</li>
+          <li>競合の広告文を集めて、訴求の傾向を把握</li>
+          <li>LPの改善点を、AIに指摘させて優先順位づけ</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで（考え方の応用）</h4>
+        <ul>
+          <li>「検索されている言葉」でフリマの商品名をつける</li>
+          <li>地域イベント・サークルの集客を、少額広告で試す</li>
+          <li>買い物の判断を「元が取れるか」で逆算する癖がつく</li>
+          <li>SNS投稿のタイトルを、検索意図の4分類で考える</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・キャリアで</h4>
+        <ul>
+          <li>Google広告認定資格（無料）で体系的に学ぶ</li>
+          <li>数字で説明する力＝どの職種でも評価される武器</li>
+          <li>副業・独立時に、自分で集客できる状態を作る</li>
+          <li>AIへの指示出しの練習として、最良の教材になる</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ══ よくある失敗 ══ -->
+    <h3 class="blk">初心者がやりがちな失敗と、対処法</h3>
+    <div class="compact">
+      <details open><summary>クリックは来るのに、問い合わせがゼロ</summary><div class="ans">原因の9割は<b>着地ページ（LP）</b>です。広告文とページの内容がズレていないか、スマホで電話ボタンがすぐ押せるか、フォームの入力項目が多すぎないかを確認しましょう。広告を止める前に、LPを直すほうが早く効きます。</div></details>
+      <details><summary>予算がすぐ溶ける／CPCが異常に高い</summary><div class="ans">インテントマッチ（部分一致）を除外設定なしで使っているケースが典型です。まず検索語句レポートで無駄クリックを特定し、除外を追加。同時にマッチタイプをフレーズ一致に絞り、地域と配信時間帯も限定してください。</div></details>
+      <details><summary>成果が安定しないので毎日設定を変えている</summary><div class="ans">それが原因です。自動入札は変更のたびに<b>1〜2週間の学習期間</b>に入ります。判断は最低7日、できれば14日のデータで。日次の上下は「ノイズ」だと割り切りましょう。</div></details>
+      <details><summary>P-MAXを入れたら、検索広告の成果が落ちた</summary><div class="ans">P-MAXは指名検索も拾ってしまうため、既存の検索広告と<b>食い合い（カニバリ）</b>が起きます。P-MAXにブランド除外リストを設定し、指名キーワードは検索キャンペーン側で確保するのが定石です。</div></details>
+      <details><summary>「アカウントを無料で診断します」という電話がよく来る</summary><div class="ans">Google公式を名乗る営業電話には注意を。<b>アカウントの管理者権限を安易に渡さない</b>こと。渡す場合も「管理者」ではなく「標準」「読み取り専用」権限から始め、契約終了時には必ず解除してください。</div></details>
+      <details><summary>結局、代理店に頼むべき？自社でやるべき？</summary><div class="ans">月予算30万円未満なら、手数料（一般に20%前後）を考えると自社運用のほうが合理的なことが多いです。ただし<b>初期設計だけプロに依頼し、日々の運用は自社＋AI</b>という折衷が、いま最もコストパフォーマンスが高い形です。</div></details>
+    </div>
+
+    <!-- ══ 安全に ══ -->
+    <h3 class="blk">安全に、損をしないために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>アカウントは必ず自社名義で</div><p>代理店に作らせたアカウントは、契約終了時にデータごと失うことがあります。<b>自社のGoogleアカウントで開設し、代理店には権限を付与する形</b>にしましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>予算上限を必ず設定</div><p>アカウント予算上限、キャンペーンの1日予算、支払い方法の限度額。設定ミスによる高額請求は実際に起こります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>広告表現は法令を確認</div><p>景品表示法（優良誤認・有利誤認）、薬機法、宅建業法など。<b>AIが書いた文章にも広告主が責任を負います。</b></p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>変更履歴を残す</div><p>管理画面の「変更履歴」を活用。何をいつ変えたか分からないと、成果が動いた原因も分かりません。</p></div>
+    </div>
+
+    <!-- ══ FAQ ══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>いくらから始められますか？</summary><div class="ans">技術的には1日数百円から可能ですが、<b>学習が回る現実的な下限は月3〜5万円</b>です。それ未満で始めるなら、指名キーワードと「地域＋今すぐ客」キーワードだけに絞り、無理に自動入札へ移行しないこと。まずは3か月続けられる金額を設定しましょう。</div></details>
+      <details><summary>効果が出るまで、どれくらいかかりますか？</summary><div class="ans">目安は<b>初動2週間・判断は1〜2か月</b>。最初の2週間は学習期間で数字が乱れます。1か月目でキーワードと除外が整い、2か月目からCPAが安定してくるのが一般的な流れです。1週間で「効果がない」と止めるのが、最ももったいない判断です。</div></details>
+      <details><summary>ChatGPTやClaudeでも運用できますか？Geminiのほうがいい？</summary><div class="ans">どれでも十分に使えます。広告文やキーワードの<b>案出し・分類・レポート読解</b>はどのAIも得意です。Google広告の管理画面やスプレッドシートとの連携まで視野に入れるならGemini、長い資料や規約の読み込みならClaude、画像生成も含む幅広い作業ならChatGPT——という使い分けが現実的です。<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">3つの始め方はこちら</a>。</div></details>
+      <details><summary>AI Maxは、オンにしたほうがいいですか？</summary><div class="ans">検索キャンペーンで<b>コンバージョンが月30件以上あり、除外キーワードの管理ができている</b>なら試す価値があります。逆に、計測が不十分・除外を放置しているアカウントでオンにすると、拡張された分だけ無駄が増えます。順番としては「計測 → 除外 → 自動入札 → AI Max」です。</div></details>
+      <details><summary>SEOとGoogle広告、どちらを優先すべき？</summary><div class="ans">スピードが必要なら広告、資産を作るならSEO——が原則です。中小企業の現実解は<b>「広告で今日の売上を作りながら、広告のデータ（検索語句・成約したキーワード）をSEOとコンテンツに転用する」</b>という併走。広告は、最速で顧客のニーズを教えてくれる調査ツールでもあります。</div></details>
+      <details><summary>AIに任せたら、運用者はいらなくなりますか？</summary><div class="ans">作業は減りますが、判断は増えます。2026年のGoogleの方向性は「日々の運用と実行の複雑さはAIが引き受け、人は本質的な仕事に集中する」というもの。つまり<b>何を成果と定義し、どんなデータをAIに与え、どこで止めるか</b>——この設計こそが、これからの運用者の仕事です。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/meo-guide/"><span class="r-ic">🗺️</span><span><span class="r-k">🔁 次に読む（シリーズ周回）</span><span class="r-t">MEOって何？すぐにできるMEO対策10選<small>／ 広告と両輪。地図で選ばれる会社になる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/pr-ad-guide/"><span class="r-ic">📰</span><span><span class="r-k">対になる記事</span><span class="r-t">AI×広報・広告 ―「発信、でも何を？」<small>／ 広告費をかけずに知られる方法</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/sns-marketing/"><span class="r-ic">📣</span><span><span class="r-k">あわせて読む</span><span class="r-t">SNSマーケって何？すぐにできる10選<small>／ 広告×SNSで指名検索を増やす</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まず読む（シリーズ①）</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで YouTube・ChatGPT・Claude</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">広告バナーを作る</span><span class="r-t">Canvaって何？活かし方10選<small>／ 画像アセットを自分で量産する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">動画アセットを作る</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ P-MAX・YouTube用の縦型動画を内製する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/finance-guide/"><span class="r-ic">🧾</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×経理・財務 入門マニュアル<small>／ 広告費を「投資」として管理する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://ads.google.com/" target="_blank" rel="noopener"><span class="r-ic">🔵</span><span><span class="r-k">公式</span><span class="r-t">Google 広告<small>／ アカウント開設はこちら</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://support.google.com/google-ads/" target="_blank" rel="noopener"><span class="r-ic">📘</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">Google 広告 ヘルプセンター<small>／ 設定手順・仕様の一次情報</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://support.google.com/adspolicy/" target="_blank" rel="noopener"><span class="r-ic">⚖️</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">Google 広告ポリシー<small>／ 出稿前に必ず確認</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://blog.google/products/ads-commerce/ai-max-new-features/" target="_blank" rel="noopener"><span class="r-ic">🤖</span><span><span class="r-k">公式ブログ</span><span class="r-t">AI Max の最新アップデート<small>／ Google Ads &amp; Commerce（英語）</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>広告も、事務も。<br>その“面倒”、<span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「設計が正しいか、誰かに見てほしい」——そんな方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※Google広告の仕様・機能名・移行スケジュールは、提供元の更新により変わることがあります。本記事は2026年7月時点の情報です。最新の内容は必ず公式ヘルプでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

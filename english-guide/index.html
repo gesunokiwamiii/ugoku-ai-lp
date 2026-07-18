@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×英会話 習得までの活用術10選｜スマホ1台で今日から話せる、初心者のためのAI英会話マニュアル ― UGOKU AI</title>
+<meta name="description" content="「英語、いつか話せたら」を今日から動かす。英会話教育のセオリーに沿って、AI（ChatGPT音声・ELSA・Speak・Claude）を使った習得法を初心者向けに10ステップで解説。仕事とプライベートの活かし方、コピペで使えるプロンプト、各項目の注意点、そして自立型AIが加わるとどう変わるかまで、案内役のうごく君がやさしく解説します。">
+
+<!-- ▼ 公開前に設定：本ページを置く実際のURL（og-image.pngも同じ場所に） -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×英会話 習得までの活用術10選｜スマホ1台で今日から話せる ― UGOKU AI">
+<meta property="og:description" content="話す量が10倍に。英会話のプロのセオリー×AIで、恥ずかしさゼロ・24時間の練習相手。初心者のための活用術10選を、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/english-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/english-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×英会話 習得までの活用術10選 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×英会話 習得までの活用術10選｜スマホ1台で今日から ― UGOKU AI">
+<meta name="twitter:description" content="話す量が10倍に。英会話のプロのセオリー×AIで、恥ずかしさゼロ・24時間の練習相手。活用術10選を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/english-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×英会話 習得までの活用術10選</span>
+      <h1>「英語、いつか話せたら」を、<span class="hl">今日から動かす</span>。</h1>
+      <p class="lead">むずかしい教材も、高い月謝もナシ。<b>スマホ1台とAI</b>があれば、恥ずかしさゼロで24時間、英語を話す相手が手に入ります。英会話上達の最大の敵は「話さないこと」。それを消すのがAIです。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントと注意点を、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">活用術を読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>はじめまして、うごく君です。「英語は学生のとき以来…」でも大丈夫。この記事を上から順に進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>スマホのAIを相手に、今日から英語を「声に出して」練習できる</li>
+          <li>発音・単語・会話・添削を、目的ごとに正しく使い分けられる</li>
+          <li>コピペで使える「英語がのびるお願いの型（プロンプト）」がわかる</li>
+          <li>三日坊主にならない「続く仕組み」を、AIに任せられる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、AI英会話「3つの入口」を掴もう</h2>
+    <p class="sec-sub">ぜんぶ同じ「AI」ではありません。英会話には、役割の違う3タイプがあります。まずはここだけ。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🗣️</div>
+        <h4>音声AI<br><span>＝ 話す相手</span></h4>
+        <p>ChatGPTの音声モードやGemini Live。日本語もOK、恥ずかしさゼロで無限にフリートーク。迷ったらまずここ。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🎯</div>
+        <h4>発音特化AI<br><span>＝ 直す相手</span></h4>
+        <p>ELSAやSpeakなど専用アプリ。「R/L」など音のズレを音素レベルで採点。通じる発音に矯正する専門家役。</p>
+      </div>
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">📝</div>
+        <h4>テキストAI<br><span>＝ 整える相手</span></h4>
+        <p>Claude・ChatGPT。英文メールの添削、単語帳づくり、教材の要約が得意。「なぜ？」を落ち着いて解説。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">HOW TO USE AI × ENGLISH</div>
+    <h2 class="sec-title">AIで英会話を習得する、<br>10の活用術</h2>
+    <p class="sec-sub">英会話教育の王道セオリーに沿って、初心者がムリなく始められる順番で並べました。各項目に「はじめ方・コピペ例・仕事/私生活の活かし方・注意点・自立型AIならどうなるか」まで載せています。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>英会話がのびる条件は、たった2つ。<strong>①たくさん英語を浴びる（インプット）</strong>と<strong>②たくさん口に出す（アウトプット）</strong>です。AIは、この両方を「一人で・無限に・無料に近いコストで」回せる相棒。教材選びより、まず<strong>今日5分、声に出すこと</strong>が最大のスタートです。</p>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>完璧を捨てて、間違えたまま話す</h4>
+        <p>文法の正解を待つより、<b>まず口に出す</b>。AI相手なら間違えても誰も見ていません。直しは後からAIがやってくれます。「話さないこと」こそ、上達を止める一番の原因です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>毎日5分を、同じ時間に</h4>
+        <p>週1回60分より、<b>毎日5分</b>のほうが定着します。歯みがきの後・通勤中など「行動とセット」にすると続きます。続ける仕組みは活用術10でAIに任せましょう。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>1</b></div><div><span class="st-chip">SPEAKING PARTNER</span><div class="st-ttl">音声AIと「毎日5分の壁打ち」</div></div></div>
+      <div class="step-body">
+        <p class="desc">まずはこれ。ChatGPTの音声モードやGemini Liveは、日本語まじりでもOKの“無限に付き合ってくれる会話相手”。恥ずかしさゼロで、アウトプット量を一気に増やせます。</p>
+        <a class="link-btn" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT を開く ↗</a>
+        <p class="link-note">スマホアプリの右下ヘッドホン型アイコンが音声モード。無料プランでも試せます。</p>
+        <ol class="mini">
+          <li>ChatGPTアプリを開き、右下の「音声」アイコンをタップ</li>
+          <li>「英語初心者の話し相手になって。ゆっくり短い英語で」と最初に日本語で伝える</li>
+          <li>詰まったら日本語でOK。「今のは英語で何て言う？」と聞き返す</li>
+          <li>5分たったら「今日の会話で直したい表現を3つ教えて」で締める</li>
+        </ol>
+        <div class="mini-h">コピペOK：やさしい会話相手をつくる</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 初心者用の英会話パートナー設定</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは親切な英会話の先生です。私は英語初心者です。
+次のルールで話し相手になってください。
+・中学レベルの短い英語で、ゆっくり話す
+・私が詰まったら、日本語のヒントを1つ出す
+・会話は1往復ずつ。毎回、私が使える言い回しを1つ提案する
+まずは「週末の予定」について、あなたから英語で質問してください。
+テーマ：<span class="fill">〔話したい話題。例：旅行／仕事／今日の出来事〕</span></pre>
+        </div>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 実務のリハーサルに</div>
+            <ul>
+              <li>海外取引先との電話・オンライン会議を事前に予行演習</li>
+              <li>英語プレゼンの想定質問（Q&amp;A）をAIに投げてもらう</li>
+              <li>展示会・接客で使うひとことを、その場面設定で練習</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 旅行・趣味に</div>
+            <ul>
+              <li>旅行前に「空港・ホテル・レストラン」の会話を通し練習</li>
+              <li>好きな映画・スポーツについて英語で雑談してみる</li>
+              <li>言えなかった一言を「あれ英語で何？」とその場で回収</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIの音声は流暢すぎて、ネイティブの自然な“崩れ”や方言は再現しきれません。<b>発音の細かい採点は苦手</b>なので、それは活用術2の専用アプリに任せましょう。また、音声モードは無料枠に上限があります。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>ただ話すだけでなく、<b>あなたの弱点を覚えて次回の話題を自分で決める</b>相棒になります。「先週つまずいた過去形をまた出題」「苦手な単語を会話に混ぜてくる」など、あなた専用のカリキュラムを自動で組み替え、毎回“ちょうどいい難しさ”で相手をしてくれます。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>最初の一言は日本語でルールを伝えるのがコツ。「短く・ゆっくり・1つずつ直して」と頼むだけで、急に“やさしい先生”に変わるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>2</b></div><div><span class="st-chip">PRONUNCIATION</span><div class="st-ttl">発音を「音素レベル」で矯正する</div></div></div>
+      <div class="step-body">
+        <p class="desc">「文法は分かるのに聞き返される」の原因はほぼ発音。ELSAやSpeakなどの専用AIは、R/Lや母音のズレをミリ秒単位で採点し、赤・黄・緑で“どの音を直すか”を見える化します。</p>
+        <a class="link-btn" href="https://elsaspeak.com/" target="_blank" rel="noopener">ELSA Speak を見る ↗</a>
+        <p class="link-note">無料プランあり。App Store／Google Playで「ELSA」で検索。</p>
+        <ol class="mini">
+          <li>アプリを入れ、最初の発音テストで自分のクセを診断してもらう</li>
+          <li>毎日「発音コーチ」を1レッスン（3〜5分）だけやる</li>
+          <li>赤で出た音だけを重点的に、口の形・舌の位置マネして直す</li>
+          <li>週に一度、同じ文を録音して“先週の自分”と比べる</li>
+        </ol>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 通じる発音に</div>
+            <ul>
+              <li>自社名・商品名・専門用語を「通じる音」で言えるようにする</li>
+              <li>会議で多い定型フレーズを、聞き返されない発音に固める</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 自信づくり</div>
+            <ul>
+              <li>自己紹介・あいさつだけでも“きれいな音”にして第一印象UP</li>
+              <li>旅行で使う数字・地名・注文の発音を集中特訓</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>発音特化アプリは<b>自由なフリートークには不向き</b>。決まった文の反復が中心なので「話す練習」は活用術1と役割分担を。採点は厳しめでストレスに感じたら、緑が増える快感をゲーム感覚で追うのがコツです。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>録音データから<b>あなたが繰り返し外す音を自動で特定</b>し、その音だけを含む練習文を毎朝生成・出題します。「今週はthの音が改善」「Lがまだ弱い」と進捗を勝手にレポートし、卒業できた音は出題から外す——専属の発音トレーナーが常駐するイメージです。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>全部の音を完璧にしなくて大丈夫。日本人が特に苦手な「R・L・TH・V」の4つだけ直すと、“通じやすさ”が一気に上がるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>3</b></div><div><span class="st-chip">ROLE-PLAY</span><div class="st-ttl">自分専用のロールプレイ台本を作らせる</div></div></div>
+      <div class="step-body">
+        <p class="desc">「使う場面」で練習すると、覚えた表現が本番で口から出ます。AIに、あなたの仕事や予定に合わせた“場面つき台本”を作らせ、そのまま会話練習の相手になってもらいましょう。</p>
+        <div class="mini-h">コピペOK：場面別ロールプレイ</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 シーン設定でロールプレイ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の場面で、あなたが相手役になって英語のロールプレイをしましょう。
+【場面】<span class="fill">〔例：ホテルのチェックイン／取引先との初商談〕</span>
+【私の役】<span class="fill">〔例：宿泊客／営業担当〕</span>
+・まずあなたから英語で話しかけてください（1文ずつ）
+・私の返答が不自然なら、より自然な言い方を1つ添えて
+・最後に、この場面で使える定番フレーズを5つまとめて</pre>
+        </div>
+        <div class="mini-h">場面のストック例</div>
+        <ul class="use">
+          <li><b>仕事</b>：商談・見積り交渉・クレーム対応・電話の取次ぎ・工場見学の案内</li>
+          <li><b>接客</b>：外国人のお客様への注文取り・道案内・会計・おすすめ提案</li>
+          <li><b>私生活</b>：入国審査・買い物・体調不良で病院・友人との雑談</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIが作る台本は“きれいすぎる”ことがあります。実際の現場ではもっとくだけた言い方が普通。「もっとカジュアルに」「実際のネイティブが使う言い方で」と一言足して調整しましょう。業種の専門用語は、正しいか自分でも確認を。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>あなたのカレンダーや予定を読み取り、<b>「来週の海外出張」に合わせて必要な場面を自分で洗い出し</b>、空港→ホテル→会議→会食の順に台本を用意。当日が近づくと「明日の会議、この質問に備えて」とリマインドまで出してくれます。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「私の役」を決めるのが大事。自分が実際に立つ立場を指定すると、そのまま本番で使えるセリフが手に入るよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>4</b></div><div><span class="st-chip">VOCABULARY</span><div class="st-ttl">「文脈付き単語帳」を量産させる</div></div></div>
+      <div class="step-body">
+        <p class="desc">単語だけ覚えても使えません。AIに、あなたの仕事や趣味の文脈で例文を作らせると、脳の「エピソード記憶」が働いて定着率が跳ね上がります。市販の単語帳より、自分専用が最強です。</p>
+        <div class="mini-h">コピペOK：自分仕様の例文づくり</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 文脈付き単語帳を作る</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の英単語を覚えたいです。私の仕事は<span class="fill">〔例：飲食店の経営〕</span>です。
+それぞれ、私の仕事の場面で使う短い例文を3つずつ、
+日本語訳と、発音のカタカナ目安をつけて作ってください。
+表形式で。
+単語：<span class="fill">〔覚えたい単語をカンマ区切りで〕</span></pre>
+        </div>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 業界語を英語で</div>
+            <ul>
+              <li>自分の業界でよく使う言葉だけの“オーダーメイド単語帳”</li>
+              <li>読めなかった英文メールの単語を、文脈ごと登録して復習</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 趣味で覚える</div>
+            <ul>
+              <li>好きな料理・映画・音楽のジャンルの語彙を楽しく増やす</li>
+              <li>旅行先の街で使う単語を、行き先に合わせてまとめる</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIは<b>もっともらしく間違えること（ハルシネーション）</b>があります。ニュアンスや前置詞が微妙な例文もあるので、大事な場面で使う表現は辞書やネイティブでも確認を。カタカナ発音はあくまで“目安”です。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>あなたが会話や添削でつまずいた単語を<b>自動で拾って単語帳に追加</b>し、忘却曲線に合わせて「そろそろ復習の時間」と最適なタイミングで出題（間隔反復）。覚えた語は減らし、あやしい語は増やす——自分で回る単語帳になります。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「自分の仕事は○○です」の一文を足すだけで、例文が急に“自分ごと”になる。他人の例文より10倍記憶に残るよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>5</b></div><div><span class="st-chip">SHADOWING</span><div class="st-ttl">シャドーイング＆音読の相棒にする</div></div></div>
+      <div class="step-body">
+        <p class="desc">聞いた英語を影のように追って声に出す「シャドーイング」は、リスニングと発音を同時に鍛える王道メソッド。AIに“ちょうどいい難しさの教材文”を作らせ、詰まった箇所を解説してもらいます。</p>
+        <div class="mini-h">コピペOK：レベル別の音読教材</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 シャドーイング用スクリプト</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>シャドーイング用の英語スクリプトを作ってください。
+・レベル：<span class="fill">〔中学卒業程度／TOEIC500など〕</span>
+・テーマ：<span class="fill">〔興味のある話題〕</span>
+・80語くらいの短いモノローグ
+・全文の日本語訳と、意味のかたまりごとの区切り（/）
+・日本人がつまずきやすい発音ポイントを3つ、最後に解説</pre>
+        </div>
+        <div class="mini-h">やり方（1日10分）</div>
+        <ol class="mini">
+          <li>スクリプトを黙読して意味を理解する</li>
+          <li>音声AIに読み上げてもらい、少し遅れて声に出して追う（3回）</li>
+          <li>詰まった文を「なぜ言いにくい？直す練習文を」と質問</li>
+          <li>最後に見ないで一度通す</li>
+        </ol>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIの読み上げ音声は聞き取りやすい反面、<b>実際の会話スピードや訛りとは差</b>があります。慣れてきたら映画・ニュースなど“本物の音声”（活用術9）にも移行を。意味が分からないまま音だけ追うのは効果が薄いので、必ず訳とセットで。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>あなたの音読を聞いて<b>速度と正確さを自動採点</b>し、次の教材の長さ・スピード・難易度を勝手に一段引き上げてくれます。「今日は少し速く」「昨日つまずいた文をもう一度」と、あなたの調子に合わせて毎日メニューを組み直すコーチになります。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>最初は“ついていけない”のが普通。8割マネできれば十分。完璧に言えなくても、口が動いた分だけ確実に前進しているよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>6</b></div><div><span class="st-chip">WRITING &amp; CORRECTION</span><div class="st-ttl">英作文・英文メールを「なぜ」つきで添削</div></div></div>
+      <div class="step-body">
+        <p class="desc">書く力は話す力の土台。Claudeは長文と自然な言い換えが得意で、丁寧な英文づくりや添削に最適です。直すだけでなく<b>「なぜそうなるか」を聞く</b>と、二度と間違えなくなります。</p>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claude を開く ↗</a>
+        <p class="link-note">クレジットカード不要・無料で始められます（提供元：Anthropic）。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 理由つきで添削してもらう</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の私の英文を添削してください。
+①直した英文 ②直した理由（日本人が間違えやすい点）
+③もっと丁寧／もっとカジュアルな別バージョン
+の3つを出してください。
+【私の英文】
+<span class="fill">〔自分で書いた英文を貼り付け〕</span></pre>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 日本語→自然な英文メール</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の内容で、海外の取引先に送る英文メールを作ってください。
+丁寧すぎず失礼でもない、ビジネスの標準トーンで。
+件名も付けて。
+【伝えたいこと】
+<span class="fill">〔日本語で箇条書き〕</span></pre>
+        </div>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 実務の英文に</div>
+            <ul>
+              <li>英文メール・見積り・問い合わせ返信の下書きと添削</li>
+              <li>英語の資料・契約書を「中学生でも分かるように」要約</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 書いて整える</div>
+            <ul>
+              <li>海外通販の問い合わせ・返品依頼メールを作成</li>
+              <li>SNSの英語コメント・お礼メッセージの下書き</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>会社の<b>機密情報・お客様の個人情報・未公開の数字</b>は入力しないのが基本。契約書など重要な文書の最終判断は、必ず人が行いましょう。AIの英語も稀に不自然なので、大事な送信前は読み返しを。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>メールソフトと連携し、<b>届いた英文メールを自動で要約→返信案を下書き</b>。あなたはチェックして送るだけ。さらに、あなたが繰り返す文法ミスを覚えて「また"a/the"を落としています」と気づかせ、書きながら英語力が上がる仕組みになります。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「直して」だけじゃもったいない。「なぜ？」を足すのがコツ。理由が分かると、次から自分で正しく書けるようになるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP7 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>7</b></div><div><span class="st-chip">HANDS-FREE</span><div class="st-ttl">「散歩英会話」ハンズフリー学習</div></div></div>
+      <div class="step-body">
+        <p class="desc">2026年のトレンド。イヤホン＋音声AIで、通勤・家事・散歩の“ながら時間”をまるごと英会話に変えます。机に向かう時間がなくても、生活の中に練習を溶かし込めるのが強みです。</p>
+        <ol class="mini">
+          <li>イヤホンを付けて、ChatGPTやGemini Liveの音声モードを起動</li>
+          <li>「今から散歩するので、10分間だけ英語の雑談相手になって」と伝える</li>
+          <li>見えるもの（天気・お店・景色）をネタに英語で実況・雑談</li>
+          <li>帰宅後に「さっきの会話で使えなかった表現をまとめて」で復習</li>
+        </ol>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> スキマ時間に</div>
+            <ul>
+              <li>通勤中に、今日の会議で言いたいことを英語で言う練習</li>
+              <li>移動中に業界ニュースを英語で要約・意見を言ってみる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> ながらで</div>
+            <ul>
+              <li>家事をしながら「今日あったこと」を英語で報告</li>
+              <li>散歩やジョギングのお供に、雑談で口を英語に慣らす</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>歩きスマホ・ながら運転は厳禁。<b>安全な場所・骨伝導イヤホンなど周囲の音が聞こえる環境</b>で。屋外は雑音で認識精度が落ちることも。音声モードはデータ通信と電池を使うので、通信量にも注意しましょう。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>「毎朝の通勤時間（8:00）に自動で10分レッスンを開始」と<b>あなたの生活リズムに合わせて向こうから声をかけて</b>くれます。天気やニュースなどその日の話題を自分で用意し、続けられているかを記録。習慣化そのものをAIが背負ってくれます。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「ちゃんと座って勉強」より、生活に混ぜるほうが続く。1日の中の“いつもの10分”に紐づけるのが、三日坊主を防ぐ最大のコツだよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP8 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>8</b></div><div><span class="st-chip">MULTIMODAL</span><div class="st-ttl">写真を見せて「これ、英語で？」</div></div></div>
+      <div class="step-body">
+        <p class="desc">最新AIは、テキスト・音声・画像をまとめて扱えます（マルチモーダル）。目の前のメニュー・看板・商品を撮って見せ、「これを英語で注文する練習」など“体験型”の学習ができます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 画像を使ったロールプレイ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>この写真（メニュー）を見て、店員さん役になってください。
+私が英語で注文する練習をします。
+・分からない料理名は英語で説明して
+・私の注文が不自然なら自然な言い方を教えて
+・最後に会計のやり取りまで練習させて</pre>
+        </div>
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 現場で</div>
+            <ul>
+              <li>英語の資料・図・グラフの写真を見せて意味を確認</li>
+              <li>自社商品の写真を見せ「英語での説明トーク」を作る</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 旅行で</div>
+            <ul>
+              <li>海外の看板・標識・券売機を撮って「何て書いてある？」</li>
+              <li>買い物中に商品ラベルを見せて成分・使い方を質問</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>撮影した写真に<b>他人の顔・個人情報・機密資料が写り込まない</b>よう注意。画像の読み取りも100%正確ではないので、金額や成分など重要情報は自分の目でも確認を。無料枠では画像回数に制限がある場合があります。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>スマホのカメラと連動し、<b>旅行先で目に入ったものを次々に教材化</b>。「さっき撮った標識の単語を今夜の復習に登録」など、その日の体験をそのまま自分の英語ノートに変えていきます。見る→話す→覚えるが途切れなくつながります。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>“生活の中の英語”は忘れにくい。自分が実際に食べたメニュー、行った場所の写真で学ぶと、記憶に貼りつくよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP9 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>9</b></div><div><span class="st-chip">REAL CONTENT</span><div class="st-ttl">ドラマ・YouTube・洋楽を“生きた教材”に</div></div></div>
+      <div class="step-body">
+        <p class="desc">好きなコンテンツは、最強の教材。海外ドラマや洋楽、YouTubeの英語動画を、AIで“自分のレベルに翻訳・解説”してもらえば、楽しみながら本物の英語に触れられます。</p>
+        <a class="link-btn" href="https://www.youtube.com" target="_blank" rel="noopener">YouTube を開く ↗</a>
+        <p class="link-note">英語字幕をオンにして観るだけでも効果あり。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 セリフ・歌詞を解説してもらう</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の英語のセリフ（字幕）を解説してください。
+①自然な日本語訳 ②使われている口語・スラング
+③日常で使えるフレーズを1つ ④私が真似して言う練習文
+【セリフ】
+<span class="fill">〔聞き取れた英文を貼り付け〕</span></pre>
+        </div>
+        <div class="mini-h">やり方のコツ</div>
+        <ul class="use">
+          <li><b>まず英語字幕</b>で観る → 分からない所だけ日本語字幕で確認</li>
+          <li>気に入ったワンフレーズを<b>そのまま声に出してマネ</b>する</li>
+          <li>意味やニュアンスが気になったら、その場でAIに質問</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>映画・ドラマ・歌詞などの<b>作品そのものをAIに丸ごと入れて再配布</b>するのは著作権の問題があります。学習は「自分が聞き取った短いセリフを確認する」範囲で。スラングは使う場面（フォーマル/カジュアル）をAIに必ず確認しましょう。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると</h4>
+          <p>あなたの視聴履歴や好みから<b>レベルに合った動画・作品を自分で探して提案</b>。観たあとに「今日の3フレーズ」を自動で抜き出し、翌日それを使った会話練習を出題。“好きなものを観ているだけ”が学習ループに変わります。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>教材は「続けられる＝好きなもの」が正解。興味ゼロの英会話本より、好きな作品1本のほうが、結局いちばん英語が伸びるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP10 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>術</small><b>10</b></div><div><span class="st-chip">KEEP GOING</span><div class="st-ttl">「続く仕組み」をAIに丸ごと任せる</div></div></div>
+      <div class="step-body">
+        <p class="desc">英会話で挫折する一番の理由は「続かない」こと。逆に言えば、続けば必ず伸びます。進捗管理・出題・リマインドという“続ける仕事”こそ、自立型AIがいちばん力を発揮する領域です。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 90日の学習プランを設計させる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>私専用の英会話90日プランを作ってください。
+・目標：<span class="fill">〔例：海外旅行で困らない／英語会議で発言〕</span>
+・使える時間：1日<span class="fill">〔例：15分〕</span>／週<span class="fill">〔例：5日〕</span>
+・今のレベル：<span class="fill">〔例：中学英語くらい〕</span>
+週ごとのテーマと、毎日の具体メニュー（この記事の術1〜9を使って）を表で。
+最後に、続けるための工夫を3つ提案して。</pre>
+        </div>
+        <div class="mini-h">続けるための土台づくり</div>
+        <ul class="use">
+          <li><b>記録する</b>：やった日をカレンダーに○。“連続記録”が途切れさせない力に</li>
+          <li><b>ハードルを下げる</b>：「今日は1分でもOK」にすると再開しやすい</li>
+          <li><b>ふり返る</b>：週末に「今週言えるようになった表現」をAIと確認</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIのプランは“正解”ではなく“たたき台”。しんどければ遠慮なく「もっとゆるく」と調整を。<b>AIだけに閉じず、たまには人間と話す機会</b>（オンライン英会話・海外の友人）も混ぜると、実戦感覚が育ちます。最後にやり切るのは自分、が基本です。</div>
+        <div class="combo">
+          <h4>🤖 自立型AI（エージェント）が加わると ― ここが本命</h4>
+          <p>これまでの術1〜9を、AIが<b>あなたに代わって指揮</b>します。今日の調子と過去の記録から「今日は発音3分＋散歩英会話7分」と献立を決め、決めた時間に自分からリマインド。サボった日は翌日そっと軽めのメニューに調整し、月末には成長レポートを提出。<b>“先生・秘書・応援団”を1体で兼ねる専属コーチ</b>が、24時間あなたの英語を前に進めてくれます。</p>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>やる気に頼ると続かない。「仕組み」に頼ると続く。続ける仕事をAIに渡した人から、どんどん話せるようになっていくよ。</div></div>
+      </div>
+    </div>
+
+    <!-- 使い分け表 -->
+    <h3 class="blk">どのツールを、いつ使う？</h3>
+    <p class="sec-sub" style="margin-top:-4px;">「優劣」ではなく「役割の違い」で選ぶのがコツ。まずは無料のChatGPT音声から始めて、必要に応じて足していきましょう。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead>
+            <tr><th>やりたいこと</th><th>ChatGPT / Gemini（音声）</th><th>ELSA / Speak</th><th>Claude（テキスト）</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>まず無料で試す</th><td class="win">◎ 最初の一台</td><td class="mid">○ 無料枠あり</td><td class="win">◎ 無料で開始</td></tr>
+            <tr><th>自由なフリートーク</th><td class="win">◎ 大の得意</td><td>△ 苦手</td><td>○ 文字なら可</td></tr>
+            <tr><th>発音の細かい矯正</th><td>○</td><td class="win">◎ 音素レベル</td><td>×</td></tr>
+            <tr><th>体系的なレッスン</th><td>○</td><td class="win">◎ カリキュラム型</td><td>○</td></tr>
+            <tr><th>英作文・メール添削</th><td>○</td><td>×</td><td class="win">◎ 定評あり</td></tr>
+            <tr><th>長文の要約・翻訳</th><td>○</td><td>×</td><td class="win">◎ 大の得意</td></tr>
+            <tr><th>ながら・音声学習</th><td class="win">◎ ハンズフリー</td><td class="mid">○</td><td>△</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いちばん伸びる「合わせ技」</h4>
+        <div class="flow">
+          <span class="b">音声AIで<br>たくさん話す</span><span class="ar">→</span>
+          <span class="b">ELSAで<br>発音を直す</span><span class="ar">→</span>
+          <span class="b">Claudeで<br>添削・復習</span>
+        </div>
+        <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">話す量はChatGPT、発音の精度はELSA、書く力と復習はClaude。役割を分けると、1つだけより一段はやく上達します。ひとことで言えば——<b style="color:var(--pine);">迷ったらまずChatGPT音声、発音に悩んだらELSA、書くならClaude。</b></p>
+      </div>
+    </div>
+
+    <!-- プロンプトの型 -->
+    <h3 class="blk">英語がのびる「お願いの型」</h3>
+    <p class="sec-sub" style="margin-top:-4px;">AIへのお願い（プロンプト）は、次の4つを足すだけで結果が一段よくなります。英会話用にアレンジした型がこちら。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>自分のレベルは？</b>例：英語初心者／中学英語くらい／TOEIC500</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>どんな場面？</b>例：旅行／会議／接客／雑談</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で？</b>例：1往復ずつ／表で／短い英語で</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>どう直してほしい？</b>例：間違いを1つずつ／理由もつけて</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>「英語を教えて」<br>→ 難しすぎたり的外れだったりしがち</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>「英語初心者に、旅行の場面で、短い英語で1往復ずつ、間違いを理由つきで直しながら会話して」<br>→ 自分にぴったりの練習になる</div>
+      </div>
+      <div class="copybox" style="margin-top:14px;">
+        <div class="cb-top"><span class="cb-lbl">📋 そのまま使えるテンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+        <pre>私は<span class="fill">〔レベル〕</span>の英語学習者です。
+<span class="fill">〔場面〕</span>の英会話を練習したいので、
+<span class="fill">〔形式：1往復ずつ／短い英語で〕</span>で相手になってください。
+間違いは<span class="fill">〔直し方：1つずつ・理由つきで〕</span>教えてください。</pre>
+      </div>
+    </div>
+
+    <!-- アイデア集 -->
+    <h3 class="blk">もっと使える！活用アイデア集</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>お店・会社で</h4>
+        <ul>
+          <li>外国人のお客様向け接客フレーズ集をAIで作成</li>
+          <li>英語のクチコミへの返信文づくり</li>
+          <li>英文の問い合わせメール対応の下書き</li>
+          <li>海外仕入れ・展示会の交渉トークを予行演習</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで</h4>
+        <ul>
+          <li>英語会議の議事録を要約・翻訳</li>
+          <li>英語プレゼンの原稿づくりと読み上げ練習</li>
+          <li>海外資料をレベルを下げて要約してもらう</li>
+          <li>オンライン会議の想定Q&amp;Aを事前に練習</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">✈️</span>旅行・暮らしで</h4>
+        <ul>
+          <li>入国審査・ホテル・レストランの会話を通し練習</li>
+          <li>海外通販の問い合わせ・返品メールを作成</li>
+          <li>現地の看板・メニューを撮って読み取り</li>
+          <li>道案内や体調不良など“もしも”の英語を準備</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・子育てで</h4>
+        <ul>
+          <li>子どもの英語の宿題を、やさしく解説してもらう</li>
+          <li>親子で「英語しりとり」など遊び感覚の会話</li>
+          <li>資格試験（英検・TOEIC）の想定問題づくり</li>
+          <li>好きな洋楽・洋画のフレーズで楽しく学ぶ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 続けるコツ / 困ったとき -->
+    <h3 class="blk">続かない…を防ぐQ&amp;A</h3>
+    <div class="compact">
+      <details><summary>すぐ挫折してしまいます</summary><div class="ans">ハードルが高すぎるのが原因です。「1日30分」ではなく「1日1分でもOK」に下げましょう。歯みがきの後など“いつもの行動”とセットにし、やった日をカレンダーに○。続けること自体を活用術10でAIに管理してもらうと、意志の力に頼らず続きます。</div></details>
+      <details><summary>AIの英語が合っているか不安です</summary><div class="ans">AIはもっともらしく間違えること（ハルシネーション）があります。日常会話の練習相手としては十分ですが、契約書や重要文書、専門用語は辞書やネイティブでも確認を。「別の言い方は？」「これは自然？」と聞き返すと精度が上がります。</div></details>
+      <details><summary>音声モードがうまく動きません</summary><div class="ans">通信環境・アプリの最新版・マイク権限を確認。屋外は雑音で認識が落ちるので静かな場所で。無料枠の上限に達している場合は時間をおくか、テキストでの練習に切り替えましょう。別ブラウザや再起動も有効です。</div></details>
+      <details><summary>結局どれくらいで話せますか？</summary><div class="ans">個人差はありますが、毎日“声に出す”練習を続ければ、数か月で「言いたいことが片言でも伝わる」実感は得られます。大切なのは時間の長さより継続。AIで練習量を確保しつつ、時々は人と話す機会を混ぜると、実戦感覚が一気に育ちます。</div></details>
+    </div>
+
+    <!-- 安全に使う -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>機密情報は入れない</div><p>お客様の個人情報・カード番号・社外秘・未公開の数字は、AIに入力しないのが基本。会社で使うなら社内ルールも確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>英語も鵜呑みにしない</div><p>AIの英文・訳・発音表記は“ほぼ正しい”けれど完璧ではありません。大事な場面で使う表現は、辞書やネイティブでも確かめましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>写真の写り込みに注意</div><p>画像で学ぶときは、他人の顔・個人情報・機密資料が写り込まないように。公共の場での撮影マナーも忘れずに。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>人と話す機会も残す</div><p>AIは万能ではありません。文化的なニュアンスや“生きた反応”は人間ならでは。AI9割・人間1割でも、実戦の場は残しておきましょう。</p></div>
+    </div>
+
+    <!-- よくある質問 -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>お金はかかりますか？無料でどこまで？</summary><div class="ans">ChatGPTの音声モードやClaudeは無料で始められ、毎日の練習なら無料でも十分に効果があります。使用量が多い方や発音特化アプリ（ELSA・Speak）を本格利用する場合は、月1,500〜3,300円程度の有料プランが目安。人間講師のオンライン英会話（月5,000〜13,000円）より手頃です。</div></details>
+      <details><summary>本当に初心者でも大丈夫？英語が全然ダメです</summary><div class="ans">大丈夫です。むしろ初心者ほどAIが向いています。日本語でルールを伝えられ、間違えても恥ずかしくなく、何度でもやり直せるから。まずは活用術1のコピペ文をそのまま貼って、日本語まじりで話しかけてみてください。</div></details>
+      <details><summary>スマホだけでも学べますか？</summary><div class="ans">問題ありません。この記事の活用術は、ほぼすべてスマホアプリだけで完結します。ChatGPT・Claude・ELSAなど、いずれも公式アプリがあります。ながら学習（術7）はスマホの得意分野です。</div></details>
+      <details><summary>「自立型AI（AIエージェント）」って何ですか？</summary><div class="ans">指示を待つだけでなく、目標に向かって<b>自分で計画を立て・実行し・調整する</b>AIのことです。英会話でいえば「今日のメニューを自分で決め、時間になったら声をかけ、進捗を記録してくれる」存在。2026年に急速に実用化が進んでいる分野で、“続ける”のが苦手な人ほど恩恵が大きくなります。</div></details>
+      <details><summary>会社の研修に取り入れられますか？</summary><div class="ans">はい。接客・海外取引など現場の場面に合わせたAI英会話は、社員研修と相性が良い分野です。UGOKU AIでは、こうしたAI活用を業務に落とし込む実装型の研修を、助成金の活用も視野に支援しています。まずは下の無料AI化診断からどうぞ。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-guide/"><span class="r-ic">📓</span><span><span class="r-k">← 前の記事</span><span class="r-t">NotebookLMって何？<small>／ 料金・全機能の使い方を初心者向けに解説</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">次に読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ 使い方・料金・AI活用まで初心者向けに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">はじめての方へ</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを今日から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ カットも字幕も生成もAIで</small></span></span><span class="r-arw">→</span></a>
+      
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://elsaspeak.com/" target="_blank" rel="noopener"><span class="r-ic">🎯</span><span><span class="r-k">発音特化AI</span><span class="r-t">ELSA Speak 公式<small>／ 音素レベルの発音矯正アプリ</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://chatgpt.com" target="_blank" rel="noopener"><span class="r-ic">🗣️</span><span><span class="r-k">音声で話す</span><span class="r-t">ChatGPT 公式<small>／ 無料で音声フリートークを試す</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“英語の壁”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>接客・海外取引・社員研修。「英語が課題」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・料金・手順は、提供元の更新により変わることがあります。最新情報は各公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

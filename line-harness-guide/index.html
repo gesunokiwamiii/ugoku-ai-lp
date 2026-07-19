@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINE Harnessとは？導入方法と最新の運用マニュアル｜初心者向け完全ガイド ― UGOKU AI</title>
+<meta name="description" content="月2万円のLINE運用が0円に。2026年3月公開のオープンソースCRM「LINE Harness」を初心者向けに徹底解説。導入手順（npx create-line-harness）、ステップ配信・スコアリング・BAN検知の使い方、最新v0.17.0のアップデート、伸びている投稿の型、仕事と私生活での活かし方、Claude Code連携（MCP）と自律型AIの可能性、そして飛びつく前に知るべき注意点まで。案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="LINE Harnessとは？導入方法と最新の運用マニュアル｜UGOKU AI">
+<meta property="og:description" content="月2万円のLINE運用が、0円になった。導入手順から運用セオリー、AI（自律型）との組み合わせ、注意点まで。初心者にもわかる完全ガイド。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/line-harness-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/line-harness-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LINE Harnessとは？導入方法と最新の運用マニュアル ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LINE Harnessとは？導入方法と最新の運用マニュアル｜UGOKU AI">
+<meta name="twitter:description" content="月2万円のLINE運用が、0円になった。導入手順・運用セオリー・AI連携・注意点まで、初心者向けに解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/line-harness-guide/og-image.png">
+<link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/line-harness-guide/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+  /* ═══ 本記事の追加トークン（配色のみ／既存デザインは不変） ═══ */
+  :root{ --lineg:#06C755; --cf:#F48120; }
+  .numgrid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);margin:18px 0 4px;}
+  @media(min-width:640px){.numgrid{grid-template-columns:repeat(4,1fr);}}
+  .num{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 12px;text-align:center;box-shadow:var(--shadow-sm);}
+  .num b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(19px,4.6vw,26px);color:var(--ember-2);line-height:1.25;}
+  .num span{font-size:11.5px;color:var(--ink-soft);font-weight:700;letter-spacing:.02em;}
+  .split .col a{color:var(--pine);font-weight:700;}
+  .compact .ans a{color:var(--pine);font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">LINE Harness 入門＆運用マニュアル</span>
+      <h1>月2万円のLINE運用が、<br><span class="hl">0円</span>になった。</h1>
+      <p class="lead">2026年3月に公開された<b>LINE Harness（ラインハーネス）</b>は、Lステップ・UTAGEと同等以上の機能を<b>無料・オープンソース</b>で使えるLINE公式アカウント運用ツール。しかも<b>AIから直接操作できる</b>。何ができて、誰が使うべきで、どこに落とし穴があるのか——初心者にもわかるように、ぜんぶ書きました。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「安いから」で飛びつくと危ない所も、正直に教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">ガイドを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「LINE Harness、名前は聞いたけど中身が分からない」——大丈夫。この記事を上から読むだけで、次のことが分かります。</p>
+        <ul class="checklist">
+          <li>LINE Harnessが「何の代わりになるツールか」が30秒で分かる</li>
+          <li>導入の全手順（前提条件 → 1コマンド → 初回配信まで）が分かる</li>
+          <li>反響が出ているLINE運用の“型”と、そのまま使えるシナリオ設計が手に入る</li>
+          <li>仕事でも私生活でも使える切り口と、AI（自律型エージェント）との組み合わせ方が分かる</li>
+          <li>そして——<b>飛びつく前に知っておくべきリスク</b>が分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず「3つの正体」をざっくり掴もう</h2>
+    <p class="sec-sub">LINE Harnessは1つのツールですが、中身は3つの顔を持っています。ここだけ掴めば話が早いです。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--lineg);">
+        <div class="ic">💚</div>
+        <h4>① LINE公式アカウントの<br><span>“頭脳”になるCRM</span></h4>
+        <p>友だち管理・タグ・ステップ配信・リッチメニュー切替。Lステップ／UTAGEがやっている仕事を、まるごと引き受けます。</p>
+      </div>
+      <div class="role" style="--accent:var(--cf);">
+        <div class="ic">☁️</div>
+        <h4>② あなたのサーバーで<br><span>動く“自分のもの”</span></h4>
+        <p>Cloudflareという会社の無料枠に、あなた専用で設置します。だから月額0円。データもコードも他社に預けません。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🤖</div>
+        <h4>③ AIが直接さわれる<br><span>“API全開”の設計</span></h4>
+        <p>全機能がAPI公開＋MCP同梱。Claude Codeに「未返信を一覧して」「シナリオ作って」と話しかけて運用できます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">WHAT IS LINE HARNESS</div>
+    <h2 class="sec-title">LINE Harnessとは？<br>ひとことで言うと。</h2>
+    <p class="sec-sub">難しい言葉を使わず、いちばん短く説明します。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 ここだけ読めばOK</span>
+      <p><strong>LINE Harnessは、有料のLINE運用ツール（Lステップ・UTAGEなど）と同じことを、無料でできるようにした“公開されたプログラム”</strong>です。2026年3月に開発者・野田修一氏が公開したオープンソースで、ライセンスはMIT（商用利用も改造も自由）。<strong>5,000友だちまでは、サーバー代も含めて月額0円</strong>で運用できます。</p>
+    </div>
+
+    <div class="numgrid">
+      <div class="num"><b>0円</b><span>〜5,000友だち</span></div>
+      <div class="num"><b>2026.3</b><span>公開</span></div>
+      <div class="num"><b>v0.17.0</b><span>最新版（26年7月時点）</span></div>
+      <div class="num"><b>MIT</b><span>商用利用OK</span></div>
+    </div>
+
+    <h3 class="blk">なぜ今、これだけ騒がれているのか</h3>
+    <p>理由は3つに整理できます。<b>①金額のインパクト</b>：Lステップは月21,780円〜、UTAGEは月10,000円〜。5,000友だち規模で年間12〜26万円かかっていた費用が、まるごと0円になる。<b>②AIとの相性</b>：全機能がAPIで公開され、Claude Code用のMCPサーバーまで同梱されている。つまり「AIに運用させられる」初めてのLINEツールです。<b>③BAN対策</b>：LINE公式アカウントが停止されると友だちごと全部消える——この事業リスクに、有料ツールはほぼ無対応でした。LINE Harnessは3段階の監視と自動移行を標準で持っています。</p>
+
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「無料」の正体は魔法じゃなくて、Cloudflareという会社の“無料でここまで使っていいよ枠”に、うまく載せきる設計をしているから。だから枠を超えれば普通にお金はかかるよ。そこは正直に見ておこうね。</div></div>
+
+    <h3 class="blk">Lステップ・UTAGEと何が違う？（比較表）</h3>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>項目</th><th>LINE Harness</th><th>Lステップ（L社）</th><th>UTAGE（U社）</th></tr></thead>
+        <tbody>
+          <tr><th>月額（〜5,000友だち）</th><td class="win">0円</td><td class="mid">21,780円〜</td><td class="mid">10,000円〜</td></tr>
+          <tr><th>年間コスト（同上）</th><td class="win">0円</td><td class="mid">約261,360円</td><td class="mid">約120,000円</td></tr>
+          <tr><th>ステップ配信</th><td class="win">◎ 分単位・条件分岐</td><td>○</td><td>○</td></tr>
+          <tr><th>セグメント／タグ配信</th><td class="win">◎</td><td>○</td><td>○</td></tr>
+          <tr><th>リッチメニュー切替</th><td class="win">◎</td><td>○</td><td>○</td></tr>
+          <tr><th>スコアリング</th><td class="win">◎ 行動ベース自動</td><td class="mid">一部</td><td class="mid">なし</td></tr>
+          <tr><th>IF-THEN自動化</th><td class="win">◎ 7トリガー×6アクション</td><td class="mid">一部</td><td class="mid">一部</td></tr>
+          <tr><th>決済／予約</th><td class="win">Stripe・Googleカレンダー</td><td class="mid">一部</td><td>○</td></tr>
+          <tr><th>アフィリエイト計測</th><td class="win">◎ 標準搭載</td><td class="mid">なし</td><td class="mid">なし</td></tr>
+          <tr><th>BAN検知＆自動移行</th><td class="win">◎ 3段階＋ワンクリック移行</td><td class="mid">なし</td><td class="mid">なし</td></tr>
+          <tr><th>マルチアカウント</th><td class="win">標準（1環境で複数）</td><td class="mid">別契約</td><td class="mid">別契約</td></tr>
+          <tr><th>API公開</th><td class="win">全機能</td><td class="mid">非公開</td><td class="mid">非公開</td></tr>
+          <tr><th>AI（Claude Code）連携</th><td class="win">MCP同梱＋SDK</td><td class="mid">なし</td><td class="mid">なし</td></tr>
+          <tr><th>導入のかんたんさ</th><td class="mid">△ 技術の下地が要る</td><td class="win">◎ 申込むだけ</td><td class="win">◎ 申込むだけ</td></tr>
+          <tr><th>サポート窓口</th><td class="mid">△ コミュニティのみ</td><td class="win">◎ 公式サポート</td><td class="win">○</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">※金額は2026年7月時点の一般公開情報にもとづく目安です。最新の料金は各社公式でご確認ください。</p>
+
+    <div class="combo">
+      <h4>🤝 結論を先に言うと</h4>
+      <div class="flow"><span class="b">技術が触れる人がいる</span><span class="ar">→</span><span class="b">LINE Harnessが圧勝</span></div>
+      <div class="flow"><span class="b">社内に誰もいない</span><span class="ar">→</span><span class="b">素直に有料SaaSが正解</span></div>
+      <p style="margin:8px 0 0;font-size:14px;">「無料」の代わりに支払うのは<b>お金ではなく“運用・保守・障害対応の手間”</b>です。ここを誰が持つかを決めてから導入してください。</p>
+    </div>
+
+    <!-- ═══ 導入マニュアル ═══ -->
+    <div class="sec-eyebrow" style="margin-top:56px;">SETUP MANUAL</div>
+    <h2 class="sec-title">導入マニュアル：<br>前提条件から初回配信まで</h2>
+    <p class="sec-sub">昔は手作業で5工程ありましたが、今は<b>1コマンド・約5分</b>まで短縮されています。順番どおりに進めてください。</p>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--lineg);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">PREPARATION</span><div class="st-ttl">4つの前提条件をそろえる</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここが揃っていないと先に進めません。逆に、ここさえ揃えば残りは自動です。</p>
+        <ol class="mini">
+          <li><b>Cloudflareアカウント</b>（無料プランでOK）— プログラムを置く場所</li>
+          <li><b>LINE公式アカウント</b>＋<b>Messaging APIチャネル</b> — 配信する本体</li>
+          <li><b>Node.js 22以上</b> と <b>pnpm</b> — パソコンに入れる作業道具</li>
+          <li><b>パソコン（Mac / Windows）とターミナル</b> — 黒い画面に1行だけ打ちます</li>
+        </ol>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">用意する</span> 公式サイト</div>
+            <ul>
+              <li><a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">Cloudflare 新規登録 ↗</a></li>
+              <li><a href="https://www.linebiz.com/jp/entry/" target="_blank" rel="noopener">LINE公式アカウント 開設 ↗</a></li>
+              <li><a href="https://developers.line.biz/ja/" target="_blank" rel="noopener">LINE Developers（Messaging API）↗</a></li>
+              <li><a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js ダウンロード ↗</a></li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">確認</span> つまずきポイント</div>
+            <ul>
+              <li>LINE公式アカウントは「認証済」でなくても開始できます</li>
+              <li>Messaging APIチャネルは<b>LINE Developers側</b>で作ります</li>
+              <li>Node.jsは必ず<b>22以上</b>。古いと途中で止まります</li>
+              <li>Cloudflareは<b>2段階認証を必ずON</b>に（後述の最重要ポイント）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「ターミナル？黒い画面？無理…」と思ったら、ここで止まってOK。この段階でつまずく人は、素直に有料ツールを使ったほうが結果的に安いよ。見栄を張らないのが一番の節約なんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--cf);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">INSTALL</span><div class="st-ttl">1コマンドでインストール（約5分）</div></div></div>
+      <div class="step-body">
+        <p class="desc">ターミナルを開いて、次の1行を貼り付けてEnterを押すだけ。あとは質問に答えていくと、全部が自動でつくられます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 セットアップコマンド</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>npx create-line-harness</pre>
+        </div>
+        <div class="mini-h">このコマンドが自動でやってくれること</div>
+        <ul class="use">
+          <li><b>Cloudflare認証</b>：ブラウザが開いてログインするだけ</li>
+          <li><b>データベース作成</b>：友だち情報を貯めるD1を自動で用意</li>
+          <li><b>本体と管理画面のデプロイ</b>：あなた専用のURLに設置</li>
+          <li><b>LINE公式アカウントの接続</b>：キー情報を登録</li>
+          <li><b>LIFFアプリの自動作成</b>：フォーム・予約に使う土台</li>
+          <li><b>管理者ユーザーの作成</b>：初回ログイン用</li>
+        </ul>
+        <p class="link-note">完了すると <code>https://〇〇-admin.pages.dev</code> のような管理画面URLが表示されます。ブックマーク推奨。</p>
+        <a class="link-btn" href="https://github.com/Shudesu/line-harness-oss" target="_blank" rel="noopener">GitHub（本体・Wiki・Issue）を開く ↗</a>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">CHECK</span><div class="st-ttl">動いているか、4点だけ確認する</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここを飛ばして本番配信すると、「送ったつもりで届いてない」が起きます。必ず4点チェック。</p>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>確認すること</th><th>やり方</th><th>成功のサイン</th></tr></thead>
+            <tbody>
+              <tr><th>Webhook疎通</th><td>LINE Developers → Webhook設定 → 「検証」</td><td class="win">成功メッセージ</td></tr>
+              <tr><th>友だち追加</th><td>管理画面の「LINEで体験する」から自分で追加</td><td class="win">友だち一覧に出る</td></tr>
+              <tr><th>配信テスト</th><td>管理画面からテスト送信</td><td class="win">自分のLINEに届く</td></tr>
+              <tr><th>互換性</th><td><code>GET /api/capabilities</code> を確認</td><td class="win">情報が返る</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn"><div class="wt">⚠️ ここが最頻出のつまずき</div>Webhookの「検証」が失敗するときは、ほぼ<b>URLの貼り間違い</b>か<b>Webhookの利用がOFF</b>のどちらか。LINE Developers側で「Webhookの利用」がONになっているか、もう一度見てください。</div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">FIRST SCENARIO</span><div class="st-ttl">最初のステップ配信を組む</div></div></div>
+      <div class="step-body">
+        <p class="desc">LINE運用の心臓部。「友だち追加された瞬間から、自動で会話が始まる」仕掛けです。まずは3通からで十分。</p>
+        <ol class="mini">
+          <li>管理画面 →「シナリオ配信」→ 新規作成</li>
+          <li>トリガーを<b>「友だち追加」</b>に設定</li>
+          <li>1通目：<code>delay=0</code>（即時）であいさつ＋自己紹介</li>
+          <li>2通目：<code>delay=1440</code>（1日後）で「役に立つ情報」を1つだけ</li>
+          <li>3通目：<code>delay=4320</code>（3日後）で初回オファー／来店特典</li>
+          <li>テスト用アカウントで通しで受信 → 本番ON</li>
+        </ol>
+        <div class="mini-h">プロが必ずやっている設計のセオリー</div>
+        <ul class="use">
+          <li><b>1通目は「売らない」</b>：自己紹介と“何が届くか”の予告だけ。ここで売ると即ブロック</li>
+          <li><b>分単位で刻める強みを使う</b>：他社は「1日後」単位。LINE Harnessは「30分後」も可能。来店直後のお礼など、鮮度が命の場面で効く</li>
+          <li><b>1通目は無料枠を消費しない設計</b>：<code>delay=0</code>は返信扱い（replyMessage）で送られるため、LINEの無料配信数を食いません</li>
+          <li><b>条件分岐を1つだけ入れる</b>：タグ／スコア／フォーム回答で「買った人」と「まだの人」を分ける。これだけで反応が変わります</li>
+          <li><b>出口を必ず作る</b>：ステップの最後は「予約」「来店」「返信」など具体的な行動1つに絞る</li>
+        </ul>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>最初から7通も10通も作ろうとして、結局公開できない人がすごく多いんだ。3通で公開 → 反応を見て足す。この順番が一番早いよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">AI CONNECT</span><div class="st-ttl">Claude Codeとつないで「話しかけて運用」</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここがLINE Harness最大の差別化。MCPサーバーが同梱されているので、AIに自然言語で指示して運用できます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 Claude CodeにMCPを登録（1行）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>claude mcp add line-harness -- npx -y @line-harness/mcp-server</pre>
+        </div>
+        <div class="mini-h">登録するとできるようになること</div>
+        <ul class="use">
+          <li><b>会話の見張り番</b>：「未返信の会話を放置時間が長い順に出して」</li>
+          <li><b>シナリオ生成</b>：「新規友だち向けの3通シナリオを作って。1通目は売らないで」</li>
+          <li><b>分析</b>：「今月クリック率が一番低かった配信と、その改善案を3つ」</li>
+          <li><b>配信</b>：ブロードキャストも可能（※誤送信防止のため実行前に必ず確認が入ります）</li>
+        </ul>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 そのまま使える指示テンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはLINE運用のプロです。LINE HarnessのMCPを使って、
+次の作業をしてください。
+①未返信の会話を放置時間順に一覧
+②それぞれに返信の下書きを作成（送信はしない）
+③今週の配信のクリック率を集計し、改善案を3つ
+【前提】業種：<span class="fill">〔飲食店／教室／工務店 など〕</span>
+【トーン】<span class="fill">〔親しみやすく／丁寧に〕</span></pre>
+        </div>
+        <div class="warn"><div class="wt">⚠️ AIに任せてはいけない一線</div><b>「送信」だけは人が押す</b>——これを最初に決めてください。誤送信は取り消せません。AIには「下書きまで」「集計まで」を任せ、配信ボタンは人間が押す運用（human-in-the-loop）が鉄則です。</div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:#B34A22;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>6</b></div><div><span class="st-chip">RISK CONTROL</span><div class="st-ttl">BAN検知と権限分離を設定する</div></div></div>
+      <div class="step-body">
+        <p class="desc">LINE運用の最大リスクは「アカウント停止（BAN）」。友だち・履歴が丸ごと消えます。ここを設定して初めて“事業として使える”状態です。</p>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>ヘルス状態</th><th>意味</th><th>起きること</th></tr></thead>
+            <tbody>
+              <tr><th>normal</th><td>正常</td><td>通常運用</td></tr>
+              <tr><th>warning</th><td>配信エラー率の上昇・応答遅延</td><td>管理者へ通知／配信頻度を自動調整</td></tr>
+              <tr><th>danger</th><td>高エラー率・API制限を検知</td><td class="win">ワンクリックで別アカウントへ移行（友だち・タグ・シナリオを引き継ぎ）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mini-h">あわせて必ずやること</div>
+        <ul class="use">
+          <li><b>スタッフ権限を分ける</b>：Owner／Admin／Staffの3ロール。APIキーもロール別に発行する</li>
+          <li><b>Cloudflareアカウントに2段階認証</b>：ここが乗っ取られたら顧客データが全部見られます。最重要</li>
+          <li><b>Channel Secretは絶対に共有しない</b>：Slackやメールに貼らない</li>
+          <li><b>更新（アップデート）を追う</b>：まだv1.0未満。CHANGELOGを見てから上げる習慣を</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 「ステルス送信」の正しい使い方</div>配信に時間差を入れる<b>ステルス送信</b>という機能があります。これは<b>大量配信をなだらかにして事故を防ぐための機能</b>であって、規約違反の配信を隠す道具ではありません。LINEのガイドラインに沿った配信をしていれば、そもそもBANは起きにくい。<b>順番は「正しい運用」→「保険としてのBAN対策」</b>です。</div>
+      </div>
+    </div>
+
+    <!-- ═══ 最新トレンド ═══ -->
+    <h3 class="blk">2026年7月時点の最新アップデート</h3>
+    <p>開発が非常に速く、記事によって書いてある内容が食い違います。<b>3か月前の解説記事はもう古い</b>と思ってください。直近の主な変化はこの4つです。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">💰</span>アフィリエイト計測（ASP）搭載</h4>
+        <ul>
+          <li>v0.16.0で追加。紹介リンクの発行から成果承認まで標準機能に</li>
+          <li>「クリック→友だち追加→フォーム／予約→決済」を時系列で追跡</li>
+          <li>last-touch（直近90日）で成果を帰属、自己クリックは除外</li>
+          <li>成果発生・承認をアフィリエイター本人にLINEで自動通知</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚡</span>チャット一覧が約8倍高速化</h4>
+        <ul>
+          <li>実測 約3,473ms → 約435ms</li>
+          <li>「未対応」バッジの判定が改善（解決済で即減る）</li>
+          <li>画像・スタンプの受信も未読としてカウント</li>
+          <li>取りこぼし対応が現実的な速度になった</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔗</span>流入リンク・自動タグ付与</h4>
+        <ul>
+          <li>チラシ／看板／SNSごとにリンクを分けて、流入元を自動タグ化</li>
+          <li>v0.17.0でアカウント別のリンク解決とトラッキング切替に対応</li>
+          <li>「どの媒体から来た友だちが一番買うか」が見える</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🛡️</span>安全面・更新まわりの整備</h4>
+        <ul>
+          <li>管理画面の認証をhttpOnly Cookieへ変更（v0.15.0）</li>
+          <li>インストーラーと自己アップデートを刷新（v0.17.0）</li>
+          <li>配信時間帯9〜23時の強制制限はv0.13.2で撤廃済み</li>
+          <li>過去にはCron重複配信の不具合もあり、テスト環境推奨</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 反響のトレース ═══ -->
+    <h3 class="blk">伸びている投稿を分解する：反響が集まる5つの型</h3>
+    <p>公開直後から、業界の発信者たちが一斉に反応しました。「Lステップ構築者が要らなくなる世界線」「LINE運用代行という仕事を駆逐できるのでは」「1人で100アカウント回せる」——数千いいねが付いた投稿には、はっきりした共通構造があります。自分の発信に転用できる形に分解しました。</p>
+    <div class="f-grid">
+      <div class="f-item"><div class="no">1</div><div class="t"><b>金額差を“1行”で殴る</b>「月2万円 → 0円」。比較でも説明でもなく、数字の落差だけを見せる。保存とリポストが伸びる型。</div></div>
+      <div class="f-item"><div class="no">2</div><div class="t"><b>職業の未来を問う</b>「この仕事、無くなる？」。当事者が反論したくなる問いは、コメント欄が最も動く。ただし煽りすぎは信用を削る。</div></div>
+      <div class="f-item"><div class="no">3</div><div class="t"><b>逆張りで“無料の裏”を暴く</b>「無料には代償がある」。全員が持ち上げている時に、リスクを丁寧に書いた記事は指名検索で長く読まれる。</div></div>
+      <div class="f-item"><div class="no">4</div><div class="t"><b>動いている証拠を出す</b>管理画面のスクショ、実測値、デモ動画。“語り”より“画面”。信頼と滞在時間が跳ね上がる。</div></div>
+      <div class="f-item"><div class="no">5</div><div class="t"><b>組み合わせを提案する</b>「◯◯ × LINE Harness が最善構成では？」。単体紹介より、他ツールとの掛け算のほうが議論を呼ぶ。</div></div>
+      <div class="f-item"><div class="no">6</div><div class="t"><b>手順をそのまま置く</b>「導入の全手順20分」。保存・ブックマークが伸び、時間差で流入し続ける資産になる。</div></div>
+    </div>
+    <div class="ba">
+      <div class="c bad"><div class="lb">✕ 反応が鈍い書き方</div>「LINE Harnessというツールが便利です。オープンソースで多機能です。」<br>→ 誰の何が変わるのか分からない。</div>
+      <div class="c good"><div class="lb">◎ 反応が集まる書き方</div>「うちの店、LINE配信に年間26万円払ってました。今月から0円です。やったことは1行のコマンドだけ。」<br>→ 主語が自分・数字がある・行動が具体的。</div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>大事なのは「型をパクる」んじゃなくて「型に自分の実データを入れる」こと。あなたの店の実際の金額・実際の反応率が入った瞬間、その投稿は誰にも真似できない一次情報になるよ。</div></div>
+
+    <!-- ═══ マーケティング実践 ═══ -->
+    <h3 class="blk">具体的なマーケティング設計：4つの武器の使い方</h3>
+
+    <div class="mini-h">① ステップ配信 ― 時間を味方につける</div>
+    <ul class="use">
+      <li><b>初動72時間が勝負</b>：友だち追加直後がいちばん開封される。1日目・2日目・4日目に配置</li>
+      <li><b>1通1メッセージ</b>：欲張って詰め込むほど読まれない</li>
+      <li><b>分岐は「買った／買ってない」から</b>：まずこの1本だけ作れば十分効果が出る</li>
+      <li><b>解除導線を明示</b>：ブロックより「配信頻度を減らす」を選べるほうが長生きします</li>
+    </ul>
+
+    <div class="mini-h">② スコアリング ― “今、熱い人”を見つける</div>
+    <ul class="use">
+      <li>URLクリック＋3点、フォーム回答＋10点、キーワード送信＋5点…と行動に点を付ける</li>
+      <li>閾値（例：20点）を超えたら<b>自動で通知</b>。電話・個別トークをそこに集中させる</li>
+      <li>全員に同じ営業をかけるより、反応率が桁で変わります</li>
+    </ul>
+
+    <div class="mini-h">③ IF-THEN自動化 ― 7つの引き金 × 6つの動作</div>
+    <div class="split">
+      <div class="col work"><div class="ch"><span class="badge-mini">トリガー</span> こうなったら（7種）</div>
+        <ul>
+          <li>友だち追加された</li>
+          <li>タグが付いた</li>
+          <li>フォームが送信された</li>
+          <li>特定キーワードが届いた</li>
+          <li>スコアが閾値に達した</li>
+          <li>URLがクリックされた</li>
+          <li>カレンダー予約が入った</li>
+        </ul>
+      </div>
+      <div class="col life"><div class="ch"><span class="badge-mini">アクション</span> こうする（6種）</div>
+        <ul>
+          <li>タグを追加／削除する</li>
+          <li>シナリオを開始／停止する</li>
+          <li>メッセージを送る</li>
+          <li>リッチメニューを切り替える</li>
+          <li>外部へWebhookを飛ばす（Slack・Stripe等）</li>
+          <li>通知ルールを発火する（担当者に知らせる）</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:14.5px;">組み合わせ例：<b>「予約フォームで“初回”を選んだ人 → 初回タグ付与 → 前日リマインド開始 → リッチメニューを“予約済み用”に切替 → Slackに通知」</b>。ここまで全部、管理画面のGUIで組めます。</p>
+
+    <div class="mini-h">④ 流入計測とアフィリエイト ― “どこから来たか”を捨てない</div>
+    <ul class="use">
+      <li>チラシ・看板・InstagramのプロフィールURL・YouTube概要欄——<b>すべて別リンク</b>にする</li>
+      <li>流入リンクごとに自動タグが付くので、媒体別のCVがそのまま出る</li>
+      <li>紹介制度を作るなら、アフィリエイト機能で<b>紹介者に自動でLINE通知</b>まで回せる</li>
+      <li>「感覚で広告費を配る」から「数字で配る」へ切り替わります</li>
+    </ul>
+
+    <!-- ═══ 局面別の使い方 ═══ -->
+    <h3 class="blk">あらゆる局面での使い方：仕事と、私生活</h3>
+    <div class="split">
+      <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 業種別の切り口</div>
+        <ul>
+          <li><b>飲食・小売</b>：来店30分後にお礼＋次回クーポン。曜日別に空席対策の限定配信</li>
+          <li><b>教室・スクール</b>：体験申込→前日リマインド→当日レポート→継続案内の自動化</li>
+          <li><b>建設・工務店</b>：現場写真の共有、点検時期の自動リマインド、見積依頼フォーム</li>
+          <li><b>サロン・治療院</b>：予約枠をカレンダー連携、来店周期が空いた人だけに自動再来促進</li>
+          <li><b>EC・通販</b>：Stripe決済をLINE内で完結、購入をトリガーに使い方講座を配信</li>
+          <li><b>多店舗・FC</b>：1環境で複数アカウントを一元管理。店舗別の成果を横並び比較</li>
+          <li><b>採用</b>：応募者をLINEで管理。面接リマインドと辞退防止の自動フォロー</li>
+          <li><b>社内連絡</b>：スタッフ用アカウントでシフト連絡・マニュアル配信・多言語対応</li>
+        </ul>
+      </div>
+      <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 個人でも十分使える</div>
+        <ul>
+          <li><b>地域・自治会</b>：回覧板をLINE化。回答フォームで出欠集計まで自動</li>
+          <li><b>PTA・部活</b>：一斉連絡と個別連絡を分け、返信は担当者に自動通知</li>
+          <li><b>趣味サークル</b>：イベント告知→出欠→前日リマインドを全自動</li>
+          <li><b>同窓会・結婚式</b>：招待→出欠→会費決済→当日案内まで1本の流れに</li>
+          <li><b>家族</b>：介護・通院・持ち物のリマインダーを、忘れがちな人にだけ届ける</li>
+          <li><b>副業・個人発信</b>：ブログやYouTubeからの導線を、無料で本格CRM化</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn"><div class="wt">⚠️ 私生活で使うときの注意</div>個人利用でも<b>LINE公式アカウントの利用規約とガイドライン</b>は同じように適用されます。名簿を勝手に登録することはできません（友だち追加は本人の意思のみ）。また、集めた電話番号・住所などは<b>個人情報</b>です。目的外に使わない、必要以上に集めない、を守ってください。</div>
+
+    <!-- ═══ AIが加わると ═══ -->
+    <div class="sec-eyebrow" style="margin-top:56px;">AI × LINE HARNESS</div>
+    <h2 class="sec-title">ここにAI、特に「自律型」が<br>加わると何が起きるか</h2>
+    <p class="sec-sub">LINE Harnessが本当に新しいのは、価格ではなく<b>「AIが操作できる設計になっている」</b>点です。ここが他ツールと決定的に違います。</p>
+
+    <div class="keystone">
+      <span class="kl">🤖 いちばん大事な違い</span>
+      <p>従来のLINEツールは<strong>「人が画面を操作する」前提</strong>で作られていました。LINE Harnessは<strong>全機能がAPIで公開され、AI用の接続口（MCP）まで同梱</strong>されています。つまり——<strong>人が寝ている間に、AIが運用を回せる</strong>ということです。</p>
+    </div>
+
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🌙</span>夜間の一次対応</h4>
+        <ul>
+          <li>AIが未返信を監視し、内容を分類</li>
+          <li>よくある質問には下書きを準備</li>
+          <li>朝、担当者は承認するだけ</li>
+          <li>「返信が遅い」による離脱を潰せる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔁</span>改善ループの自動化</h4>
+        <ul>
+          <li>配信結果をAIが毎週集計</li>
+          <li>反応が悪い文面の書き換え案を生成</li>
+          <li>A/B案を用意 → 人が選ぶ</li>
+          <li>「やりっぱなし」がなくなる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧩</span>シナリオの量産</h4>
+        <ul>
+          <li>「梅雨の来店促進を5パターン」で即生成</li>
+          <li>季節・曜日・天候に合わせた文面</li>
+          <li>多言語スタッフ向けの翻訳版も同時に</li>
+          <li>企画から公開までが1日で回る</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔌</span>他システムとの連結</h4>
+        <ul>
+          <li>予約システム・POS・在庫と接続</li>
+          <li>「在庫が余った日だけ限定配信」</li>
+          <li>Slack通知・スプレッドシート連携</li>
+          <li>人の判断だけを残して、あとは自動</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="blk">ただし、自律型AIを入れる前に決めておく4つのこと</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>送信は人が押す</div><p>AIには「下書き・集計・提案」まで。<b>ブロードキャストの実行は必ず人の承認を挟む</b>。誤送信は取り消せません。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>権限を最小にする</div><p>AIに渡すAPIキーは<b>読み取り中心の権限</b>に。全権キーを渡すのは、鍵束ごと預けるのと同じです。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>顧客情報を外に出さない</div><p>友だちの氏名・電話番号をそのままAIに渡さない。<b>要約・匿名化してから</b>扱うルールを先に決める。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>ログを必ず残す</div><p>「誰が・いつ・何を送ったか」を残す。AIが関わるほど、あとから追える状態が保険になります。</p></div>
+    </div>
+
+    <!-- ═══ 注意点 ═══ -->
+    <h3 class="blk">飛びつく前に。6つの現実的な注意点</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🛠️</span>技術スキルは“必須条件”</h4>
+        <ul>
+          <li>1コマンドで入っても、壊れたときは自分で直す</li>
+          <li>アップデート追従も自分たちの仕事</li>
+          <li>社内に誰もいないなら有料SaaSが正解</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📉</span>「0円」には上限がある</h4>
+        <ul>
+          <li>Cloudflare無料枠：1日10万リクエスト／D1は5GB</li>
+          <li>5,000友だち超で有料プラン（月$5〜）へ</li>
+          <li>それでも有料SaaSの10分の1以下</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔐</span>セキュリティは自己責任</h4>
+        <ul>
+          <li>脆弱性対応はコミュニティベース</li>
+          <li><b>Cloudflareアカウントの乗っ取り＝顧客情報流出</b></li>
+          <li>2段階認証・キー管理・ログ監視は必須</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📦</span>データ移行は手動</h4>
+        <ul>
+          <li>Lステップ等からの自動インポートは未提供</li>
+          <li>大量移行はスクリプト開発が必要</li>
+          <li>「ゼロから作る」前提の設計</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🚧</span>まだv1.0未満</h4>
+        <ul>
+          <li>マイナー更新で仕様が変わることがある</li>
+          <li>過去にCron重複配信の不具合も発生</li>
+          <li>本番前にテスト環境での確認を推奨</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚖️</span>法令と規約は変わらない</h4>
+        <ul>
+          <li>友だち追加は本人の意思のみ（勝手な登録はNG）</li>
+          <li>個人情報の目的外利用・過剰収集はしない</li>
+          <li>ツールが無料でも、<b>責任は事業者にある</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 判定表 ═══ -->
+    <h3 class="blk">あなたは導入すべきか？ 判定表</h3>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>あなたの状況</th><th>LINE Harness</th><th>有料SaaS（Lステップ等）</th></tr></thead>
+        <tbody>
+          <tr><th>社内に技術が触れる人がいる</th><td class="win">◎ 最適</td><td class="mid">使えるがコスト高</td></tr>
+          <tr><th>社内に誰もいない</th><td class="mid">✕ 運用が回らない</td><td class="win">◎ 最適</td></tr>
+          <tr><th>とにかく月額を下げたい</th><td class="win">◎ 0円〜</td><td class="mid">✕ 月1〜2万円</td></tr>
+          <tr><th>BANされたら事業が止まる</th><td class="win">◎ 3段階検知＋移行</td><td class="mid">✕ 未対応</td></tr>
+          <tr><th>複数店舗・複数アカウント</th><td class="win">◎ 標準搭載</td><td class="mid">✕ 別契約</td></tr>
+          <tr><th>独自機能を足したい</th><td class="win">◎ 改造自由（MIT）</td><td class="mid">✕ 不可</td></tr>
+          <tr><th>AIに運用させたい</th><td class="win">◎ API全公開＋MCP</td><td class="mid">✕ 非公開</td></tr>
+          <tr><th>電話で聞ける窓口が欲しい</th><td class="mid">✕ コミュニティのみ</td><td class="win">◎ 公式サポート</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>この表で「✕」が2つ以上ついた側は、選ばないほうがいいよ。安さで無理をすると、結局“動かないシステム”にお金と時間を払うことになるからね。</div></div>
+
+    <!-- ═══ プロンプト集 ═══ -->
+    <h3 class="blk">そのままコピペで使える、AI指示テンプレ3本</h3>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 ①導入判断をAIに相談する</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>あなたはLINEマーケティングの専門家です。
+私の状況で、LINE Harness（無料OSS）と有料SaaS（Lステップ等）の
+どちらを選ぶべきか、理由つきで結論を出してください。
+【業種】<span class="fill">〔飲食店／教室／建設 など〕</span>
+【友だち数】<span class="fill">〔◯◯人〕</span>
+【社内の技術力】<span class="fill">〔エンジニアいる／いない〕</span>
+【現在の月額】<span class="fill">〔◯◯円〕</span>
+出力は「結論／理由3つ／導入した場合の初月にやること5つ」で。</pre>
+    </div>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 ②ステップ配信シナリオを作らせる</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>友だち追加直後から始まる3通のステップ配信を作ってください。
+【業種】<span class="fill">〔　　　〕</span>【ターゲット】<span class="fill">〔　　　〕</span>
+【最終ゴール】<span class="fill">〔来店予約／体験申込 など〕</span>
+条件：
+・1通目は売らない（自己紹介と予告のみ、150字以内）
+・2通目は役立つ情報を1つだけ（1日後）
+・3通目に初回オファー（3日後）
+・各通、LINEらしい短い改行と絵文字を適度に
+・最後に「配信頻度を変更できる」案内を入れる</pre>
+    </div>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 ③運用レポートを毎週まとめさせる</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>LINE HarnessのMCPを使って、今週の運用レポートを作ってください。
+①友だち増減と流入元の内訳
+②配信ごとの開封・クリック率（悪い順に3つ）
+③未返信で放置時間が長い会話トップ5
+④来週やるべき改善アクション3つ（優先度つき）
+※データ取得のみ。メッセージの送信は行わないでください。</pre>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>本当に無料ですか？あとから請求は来ませんか？</summary>
+        <div class="ans">LINE Harness自体は永久に0円です。ただし、動かす場所であるCloudflareには、規模が大きくなると費用が発生します。目安は5,000友だちまで0円、1万人で約$10/月、5万人以上でも約$25/月。これはCloudflareへの支払いであり、LINE Harnessへの課金ではありません。なお、LINE公式アカウント側のメッセージ配信料は別途LINE社のプラン通りにかかります。</div>
+      </details>
+      <details>
+        <summary>エンジニアじゃないのですが、使えますか？</summary>
+        <div class="ans">管理画面はブラウザで操作できる普通のUIなので、日々の運用は難しくありません。問題は初期セットアップと、トラブルが起きたときです。「ターミナルに1行貼る」が抵抗なくできる方なら十分可能ですが、そこで手が止まる方は、有料SaaSを選んだほうが結果的に安く済みます。判断がつかない場合は、詳しい人に初期構築だけ依頼する形もあります。</div>
+      </details>
+      <details>
+        <summary>Lステップから乗り換えられますか？</summary>
+        <div class="ans">機能面ではステップ配信・セグメント・リッチメニュー切替など主要機能をカバーしており、乗り換えは可能です。ただし<b>データの自動移行機能はありません</b>。友だちリストやシナリオは作り直しになります。既存の友だちは「新しいアカウントへ移ってもらう」案内が必要なので、移行は必ずキャンペーン等とセットで設計してください。</div>
+      </details>
+      <details>
+        <summary>セキュリティは大丈夫ですか？</summary>
+        <div class="ans">データは第三者のサーバーではなく、あなた自身のCloudflareのデータベースに保存されます。その意味では管理権限は強固です。一方で、守るのもあなたの責任になります。特に<b>Cloudflareアカウントが乗っ取られると顧客データに直接アクセスされます</b>。2段階認証の設定、キー情報の厳格な管理、アクセスログの確認は必ず行ってください。「オープンソースだから危険」ではなく「誰がどう設定・管理するか」が本質です。</div>
+      </details>
+      <details>
+        <summary>BAN（アカウント停止）は本当に防げますか？</summary>
+        <div class="ans">「防げる」ではなく「気づける・避難できる」機能です。normal / warning / danger の3段階でアカウントの健全性を監視し、danger判定時はワンクリックで別アカウントへ友だち・タグ・シナリオごと移行できます。ただし、そもそもLINEのガイドラインに沿った配信をすることが第一で、この機能はあくまで保険です。</div>
+      </details>
+      <details>
+        <summary>AI（Claude Code）連携は難しくないですか？</summary>
+        <div class="ans">MCPサーバーが同梱されているので、登録はコマンド1行です。登録後は「未返信の会話を一覧して」のように日本語で指示できます。ただし送信系の操作は必ず人が確認する運用にしてください。Claude Code自体の始め方は、当サイトの<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-10/">Claude Codeが“活きる”10の使いどころ</a>もあわせてどうぞ。</div>
+      </details>
+      <details>
+        <summary>個人（会社じゃない）でも使えますか？</summary>
+        <div class="ans">使えます。LINE公式アカウントは個人でも無料で開設できるため、地域の連絡網、サークル、同窓会、家族のリマインダーなどにも応用できます。ただし規約と個人情報の扱いは事業者と同じです。本人の同意なく登録することはできません。</div>
+      </details>
+      <details>
+        <summary>導入すべきか、まだ迷っています。</summary>
+        <div class="ans">迷っているなら、まず「今のLINE運用に年間いくら払っていて、そこから何件の予約・売上が出ているか」を書き出してください。金額だけで判断すると失敗します。UGOKU AIの無料AI化診断では、この整理も含めて、あなたの会社に合う形をご提案しています。</div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/sns-marketing/"><span class="r-ic">📣</span><span><span class="r-k">🔁 次に読む（シリーズ周回）</span><span class="r-t">SNSマーケって何？すぐできる10選<small>／ 発信を「集客」に変える</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/marketing-guide/"><span class="r-ic">📈</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×マーケティング 活用術10選<small>／ 最新業界トレンド分析つき</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/meo-guide/"><span class="r-ic">🗺️</span><span><span class="r-k">あわせて読む</span><span class="r-t">MEOって何？すぐできるMEO対策10選<small>／ 地図から来店をつくる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-10/"><span class="r-ic">🤖</span><span><span class="r-k">AI連携を深める</span><span class="r-t">Claude Codeが“活きる”10の使いどころ<small>／ MCP連携の入口はここ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">はじめての方へ</span><span class="r-t">「AIって何から？」を今日で終わりに<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://github.com/Shudesu/line-harness-oss" target="_blank" rel="noopener"><span class="r-ic">💻</span><span><span class="r-k">公式リポジトリ</span><span class="r-t">LINE Harness 本体・Wiki・Issue<small>／ GitHub（MITライセンス）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://shudesu.github.io/line-harness-oss/" target="_blank" rel="noopener"><span class="r-ic">💚</span><span><span class="r-k">公式サイト</span><span class="r-t">LINE Harness 公式ページ<small>／ 開発者・野田修一氏</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://developers.line.biz/ja/docs/messaging-api/" target="_blank" rel="noopener"><span class="r-ic">📗</span><span><span class="r-k">公式ドキュメント</span><span class="r-t">LINE Messaging API<small>／ LINEヤフー公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener"><span class="r-ic">☁️</span><span><span class="r-k">公式ドキュメント</span><span class="r-t">Cloudflare Workers<small>／ 動かす土台のしくみ</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.npmjs.com/package/create-line-harness" target="_blank" rel="noopener"><span class="r-ic">📦</span><span><span class="r-k">セットアップCLI</span><span class="r-t">create-line-harness<small>／ npm 公開ページ</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>「うちは、どっちを選ぶべき？」<br><span class="hl">その判断</span>から、お手伝いします。</h2>
+    <p>無料だから正解、とは限りません。あなたの会社の規模・体制・目的に合わせて、LINE運用もAI導入も“続けられる形”に。まずは数分の無料診断からどうぞ。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事は2026年7月時点の公開情報にもとづきます。LINE Harnessは開発が非常に速く、機能・仕様・バージョンは頻繁に更新されます。導入前に必ず公式リポジトリの最新情報をご確認ください。料金は各社公式の最新情報をご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

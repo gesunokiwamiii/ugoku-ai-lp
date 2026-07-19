@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>初めてのAI導入、機材はどうする？｜地方の中小企業のための「買う前」ガイド ― UGOKU AI</title>
+<meta name="description" content="AIを始めるのに、いい機材は必要？答えはほとんどの場合「NO」。2026年のメモリ高騰・NPUの実力・クラウドAIの現状をふまえ、地方の経営者が最短で成果を出すための機材の選び方を、予算0円/5万円/20万円/50万円の4段階と、具体的な費用対効果の金額つきで解説。自律型AIエージェント時代に効く機材の考え方まで、案内役のうごく君がやさしく整理します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="初めてのAI導入、機材はどうする？｜地方の中小企業のための「買う前」ガイド">
+<meta property="og:description" content="結論、まず買わなくていい。2026年の機材事情と、地方SMEが最短で回収できる投資順序を、金額つきで公開します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/device-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/device-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="初めてのAI導入、機材はどうする？ ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="初めてのAI導入、機材はどうする？｜UGOKU AI">
+<meta name="twitter:description" content="結論、まず買わなくていい。2026年の機材事情と、地方SMEが最短で回収できる投資順序を金額つきで。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/device-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+  /* ── この記事の追加パーツ（既存トークンのみ使用） ── */
+  .numhl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember-2);}
+  .tbl-note{font-size:12.5px;color:var(--ink-soft);margin:9px 0 0;}
+  .pill{display:inline-block;font-size:11px;font-weight:800;padding:3px 10px;border-radius:100px;background:var(--ember-soft);color:#8A5300;margin-left:6px;vertical-align:middle;}
+  .case-grid{display:grid;gap:13px;margin-top:6px;}
+  @media(min-width:640px){.case-grid{grid-template-columns:1fr 1fr;}}
+  .case{background:#fff;border:1px solid var(--line);border-left:5px solid var(--pine);border-radius:14px;padding:17px 19px;box-shadow:var(--shadow-sm);}
+  .case .ck{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ember-2);margin-bottom:3px;}
+  .case .ct{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin-bottom:7px;line-height:1.5;}
+  .case p{margin:0;font-size:13.7px;color:var(--ink-soft);}
+  .case .cm{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+  .case .cm span{background:#F3EFE3;border-radius:9px;padding:6px 11px;font-size:12.5px;font-weight:700;color:var(--pine);}
+  .case .cm span.win{background:var(--ember-soft);color:#8A5300;}
+  .ng{background:#FBECEC;border:1px solid #F0C2C2;border-radius:13px;padding:15px 17px;}
+  .ng .ngh{font-weight:900;color:#B23A3A;font-size:14.3px;margin-bottom:5px;display:flex;gap:7px;align-items:center;}
+  .ng p{margin:0;font-size:13.6px;color:#6B4646;}
+  .ng-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.ng-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">初めてのAI導入・機材ガイド</span>
+      <h1>「AIって、いいパソコン<br>買わなきゃダメ？」<br>——答えは、<span class="hl">ほぼNO</span>です。</h1>
+      <p class="lead">2026年のいま、AI導入で最初に失敗するのは「機材から買ってしまった会社」。<b>今ある1台</b>で始めて、成果が出た分だけ機材に回す。この順番だけで、投資は数分の一になります。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「買う前に読む」ための記事です。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">機材の正解を見る <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「AIを始めたい。まず何を買えばいい？」——群馬・埼玉の経営者さんから、いちばん多く受ける質問です。この記事を読み終えると、次のことがハッキリします。</p>
+        <ul class="checklist">
+          <li>今持っているスマホ・PCで「どこまでできるか」が分かる</li>
+          <li>買う必要があるもの／絶対に買わなくていいものが区別できる</li>
+          <li>予算0円・5万円・20万円・50万円、それぞれの現実的な効果が分かる</li>
+          <li>「いくら使って、いくら戻るか」の費用対効果が金額で見える</li>
+          <li>自律型AI（AIエージェント）時代に、何を先に揃えるべきかが分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 30秒サマリー ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒で結論</div>
+    <h2 class="sec-title">先に、この記事の答えを3つだけ</h2>
+    <p class="sec-sub">忙しい経営者の方へ。細かい理由は後ろで説明します。まずここだけ。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">📱</div>
+        <h4>結論1<br><span>＝ 今ある端末で始まる</span></h4>
+        <p>ChatGPTもClaudeも「クラウド側」で動きます。計算するのは向こうのデータセンター。手元は<b>3〜5年前のスマホ1台でも動きます</b>。</p>
+      </div>
+      <div class="role" style="--accent:var(--youtube);">
+        <div class="ic">📉</div>
+        <h4>結論2<br><span>＝ 2026年は買い時が悪い</span></h4>
+        <p>AIブームでメモリ・SSDが世界的に高騰中。同じ性能のPCが去年より高い。<b>「今、急いで全台入れ替え」は最悪手</b>です。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">⏱️</div>
+        <h4>結論3<br><span>＝ 買うなら「時間」だけ</span></h4>
+        <p>性能を買うのではなく<b>時間を買う</b>。月額数千円の有料プランと、録音・撮影まわりの小物。回収が読める順に投資します。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">DEVICE GUIDE 2026</div>
+    <h2 class="sec-title">初めてのAI導入、<br>機材はどうする？</h2>
+    <p class="sec-sub">地方の中小企業・個人事業の現場に、実際に入れてきた立場から。理屈ではなく「回収できる順番」で並べました。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 いちばん大事なこと</span>
+      <p>AI導入でお金が消える会社の共通点は、<strong>使い道が決まる前に機材を買う</strong>こと。逆に成果が出る会社は、<strong>今ある端末で1か月まわしてから</strong>、詰まった所だけを買い足します。機材は「入口」ではなく「あとから効く増幅装置」です。</p>
+    </div>
+
+    <!-- 2026年の前提 -->
+    <h3 class="blk">まず、2026年の「機材の常識」が変わった話</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 16px;">3年前のAI導入記事は、もう当てになりません。理由は3つあります。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🧮</div>
+        <h4>① 計算は「向こう側」で<br><span>＝ 手元の性能は効かない</span></h4>
+        <p>ChatGPT・Claude・Geminiは、質問を送って答えを受け取る仕組み。重い計算は事業者のサーバー側です。だからスマホでも高級PCでも、返ってくる答えの質は<b>基本的に同じ</b>。</p>
+      </div>
+      <div class="role" style="--accent:var(--youtube);">
+        <div class="ic">💸</div>
+        <h4>② メモリが歴史的高値<br><span>＝ 買い替えは損</span></h4>
+        <p>生成AI用の高性能メモリ（HBM）に生産が集中し、一般向けDRAM・SSDが品薄・高騰。<a href="https://pc.watch.impress.co.jp/docs/topic/feature/2071150.html" target="_blank" rel="noopener">PC Watchの特集</a>でも、この値上がりは長期化が濃厚と報じられています。</p>
+      </div>
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🧩</div>
+        <h4>③ 「AI PC」＝万能ではない<br><span>＝ NPUの守備範囲は狭い</span></h4>
+        <p>NPU搭載の「Copilot+ PC」は、要約・ノイズ除去など<b>軽い処理を省電力でこなす</b>のが本領。画像生成やローカルLLMなど重い処理はGPU側の仕事で、別物です。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「AI PCじゃないとAIが使えない」は、いちばん多い誤解だよ。家電量販店で言われても、あわてて買わなくて大丈夫。まずは今の端末で1か月、だよ。</div>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">機材選びで失敗しない、2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>「使い道 → 詰まり → 機材」の順で買う</h4>
+        <p>先に業務を決め、1か月まわし、<b>実際に詰まった所だけ</b>買う。「議事録を毎回2時間書いている」と分かってから録音機を買えば、外しません。順番を逆にすると、押し入れ行きです。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>「本体」より「月額」に払う</h4>
+        <p>2026年は<b>ハード高・ソフト安</b>。20万円のPCより、月3,000円の有料プラン1つのほうが成果が早い。しかも月額は<b>やめられる</b>。失敗しても損失が1か月分で止まります。</p>
+      </div>
+    </div>
+
+    <!-- STEP0 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>0</b></div><div><span class="st-chip">INVENTORY ／ 棚卸し</span><div class="st-ttl">まず「今ある機材」を数える</div></div></div>
+      <div class="step-body">
+        <p class="desc">買い物リストを作る前に、社内の在庫を見る。これだけで、8割の会社は「買わなくていい」という結論に届きます。</p>
+        <div class="mini-h">この5つをメモするだけ</div>
+        <ol class="mini">
+          <li>スマホ：機種名と購入年（例：iPhone 14／2023年）</li>
+          <li>PC：台数・購入年・メモリ容量（8GB／16GBなど）</li>
+          <li>ネット：光回線あり／なし、Wi-Fiの届く範囲</li>
+          <li>アカウント：Googleアカウントを持っているか</li>
+          <li>「毎週いちばん時間を食っている作業」を3つ</li>
+        </ol>
+        <div class="mini-h">合否のライン（ここを超えていれば買い足し不要）</div>
+        <ul class="use">
+          <li><b>スマホ</b>：発売から5年以内／OSの更新が止まっていない</li>
+          <li><b>PC</b>：Windows 11が動く／メモリ8GB以上／ブラウザが使える</li>
+          <li><b>ネット</b>：動画がカクつかずに再生できる程度の回線</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここだけは例外</div>
+          Windows 10のまま止まっているPCは、AI以前に<b>セキュリティ上の理由</b>で更新対象です。この場合だけは「AIのため」ではなく「守りのため」の買い替えとして考えてください。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">SMARTPHONE ／ スマホ</span><div class="st-ttl">主役は、実はスマホです</div></div></div>
+      <div class="step-body">
+        <p class="desc">現場を持つ会社ほど、AIの入口はスマホになります。写真を撮る・声で入力する・移動中に相談する。この3つはPCでは代われません。</p>
+        <div class="mini-h">スマホでここまでできる（追加投資0円）</div>
+        <ul class="use">
+          <li><b>音声入力</b>：マイクボタンを押して話すだけで、長文の指示を出せる。キーボードが苦手な方ほど効きます</li>
+          <li><b>写真を読ませる</b>：手書きの注文伝票・名刺・図面・棚の在庫を撮って「表にして」</li>
+          <li><b>翻訳</b>：外国人スタッフへの指示を、その場で母国語に</li>
+          <li><b>移動中の壁打ち</b>：車内でハンズフリー、頭の整理と口述メモ</li>
+        </ul>
+        <div class="mini-h">買うとしたら、ここだけ</div>
+        <ul class="use">
+          <li><b>スマホ用スタンド／三脚（1,500〜4,000円）</b>：作業手順の撮影・動画マニュアル化が一気に楽に</li>
+          <li><b>モバイルバッテリー（3,000〜6,000円）</b>：AI利用は電池を食う。現場での「切れた」を防ぐ</li>
+          <li><b>ワイヤレスイヤホン（4,000〜)</b>：運転中・作業中の音声入力に。ノイズの多い現場ほど差が出る</li>
+        </ul>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>スマホを買い替えるなら、性能より「カメラの画質」と「電池もち」を見てね。AIに写真を読ませる仕事が、この先どんどん増えるからだよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">PC ／ パソコン</span><div class="st-ttl">PCは「買い替え時期が来たら」でいい</div></div></div>
+      <div class="step-body">
+        <p class="desc">結論から言うと、<b>AIのためだけにPCを買い替える必要はありません</b>。ただし、更新時期が重なっている会社は、選び方だけ変えてください。</p>
+
+        <div class="mini-h">迷ったときの判断フロー</div>
+        <ol class="mini">
+          <li>今のPCでブラウザが快適に動く → <b>買わない</b>（AIはブラウザで動きます）</li>
+          <li>動くが遅い・メモリ8GB → まず<b>メモリ増設や不要ソフト整理</b>を検討</li>
+          <li>買ってから5年以上／Windows 10 → <b>更新の検討対象</b></li>
+          <li>更新するなら → メモリ<b>16GB以上</b>を最優先。CPUの世代は次点</li>
+        </ol>
+
+        <div class="mini-h">「AI PC」は買うべき？</div>
+        <ul class="use">
+          <li><b>Copilot+ PCの目安</b>：NPU 40 TOPS以上・メモリ16GB以上・ストレージ256GB以上、というのがMicrosoftの示す条件です（<a href="https://arpable.com/ai-chip/ai-pc-guide/" target="_blank" rel="noopener">解説記事</a>）</li>
+          <li><b>ただし</b>：NPUが得意なのは要約・ノイズ除去・背景ぼかしなど軽い常時処理。画像生成やローカルLLMのような重い処理は<b>GPU（VRAM）の担当</b>で、TOPSの数字だけで選ぶと外します</li>
+          <li><b>結論</b>：クラウドAI（ChatGPT・Claude・Gemini）を使う中小企業には、<b>今すぐは不要</b>。次の更新時に「あれば得」程度の位置づけです</li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ 2026年ならではの注意</div>
+          メモリ・SSDの高騰で、<b>同じスペックのPCが去年より高い</b>状態が続いています。全台一斉更新は避け、<b>使う人・使う業務から1〜2台ずつ</b>。落ち着くのを待てる台は待つのも、立派な戦略です。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">SUBSCRIPTION ／ 月額</span><div class="st-ttl">機材より先に、有料プランを1つ</div></div></div>
+      <div class="step-body">
+        <p class="desc">「機材予算10万円」があるなら、最初の3万円はここに使うのが最も回収が早い。理由は、無料版と有料版で<b>できる仕事の量</b>が変わるからです。</p>
+        <div class="mini-h">無料と有料、何が違う？</div>
+        <ul class="use">
+          <li><b>回数制限</b>：無料は上限に当たって止まる。忙しい日に限って止まります</li>
+          <li><b>賢さ</b>：有料は上位モデルが使える。長い資料の分析・複雑な指示で差が出ます</li>
+          <li><b>ファイル処理</b>：Excel・PDFを丸ごと投げられる。ここが業務では一番効きます</li>
+          <li><b>目安</b>：主要サービスは月額20ドル前後（日本円でおよそ3,000〜4,500円）</li>
+        </ul>
+        <div class="mini-h">最初の1つは、どれを？</div>
+        <ul class="use">
+          <li><b>とにかく万能に</b> → ChatGPT有料。画像生成・検索・ファイル分析まで一通り</li>
+          <li><b>文章と長文資料が中心</b> → Claude有料。要約・整文・自然な日本語に強い</li>
+          <li><b>Googleドライブ中心の会社</b> → Gemini。スプレッドシート／ドキュメントとの相性</li>
+        </ul>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>まずは社長1人ぶんだけ有料にして、1か月使ってみて。効くと分かってから人数を増やすのが、いちばん安全でいちばん安いよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">TIME-BUYING GEAR ／ 時間を買う機材</span><div class="st-ttl">ここからが、本当に買う価値のある機材</div></div></div>
+      <div class="step-body">
+        <p class="desc">性能を買うのではなく、<b>「これがないとAIに渡せない情報」を取りに行く機材</b>。地方の中小企業で、実際に元が取れているのはこの4つです。</p>
+
+        <div class="mini-h">① AIボイスレコーダー <span class="pill">2〜3万円台</span></div>
+        <ul class="use">
+          <li>会議・商談・現場打合せを録って、<b>文字起こしと要約まで自動</b>。議事録を書く時間がほぼ消えます</li>
+          <li>主要モデルは本体2万円台〜、文字起こしは<b>月300分程度まで無料</b>、超えると月額プランという構成が一般的（<a href="https://k-tai.watch.impress.co.jp/docs/news/2109929.html" target="_blank" rel="noopener">2026年夏のまとめ記事</a>）</li>
+          <li>まずはスマホの録音アプリで代用可。<b>「毎週議事録に2時間使っている」と確認できてから</b>買う</li>
+        </ul>
+
+        <div class="mini-h">② スキャナー／複合機のスキャン活用 <span class="pill">0〜3万円</span></div>
+        <ul class="use">
+          <li>紙の請求書・注文書・日報を読み取ってAIに渡す。<b>今ある複合機のスキャン機能で足りることが多い</b></li>
+          <li>枚数が多いならシートフィード型のスキャナー。「紙を1日100枚以上さばく」なら回収は早いです</li>
+        </ul>
+
+        <div class="mini-h">③ 撮影まわり（照明・三脚・ピンマイク） <span class="pill">5,000〜3万円</span></div>
+        <ul class="use">
+          <li>商品写真・SNS動画・作業手順の動画マニュアルを、社内で作れるようにする土台</li>
+          <li>AIで編集・字幕・台本まで作れる時代。<b>ボトルネックは「撮る側」に移っています</b></li>
+          <li>照明1灯（5,000〜15,000円）だけで、写真の見え方が別物になります</li>
+        </ul>
+
+        <div class="mini-h">④ 大きいモニター <span class="pill">1.5〜3万円</span></div>
+        <ul class="use">
+          <li>地味ですが効果が確実。AIの回答と、元の資料を<b>同時に見る</b>ための投資</li>
+          <li>ノートPC1画面での作業と比べ、確認・修正の速度が明確に上がります</li>
+        </ul>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>共通点、分かった？ぜんぶ「AIに渡す材料を、ラクに集める道具」なんだ。AIの性能を上げる機材じゃないんだよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">AGENT READY ／ 自律型AIに備える</span><div class="st-ttl">「自分で動くAI」が来ると、機材の意味が変わる</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここが2026年の本題です。指示に答えるだけのAIから、<b>手順を自分で組んで最後までやり切るAI（自律型AI／AIエージェント）</b>への移行が始まっています。</p>
+
+        <div class="mini-h">何が変わるのか</div>
+        <ul class="use">
+          <li><b>これまで</b>：人が質問 → AIが答える → 人が実行する（AIは相談相手）</li>
+          <li><b>これから</b>：人が目的を伝える → AIが手順を分解 → 調べ、書き、ファイルを作り、送るところまでやる（AIは担当者）</li>
+          <li>つまり必要なのは「AIを速く動かす機材」ではなく、<b>AIが触れる場所にデータが置いてある状態</b>です</li>
+        </ul>
+
+        <div class="mini-h">自律型AI時代に効く「機材」は、これ</div>
+        <ul class="use">
+          <li><b>クラウドストレージ（月数百〜1,500円）</b>：PCの中にあるファイルは、AIから見えません。<b>共有ドライブに置くこと自体が投資</b></li>
+          <li><b>共通のアカウント基盤</b>：Googleアカウントを会社で統一。誰が何を見られるかを整えることが前提条件</li>
+          <li><b>スマホでの承認環境</b>：AIが作った下書きを、社長がその場で承認・修正して流す。決裁が現場を止めないように</li>
+          <li><b>常時稼働の1台（あれば）</b>：定期実行の自動処理を回すなら、電源の入りっぱなしのPCが1台あると便利。ただし<b>最初は不要</b></li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ 自律型AIの注意点（必ず読んでください）</div>
+          <ul class="use" style="margin-top:6px;">
+            <li><b>間違えたまま最後まで進む</b>：途中で人が見ないと、誤りが成果物まで通ります。<b>送信・支払い・公開の直前に必ず人のチェック</b>を挟む設計に</li>
+            <li><b>権限を広く渡しすぎない</b>：メール送信・ファイル削除・決済は、最初は「下書きまで」に限定を</li>
+            <li><b>個人情報・機密は入れない</b>：お客様情報や社外秘は、社内ルールを決めてから</li>
+            <li><b>ログを残す</b>：誰が何をAIにやらせたか、あとから追えるようにしておく</li>
+            <li><b>属人化に注意</b>：作った人しか直せない自動化は、その人が辞めた瞬間に止まります</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 予算感 -->
+    <h3 class="blk">予算別・現実的な「買い物リスト」</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">従業員5〜30名規模の地方企業を想定した目安です。上から順に、無理なく積み上げてください。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>予算</th><th>買うもの</th><th>できるようになること</th></tr></thead>
+        <tbody>
+          <tr><th>0円</th><td class="mid">追加購入なし<br>今のスマホ・PC＋無料AI</td><td>文章作成・要約・翻訳・アイデア出し・写真の読み取り。<b>まずここで1か月</b></td></tr>
+          <tr><th>月3〜5千円</th><td class="mid">AI有料プラン×1名分</td><td>ファイル分析・長文処理・上位モデル。社長または現場のキーマン1人から</td></tr>
+          <tr><th>5万円</th><td class="mid">有料プラン1年分＋モニター1台<br>＋スマホ三脚・照明</td><td>資料作成の高速化、商品写真・動画マニュアルの内製化</td></tr>
+          <tr><th>20万円</th><td class="mid">有料プラン3〜5名分<br>＋AIボイスレコーダー<br>＋クラウドストレージ<br>＋スキャン環境</td><td>議事録・日報・紙書類がデータになり、<span class="win">全社でAIが使える状態</span>に</td></tr>
+          <tr><th>50万円〜</th><td class="mid">上記＋PC更新2〜3台<br>＋研修・伴走支援</td><td>属人化しない仕組み化。<span class="win">辞めても回る業務設計</span>まで</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">※価格は2026年7月時点の一般的な目安です。メモリ・SSD高騰の影響でPC価格は変動が大きいため、購入前に必ず最新の見積りをご確認ください。</p>
+
+    <div class="combo">
+      <h4>🤝 いちばん多い「正解の型」</h4>
+      <div class="flow">
+        <span class="b">0円で1か月</span><span class="ar">→</span>
+        <span class="b">効いた業務を1つ特定</span><span class="ar">→</span>
+        <span class="b">その業務だけ有料化</span><span class="ar">→</span>
+        <span class="b">詰まった所に機材</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">最初の投資は<b>月3,000円</b>から。これで足りないと分かってから、初めて機材の話をします。逆にすると、だいたい失敗します。</p>
+    </div>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk">費用対効果を、金額で出してみる</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">人件費を<b>時給2,000円</b>（社会保険料込み・役職者相当）として計算した、地方中小企業の典型パターンです。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>業務</th><th>削減時間</th><th>年間の金額換算</th><th>必要な投資</th></tr></thead>
+        <tbody>
+          <tr><th>議事録・日報</th><td class="mid">週3時間 → 週0.5時間</td><td class="win">約26万円／年</td><td class="mid">レコーダー3万＋月額4千円</td></tr>
+          <tr><th>見積書・提案書作成</th><td class="mid">1件2時間 → 40分</td><td class="win">約32万円／年<br><small>（月20件想定）</small></td><td class="mid">月額4千円のみ</td></tr>
+          <tr><th>求人票・SNS投稿</th><td class="mid">週4時間 → 週1時間</td><td class="win">約31万円／年</td><td class="mid">月額4千円＋照明1万</td></tr>
+          <tr><th>クチコミ返信・問い合わせ</th><td class="mid">週2時間 → 週30分</td><td class="win">約15万円／年</td><td class="mid">追加投資なし</td></tr>
+          <tr><th>多言語のスタッフ指示</th><td class="mid">翻訳外注 月2万 → 0円</td><td class="win">約24万円／年</td><td class="mid">追加投資なし</td></tr>
+          <tr><th>紙書類のデータ化</th><td class="mid">月10時間 → 月2時間</td><td class="win">約19万円／年</td><td class="mid">スキャナー2万</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">※自社の実測ではなく、業種横断でよく現れる典型値をもとにした試算です。実際の効果は業務量・体制により変わります。</p>
+
+    <div class="ba">
+      <div class="c bad">
+        <div class="lb">✕ よくある失敗</div>
+        高性能PCを3台・約60万円で導入 → 使い道が決まっておらず、AIは月に数回。<b>回収額ほぼ0円</b>
+      </div>
+      <div class="c good">
+        <div class="lb">◎ 効いたパターン</div>
+        月額4,000円×3名＋レコーダー1台（年間<b>約17万円</b>）→ 議事録と提案書だけで<b>年58万円相当</b>を削減
+      </div>
+    </div>
+
+    <!-- 成功事例 -->
+    <h3 class="blk">地方での成功事例（実際にあった形）</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">群馬・埼玉の中小企業で、実際に成果が出た導入の型です。どれも<b>最初の投資は数万円以内</b>から始まっています。</p>
+    <div class="case-grid">
+      <div class="case">
+        <div class="ck">飲食業・多店舗</div>
+        <div class="ct">外国人スタッフ向けマニュアルを、5言語で内製</div>
+        <p>日本語の作業手順を撮影・録音してAIに渡し、ベトナム語・ミャンマー語・シンハラ語などへ展開。翻訳外注をやめ、教育の立ち上がりが短縮。<b>使った機材はスマホと三脚だけ</b>。</p>
+        <div class="cm"><span>投資：約5,000円＋月額</span><span class="win">翻訳外注費 年約24万円→0</span></div>
+      </div>
+      <div class="case">
+        <div class="ck">建設・足場工事</div>
+        <div class="ct">現場写真から、見積りの下書きを自動生成</div>
+        <p>現場でスマホ撮影 → 寸法と条件をAIに読ませ、見積書の初稿まで自動化。夜に事務所へ戻って作っていた作業が、現場の車内で終わるように。</p>
+        <div class="cm"><span>投資：月額4,000円のみ</span><span class="win">見積作成 1件2時間→40分</span></div>
+      </div>
+      <div class="case">
+        <div class="ck">冠婚葬祭・地域サービス業</div>
+        <div class="ct">問い合わせ対応と、Googleマップ運用を仕組み化</div>
+        <p>電話・来訪でのやり取りを録音して要約。よくある質問を整理し、返信文とクチコミ返信の型をAIで作成。担当者が変わっても品質が落ちない状態に。</p>
+        <div class="cm"><span>投資：レコーダー3万円</span><span class="win">週2.5時間の削減</span></div>
+      </div>
+      <div class="case">
+        <div class="ck">小売・EC／製造</div>
+        <div class="ct">商品ページと販促物を、社内で作り切る</div>
+        <p>照明1灯とスマホで商品撮影、AIで紹介文・POP・SNS投稿を量産。外注していた制作を内製化し、出せる商品点数そのものが増加。</p>
+        <div class="cm"><span>投資：約1.5万円＋月額</span><span class="win">制作外注費の大幅圧縮</span></div>
+      </div>
+    </div>
+
+    <!-- 買ってはいけない -->
+    <h3 class="blk">これは買わなくていい（お金が消える5パターン）</h3>
+    <div class="ng-grid">
+      <div class="ng"><div class="ngh">✕ 「AI対応」と書かれた高額PCの一括導入</div><p>使い道が決まる前の全台更新は、最も回収できない投資です。まず1台、まず1業務。</p></div>
+      <div class="ng"><div class="ngh">✕ ローカルLLM用の高性能GPUマシン</div><p>機密性が理由なら選択肢ですが、初期段階では過剰。クラウドAIで再現できるか先に検証を。</p></div>
+      <div class="ng"><div class="ngh">✕ 用途不明のスマートグラス・AIガジェット</div><p>面白さは本物ですが、業務の型が決まる前に買うと使われません。話題性で買わないこと。</p></div>
+      <div class="ng"><div class="ngh">✕ 高額なオーダーメイドAIシステム</div><p>既存ツールの組み合わせで足りるケースが大半。作り込む前に、まず既製品で回してみる。</p></div>
+      <div class="ng"><div class="ngh">✕ 全社員ぶんの有料プランを一斉契約</div><p>使う人と使わない人が必ず分かれます。使う人から順に。増やすのはいつでもできます。</p></div>
+      <div class="ng"><div class="ngh">✕ 「補助金が出るから」で決める機材</div><p>補助が出ても自己負担は残ります。使わない機材は、割引価格の粗大ごみです。</p></div>
+    </div>
+
+    <!-- 仕事と私生活 -->
+    <h3 class="blk">同じ機材で、仕事も私生活も変わる</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 8px;">経営者ほど「自分で使ってみる」のが早い。まずはご自身の生活で効果を体感してください。</p>
+    <div class="split">
+      <div class="col work">
+        <div class="ch">💼 仕事で <span class="badge-mini">経営・現場</span></div>
+        <ul>
+          <li>商談を録音 → 議事録と次のアクションまで自動で</li>
+          <li>現場写真から、日報・報告書の下書きを作る</li>
+          <li>数字を貼るだけで、月次の振り返りコメントを生成</li>
+          <li>求人票・面接の質問リスト・評価シートの作成</li>
+          <li>クレーム対応の文面を、感情を抜いて整える</li>
+          <li>補助金・助成金の要件を読み解き、要点を整理</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">🏠 私生活で <span class="badge-mini">暮らし・家族</span></div>
+        <ul>
+          <li>子どもの学校のプリントを撮って、予定表に整理</li>
+          <li>保険・住宅ローン・契約書の中身をかみ砕いて理解</li>
+          <li>親の介護・行政手続きの流れを、順番に教えてもらう</li>
+          <li>家族旅行の計画（予算・移動・食事まで一括）</li>
+          <li>健康診断の結果の見方、生活改善の相談</li>
+          <li>あいさつ文・弔辞・スピーチの下書き</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>私生活で毎日使えるようになった社長は、社内展開もうまくいくんだ。逆に、社長が使っていない会社でAIが根づいた例を、ぼくは見たことがないよ。</div>
+    </div>
+
+    <!-- 補助金 -->
+    <h3 class="blk">機材と研修に使える、補助金・助成金</h3>
+    <ul class="use">
+      <li><b>デジタル化・AI導入補助金2026（旧：IT導入補助金）</b>：2026年度から名称が変わり、AI搭載ツールの導入支援が明確に位置づけられました。<b>PC・タブレット単体の購入は対象外</b>で、対象ソフトとセットで申請するのが基本です（<a href="https://it-shien.smrj.go.jp/about/" target="_blank" rel="noopener">公式サイト</a>）</li>
+      <li><b>人材開発支援助成金</b>：機材ではなく<b>「使える人を育てる」費用</b>に対する助成。研修費と、受講中の賃金の一部が対象になり得ます。計画届の提出期限があるため、<b>研修を始める前に</b>動く必要があります</li>
+      <li><b>自治体の独自支援</b>：群馬県・各市町村でDX・生産性向上の支援制度が用意されている場合があります</li>
+    </ul>
+    <div class="warn">
+      <div class="wt">⚠️ 補助金の順番を間違えないで</div>
+      「補助金が取れたら始める」ではなく、<b>「やることを決めてから、使える制度を探す」</b>が正解です。制度は年度で変わり、要件も細かい。目的が先、制度は後。
+    </div>
+
+    <!-- 導入手順 -->
+    <h3 class="blk">今日からの、90日ロードマップ</h3>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>1〜14日目：測る</b>「毎週いちばん時間を食う作業」を3つ書き出す。追加投資0円</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>15〜30日目：試す</b>その3つを、今のスマホ・PCの無料AIでやってみる</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>31〜60日目：絞る</b>効いた1つを有料化。詰まった所だけ機材を検討</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>61〜90日目：広げる</b>手順書にして2人目・3人目へ。ここで初めて全社の話</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない進め方</div>初日に機材を揃え、研修を1回やって終わり → 3か月後、誰も使っていない</div>
+        <div class="c good"><div class="lb">◎ 効く進め方</div>1業務ずつ、成果を確認しながら投資 → 90日後、社内に「使える人」が3人いる</div>
+      </div>
+    </div>
+
+    <!-- 差別化 -->
+    <h3 class="blk">それでも、いちばん詰まるのは「決められない」こと</h3>
+    <div class="keystone">
+      <span class="kl">🤝 UGOKU AIができること</span>
+      <p>ここまで読んでも、<strong>「うちの場合はどれ？」</strong>には記事は答えられません。業種も、人数も、社長のITの得意不得意も違うからです。UGOKU AIは、群馬・埼玉で自社の飲食・建設・EC・宿泊の現場にAIを入れてきた実体験をもとに、<strong>1社ずつマンツーマンで伴走</strong>します。</p>
+    </div>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>買う前に、一緒に棚卸しする</div><p>今ある機材で足りるかを一緒に確認。<b>「買わなくていい」と言えるのが、販売会社との違い</b>です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>自社で実装した現場を持っている</div><p>飲食6店舗・建設・EC・宿泊の運営会社が母体。<b>机上論ではなく、動かした結果</b>を持ち込みます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>研修は助成金の活用を前提に設計</div><p>人材開発支援助成金の計画届から逆算して日程を組み、<b>費用負担を抑えた形</b>を検討します。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>導入して終わりにしない</div><p>3か月目に必ず失速します。そこを見越して、<b>使い続けられる状態まで並走</b>するのが伴走型です。</p></div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">よくある「詰まりどころ」</h3>
+    <div class="compact">
+      <details open><summary>PCが遅くて、AIの画面が固まる</summary><div class="ans">多くはブラウザのタブの開きすぎか、メモリ不足です。買い替える前に、タブを閉じる・不要な常駐ソフトを止める・メモリ増設を検討してください。それでも厳しい場合のみ、更新の対象になります。</div></details>
+      <details><summary>スマホの電池が一気に減る</summary><div class="ans">AIの利用中は通信と画面表示が続くため、消費は増えます。モバイルバッテリー1つで解決するケースがほとんどです。本体の買い替えより先に、こちらを試してください。</div></details>
+      <details><summary>会社のWi-Fiだと動きが遅い</summary><div class="ans">回線ではなく、Wi-Fiルーターの古さや設置場所が原因のことが多いです。ルーターは5年を超えると買い替え効果が大きく、1万円前後で改善する場合があります。</div></details>
+      <details><summary>スタッフが使ってくれない</summary><div class="ans">機材の問題ではありません。「使う場面が決まっていない」ことが原因です。「日報はこの手順で」と、業務を1つに絞って型を配ると動き出します。</div></details>
+      <details><summary>セキュリティが心配で踏み出せない</summary><div class="ans">まずは「入れない情報」を決めるだけで大きく前進します。顧客の個人情報・カード情報・社外秘は入れない、という1行のルールから始めてください。</div></details>
+    </div>
+
+    <!-- 安全 -->
+    <h3 class="blk">機材を入れる前に決めておく、4つのこと</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>入れていい情報／ダメな情報</div><p>お客様の個人情報・カード番号・社外秘は入れない。この1行を先に紙で配ります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>アカウントの管理者を決める</div><p>誰が契約し、誰が権限を持つか。退職時に止められない状態を作らないこと。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>録音・撮影の同意ルール</div><p>会議や商談の録音は、事前にひと言。信頼を守るための、最も安いコストです。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>最終確認は必ず人が</div><p>AIはもっともらしく間違えます。数字・名前・金額・法令は、送る前に人の目で。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>結局、最初にいくら用意すればいいですか？</summary><div class="ans">0円で構いません。1か月試して、効くと分かってから月3,000〜4,500円の有料プランを1人分。ここまでで年間5万円以下です。機材の話は、その次で十分間に合います。</div></details>
+      <details><summary>古いパソコンでも本当に大丈夫？</summary><div class="ans">ブラウザが快適に動くなら大丈夫です。AIの計算はサービス提供側のサーバーで行われるため、手元の性能は答えの質に影響しません。ただしWindows 10のまま止まっている場合は、AIとは別の理由（サポート・セキュリティ）で更新の検討をおすすめします。</div></details>
+      <details><summary>「AI PC」は買ったほうがいい？</summary><div class="ans">クラウドのAIを使う分には、今すぐ必要ではありません。NPUは軽い処理を省電力でこなす仕組みで、画像生成やローカルLLMのような重い処理はGPUの領域です。次の更新時期にNPU搭載モデルを選べば自然に移行できます。</div></details>
+      <details><summary>2026年は、PCの買い時ですか？</summary><div class="ans">メモリ・SSDの高騰が続いており、価格面では厳しい時期です。急ぎでない台は待つ、必要な台だけ先に確保する、という分割対応が現実的です。詳しくは各販売店で最新の相場をご確認ください。</div></details>
+      <details><summary>スマホだけで、会社のAI活用は成立しますか？</summary><div class="ans">十分に成立します。撮影・音声入力・その場での相談はむしろスマホが有利です。長い資料の作成や表計算が中心の業務だけ、PCと組み合わせてください。</div></details>
+      <details><summary>自律型AI（エージェント）は、いま導入すべき？</summary><div class="ans">まずは通常のAIで1〜2業務を回してからをおすすめします。自律型は「間違えたまま最後まで進む」性質があるため、業務の型と確認ポイントが定まっていない段階で入れると、かえって手戻りが増えます。</div></details>
+      <details><summary>誰も詳しい人がいない会社でも始められますか？</summary><div class="ans">始められます。むしろ詳しい人がいない会社ほど、外して買う前に相談する価値があります。UGOKU AIの無料AI化診断は、その第一歩として使っていただけます。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">← 前に読む（基本編）</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで、今日から始める</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">次に読む</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">機材つながりで</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ スマホ1台で、撮影から字幕まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">あわせて読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ 撮った素材を、そのまま販促物に</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">あわせて読む</span><span class="r-t">Google Chromeって何？<small>／ ブラウザの歴史・料金・AI活用まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/fde-guide/"><span class="r-ic">💼</span><span><span class="r-k">あわせて読む</span><span class="r-t">新職種「FDE」って何？<small>／ 年収5000万円の正体</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://it-shien.smrj.go.jp/about/" target="_blank" rel="noopener"><span class="r-ic">🏛️</span><span><span class="r-k">公的機関</span><span class="r-t">デジタル化・AI導入補助金2026<small>／ 中小機構 公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://pc.watch.impress.co.jp/docs/topic/feature/2071150.html" target="_blank" rel="noopener"><span class="r-ic">📉</span><span><span class="r-k">参考記事</span><span class="r-t">メモリ・SSD高騰の背景<small>／ PC Watch</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>買う前に、5分だけ。<br><span class="hl">「本当に必要か」</span>を一緒に確認しませんか？</h2>
+    <p>機材を売る会社ではないので、「買わなくていい」とハッキリお伝えできます。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合う始め方が見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※価格・仕様・制度の内容は2026年7月時点の情報です。提供元の更新により変わることがあります。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

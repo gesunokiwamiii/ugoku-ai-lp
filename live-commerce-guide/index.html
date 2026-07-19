@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ライブコマースとは？導入方法と最新の運用マニュアル｜AI活用で初心者から始める ― UGOKU AI</title>
+<meta name="description" content="ライブコマースとは何か、から実際の始め方まで。プラットフォームの選び方、売れる台本の型、60分の進行タイムライン、KPIの決め方、コピペで使えるAIプロンプト、法律の注意点（景表法・薬機法・ステマ規制・特商法）、そして自律型AIが加わると何が変わるかまで。案内役のうごく君が、初心者向けにやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="ライブコマースとは？導入方法と最新の運用マニュアル｜UGOKU AI">
+<meta property="og:description" content="スマホ1台・視聴者ゼロからでも始められる。台本もコメント対応も振り返りもAIに任せる、2026年版ライブコマース実践マニュアル。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/live-commerce-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/live-commerce-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ライブコマース入門＆最新運用マニュアル ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ライブコマースとは？導入方法と最新の運用マニュアル｜UGOKU AI">
+<meta name="twitter:description" content="「ライブで売る」を勘から手順へ。プラットフォーム選び・台本の型・AI活用・法律の注意点まで、初心者向けに解説。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/live-commerce-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<style>
+  /* ── この記事だけの追加：進行タイムライン（既存カラー変数のみ使用） ── */
+  .tl{list-style:none;margin:10px 0 0;padding:0;position:relative;}
+  .tl::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .tl li{position:relative;padding:9px 0 9px 34px;font-size:14.2px;border-bottom:1px dashed var(--line);}
+  .tl li:last-child{border-bottom:none;}
+  .tl li::before{content:"";position:absolute;left:4px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--accent,var(--pine));box-shadow:0 0 0 3px var(--card);}
+  .tl li .tm{display:inline-block;min-width:64px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;color:var(--accent,var(--pine));margin-right:6px;}
+  .tl li b{font-weight:800;}
+  .lvl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.05em;padding:3px 10px;border-radius:100px;background:var(--ember-soft);color:#8A5300;margin-bottom:6px;}
+</style>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">ライブコマース 入門＆最新運用マニュアル</span>
+      <h1>「ライブ配信で売る」を、<br><span class="hl">勘から手順</span>に変える。</h1>
+      <p class="lead">ライブコマースは、才能でもセンスでもなく<b>段取り</b>です。スマホ1台・視聴者ゼロからでも始められる。台本づくりも、コメント対応も、終わったあとの振り返りも、いまはAIに任せられます。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「やってみたけど誰も来なかった」の原因を、先回りして潰します。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「ライブコマース、気になるけど自分にはムリそう」——その感覚、正しいです。<b>準備なしでやると、ほぼ確実に人が来ません。</b>でも逆に言えば、準備の手順さえ持っていれば誰でも立ち上がります。この記事を上から順に進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>ライブコマースの仕組みと、「売れる／売れない」の分かれ目がわかる</li>
+          <li>自分の商材に合うプラットフォームを、根拠を持って選べる</li>
+          <li>60分の進行台本と告知文を、AIで30分以内に用意できる</li>
+          <li>1回目から数字を測り、2回目以降を改善できる</li>
+          <li>景表法・薬機法・ステマ規制など、やってはいけない線がわかる</li>
+          <li>自律型AIが加わると何がどこまで自動化できるか、現実的な線引きがわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">ライブコマースは、3つの仕事の掛け算</h2>
+    <p class="sec-sub">「配信がうまいかどうか」は3分の1でしかありません。売れないライブの多くは、前後2つが抜けています。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--youtube);">
+        <div class="ic">📣</div>
+        <h4>① 集める<br><span>＝ 告知・リマインド</span></h4>
+        <p>始まってから集めるのは不可能。<b>3日前・前日・開始10分前</b>の3点告知が、視聴者数のほぼすべてを決めます。</p>
+      </div>
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🎤</div>
+        <h4>② 魅せる<br><span>＝ 実演・掛け合い</span></h4>
+        <p>写真では伝わらない「動き・音・大きさ・使う瞬間」を見せる時間。コメントに答えるほど、視聴が伸びます。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🛒</div>
+        <h4>③ 買わせる<br><span>＝ 導線・後追い</span></h4>
+        <p>「欲しい」と思った瞬間に、3タップ以内で買えるか。買えなければ、その熱は必ず冷めます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">LIVE COMMERCE MANUAL</div>
+    <h2 class="sec-title">ライブコマースとは？<br>導入方法と、最新の運用マニュアル</h2>
+    <p class="sec-sub">配信経験ゼロ・フォロワーゼロの方が、今日から動き出せるように作りました。読むだけでなく、コピペで使えるプロンプトも各所に置いてあります。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>ライブコマースとは、ひとことで言えば<strong>スマホの中で行う実演販売</strong>です。テレビショッピングとの決定的な違いは、<strong>視聴者が話しかけてくる</strong>こと。その場の質問にその場で答えられるから、写真とテキストだけのECより「不安」が消え、買われやすくなります。</p>
+    </div>
+
+    <!-- 前提の数字 -->
+    <h3 class="blk">いま、どれくらいの市場になっているのか</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>世界は年20%超で拡大中</div><p>各種調査では、世界のライブコマース市場は2025年の約256億ドルから2026年に約318億ドルへ、2030年には約745億ドル規模へ成長すると予測されています（年平均成長率24%前後）。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>日本は「これから」の段階</div><p>国内市場は2020年に約300億円、2023年に約800億円、2025年に1,000億円超と見られています。中国の規模と比べれば桁違いに小さく、<b>まだ先行者が取り切っていない</b>市場です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>TikTok Shopが地図を変えた</div><p>2025年6月末に日本で提供開始。2025年12月時点で月間流通額は約72.5億円と報じられ、出店者・クリエイターの参入が一気に進みました。<b>「動画を見ていたら買っていた」</b>という買われ方が現実になっています。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>日本は「接客型」で伸びる</div><p>中国型の「叫んで安売り」ではなく、丁寧な説明と関係づくりを重ねる<b>接客型ライブコマース</b>が日本では機能する、という見方が主流です。中小事業者・生産者に有利な流れです。</p></div>
+    </div>
+    <p class="link-note">※数値は各社の公開調査・報道に基づく概算です。手数料や仕様は各プラットフォームのセラーセンターで最新の値をご確認ください。</p>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>1回目から「売ろう」としない</h4>
+        <p>初回の視聴者は多くて数人、ゼロも普通です。<b>1〜3回目は練習と名簿づくり</b>と割り切る。ここで落ち込んで辞めるのが、いちばん多い失敗パターンです。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>「見せられる商品」だけを選ぶ</h4>
+        <p>ライブが効くのは<b>①説明が要る ②変化が見える ③比べられる ④在庫が動く</b>商品。逆に、写真1枚で判断できる定番品は、ライブにしても売上が変わりません。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">GOAL &amp; KPI</span><div class="st-ttl">目的とKPIを、1つに絞る</div></div></div>
+      <div class="step-body">
+        <p class="desc">「売上」をいきなりKPIにすると、ほぼ確実に折れます。ライブコマースは<b>視聴 → 滞在 → コメント → カート遷移 → 購入</b>という順に詰まるので、いま自分がどこで詰まっているかを測れる指標を1つだけ主指標に置きます。</p>
+
+        <div class="mini-h">最初の3ヶ月で追う数字</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>指標</th><th>意味</th><th>まず目指す目安</th></tr></thead>
+            <tbody>
+              <tr><th>同時視聴者数</th><td class="mid">告知が効いているか</td><td class="win">初回3人 → 10回目20人</td></tr>
+              <tr><th>平均視聴時間</th><td class="mid">中身が持っているか</td><td class="win">3分以上</td></tr>
+              <tr><th>コメント数</th><td class="mid">双方向になっているか</td><td class="win">視聴者数 × 1.5件</td></tr>
+              <tr><th>カート遷移率</th><td class="mid">導線が機能しているか</td><td class="win">視聴者の10%前後</td></tr>
+              <tr><th>購入率（CVR）</th><td class="mid">最後の一押しが足りているか</td><td class="win">視聴者の1〜5%</td></tr>
+              <tr><th>アーカイブ再生数</th><td class="mid">配信後も効いているか</td><td class="win">ライブ視聴の2〜5倍</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="link-note">※商材・単価・プラットフォームで大きく変わります。他社と比べるのではなく、<b>自分の前回と比べる</b>のが正解です。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 KPI設計を任せる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはライブコマースの運用責任者です。
+以下の条件で、最初の3ヶ月のKPI設計を作ってください。
+・主指標を1つ、補助指標を3つまでに絞る
+・毎回の配信後に5分で記録できる項目だけにする
+・月次で見る改善アクションを、指標ごとに1つずつ添える
+【条件】
+商材：<span class="fill">〔例：地元の精肉／自社製造の惣菜〕</span>
+価格帯：<span class="fill">〔例：3,000〜8,000円〕</span>
+配信頻度：<span class="fill">〔例：週1回・30分〕</span>
+現在のフォロワー数：<span class="fill">〔例：ほぼゼロ〕</span></pre>
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch"><span class="badge-mini">仕事</span> 売上をつくる</div>
+            <ul>
+              <li>在庫過多・訳あり品を、値引きせず「理由込み」で動かす</li>
+              <li>新商品のテスト販売。反応の言葉がそのまま販促コピーになる</li>
+              <li>BtoBの商品説明会・展示会の代替（移動費ゼロ）</li>
+              <li>採用説明会・工場見学のライブ版で、応募の質を上げる</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch"><span class="badge-mini">プライベート</span> 個人でも使える</div>
+            <ul>
+              <li>不要品・ハンドメイド作品を、写真より高く売る</li>
+              <li>趣味の知識（釣り・カメラ・園芸）を実演で発信する</li>
+              <li>副業として、他社商品を紹介するアフィリエイト配信</li>
+              <li>家族や仲間内への、遠隔での「見せながら説明」に応用</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>初回の主指標は、売上じゃなくて<b>「コメント数」</b>にするのがおすすめだよ。コメントが増えると滞在が伸びて、滞在が伸びると勝手に売れ始めるから。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">PLATFORM</span><div class="st-ttl">プラットフォームを選ぶ</div></div></div>
+      <div class="step-body">
+        <p class="desc">「どこで配信するか」は、<b>すでにお客さんがいる場所はどこか</b>で決めます。ゼロから集めるより、いる場所に出ていくほうが圧倒的に速い。判断軸は次の3つだけです。</p>
+
+        <ol class="mini">
+          <li><b>買う導線が中で完結するか</b>（アプリ内決済 or 外部ECへ遷移）</li>
+          <li><b>新規に発見されるか</b>（おすすめ配信に載る仕組みがあるか）</li>
+          <li><b>手数料と固定費</b>（販売手数料のみか、月額があるか）</li>
+        </ol>
+
+        <div class="mini-h">主要プラットフォームの性格</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>プラットフォーム</th><th>強み</th><th>向いている人</th></tr></thead>
+            <tbody>
+              <tr><th>TikTok Shop</th><td class="mid">新規発見が最強。動画とライブが連動し、アプリ内で購入完結</td><td class="win">◎ フォロワーゼロから始める人</td></tr>
+              <tr><th>Instagram ライブ</th><td class="mid">既存フォロワーとの関係が濃い。準備ゼロで始められる</td><td class="win">◎ すでに常連がいる店</td></tr>
+              <tr><th>YouTube ライブ</th><td class="mid">配信時間の制限がなく、アーカイブが資産になる</td><td class="win">◎ 長尺・説明が要る商材</td></tr>
+              <tr><th>楽天／Yahoo!等のモール</th><td class="mid">すでに買う気の人が集まる場所。ポイント経済圏と連動</td><td class="win">◎ モール出店中の事業者</td></tr>
+              <tr><th>17LIVE ほか専用アプリ</th><td class="mid">ライバーとのマッチングや、購入導線の作り込み</td><td class="win">○ 自社に配信人材がいない</td></tr>
+              <tr><th>自社EC埋め込み型</th><td class="mid">データが自社に貯まる。ブランドの世界観を守れる</td><td class="win">○ すでにEC売上がある</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 手数料は「変わる前提」で見る</div>
+          TikTok Shopの日本版販売手数料は一律7%からスタートし、2026年5月11日以降はカテゴリー別料率へ移行しました。<b>利益計算をする前に、必ずセラーセンターで自分のカテゴリーの最新レートを確認</b>してください。原価＋送料＋手数料＋梱包資材で、粗利が想定より10%以上削られることはよくあります。
+        </div>
+
+        <div class="mini-h">迷ったときの、いちばん現実的な組み合わせ</div>
+        <ul class="use">
+          <li><b>新規を取りたい</b>：TikTok（ショート動画で発見）→ ライブで接客 → アプリ内で購入</li>
+          <li><b>既存客を太らせたい</b>：Instagram ライブ → 公式LINEへ誘導 → 次回配信をリマインド</li>
+          <li><b>説明が長い商材</b>：YouTube ライブ → アーカイブを商品ページに埋め込む</li>
+          <li><b>まず試したい</b>：Instagram ライブで3回やって、続けられるか自分を試す</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 プラットフォーム診断</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>私の事業に合うライブコマースのプラットフォームを、
+「本命1つ・サブ1つ・やらない理由つきで除外2つ」の形で提案してください。
+判断軸は「新規発見のしやすさ／購入導線／手数料と固定費／運用工数」の4つ。
+最後に、本命で最初の1ヶ月にやることを箇条書き7つで。
+【私の情報】
+業種・商材：<span class="fill">〔　　　〕</span>
+客単価と月商：<span class="fill">〔　　　〕</span>
+既存SNSのフォロワー：<span class="fill">〔　　　〕</span>
+配信に使える人数と時間：<span class="fill">〔　　　〕</span>
+自社ECの有無：<span class="fill">〔　　　〕</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">SCRIPT &amp; OFFER</span><div class="st-ttl">商材を決め、台本をAIで作る</div></div></div>
+      <div class="step-body">
+        <p class="desc">ライブコマースは「アドリブ勝負」ではありません。<b>売れている配信ほど台本がある</b>。ただし読み上げる台本ではなく、<b>順番と、言い忘れてはいけないことのメモ</b>です。ここはAIがいちばん効く工程で、1時間かかっていた準備が10分になります。</p>
+
+        <div class="mini-h">1回の配信で扱う商品は「3つ」まで</div>
+        <ul class="use">
+          <li><b>集客商品</b>：安い・話題性がある。入口として最初に出す</li>
+          <li><b>主力商品</b>：いちばん売りたい本命。中盤にいちばん時間を使う</li>
+          <li><b>高単価／セット</b>：終盤に。買う気の残った人だけが刺さる</li>
+        </ul>
+
+        <div class="mini-h">「売れる台本」を分解すると、この4要素</div>
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>誰の、どの不便か</b>この商品が消す「困りごと」を1文で</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>見せる瞬間</b>写真では伝わらない動き・音・比較</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>信じられる理由</b>作り手・産地・数字・使用歴</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>今買う理由</b>数量・期間・同梱特典（嘘はNG）</div></div>
+        </div>
+
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ もったいない台本</div>「今日はこの商品を紹介します。おいしいのでぜひ買ってください」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 何が違うのか分からず、見ている人は離脱する</span></div>
+          <div class="c good"><div class="lb">◎ 効く台本</div>「解凍が面倒で焼肉を家でやらなくなった人向けです。今から常温15分で焼けるところ、実際に焼いて見せます」<br><span style="color:#7A5B12;font-size:12.5px;">→ 対象・実演・確認できる根拠が揃っている</span></div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 30分ライブの進行台本をつくる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはライブコマースの構成作家です。
+30分のライブ配信の進行台本を、以下の形式で作ってください。
+・5分刻みのタイムテーブル（時間／話すこと／画面で見せるもの）
+・冒頭30秒で言うフック（3案）
+・視聴者に投げかける質問（コメントを誘発するもの）を7つ
+・購入を促す「締めの一言」を3パターン（煽らない・事実ベースで）
+・言ってはいけないNGワード（景表法・薬機法の観点）を注意書きで
+【商品】
+商品名と価格：<span class="fill">〔　　　〕</span>
+特徴と原材料・製法：<span class="fill">〔　　　〕</span>
+想定するお客様：<span class="fill">〔　　　〕</span>
+競合との違い：<span class="fill">〔　　　〕</span>
+今回の特典や条件：<span class="fill">〔　　　〕</span></pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 告知文を3点セットで一括生成</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>下記のライブ配信について、告知文を3本まとめて作ってください。
+①3日前投稿用（期待を持たせる・120字）
+②前日投稿用（内容を具体的に・120字）
+③開始10分前用（今すぐ来てもらう・60字）
+それぞれにハッシュタグ案を5つ、絵文字は控えめに。
+【配信情報】
+日時：<span class="fill">〔　　　〕</span>
+場所（プラットフォーム）：<span class="fill">〔　　　〕</span>
+紹介する商品：<span class="fill">〔　　　〕</span>
+見どころ（実演内容）：<span class="fill">〔　　　〕</span></pre>
+        </div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>台本をAIに作らせたら、<b>必ず声に出して1回読んでみて</b>。自分が言わない言葉が混ざっていると、本番で急に読み上げっぽくなって、コメントが止まっちゃうんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">SETUP</span><div class="st-ttl">機材と配信環境を整える</div></div></div>
+      <div class="step-body">
+        <p class="desc">高い機材は要りません。<b>スマホ1台で十分</b>です。ただし「音」と「光」と「通信」の3つだけは、安物で妥協すると視聴時間がはっきり落ちます。</p>
+
+        <div class="mini-h">最低限そろえる（合計2万円以下でOK）</div>
+        <ol class="mini">
+          <li><b>スマホ＋三脚</b>：手ブレは離脱の最大要因。固定するだけで印象が変わる</li>
+          <li><b>ピンマイク（有線でも可）</b>：最重要。声が遠いと3秒で閉じられる</li>
+          <li><b>リングライト or 卓上ライト</b>：顔と商品に光を当てる。逆光は厳禁</li>
+          <li><b>有線LAN or 電波の強い場所</b>：映像が固まると、その瞬間に人が消える</li>
+          <li><b>予備のモバイルバッテリー</b>：配信中の充電切れは実際によく起きる</li>
+          <li><b>商品の見せ台・背景</b>：白い布や無地の板1枚で、生活感が消える</li>
+        </ol>
+
+        <div class="warn">
+          <div class="wt">⚠️ 開始前の3分チェック</div>
+          ①<b>音量</b>（別のスマホで自分の配信を聞く）②<b>ピント</b>（商品にタップして固定）③<b>通知オフ</b>（機内モード＋Wi-Fiが安全）④<b>商品ページのリンク</b>（在庫と価格が合っているか）。この4つを飛ばして事故る人が、いちばん多いです。
+        </div>
+
+        <div class="mini-h">こんな活かし方ができる</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch"><span class="badge-mini">仕事</span> 配信環境の転用</div>
+            <ul>
+              <li>そのままオンライン商談・社内研修の撮影に使える</li>
+              <li>ライブの素材を切り抜いて、ショート動画に再利用</li>
+              <li>スタッフ教育の手本動画を、同じセットで量産</li>
+              <li>採用向けの「職場の空気が見える」動画に転用</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch"><span class="badge-mini">プライベート</span> 家でも活きる</div>
+            <ul>
+              <li>フリマ出品の写真が、光を足すだけで別物になる</li>
+              <li>子どもの発表会・行事の記録がきれいに残る</li>
+              <li>遠方の家族とのビデオ通話が、圧倒的に見やすくなる</li>
+              <li>趣味の作品撮影・オンライン教室にそのまま使える</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">ON AIR</span><div class="st-ttl">本番：30分の進行タイムライン</div></div></div>
+      <div class="step-body">
+        <p class="desc">視聴者は<b>途中から入ってきて、途中で抜けます</b>。だから「最初に全部説明する」は失敗。同じ話を、言い方を変えて何度も繰り返す構成が正解です。</p>
+
+        <ul class="tl">
+          <li><span class="tm">0-3分</span><b>入口づくり</b>：挨拶＋「今日やること」を一文で。まだ商品の説明はしない。人が集まる時間として使う</li>
+          <li><span class="tm">3-8分</span><b>集客商品</b>：軽い商品で場を温める。コメントに1つずつ名前を呼んで返す</li>
+          <li><span class="tm">8-10分</span><b>1回目の総集編</b>：「今来た方へ」で最初から説明し直す</li>
+          <li><span class="tm">10-20分</span><b>主力商品の実演</b>：ここが山場。実際に触る・焼く・着る・開ける。質問を待たずに「よく聞かれるのは〜」と先回り</li>
+          <li><span class="tm">20-23分</span><b>2回目の総集編＋買い方の案内</b>：どこを押せば買えるかを、画面を指さして説明</li>
+          <li><span class="tm">23-28分</span><b>高単価・セット提案</b>：残っている人＝濃い人。ここで一番いい提案を出す</li>
+          <li><span class="tm">28-30分</span><b>次回予告とお礼</b>：次の配信日時を必ず告知。フォロー・通知オンを依頼して終わる</li>
+        </ul>
+
+        <div class="mini-h">コメント対応の型</div>
+        <ul class="use">
+          <li><b>名前を呼ぶ</b>：「〇〇さん、ありがとうございます」だけで滞在が伸びる</li>
+          <li><b>質問は繰り返してから答える</b>：途中入場の人にも伝わる</li>
+          <li><b>答えられない質問は「調べて後で載せます」</b>：適当に答えるのが最大の事故</li>
+          <li><b>否定的なコメントは削除より放置</b>：丁寧に一度だけ返し、あとは進行を続ける</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 想定質問と回答を先に用意する</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>この商品のライブ配信で、視聴者から出そうな質問を30個、
+「よく出る順」に並べて、回答例をセットで作ってください。
+・回答は1つ40字以内、話し言葉で
+・答えにくい質問（値段が高い／他社と何が違う／効果はあるのか）も必ず含める
+・薬機法・景表法に触れそうな質問には、安全な言い換え例を添える
+【商品情報】
+<span class="fill">〔商品名・価格・原材料・製法・保証などを貼り付け〕</span></pre>
+        </div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>視聴者が0人でも、<b>10人いるつもりで最後まで話しきる</b>のが大事。アーカイブを見た人が買うことは本当によくあるし、その録画がそのまま次の商品ページの説明動画になるからね。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>6</b></div><div><span class="st-chip">REVIEW &amp; REUSE</span><div class="st-ttl">終わったあとが、いちばん儲かる</div></div></div>
+      <div class="step-body">
+        <p class="desc">配信は終わった瞬間に消えるものではありません。<b>1回の配信は、10本以上のコンテンツの原材料</b>です。ここを回収しないのは、いちばんもったいない。</p>
+
+        <div class="mini-h">配信後24時間でやる5つ</div>
+        <ol class="mini">
+          <li>数字を記録（視聴者数・滞在・コメント数・売上を1行で）</li>
+          <li>コメント全文をコピーして、AIに要約・分類させる</li>
+          <li>いちばん盛り上がった30〜60秒を切り抜いてショート動画に</li>
+          <li>アーカイブを商品ページ・LINE・メルマガに貼る</li>
+          <li>買ってくれた人へお礼＋次回配信の案内を送る</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 配信の振り返りをAIに任せる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下はライブ配信の文字起こしとコメントログです。次の5つを出してください。
+①視聴者が実際に気にしていたこと TOP5（コメントの根拠つき）
+②説明が足りていなかった箇所と、次回の言い換え案
+③切り抜きにすべき箇所（時間帯と理由）を3つ
+④商品ページに追記すべきFAQを5つ
+⑤次回配信の改善アクションを3つ（優先順位つき）
+【文字起こし】
+<span class="fill">〔ここに貼り付け〕</span>
+【コメントログ】
+<span class="fill">〔ここに貼り付け〕</span></pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 1本の配信を10本のコンテンツに割る</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>この配信内容から、次の素材を作ってください。
+・ショート動画の企画案10本（冒頭2秒のフック文つき）
+・Instagram投稿文3本／X投稿文5本
+・商品ページに追記する説明文（300字）
+・公式LINE配信文（次回ライブ告知つき・200字）
+・ブログ記事の見出し構成（H2×5）
+【元素材】
+<span class="fill">〔配信の文字起こし、または台本を貼り付け〕</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 反響トレース ═══ -->
+    <div class="cmp">
+      <h3 class="blk">反響が大きいライブに共通する、6つの型</h3>
+      <p class="sec-sub" style="margin-bottom:16px;">コメント・いいね・保存が伸びている配信を横断して見ると、まったく違う業種でも同じ形をしています。真似すべきは「話し方」ではなく、この構造です。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🔪</span>① 目の前で「変わる」</h4><ul>
+          <li>切る・焼く・開ける・着る・組み立てる</li>
+          <li>ビフォーアフターが1画面に入っている</li>
+          <li>失敗もそのまま見せる（編集がないことの証明）</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🙋</span>② 視聴者に決めさせる</h4><ul>
+          <li>「AとB、どっち食べてほしい？」で参加させる</li>
+          <li>コメント数で次の展開が変わる仕掛け</li>
+          <li>名前を呼ばれた人が、また来る</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏭</span>③ 舞台裏を見せる</h4><ul>
+          <li>工場・厨房・畑・倉庫からの中継</li>
+          <li>作っている人本人が話す（営業マンではなく）</li>
+          <li>「普段は見せない場所」が最強のフック</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📉</span>④ 弱点を先に言う</h4><ul>
+          <li>「これは〇〇な人には向きません」</li>
+          <li>他社のほうが優れている点も認める</li>
+          <li>結果として、信用が跳ね上がる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">⏰</span>⑤ 定時・定曜日でやる</h4><ul>
+          <li>「毎週◯曜の20時」で習慣化される</li>
+          <li>不定期配信は、告知コストが毎回かかる</li>
+          <li>終わりに必ず次回日時を言う</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🎁</span>⑥ 見た人だけの理由がある</h4><ul>
+          <li>ライブ限定のセット・数量・同梱</li>
+          <li>「配信中に買った方へ手書きメモ」など非金銭の特典</li>
+          <li>※虚偽の限定表示は景表法違反になるので注意</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- ═══ AI活用レベル ═══ -->
+    <h3 class="blk">ここにAIが入ると、何が変わるのか</h3>
+    <p class="sec-sub" style="margin-bottom:16px;">AIの入れどころは3段階あります。いきなり3段目を狙わず、<b>1段目を完全に手放してから次へ</b>進むのが失敗しない順番です。</p>
+
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>LV</small><b>1</b></div><div><span class="st-chip">ASSIST ／ 補助</span><div class="st-ttl">準備と振り返りをAIに渡す</div></div></div>
+      <div class="step-body">
+        <p class="desc">いま日本の中小事業者がいちばん恩恵を受けている段階。<b>人は喋ることに集中し、それ以外を全部AIに寄せます。</b>ここだけで準備時間が1/5になります。</p>
+        <ul class="use">
+          <li><b>台本・告知文・想定Q&amp;A</b>の生成（STEP3のプロンプト群）</li>
+          <li><b>文字起こし→要約→改善提案</b>（STEP6のプロンプト）</li>
+          <li><b>切り抜き候補の抽出</b>と、ショート動画の台本化</li>
+          <li><b>商品ページ・FAQ・LINE配信文</b>への自動転記</li>
+        </ul>
+        <p class="link-note">→ 動画側の具体的な作り方は <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/">AI×動画編集 入門マニュアル</a> を参照。</p>
+      </div>
+    </div>
+
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>LV</small><b>2</b></div><div><span class="st-chip">REALTIME ／ 半自動</span><div class="st-ttl">配信中にAIが横で動く</div></div></div>
+      <div class="step-body">
+        <p class="desc">配信しながらAIが並走する段階。すでに実用化されており、<b>ワンオペ配信を成立させる決定打</b>になります。</p>
+        <ul class="use">
+          <li><b>リアルタイム字幕・多言語翻訳</b>：インバウンド／越境販売がそのまま射程に入る</li>
+          <li><b>コメントの自動分類</b>：質問・購入意思・クレームを色分けして表示</li>
+          <li><b>定型質問への自動返信</b>：送料・在庫・賞味期限などをAIが即答</li>
+          <li><b>視聴数の落ち込みを検知</b>して、次に話す話題を提案</li>
+        </ul>
+        <div class="warn">
+          <div class="wt">⚠️ ここでの注意</div>
+          自動返信は<b>「事実だけを答える範囲」に限定</b>してください。効能・効果・納期の約束をAIに喋らせると、そのまま企業の表示責任になります。返答テンプレートは人が事前に固定し、AIには「テンプレから選ぶ」役だけをさせるのが安全です。
+        </div>
+      </div>
+    </div>
+
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>LV</small><b>3</b></div><div><span class="st-chip">AUTONOMOUS ／ 自律型</span><div class="st-ttl">AIエージェントが「回し続ける」</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここが2026年のフロンティアです。自律型AI（AIエージェント）は、<b>指示を1回受けたら、複数の作業を自分で順番に判断して実行し続ける</b>AIのこと。ライブコマースとの相性は極めて良い領域です。</p>
+
+        <div class="mini-h">現実的に「もう作れる」自律運用</div>
+        <ul class="use">
+          <li><b>配信カレンダーの自動運用</b>：在庫データと天気・イベント情報を見て、来週の配信商材と日時を提案し、告知文まで下書きして通知する</li>
+          <li><b>配信後の全自動レポート</b>：文字起こし・コメント分析・数値記録・次回改善案を、翌朝までにレポート化してチャットに投げる</li>
+          <li><b>切り抜き量産パイプライン</b>：盛り上がり箇所を検出→切り出し→字幕→投稿文→各SNSへ下書き投稿まで一気通貫</li>
+          <li><b>AIアバターによる無人配信</b>：中国のプラットフォームでは実在人物のクローンアバターによる24時間販売が普及。国内でもNTTドコモとQVCジャパンによるAIショッピングナビゲーターの配信など、実証が進んでいます</li>
+          <li><b>多言語同時配信</b>：AnyMind Groupの「AnyLive」のように、生成AIで多言語のライブ配信を成立させ、東南アジアなど越境販売の言語・人材の壁を下げる動きも出ています</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work">
+            <div class="ch"><span class="badge-mini">可能性</span> ここが本当に大きい</div>
+            <ul>
+              <li>「人がいる時間しか売れない」制約が外れる</li>
+              <li>24時間・多言語で、同じ商品を売り続けられる</li>
+              <li>1人の話し手のノウハウを、複製して横展開できる</li>
+              <li>配信データが貯まるほど、提案の精度が上がる</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch"><span class="badge-mini">注意点</span> ここを外すと事故る</div>
+            <ul>
+              <li>AIが事実と違う説明をした場合も、責任は事業者側にある</li>
+              <li>プラットフォームごとにAI生成物の表示ルールが異なる</li>
+              <li>本人そっくりのアバターは、肖像・パブリシティ権の問題が出る</li>
+              <li>「AIだと明かさない」運用は、信頼を一発で失う</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 自律型を入れる前に、必ず決めておく3つ</div>
+          ①<b>AIが勝手に言ってはいけないことのリスト</b>（効能・価格・納期・在庫の約束）②<b>人が必ず承認する工程</b>（投稿前・値付け・返金対応）③<b>AIが関与していることの開示方法</b>。この3つを紙に書いてから導入すれば、自律型は「怖い技術」ではなく、ただの強力な社員になります。
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 自社の自律型AI運用を設計する</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>ライブコマース運用に自律型AIエージェントを導入する設計案を作ってください。
+・「AIに完全に任せる工程」「AIが下書きし人が承認する工程」「人しかやらない工程」の
+　3分類で、工程を全部並べる
+・各工程に、失敗したときのリスクと、その防ぎ方を1行ずつ
+・導入を3ヶ月で段階的に進めるロードマップ（月ごと）
+・最後に、社内ルールとして紙に貼る「AI運用5か条」を作る
+【前提】
+業種・商材：<span class="fill">〔　　　〕</span>
+配信頻度と担当人数：<span class="fill">〔　　　〕</span>
+いま使っているツール：<span class="fill">〔例：ChatGPT、Claude、Googleスプレッドシート〕</span></pre>
+        </div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>自律型AIって聞くと「人がいらなくなる」って思われがちだけど、実際に強いのは<b>「人が喋る時間を増やすために、それ以外を全部AIが回す」</b>形なんだ。日本のお客さんは、結局「誰から買うか」を見てるからね。</div></div>
+      </div>
+    </div>
+
+    <!-- 合わせ技 -->
+    <div class="combo">
+      <h4>🤝 いいとこ取りの「合わせ技」</h4>
+      <div class="flow">
+        <span class="b">Claudeで<br>台本と想定Q&amp;A</span><span class="ar">→</span>
+        <span class="b">配信は<br>人が喋る</span><span class="ar">→</span>
+        <span class="b">AIが<br>文字起こし・分析</span><span class="ar">→</span>
+        <span class="b">自律型AIが<br>切り抜き量産</span>
+      </div>
+      <p style="margin:0;font-size:14px;">準備と後処理をAIに寄せて、人は<b>「その場で答える」ことだけ</b>に集中する。これが2026年時点でいちばん再現性のある形です。ひとことで言えば——<b>喋るのは人、それ以外は全部AI。</b></p>
+    </div>
+
+    <!-- 活用アイデア -->
+    <div class="cmp">
+      <h3 class="blk">仕事と私生活、それぞれの活かし方</h3>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🏪</span>お店・飲食・小売で</h4><ul>
+          <li>仕入れたその日の目玉を、夕方ライブで売り切る</li>
+          <li>ロス削減：閉店前の在庫を「理由つき」で動かす</li>
+          <li>常連向けの先行販売・予約受付の場にする</li>
+          <li>店舗に来られない遠方客を、通販顧客に変える</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏭</span>製造・BtoB・建設で</h4><ul>
+          <li>展示会の代替。現場から機械の実演を中継</li>
+          <li>施工事例・工場ラインを見せて、信用を先に作る</li>
+          <li>代理店・卸向けの新商品説明会をライブ化</li>
+          <li>採用配信：働く場所と人を、そのまま見せる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🌾</span>地域・生産者・自治体で</h4><ul>
+          <li>畑・漁港から直接。物産展に行かずに売れる</li>
+          <li>ふるさと納税返礼品の魅力を、作り手の言葉で</li>
+          <li>移住・観光の説明会をライブで通年開催</li>
+          <li>伝統工芸の制作過程が、そのままコンテンツになる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>個人・副業・暮らしで</h4><ul>
+          <li>ハンドメイド・古着・不要品を、写真より高く売る</li>
+          <li>得意分野の実演（料理・修理・整理収納）で信用を作る</li>
+          <li>アフィリエイト配信で、在庫を持たずに始める</li>
+          <li>オンライン教室・相談会の入口として使う</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 法律 -->
+    <h3 class="blk">これだけは守る。4つの法律</h3>
+    <p class="sec-sub" style="margin-bottom:16px;">ライブは「その場のノリ」で言葉が走ります。だからこそ、事前に線を引いておくことが最大の防御です。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>景品表示法（優良誤認・有利誤認）</div><p>実際より著しく良く見せる表示、根拠のない「通常価格」との比較はNG。ライブでは<b>盛り上げるための言い過ぎ</b>が事故になります。「日本一」「最高品質」は根拠が必要です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>薬機法（医薬品医療機器等法）</div><p>化粧品・健康食品・サプリで「痩せる」「シミが消える」「治る」は言えません。<b>体験談の形にしても同じ扱い</b>です。言い換え表現を事前にリスト化しておきましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>ステマ規制（2023年10月〜）</div><p>事業者の広告なのに第三者の感想に見せる表示は、景表法上の不当表示です。インフルエンサーやライバーに依頼する場合は、<b>配信中・概要欄の両方で「PR」を明示</b>してください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>特定商取引法</div><p>販売ページ側に、事業者名・住所・連絡先・送料・返品条件などの表示義務があります。<b>ライブが良くても、リンク先が不備だと違反</b>です。配信前に販売ページを必ず確認。</p></div>
+    </div>
+    <p class="link-note">※詳細と最新の運用基準は <a href="https://www.caa.go.jp/" target="_blank" rel="noopener">消費者庁の公式サイト ↗</a> をご確認ください。判断に迷う表現は、専門家に相談するのが結局いちばん安上がりです。</p>
+
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 台本のリーガルチェックをAIに</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>以下のライブ配信台本を読み、日本の景品表示法・薬機法・ステマ規制の観点で
+リスクがある表現をすべて抜き出してください。
+・「該当箇所／なぜ危ないか／安全な言い換え案」の3列の表で
+・グレーなものも「要確認」として拾う
+・最後に、この商材で絶対に言ってはいけないNGワードを10個
+※最終判断は専門家に確認する前提で、指摘は多めにお願いします。
+【台本】
+<span class="fill">〔ここに貼り付け〕</span></pre>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">うまくいかないときの、原因と対処</h3>
+    <div class="compact">
+      <details open><summary>視聴者が集まらない（0〜数人のまま）</summary><div class="ans">ほぼ100%、<b>告知不足</b>です。配信中に集めることはできません。3日前・前日・開始10分前の3点告知を、既存の全チャネル（SNS・LINE・店頭POP・レシート・メール）で必ず流してください。それでも増えない場合は、時間帯が合っていない可能性（一般消費者向けなら平日20〜22時、主婦層なら平日10〜11時が定番）。</div></details>
+      <details><summary>入ってくるけど、すぐ抜けられる</summary><div class="ans">冒頭30秒で「今、何を見せているのか」が伝わっていません。挨拶より先に<b>結論（今日やること・見どころ）</b>を言う。また、音が小さい・逆光・手ブレのいずれかがあると、内容以前に離脱します。別のスマホで自分の配信を実際に見てチェックを。</div></details>
+      <details><summary>コメントがまったく来ない</summary><div class="ans">質問の粒度が大きすぎます。「何か質問ありますか？」ではなく、<b>「AとB、どっちが気になりますか？」</b>と2択にする。最初の数回は、スタッフや知人に頼んで最初の1コメントを入れてもらうのも有効です（サクラではなく、呼び水として）。</div></details>
+      <details><summary>見られているのに、売れない</summary><div class="ans">買う導線が切れています。①購入リンクが画面のどこにあるか毎回口頭で案内しているか ②リンク先の在庫・価格が合っているか ③スマホで3タップ以内に決済まで行けるか——この3つを確認。また、「今日買う理由」がないと後回しにされます（数量・期間・同梱など、嘘のない範囲で）。</div></details>
+      <details><summary>続けられない・準備が重い</summary><div class="ans">準備を人力でやっているのが原因です。この記事のプロンプトを使って、台本・告知文・想定Q&amp;A・振り返りをAIに寄せてください。それでも重い場合は、<b>30分→15分に短くする</b>のが正解。頻度を落とすより、時間を短くして続けるほうが結果が出ます。</div></details>
+      <details><summary>喋るのが苦手・顔を出したくない</summary><div class="ans">顔出しは必須ではありません。手元だけ映す「実演カメラ」形式や、アバター配信という選択肢があります。ただし<b>声は本人</b>のほうが信用されやすい。どうしても苦手なら、聞き役をもう1人置いて対談形式にすると一気に喋りやすくなります。</div></details>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>フォロワーがゼロでも始められますか？</summary><div class="ans">始められます。むしろTikTokのように「おすすめ」で新規に発見される仕組みがあるプラットフォームは、フォロワー数より<b>視聴維持率とコメント数</b>を見ます。ただし最初の数回は視聴者が一桁なのが普通です。そこで辞めないことが唯一の条件です。</div></details>
+      <details><summary>いくらぐらい費用がかかりますか？</summary><div class="ans">機材はスマホ＋三脚＋マイク＋ライトで2万円以下から。プラットフォームの多くは固定費なし・<b>販売手数料のみ</b>です（例：TikTok Shopは日本版で一律7%からスタートし、2026年5月11日以降カテゴリー別料率へ移行）。まずは手持ちのスマホとInstagramライブで、費用ゼロで3回試すのをおすすめします。</div></details>
+      <details><summary>1回どのくらいの時間、どのくらいの頻度でやるべき？</summary><div class="ans">30分〜1時間、週1〜2回が現実的な標準です。大事なのは長さより<b>「毎週◯曜の◯時」と固定すること</b>。習慣になると、告知しなくても人が来るようになります。</div></details>
+      <details><summary>ライブコマースに向かない商品はありますか？</summary><div class="ans">あります。写真1枚で判断できる定番の日用品、極端に低単価で送料負けするもの、説明する要素がないものは効果が薄い。逆に<b>「実物を見ないと不安」「使い方が伝わりにくい」「作り手の顔が価値になる」</b>商品は非常に相性が良いです。</div></details>
+      <details><summary>AIに全部やらせて、無人で配信してもいいですか？</summary><div class="ans">技術的には可能で、海外では一般化しつつあります。ただし日本では、①AIが説明した内容の責任は事業者にある ②プラットフォームごとにAI生成コンテンツの表示ルールが異なる ③黙って使うと信頼を失う、という3点に注意が必要です。<b>まずは準備と振り返りの自動化から</b>入り、無人配信は在庫確認や定型FAQなど「事実だけ」の領域から広げるのが安全です。</div></details>
+      <details><summary>撮影した映像や、AIが作った文章の権利はどうなりますか？</summary><div class="ans">自社で撮影した映像は原則自社のものですが、BGM・映り込んだ商品ロゴ・出演者の肖像には別途配慮が必要です。AI生成の文章はそのまま使えることが多いものの、<b>事実確認は必ず人が行う</b>前提で使ってください。他社の配信をそのまま真似た構成・台本の流用はトラブルの元になります。</div></details>
+      <details><summary>社内に配信できる人がいません</summary><div class="ans">「喋りがうまい人」より<b>「その商品を一番よく知っている人」</b>を立ててください。買う側が見ているのは滑らかさではなく詳しさです。それでも難しい場合は、ライバーとのマッチング機能を持つプラットフォームや、運用代行を検討する手もあります。</div></details>
+      <details><summary>助成金を使って、社内にノウハウを入れられますか？</summary><div class="ans">AI活用やデジタル人材の育成については、人材開発支援助成金などの活用を検討できる場合があります。要件や締切は年度によって変わるため、<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price">UGOKU AIの料金・助成金ページ</a>をご覧いただくか、無料AI化診断からご相談ください。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">🔁 次に読む（セット推奨）</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ 切り抜き・字幕・生成までスマホ1台で</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/sns-marketing/"><span class="r-ic">📲</span><span><span class="r-k">次に読む</span><span class="r-t">AI×SNSマーケティング<small>／ 告知と集客の設計をまとめて</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ec-retail-guide/"><span class="r-ic">🛒</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×EC・小売業界 活用術10選<small>／ 買われる導線のつくり方</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/meta-ads-guide/"><span class="r-ic">📱</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×Meta広告 実践運用<small>／ ライブに人を集める広告の型</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/food-guide/"><span class="r-ic">🍽️</span><span><span class="r-k">業種別</span><span class="r-t">AI×飲食業界 活用術10選<small>／ 実演との相性が最も高い業種</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">はじめての方へ</span><span class="r-t">Googleアカウント1つで始めるAI入門<small>／ ChatGPT・Claudeの始め方</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.caa.go.jp/" target="_blank" rel="noopener"><span class="r-ic">⚖️</span><span><span class="r-k">公式サイト</span><span class="r-t">消費者庁<small>／ 景品表示法・ステマ規制の一次情報</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>「やってみたいけど、うちで回るのか？」<br><span class="hl">その答え合わせ</span>から始めませんか？</h2>
+    <p>ライブコマースは、始めることより「続く仕組みにすること」が難しい。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各プラットフォームの仕様・手数料・規約は、提供元の更新により変わることがあります。導入前に必ず公式の最新情報をご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

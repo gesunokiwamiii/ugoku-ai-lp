@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NotebookLM vs Obsidian 徹底比較と活用術10選｜初心者向け・AI連携まで ― UGOKU AI</title>
+<meta name="description" content="NotebookLMとObsidianは何が違う？初心者向けに、比較表・3分/10分で始める手順・仕事と私生活の活用術10選・自律型AI（MCP）連携までを、案内役のうごく君がやさしく解説。コピペで使えるプロンプトつき。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="NotebookLM vs Obsidian 徹底比較と活用術10選｜UGOKU AI">
+<meta property="og:description" content="調べたのに思い出せない、を終わらせる。NotebookLM＝読ませて答えさせる／Obsidian＝溜めてつなげる。初心者向けの始め方と活用術10選、自律型AI連携まで。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-obsidian-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-obsidian-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="NotebookLM vs Obsidian 徹底比較と活用術10選 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NotebookLM vs Obsidian 徹底比較と活用術10選｜UGOKU AI">
+<meta name="twitter:description" content="役割が違うから、両方持つのが正解。初心者向けの始め方・活用術10選・自律型AI連携までを、うごく君がやさしく解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-obsidian-guide/og-image.png">
+<link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-obsidian-guide/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --nlm:#1A73E8; --obs:#6E56CF; --agent:#0E8A6A; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">NotebookLM × Obsidian 徹底比較</span>
+      <h1>「調べたのに、<br>もう思い出せない」を<span class="hl">終わらせる</span>。</h1>
+      <p class="lead">AIに聞いた答えも、読んだ資料も、翌週には消えていく。原因は記憶力ではなく<b>置き場所</b>です。<b>NotebookLM＝読ませて答えさせる</b>／<b>Obsidian＝溜めてつなげる</b>。この2つの役割分担を、今日から作ります。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。どっちを・いつ・どう使うかを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">比較と始め方を読む <span class="arw">↓</span></a>
+        <a href="#waza" class="btn btn-ghost">活用術10選へ <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「どっちが優れているか」を決める記事ではありません。<b>役割が違う道具</b>なので、両方を無料で持つのが正解。上から順に読むだけで、こうなります。</p>
+        <ul class="checklist">
+          <li>NotebookLMとObsidianの違いが、1つの表で腹落ちする</li>
+          <li>NotebookLMを5分、Obsidianを10分で立ち上げられる</li>
+          <li>仕事と私生活の「活用術10選」を、その日から真似できる</li>
+          <li>自律型AI（エージェント）をつないだ時の伸びしろと、危ない線がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、3つの役割をざっくり掴もう</h2>
+    <p class="sec-sub">同じ「AIメモ」ではありません。台所でいえば、冷蔵庫・レシピ本・料理人くらい役割が違います。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--nlm);">
+        <div class="ic">📚</div>
+        <h4>NotebookLM<br><span>＝ 読ませて、答えさせる</span></h4>
+        <p>渡した資料の中<b>だけ</b>から、出典つきで答えるGoogleの無料AI。分厚いPDFやYouTubeを「相談できる窓口」に変えます。<b>短距離走</b>が得意。</p>
+      </div>
+      <div class="role" style="--accent:var(--obs);">
+        <div class="ic">🧠</div>
+        <h4>Obsidian<br><span>＝ 溜めて、つなげる</span></h4>
+        <p>自分のパソコンの中に、ただのテキストで一生分のメモを積む道具。リンクでつながり、10年後も開けます。<b>長距離走</b>が得意。</p>
+      </div>
+      <div class="role" style="--accent:var(--agent);">
+        <div class="ic">🤖</div>
+        <h4>自律型AI<br><span>＝ 勝手に動かす</span></h4>
+        <p>Claude等が、あなたのメモ置き場を直接読み書きする使い方。「毎回説明する」がなくなり、AIが<b>記憶を持った相棒</b>になります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">COMPARISON</div>
+    <h2 class="sec-title">NotebookLM vs Obsidian、<br>結論から言うと「敵ではない」</h2>
+
+    <div class="keystone">
+      <div class="kl">💡 この記事の結論</div>
+      <p><strong>NotebookLMは「今ある資料を、今日わかる形にする」道具</strong>。<strong>Obsidianは「わかったことを、将来の自分に渡す」道具</strong>です。だから正解は選ぶことではなく、<strong>NotebookLMで理解し、Obsidianに残す</strong>という往復ルートを作ること。片方だけだと、調べ直しか、読まないメモの山になります。</p>
+    </div>
+
+    <h3 class="blk">1分でわかる、性格のちがい</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">◎＝とても得意／○＝できる／△＝苦手・工夫が要る。優劣ではなく「向き・不向き」です。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>くらべる項目</th><th>NotebookLM</th><th>Obsidian</th></tr></thead>
+          <tbody>
+            <tr><th>ひとことで</th><td class="win">読ませて答えさせる</td><td class="win">溜めてつなげる</td></tr>
+            <tr><th>作った人</th><td>Google</td><td>Obsidian（開発チーム）</td></tr>
+            <tr><th>お金</th><td>Googleアカウントで無料（上位プランあり）</td><td>本体は無料。同期・公開だけ有料</td></tr>
+            <tr><th>データの置き場所</th><td class="mid">Googleのクラウド</td><td class="win">◎ 自分の端末（ローカル）</td></tr>
+            <tr><th>始めるまでの手間</th><td class="win">◎ 3分・ログインだけ</td><td class="mid">○ インストールと初期設計が要る</td></tr>
+            <tr><th>分厚い資料の要約</th><td class="win">◎ 大の得意</td><td>△ 自力またはAIプラグイン</td></tr>
+            <tr><th>出典（どこに書いてあるか）</th><td class="win">◎ 引用元に飛べる</td><td>△ 自分でリンクを張る</td></tr>
+            <tr><th>音声・動画・スライド化</th><td class="win">◎ ワンクリック</td><td>×</td></tr>
+            <tr><th>毎日のメモ・日記</th><td class="mid">△ 向いていない</td><td class="win">◎ ど真ん中</td></tr>
+            <tr><th>過去メモ同士のつながり</th><td>△ ノート単位で分断</td><td class="win">◎ 双方向リンク・グラフ</td></tr>
+            <tr><th>台帳・データベース化</th><td>×</td><td class="win">◎ Bases（表・カード・カレンダー）</td></tr>
+            <tr><th>ネットが無い場所</th><td>× 使えない</td><td class="win">◎ オフラインで動く</td></tr>
+            <tr><th>10年後も読めるか</th><td class="mid">サービス次第</td><td class="win">◎ ただのテキストなので安心</td></tr>
+            <tr><th>スマホでの気軽さ</th><td class="win">◎</td><td>○（同期は有料が現実的）</td></tr>
+            <tr><th>チームで共有</th><td class="win">◎ ノートブック共有</td><td>△ 共有フォルダ等の工夫が要る</td></tr>
+            <tr><th>自律型AIとの相性</th><td>○ 中で完結</td><td class="win">◎ AIの外部記憶にできる</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="combo">
+        <h4>🤝 いいとこ取りの「往復ルート」</h4>
+        <div class="flow">
+          <span class="b">資料・動画・Web</span><span class="ar">→</span>
+          <span class="b">NotebookLMで<br>理解・要約</span><span class="ar">→</span>
+          <span class="b">Obsidianに<br>自分の言葉で残す</span><span class="ar">→</span>
+          <span class="b">溜まったノートを<br>またNotebookLMへ</span>
+        </div>
+        <p style="margin:0;font-size:14px;">この輪が回り始めると、<b>読むほど資産が増える</b>状態になります。ひとことで言えば——<b>調べるならNotebookLM、残すならObsidian。</b></p>
+      </div>
+    </div>
+
+    <h3 class="blk">こういう人は、どっちから？</h3>
+    <div class="rule2">
+      <div class="rule-card" style="border-top:4px solid var(--nlm);">
+        <div class="rn" style="color:var(--nlm);">NotebookLMから</div>
+        <h4>「読む資料が多くて追いつかない」人</h4>
+        <p>補助金の要領、契約書、マニュアル、業界レポート、長いYouTube。<b>今日中に中身を掴みたい</b>ならこちら。準備ゼロで効果が出ます。移動時間が長い人にも。</p>
+      </div>
+      <div class="rule-card" style="border-top:4px solid var(--obs);">
+        <div class="rn" style="color:var(--obs);">Obsidianから</div>
+        <h4>「同じことを何度も調べ直す」人</h4>
+        <p>メモがLINE・スマホのメモ帳・紙・Excelに散乱している。<b>一箇所に集めて、つなげたい</b>ならこちら。効果は1か月後から効いてきます。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>迷ったら、今週はNotebookLMだけでいいよ。3分で始まって、その日に「おおっ」と言える。Obsidianは効き目がじわじわ来るタイプだから、続きそうだと思ってからで大丈夫。</div>
+    </div>
+
+    <h3 class="blk" id="start">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>先に「入れ物」を決めてから始める</h4>
+        <p>ツールを増やすほど、情報は散らかります。<b>NotebookLM＝案件ごとのノートブック</b>、<b>Obsidian＝人生ぜんぶで1つの保管庫（Vault）</b>。この線引きだけ最初に決めれば、後から迷いません。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>最初は「1日1メモ」だけ</h4>
+        <p>フォルダ設計・プラグイン集めから入る人は、ほぼ挫折します。まずは<b>日付のノートに3行書く</b>だけ。整理は、溜まってからAIにやらせれば十分です。</p>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div><span class="st-chip">NOTEBOOKLM（GOOGLE）</span><div class="st-ttl">NotebookLMを3分で立ち上げる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Googleアカウントさえあれば無料。読み込ませた資料の中<b>だけ</b>から、出典つきで答えてくれるのが最大の安心材料です。</p>
+        <a class="link-btn" href="https://notebooklm.google.com/" target="_blank" rel="noopener">NotebookLM を開く ↗</a>
+        <p class="link-note">スマホは「NotebookLM」アプリ（提供元：Google）。ログインは<b>「Googleで続ける」</b>で。</p>
+
+        <div class="mini-h">最初の3分でやること</div>
+        <ol class="mini">
+          <li>公式サイトを開き、Googleアカウントでログイン</li>
+          <li>「新規作成」で新しいノートブックを作る</li>
+          <li>左の「ソースを追加」に、PDF・Googleドキュメント・Webページ・YouTubeのURLなどを放り込む</li>
+          <li>中央のチャットで「この資料の要点を5つ、専門用語はやさしく言い換えて」と聞く</li>
+          <li>右の「スタジオ」で、音声解説・マインドマップ・スライドに変換してみる</li>
+        </ol>
+
+        <div class="mini-h">3つのパネルだけ覚えれば迷わない</div>
+        <ul class="use">
+          <li><b>左：ソース</b> ＝ 読ませる材料の置き場。ここに入っていない情報は、AIは答えません（＝勝手な作り話が起きにくい）</li>
+          <li><b>中央：チャット</b> ＝ 資料への質問・壁打ち。答えの横の番号から、元の文章に飛べます</li>
+          <li><b>右：スタジオ</b> ＝ 音声解説・動画解説・マインドマップ・スライド・クイズ・レポートの出力口</li>
+        </ul>
+
+        <div class="mini-h">2026年に効いている、新しい使い方</div>
+        <ul class="use">
+          <li><b>資料が手元に無くても始められる</b>：漠然とした質問から会話を始めると、AIが関連ソースを探して提案してくれる流れに進化しています</li>
+          <li><b>Deep Research</b>：浅く速く集める調査と、深く広く集める調査を使い分けられます</li>
+          <li><b>スライドをPPTX、書籍をEPUBで</b>：作った資料の書き出しや、電子書籍まるごとの読み込みに対応</li>
+          <li><b>クイズ・フラッシュカード</b>：資格勉強や新人教育を、読むだけから「解く」に変えられます</li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここだけ注意</div>
+          無料枠には回数の上限があり（音声解説など）、機能や上限・料金は改定が頻繁です。最新は必ず公式で確認を。また、<b>クラウドに預ける</b>ため、お客様の個人情報・見積書・カルテ等をそのまま入れるかは、社内ルールと合わせて判断してください。
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 分厚い資料を“使える形”にする</span><button class="cb-btn">コピー</button></div>
+          <pre>あなたは、この資料を初めて読む人に説明する講師です。
+アップロードした資料だけを根拠に、次の順で日本語で出力してください。
+① 3行の要約
+② 押さえるべき要点5つ（専門用語はやさしく言い換える）
+③ 実務でやるべきこと（担当・期限が書けるチェックリスト形式）
+④ 資料に書かれていない・判断できない点
+すべての項目に、根拠となる出典（該当箇所）を必ず付けてください。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--obs);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div><span class="st-chip">OBSIDIAN</span><div class="st-ttl">Obsidianを10分で立ち上げる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">パソコンの中に「保管庫（Vault）」というフォルダを作るだけ。中身はただのテキストファイルなので、アプリが消えてもメモは残ります。本体は無料、商用利用も無料です。</p>
+        <a class="link-btn" href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian を開く ↗</a>
+        <p class="link-note">Windows・Mac・iPhone・Androidに対応。アカウント登録すら不要で始められます。</p>
+
+        <div class="mini-h">最初の10分でやること</div>
+        <ol class="mini">
+          <li>公式サイトからダウンロードして、インストール</li>
+          <li>「新しい保管庫を作成（Create new vault）」を選ぶ。名前は <code>MyVault</code> でOK</li>
+          <li>保存先は、後で困らない場所に（例：ドキュメント直下。クラウド同期フォルダ内は最初は避けるのが無難）</li>
+          <li>コアプラグインの<b>「デイリーノート」</b>をON。今日の日付のノートが1クリックで開きます</li>
+          <li>今日やったこと・気づきを、3行だけ書いて閉じる</li>
+        </ol>
+
+        <div class="mini-h">Obsidianの心臓部は、この3つだけ</div>
+        <ul class="use">
+          <li><b>リンク（[[ ]]）</b>：文中で <code>[[鈴木商店]]</code> と書くと、その名前のノートに自動でつながります。まだ無ければ、クリックした瞬間に生まれます</li>
+          <li><b>グラフビュー</b>：ノート同士のつながりが星座のように見えます。<b>孤立した点＝振り返れていない知識</b>のサイン</li>
+          <li><b>Bases</b>：ノートを表・カード・カレンダーで一覧できるコア機能。顧客台帳や案件管理が、Notionのように作れます</li>
+        </ul>
+
+        <div class="mini-h">最初に入れる価値がある拡張（どれも無料）</div>
+        <ul class="use">
+          <li><b>Templater</b>：日報・議事録・商談メモの型を自動で差し込む</li>
+          <li><b>Calendar</b>：カレンダーから過去の日付ノートへジャンプ</li>
+          <li><b>Kanban</b>：付箋を動かす感覚でタスク管理</li>
+          <li><b>Smart Connections / Copilot</b>：Obsidianの中でAIに聞く。まずはコア機能に慣れてからで十分です</li>
+        </ul>
+
+        <div class="mini-h">お金がかかるのは、ここだけ</div>
+        <ul class="use">
+          <li><b>Obsidian Sync</b>：スマホとパソコンを公式に同期する（月4ドル前後〜）。iPhoneでも使いたいなら現実的な選択肢</li>
+          <li><b>Obsidian Publish</b>：ノートをそのままWebサイトとして公開する</li>
+          <li>それ以外の機能は、プラグインも含めて<b>無料で全部使えます</b></li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ 初心者が必ずハマる3つ</div>
+          ①<b>フォルダ設計に凝りすぎる</b>→まずは全部1階層でOK。②<b>プラグインを入れすぎる</b>→重くなり、壊れた時に原因が追えません。③<b>バックアップを取っていない</b>→ローカル保存なので、端末が壊れたら終わりです。クラウドかSyncで必ず二重化を。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>Obsidianは「きれいに整理する道具」じゃなくて「後で見つかる状態にする道具」だよ。汚くていいから、まず1行。整えるのは、あとでAIに頼めばいいからね。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div><span class="st-chip">BRIDGE</span><div class="st-ttl">2つを橋渡しして、往復ルートを作る</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここが本記事の肝です。どちらもMarkdown（ただのテキスト）を扱えるので、実はコピペだけで橋がかかります。</p>
+
+        <div class="mini-h">行き：NotebookLM → Obsidian</div>
+        <ol class="mini">
+          <li>NotebookLMで資料を要約・整理する</li>
+          <li>出てきた要点を<b>そのまま貼らず</b>、「自分が明日どう使うか」を1〜2行足してからObsidianへ</li>
+          <li>ノートの先頭に、出典URLと日付、<code>[[関連する案件名]]</code> を書く</li>
+        </ol>
+
+        <div class="mini-h">帰り：Obsidian → NotebookLM</div>
+        <ol class="mini">
+          <li>Obsidianの保管庫から、関係するノート（.mdファイル）をまとめて選ぶ</li>
+          <li>NotebookLMの新しいノートブックに、そのままソースとしてアップロード</li>
+          <li>「この1年の記録から、繰り返し起きている問題を3つ挙げて」と聞く</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 自分の記録から“傾向”を掘り出す</span><button class="cb-btn">コピー</button></div>
+          <pre>アップロードしたのは、私が過去1年に書いた業務メモです。
+これらのメモだけを根拠に、次を出力してください。
+① 繰り返し登場している課題トップ5（回数と、根拠になったメモの日付つき）
+② 私が無意識に避けている・後回しにしている傾向
+③ 来月すぐ着手できる改善策3つ（工数の少ない順）
+推測が入る場合は「推測」と明記してください。</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 橋渡しの落とし穴</div>
+          AIの要約を<b>そのまま貼るだけ</b>のノートは、後から読んでも思い出せません。「自分の言葉が1行入っているか」だけを、通行料だと思ってください。また、社外秘・個人情報を含むノートをクラウドへ上げないよう、Vault内に「上げない用フォルダ」を分けておくと安全です。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--agent);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div><span class="st-chip">AUTONOMOUS AI</span><div class="st-ttl">自律型AIを足すと、何が変わるか</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここからが2026年の本題です。ObsidianのノートはただのMarkdownファイルなので、<b>AIに直接読み書きさせられます</b>。すると「毎回イチから説明する」が消え、AIが記憶を持った相棒になります。</p>
+
+        <div class="mini-h">つなぎ方は、難易度順に4段階</div>
+        <ul class="use">
+          <li><b>レベル1：コピペ</b>　ノートを貼ってAIに渡す。設定ゼロ。今日からできる</li>
+          <li><b>レベル2：ファイル連携</b>　Claudeのデスクトップアプリから、保管庫フォルダを読み書き許可する。数クリックで完了</li>
+          <li><b>レベル3：MCPサーバー</b>　AIがVaultを検索・作成・追記まで自動でこなす。「先週の商談メモを全部見て、抜けているフォローを一覧にして」が通ります</li>
+          <li><b>レベル4：常駐エージェント</b>　毎朝あるいは毎週、AIが勝手にノートを整理・タグ付け・棚卸しし、レポートを1枚置いていく運用</li>
+        </ul>
+
+        <div class="mini-h">「記憶するAI」を作る、最小の仕掛け</div>
+        <p style="font-size:14.4px;margin:6px 0 0;">保管庫の一番上に <code>MEMORY.md</code> を1枚だけ置き、会社・立場・進行中の案件・決定済みの方針を書いておきます。会話のはじめに「まずMEMORY.mdを読んでから始めて」と一言添えるだけで、前提説明がまるごと不要になります。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 MEMORY.md のひな形</span><button class="cb-btn">コピー</button></div>
+          <pre># MEMORY.md — AIに毎回読ませる前提メモ
+最終更新：2026-07-19
+
+## 私について
+会社／役職／扱う商材／地域／得意と苦手
+
+## いま動いている案件
+- 案件A：目的・期限・関係者・次の一手
+- 案件B：目的・期限・関係者・次の一手
+
+## 決まっている方針（蒸し返さない）
+- 例）値引きでは戦わない／新規より既存の深耕を優先
+
+## 用語・社内ルール
+- 例）「FL」＝食材費と人件費の合計比率
+
+## AIへの依頼スタイル
+結論を先に。箇条書き。専門用語は使わない。判断は私がする。</pre>
+        </div>
+
+        <div class="split">
+          <div class="col work">
+            <div class="ch">🚀 <span>伸びしろ</span><span class="badge-mini">できるようになること</span></div>
+            <ul>
+              <li>会議メモを置くだけで、議事録・TODO・関係者への連絡文まで自動生成</li>
+              <li>1年分のノートを横断して「言ってることが変わった箇所」を指摘してくれる</li>
+              <li>タグ付け・リンク張り・重複ノートの統合という、面倒な整理を丸投げできる</li>
+              <li>毎週月曜、AIが先週の棚卸しと今週の優先順位を1枚のノートで置いていく</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">⚠️ <span>危ない線</span><span class="badge-mini">先に決めておくこと</span></div>
+            <ul>
+              <li><b>削除・上書きの権限は渡さない</b>（追記と新規作成だけ許可するのが基本）</li>
+              <li>必ず<b>Gitやクラウドでバックアップ</b>してから自動化する</li>
+              <li>ノートの中の「AIへの指示に見える文章」を、AIが命令と誤読することがある（プロンプトインジェクション）</li>
+              <li>機密・個人情報を含むフォルダは、AIの参照範囲から外しておく</li>
+              <li><b>最終判断は必ず人が行う</b>。AIは自信満々に間違えます</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>いきなりレベル4を狙わないでね。レベル1と2だけでも、体感は劇的に変わるよ。自動化は「壊れても困らない状態」を作ってから、が鉄則だよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="blk" id="waza">活用術10選 ― 仕事と私生活、両方の使いどころ</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">同業・他業種でよく読まれている使い方を、初心者がそのまま真似できる形に落としました。各項目に<b>「＋自律型AIを足すと」</b>と<b>注意点</b>を必ず付けています。気になる番号から拾い読みでOKです。</p>
+
+    <div class="ideas" style="margin-bottom:26px;">
+      <div class="idea">
+        <h4><span class="e">🔎</span>まず仕事で効く5つ</h4>
+        <ul>
+          <li><a href="#w1" style="color:inherit;">01 会議・商談を、議事録とTODOに変える</a></li>
+          <li><a href="#w2" style="color:inherit;">02 分厚い資料を「聞ける窓口」にする</a></li>
+          <li><a href="#w3" style="color:inherit;">03 移動時間を、耳で学ぶ時間に変える</a></li>
+          <li><a href="#w4" style="color:inherit;">04 社内マニュアル・研修を量産する</a></li>
+          <li><a href="#w5" style="color:inherit;">05 顧客・案件を、育つ台帳にする</a></li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🌱</span>暮らしと将来に効く5つ</h4>
+        <ul>
+          <li><a href="#w6" style="color:inherit;">06 1日3行の記録が、勝手に資産になる</a></li>
+          <li><a href="#w7" style="color:inherit;">07 リンクとグラフで「抜け」を見つける</a></li>
+          <li><a href="#w8" style="color:inherit;">08 資格・語学を、クイズで最短化する</a></li>
+          <li><a href="#w9" style="color:inherit;">09 家計・健康・住まいの「一生モノ台帳」</a></li>
+          <li><a href="#w10" style="color:inherit;">10 家族と自分の記録を、未来に渡す</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WAZA 01 -->
+    <div class="step" id="w1" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>01</b></div>
+        <div><span class="st-chip">NOTEBOOKLM ＋ OBSIDIAN</span><div class="st-ttl">会議・商談を、議事録とTODOに変える</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いちばん反響が大きく、いちばん失敗しにくい入口。録音の文字起こしや殴り書きメモを放り込むだけで、「決まったこと」「やること」「宿題」に整います。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>スマホの録音アプリや会議ツールの文字起こしを、テキストで用意する</li>
+          <li>NotebookLMのノートブックに、その回の記録＋関連資料をソースとして入れる</li>
+          <li>下のプロンプトで議事録に整える</li>
+          <li>できた議事録をObsidianの <code>会議/2026-07-19_◯◯商事.md</code> として保存し、<code>[[◯◯商事]]</code> をリンクで張る</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 議事録＋TODO変換</span><button class="cb-btn">コピー</button></div>
+          <pre>この会議記録を、次の4項目で整理してください。
+① 決定事項（決まった理由も一行で）
+② やること（担当・期限つき。書かれていなければ「未定」と明記）
+③ 保留・持ち帰り
+④ 発言はされたが議事に残っていない、重要そうな一言
+最後に、相手先へ送る確認メールの下書きを150字で付けてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>議事録づくりが30分→3分に</li><li>「言った言わない」が消える</li><li>担当者が休んでも引き継げる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>PTA・自治会・保護者会の記録に</li><li>病院での説明を録音→要点整理</li><li>リフォームや保険の相談内容を残す</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>会議フォルダを監視させ、新しいメモを置いた瞬間に議事録化＋TODOをKanbanへ自動登録</li><li>期限が近いのに動いていないTODOを、毎朝AIが指摘してくれる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>録音は必ず参加者の同意を。相手企業名・個人名・金額を含む場合は、クラウドに上げるかを社内ルールで決めてから。数字と固有名詞は、AIの出力を必ず自分で照合してください。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 02 -->
+    <div class="step" id="w2" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>02</b></div>
+        <div><span class="st-chip">NOTEBOOKLM</span><div class="st-ttl">分厚い資料を「聞ける窓口」にする</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">補助金の公募要領、契約書、機器のマニュアル、業界レポート、法改正の資料。100ページを読む代わりに、<b>質問して、出典に飛ぶ</b>。NotebookLMがいちばん強い場面です。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>1テーマ＝1ノートブックを作る（例：「人材開発支援助成金 2026」）</li>
+          <li>要領PDF・様式・Q&amp;A・解説記事・解説YouTubeを、まとめてソースに入れる</li>
+          <li>「うちの場合はどうなる？」を、自分の状況を添えて聞く</li>
+          <li>答えの出典番号を必ず開き、原文を自分の目で確認する</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 自社に当てはめて読む</span><button class="cb-btn">コピー</button></div>
+          <pre>【私の状況】従業員◯名／業種◯◯／所在地◯◯県／目的：◯◯
+アップロードした資料だけを根拠に、次を答えてください。
+① 私が対象になるか（なる／ならない／資料からは判断不能）
+② 満たすべき要件を、チェックリスト形式で
+③ 提出書類と、それぞれの期限
+④ よくある不備・不採択の理由
+⑤ 資料に書かれておらず、窓口に確認すべき質問リスト
+各項目に出典（該当箇所）を必ず付けてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>補助金・助成金の要件確認</li><li>契約書の不利な条項の洗い出し</li><li>新しい機械・システムの操作習得</li><li>入札要領・仕様書の読み込み</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>保険証券・住宅ローンの条件比較</li><li>役所の制度案内・年金の通知</li><li>学校の配布物・部活の規約</li><li>家電の取扱説明書を「聞く」</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>要件チェックリストを、そのままObsidianのタスクノートへ自動転記させる</li><li>締切をカレンダーに登録し、逆算スケジュールまで一緒に作らせる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>制度・法律・契約は<b>最終判断を必ず人が</b>。AIは「資料に無いこと」を推測で埋めることがあります。「資料からは判断不能」と言わせる指示を入れておくのがコツです。公式の窓口確認は省略しないでください。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 03 -->
+    <div class="step" id="w3" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>03</b></div>
+        <div><span class="st-chip">NOTEBOOKLM ／ 音声・動画</span><div class="st-ttl">移動時間を、耳で学ぶ時間に変える</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">読み込ませた資料を、そのまま<b>2人のAIが対談するラジオ番組</b>に変換できます。運転中・電車・家事・散歩の時間が、そのまま学習時間になります。SNSで最も驚かれている機能です。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>ソースを入れたら、右の「スタジオ」から音声解説（Audio Overview）を生成</li>
+          <li>生成時に「どこを重点的に話すか」の指示を添えると、内容が大きく変わります</li>
+          <li>スマホアプリでダウンロードして、オフラインで聴く</li>
+          <li>気づいた点だけ、Obsidianの今日のノートに1行メモする</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 音声解説を“自分向け”に寄せる指示</span><button class="cb-btn">コピー</button></div>
+          <pre>聞き手は、この分野が初めての中小企業の経営者です。
+専門用語は使わず、身近な例えで。理屈より「明日やること」中心に。
+反対意見やリスクも必ず触れてください。想定時間は10分程度で。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>業界レポートを移動中にインプット</li><li>新人に「聞かせる研修」を配布</li><li>競合のIR資料・決算説明を耳で把握</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>読みかけの本（EPUB）をラジオ化</li><li>子どもの教科書を、車内の会話に</li><li>健康診断の結果や医療情報をやさしく</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>毎週、指定フォルダの新着資料をまとめて音声化する定期便を組む</li><li>聴いて残したメモを、AIが週末に1本のレポートへ束ねる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>音声・動画などの生成機能は、無料枠の回数制限や上位プラン限定になっている場合があります（内容は改定が頻繁）。また、聞き心地が良いぶん<b>間違いに気づきにくい</b>ので、重要な数字は必ず原文で確認を。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 04 -->
+    <div class="step" id="w4" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>04</b></div>
+        <div><span class="st-chip">NOTEBOOKLM ／ 教育</span><div class="st-ttl">社内マニュアル・研修を量産する</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ベテランの頭の中を形にする、いちばん現実的な方法。ヒアリングの録音・既存の手順書・現場写真の説明を入れれば、スライド・クイズ・要約が一気に作れます。多言語スタッフがいる現場ほど効きます。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>ベテランに30分ヒアリングし、録音を文字起こしする</li>
+          <li>既存のマニュアル・チェックシートも一緒にソースへ</li>
+          <li>「新人が初日に読む手順書」として書かせる</li>
+          <li>スタジオでスライド化（PPTX書き出し）＋理解度クイズを生成</li>
+          <li>完成物はObsidianに保存し、更新履歴を残していく</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 新人向けマニュアル化</span><button class="cb-btn">コピー</button></div>
+          <pre>読み手は、この仕事を今日始める新人（日本語は中級レベル）です。
+資料をもとに、次の形式でマニュアルを作ってください。
+① 目的（なぜこの作業をするのか）
+② 手順（1手順1文。主語と動詞を明確に。写真を入れる箇所は【写真】と記す）
+③ やってはいけないこと（理由つき）
+④ 困ったときの連絡先と判断基準
+⑤ 理解度チェック5問（答えと解説つき）
+やさしい日本語で、一文は40字以内にしてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>属人化した作業の引き継ぎ</li><li>多店舗・多拠点で教え方を揃える</li><li>外国人スタッフ向けのやさしい日本語版</li><li>安全教育・衛生教育の定期テスト</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>家事の分担手順を家族で共有</li><li>介護の申し送りノート</li><li>趣味の道具の使い方を自分用にまとめる</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>現場からの改善報告をVaultに集め、AIがマニュアルの該当箇所を自動で改訂案にする</li><li>「更新が半年止まっているマニュアル」をAIが定期的に洗い出す</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>安全・衛生・法令に関わる手順は、必ず有資格者・責任者の確認を通してから配布を。翻訳版も、必ずネイティブのスタッフに読んでもらってください。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 05 -->
+    <div class="step" id="w5" style="--accent:var(--obs);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>05</b></div>
+        <div><span class="st-chip">OBSIDIAN ／ BASES</span><div class="st-ttl">顧客・案件を、育つ台帳にする</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Excelの顧客リストは「更新されなくなる」のが宿命。Obsidianなら、1顧客＝1ノートで、商談メモを書き足すほど台帳が育ちます。Bases機能で、その集まりを表・カード・カレンダーとして一覧できます。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>1顧客＝1ノート。ファイル名は会社名だけでOK</li>
+          <li>ノート冒頭のプロパティに <code>状態</code> <code>担当</code> <code>次回連絡日</code> <code>金額</code> を書く</li>
+          <li>商談のたびに、そのノートの下へ日付つきで追記していく</li>
+          <li>Basesで新しいビューを作り、<code>次回連絡日</code> の近い順に並べる</li>
+          <li>カレンダー表示にすれば、フォロー漏れが一目でわかる</li>
+        </ol>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>顧客管理・案件パイプライン</li><li>採用の応募者管理</li><li>仕入先・外注先の一覧と評価</li><li>店舗・物件・設備の台帳と点検履歴</li><li>読書記録・競合調査のストック</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>行きたいお店・旅先リスト</li><li>買った家電と保証期限</li><li>子どもの学校行事と提出物</li><li>年賀状・贈答の履歴</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>「30日以上接触していない顧客」をAIが抽出し、一人ひとりに合わせた連絡文の下書きまで用意</li><li>商談メモから <code>状態</code> や <code>次回連絡日</code> を自動更新させる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>顧客の個人情報を扱う以上、端末の暗号化・パスワード・持ち出しルールは必須です。退職者の端末に台帳が残る事故が起きやすいので、会社として管理方法を決めてから運用してください。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 06 -->
+    <div class="step" id="w6" style="--accent:var(--obs);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>06</b></div>
+        <div><span class="st-chip">OBSIDIAN ／ デイリーノート</span><div class="st-ttl">1日3行の記録が、勝手に資産になる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">続く人と続かない人を分けるのは、意志ではなく<b>形式</b>です。毎日ゼロから書くのをやめ、決まった3つの見出しだけ埋める。これだけで1年後、他人には作れない資料が手元に残ります。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>デイリーノートをON、テンプレートに下の3見出しを登録する</li>
+          <li>1日の終わりに3分だけ書く（書けない日は空欄で閉じてよい）</li>
+          <li>人名・会社名・テーマは <code>[[ ]]</code> で囲む癖をつける</li>
+          <li>週末に、その週のノートをAIに読ませて振り返りを1枚作る</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 デイリーノートのテンプレート</span><button class="cb-btn">コピー</button></div>
+          <pre># {{date:YYYY-MM-DD}}
+
+## やったこと（事実だけ・3行）
+-
+
+## 気づき／うまくいった・いかなかった理由
+-
+
+## 明日の最優先（1つだけ）
+-
+
+## 関連
+[[ ]]</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>週報・月報が「集めるだけ」になる</li><li>人事評価や面談の材料が揃う</li><li>トラブルの再発防止が具体的になる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>体調・睡眠・食事の記録</li><li>育児の記録（あとで宝物になる）</li><li>お金の使い方の振り返り</li><li>読んだ本・観た映画の一言感想</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>毎週月曜、AIが先週のノートを読んで「先週の要約・やり残し・今週の優先3つ」を1枚置いていく</li><li>3か月前の自分と今の自分の考え方の変化を、AIが指摘してくれる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>「きれいに書こう」とした瞬間に続かなくなります。誤字も口語もそのままでOK。書けない日が続いても、再開すればいいだけです。他人の評価や愚痴を書く場合は、共有範囲に注意を。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 07 -->
+    <div class="step" id="w7" style="--accent:var(--obs);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>07</b></div>
+        <div><span class="st-chip">OBSIDIAN ／ リンク・グラフ</span><div class="st-ttl">リンクとグラフで「抜け」を見つける</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Obsidianの本当の価値は、検索ではなく<b>再会</b>です。ある顧客のノートを開くと、下の「バックリンク」に、その名前が登場した過去の全メモが自動で並びます。フォルダ分けでは絶対に起きない出会い方です。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>まずは人名・会社名・地名・テーマだけ <code>[[ ]]</code> で囲む</li>
+          <li>リンクをクリックして空のノートが生まれたら、思いつくことを1行書く（これが将来の「まとめノート」になります）</li>
+          <li>月に1度グラフビューを開き、<b>ぽつんと孤立した点</b>を探す</li>
+          <li>孤立＝「調べたけど使っていない知識」。ここを他のノートにつなぐと、知識が仕事に変わります</li>
+        </ol>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>「この取引先、前に何を言っていたか」が即わかる</li><li>企画のネタ元が、過去の自分の中から出てくる</li><li>クレームの共通原因が浮かび上がる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>興味の広がりが目に見える</li><li>学びの偏りに気づける</li><li>「やりたいと言っていたのに手つかず」を発見</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>AIに全ノートを読ませ、「本来つながるべきなのにリンクされていない組み合わせ」を提案させる</li><li>似た内容の重複ノートを見つけて、統合案を出させる</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>グラフビューは見た目が楽しいので、眺めるだけで満足しがちです。<b>月1回・10分</b>と決め、必ず「1本つなぐ」まで行う運用にしてください。タグの乱立も禁物。最初は5個までに絞るのがおすすめです。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 08 -->
+    <div class="step" id="w8" style="--accent:var(--nlm);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>08</b></div>
+        <div><span class="st-chip">NOTEBOOKLM ＋ OBSIDIAN</span><div class="st-ttl">資格・語学を、クイズで最短化する</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">テキストを読むだけの勉強は、記憶に残りません。NotebookLMのクイズ・フラッシュカード機能で「解く」に変え、間違えた論点だけをObsidianに貯めていく。これが最短ルートです。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>参考書のPDF・講義動画・過去問をソースに入れる</li>
+          <li>スタジオでクイズ／フラッシュカードを生成する</li>
+          <li>間違えた問題は「説明」で理由まで掘る</li>
+          <li>間違えた論点だけを、Obsidianの <code>弱点/◯◯.md</code> に1行ずつ蓄積</li>
+          <li>試験直前、その弱点ノートだけをNotebookLMに戻して総復習</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 弱点だけを潰す</span><button class="cb-btn">コピー</button></div>
+          <pre>アップロードしたのは、私が間違えた論点のメモです。
+① 間違いの傾向を3つに分類してください
+② それぞれについて、根本原因（理解不足／読み違い／暗記漏れ）を判定
+③ 傾向ごとに、5問ずつ確認問題を作成（解答と解説つき）
+④ 試験前日に見る1枚のまとめを作成
+私は初学者なので、専門用語は必ず言い換えてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>業務資格・免許の取得</li><li>新人の理解度テストを毎週自動生成</li><li>商品知識の社内テスト</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>子どもの定期テスト対策</li><li>英会話・語学の反復練習</li><li>趣味の検定・自動車免許の学科</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>毎朝、弱点ノートから3問だけ出題してくれる学習ルーチンを組む</li><li>正答率の推移を記録し、伸び悩んでいる分野を自動で厚くする</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIが作る問題は、本試験の出題形式・配点とはズレます。過去問という「本物」を必ず主軸に。市販教材のスキャンをアップロードする場合は、私的利用の範囲と各サービスの規約を確認してください。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 09 -->
+    <div class="step" id="w9" style="--accent:var(--obs);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>09</b></div>
+        <div><span class="st-chip">OBSIDIAN ／ 暮らし</span><div class="st-ttl">家計・健康・住まいの「一生モノ台帳」</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">クラウドサービスは終了します。Obsidianはローカルのテキストなので、10年後も20年後も開けます。<b>一生使う情報こそ、Obsidianに置く</b>べきです。</p>
+        <div class="mini-h">置いておくと本当に助かるもの</div>
+        <ul class="use">
+          <li><b>住まい</b>：契約内容、住宅ローン、設備の型番と購入日、保証期限、修理履歴、施工業者の連絡先</li>
+          <li><b>健康</b>：既往歴、アレルギー、常用薬、健診結果の推移、かかりつけ医、家族の血液型</li>
+          <li><b>お金</b>：保険証券の要点、口座と用途、年払いの支出カレンダー、資産の置き場所一覧</li>
+          <li><b>暮らし</b>：定番レシピ、買い替えサイクル、旅行の持ち物リスト、ゴミ出しや役所の手続き手順</li>
+        </ul>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>Vault内に <code>暮らし</code> フォルダを1つ作る</li>
+          <li>紙の書類はスマホで撮って、要点だけテキストに起こす（原本の保管場所もメモ）</li>
+          <li>NotebookLMに保険証券や契約書を読ませ、要点を抽出してからObsidianへ</li>
+          <li>年に1度、更新日を決めて棚卸しする</li>
+        </ol>
+        <div class="mini-h">＋自律型AIを足すと</div>
+        <ul class="use"><li>「今月の年払い支出」「保証が切れる家電」を、AIが月初に知らせてくれる</li><li>健診結果の推移を読ませて、経年の変化を要約させる（診断ではなく、医師に相談する材料として）</li></ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>ここは<b>最も機密性が高い場所</b>です。口座番号・暗証番号・パスワード・保険証番号などは書かないでください（「どこに保管しているか」だけを書く）。健康情報をAIに渡すかは慎重に。医療上の判断は必ず医師へ。</div>
+      </div>
+    </div>
+
+    <!-- WAZA 10 -->
+    <div class="step" id="w10" style="--accent:var(--agent);">
+      <div class="step-head">
+        <div class="step-badge"><small>WAZA</small><b>10</b></div>
+        <div><span class="st-chip">OBSIDIAN ＋ 自律型AI</span><div class="st-ttl">家族と自分の記録を、未来に渡す</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">10選の最後は、いちばん静かで、いちばん効く使い方。日々の記録が一定量たまると、AIはそれを読んで<b>あなた自身より正確にあなたを説明できる</b>ようになります。ここまで来ると、AIは道具ではなく相棒です。</p>
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>WAZA06のデイリーノートを、まず3か月続ける</li>
+          <li>Vaultの一番上に <code>MEMORY.md</code> を置き、前提を書く</li>
+          <li>AIにVaultの読み取りを許可する（書き込みは、まず1フォルダに限定）</li>
+          <li>月に1度、下のプロンプトで「棚卸し」をさせる</li>
+        </ol>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 月イチの棚卸し</span><button class="cb-btn">コピー</button></div>
+          <pre>まずMEMORY.mdを読んでから始めてください。
+そのうえで、直近1か月のデイリーノートを読み、次を出力してください。
+① 今月、実際に前進したこと（根拠のノート日付つき）
+② 言っていたのに手をつけていないこと
+③ 繰り返し出てくる悩みと、その根っこにありそうな原因
+④ 来月やめるべきこと1つ、始めるべきこと1つ
+⑤ 更新すべきMEMORY.mdの差分案
+励ましは不要です。事実と根拠だけで書いてください。</pre>
+        </div>
+        <div class="split">
+          <div class="col work"><div class="ch">💼 <span>仕事</span><span class="badge-mini">こう効く</span></div>
+            <ul><li>経営判断の一貫性が保たれる</li><li>事業承継・引き継ぎの資料になる</li><li>自分の思考のクセを外から指摘してもらえる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 <span>私生活</span><span class="badge-mini">こう使える</span></div>
+            <ul><li>子どもの成長記録を、節目ごとに1冊に</li><li>親から聞いた昔話・家族の歴史を残す</li><li>自分史・エンディングノートの土台に</li></ul></div>
+        </div>
+        <div class="mini-h">＋自律型AIを足すと（伸びしろの上限）</div>
+        <ul class="use">
+          <li>毎週、AIが自分でノートを整理・タグ付けし、レポートを置いていく「育つシステム」になる</li>
+          <li>NotebookLM側にVaultの要約を渡し、家族向けの音声解説として共有する</li>
+          <li>会社なら、社長の判断の記録が、そのまま次世代への教科書になる</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 注意点</div>AIの分析は<b>あなたの記録という偏った材料</b>から出た仮説にすぎません。断定されても、鵜呑みにしないこと。また、家族の情報を含む記録をAIに渡す前に、家族の了解を取ってください。自動書き込みを許すなら、バックアップは必須です。</div>
+      </div>
+    </div>
+
+    <!-- 型 -->
+    <h3 class="blk">うごく君の「散らからない設計の型」</h3>
+    <div class="formula">
+      <p style="margin:0 0 4px;font-size:15px;">ツールを増やしても散らからないのは、置き場所のルールが4つだけ決まっているからです。</p>
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>いま理解したい？ 将来使いたい？</b>前者はNotebookLM、後者はObsidian</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>他人の情報？ 自分の言葉？</b>他人の資料はソース、自分の解釈はノート</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>捨てていい？ 一生使う？</b>案件ごとは使い捨て、暮らしと判断は永久保存</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>外に出せる？ 出せない？</b>出せないものは、クラウドに上げない専用フォルダへ</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>思いつくままに全部Obsidianへ／NotebookLMの要約をコピペするだけ　→ 読み返さないメモの山になる</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>NotebookLMで理解 → 自分の言葉を1行足す → Obsidianに日付とリンクをつけて保存　→ 1か月後、勝手に効いてくる</div>
+      </div>
+    </div>
+
+    <h3 class="blk">もっと使える！活用アイデア集</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>お店・会社で</h4>
+        <ul>
+          <li>クレーム記録を貯めて、原因の共通項を抽出</li>
+          <li>求人票・SNS投稿の元ネタを日報から拾う</li>
+          <li>競合の資料をまとめて読み込み、差別化点を整理</li>
+          <li>店舗ごとの改善事例を横展開する</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで</h4>
+        <ul>
+          <li>長い仕様書・要領を要点＋チェックリストに</li>
+          <li>提案書の構成案を、過去の勝ちパターンから生成</li>
+          <li>社内用語集をVaultに作り、AIに毎回読ませる</li>
+          <li>外国語の資料を、出典つきで日本語要約</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで</h4>
+        <ul>
+          <li>取扱説明書をまとめて読み込み、故障時に質問</li>
+          <li>旅行のしおりを、資料から自動生成</li>
+          <li>献立と買い物リストを、在庫メモから作る</li>
+          <li>役所の手続きの流れを1枚に</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・子育てで</h4>
+        <ul>
+          <li>参考書＋過去問からクイズを自動生成</li>
+          <li>子どもの「なぜ？」を、資料つきで説明</li>
+          <li>読書メモをリンクでつなぎ、自分の考えを育てる</li>
+          <li>学校のプリントを撮って、提出物カレンダーに</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="blk">つまずいた・困ったとき</h3>
+    <div class="compact">
+      <details><summary>NotebookLMが「資料に情報がありません」としか答えない</summary><div class="ans">それは正常な動作です。NotebookLMは<b>入れた資料の外からは答えない</b>設計だから信頼できます。必要なら資料を追加するか、Deep Researchなど資料を集める機能から始めてください。逆に、資料に無い話を平気で答えるツールのほうが危険です。</div></details>
+      <details><summary>YouTubeやPDFを読み込ませられない</summary><div class="ans">動画は字幕（文字起こし）がないと読めません。限定公開・非公開の動画、コピー防止がかかったPDF、画像だけのスキャンPDFも苦手です。スキャンPDFは、先に文字認識（OCR）をかけると通ることがあります。</div></details>
+      <details><summary>Obsidianでスマホとパソコンが同期しない</summary><div class="ans">Obsidianは標準では同期しません。公式のObsidian Sync（有料）を使うか、クラウドの共有フォルダにVaultを置く方法があります。ただし後者は、同時編集でファイルが競合・破損することがあるため、必ずバックアップを取ってから試してください。</div></details>
+      <details><summary>ノートが増えすぎて、どこに何があるかわからない</summary><div class="ans">フォルダを増やすのは逆効果です。①検索を使う ②リンクをたどる ③Basesで一覧にする、の順で解決します。それでも埋もれるなら、AIに全体を読ませて「テーマ別の目次ノート」を1枚作らせるのが早いです。</div></details>
+      <details><summary>AIとの連携がうまくいかない・エラーが出る</summary><div class="ans">まずは連携の難易度を1段下げてください（MCP → ファイル連携 → コピペ）。多くの場合、フォルダのアクセス許可、アプリのバージョン、パスの指定ミスが原因です。動く形を確認してから、少しずつ自動化を足していくのが確実です。</div></details>
+      <details><summary>結局どちらも続かない</summary><div class="ans">原因はほぼ「最初から完璧にやろうとした」ことです。<b>1週目はNotebookLMで資料を1本読ませるだけ</b>、2週目からデイリーノート3行だけ。この2つに絞れば、続く可能性が一気に上がります。</div></details>
+    </div>
+
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>入れていい情報の線を先に引く</div><p>お客様の個人情報・カード番号・社外秘・パスワードは入れないのが基本。Vault内に「クラウドへ出さないフォルダ」を作り、AIの参照範囲から外しておきましょう。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>バックアップを二重に</div><p>Obsidianはローカル保存。端末が壊れたら終わりです。クラウド、外付けドライブ、Gitのいずれかで必ず二重化を。自動化を足す前には必ず。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>答えは鵜呑みにしない</div><p>AIはもっともらしく間違えます（ハルシネーション）。NotebookLMは出典に飛べるので、数字・名前・法律・金額は必ず原文で確認してください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>AIに渡す権限は最小限に</div><p>自律型AIには、まず「読む・追記する」だけを許可。削除・上書き・外部送信は、仕組みを理解してから。最終判断は必ず人が行います。</p></div>
+    </div>
+
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>結局、どっちを先に始めるべき？</summary><div class="ans">NotebookLMです。3分で始まり、その日に効果が出ます。Obsidianは効果が出るまで1か月ほどかかる代わりに、効き始めると一生ものです。1〜2週間ずらして、両方持つのが理想です。</div></details>
+      <details><summary>無料でどこまでできますか？</summary><div class="ans">NotebookLMはGoogleアカウントだけで無料で始められ、日常的な使い方なら無料枠で十分です（音声解説などは回数制限あり、上位機能はプラン限定の場合があります）。Obsidianは本体・プラグインとも無料で、商用利用も無料。お金がかかるのは同期（Sync）とWeb公開（Publish）だけです。金額や条件は改定されるため、最新は各公式でご確認ください。</div></details>
+      <details><summary>NotionやEvernoteから乗り換えるべき？</summary><div class="ans">急ぐ必要はありません。チームで同時編集するならNotionが優位、個人の知識を長く積むならObsidianが優位です。判断軸は「そのサービスが終わったとき、自分のメモは手元に残るか」。残らないなら、大事なものだけでもObsidianへ移す価値があります。</div></details>
+      <details><summary>Markdownって、プログラミングみたいで難しそう</summary><div class="ans">覚えるのは3つだけです。<code>#</code> で見出し、<code>-</code> で箇条書き、<code>[[ ]]</code> でリンク。これ以外は普通の文章のままで大丈夫です。むしろ書式が少ないぶん、装飾に悩まなくて済みます。</div></details>
+      <details><summary>会社の情報をAIに読ませて大丈夫？</summary><div class="ans">扱いはサービス・プラン・設定で変わります。まずは各サービスのデータ設定を確認し、社内ルールと突き合わせてください。判断に迷うなら、①個人情報を伏せる ②社外秘は入れない ③ローカル完結のObsidian側に置く、の3段構えが現実的です。</div></details>
+      <details><summary>自律型AIって、うちみたいな小さな会社にも関係ある？</summary><div class="ans">むしろ小さい会社ほど効きます。人手が足りない分、「議事録・マニュアル・顧客フォロー・棚卸し」といった、後回しになりがちな仕事をAIが引き受けるからです。ただし丸投げではなく、判断は人が持つ設計にすることが前提です。</div></details>
+      <details><summary>パソコンが苦手でも大丈夫？</summary><div class="ans">NotebookLMはブラウザとスマホアプリだけで完結するので問題ありません。Obsidianは最初のインストールだけ少し手間ですが、その先は「メモ帳に書く」のと変わりません。この記事の順番どおりに進めれば迷いません。</div></details>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">← 前に読む（基礎）</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを始める</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">次に読む</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">あわせて読む</span><span class="r-t">Google Chromeって何？<small>／ ブラウザの歴史・料金・AI活用までやさしく解説</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ カットも字幕も生成もAIで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">あわせて読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ 使い方・料金・AI活用まで、初心者向けに解説</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/fde-guide/"><span class="r-ic">💼</span><span><span class="r-k">あわせて読む</span><span class="r-t">新職種「FDE」って何？<small>／ 年収5000万円の正体</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://notebooklm.google.com/" target="_blank" rel="noopener"><span class="r-ic">📚</span><span><span class="r-k">公式サイト</span><span class="r-t">NotebookLM を開く<small>／ Google公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://obsidian.md/" target="_blank" rel="noopener"><span class="r-ic">🧠</span><span><span class="r-k">公式サイト</span><span class="r-t">Obsidian を開く<small>／ 公式（無料でダウンロード）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://support.google.com/notebooklm" target="_blank" rel="noopener"><span class="r-ic">❓</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">NotebookLM ヘルプセンター<small>／ 最新の機能・上限はこちら</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://help.obsidian.md/" target="_blank" rel="noopener"><span class="r-ic">📖</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">Obsidian Help<small>／ Bases・Sync・プラグインの解説</small></span></span><span class="r-arw">↗</span></a>
+</div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの会社の“面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「何から始めれば」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・機能・料金は、提供元の更新により変わることがあります。最新情報は公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

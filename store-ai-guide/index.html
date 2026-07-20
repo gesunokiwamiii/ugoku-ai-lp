@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×店舗運営 ゼロから始める実践方法とAI活用事例10選｜UGOKU AI</title>
+<meta name="description" content="人手不足・原価高騰・集客難。店舗の三重苦を、AIで抜ける。初心者でも今日から動ける「ゼロから始める実践マニュアル」と、現場で効いたAI活用事例10選。コピペで使えるプロンプト・費用対効果の目安・自律型AI（AIエージェント）で何がどこまで自動化できるか・失敗しないための注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×店舗運営 ゼロから始める実践方法とAI活用事例10選｜UGOKU AI">
+<meta property="og:description" content="人手不足・原価高騰・集客難を、AIで抜ける。コピペで使えるプロンプトと費用対効果、自律型AIの可能性まで。店舗のためのAI実践ガイド。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/store-ai-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/store-ai-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×店舗運営 実践ガイド ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×店舗運営 ゼロから始める実践方法とAI活用事例10選｜UGOKU AI">
+<meta name="twitter:description" content="人手不足・原価高騰・集客難を、AIで抜ける。店舗のためのAI実践ガイド。うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/store-ai-guide/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×店舗運営 実践ガイド</span>
+      <h1>人が足りない。原価も上がる。<br>それでも店は、<span class="hl">回さないと</span>いけない。</h1>
+      <p class="lead">だから、AIに“回してもらう”。むずかしい話はナシ。<b>スマホとGoogleアカウント</b>があれば、今日から始められます。現場で本当に効いた<b>活用事例10選</b>を、コピペできる形で全部お渡しします。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「やってみたけど続かなかった」の原因を、先回りして潰します。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">10の実践事例を見る <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「AIで店舗運営」と聞くと、配膳ロボットや高額なシステムを想像するかもしれません。でも、いちばん効くのはもっと地味なところ。<b>店長が毎日30〜60分、無言でやっている作業</b>です。この記事は、そこから順番に潰していく地図です。</p>
+        <ul class="checklist">
+          <li>店舗のどの作業からAIにすると、いちばん元が取れるかがわかる</li>
+          <li>10の事例それぞれに、コピペできるプロンプトが付いている</li>
+          <li>「月いくらかけて、いくら戻るか」の費用対効果がイメージできる</li>
+          <li>自律型AI（AIエージェント）で、どこまで自動化できるかがわかる</li>
+          <li>やってはいけないこと（個人情報・口コミ・法令）の線引きがわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">店舗のAIは、「呼ぶ・回す・守る」の3つだけ</h2>
+    <p class="sec-sub">AIツールは無数にありますが、店舗でやることは実はこの3つに収まります。まずここを掴んでください。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--ember);">
+        <div class="ic">📣</div>
+        <h4>呼ぶ<br><span>＝ 集客・販促</span></h4>
+        <p>SNS投稿、Googleマップ（MEO）、口コミ返信、チラシ、メニュー写真の説明文。「書く・作る」が全部AIの得意分野。いちばん最初に効果が出る場所です。</p>
+      </div>
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">⚙️</div>
+        <h4>回す<br><span>＝ オペレーション</span></h4>
+        <p>シフト作成、発注、マニュアル、新人教育、多言語対応、電話応対。「毎日・毎週やっている面倒なこと」を、時間を8割減らす形で置き換えます。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🛡️</div>
+        <h4>守る<br><span>＝ 数字・利益</span></h4>
+        <p>日次売上の分析、原価率（FL）管理、廃棄ロス、値付け。感覚でやっていた判断に、根拠を持たせる。ここまで来ると経営が変わります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">STORE × AI PRACTICAL GUIDE</div>
+    <h2 class="sec-title">ゼロから始める、AI×店舗運営</h2>
+    <p class="sec-sub">セオリー → 順番 → 事例10選 → 費用対効果 → 自律型AI → 注意点。上から読むだけで、明日の朝から動けます。</p>
+
+    <div class="keystone">
+      <span class="kl">🎯 この記事の結論</span>
+      <p>店舗のAI活用でつまずく原因は、ツールでも予算でもありません。<strong>「使い方の型」がない</strong>ことです。逆に言えば、型さえ持てば無料〜数千円から今日始められます。そして2026年のいま、AIは「聞いたら答える道具」から<strong>「任せたら勝手に終わらせる相棒（自律型AI）」</strong>へ移りつつある。この記事は、その両方を扱います。</p>
+    </div>
+
+    <!-- ═══ なぜ今か ═══ -->
+    <h3 class="blk">なぜ今、店舗にAIなのか（2026年の現在地）</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">感情論ではなく、構造の話です。店舗を取り巻く数字が、AIを「あれば便利」から「入れないと持たない」へ押し上げました。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">REASON 01</div>
+        <h4>人手不足が、構造として固定された</h4>
+        <p>飲食業では<b>およそ6割の企業が採用難</b>に直面していると報告されています。求人を出せば来た時代は終わり、<b>「今いる人数で回す設計」</b>が前提になりました。AIは人の代わりではなく、<b>人を接客に集中させるための道具</b>です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">REASON 02</div>
+        <h4>廃棄ロスは、売上の3〜8%に達する</h4>
+        <p>外食産業全体の食品ロスは年間<b>約328万トン</b>（農林水産省推計）。個店では<b>売上の3〜8%</b>が捨てられているとも言われます。月商500万円なら毎月15〜40万円。需要予測AIの導入で<b>平均30%程度のロス削減</b>が見込めるという分析もあります。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">REASON 03</div>
+        <h4>大手はもう「三位一体」で動いている</h4>
+        <p>ロボット × 需要予測AI × POS連携。公開事例では、回転寿司チェーンがICチップと注文端末のAI分析で<b>廃棄率を大幅削減</b>、うどんチェーンがAI需要予測で<b>ロス削減と人件費最適化を両立</b>したと報じられています。差が開く前に、個店は「軽いAI」で追う番です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">REASON 04</div>
+        <h4>個店のほうが、実は速い</h4>
+        <p>大手が数ヶ月の稟議をかける導入検討を、個店は<b>翌日から試せます</b>。生成AIは初期費用ゼロ、月0〜数千円。<b>意思決定の速さ</b>が、そのまま個店の武器になる。これは過去のDXになかった逆転構造です。</p>
+      </div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>数字は「業界の平均像」として見てね。大事なのは他店の数字じゃなくて、<b>自分の店の1ヶ月の廃棄額と、店長の残業時間</b>。まずそれをメモするところからだよ。</div></div>
+
+    <!-- ═══ セオリー ═══ -->
+    <h3 class="blk">セオリー：店舗AIは「3階建て」で考える</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">いきなり3階に行こうとするから失敗します。1階から順に。ここが本記事の背骨です。</p>
+    <div class="combo">
+      <h4>🏗 店舗AIの3階層モデル</h4>
+      <div class="flow">
+        <span class="b">1F 見える化<br><small style="font-weight:500;">数字を出す</small></span><span class="ar">→</span>
+        <span class="b">2F 省力化<br><small style="font-weight:500;">作業を渡す</small></span><span class="ar">→</span>
+        <span class="b">3F 自律化<br><small style="font-weight:500;">判断まで任せる</small></span>
+      </div>
+      <ul class="use">
+        <li><b>1F・見える化（初日〜1週間／費用0円）</b>…売上・客数・原価をAIに読ませて「何が起きてるか」を言語化させる。ここを飛ばすと、2F以降の効果が測れません。</li>
+        <li><b>2F・省力化（2週間〜1ヶ月／月0〜3,000円）</b>…SNS投稿・口コミ返信・シフト叩き台・マニュアル作成をAIに渡す。<b>この記事の事例10選の大半がここ</b>。投資対効果がいちばん高い階です。</li>
+        <li><b>3F・自律化（2〜3ヶ月目以降／月数千円〜）</b>…AIエージェントが自分で情報を取りに行き、作り、下書きまで置いておく。<b>最終承認だけ人間</b>。ここが2026年の主戦場です。</li>
+      </ul>
+    </div>
+    <div class="warn">
+      <div class="wt">⚠ よくある失敗</div>
+      いきなり高額な専用システムから入って、現場が使わずに解約——という話は本当に多いです。<b>「まず無料の生成AIで、手作業のどこが減るか確かめる」</b>。専用ツールは、減った実感が出てからで間に合います。
+    </div>
+
+    <!-- ═══ 事例10選 ═══ -->
+    <h3 class="blk">AI活用事例10選（コピペのプロンプト付き）</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 6px;">ここからが本編。<b>効果が出る順・始めやすい順</b>に10個並べました。各事例に「使いどころ」「仕事と私生活での応用」「注意点」「自律型AIが加わるとどうなるか」を付けています。全部やる必要はありません。<b>まず1つ</b>。</p>
+
+    <!-- CASE 01 -->
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>01</b></div>
+        <div><span class="st-chip">呼ぶ｜集客</span><div class="st-ttl">SNS投稿文を、10分で1週間分つくる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">現場スタッフが毎日30〜60分かけている作業の筆頭がこれ。写真は撮ってあるのに、キャプションが書けなくて投稿が止まる——という店は非常に多いです。AIの独壇場です。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 SNS 1週間分 一括生成</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは飲食店のSNS運用担当です。以下の店の
+Instagram投稿文を、7日分まとめて作ってください。
+
+【店の情報】
+・業態：<span class="fill">〇〇（例：炭火焼肉店）</span>
+・エリア：<span class="fill">〇〇市</span>
+・客層：<span class="fill">30〜50代の家族・地元の常連</span>
+・今週の推し：<span class="fill">〇〇（新メニュー／仕入れの目玉）</span>
+
+【条件】
+・1投稿120〜160文字。絵文字は2〜3個まで
+・1行目で必ず手が止まる書き出しにする
+・売り込みは7投稿のうち2つまで。残りは
+  「裏側・こだわり・スタッフ・豆知識」で構成
+・最後にハッシュタグを8個（地域名＋業態＋料理名を必ず含む）
+・7日分それぞれテーマを変え、被らせない</pre>
+        </div>
+
+        <div class="mini-h">効かせるコツ</div>
+        <ul class="use">
+          <li><b>「今週の推し」を毎回書き換えるだけ</b>で、毎週使い回せます。テンプレを1つ持つのが勝ちパターン。</li>
+          <li>反響が伸びる投稿は、実は<b>商品より「人と裏側」</b>。仕込みの様子、スタッフの一言、仕入れの理由。AIにも「裏側」を明示的に指示します。</li>
+          <li>出てきた文をそのまま出さない。<b>1行だけ自分の言葉に書き換える</b>。それだけで「AIっぽさ」が消えます。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>週1回まとめ生成 → 予約投稿で1週間放置</li><li>スタッフ誰でも投稿できる状態になる</li><li>店長の「投稿しなきゃ」ストレスが消える</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>個人アカウントの発信、趣味の記録</li><li>子どもの行事の写真にひとこと添える</li><li>年賀状・挨拶文・お礼のメッセージ</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>実在しない事実（「本日限定」「在庫あります」など未確認の情報）をAIが書くことがあります。<b>数字・在庫・価格・日付は、人が必ず確認</b>してから投稿してください。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>毎週月曜の朝、AIが自動で「先週の反応が良かった投稿の傾向」を分析して、今週分7投稿の下書きを予約投稿の枠に入れておく——まで到達します。人がやるのは<b>「これでOK」を押すだけ</b>。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 02 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>02</b></div>
+        <div><span class="st-chip">呼ぶ｜MEO</span><div class="st-ttl">Googleマップの口コミ返信を、全件・その日のうちに</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">来店前の人は、まず地図アプリで店を見ます。<b>口コミへの返信率と速さ</b>は、そこで最も伝わる情報のひとつ。しかも低評価への返信は、書いた本人より<b>「それを読んでいる次のお客さん」</b>に向けて書くものです。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 口コミ返信（高評価・低評価 兼用）</span><button class="cb-btn">コピー</button></div>
+<pre>以下の口コミへの返信文を3案つくってください。
+
+【口コミ本文】
+<span class="fill">（ここに口コミを貼る。投稿者名は消すこと）</span>
+
+【店の前提】
+・業態：<span class="fill">〇〇</span>／店長の人柄：<span class="fill">丁寧で控えめ</span>
+
+【条件】
+・150〜200文字。定型文っぽさを消す
+・口コミ本文の中の「具体的な単語」を必ず1つ拾って触れる
+・低評価の場合：まず謝罪 → 事実確認したことだけ書く →
+  改善のアクションを1つ具体的に → 再来店の依頼は押しつけない
+・「確認していない事実」は絶対に書かない
+・他のお客様が読むことを前提にした文章にする</pre>
+        </div>
+
+        <ul class="use">
+          <li><b>返信は3案出させて、店長が選ぶ</b>。選ぶだけなら1件30秒です。</li>
+          <li>低評価に感情で返さない仕組みができる。これがAI導入の隠れた最大メリット。</li>
+          <li>返信文の中に<b>地域名・料理名</b>を自然に入れると、地図検索での見られ方にも効きます。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>口コミ返信率100%・24時間以内を仕組み化</li><li>返信のトーンが店として統一される</li><li>クレーム内容を月次で分類→改善に回す</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>言いにくいことを角を立てず伝える文章</li><li>PTAや町内会の連絡文・お断りの文面</li><li>感情的になりそうな返信のクールダウン</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>口コミをAIに貼るとき、<b>投稿者名・個人が特定できる記述は必ず伏せて</b>ください（「Aさん」「当店」に置換）。入力内容が学習に使われる可能性は設定・プランで変わります。個人情報の取り扱いは個人情報保護法の対象です。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>新しい口コミが付いた瞬間にAIが検知 → 返信下書きをチャットに投げてくる → 店長がスマホで「承認」を押すと投稿完了。<b>承認だけは必ず人間</b>——これが2026年の標準的な設計思想です。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 03 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>03</b></div>
+        <div><span class="st-chip">回す｜労務</span><div class="st-ttl">シフトの叩き台を、AIに5分で組ませる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ベテラン店長が数時間かけて組むシフト。専用のAIシフト管理ツールなら数分で最適解を出し、<b>作成時間の大幅削減</b>が期待できると言われます。でも最初の一歩は、手元の表を汎用AIに読ませるところからで十分です。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 シフト叩き台の自動作成</span><button class="cb-btn">コピー</button></div>
+<pre>店舗のシフト案を作ってください。
+
+【必要人数（時間帯別）】
+<span class="fill">平日 11-15時：2名／17-22時：4名
+土日  11-15時：3名／17-22時：6名</span>
+
+【スタッフと条件】※氏名はイニシャルで
+<span class="fill">A：週4まで・火曜NG・キッチン可
+B：土日のみ・ホール専任
+C：夜のみ・週3・新人（要フォロー）</span>
+
+【ルール】
+・法定の休憩と連勤上限を守る
+・新人は必ずベテランと同じ時間帯に入れる
+・特定の人に偏らせない
+
+【出力】
+1週間分の表 ＋ 人が要調整の箇所を「注意」として箇条書き</pre>
+        </div>
+
+        <ul class="use">
+          <li><b>ゼロから組む地獄が、修正作業に変わる</b>。これが体感としていちばん大きい変化です。</li>
+          <li>来客予測（CASE 07）と組み合わせると、山谷が事前に均せます。</li>
+          <li>専用ツールへ進むのは、この「叩き台運用」が定着してからで遅くありません。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>店長のシフト作成時間を大幅圧縮</li><li>属人化していた組み方が引き継げる</li><li>人件費の山谷を数字で説明できる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>家族の予定・送迎・当番表の調整</li><li>旅行の行程づくり、部活の練習割</li><li>子どもの学習スケジュール組み</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div><b>スタッフの氏名・連絡先・給与情報をそのまま貼らない</b>こと（イニシャルや記号に置換）。また、労働時間・休憩・割増賃金は法令の話です。AIの出力を鵜呑みにせず、最終判断は必ず人（必要なら社労士）が行ってください。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>希望休の提出が締め切られた瞬間に、AIが売上予測と突き合わせてシフト案を生成し、過不足のある日をアラートで通知。店長は<b>「調整が要る3日分だけ」</b>を見ればよくなります。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 04 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>04</b></div>
+        <div><span class="st-chip">回す｜教育</span><div class="st-ttl">新人マニュアルと「教え方」を、AIに量産させる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">マニュアルがない店は、教育コストが人によって10倍変わります。でもマニュアル作成は「重い」。AIなら<b>ベテランの口頭説明を文字起こしして流し込むだけ</b>で骨格ができます。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 口頭説明 → 新人マニュアル化</span><button class="cb-btn">コピー</button></div>
+<pre>以下は、ベテランスタッフが新人に口頭で説明した内容の
+文字起こしです。これを新人向けマニュアルに整えてください。
+
+【文字起こし】
+<span class="fill">（スマホの音声入力・録音の書き起こしを貼る）</span>
+
+【出力の条件】
+・「準備するもの → 手順（番号付き） → やってはいけないこと
+  → 迷ったら誰に聞くか」の4ブロック構成
+・専門用語には初出時に（ ）で短い説明を付ける
+・1手順は1行。読む人は入社1日目だと想定する
+・最後に「新人が3日目にできているかの確認チェック5項目」
+・多言語対応：同じ内容を <span class="fill">やさしい日本語</span> でも併記</pre>
+        </div>
+
+        <ul class="use">
+          <li>外国人スタッフが多い店では、<b>やさしい日本語＋母語</b>の2本立てが効きます。翻訳もそのまま頼めます。</li>
+          <li>「やってはいけないこと」を必ず入れる。事故はここに集中します。</li>
+          <li>作ったマニュアルをAIに読ませて<b>新人からの質問に答えさせる</b>と、店長への質問が激減します。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>教育の質が、教える人で変わらなくなる</li><li>多店舗展開のときそのまま横展開できる</li><li>離職時のノウハウ流出を防げる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>実家の親にスマホの使い方を説明する紙</li><li>家事の分担マニュアル・留守番メモ</li><li>趣味のやり方を人に教えるときの資料</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>衛生管理（HACCP）・アレルギー表示・消防や食品衛生に関わる部分は、<b>AIの文章をそのまま掲示しない</b>でください。必ず所管のルール・保健所の指導内容と突き合わせて確定させます。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>店舗のマニュアル群をまるごと読み込んだAIが、スタッフからのLINEの質問に24時間答える「店内ヘルプデスク」になります。答えられなかった質問は自動でリスト化 → <b>マニュアルの穴が勝手に見つかる</b>。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 05 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>05</b></div>
+        <div><span class="st-chip">守る｜数字</span><div class="st-ttl">日次・月次の数字を、AIに「読ませて喋らせる」</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">POSからCSVは出るのに、誰も見ていない。これが最ももったいない状態です。AIは<b>表を渡すと、それを日本語の物語に変えてくれます</b>。1階（見える化）の中心がここ。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 売上データの月次フォレンジック</span><button class="cb-btn">コピー</button></div>
+<pre>添付（または以下）の売上データを分析してください。
+あなたは飲食店の経営分析が専門のコンサルタントです。
+
+【出力してほしいこと】
+1. 今月の要約を3行で（良かった点・悪かった点・意外な点）
+2. 曜日別／時間帯別で、売上と客単価の山谷
+3. 前月比・前年同月比で、いちばん動いた項目 上位3つと
+   その「考えられる原因」（断定せず、仮説として複数）
+4. 原価率（F）・人件費率（L）・FL合計 の算出と、
+   目標（F35%以下・L25%以下・FL70%以下）との差
+5. 来月、店長がやるべきアクションを優先度順に3つだけ
+
+※専門用語は使わず、アルバイトにも伝わる言葉で
+※数値の根拠になったデータを必ず併記すること</pre>
+        </div>
+
+        <ul class="use">
+          <li>「なんとなく忙しかった」が<b>「金曜19時台の客単価が前月比▲12%」</b>に変わります。打ち手が具体化する。</li>
+          <li>原因は<b>断定させない</b>のがコツ。AIは仮説出しが得意で、断定は苦手です。</li>
+          <li>月次だけでなく<b>日次3行サマリー</b>にすると、店長の朝のルーティンになります。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>会議資料が「読み上げ」から「議論」に変わる</li><li>FL管理が感覚から数値管理へ</li><li>複数店舗の比較・順位付けが一瞬</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>家計簿CSVを読ませて固定費の見直し</li><li>電気・通信のプラン比較</li><li>健康診断の数値の推移をやさしく解説させる</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>AIは計算を間違えることがあります。<b>合計・比率は必ず自分で検算</b>を。また会計・税務の最終判断は税理士へ。ここは「気づきを得る道具」であって、「決算を作る道具」ではありません。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>毎朝6時、AIが昨日のPOSデータを自分で取りに行き、3行サマリーと異常値アラートをLINEに投げる。店長が数字を「見に行く」必要がなくなり、<b>数字のほうから来る</b>状態になります。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 06 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>06</b></div>
+        <div><span class="st-chip">呼ぶ｜動画</span><div class="st-ttl">スマホ動画を、AIで「見られる短尺」に仕上げる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いま、店舗の集客で最も反響が伸びるのは短尺動画です。撮るのはスマホでいい。<b>面倒なのはカット・字幕・構成</b>——そこが全部AIで終わります。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 短尺動画の構成台本</span><button class="cb-btn">コピー</button></div>
+<pre>店舗の30秒ショート動画の台本を5本つくってください。
+
+【店】<span class="fill">〇〇（業態・エリア）</span>
+【素材として撮れるもの】<span class="fill">仕込み・焼き・盛り付け・店内・スタッフ</span>
+
+【条件】
+・最初の2秒で指が止まる「引き」を必ず作る
+  （音・湯気・切る瞬間・意外な事実 のいずれか）
+・秒数配分つきで「0-2秒／2-10秒／10-25秒／25-30秒」
+・ナレーションなしでも成立する字幕テキスト付き
+・最後は「保存したくなる理由」で終える（宣伝で終わらない）
+・5本はそれぞれ切り口を変える
+  （仕込み裏側／店主のこだわり／お客様の反応／
+    知られていない豆知識／スタッフの日常）</pre>
+        </div>
+
+        <ul class="use">
+          <li>反響が大きい投稿には共通の型があります。<b>「引き2秒 → 理由 → 見せ場 → 余韻」</b>。AIにこの型を明示するのが要点。</li>
+          <li>字幕生成・自動カットはアプリ側のAI機能で完結します。<b>編集ソフトを覚えるより、台本をAIに作らせるほうが速い</b>。</li>
+          <li>同業の伸びている投稿を分析させると、自店に置き換えた企画が出ます（下の「反響トレース」参照）。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>週1本のショートを、無理なく継続できる</li><li>採用動画・求人にもそのまま転用</li><li>スタッフが撮る文化ができる</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>旅行・運動会の動画を見やすくまとめる</li><li>趣味の記録をシリーズ化する</li><li>結婚式・記念日のムービー構成</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>BGM・フォント・素材の<b>商用利用可否</b>を必ず確認。お客様やスタッフが映る場合は<b>事前の許可</b>を。AIが生成した画像・音声を使う場合は、各サービスの利用規約で商用利用の条件を確認してください。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>撮りためた素材をフォルダに放り込むだけで、AIが選別 → カット → 字幕 → 3案の完成形を提示。人は<b>「どれを出すか選ぶだけ」</b>。ここまで来ると週3投稿も現実的です。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 07 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>07</b></div>
+        <div><span class="st-chip">守る｜ロス</span><div class="st-ttl">来客予測と発注で、廃棄ロスを削る</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">廃棄の多くは「発注ミス」と「仕込みすぎ」から生まれます。天候・曜日・近隣イベントで客数は大きく動くのに、経験値だけで当て続けるのは限界がある。ここは<b>金額インパクトが最も大きい</b>領域です。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 来客予測 → 発注・仕込み量の提案</span><button class="cb-btn">コピー</button></div>
+<pre>来週の来客数を予測し、仕込み量の目安を出してください。
+
+【過去データ】※日付・曜日・天気・客数・売上
+<span class="fill">（直近8〜12週分を貼る／CSV添付でも可）</span>
+
+【来週の条件】
+・天気予報：<span class="fill">〇</span>／近隣イベント：<span class="fill">〇</span>
+・祝日・給料日・学校行事：<span class="fill">〇</span>
+
+【出力】
+1. 日別の来客数予測（最小〜最大のレンジで）
+2. 予測の根拠になった要因を、影響が大きい順に
+3. 主要食材の仕込み量の目安
+   （売れ数の実績 × 予測客数 で算出、算式も表示）
+4. 「読み違えるリスクが高い日」と、その日の保険の打ち方
+5. 廃棄が出やすい食材の、翌日転用アイデア</pre>
+        </div>
+
+        <ul class="use">
+          <li>まずは<b>レンジ（最小〜最大）</b>で出させる。ピンポイント予測を信じるとかえって外します。</li>
+          <li>実績と予測の差分を毎週AIに戻す。<b>これを4週続けると精度が体感で変わります</b>。</li>
+          <li>本格的なSaaS型需要予測ツールは、1店舗あたり月5,000〜20,000円程度の価格帯のサービスも存在します。汎用AIで手応えを掴んでから検討を。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>月商500万円で廃棄5%なら月25万円。1%削減で月5万円</li><li>発注業務が「勘」から「確認」に変わる</li><li>欠品による機会損失も同時に減る</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>家庭の買い物リストと食材使い切り献立</li><li>冷蔵庫の残り物からレシピを出す</li><li>備蓄・日用品の補充タイミング管理</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>予測はあくまで<b>参考値</b>。AIは「なぜその数字になったか」を必ず説明させ、納得できない予測は採用しないでください。また、市場や気候が変わると予測モデルはズレていきます（モデルドリフト）。<b>定期的な見直しを前提に</b>組み込むこと。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>AIが天気予報APIと地域イベント情報を自分で取りに行き、POS実績と突き合わせて<b>発注書の下書きまで作成</b>。担当者は数量を確認して送信するだけ。ここが「省力化」と「自律化」の境目です。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 08 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>08</b></div>
+        <div><span class="st-chip">回す｜応対</span><div class="st-ttl">電話・予約・問い合わせを、AIに一次受けさせる</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ピーク時の電話は、現場の集中力を最も削ります。<b>AI電話応対や予約管理は、月額数千円から</b>始められるサービスが出てきました。まずは「よくある質問」の自動化から。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 想定問答（FAQ）の一括生成</span><button class="cb-btn">コピー</button></div>
+<pre>当店に電話・DM・口コミで来る質問を想定し、
+回答テンプレートを30問分つくってください。
+
+【店の情報】
+<span class="fill">業態／席数／駐車場／営業時間／定休日／
+個室有無／予約可否／子連れ可否／アレルギー対応／
+支払い方法／喫煙／団体対応／最寄駅からの道順</span>
+
+【条件】
+・「よく聞かれる順」に並べる
+・1回答は3行以内。電話で読み上げても不自然でない口語
+・断る系の質問（満席・予約不可など）は、必ず代替案を添える
+・外国人のお客様向けに、英語版も併記
+・答えを店側が決める必要がある項目は【要確認】と明示</pre>
+        </div>
+
+        <ul class="use">
+          <li>できた30問は、そのまま<b>公式LINEの自動応答・Googleビジネスプロフィールの質問欄・スタッフの手元カンペ</b>に流用できます。</li>
+          <li>【要確認】が付いた項目こそ、<b>店として決まっていなかったルール</b>。棚卸しになります。</li>
+          <li>多言語対応は、翻訳を頼むだけで一気に整います。インバウンド対応の初手として有効。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>ピーク時に電話で手が止まらない</li><li>スタッフによる回答のブレが消える</li><li>予約取りこぼしの機会損失を回収</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>役所・保険・病院への問い合わせ内容の整理</li><li>言いたいことを電話前に台本化する</li><li>海外旅行先での会話フレーズ準備</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>予約の確定・キャンセル料・アレルギー対応など<b>トラブルに直結する判断は、AIに完結させない</b>こと。必ず人が確認するフローを残します。AI応対であることの明示も、信頼のうえで有効です。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>AIが電話を一次受けして予約台帳に書き込み、満席なら別日を提案、確定前に店長のスマホへ承認依頼。<b>取りこぼしゼロ</b>と<b>現場が電話に出ない</b>が両立します。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 09 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>09</b></div>
+        <div><span class="st-chip">呼ぶ｜商品</span><div class="st-ttl">メニュー開発・商品説明文・値付けの叩き台</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">小売でいちばん「数が多くて、面倒で、後回しになる」のが商品説明文。飲食なら<b>メニュー名と説明文、POP、季節限定の企画</b>。1品10分かかる作業が、まとめて半日で終わります。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 メニュー名・説明文・値付けの叩き台</span><button class="cb-btn">コピー</button></div>
+<pre>新メニューの案を出してください。
+
+【前提】
+・業態：<span class="fill">〇〇</span>／客単価：<span class="fill">〇円</span>
+・使いたい食材：<span class="fill">〇〇（余りやすい／仕入れが強い食材）</span>
+・厨房の制約：<span class="fill">オペレーションを増やせない／既存工程で作れること</span>
+・原価率の目標：<span class="fill">30%以内</span>
+
+【出力】
+1. メニュー案5つ（名前／説明文60字／想定原価の考え方）
+2. 各案の「オペレーション負荷」を 低・中・高 で判定
+3. 値付けの考え方（原価積み上げ ＋ 価値ベースの両面で）
+4. 単品ではなくセット・コースに組んだ場合の見せ方
+5. この5案のうち、いま出すべき1案とその理由</pre>
+        </div>
+
+        <ul class="use">
+          <li><b>「厨房の制約」を必ず書く</b>。ここを省くと、作れないメニューが山ほど出てきます。</li>
+          <li>廃棄が出やすい食材（CASE 07）を入力すると、<b>ロス削減と新メニューが同時に片付く</b>。</li>
+          <li>説明文は、味の描写より<b>「なぜこれを出すのか」の理由</b>を書かせると刺さります。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>メニュー会議の叩き台が5分で揃う</li><li>季節メニューの企画が止まらなくなる</li><li>EC・テイクアウトの商品説明にも転用</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>今日の献立を冷蔵庫の中身から提案</li><li>フリマ出品の商品説明文づくり</li><li>手土産・贈り物の選定と一言添え</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>原価計算・アレルゲン表示・原産地表示は<b>必ず人が確定</b>させてください。AIの提示する原価は概算です。景品表示法・食品表示法に関わる表現（「日本一」「〇〇産」など）は根拠なく使わないこと。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>自律型AIが加わると</b>売上データと廃棄データを常時見ているAIが、「この食材が3週連続で余っています。この構成なら原価28%で出せます」と<b>提案のほうから来る</b>ようになります。</div></div>
+      </div>
+    </div>
+
+    <!-- CASE 10 -->
+    <div class="step" style="--accent:var(--pine-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>CASE</small><b>10</b></div>
+        <div><span class="st-chip">守る｜経営</span><div class="st-ttl">店長の「壁打ち相手」として使う</div></div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最後は、いちばん地味で、いちばん効くもの。店舗経営の孤独をAIが埋めます。<b>相談相手がいない</b>——これが個店の最大の弱点でした。</p>
+
+        <div class="mini-h">コピペで使えるプロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 経営の壁打ち（反論役をやらせる）</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは飲食店の経営に厳しい社外取締役です。
+私の考えに賛成せず、必ず反論と穴の指摘から入ってください。
+
+【私が今やろうとしていること】
+<span class="fill">（例：客単価を上げるため、コースを値上げしたい）</span>
+
+【店の状況】
+<span class="fill">売上／客数／原価率／人員／立地／競合の状況</span>
+
+【出してほしいこと】
+1. この案の「最悪のシナリオ」を3つ
+2. 私が見落としている前提を、遠慮なく指摘
+3. 同じ目的を達成する、別の手段を3つ
+4. それでも実行するなら、失敗を早く検知する指標を1つ
+5. 最後に、賛成できる点も1つだけ</pre>
+        </div>
+
+        <ul class="use">
+          <li><b>「賛成するな」と明示する</b>のが最重要。放っておくとAIは褒めてきます。それでは意味がない。</li>
+          <li>スタッフとの面談前、値上げ判断前、出店判断前。<b>意思決定の直前</b>に必ず1回通す習慣を。</li>
+          <li>出た反論のうち、答えられなかったものが<b>本当のリスク</b>です。</li>
+        </ul>
+
+        <div class="split">
+          <div class="col work"><div class="ch">💼 仕事で <span class="badge-mini">店舗</span></div>
+            <ul><li>値上げ・出店・採用の判断精度が上がる</li><li>スタッフへの説明が論理的になる</li><li>金融機関・本部への説明資料の下地に</li></ul></div>
+          <div class="col life"><div class="ch">🏠 私生活で <span class="badge-mini">応用</span></div>
+            <ul><li>住宅・保険・車などの大きな買い物の検討</li><li>進路や転職の相談相手として</li><li>家族との話し合いの前の頭の整理</li></ul></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠ 注意点</div>AIは<b>あなたの店を見ていません</b>。現場の空気・スタッフの表情・常連の顔は入っていない。最終判断は必ず人が行い、AIは「見落としを潰す装置」として使ってください。</div>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>10個ぜんぶやらなくていいよ。<b>CASE 01・02・05</b>の3つだけ、2週間続けてみて。それだけで「AIが効く感覚」がわかる。そこから増やせば失敗しないよ。</div></div>
+      </div>
+    </div>
+
+    <!-- ═══ 反響トレース ═══ -->
+    <h3 class="blk">反響が大きい投稿には、共通の「型」がある</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">同業の伸びている投稿を眺めていると、コメント・保存・いいねが集まるものには明確なパターンがあります。これをAIに与えると、出力の質が一段変わります。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🔥</span>型①：裏側の開示</h4>
+        <ul>
+          <li>仕込み・掃除・失敗・原価の話</li>
+          <li>「見せないもの」を見せるとコメントが伸びる</li>
+          <li>AI指示：「宣伝ではなく、内部の事情として書いて」</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">💬</span>型②：問いかけで終える</h4>
+        <ul>
+          <li>「どっち派？」「この食べ方、あり？」</li>
+          <li>断言で終わらせないとコメント欄が動く</li>
+          <li>AI指示：「最後の1文を、読者への質問にして」</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📌</span>型③：保存される情報</h4>
+        <ul>
+          <li>駐車場・持ち帰り・アレルギー・混む時間</li>
+          <li>「後で見返す価値」がある投稿は保存される</li>
+          <li>AI指示：「保存したくなる実用情報を必ず1つ入れて」</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">👤</span>型④：人が主語</h4>
+        <ul>
+          <li>スタッフ・店主・お客様の一言</li>
+          <li>店ではなく人が出ると、返信率が上がる</li>
+          <li>AI指示：「主語を『店』ではなく『人』にして」</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⏱</span>型⑤：2秒で止める</h4>
+        <ul>
+          <li>音・湯気・切る瞬間・意外な数字</li>
+          <li>冒頭2秒で離脱の大半が決まる</li>
+          <li>AI指示：「最初の2秒で指が止まる引きを作って」</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔁</span>型⑥：シリーズ化</h4>
+        <ul>
+          <li>「#店長の朝 vol.12」のように連番にする</li>
+          <li>続きが気になる＝フォローの理由になる</li>
+          <li>AI指示：「10回続けられる連載企画として設計して」</li>
+        </ul>
+      </div>
+    </div>
+    <div class="warn"><div class="wt">⚠ 注意点</div>他店の投稿を参考にするのは自由ですが、<b>文章・写真・動画をそのまま流用するのは著作権の侵害</b>になります。真似するのは「型（構成の考え方）」だけ。中身は自分の店の事実で埋めてください。</div>
+
+    <!-- ═══ 費用対効果 ═══ -->
+    <h3 class="blk">費用対効果：月いくらで、いくら戻るか</h3>
+    <p style="font-size:15px;color:var(--ink-soft);margin:0 0 14px;">数字は一般的な目安です。自店の月商・人件費単価に置き換えて計算してください。</p>
+    <div class="cmp">
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>段階</th><th>月額の目安</th><th>削減できるもの</th><th>効果が出るまで</th></tr></thead>
+          <tbody>
+            <tr><th>① 汎用生成AIのみ</th><td class="win">0〜3,000円</td><td>投稿作成・口コミ返信・マニュアル・分析＝<b>月20〜40時間</b></td><td class="win">当日〜2週間</td></tr>
+            <tr><th>② ＋ AI電話・予約</th><td>数千円〜</td><td>電話対応の中断、予約取りこぼし</td><td>1ヶ月</td></tr>
+            <tr><th>③ ＋ AIシフト管理</th><td>数千円〜数万円</td><td>シフト作成工数、人件費の山谷</td><td>1〜2ヶ月</td></tr>
+            <tr><th>④ ＋ 需要予測SaaS</th><td>1店舗 5,000〜20,000円〜</td><td>廃棄ロス（売上の3〜8% → 削減余地大）</td><td>2〜3ヶ月</td></tr>
+            <tr><th>⑤ 自律型AI／カスタム</th><td>数万円〜／開発は300万円〜</td><td>業務プロセスそのもの</td><td class="mid">3ヶ月〜</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>💰 いちばん現実的な回収シナリオ</h4>
+        <div class="flow">
+          <span class="b">月3,000円のAI</span><span class="ar">→</span>
+          <span class="b">店長の作業 月20時間削減</span><span class="ar">→</span>
+          <span class="b">時給換算2,000円なら月4万円分</span><span class="ar">→</span>
+          <span class="b">投資対効果 約13倍</span>
+        </div>
+        <p style="margin:8px 0 0;font-size:14px;color:var(--ink-soft);">ここに廃棄ロス削減（月商500万円で1%削減＝月5万円）が乗ります。<b>店舗AIの投資回収は、多くの場合1ヶ月以内</b>。回収の遅さではなく、<b>続けられるかどうか</b>だけが論点です。</p>
+      </div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>補助金・助成金も要チェック。<b>IT導入補助金</b>はAIツールやPOS・予約システムが対象になることがあるし（申請にはGビズIDが必要で取得に2〜3週間かかるよ）、社員研修として組むなら<b>人材開発支援助成金</b>という道もある。制度は年度で変わるから、必ず最新の公募要領で確認してね。</div></div>
+
+    <!-- ═══ 自律型AI ═══ -->
+    <h3 class="blk">そして本題：自律型AI（AIエージェント）が加わると何が起きるか</h3>
+    <div class="keystone">
+      <span class="kl">🤖 ここが2026年の分岐点</span>
+      <p>これまでのAIは<strong>「聞いたら答える」</strong>対話型でした。自律型AIは<strong>「目標を渡すと、自分で計画を立て、ツールを操作し、実行まで終わらせる」</strong>。店舗で言えば、指示待ちのアルバイトが、<strong>気の利く社員に変わる</strong>ような変化です。</p>
+    </div>
+
+    <div class="formula">
+      <h4 style="font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;margin:0 0 6px;font-size:16px;">自律型AIの3タイプ（導入しやすい順）</h4>
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>ワークフロー型</b>人が業務の流れを設計し、その中でAIが判断・実行する。導入ハードルが最も低く、<b>中小企業の最初の一歩に最適</b>。「毎朝POSを読んで要約をLINEへ」など。</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>ツール連携型</b>AIが外部サービス（カレンダー・スプレッドシート・チャット・予約台帳）を横断して操作する。MCPという共通の手順が普及し、<b>プログラミングなしで組める</b>範囲が急拡大しました。</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>完全自律型</b>目標だけ渡し、手順もAIが決める。強力ですが<b>制御が難しい</b>。店舗ではまだ、限定した業務での試験運用が現実的です。</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>共通の設計思想</b>どのタイプでも、<b>Human-in-the-Loop</b>（送信・決済・公開の直前に人間の承認を挟む）が2026年の標準。ここを外した自動化は、事故のときに止められません。</div></div>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:26px;">店舗で「自律化」が効く5つの場面</div>
+    <ul class="use">
+      <li><b>朝の数字</b>…AIが昨日のPOSを取得し、3行サマリーと異常値をLINEへ。店長は見るだけ。</li>
+      <li><b>口コミ監視</b>…新着口コミを検知して返信下書きを生成 → 承認ボタンで投稿。</li>
+      <li><b>発注</b>…天気・イベント・実績を突き合わせ、発注書の下書きまで自動作成。</li>
+      <li><b>SNS</b>…先週の反応を分析し、今週7投稿の下書きを予約枠に入れておく。</li>
+      <li><b>社内ヘルプデスク</b>…マニュアルを読み込んだAIが、スタッフの質問に24時間回答。</li>
+    </ul>
+
+    <div class="warn">
+      <div class="wt">⚠ 自律型AIの注意点（ここは飛ばさないでください）</div>
+      <ul style="margin:8px 0 0;padding-left:18px;font-size:13.8px;">
+        <li><b>承認は必ず人間</b>：送信・決済・公開の最終アクションを無人化しない。</li>
+        <li><b>実行ログを残す</b>：AIが「なぜそう判断したか」を後から追える形で保存する。</li>
+        <li><b>プロンプトインジェクション</b>：外部の文章（口コミやメール）に紛れた悪意ある指示でAIが誤作動するリスクがある。外部データを読ませる設計では特に注意。</li>
+        <li><b>権限は最小限に</b>：AIに渡すアカウント権限は、その業務に必要な範囲だけ。</li>
+        <li><b>規制の動向</b>：AIに関するルールは国内外で整備が進んでいます。最新の法令・ガイドラインは定期的に確認を。</li>
+        <li><b>スモールスタート</b>：最初から全業務を自動化しない。1業務のPoCから、人が最終確認するハイブリッド運用で。</li>
+      </ul>
+    </div>
+
+    <!-- ═══ プロンプトの型 ═══ -->
+    <h3 class="blk">全事例に共通する「効くお願いの仕方」の型</h3>
+    <div class="formula">
+      <p style="margin:0 0 4px;font-size:15px;">AIの出力が浅いのは、AIのせいではなく<b>渡した情報が足りない</b>だけです。この5要素を埋めるだけで別物になります。</p>
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>役割</b>「あなたは飲食店の経営分析が専門のコンサルタントです」</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>前提</b>業態・エリア・客層・席数・客単価・制約</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>やってほしいこと</b>「◯◯を5案」と、数と形を具体的に</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>禁止事項</b>「断定しない」「賛成しない」「確認していない事実を書かない」</div></div>
+        <div class="f-item"><div class="no">5</div><div class="t"><b>出力形式</b>表・箇条書き・文字数・誰が読むか</div></div>
+        <div class="f-item"><div class="no">＋</div><div class="t"><b>そして「もう一往復」</b>1回目の回答に「もっと現場目線で」「その根拠は？」と返す。ここで質が跳ねます。</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">❌ これでは浅い</div>「うちの店のインスタ投稿を考えて」</div>
+        <div class="c good"><div class="lb">⭕ これなら使える</div>「あなたは地方の焼肉店のSNS担当です。伊勢崎市・客層は30〜50代の家族連れ・今週の推しは新入荷のホルモン。120〜160文字で7日分、売り込みは2投稿まで、残りは裏側とスタッフの話。最後にハッシュタグ8個」</div>
+      </div>
+    </div>
+
+    <!-- ═══ 30日ロードマップ ═══ -->
+    <h3 class="blk">最初の30日：この順番でやれば止まりません</h3>
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head">
+        <div class="step-badge"><small>WEEK</small><b>1</b></div>
+        <div><span class="st-chip">見える化</span><div class="st-ttl">数字をAIに読ませるだけ</div></div>
+      </div>
+      <div class="step-body">
+        <ol class="mini">
+          <li>無料のAI（ChatGPT／Claude）にログインする。スマホアプリでOK</li>
+          <li>先月の売上データをコピペして、CASE 05のプロンプトを投げる</li>
+          <li>出てきた「気づき」を1つだけメモする。これが基準値になります</li>
+          <li>いまの月間廃棄額と、店長の月間残業時間も併せてメモ</li>
+        </ol>
+      </div>
+    </div>
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>WEEK</small><b>2</b></div>
+        <div><span class="st-chip">省力化①</span><div class="st-ttl">「書く仕事」を全部渡す</div></div>
+      </div>
+      <div class="step-body">
+        <ol class="mini">
+          <li>CASE 01でSNS投稿を7日分まとめて生成 → 予約投稿</li>
+          <li>CASE 02で未返信の口コミを全部片付ける（過去分も）</li>
+          <li>両方のプロンプトを、店の情報を入れた状態で保存しておく</li>
+          <li>スタッフ1人に、同じプロンプトを使わせてみる</li>
+        </ol>
+      </div>
+    </div>
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>WEEK</small><b>3</b></div>
+        <div><span class="st-chip">省力化②</span><div class="st-ttl">現場のルールを言語化する</div></div>
+      </div>
+      <div class="step-body">
+        <ol class="mini">
+          <li>CASE 04でマニュアルを1本作る（いちばん教えるのが面倒な業務から）</li>
+          <li>CASE 08でFAQ30問を作り、LINE自動応答とスタッフ用カンペに配置</li>
+          <li>CASE 03でシフトの叩き台を1回作ってみる</li>
+          <li>【要確認】が付いた項目を、店のルールとして決め切る</li>
+        </ol>
+      </div>
+    </div>
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>WEEK</small><b>4</b></div>
+        <div><span class="st-chip">定着＆自律化へ</span><div class="st-ttl">効果を測って、次の階へ</div></div>
+      </div>
+      <div class="step-body">
+        <ol class="mini">
+          <li>Week1でメモした数字と比較する。何時間・何円 減ったか</li>
+          <li>使ったプロンプトを「店の共有資産」としてまとめて保管</li>
+          <li>効果が確認できた業務だけ、自動化（自律型AI）を検討する</li>
+          <li>専用ツール・補助金の検討はここから。順番を逆にしないこと</li>
+        </ol>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>30日で「元は取れた」って言える状態になってるはず。ここまで来たら、次はスタッフ全員が使える状態にすること。<b>店長だけが使えるAIは、店長が休んだ日に止まる</b>からね。</div></div>
+      </div>
+    </div>
+
+    <!-- ═══ 注意点まとめ ═══ -->
+    <h3 class="blk">全体を通しての「やってはいけない」7か条</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>個人情報をそのまま貼らない</div><p>顧客名・電話番号・購入履歴・スタッフのシフト表や給与。名前は「Aさん」、店名は「当店」に置換してから入力を。個人情報保護法の対象です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>確認していない事実を書かせない</div><p>在庫・価格・営業時間・「限定」。AIは平気で埋めてきます。公開する情報の事実確認は、100%人間の仕事です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>全部AI任せで無難にしない</div><p>どの店も同じような優等生の文章になったら負け。AIは叩き台。<b>最後の1行は自分の言葉で</b>書き換えてください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>法令が絡む領域を丸投げしない</div><p>労務（労働時間・割増）、衛生（HACCP・アレルゲン）、表示（景品表示法・食品表示法）、税務。AIは相談相手であって、責任者ではありません。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>他店のコンテンツを流用しない</div><p>真似していいのは「型」だけ。文章・写真・動画のコピーは著作権侵害です。中身は自店の事実で埋めること。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>いきなり高額システムから入らない</div><p>無料の生成AIで手応えを掴んでから。順番を逆にした導入が、いちばん解約されています。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>自動化の最終アクションを無人にしない</div><p>送信・決済・公開の直前には、必ず人の承認を。自律型AIほど、止められる設計が要ります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">＋</span>社内ルールを1枚作る</div><p>「何は入れてよくて、何はダメか」をA4一枚に。これがないと、スタッフが使い始めた瞬間に事故ります。</p></div>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>個人店・1店舗でも意味ありますか？</summary><div class="ans">むしろ個人店のほうが向いています。生成AIは初期費用ゼロで今日から試せますし、大手が数ヶ月かける導入検討を、個店は翌日から実行できます。<b>意思決定の速さ</b>がそのまま差になる、珍しい領域です。</div></details>
+      <details><summary>パソコンが苦手なスタッフでも使えますか？</summary><div class="ans">使えます。基本は「話しかけるように打つ」だけ。音声入力も使えます。この記事のプロンプトをコピーして貼り、〇〇の部分を書き換えるだけで動きます。まずは店長が2週間使い、慣れてからスタッフに渡すのが確実です。</div></details>
+      <details><summary>結局、どのAIを使えばいいですか？</summary><div class="ans">迷ったらChatGPTから。画像づくりやWeb検索まで幅広く試せます。長い文章の整理・要約・丁寧な日本語づくりが多いならClaudeも併用を。どちらも無料枠があるので、両方持っておくのがおすすめです。<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">はじめてのAI活用ガイド</a>で始め方を解説しています。</div></details>
+      <details><summary>入力した情報は漏れませんか？</summary><div class="ans">学習利用の扱いは、サービス・設定・プランによって変わります。各サービスのデータ管理設定を確認したうえで、<b>迷ったら機密情報・個人情報は入れない</b>のが最も安全です。会社として使うなら、社内ルールを先に決めてください。</div></details>
+      <details><summary>補助金や助成金は使えますか？</summary><div class="ans">IT導入補助金は、飲食店のAIツール・POS・予約管理システムが対象となる場合があります（申請にGビズIDが必要で、取得に2〜3週間かかります）。また社員研修としてAI活用を学ぶ形なら、人材開発支援助成金の活用を検討できるケースもあります。制度内容は年度で変わるため、必ず最新の公募要領をご確認ください。<a href="#cta">無料AI化診断</a>でご相談も承ります。</div></details>
+      <details><summary>「自律型AI」は、うちの規模でも触れますか？</summary><div class="ans">触れます。最も導入しやすいのは<b>ワークフロー型</b>——人が業務の流れを設計し、その中でAIに実行させる形です。「毎朝、昨日の売上を要約してLINEに送る」程度から始められます。ただし送信・公開・決済の承認だけは、必ず人が押す設計にしてください。</div></details>
+      <details><summary>効果が出るまでどのくらいかかりますか？</summary><div class="ans">SNS投稿・口コミ返信・マニュアル作成といった「書く仕事」の削減は、<b>当日〜2週間</b>で体感できます。廃棄ロス削減や需要予測の精度は、データを4週ほど回してからが本番です。まずは早く効く①から始めるのが挫折しないコツです。</div></details>
+      <details><summary>スタッフに「仕事を奪われる」と思われませんか？</summary><div class="ans">実際に起きるのは逆で、<b>削られるのは事務作業のほう</b>です。伝え方としては「AIに雑務を渡して、その分をお客様と向き合う時間にする」。人手不足の現場でこそ、この説明は納得を得やすいはずです。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🌱</span><span><span class="r-k">まずはここから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで今日から始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">🔁 シリーズ周回</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">CASE 06 を深掘り</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ カットも字幕も生成もAIで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">販促物づくりに</span><span class="r-t">Canvaって何？活かし方10選<small>／ POP・チラシ・SNS画像を自作する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">あわせて読む</span><span class="r-t">Google Chromeって何？<small>／ 使い方・AI活用までやさしく解説</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.maff.go.jp/j/shokusan/recycle/syoku_loss/" target="_blank" rel="noopener"><span class="r-ic">🍽</span><span><span class="r-k">公的情報</span><span class="r-t">食品ロスの現状<small>／ 農林水産省</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>あなたの店の“いちばん面倒な作業”、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>UGOKU AIは、机上のコンサルではありません。飲食6店舗・建設・EC・宿泊を自社で回しながら、そこで実際に効いたAIだけをお渡しします。「うちの店ならどこから？」——数分の診断でお答えします。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の数値は各種公開資料・業界レポートに基づく一般的な目安です。各サービスの画面・料金・仕様、および補助金制度の内容は、提供元・所管省庁の更新により変わることがあります。導入前に必ず最新の一次情報をご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

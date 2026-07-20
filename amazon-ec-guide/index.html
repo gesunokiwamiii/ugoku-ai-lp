@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon ECってなに？ゼロから始める実践方法とAI活用事例10選｜UGOKU AI</title>
+<meta name="description" content="Amazon出品をゼロから始めたい方へ。出品プランの選び方・手数料の3層構造・FBA・広告（ACoS）・費用対効果と予算感を、初心者にもわかるように順番どおりに解説。さらにAI活用事例10選と、自律型AIエージェントで何が自動化できるかまで、案内役のうごく君がやさしく整理します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="Amazon ECってなに？ゼロから始める実践方法とAI活用事例10選｜UGOKU AI">
+<meta property="og:description" content="棚を借りて売る、がAmazon。出品・FBA・広告・数字の見方を初心者向けに整理し、AI（特に自律型）で何がどこまで自動化できるかを具体例で解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/amazon-ec-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/amazon-ec-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Amazon ECってなに？ ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Amazon ECってなに？ゼロから始める実践方法とAI活用事例10選｜UGOKU AI">
+<meta name="twitter:description" content="出品・FBA・広告・数字の見方を初心者向けに。AI活用事例10選と自律型AIの可能性まで、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/amazon-ec-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AMAZON EC 実践ガイド</span>
+      <h1>Amazon ECって、<br>結局<span class="hl">なにをすること</span>？</h1>
+      <p class="lead">サイトを作ることでも、SEOを頑張ることでもありません。<b>「日本最大級の売り場に、棚を1枠借りて置く」</b>——それがAmazon EC。だから、個人でも中小企業でも、今日から始められます。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。お金が出ていく順番と、つまずくポイントを先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">ガイドを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「Amazonって、なんだか難しそう」——そう感じるのは、<b>言葉が多すぎるから</b>だけです。大口・FBA・ACoS・A+……全部、順番に並べれば5つのことしかありません。この記事を上から読むだけで、こうなります。</p>
+        <ul class="checklist">
+          <li>Amazon出品の「お金の流れ」が3層で理解できる</li>
+          <li>大口／小口・FBAを使う／使わないを、自分で判断できる</li>
+          <li>初月にいくら必要か、どこから黒字になるかが数字で見える</li>
+          <li>商品ページ・広告・レビュー対応をAIで作れるようになる</li>
+          <li>自律型AIエージェントに「毎日の見張り番」を任せる道筋がわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">Amazon ECは、この「3つの顔」でできている</h2>
+    <p class="sec-sub">全部いっぺんに覚えなくて大丈夫。この3つが、そのまま費用の3つの入口になります。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:#FF9900;">
+        <div class="ic">🏬</div>
+        <h4>出品（棚を借りる）<br><span>＝ 売り場に置く</span></h4>
+        <p>自分のサイトは要りません。既にお客様が集まっている売り場に、商品情報を登録するだけ。月額と販売手数料がここに乗ります。</p>
+      </div>
+      <div class="role" style="--accent:#146EB4;">
+        <div class="ic">📦</div>
+        <h4>FBA（物流を任せる）<br><span>＝ 保管・発送を委託</span></h4>
+        <p>Amazon倉庫に納品すれば、保管・梱包・発送・返品対応まで代行。プライムマークが付き、売れ方が変わります。</p>
+      </div>
+      <div class="role" style="--accent:#10A37F;">
+        <div class="ic">📣</div>
+        <h4>広告（最初の実績を作る）<br><span>＝ 見つけてもらう</span></h4>
+        <p>誰も知らない商品は、置いただけでは売れません。クリック課金の広告で「最初の1件」を作り、検索順位を育てます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">AMAZON EC ― START TO SCALE</div>
+    <h2 class="sec-title">ゼロから始めるAmazon EC、<br>実践マニュアルとAI活用</h2>
+    <p class="sec-sub">パソコンが得意でない方・EC未経験の事業者様でも、上から順に進めれば形になるように作りました。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>Amazon ECとは、<strong>自分の店を建てることではなく、日本最大級の売り場に棚を1枠借りること</strong>です。だから集客は最初から用意されている代わりに、<strong>「棚代（手数料）」と「棚の中での目立ち方（広告とページ）」が勝負</strong>になります。この2点さえ押さえれば、迷子になりません。</p>
+    </div>
+
+    <p style="font-size:15px;color:var(--ink-soft);">日本のBtoC-EC市場は<b>26兆円規模</b>（経済産業省 令和6年度調査／2024年）まで拡大し、物販分野だけで約15.2兆円。それでも物販のEC化率は<b>9.78%</b>にすぎません。<b>売り方の9割はまだオフラインに残っている</b>——これが、いま参入する事業者にとっての一番の事実です。</p>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>「売上」ではなく「1個あたりの利益」で始める</h4>
+        <p>Amazonは月商が伸びても<b>手数料と広告費で利益が消える</b>のが最大の落とし穴。最初に<b>1個売れたら手元にいくら残るか</b>を紙に書いてから出品してください。この記事の料金シミュレーターで、そのまま計算できます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>商品は1つ、まず「売れる型」を作る</h4>
+        <p>いきなり50商品を並べても、広告費が薄まって全部が中途半端になります。<b>1商品をレビュー・広告・ページで仕上げてから横展開</b>。この順番を守った人だけが、2年目に伸びます。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:#FF9900;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">ACCOUNT</span><div class="st-ttl">出品用アカウントを作る（大口か小口か）</div></div></div>
+      <div class="step-body">
+        <p class="desc">最初の分かれ道はここだけ。<b>大口出品は月額4,900円（税別）</b>、<b>小口出品は月額0円のかわりに1商品売れるごとに100円</b>の基本成約料がかかります。</p>
+        <a class="link-btn" href="https://sell.amazon.co.jp/" target="_blank" rel="noopener">Amazon出品サービス（公式）を開く ↗</a>
+        <p class="link-note">用意するもの：本人確認書類・銀行口座・クレジットカード・メールアドレス。</p>
+        <ol class="mini">
+          <li>公式サイトから「出品を開始する」を選ぶ</li>
+          <li>大口／小口を選ぶ（迷ったら下の判断基準へ）</li>
+          <li>会社情報・本人確認書類をアップロード</li>
+          <li>入金用の銀行口座を登録</li>
+          <li>セラーセントラル（管理画面）にログインできたら完了 🎉</li>
+        </ol>
+
+        <div class="mini-h">大口／小口の判断は「月49個」が分岐点</div>
+        <ul class="use">
+          <li><b>月49個以上売る見込み</b>：迷わず大口。100円×50個＝5,000円で月額を超えます</li>
+          <li><b>広告を出したい</b>：大口一択。<b>小口では広告が使えません</b>（ここが最大の差）</li>
+          <li><b>一括出品ツール・API連携を使いたい</b>：大口のみ</li>
+          <li><b>とりあえず在庫を数個試したい</b>：小口で感触を掴んでから切り替えもOK</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 初心者がまず損する場所</div>「安いから」と小口で始めると、<b>広告が打てず・新規出品者特典も対象外</b>になり、結局売れないまま数か月が過ぎます。本気で売るなら最初から大口が合理的です。</div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>今は「新規出品者特典」が手厚い時期だよ。広告クレジット・FBA保管料の無料枠・Vine（レビュー獲得）の無料登録枠など、<b>始めるタイミングそのものがコスト</b>になっている状態。始めるなら早いほうが得だね。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:#146EB4;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">LISTING</span><div class="st-ttl">商品を登録する（ページが売上の8割）</div></div></div>
+      <div class="step-body">
+        <p class="desc">Amazonの商品ページには「勝ちパターン」があります。感性ではなく、<b>枠が決まった型を埋める作業</b>だと考えてください。</p>
+
+        <div class="mini-h">埋めるべき5つの枠</div>
+        <ol class="mini">
+          <li><b>商品名</b>：ブランド＋商品＋主要特徴＋容量／サイズ。検索で使われる言葉を前半に</li>
+          <li><b>メイン画像</b>：白背景・商品のみ（規約）。ここのクリック率が全ての入口</li>
+          <li><b>サブ画像（6〜8枚）</b>：使用シーン・サイズ比較・素材・同梱物・使い方の順が鉄板</li>
+          <li><b>箇条書き（5つの特徴）</b>：スペックではなく<b>「あなたのどんな困りごとが消えるか」</b></li>
+          <li><b>商品説明／A+コンテンツ</b>：ブランド登録すると使える画像付きの解説枠。CVRが伸びます</li>
+        </ol>
+
+        <div class="mini-h">相乗り出品と、新規カタログ出品</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">相乗り</span> 既存ページに乗る</div>
+            <ul>
+              <li>すでにあるページのカートを取り合う形式</li>
+              <li>ページ作成が不要で、始めるのが速い</li>
+              <li>価格競争になりやすく、利益が薄くなりがち</li>
+              <li>メーカー・卸の許諾など、権利面の確認は必須</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">新規カタログ</span> 自社ブランドで作る</div>
+            <ul>
+              <li>自分でページを作るので、価格を自分で決められる</li>
+              <li>ブランド登録すればA+・Vine・ブランドストアが使える</li>
+              <li>レビューと広告を自分で育てる必要がある</li>
+              <li><b>中小企業が資産を残せるのは、断然こちら</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">AIに商品ページを作らせる（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 商品名＋5つの特徴を一気に作る</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはAmazon専門のECコンサルタントです。
+以下の商品について、Amazonの商品ページ用に作ってください。
+①商品名（全角60文字以内・検索キーワードを前半に・規約違反の誇大表現なし）を3案
+②箇条書きの特徴5つ（各60文字以内・スペックではなく購入者の悩みが解決する形で）
+③その5つが根拠にしている「購入者の不安」も併記
+【商品情報】
+<span class="fill">〔商品名・素材・サイズ・価格・想定ターゲット・競合との違いを箇条書きで〕</span></pre>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>AIが出した文章を<b>そのまま貼らない</b>のがコツ。3案出させて、自分が「お客さんに口で説明するならこう言う」に一番近いものを選んで手直しする。これだけで、他社のAI丸出しページに差がつくよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:#232F3E;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">FBA / FULFILLMENT</span><div class="st-ttl">FBAで、保管・発送・返品を任せる</div></div></div>
+      <div class="step-body">
+        <p class="desc">FBA＝フルフィルメント by Amazon。倉庫に納品しておけば、<b>保管・ピッキング・梱包・配送・カスタマーサービス・返品対応</b>までAmazonが代行します。本業を持つ事業者にとって、ここが最大の時短ポイントです。</p>
+
+        <div class="mini-h">FBAを使う3つの理由</div>
+        <ul class="use">
+          <li><b>プライム対象になる</b>：翌日配送マークが付き、同じ商品でも選ばれやすくなる</li>
+          <li><b>カート獲得で有利</b>：相乗り時に「カートに入れる」を取りやすい</li>
+          <li><b>人手が要らない</b>：注文のたびに梱包・伝票発行をする時間がゼロになる</li>
+        </ul>
+
+        <div class="mini-h">FBAで発生する費用（2つ）</div>
+        <ol class="mini">
+          <li><b>配送代行手数料</b>：1個売れるごとに、商品のサイズ・重量に応じて発生</li>
+          <li><b>在庫保管手数料</b>：倉庫の使用体積 × 保管日数で日割り課金</li>
+        </ol>
+        <div class="warn"><div class="wt">⚠️ 一番の落とし穴：長期在庫</div>FBAは<b>売れない在庫を置きっぱなしにすると、保管手数料がじわじわ利益を削ります</b>。長期保管（一定日数を超えた在庫）には追加手数料も発生します。「仕入れて置いておく」ではなく<b>「回転させる」</b>が鉄則。セール・クーポン・広告で定期的に在庫を動かしてください。</div>
+
+        <div class="mini-h">FBAを使わないほうがいい場合もある</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">FBA向き</span> こんな商材</div>
+            <ul>
+              <li>小さい・軽い・単価がある程度高い</li>
+              <li>回転が速く、在庫が滞留しない</li>
+              <li>注文が読めず、出荷対応の人手を割けない</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">自社出荷向き</span> こんな商材</div>
+            <ul>
+              <li>大型・重量物でサイズ区分の手数料が重い</li>
+              <li>要冷蔵・要冷凍など、Amazon倉庫の条件に合わない</li>
+              <li>受注生産・オーダーメイド・熨斗（のし）など個別対応が必要</li>
+              <li>すでに自社倉庫と出荷体制がある（外部3PLとの比較も検討）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>迷ったら、Amazonが公式で出している<b>料金シミュレーター</b>に商品のサイズ・重量・価格を入れてみて。1個あたりの手残りが即座に出るよ。この数字を見ずに仕入れるのが、一番あぶない。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:#10A37F;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">ADVERTISING</span><div class="st-ttl">広告で「最初の売れた実績」を作る</div></div></div>
+      <div class="step-body">
+        <p class="desc">Amazonは<b>「売れている商品ほど上に出る」</b>仕組みです。だから新規商品は、広告でお金を払って最初の販売実績を作り、そこから自然検索の順位を育てるのが定石になります。</p>
+
+        <div class="mini-h">まず覚える広告は1種類だけ</div>
+        <ul class="use">
+          <li><b>スポンサープロダクト（SP）広告</b>：検索結果と商品ページに出る、クリック課金型。最初はこれだけでいい</li>
+          <li><b>スポンサーブランド（SB）広告</b>：ブランド登録後、検索上部にロゴ＋複数商品。認知を広げる段階で</li>
+          <li><b>スポンサーディスプレイ（SD）広告</b>：Amazon内外への追跡型。リピート・離脱対策の段階で</li>
+        </ul>
+
+        <div class="mini-h">立ち上げ期の型（出店〜3か月）</div>
+        <ol class="mini">
+          <li>SP広告の<b>オートターゲティング</b>から開始（AIに探させる）</li>
+          <li>2〜4週間、データを溜める。この間は成果より<b>データ収集が目的</b></li>
+          <li><b>検索語句レポート</b>を見て、売れた検索語を抽出</li>
+          <li>売れた語を<b>マニュアルキャンペーン</b>に移し、入札を上げて一本釣り</li>
+          <li>移した語はオート側で<b>除外キーワード</b>に設定（自社同士の競合を防ぐ）</li>
+          <li>クリックされるのに売れない語は、除外して予算を止める</li>
+        </ol>
+
+        <div class="mini-h">ACoS：たった1つの合否ライン</div>
+        <p style="font-size:14.5px;color:var(--ink-soft);margin:6px 0 10px;">ACoS（エイコス）＝ <code>広告費 ÷ 広告経由の売上 × 100</code>。一般的には5〜15%が優秀、15〜25%が標準、35%を超えると赤字リスクと言われます。ただし——</p>
+        <div class="combo">
+          <h4>🎯 本当の合格ラインは、あなたの粗利率</h4>
+          <div class="flow"><span class="b">粗利率<br>＝損益分岐ACoS</span><span class="ar">−</span><span class="b">残したい<br>利益率</span><span class="ar">＝</span><span class="b">あなたの<br>目標ACoS</span></div>
+          <p style="margin:0;font-size:14px;color:var(--ink-soft);">粗利率45%の商品なら、<b style="color:var(--pine);">ACoS 45%を超えた瞬間に赤字</b>。10%の利益を残したいなら目標ACoSは35%です。世間の平均値ではなく、<b style="color:var(--pine);">自分の粗利率が唯一の基準</b>。ここを決めずに広告を回すのが、最も多い失敗です。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ ACoSが低すぎるのも問題</div>ACoSが極端に低いときは「うまくいっている」のではなく、<b>露出が狭すぎて機会を捨てている</b>可能性があります。ニッチな語だけに当たっている状態。伸ばす局面では、あえてACoSを目標値まで上げにいきます。</div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">IMPROVE</span><div class="st-ttl">数字を見て、毎週1つだけ直す</div></div></div>
+      <div class="step-body">
+        <p class="desc">売れない理由は、必ずこの3つのどれかに分解できます。<b>どこが詰まっているかを特定してから</b>手を打つ。これが上級者と初心者の唯一の差です。</p>
+        <div class="rule2">
+          <div class="rule-card"><div class="rn">DIAGNOSIS 01</div><h4>インプレッションが少ない</h4><p>＝そもそも表示されていない。<b>キーワード不足・入札が低い・在庫切れ</b>を疑う。商品名と検索キーワード欄を見直す。</p></div>
+          <div class="rule-card"><div class="rn">DIAGNOSIS 02</div><h4>表示はされるがクリックされない</h4><p>＝CTRの問題。犯人はほぼ<b>メイン画像と価格とレビュー数</b>。画像を差し替えるのが最短。</p></div>
+          <div class="rule-card"><div class="rn">DIAGNOSIS 03</div><h4>クリックされるが買われない</h4><p>＝CVRの問題。<b>サブ画像・箇条書き・A+・レビュー内容</b>を疑う。購入者の不安が消えていない状態。</p></div>
+          <div class="rule-card"><div class="rn">DIAGNOSIS 04</div><h4>売れるが利益が残らない</h4><p>＝原価・手数料・広告費の設計ミス。<b>価格の見直し・サイズ区分の最適化・除外KWの整理</b>で立て直す。</p></div>
+        </div>
+        <div class="mini-h">TACoS も一緒に見る</div>
+        <p style="font-size:14.4px;color:var(--ink-soft);margin:4px 0 0;">ACoSが「広告売上に対する広告費」なのに対し、<b>TACoS は「総売上（自然検索＋広告）に対する広告費」</b>。TACoSが下がっていれば、広告に頼らず自然検索で売れる体質に育っているサインです。ここを最終ゴールに置いてください。</p>
+      </div>
+    </div>
+
+    <!-- 手数料の3層 -->
+    <div class="cmp">
+      <h3 class="blk">お金は「3層」で出ていく</h3>
+      <p class="sec-sub" style="margin-top:-6px;">この構造さえ頭に入れば、Amazonの費用で混乱することは二度とありません。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>層</th><th>何の費用か</th><th>目安</th></tr></thead>
+          <tbody>
+            <tr><th>① 基本コスト</th><td>出品プランの月額固定費</td><td class="win">大口 月4,900円（税別）<br>小口 0円＋1件100円</td></tr>
+            <tr><th>② 取引コスト</th><td>売れるたびのカテゴリー別販売手数料</td><td class="win">おおむね売価の8〜15%<br><span class="mid">※カテゴリーにより異なる／最低手数料あり</span></td></tr>
+            <tr><th>③ 物流コスト</th><td>FBA配送代行・在庫保管・返品</td><td class="win">サイズ・重量・保管日数で変動<br><span class="mid">※長期在庫には追加手数料</span></td></tr>
+            <tr><th>＋ 広告費</th><td>クリック課金（任意だが実質必須）</td><td class="mid">目標ACoSから逆算して設定</td></tr>
+            <tr><th>＋ カテゴリー成約料</th><td>本・音楽・DVD等のメディア商品</td><td class="mid">該当カテゴリーのみ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="link-note" style="margin-top:10px;">※手数料は改定されます。出品前に必ず<b>Amazon公式の料金ページと料金シミュレーター</b>で最新の数値をご確認ください。</p>
+      <a class="link-btn" href="https://sell.amazon.co.jp/pricing" target="_blank" rel="noopener" style="--accent:#FF9900;">公式の料金ページを確認する ↗</a>
+    </div>
+
+    <!-- 費用対効果 -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、実際の数字で見る</h3>
+      <p class="sec-sub" style="margin-top:-6px;">売価3,000円の商品を、月100個売った場合のシミュレーション（概算・イメージ）。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>項目</th><th>計算</th><th>金額／月</th></tr></thead>
+          <tbody>
+            <tr><th>売上</th><td>3,000円 × 100個</td><td class="win">＋300,000円</td></tr>
+            <tr><th>商品原価</th><td>売価の30%と仮定</td><td>−90,000円</td></tr>
+            <tr><th>販売手数料</th><td>10%と仮定</td><td>−30,000円</td></tr>
+            <tr><th>FBA配送代行</th><td>約450円 × 100個（小型〜標準の一例）</td><td>−45,000円</td></tr>
+            <tr><th>FBA保管料</th><td>回転が良い前提の概算</td><td>−3,000円</td></tr>
+            <tr><th>大口出品料</th><td>固定</td><td>−4,900円</td></tr>
+            <tr><th>広告費</th><td>目標ACoS 20%（広告経由売上15万円想定）</td><td>−30,000円</td></tr>
+            <tr><th>営業利益</th><td>—</td><td class="win">＋97,100円（利益率 約32%）</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="warn" style="margin-top:14px;"><div class="wt">⚠️ この数字が崩れる3つの瞬間</div>①<b>原価率が50%を超える</b>と、広告を打った時点でほぼ赤字。②<b>サイズ区分が1つ上がる</b>と配送代行手数料が跳ね、利益が数万円単位で消えます。③<b>在庫が3か月動かない</b>と保管料が積み上がる。この3つを最初に潰してください。</div>
+
+      <div class="mini-h" style="margin-top:26px;">予算感：3つのはじめ方</div>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🌱</span>お試し（月3〜5万円）</h4><ul>
+          <li>大口出品 4,900円</li>
+          <li>広告 日額1,000円 × 30日＝3万円</li>
+          <li>写真は自社でスマホ＋AI加工</li>
+          <li>目的：売れるかどうかの検証</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔥</span>本気（月10〜30万円）</h4><ul>
+          <li>広告 10〜20万円（SP＋SB）</li>
+          <li>写真・A+コンテンツを外注／AI併用</li>
+          <li>在庫を切らさない仕入れ枠</li>
+          <li>目的：カテゴリー内で順位を取る</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🚀</span>拡大（月50万円〜）</h4><ul>
+          <li>広告 30万円以上＋運用代行</li>
+          <li>複数SKU・バリエーション展開</li>
+          <li>分析ツール・在庫管理システム</li>
+          <li>目的：ブランドとして事業化</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🎁</span>使わないと損：新規出品者特典</h4><ul>
+          <li>スポンサープロダクト広告の無料クレジット</li>
+          <li>FBAの在庫保管料・返送料の無料枠</li>
+          <li>Amazon Vine（レビュー獲得）の登録特典</li>
+          <li>自社ブランド売上の一部還元プログラム</li>
+        </ul></div>
+      </div>
+      <p class="link-note" style="margin-top:10px;">※特典の内容・上限・適用条件は時期により変更されます。小口出品は対象外の特典が多い点にご注意ください。最新条件は必ず公式でご確認を。</p>
+    </div>
+
+    <!-- AI活用事例10選 -->
+    <div class="cmp">
+      <h3 class="blk">AI活用事例10選（Amazon EC運営の全工程）</h3>
+      <p class="sec-sub" style="margin-top:-6px;">「AIで何ができるか」ではなく「この作業をAIに渡すと何時間浮くか」で並べました。上から順に効果が出やすい順です。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">1️⃣</span>商品名・箇条書きの量産</h4><ul>
+          <li>3案ずつ出させて、良い部分だけ合成する</li>
+          <li>検索キーワードと購入者の悩みを両立させる</li>
+          <li><b>浮く時間：1商品あたり約2時間</b></li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">2️⃣</span>A+コンテンツの構成設計</h4><ul>
+          <li>「不安→根拠→使用シーン→比較→保証」の順で構成案</li>
+          <li>各パネルの見出しと本文を一括生成</li>
+          <li>デザイナーへの発注指示書もそのまま作れる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">3️⃣</span>競合レビューの不満分析</h4><ul>
+          <li>競合の低評価レビューを貼って「不満の共通点を10個」</li>
+          <li>そこが自社商品の差別化ポイントになる</li>
+          <li><b>最も費用対効果が高い使い方</b></li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">4️⃣</span>画像の企画とAI生成</h4><ul>
+          <li>サブ画像7枚の「何を伝える枚か」を設計</li>
+          <li>使用シーン画像をAIで生成（背景・小物）</li>
+          <li>※メイン画像の規約・誤認表現には要注意</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">5️⃣</span>キーワードの洗い出し</h4><ul>
+          <li>購入者役をAIに演じさせ、想定質問を20個出す</li>
+          <li>その質問がそのまま対策すべき検索語になる</li>
+          <li>ロングテール語の発掘に強い</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">6️⃣</span>検索語句レポートの解析</h4><ul>
+          <li>CSVを渡して「除外候補を理由つきで抽出」</li>
+          <li>クリックだけ多く売れない語を自動仕分け</li>
+          <li><b>毎週30分 → 3分に短縮</b></li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">7️⃣</span>レビュー・問い合わせ対応文</h4><ul>
+          <li>低評価レビューへの返信を、感情的にならず作成</li>
+          <li>返品・交換の案内文をテンプレ化</li>
+          <li>多言語（越境）の返信も同時に</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">8️⃣</span>需要予測と発注量の計算</h4><ul>
+          <li>過去販売データから、次月の必要在庫を試算</li>
+          <li>リードタイム込みの発注タイミングを提案</li>
+          <li>欠品と過剰在庫、両方を防ぐ</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">9️⃣</span>価格戦略のシミュレーション</h4><ul>
+          <li>損益分岐ACoSと目標利益から適正価格を逆算</li>
+          <li>セール・クーポン時の利益影響を事前確認</li>
+          <li>値下げしていい下限が明確になる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔟</span>越境・多言語展開</h4><ul>
+          <li>商品ページを英語・中国語などにローカライズ</li>
+          <li>直訳ではなく、その国の売り文句に翻案</li>
+          <li>各国の規制チェックの下調べにも</li>
+        </ul></div>
+      </div>
+
+      <div class="copybox" style="margin-top:18px;">
+        <div class="cb-top"><span class="cb-lbl">📋 競合レビューから差別化ポイントを抜く</span><button class="cb-btn" type="button">コピー</button></div>
+        <pre>あなたはAmazonの商品開発担当です。
+以下は競合商品のレビュー（★1〜★3中心）です。
+①購入者の不満を、頻度が高い順に10個
+②その不満を解消するために、私の商品ページで
+  「どの枠（商品名／サブ画像／箇条書き／A+）」に
+  「何を書くべきか」を、不満ごとに1対1で対応させて
+③まだ誰も言っていない訴求があれば指摘して
+【競合レビュー】
+<span class="fill">〔レビュー本文をまとめて貼り付け〕</span></pre>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">📋 検索語句レポートから除外KWを抽出</span><button class="cb-btn" type="button">コピー</button></div>
+        <pre>添付の検索語句レポートを分析してください。
+【前提】目標ACoSは<span class="fill">〔35〕</span>%、商品の粗利率は<span class="fill">〔45〕</span>%です。
+①「クリック10以上・注文0」の語を除外候補として列挙
+②ACoSが目標を超えている語を、入札引き下げ候補として列挙
+③逆に、ACoSが目標を大きく下回る語を「増額候補」として列挙
+④それぞれ理由を1行で添えて、表形式で出力して</pre>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>10個全部いっぺんにやらないでね。<b>③の競合レビュー分析</b>だけ最初にやってみて。ここが一番、売上の伸びしろが眠っている場所だよ。</div></div>
+    </div>
+
+    <!-- 自律型AI -->
+    <div class="cmp">
+      <h3 class="blk">ここからが本題：自律型AI（AIエージェント）が入ると、何が変わるか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">これまでのAIは「聞いたら答える」道具でした。自律型AIは<b>「聞かなくても、見張って、動く」</b>存在です。Amazon運営との相性が、圧倒的にいい領域です。</p>
+
+      <div class="keystone">
+        <span class="kl">🤖 いま起きている変化</span>
+        <p>2026年、EC業界の最大キーワードは<strong>エージェンティックコマース</strong>です。買う側ではAIが商品を探し・比較し・決済まで代行しはじめ、売る側でも<strong>「自社サイトに自律型エージェントを置く事業者が主流になる」</strong>と予測されています。つまり、<strong>AIに選ばれる商品情報</strong>と、<strong>AIに任せる運営体制</strong>——この両方が、これからの勝ち負けを分けます。</p>
+      </div>
+
+      <div class="mini-h">① 売る側：自律型AIに「毎日の見張り番」を任せる</div>
+      <ul class="use">
+        <li><b>毎朝の数値チェック</b>：セラーセントラルの売上・在庫・広告レポートを自動取得し、前日比の異常だけを通知</li>
+        <li><b>在庫アラート</b>：在庫日数が閾値を割ったら、リードタイムを逆算して発注書のドラフトを作成</li>
+        <li><b>広告の見張り</b>：検索語句を日次で読み、除外キーワード案と入札変更案を提出（実行は人が承認）</li>
+        <li><b>レビュー監視</b>：新着レビューを常時監視し、★1〜2が付いたら即通知＋返信文の下書き</li>
+        <li><b>競合ウォッチ</b>：競合の価格・在庫・新規レビューの変化を検知し、値付けの提案を出す</li>
+        <li><b>カート喪失検知</b>：カートが取れなくなった瞬間に気づける（売上が落ちてから気づくのでは遅い）</li>
+      </ul>
+
+      <div class="mini-h">② 買う側：AIに「見つけてもらう」ための商品情報</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);margin:6px 0 12px;">Amazonの購入者は、検索窓にキーワードを打つ形から、<b>AIアシスタント（Rufus）に相談する形</b>へ移りつつあります。「一人暮らし向けの静かな電気ケトルを5,000円以内で」——こう相談されたとき、自社商品が候補に挙がるかどうか。ここが新しい戦場です。</p>
+      <div class="safe-grid">
+        <div class="safe-item"><div class="si-h"><span class="no">1</span>質問に先回りして答えを書く</div><p>AIは「購入者の疑問に答えられる情報」を持つ商品を選びます。サイズ・重さ・素材・お手入れ方法・対応機種など、<b>スペックを曖昧にせず具体的な数値で</b>書く。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">2</span>使用シーンを言語化する</div><p>「一人暮らし向け」「オフィスのデスクに置ける」「贈り物に」など、<b>誰がどんな場面で使うか</b>を明文化。AIはこの文脈で商品を絞り込みます。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">3</span>レビューが根拠になる</div><p>AIは商品情報だけでなく<b>レビュー本文も読んで</b>推薦理由を作ります。良いレビューが集まる導線（同梱物・フォロー）を設計しておく。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">4</span>価格の一貫性を保つ</div><p>Rufusには価格推移を確認できる機能もあります。<b>不自然な値上げ→セールの繰り返しは信頼を損ねる</b>方向に働きます。</p></div>
+      </div>
+      <div class="copybox" style="margin-top:16px;">
+        <div class="cb-top"><span class="cb-lbl">📋 AI検索に拾われるページか、自己診断する</span><button class="cb-btn" type="button">コピー</button></div>
+        <pre>あなたはこの商品を検討している購入者です。
+購入前に知りたいことを、購入意欲の高い層と低い層を混ぜて
+20個の質問として挙げてください。
+そのあと、以下の商品ページ情報を読み、
+「20問のうち、答えが書かれているのは何問か」を判定し、
+答えが書かれていない質問を、優先度順にリストにしてください。
+【商品ページ情報】
+<span class="fill">〔商品名・箇条書き・商品説明を貼り付け〕</span></pre>
+      </div>
+
+      <div class="mini-h">③ 導入するときの注意点（ここを外すと事故ります）</div>
+      <div class="rule2">
+        <div class="rule-card"><div class="rn">CAUTION 01</div><h4>「提案まで」と「実行まで」を分ける</h4><p>価格変更・広告予算の増減・在庫の破棄など、<b>お金が動く操作は必ず人が承認</b>する設計に。最初は全て「提案のみ」から始めてください。</p></div>
+        <div class="rule-card"><div class="rn">CAUTION 02</div><h4>権限は最小限に</h4><p>セラーセントラルのユーザー権限は<b>必要な範囲だけ</b>付与。API連携もアクセス範囲を絞る。誰が何を実行したかのログを残す。</p></div>
+        <div class="rule-card"><div class="rn">CAUTION 03</div><h4>個人情報・機密は入れない</h4><p>購入者の氏名・住所・注文明細をそのままAIに貼るのは避ける。<b>マスキングしてから渡す</b>のがルール。社内の取り扱い規定も併せて整備を。</p></div>
+        <div class="rule-card"><div class="rn">CAUTION 04</div><h4>プラットフォームの規約を守る</h4><p>自動化ツール・スクレイピング・レビュー操作は規約違反になり得ます。<b>アカウント停止は事業の停止</b>と同じ。公式APIの範囲内で組むこと。</p></div>
+        <div class="rule-card"><div class="rn">CAUTION 05</div><h4>AIの数字は必ず検算する</h4><p>手数料計算や利益シミュレーションを、<b>もっともらしく間違える</b>ことがあります。金額に関わる出力は、公式シミュレーターで必ず突き合わせを。</p></div>
+        <div class="rule-card"><div class="rn">CAUTION 06</div><h4>小さく始めて、記録を残す</h4><p>いきなり全工程を自動化しない。<b>1業務ずつ、削減時間を記録</b>しながら広げる。この記録が、次の投資判断とチームの納得材料になります。</p></div>
+      </div>
+    </div>
+
+    <!-- 仕事と私生活 -->
+    <div class="cmp">
+      <h3 class="blk">仕事でも、私生活でも活きる「Amazon EC思考」</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Amazonの運営で身につく力は、出品しない人にも応用が効きます。</p>
+      <div class="split">
+        <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 事業に効く</div>
+          <ul>
+            <li>実店舗の在庫を、廃棄する前にECで回転させる</li>
+            <li>自社の名物商品を、全国の顧客に届ける販路を1つ増やす</li>
+            <li>レビューが「お客様の生の声」として蓄積され、商品改良の材料になる</li>
+            <li>1個あたりの利益で考える癖がつき、本業の値付けも変わる</li>
+            <li>広告のPDCAが、そのままチラシ・SNS運用の型になる</li>
+            <li>採用・営業でも「見つけてもらう」設計思考が使える</li>
+          </ul>
+        </div>
+        <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 暮らしに効く</div>
+          <ul>
+            <li>不要品を売って、価格設定と写真の効果を体感できる</li>
+            <li>買い物のとき、レビューと価格推移を見る目が養われる</li>
+            <li>「安い理由」「高い理由」を構造で見抜けるようになる</li>
+            <li>副業として、月数万円の柱を小さく作れる</li>
+            <li>家族の趣味・手作り品を、販路に乗せる選択肢が持てる</li>
+            <li>AIとの付き合い方（指示の出し方）が、仕事にも転用できる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- よくある失敗 -->
+    <h3 class="blk">初心者がつまずく場所、先回りで潰しておく</h3>
+    <div class="compact">
+      <details open><summary>出品したのに、まったく売れません</summary><div class="ans">ほぼ100%、<b>誰にも見られていない</b>だけです。売れないのではなく、表示されていない。まずは広告レポートでインプレッション数を確認し、ゼロに近ければキーワードと入札の問題、表示はあるのにクリックが無ければメイン画像の問題です。原因を特定してから手を打ってください。</div></details>
+      <details><summary>価格を下げても売れず、利益だけ減りました</summary><div class="ans">値下げは最後の手段です。多くの場合、価格ではなく<b>「不安が消えていない」</b>のが理由。サイズ感・使用方法・保証・返品条件をサブ画像で明示するほうが、値下げより効きます。値下げする場合も、損益分岐点を先に計算してから。</div></details>
+      <details><summary>アカウントが止まると聞いて怖いです</summary><div class="ans">主な理由は、権利侵害（商標・意匠）、真贋（仕入れ証明ができない）、規約違反（レビュー操作・不適切な自動化）、パフォーマンス指標の悪化です。逆に言えば、<b>正規の仕入れルートと請求書を残し、規約の範囲で運営していれば過度に恐れる必要はありません</b>。仕入れ書類の保管は必ず。</div></details>
+      <details><summary>在庫を仕入れる資金が不安です</summary><div class="ans">最初から大量に仕入れないこと。<b>10〜30個で検証</b>し、売れ方を見てから追加発注する。FBAは少量からでも使えます。回転しない在庫は保管手数料という形で毎日お金を払い続けるので、「少なく速く」が正解です。</div></details>
+      <details><summary>レビューが増えません</summary><div class="ans">Amazon Vine（Amazonが選んだレビュアーに商品を提供して評価をもらう公式プログラム）や、購入者へのレビュー依頼機能を使います。<b>金銭や特典と引き換えにレビューを依頼するのは規約違反</b>なので絶対に避けてください。同梱物での「困ったらご連絡ください」の一言が、低評価を防ぐ最も現実的な手です。</div></details>
+      <details><summary>楽天・Yahoo!・自社ECとどう使い分ければ？</summary><div class="ans">Amazonは<b>「商品を探している人が来る場所」</b>、楽天は<b>「買い物を楽しみに来る場所」</b>、自社ECは<b>「ファンが来る場所」</b>と考えると整理できます。Amazonは指名検索が弱くても売れるのが強みなので、認知がまだ無い新商品の最初の1本目に向いています。</div></details>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>まったくの初心者ですが、何から始めればいいですか？</summary><div class="ans">①売る商品を1つ決める ②Amazon公式の料金シミュレーターで1個あたりの利益を計算する ③その利益が確保できるなら出品アカウントを作る——この順です。②を飛ばして出品するのが、最も多い失敗パターンです。</div></details>
+      <details><summary>初期費用はいくら必要ですか？</summary><div class="ans">出品アカウント自体は大口で月4,900円（税別）。あとは<b>仕入れ在庫代＋広告費</b>です。在庫を10〜30個の小ロットで検証するなら、商材によりますが数万円〜十数万円から始められます。新規出品者向けの特典で、広告クレジットやFBAの無料枠が使える時期もあります。</div></details>
+      <details><summary>本業が忙しくても運営できますか？</summary><div class="ans">FBAを使えば、出荷とカスタマーサービスは丸ごと任せられます。残る作業は<b>「数字の確認」と「広告の調整」と「在庫の発注」</b>の3つ。この3つはまさにAIエージェントが得意な領域なので、自動化と相性が良い運営形態です。</div></details>
+      <details><summary>AIで作った文章や画像を使って、規約違反になりませんか？</summary><div class="ans">AIを使うこと自体は問題ありません。問題になるのは<b>内容</b>です。事実と異なる効能表現、他社商標の無断使用、メイン画像の規約違反（背景・文字入れ）などは、AIかどうかに関係なくNG。AIの出力を必ず人がチェックする工程を挟んでください。</div></details>
+      <details><summary>どのAIを使えばいいですか？</summary><div class="ans">文章の作成・整えはChatGPTやClaude、レポートCSVの分析はファイルを渡せるタイプが便利です。まずは無料で両方触ってみるのが確実。使い分けは<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">はじめてのAI活用ガイド</a>で詳しく解説しています。</div></details>
+      <details><summary>自社でやるべきか、代行を頼むべきか迷います</summary><div class="ans">判断軸は「社内に数字を見る担当者を置けるか」です。<b>置けるなら内製＋AIが最も安く速い</b>。置けないなら初期だけ代行を使い、型ができたら巻き取るのが現実的です。UGOKU AIでは、外注に丸投げせず<b>社内で回せる状態を作る</b>ところまでを支援しています。</div></details>
+    </div>
+
+    <div class="tip" style="margin-top:24px;"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君からの、最後のひとこと</b>Amazonは「知っている人だけが得をする」場所じゃない。<b>順番どおりにやった人だけが得をする</b>場所だよ。今日できるのは、①商品を1つ決める ②料金シミュレーターで利益を計算する——この2つだけ。それで十分。</div></div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">まずはここから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つでChatGPT・Claudeを始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">商品画像を作るなら</span><span class="r-t">Canvaって何？活かし方10選<small>／ サブ画像・A+の素材づくりに直結</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">動画で売る</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ 商品動画・広告クリエイティブに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">全体像をつかむ</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://sell.amazon.co.jp/" target="_blank" rel="noopener"><span class="r-ic">🏬</span><span><span class="r-k">公式</span><span class="r-t">Amazon出品サービス<small>／ 出品登録・特典はこちら</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://sell.amazon.co.jp/pricing" target="_blank" rel="noopener"><span class="r-ic">🧮</span><span><span class="r-k">公式</span><span class="r-t">料金プランと料金シミュレーター<small>／ 1個あたりの手残りを確認</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.meti.go.jp/policy/it_policy/statistics/outlook/ie_outlook.html" target="_blank" rel="noopener"><span class="r-ic">📊</span><span><span class="r-k">公式データ</span><span class="r-t">電子商取引に関する市場調査<small>／ 経済産業省</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>Amazonも、本業も。<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>「出品したいけど、社内に人がいない」「広告費だけ出ていく」——その状態を、外注ではなく<b>社内で回せる形</b>に変えるのがUGOKU AIです。まずは無料のAI化診断から。数分で、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※Amazonの手数料・特典・仕様は提供元の改定により変わります。金額に関わる判断は、必ず公式の料金ページと料金シミュレーターで最新情報をご確認ください。本記事の数値は執筆時点の一般的な目安です。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

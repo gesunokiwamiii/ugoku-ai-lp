@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIは1つ選ぶ時代ではない｜ChatGPT・Gemini・Claudeの「使い分け」完全マニュアル ― UGOKU AI</title>
+<meta name="description" content="「結局どのAIに課金すればいいの？」その問いはもう古い。2026年の正解は“1つ選ばない”こと。AI実装のプロが、初心者向けに三刀流の始め方・局面別の使い分け・費用対効果・自律型AI（AIエージェント）の可能性と注意点まで、コピペで使えるプロンプト付きで丁寧に解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AIは1つ選ぶ時代ではない｜ChatGPT・Gemini・Claudeの使い分け完全マニュアル">
+<meta property="og:description" content="どれか1つを選ぼうとするから止まる。3つ無料で持って、局面で呼び分ける。初心者のための“三刀流”の始め方と費用対効果を、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AIは1つ選ぶ時代ではない ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIは1つ選ぶ時代ではない｜ChatGPT・Gemini・Claudeの使い分け完全マニュアル">
+<meta name="twitter:description" content="1つ選ぶから止まる。3つ持って局面で呼び分ける。初心者のための三刀流マニュアルを、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI使い分け 完全マニュアル</span>
+      <h1>AIは、<span class="hl">1つ選ぶ</span>時代<br>ではない。</h1>
+      <p class="lead">「結局どれに課金すればいい？」——その問いで止まっている間に、使える人は<b>3つ同時に</b>使っています。選ぶのをやめると、AIは一気にラクになります。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。初心者がつまずく順番から、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「ChatGPTがいいの？ Geminiがいいの？ Claudeがいいの？」——この質問、すごく多いです。でも答えは<b>「全部。ただし役割を分けて」</b>。この記事を上から進めるだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>3つのAIを、Googleアカウント1つで無料から同時に持てる</li>
+          <li>「この場面はどれ？」の判断が、表を見るだけで決まる</li>
+          <li>3つをリレーさせる「合わせ技」がコピペで再現できる</li>
+          <li>いくら払えば、いくら返ってくるか（費用対効果）が計算できる</li>
+          <li>自律型AI（AIエージェント）で何が変わるか・どこが危ないかが分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、3つの「性格の違い」を掴もう</h2>
+    <p class="sec-sub">性能の優劣ではありません。包丁とフライパンと鍋のように、<b>役割が違う</b>だけです。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">💬</div>
+        <h4>ChatGPT<br><span>＝ 発想する・つくる</span></h4>
+        <p>アイデア量産、画像生成、日本語文字入りの画像づくりに強い万能選手。「0→1」の壁打ち相手として最初に開くAI。</p>
+      </div>
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🔎</div>
+        <h4>Gemini<br><span>＝ 調べる・つなぐ</span></h4>
+        <p>Google検索・Gmail・スプレッドシートと同じ土俵にいる調査役。NotebookLMやDeep Researchなど「情報を集めて整理する」が得意。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">📝</div>
+        <h4>Claude<br><span>＝ 読む・書く・仕上げる</span></h4>
+        <p>長文の読解・要約と、自然で丁寧な日本語づくりの仕上げ役。資料化や書類仕事を任せると差が出ます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">MULTI-AI MANUAL</div>
+    <h2 class="sec-title">「1つ選ぶ」をやめた人から、<br>AIは急にラクになる</h2>
+    <p class="sec-sub">AI実装の現場で、いちばん成果が出やすかった順番どおりに並べました。パソコンが苦手な方でも今日から進められます。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 この記事の結論（先に言います）</span>
+      <p><strong>3つとも無料で開設し、「メイン1つ＋サブ2つ」を決める。</strong>迷ったらメインに投げ、①調べる＝Gemini ②発想・画像＝ChatGPT ③仕上げ・書類＝Claude で呼び分ける。それだけで、月0円のまま仕事の質が変わります。有料化はその後で構いません。</p>
+    </div>
+
+    <!-- なぜ今 -->
+    <h3 class="blk">なぜ今、「1つ選ぶ」が損なのか</h3>
+    <p>2026年に入り、主要3社は相次いで最新モデルを投入し、<b>性能差は急速に縮まりました</b>。「どれが一番賢いか」で選ぶ意味が薄れた一方で、<b>得意分野の差ははっきり残っています</b>。だから今の合理解は「一番を探す」ではなく「役割を割り振る」。専門メディアでも、複数を組み合わせて成果を最大化する段階に入ったと整理されています。</p>
+
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">DATA 01</div>
+        <h4>日本の個人利用率は26.7%</h4>
+        <p>総務省『令和7年版 情報通信白書』では、日本の個人の生成AI利用経験は26.7%。前年の9.1%から約3倍に伸びた一方、米国68.8%・中国81.2%とは開きがあります。つまり<b>今動けば、まだ地元では先頭集団</b>です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">DATA 02</div>
+        <h4>止まる理由の1位は「使い方が分からない」</h4>
+        <p>同白書で、企業の懸念の最上位は「効果的な活用方法がわからない」。中小企業の活用方針策定率は約34%（大企業は約56%）で、差の中心は<b>「禁止」ではなく「未決定」</b>。決めていないだけ、という会社がとても多いのです。</p>
+      </div>
+    </div>
+
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「どれがいいか決まらない」って、実は<b>AIの問題じゃなくて、決め方の問題</b>なんだ。この記事は“決め方”を配る記事だよ。</div></div>
+
+    <!-- 2つのルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>ログインは毎回「Googleで続ける」</h4>
+        <p>3つとも <b>Googleアカウント1つ</b>で開設できます。ただし2回目以降も同じボタンから。方法を混ぜると<b>別アカウント</b>ができ、履歴が消えたように見えます（初心者が一番つまずく所です）。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>比べるときは「同じ1つの質問」で</h4>
+        <p>3つに<b>まったく同じ文章</b>を投げて、返り方の違いを見る。これだけで「自分の仕事にはどれが合うか」が体感で分かります。レビュー記事を100本読むより速いです。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">SET UP</span><div class="st-ttl">3つとも、無料で開設する（15分）</div></div></div>
+      <div class="step-body">
+        <p class="desc">課金の判断は後回しで大丈夫。3社とも無料プランがあり、<b>Googleアカウント1つ</b>で全部にログインできます。まずは「持っている状態」を作ります。</p>
+        <a class="link-btn" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT を開く ↗</a>
+        <a class="link-btn" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini を開く ↗</a>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claude を開く ↗</a>
+        <p class="link-note">スマホは各社の公式アプリが便利。偽サイト・広告経由には注意し、開いたらブックマークを。</p>
+        <ol class="mini">
+          <li>Googleアカウント（Gmail）を用意する（無い方は<a href="https://accounts.google.com/signup" target="_blank" rel="noopener">こちら</a>で5分）</li>
+          <li>各サービスで <b>「Googleで続ける／Continue with Google」</b> を選ぶ</li>
+          <li>初回のみ名前・生年月日・SMS認証</li>
+          <li>3つともスマホのホーム画面に並べて置く（これが地味に効きます）</li>
+        </ol>
+        <div class="warn"><div class="wt">⚠️ 最初の落とし穴</div>「とりあえず1つだけ」で始めると、比較材料が永遠に手に入りません。<b>3つ並べて初めて、使い分けという発想が生まれます。</b>無料なので、持っておくコストはゼロです。</div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>まだ課金しなくていいよ。無料枠を3つ持つと、実質「使える回数が3倍」になるのも地味に大きいんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">ROLE DESIGN</span><div class="st-ttl">「メイン1つ＋サブ2つ」を決める</div></div></div>
+      <div class="step-body">
+        <p class="desc">全部を平等に使おうとすると、結局どれも使わなくなります。<b>迷ったら開く“メイン”を1つだけ決める</b>のがコツ。残り2つは「この場面だけ呼ぶ」係です。</p>
+
+        <div class="mini-h">タイプ別・メインの決め方</div>
+        <ul class="use">
+          <li><b>Google WorkspaceやGmailを毎日使う</b> → メインは<b>Gemini</b>（同じ画面の中で完結する）</li>
+          <li><b>企画・販促・画像づくりが多い</b> → メインは<b>ChatGPT</b>（発想と生成が一気通貫）</li>
+          <li><b>書類・報告書・長文読解が多い</b> → メインは<b>Claude</b>（読ませて整えるが速い）</li>
+        </ul>
+
+        <div class="mini-h">迷ったときの合言葉</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 3語で覚える</div>
+            <ul>
+              <li><b>調べる＝Gemini</b>（検索・社内資料の横断・下調べ）</li>
+              <li><b>つくる＝ChatGPT</b>（企画案・画像・キャッチコピー）</li>
+              <li><b>整える＝Claude</b>（文章・議事録・マニュアル化）</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 同じ3語でOK</div>
+            <ul>
+              <li>旅行先や制度を<b>調べる</b>ならGemini</li>
+              <li>献立・自由研究・贈り物を<b>つくる</b>ならChatGPT</li>
+              <li>手紙・スピーチ・要約を<b>整える</b>ならClaude</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「調べる・つくる・整える」。この3語だけ覚えて帰ってくれれば、今日の目的は達成だよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">RELAY</span><div class="st-ttl">3つをリレーさせる「合わせ技」</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここが一番おいしいところ。1つのAIに全部やらせるより、<b>工程ごとにバトンを渡す</b>方が、速くて質が上がります。以下はそのままコピーして使えます。</p>
+
+        <div class="combo">
+          <h4>🤝 王道リレー：資料づくり</h4>
+          <div class="flow"><span class="b">Geminiで<br>調べる</span><span class="ar">→</span><span class="b">ChatGPTで<br>案・画像を作る</span><span class="ar">→</span><span class="b">Claudeで<br>資料に整える</span><span class="ar">→</span><span class="b">自分で<br>最終判断</span></div>
+          <p style="margin:0;font-size:14px;color:var(--ink-soft);">下調べ・発想・仕上げは、別々の得意技。分けるだけで、片方だけより一段いいものになります。</p>
+        </div>
+
+        <div class="mini-h">① Gemini：下調べ（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 相場・トレンドの下調べ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはリサーチャーです。<span class="fill">〔テーマ〕</span>について、
+最新の動向・相場観・注意点を、出典URL付きで箇条書き8つにまとめてください。
+古い情報と新しい情報が混ざる場合は、必ず時期を明記してください。
+【前提】業種：<span class="fill">〔業種〕</span>／地域：<span class="fill">〔地域〕</span>／読む人：<span class="fill">〔社内/お客様〕</span></pre>
+        </div>
+
+        <div class="mini-h">② ChatGPT：発想と生成（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 企画案を量産させる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の調査メモをもとに、<span class="fill">〔目的〕</span>のための企画案を10個出してください。
+各案は「タイトル／ひとこと説明／想定コスト／狙う客層」の4項目で。
+奇抜さ重視5個・堅実さ重視5個に分けてください。
+【調査メモ】
+<span class="fill">〔Geminiの回答を貼り付け〕</span></pre>
+        </div>
+
+        <div class="mini-h">③ Claude：仕上げ（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 そのまま配れる資料に整える</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の内容を、社内会議で配布できる資料に整えてください。
+構成は「①結論 ②根拠3点 ③実行手順（担当・期限つき）④想定リスク」。
+専門用語はやさしく言い換え、全体1,200字以内。丁寧な日本語で。
+【材料】
+<span class="fill">〔ChatGPTの回答を貼り付け〕</span></pre>
+        </div>
+
+        <div class="warn"><div class="wt">⚠️ リレーのときの注意</div>AIをまたぐと<b>数字と固有名詞がズレる</b>ことがあります。最後に必ず「金額・日付・社名・法令」だけは人の目で確認を。ここを飛ばすと、AI活用が一気に信用を落とします。</div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">SCENE MAP</span><div class="st-ttl">局面別・「今どれを開くか」早見</div></div></div>
+      <div class="step-body">
+        <p class="desc">実務で迷いやすい場面を、そのまま並べました。<b>スマホでこのページをブックマークして、迷ったら開く</b>使い方を想定しています。</p>
+
+        <div class="mini-h">仕事の局面</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">攻め</span> 売上・集客まわり</div>
+            <ul>
+              <li>チラシ・POPのコピー案 → <b>ChatGPT</b></li>
+              <li>競合と相場の下調べ → <b>Gemini</b></li>
+              <li>SNS投稿を月30本の台本に → <b>ChatGPT→Claude</b></li>
+              <li>クチコミ返信の定型化 → <b>Claude</b></li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">守り</span> 事務・管理まわり</div>
+            <ul>
+              <li>議事録・報告書の整形 → <b>Claude</b></li>
+              <li>Excel・スプレッドシートの相談 → <b>Gemini</b></li>
+              <li>契約書・約款を読み解く → <b>Claude</b></li>
+              <li>求人票・マニュアル作成 → <b>Claude</b></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">私生活の局面</div>
+        <div class="split">
+          <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 毎日がラクになる</div>
+            <ul>
+              <li>冷蔵庫の残りから献立3案 → <b>ChatGPT</b></li>
+              <li>役所の制度・助成の調べもの → <b>Gemini</b></li>
+              <li>言いにくいお断り文の推敲 → <b>Claude</b></li>
+              <li>旅行プランの比較検討 → <b>Gemini→ChatGPT</b></li>
+            </ul>
+          </div>
+          <div class="col work"><div class="ch"><span class="badge-mini">学び</span> 家族・自分みがき</div>
+            <ul>
+              <li>子どもの「なぜ？」の解説 → <b>Claude</b></li>
+              <li>英会話のロールプレイ相手 → <b>ChatGPT</b></li>
+              <li>資格勉強の要点整理・出題 → <b>Gemini</b></li>
+              <li>読書メモを人に見せる文章に → <b>Claude</b></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>迷ったら、まずメインに投げていいよ。「思ったのと違う」と感じた時に、別のAIに同じ文章を投げ直す。それが一番ラクな使い分けの覚え方。</div></div>
+      </div>
+    </div>
+
+    <!-- 比較表 -->
+    <div class="cmp">
+      <h3 class="blk">やりたいこと別・使い分け早見表</h3>
+      <p class="sec-sub" style="margin-top:-6px;">2026年時点の一般的な傾向です。各社の更新が速いため、迷ったら「同じ質問を3つに投げる」が最終確認になります。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>やりたいこと</th><th>ChatGPT</th><th>Gemini</th><th>Claude</th></tr></thead>
+          <tbody>
+            <tr><th>アイデア出し・企画</th><td class="win">◎ 量と幅</td><td class="mid">○</td><td class="mid">○ 提案の質</td></tr>
+            <tr><th>画像をつくる</th><td class="win">◎ 得意</td><td class="win">◎ 得意</td><td class="mid">×（生成は不可）</td></tr>
+            <tr><th>下調べ・出典付きリサーチ</th><td class="mid">○</td><td class="win">◎ 大の得意</td><td class="mid">○</td></tr>
+            <tr><th>長文の要約・読解</th><td class="mid">○</td><td class="mid">○</td><td class="win">◎ 大の得意</td></tr>
+            <tr><th>自然で丁寧な日本語</th><td class="mid">○</td><td class="mid">○</td><td class="win">◎ 定評あり</td></tr>
+            <tr><th>Gmail・ドキュメント連携</th><td class="mid">○</td><td class="win">◎ 同じ画面で完結</td><td class="mid">○</td></tr>
+            <tr><th>資料・成果物の自動生成</th><td class="mid">○</td><td class="mid">○</td><td class="win">◎ 得意</td></tr>
+            <tr><th>まず1つ試すなら</th><td class="win">◎ 迷ったらここ</td><td class="win">◎ Google派はここ</td><td class="mid">○ 書類が多い人はここ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 ひとことで言うと</h4>
+        <p style="margin:0;font-size:14px;color:var(--ink-soft);"><b style="color:var(--pine);">調べるならGemini、つくるならChatGPT、整えるならClaude。</b>そして「一番いいAI」を探すより、<b style="color:var(--pine);">一番いい“順番”を決める</b>方が、成果は何倍も変わります。</p>
+      </div>
+    </div>
+
+    <!-- 費用対効果 -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、電卓レベルで視える化する</h3>
+      <p class="sec-sub" style="margin-top:-6px;">「高いか安いか」ではなく「何時間戻るか」で判断します。ここが決まると、社内の説得も一発で終わります。</p>
+
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>段階</th><th>月あたりの費用</th><th>できること</th></tr></thead>
+          <tbody>
+            <tr><th>フェーズ0：3つ無料</th><td class="win">0円</td><td>下調べ・下書き・要約。個人利用ならここで十分な人も多い</td></tr>
+            <tr><th>フェーズ1：メインだけ課金</th><td class="mid">約3,000円前後</td><td>上限を気にせず毎日使える。個人向けは月20ドル前後が相場</td></tr>
+            <tr><th>フェーズ2：2〜3つ課金</th><td class="mid">約6,000〜9,000円</td><td>リレー運用が止まらない。担当者が本気で使う段階</td></tr>
+            <tr><th>フェーズ3：自律型AIを組む</th><td class="mid">月1万円台〜（構築は別途）</td><td>定型業務そのものを任せる。承認だけ人が持つ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="link-note">※料金は2026年時点の目安です。為替やプラン改定で変動するため、契約前に各社公式でご確認ください。</p>
+
+      <div class="formula">
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>短縮できた時間</b>例：資料作成 週3時間 → 週1時間＝月8時間</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>時給に換算</b>例：人件費 2,500円／時（社保込み）</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>効果額を出す</b>8時間 × 2,500円＝<b>月20,000円</b></div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>費用を引く</b>20,000円 − 3,000円＝<b>月17,000円のプラス</b></div></div>
+        </div>
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ もったいない判断</div>「月3,000円は高いから無料のままでいい」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 上限に当たって作業が中断し、結局“使わない人”に戻る</span></div>
+          <div class="c good"><div class="lb">◎ 効く判断</div>「1人が月8時間戻るなら、3,000円は即回収」<br><span style="color:#7A5B12;font-size:12.5px;">→ 効果を時間で測るから、続けるか止めるかを数字で決められる</span></div>
+        </div>
+        <div class="copybox" style="margin-top:14px;">
+          <div class="cb-top"><span class="cb-lbl">📋 自社の費用対効果を計算させる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは業務改善コンサルタントです。以下の条件で、生成AI導入の
+費用対効果を表にしてください。回収期間（何か月で元が取れるか）も算出を。
+【条件】
+・業種：<span class="fill">〔業種〕</span>／従業員：<span class="fill">〔人数〕</span>名
+・AIに任せたい作業：<span class="fill">〔例：見積作成、日報、SNS投稿〕</span>
+・その作業にかかっている時間：週<span class="fill">〔  〕</span>時間／担当者の時給換算：<span class="fill">〔  〕</span>円
+・想定コスト：AI利用料 月<span class="fill">〔  〕</span>円
+前提が足りない場合は、一般的な相場で仮置きし、その旨を明記してください。</pre>
+        </div>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>大事なのは金額じゃなくて<b>「戻る時間」</b>。時間で測ると、社長も現場も同じ言葉で話せるようになるよ。</div></div>
+    </div>
+
+    <!-- 自律型AI -->
+    <div class="cmp">
+      <h3 class="blk">ここに「自律型AI」が加わると、何が起きるか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">2026年の主役は、聞かれて答えるAIから、<b>目的を渡すと自分で段取りして動くAI（AIエージェント）</b>へ移りつつあります。</p>
+
+      <div class="keystone">
+        <span class="kl">🤖 ひとことで言うと</span>
+        <p><strong>チャット型AI＝「相談できる人」／自律型AI＝「任せられる人」。</strong>チャット型は毎回こちらが指示を出しますが、自律型は<strong>目標を渡すだけで、手順の分解・情報収集・ツール操作・実行まで通しでやります</strong>。人は最後の「承認」だけを持ちます。</p>
+      </div>
+
+      <div class="mini-h">具体的に、何を任せられるのか</div>
+      <div class="split">
+        <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 任せやすい定型業務</div>
+          <ul>
+            <li>問い合わせメールを分類し、返信の下書きまで用意しておく</li>
+            <li>毎朝、前日の売上・予約・クチコミを集計してチャットに報告</li>
+            <li>在庫や発注の数字を見張り、しきい値を割ったら通知</li>
+            <li>営業リストを集め、担当者ごとに整理して渡す</li>
+          </ul>
+        </div>
+        <div class="col life"><div class="ch"><span class="badge-mini">暮らし</span> 個人でもできること</div>
+          <ul>
+            <li>条件を渡すと、旅行の候補を比較して一覧にしてくれる</li>
+            <li>興味テーマのニュースを毎朝まとめて届ける</li>
+            <li>家計簿データを読み、使いすぎの項目を指摘してくれる</li>
+            <li>大量のメールから「返信が必要なものだけ」を抜き出す</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mini-h">なぜ今、急に現実的になったのか</div>
+      <ul class="use">
+        <li><b>ツールを操作できるようになった</b>：AIが外部サービスを標準的な手順で扱える仕組み（MCPなど）が広まり、プログラミングなしで業務ツールと繋げやすくなった</li>
+        <li><b>実証実験の段階を越えた</b>：2026年は「試す年」ではなく<b>「実行の年」</b>と位置づける動きが強まっている</li>
+        <li><b>価格が下がった</b>：既製ツールなら月数千円〜、サブスク型なら月1万円台から始められる例も出てきた</li>
+      </ul>
+
+      <div class="mini-h">⚠️ ここは必ず押さえる：自律型AIの注意点</div>
+      <div class="safe-grid">
+        <div class="safe-item"><div class="si-h"><span class="no">1</span>最後は必ず人が承認する</div><p>送信・発注・決済など「戻せない操作」の直前に、人間の承認を挟む設計（Human-in-the-Loop）が2026年の標準的な考え方です。全自動にしないことが、むしろ安全に速く回すコツ。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">2</span>指示の乗っ取りに備える</div><p>AIが読み込んだメールやWebページの中に、悪意ある指示が仕込まれる手口（プロンプトインジェクション）があります。<b>外部の文章を鵜呑みにして動かせない設計</b>と、扱える権限の絞り込みが必須です。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">3</span>実行ログを必ず残す</div><p>「なぜAIがそう判断したか」を後から追えるように、動作の記録を残します。トラブル時の説明責任は、記録がなければ果たせません。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">4</span>小さく始めて、効果を測る</div><p>成功パターンは共通しています。<b>全社導入ではなく1業務から／人の承認を挟む／効果を数字で測る</b>。この3点を外すと、たいてい止まります。</p></div>
+      </div>
+
+      <div class="warn"><div class="wt">⚠️ 制度面も動いています</div>AIの自律的な利用については、国内外でルール整備が進んでいます。海外向けの取引がある企業は、各国の規制動向も併せて確認を。判断に迷う領域は、<b>自動化せず人の手元に残す</b>のが安全です。</div>
+
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>自律型AIは「新入社員」だと思うと分かりやすいよ。いきなり全部任せず、<b>手順書を渡して、最後は上長が承認</b>。人の育て方と同じなんだ。</div></div>
+    </div>
+
+    <!-- アイデア集 -->
+    <div class="cmp">
+      <h3 class="blk">明日から試せる、活用アイデア集</h3>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🏪</span>お店・現場で</h4><ul>
+          <li>クチコミ返信を、店の口調でテンプレ化</li>
+          <li>求人票・募集文を3パターン作って比較</li>
+          <li>チラシ・POPのキャッチコピー案を20本</li>
+          <li>売上表を読ませて、伸びた/落ちた理由の仮説出し</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🧑‍💼</span>デスクワークで</h4><ul>
+          <li>長い資料を要約 → 比較表に変換</li>
+          <li>議事録の音声メモを、配布できる形に整形</li>
+          <li>提案書のたたき台を、根拠付きで作る</li>
+          <li>外国語のメール・書類の読み書き</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>暮らしで</h4><ul>
+          <li>献立・買い物リスト・作り置きの提案</li>
+          <li>制度・保険・契約の意味をやさしく解説</li>
+          <li>手紙・スピーチ・お礼状の下書き</li>
+          <li>旅行や休日プランを条件から比較</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🤖</span>自律型で（応用）</h4><ul>
+          <li>毎朝の数字レポートを自動で作らせる</li>
+          <li>問い合わせの一次仕分けと下書き作成</li>
+          <li>定期的な情報収集とチャットへの通知</li>
+          <li>※必ず「人の承認」を最後に置くこと</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- よくある失敗 -->
+    <h3 class="blk">よくある失敗と、その直し方</h3>
+    <div class="compact">
+      <details open><summary>「どれが一番いいか」を調べ続けて、結局始めていない</summary><div class="ans">レビューを読む時間より、3つに同じ質問を投げる10分の方が確実です。性能差は縮まっており、<b>比較の答えは自分の仕事の中にしかありません</b>。まず持って、まず投げる。</div></details>
+      <details><summary>1つのAIに全部やらせて「思ったほどじゃない」と結論づけた</summary><div class="ans">工程を分けていないケースがほとんどです。下調べ・発想・仕上げを1回で頼むと、どれも中途半端になります。リレー（STEP3）に組み替えるだけで印象が変わります。</div></details>
+      <details><summary>お願いの仕方が短すぎて、ふわっとした答えしか返ってこない</summary><div class="ans">「だれに／何を／どんな形で／どんなトーンで」の4点を足してください。「メールを書いて」ではなく「取引先に、納期変更をお詫びする丁寧なメールを150字で」。それだけで実用度が変わります。</div></details>
+      <details><summary>社内に広げようとして、いきなり全社ルールを作ろうとした</summary><div class="ans">1業務・1担当から始めるのが定石です。効果が数字で出てから広げる方が、結果的に早い。中小企業で止まる原因の多くは「禁止」ではなく「未決定」です。</div></details>
+      <details><summary>無料のまま上限に当たり、使うのをやめてしまった</summary><div class="ans">メインの1つだけ課金するのが現実解です。月3,000円前後で、上限を気にせず使えるようになります。効果は「戻った時間 × 時給」で測って判断を。</div></details>
+    </div>
+
+    <!-- 安全に使う -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>機密情報は入れない</div><p>お客様の個人情報・カード番号・社外秘は、原則入力しない。会社で使うなら、まず社内ルールを1枚作るところから。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>答えは鵜呑みにしない</div><p>AIはもっともらしく間違えます（ハルシネーション）。数字・名前・法律・金額は、必ず自分で確認を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>学習利用の設定を確認</div><p>入力内容の扱いは、サービス・プラン・設定で変わります。気になる場合はデータ設定を確認し、法人プランの利用も検討を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>最後は人が決める</div><p>AIは下書きと相談相手。判断と責任は人が持つ。自律型を入れる場合も、この原則は変わりません。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>本当に3つ全部必要ですか？1つじゃダメ？</summary><div class="ans">1つでも十分に役立ちます。ただし「持っておく」コストは無料なので、持たない理由もありません。3つ持つと無料枠も合算できて、実質使える回数が増えるという実利もあります。まず持って、メインを1つ決めるのが最短です。</div></details>
+      <details><summary>課金するなら、どれから？</summary><div class="ans">毎日いちばん開くAI＝メインの1つからです。個人向けは月20ドル前後（Geminiは円建て月2,900円など）が相場。2つ目の課金は、リレー運用が日常になってからで十分間に合います。</div></details>
+      <details><summary>スマホだけでも使い分けできますか？</summary><div class="ans">できます。3つとも公式アプリがあり、同じGoogleアカウントでログインすればパソコンとも同期します。ホーム画面に3つ並べておくのが、いちばん簡単な「使い分けの仕組み化」です。</div></details>
+      <details><summary>自律型AI（AIエージェント）は、うちのような小さい会社でも使えますか？</summary><div class="ans">むしろ人手が足りない会社ほど効きます。既製ツールなら月数千円から、サブスク型なら月1万円台から始められる例もあります。ポイントは全社導入ではなく<b>「1業務から・承認は人が持つ・効果を測る」</b>の3点です。</div></details>
+      <details><summary>社員に使わせたいけれど、教える人がいません</summary><div class="ans">実はここが最大のボトルネックです。ツール選定より、<b>自社の業務に落とし込む型づくりと、現場が自分で使えるようになるまでの伴走</b>が要ります。UGOKU AIはこの部分を、実装まで含めて支援しています（助成金の活用検討にも対応）。</div></details>
+      <details><summary>助成金は使えますか？</summary><div class="ans">研修としてAI活用を導入する場合、人材開発支援助成金などの活用を検討できるケースがあります。要件・審査は制度側の判断となるため、まずは無料のAI化診断で「自社が対象になりそうか」を整理するところからどうぞ。</div></details>
+    </div>
+
+    <div class="keystone">
+      <span class="kl">✅ 今日やること（これだけ）</span>
+      <p><strong>①3つとも無料で開設する ②メインを1つ決める ③同じ質問を3つに投げてみる。</strong>ここまでで15分。あとは「調べる・つくる・整える」の3語で呼び分けるだけです。AI導入が止まる理由の第1位は「使い方が分からない」——その1位を、今日で抜けましょう。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🚀</span><span><span class="r-k">← まず読む（入門編）</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める YouTube・ChatGPT・Claude</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">🔁 次に読む（シリーズ周回）</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">次に読む</span><span class="r-t">AI×動画編集 入門マニュアル＆最新トレンド<small>／ カットも字幕も生成もAIで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">あわせて読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ 使い方・料金・AI活用まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">あわせて読む</span><span class="r-t">Google Chromeって何？<small>／ ブラウザの歴史・料金・AI活用までやさしく解説</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.soumu.go.jp/johotsusintokei/whitepaper/ja/r07/html/nd112210.html" target="_blank" rel="noopener"><span class="r-ic">📊</span><span><span class="r-k">出典・公的データ</span><span class="r-t">令和7年版 情報通信白書<small>／ 総務省・個人におけるAI利用の現状</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://gemini.google.com" target="_blank" rel="noopener"><span class="r-ic">🔎</span><span><span class="r-k">公式サイト</span><span class="r-t">Gemini をひらく<small>／ Google</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>「どれを選ぶか」より、<br><span class="hl">どこに使うか</span>を決めませんか？</h2>
+    <p>ツール選びで止まっている会社は、たいてい“使いどころ”が決まっていません。無料のAI化診断なら数分で、あなたの会社のどの作業から手を付けるべきかが見えてきます。助成金の活用検討にも対応しています。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・料金・機能は、提供元の更新により変わることがあります。記載は2026年時点の目安です。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

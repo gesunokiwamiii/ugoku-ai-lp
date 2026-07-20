@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIで求人票は書ける？求人の最新トレンドと活用術｜UGOKU AI</title>
+<meta name="description" content="応募が来ない原因は文章力ではありません。2026年の採用市場データ、AIで求人票を作る6ステップ、コピペで使えるプロンプト、法令チェック、費用対効果と予算感、自律型AIエージェントの可能性と注意点まで。AI初心者の経営者向けに、うごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AIで求人票は書ける？求人の最新トレンドと活用術｜UGOKU AI">
+<meta property="og:description" content="AIは求人票を「速く書く」道具であり、「誰に刺すか」を外さない道具。中小企業の経営者向けに、手順・プロンプト・法令チェック・費用対効果まで全部出します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/recruit-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/recruit-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AIで求人票は書ける？求人最新トレンドと活用術 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIで求人票は書ける？求人の最新トレンドと活用術｜UGOKU AI">
+<meta name="twitter:description" content="応募が来ない原因は、たいてい文章力ではありません。2026年の採用トレンドとAI活用の型を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/recruit-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×求人 実践ガイド</span>
+      <h1>求人票、AIで書ける？<br>答えは<span class="hl">「書けます」</span>。<br>でも、それだけじゃ人は来ない。</h1>
+      <p class="lead">応募が来ない原因は、たいてい「文章が下手」ではありません。<b>誰に・何を・どの順番で見せるか</b>がズレているだけ。2026年の最新トレンドと、AI初心者の社長が今日から回せる手順を、費用感まで全部出します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。求人票づくりでつまずく順番に、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">ガイドを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「求人にお金は払ってる。でも応募が来ない」――いちばん多いご相談です。この記事を上から順に読むだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>今の採用市場で「何が起きているか」を数字で説明できる</li>
+          <li>AIに求人票を書かせる<b>正しい手順</b>（＝丸投げしない型）がわかる</li>
+          <li>コピペで使えるプロンプトが、下書き・改善・法令チェックまで揃う</li>
+          <li>1人採るのにいくらかかるか、AIでいくら減らせるかの<b>予算感</b>がつかめる</li>
+          <li>自律型AIエージェントで採用がどこまで自動化できるか／どこは絶対人がやるかがわかる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 30秒でわかる 採用市場 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、いま自分が<br>どんな戦場にいるか掴もう</h2>
+    <p class="sec-sub">求人票の書き方より先に、これ。前提を間違えると、いい文章を書いても外れます。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--youtube);">
+        <div class="ic">📉</div>
+        <h4>倍率<br><span>＝ 1人を8〜9社で奪い合い</span></h4>
+        <p>全国の有効求人倍率は1.1倍台で推移。一方、従業員300人未満の企業に絞った大卒求人倍率は約<b>9倍</b>。大企業は0.3倍台。同じ市場に見えて、中小の体感は別世界です。</p>
+      </div>
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">💸</div>
+        <h4>単価<br><span>＝ 1人100万円の時代</span></h4>
+        <p>中途1人あたりの採用コストは平均100万円前後。人材紹介は理論年収の30〜35%が相場で、1人200〜300万円になることも。採らないのも高いが、採るのも高い。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">⚠️</div>
+        <h4>リスク<br><span>＝ 採れないと潰れる</span></h4>
+        <p>人手不足を理由とした倒産は増加が続き、なかでも「求人難」型の伸びが突出。採用はもはや人事の仕事ではなく、<b>経営の生命線</b>になりました。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">RECRUIT × AI GUIDE</div>
+    <h2 class="sec-title">AIで求人票は書ける。<br>大事なのは「書かせ方」。</h2>
+    <p class="sec-sub">パソコンが得意でない経営者の方でも、今日そのまま真似できる順番で作りました。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>AIは<strong>求人票を「速く書く」道具</strong>であると同時に、<strong>「誰に刺すか」を外さないための道具</strong>です。丸投げすると“どこの会社にも当てはまる、きれいで無味な原稿”が出てきます。逆に、<strong>自社の事実をAIに渡してから書かせる</strong>と、他社が真似できない原稿になります。差が出るのは文章力ではなく、<strong>渡す材料</strong>です。</p>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>AIに「書かせる」前に、人が「決める」</h4>
+        <p>決めるのは3つだけ。<b>誰に来てほしいか／なぜ今募集するのか／入社後どうなるか</b>。ここが空白のままだと、AIは平均的な言葉で埋めてしまいます。逆にここさえ埋めれば、原稿づくりは一気に速くなります。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>出た原稿は、必ず人が事実確認して出す</h4>
+        <p>給与・勤務地・必須要件・変更の範囲は、<b>AIがそれっぽく創作します</b>。掲載の責任は常に会社側。AIは下書き係、最終チェックは人間。この線を最初に引いておくと、後で怖い思いをしません。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君メモ</b>「AIで求人票を作る」＝原稿を量産することではありません。<b>刺さる原稿を、量を落とさずに作り続ける</b>ことです。ここを勘違いすると、量産した平凡な原稿がぜんぶ埋もれます。</div>
+    </div>
+
+    <!-- 最新トレンド -->
+    <h3 class="blk">2026年、求人まわりで起きている6つの変化</h3>
+    <p style="color:var(--ink-soft);font-size:14.6px;margin:0 0 16px;">同業の採用支援・人事系の発信で、いま反響（コメント・保存・いいね）が集まっているテーマを整理すると、だいたいこの6つに集約されます。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🔎</span> ①「媒体に出す」から「検索される」へ</h4>
+        <ul>
+          <li>Indeedなど求人検索エンジン経由が入口の中心に</li>
+          <li>職種名は求職者が実際に打つ言葉で。長すぎると途中で切れる</li>
+          <li>キーワードの詰め込み（#未経験歓迎#高収入…の羅列）は評価されない</li>
+          <li>古い原稿は沈む。<b>定期的な更新そのものが施策</b></li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">💴</span> ② 給与を「書かない」は致命傷</h4>
+        <ul>
+          <li>給与非公開・幅が広すぎる原稿はクリックも応募も落ちる</li>
+          <li>「月給20〜40万円」より「月給24万円＋実績例」の方が動く</li>
+          <li>賃上げ局面で、相場より下は一瞬で見抜かれる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📄</span> ③ 明示項目が増えた（2024年4月〜）</h4>
+        <ul>
+          <li>従事すべき業務の<b>変更の範囲</b></li>
+          <li>就業場所の<b>変更の範囲</b></li>
+          <li>有期契約を更新する場合の基準（通算期間・更新回数上限）</li>
+          <li>ここが空欄・曖昧だと、媒体審査で止まる／不信を買う</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🎥</span> ④ 原稿の外側で決まる</h4>
+        <ul>
+          <li>会社名で検索 → 口コミ・SNS・YouTubeを見てから応募する</li>
+          <li>「働く人の顔と1日の流れ」が見える会社が強い</li>
+          <li>求人票は入口、決め手は<b>周辺の情報量</b></li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">⚡</span> ⑤ スピードが合否を決める</h4>
+        <ul>
+          <li>応募当日に連絡が来ない会社は、それだけで落ちる</li>
+          <li>返信が翌営業日以降だと歩留まりが目に見えて下がる</li>
+          <li>ここがAI（特に自律型）の一番おいしい出番</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🤖</span> ⑥ 応募者側もAIを使っている</h4>
+        <ul>
+          <li>職務経歴書・志望動機をAIで整えてくるのが当たり前に</li>
+          <li>書類の「きれいさ」で差がつかなくなった</li>
+          <li>だから面接で見る項目を、事前に決め直す必要がある</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 実践マニュアル ═══ -->
+    <h3 class="blk">初心者が今日から回せる、6ステップ</h3>
+    <p style="color:var(--ink-soft);font-size:14.6px;margin:0 0 6px;">所要は初回でおよそ90分。2回目以降は1本20〜30分で回せるようになります。使うAIはChatGPTでもClaudeでもGeminiでもOK。無料版で始められます。</p>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip">所要20分／人がやる</span>
+          <div class="st-ttl">材料を出す（ここだけは自分の言葉で）</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">AIに渡す“事実”を集めます。うまい文章はいりません。箇条書き・話し言葉でOK。むしろ現場の言葉のほうが効きます。</p>
+        <div class="mini-h">集める8項目</div>
+        <ol class="mini">
+          <li>職種名（現場で実際に呼んでいる名前と、世間で通じる名前の両方）</li>
+          <li>募集背景（なぜ今1人必要になったのか。増員か、欠員か、新規か）</li>
+          <li>1日の流れ（始業から終業まで、時間軸で。休憩や移動も）</li>
+          <li>給与の実額（提示額・モデル年収・去年の昇給実績・賞与の実績）</li>
+          <li>働き方（休日数、残業の実態、シフト、転勤の有無）</li>
+          <li>必須要件と、実は不要な要件（“あったら嬉しい”は歓迎要件へ）</li>
+          <li>入社後3ヶ月・1年でできるようになること</li>
+          <li>正直に言うとキツいところ（隠さない。これが後で効く）</li>
+        </ol>
+        <div class="warn">
+          <div class="wt">⚠ ここを飛ばすと全部やり直し</div>
+          材料ゼロでAIに書かせた原稿は、どこかで見た文章になります。応募が来ないのは当然で、原因は「AIが悪い」ではなく「材料がなかった」です。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip">所要10分／AIと壁打ち</span>
+          <div class="st-ttl">「誰に来てほしいか」をAIと詰める</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いきなり原稿を書かせません。まずターゲット像をAIと一緒に言語化します。ここが原稿の精度を8割決めます。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペ用プロンプト／ターゲット設計</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは中小企業の採用に詳しい採用コンサルタントです。
+以下の情報から、この求人に応募してくれそうな人物像を3タイプ提案してください。
+
+【会社】<span class="fill">業種・所在地・規模</span>
+【職種】<span class="fill">職種名</span>
+【募集背景】<span class="fill">増員／欠員／新規事業 など</span>
+【条件】<span class="fill">給与・休日・勤務時間・転勤有無</span>
+【正直キツいところ】<span class="fill">率直に</span>
+
+各タイプについて、次を書いてください。
+1. 今どんな職場にいて、何に不満を持っているか
+2. この求人のどこに反応するか（刺さる一言）
+3. 逆に何が理由で見送るか（懸念点）
+4. その人が求人サイトで実際に打ちそうな検索キーワード5つ
+
+最後に、3タイプのうち「自社が最も採るべき1タイプ」と理由を述べてください。</pre>
+        </div>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>ここがコツ</b>「キツいところ」を隠さず渡すと、AIは<b>その懸念を先回りして潰す原稿</b>を書けます。隠すと、面接で発覚して辞退されます。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip">所要10分／AIが書く</span>
+          <div class="st-ttl">下書きを一気に出させる（3案）</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">1案だけ出させて手直しするより、<b>3案出させて選ぶ</b>ほうが速く、質も上がります。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペ用プロンプト／求人原稿ドラフト</span><button class="cb-btn">コピー</button></div>
+<pre>先ほど決めたターゲット「<span class="fill">選んだ1タイプ</span>」に向けて、求人原稿を書いてください。
+
+■ 出力する項目
+1. 職種名（16文字以内・求職者が検索する言葉で）を5案
+2. 冒頭のリード文（120字前後）を3案
+3. 仕事内容（1日の流れが浮かぶように、時間軸で）
+4. 応募資格（必須／歓迎に分ける）
+5. 待遇・福利厚生
+6. この会社で働く3つの理由（自慢ではなく、応募者の得で書く）
+7. 正直に伝えておきたいこと（1〜2行）
+
+■ ルール
+・誇張表現、抽象語（アットホーム・やりがい・成長できる）は禁止
+・数字と具体的な固有名詞を必ず入れる
+・年齢／性別／国籍を限定する表現は使わない
+・事実が不明な箇所は創作せず【要確認】と明記する
+
+■ 材料
+<span class="fill">STEP1で集めた8項目をそのまま貼る</span></pre>
+        </div>
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">✕ AI丸投げでよく出る文</div>
+            アットホームな職場です。未経験でも先輩が丁寧に教えます。あなたの成長を全力でサポートします。
+          </div>
+          <div class="c good">
+            <div class="lb">◯ 材料を渡した後の文</div>
+            入社1〜3ヶ月は先輩と2人1組で現場に入ります。3ヶ月目から1人で1現場、半年で後輩指導。昨年入社の3名は全員この流れで独り立ちしました。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip">所要15分／媒体に合わせる</span>
+          <div class="st-ttl">検索される形に整える</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">同じ内容でも、載せる場所によって“効く形”が違います。1本の原稿から派生させます。</p>
+        <div class="cmp-wrap" style="margin:12px 0;">
+          <table class="cmp-t">
+            <thead><tr><th>載せる場所</th><th>いちばん効く要素</th><th>やりがちなミス</th></tr></thead>
+            <tbody>
+              <tr><th>ハローワーク</th><td class="win">明示項目の完全記入・変更の範囲</td><td class="mid">枠を埋めるだけで魅力ゼロ</td></tr>
+              <tr><th>Indeed等の検索エンジン</th><td class="win">職種名の言葉選び・更新頻度</td><td class="mid">キーワードの羅列／放置</td></tr>
+              <tr><th>自社採用ページ</th><td class="win">写真・社員の声・1日の流れ</td><td class="mid">会社案内のコピペ</td></tr>
+              <tr><th>SNS・YouTube</th><td class="win">現場の空気・人柄</td><td class="mid">募集要項をそのまま投稿</td></tr>
+              <tr><th>スカウト文</th><td class="win">なぜ“あなた”に送ったか</td><td class="mid">全員に同じテンプレ</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペ用プロンプト／媒体別に展開</span><button class="cb-btn">コピー</button></div>
+<pre>この求人原稿を、そのまま流用せず、媒体ごとに作り分けてください。
+
+1. ハローワーク用：職業安定法の明示項目を漏れなく。事務的で正確に。
+   ※「業務の変更の範囲」「就業場所の変更の範囲」「有期契約の更新基準」を必ず含める
+2. Indeed用：職種名16文字以内。冒頭150字で仕事の核心。キーワードは羅列せず文章に自然に入れる
+3. 自社採用ページ用：見出し＋本文の構成で、写真を入れる位置も指示
+4. Instagram／X用：140字と400字の2パターン。募集要項の丸写しにしない
+5. スカウトメール用：件名3案＋本文300字。冒頭2行で「なぜあなたに送ったか」
+
+いずれも、事実は元原稿から一切変えないこと。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip">所要10分／必須</span>
+          <div class="st-ttl">法令チェックをAIに1回通す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">AIは悪気なく違反表現を書きます。ここを飛ばすと、媒体で差し戻し、最悪は行政指導の対象に。<b>1プロンプトで済むので毎回やってください。</b></p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペ用プロンプト／法令セルフチェック</span><button class="cb-btn">コピー</button></div>
+<pre>次の求人原稿を、日本の法令の観点でチェックしてください。
+
+【観点】
+1. 年齢制限（労働施策総合推進法）：直接・間接の年齢限定表現がないか
+   ※例外事由に当たる場合は、その旨を明記する書き方に修正案を出す
+2. 性別（男女雇用機会均等法）：男性歓迎・女性活躍など性別を限定/示唆する表現
+3. 国籍・出身地・居住地・信条による限定表現
+4. 職業安定法：実態と異なる記載、誇大表現、明示義務項目の欠落
+5. 障害の有無を理由とする除外表現
+
+【出力】
+- 該当箇所／なぜNGか／そのまま使える修正文
+の3列の表で。問題なしの項目も「問題なし」と明記してください。
+
+【原稿】
+<span class="fill">ここに原稿を貼る</span></pre>
+        </div>
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">✕ よくあるNG</div>
+            力仕事なので男性歓迎／35歳前後の方／主婦さん大募集／日本人スタッフのみ／地元◯◯市在住の方
+          </div>
+          <div class="c good">
+            <div class="lb">◯ 言い換え</div>
+            20kg程度の運搬あり／長期勤続によるキャリア形成のため35歳以下（例外事由3号のイ）／短時間勤務OK／日本語での業務指示が理解できる方／◯◯市の現場に通勤可能な方
+          </div>
+        </div>
+        <div class="warn">
+          <div class="wt">⚠ AIの回答は最終判断ではありません</div>
+          AIのチェックは「見落としを減らす一次スクリーニング」です。判断に迷う表現は、ハローワークの窓口・媒体の担当者・社会保険労務士に確認してください。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:var(--ember);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip">毎週15分／ここで差がつく</span>
+          <div class="st-ttl">数字を見て、原稿を直し続ける</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">出して終わりにしないでください。求人は「出す」より「直す」ほうが成果が出ます。見るのは4つの数字だけ。</p>
+        <div class="mini-h">週1で見る4指標</div>
+        <ul class="use">
+          <li><b>表示回数（imp）</b>：少ない → 職種名・キーワード・更新日が原因</li>
+          <li><b>クリック率</b>：低い → タイトルと給与の見せ方が原因</li>
+          <li><b>応募率</b>：低い → 仕事内容・条件の書き方、応募フォームの長さが原因</li>
+          <li><b>面接設定率</b>：低い → 応募後の返信スピードが原因</li>
+        </ul>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 コピペ用プロンプト／週次の改善会議</span><button class="cb-btn">コピー</button></div>
+<pre>求人の運用データです。ボトルネックを1つに特定し、改善案を出してください。
+
+表示回数：<span class="fill">◯◯</span>／クリック数：<span class="fill">◯◯</span>／応募数：<span class="fill">◯◯</span>／面接設定：<span class="fill">◯◯</span>
+掲載開始日：<span class="fill">◯月◯日</span>／掲載媒体：<span class="fill">◯◯</span>
+現原稿：<span class="fill">貼り付け</span>
+
+【出力】
+1. 4指標のどこで落ちているか（数値根拠つき）
+2. 原因の仮説を3つ、可能性の高い順に
+3. 今週すぐ試す施策を1つだけ（複数変えると効果が測れないため）
+4. その施策の変更後の文面（そのまま差し替えられる形で）
+5. 来週見るべき数字と、成功と判断する基準値</pre>
+        </div>
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君メモ</b>1回に変えるのは<b>1箇所だけ</b>。まとめて直すと、何が効いたのか永久にわからなくなります。地味ですが、これが一番効きます。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 費用対効果 ═══ -->
+    <h3 class="blk">費用対効果と予算感 ― 数字で見る</h3>
+    <p style="color:var(--ink-soft);font-size:14.6px;margin:0 0 14px;">「AIを入れると、いくら得なのか」。ここを曖昧にしたまま導入すると続きません。相場から逆算します。</p>
+
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>採用手法</th><th>1人あたりの目安</th><th>向いている場面</th></tr></thead>
+        <tbody>
+          <tr><th>人材紹介</th><td class="win">理論年収の30〜35%<br>（1人120〜350万円）</td><td class="mid">急ぎ・専門職・自社で母集団が作れない</td></tr>
+          <tr><th>求人広告（媒体）</th><td>数十万円〜<br>（中途平均で50万円前後）</td><td class="mid">職種が明確・複数人を継続採用</td></tr>
+          <tr><th>ダイレクトリクルーティング</th><td>DB利用料＋年収の15〜20%</td><td class="mid">攻めたい・社内に運用工数がある</td></tr>
+          <tr><th>ハローワーク＋自社発信</th><td class="win">実質ほぼ0円<br>（＝人件費と時間）</td><td class="mid">地域採用・原稿の質で勝負できる会社</td></tr>
+          <tr><th>アルバイト・パート</th><td>約5〜10万円</td><td class="mid">回転が早い職場・複数名同時</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>AIを入れると、どこが減るのか</h4>
+      <div class="flow">
+        <span class="b">原稿作成 3時間</span><span class="ar">→</span><span class="b">30分</span>
+        <span class="ar">＋</span><span class="b">媒体別展開 2時間</span><span class="ar">→</span><span class="b">15分</span>
+        <span class="ar">＋</span><span class="b">スカウト文 1通15分</span><span class="ar">→</span><span class="b">2分</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;color:var(--ink-soft);">仮に採用担当の時給を2,500円とすると、求人1本あたり<b>約1.5万円分の工数</b>が浮きます。年間12本なら約18万円。さらに、原稿の質が上がって<b>人材紹介1人分（120万円〜）を自社採用に置き換えられれば、桁が変わります</b>。AIツールの費用は月2,000〜3,000円台（有料プラン1〜2アカウント）から。回収は1本目で終わります。</p>
+    </div>
+
+    <div class="formula" style="margin-top:16px;">
+      <div class="mini-h" style="--accent:var(--ember);">現実的な予算の組み方（中小企業モデル）</div>
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>月3千円フェーズ</b>AIの有料プラン1つだけ。原稿・スカウト文・改善はここで完結。まず3ヶ月やる。</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>月1〜3万円フェーズ</b>求人検索エンジンの有料掲載を、効いている原稿にだけ絞って投下。</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>月5〜10万円フェーズ</b>採用管理（ATS）やAIエージェントを導入。応募対応の自動化に投資。</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>助成金フェーズ</b>社内のAI活用研修に人材開発支援助成金を充てる。実質負担を大きく下げられる。</div></div>
+      </div>
+      <div class="warn">
+        <div class="wt">⚠ 順番を飛ばさない</div>
+        いきなり③のツール導入から入る会社が多いのですが、①で原稿が作れないまま自動化しても、平凡な原稿が高速で配信されるだけです。<b>必ず①→②→③の順で。</b>
+      </div>
+    </div>
+
+    <!-- ═══ 反響コンテンツの型 ═══ -->
+    <h3 class="blk">反響が出ている「求人発信」の型 5つ</h3>
+    <p style="color:var(--ink-soft);font-size:14.6px;margin:0 0 14px;">採用系の投稿で、コメント・保存・いいねが伸びているのは、だいたいこの5パターンです。求人票だけでなく、SNSや自社ページにも転用できます。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">📊</span> ① 数字を1つ、丸出しにする</h4>
+        <ul>
+          <li>「去年の平均残業12.4時間」「離職1名／25名中」</li>
+          <li>良い数字だけでなく、正直な数字ほど伸びる</li>
+          <li>コメント欄で「本当ですか？」が来る＝関心の証拠</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🕒</span> ② 1日を時間軸で見せる</h4>
+        <ul>
+          <li>8:00 朝礼／8:30 現場入り／12:00 昼／17:30 片付け</li>
+          <li>「想像できる」が応募のスイッチ</li>
+          <li>写真1枚＋時刻だけでも成立する</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🙋</span> ③ 先輩1人に全部語らせる</h4>
+        <ul>
+          <li>前職・入社理由・最初の失敗・今の給与感</li>
+          <li>会社が言うより本人が言うほうが100倍届く</li>
+          <li>インタビューの文字起こしはAIが整えてくれる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🙅</span> ④ 「こんな人は向いていません」</h4>
+        <ul>
+          <li>あえて弾く。反響が最も大きい型のひとつ</li>
+          <li>ミスマッチ辞退が減り、面接の質が上がる</li>
+          <li>ただし差別的にならないよう表現は要チェック</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔧</span> ⑤ 経営者が自分の言葉で書く</h4>
+        <ul>
+          <li>なぜこの人が必要なのか、どんな会社にしたいのか</li>
+          <li>下手でいい。整えるのはAIに任せればいい</li>
+          <li>中小企業の最大の武器は「社長の顔が見える」こと</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📮</span> ⑥ 応募前の不安をQ&amp;Aで潰す</h4>
+        <ul>
+          <li>「未経験でも本当に大丈夫？」「土日は？」</li>
+          <li>実際に来た質問をそのまま載せる</li>
+          <li>応募フォームの離脱がはっきり減る</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 仕事と私生活 ═══ -->
+    <h3 class="blk">この技術、私生活でも使えます</h3>
+    <p style="color:var(--ink-soft);font-size:14.6px;margin:0 0 8px;">「相手を決めて、事実を渡して、書かせて、チェックする」――この型は求人票専用ではありません。</p>
+    <div class="split">
+      <div class="col work">
+        <div class="ch">💼 仕事で <span class="badge-mini">WORK</span></div>
+        <ul>
+          <li>求人票・スカウト文・面接の質問リスト作成</li>
+          <li>面接の文字起こしから評価メモを自動生成</li>
+          <li>内定辞退を防ぐフォロー文面づくり</li>
+          <li>入社後の教育カリキュラム・OJT計画の草案</li>
+          <li>就業規則や雇用契約書のたたき台（※最終は専門家へ）</li>
+          <li>助成金の要件を整理して、自社が使えるか判定</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">🏡 プライベートで <span class="badge-mini">LIFE</span></div>
+        <ul>
+          <li>自分の職務経歴書・自己PRを整える（転職する側で）</li>
+          <li>子どもの進路・面接対策の壁打ち相手に</li>
+          <li>PTA・地域の役員募集の告知文を数分で</li>
+          <li>フリマ出品の商品説明を「買いたくなる文」に</li>
+          <li>家族への説明が難しい話（相続・保険）を整理してもらう</li>
+          <li>年賀状・挨拶文・弔電など、失礼のない定型文</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 自律型AI ═══ -->
+    <h3 class="blk">ここに「自律型AI」が加わると、何が起きるか</h3>
+    <div class="keystone">
+      <span class="kl">🤖 いまの主戦場</span>
+      <p>これまでのAIは<strong>「聞かれたら答える」道具</strong>でした。自律型（AIエージェント）は、<strong>目的を渡すと、自分で手順を決めて実行する</strong>のが違いです。採用領域では、候補者の抽出→スカウト文の作成と送信→書類の一次確認→面接日程の確定までを、人を介さずに進める仕組みがすでに動き始めています。</p>
+    </div>
+
+    <div class="cmp-wrap" style="margin:16px 0;">
+      <table class="cmp-t">
+        <thead><tr><th>採用の工程</th><th>今までのAI</th><th>自律型AIエージェント</th></tr></thead>
+        <tbody>
+          <tr><th>候補者探し</th><td class="mid">検索条件を人が入れる</td><td class="win">人物像から自動で発掘・リスト化</td></tr>
+          <tr><th>スカウト</th><td class="mid">文面を1通ずつ生成</td><td class="win">1人ずつ書き分けて自動送信・追客</td></tr>
+          <tr><th>応募対応</th><td class="mid">返信文を作ってくれる</td><td class="win">24時間、即レス。夜中の応募も逃さない</td></tr>
+          <tr><th>書類選考</th><td class="mid">要約してくれる</td><td class="win">要件との適合度をスコア化して並べる</td></tr>
+          <tr><th>日程調整</th><td class="mid">候補日の文案を作る</td><td class="win">カレンダーを見て枠を確定させる</td></tr>
+          <tr><th>合否判断</th><td class="mid">— </td><td class="win" style="color:#B34A22;">ここは人がやる（後述）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>いちばん効くのは「即レス」</div>
+        <p>応募から返信までの時間は、そのまま歩留まりに直結します。人間には無理な「夜23時の応募に3分で返信」を、自律型なら標準にできます。中小企業が大手に勝てる、数少ないポイントです。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>次に効くのは「候補者の掘り起こし」</div>
+        <p>過去に応募して落ちた人、内定辞退した人、問い合わせだけで終わった人。この名簿が眠っている会社は多い。エージェントに再アプローチさせると、広告費0円で母集団が復活します。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>合否は絶対に自動化しない</div>
+        <p>AIのスコアは「読む順番を決める道具」までにしてください。合否をAIに委ねると、学習データの偏りがそのまま差別的な選別になり、説明もできません。<b>採用の最終判断は人が行い、理由を言葉にできる状態を保つ</b>。ここは譲らないでください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>個人情報の扱いを先に決める</div>
+        <p>履歴書・職務経歴書を無料AIにそのまま貼るのはNG。学習に使われない設定（オプトアウト／法人プラン）を確認し、社内で「貼っていい情報／ダメな情報」を1枚のルールにしてから始めてください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>「AIが対応しています」と伝える</div>
+        <p>隠すと不信になり、開示すると誠実に見えます。応募者にAI対応の範囲を明示している会社ほど、体験の評価が高い傾向。あわせて<b>人間に切り替える窓口</b>を必ず用意しましょう。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>自動化するほど「人の時間」が要る</div>
+        <p>工数が浮いた分を削るのではなく、<b>候補者と話す時間・現場を見せる時間</b>に回してください。自動化の目的は人を減らすことではなく、口説く時間を増やすことです。</p>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:16px;">
+      <div class="wt">⚠ 自律型を入れる前に、必ず</div>
+      ①誰の権限で動くのか ②どこまでは自動で、どこからは人の承認が要るのか ③ログはどこに残るのか。この3つを決めずに走らせると、会社の名前で意図しないメールが飛びます。小さく1工程だけから始めるのが鉄則です。
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>AIが書いた求人票って、バレませんか？</summary>
+        <div class="ans">自社の具体的な事実（数字・時間・固有名詞・正直な弱み）が入っていれば、AI臭は消えます。逆に「アットホーム」「やりがい」「成長できる」しか書いていない原稿は、人が書いてもAIが書いても同じように読み飛ばされます。問題はAIかどうかではなく、中身が具体的かどうかです。</div>
+      </details>
+      <details>
+        <summary>無料のAIだけで足りますか？</summary>
+        <div class="ans">最初は足ります。原稿づくり・改善・スカウト文までは無料版で回せます。ただし、応募者の個人情報を扱う段階や、社内の資料を読み込ませたい段階になったら、学習に使われない設定ができる有料プラン（月3,000円前後）に切り替えてください。</div>
+      </details>
+      <details>
+        <summary>どのAIを使えばいいですか？</summary>
+        <div class="ans">迷ったらChatGPTかClaudeで構いません。文章を丁寧に整える用途はClaude、アイデアを幅広く出す用途はChatGPT、という使い分けをする方が多いです。まず1つ決めて、毎日触るほうが上達します。<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">→ はじめてのAI活用ガイド</a></div>
+      </details>
+      <details>
+        <summary>ハローワークの求人票にもAIは使えますか？</summary>
+        <div class="ans">使えます。ただしハローワークは記入項目が決まっているため、AIには「決められた枠に、明示義務を満たす形で正確に埋める」役割をさせるのが正解です。2024年4月から「業務の変更の範囲」「就業場所の変更の範囲」「有期契約の更新基準」の明示が加わっているので、この3項目を空欄にしないでください。</div>
+      </details>
+      <details>
+        <summary>応募がまったく来ません。原稿を直せば来ますか？</summary>
+        <div class="ans">まず「表示回数」を確認してください。表示回数自体が少ないなら、原稿の中身ではなく職種名・キーワード・更新日の問題です。表示はされているのにクリックされないならタイトルと給与の見せ方、クリックはされるのに応募が来ないなら仕事内容と応募フォームが原因です。原因の場所を特定してから直すのが最短です。</div>
+      </details>
+      <details>
+        <summary>採用にかけられる予算がほとんどありません。</summary>
+        <div class="ans">その場合こそAIの出番です。ハローワーク＋自社の発信＋AIで作り込んだ原稿は、実質の現金支出をほぼゼロにできます。かかるのは時間だけ。まずは月3,000円のAI有料プラン1つから始めて、原稿の質で勝負するのが、いちばん現実的なルートです。</div>
+      </details>
+      <details>
+        <summary>AI面接まで導入すべきでしょうか？</summary>
+        <div class="ans">応募数が月に数十件を超えてから検討で十分です。それ未満の規模なら、AI面接よりも「即レス」と「原稿の質」に投資したほうが効きます。導入する場合も、AIが行うのは情報収集と整理までとし、合否は人が判断する設計にしてください。</div>
+      </details>
+      <details>
+        <summary>社内に詳しい人がいなくても始められますか？</summary>
+        <div class="ans">始められます。この記事のSTEP1〜3までなら、パソコンが苦手な方でも1時間で到達できます。もし「自社の場合どう組むか」で止まったら、無料のAI化診断で現状を整理するところからどうぞ。</div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まずはここから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで今日から始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/office-guide/"><span class="r-ic">🗂️</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×事務 ―「事務、まだ手作業ですか？」<small>／ 労務・書類仕事の自動化</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/sns-marketing/"><span class="r-ic">📣</span><span><span class="r-k">発信で採る</span><span class="r-t">SNSマーケって何？すぐにできる10選<small>／ 採用広報にもそのまま効く</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/meo-guide/"><span class="r-ic">🗺️</span><span><span class="r-k">地域で採る</span><span class="r-t">MEOって何？すぐにできるMEO対策10選<small>／ 「◯◯市 求人」で見つけてもらう</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🤖</span><span><span class="r-k">シリーズ周回</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/roudousha_boshuu.html" target="_blank" rel="noopener"><span class="r-ic">📄</span><span><span class="r-k">公式</span><span class="r-t">労働者を募集する際の明示事項<small>／ 厚生労働省</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/jigyounushi/part_haken/index_00003.html" target="_blank" rel="noopener"><span class="r-ic">⚖️</span><span><span class="r-k">公式</span><span class="r-t">募集・採用における年齢制限禁止<small>／ 厚生労働省</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>「応募が来ない」の原因、<br><span class="hl">診断</span>してみませんか？</h2>
+    <p>求人原稿・媒体・返信スピード・社内の体制。どこで止まっているかは、会社ごとに違います。まずは無料のAI化診断で、あなたの会社の詰まりどころを見つけるところから。Googleフォームで数分です。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※法令・制度・各サービスの仕様は改正や更新により変わることがあります。掲載前に最新の公式情報をご確認ください。本記事は法律上の助言ではありません。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

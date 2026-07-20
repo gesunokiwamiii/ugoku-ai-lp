@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今すぐ作りたい！AIで知識ゼロから始めるHP（LP）作成マニュアル｜費用・手順・AI検索対策まで ― UGOKU AI</title>
+<meta name="description" content="ホームページもLPも、AIがあれば知識ゼロから作れます。目的の決め方・構成の型・コピペで使えるプロンプト・ツールの選び方・費用対効果と予算感・2026年必須のAI検索（LLMO/AEO）対策・自立型AIの可能性と注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="今すぐ作りたい！AIで知識ゼロから始めるHP（LP）作成マニュアル｜UGOKU AI">
+<meta property="og:description" content="作ることは、もうAIの仕事。人間の仕事は「誰に何を約束するか」。手順・費用・AI検索対策まで、初心者向けに全部まとめました。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/hp-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/hp-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/hp-guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×HP（LP）作成マニュアル</span>
+      <h1>「ホームページ、<br>作らなきゃ」を、<span class="hl">今日で終わり</span>にする。</h1>
+      <p class="lead">知識ゼロ・デザインセンスなし・予算なしでも大丈夫。<b>2026年のいまは、AIに話しかけるだけで“形”になります</b>。むずかしいのは作ることではなく、<b>何を書くか</b>と<b>見つけてもらう設計</b>。そこまで丸ごと解説します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。初心者がつまずく順番どおりに、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">マニュアルを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「ホームページなんて自分には無理」——そう思っていた方が、この記事を上から順にやるだけで、<b>今日中に1ページ公開できる</b>ところまで行けます。ゴールはここです。</p>
+        <ul class="checklist">
+          <li>HP・LP・Googleビジネスプロフィールの違いがわかり、自分に必要なものを選べる</li>
+          <li>AIに構成・文章・画像まで作らせる「コピペで使える指示文」が手に入る</li>
+          <li>ツールの選び方と、実際にかかる費用・回収の目安（費用対効果）がわかる</li>
+          <li>2026年の必須テーマ「AI検索に引用されるページ」の作り方がわかる</li>
+          <li>やってはいけない落とし穴（法律・著作権・丸投げ）を先に避けられる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず「3つの入れ物」の違いを掴もう</h2>
+    <p class="sec-sub">全部おなじ“ホームページ”ではありません。役割が違うので、作る順番も費用も変わります。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:#4285F4;">
+        <div class="ic">🏢</div>
+        <h4>HP（会社サイト）<br><span>＝ 信用の置き場</span></h4>
+        <p>会社概要・事業内容・実績・採用。「この会社、実在する？大丈夫？」に答える名刺。複数ページで構成します。</p>
+      </div>
+      <div class="role" style="--accent:#EAA800;">
+        <div class="ic">🎯</div>
+        <h4>LP（1枚もの）<br><span>＝ 行動させる場</span></h4>
+        <p>1ページ・1目的。広告やSNSから来た人に、問い合わせ・予約・購入を1つだけ選ばせる“決めのページ”。</p>
+      </div>
+      <div class="role" style="--accent:#10A37F;">
+        <div class="ic">📍</div>
+        <h4>Googleビジネスプロフィール<br><span>＝ 無料の入口</span></h4>
+        <p>地図に出る無料の店舗情報。店舗業なら<b>HPより先にこれ</b>。作るのは30分、費用ゼロ、効果は最速です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">HP / LP BUILD GUIDE 2026</div>
+    <h2 class="sec-title">知識ゼロから、AIで<br>HP（LP）を作る全手順</h2>
+    <p class="sec-sub">パソコンが得意でない方・Webの経験ゼロの方が、迷わず最後まで行けるように、実務の順番どおりに並べました。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>2026年、ページを「作る」ハードルはほぼ消えました。AIに指示すれば<strong>数十分で形になり、月1,000円台から公開できます</strong>。だから勝負どころは作ることではなく、<strong>①誰に何を言うか ②どう見つけてもらうか</strong>の2つ。この記事は、その2つに時間を使えるように、作業側をAIへ渡す手順書です。</p>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>いきなり10ページ作らない。「1ページ・1目的」から</h4>
+        <p>初心者が挫折する原因のほぼ全部が<b>「作る量が多すぎる」</b>こと。まずは<b>問い合わせを取る1枚（LP）</b>だけ完成させて公開。育てるのは公開してからで間に合います。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>ドメインとアカウントは「自社名義」で持つ</h4>
+        <p>制作会社や知人に丸ごと任せると、後で<b>ドメイン・サーバー・管理画面が人質</b>になり、移転も更新もできなくなります。契約名義とログイン情報は必ず自社で保有を。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:#4285F4;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">GOAL SETTING</span><div class="st-ttl">「誰に・何をしてほしいか」を1行で決める</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここを飛ばすと、どんなに綺麗なページでも問い合わせは来ません。逆にここさえ決まれば、あとの作業は全部AIに投げられます。</p>
+        <div class="mini-h">埋めるのはこの1行だけ</div>
+        <ol class="mini">
+          <li><b>誰に</b>（例：伊勢崎市で外壁の劣化が気になり始めた築15年の戸建て所有者）</li>
+          <li><b>何を約束し</b>（例：無料で屋根・外壁の状態を写真つきで診断する）</li>
+          <li><b>何をしてほしいか</b>（例：LINEで写真を送ってもらう）</li>
+        </ol>
+        <p class="link-note">この3つを繋げた1行が「ページの背骨」。以後、全部の文章はこれに従わせます。</p>
+
+        <div class="mini-h">AIに壁打ちさせる（コピペOK）</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 目的とターゲットを固める</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは中小企業のWeb集客に詳しいマーケターです。
+以下の事業について、ランディングページの「1目的」を決めたいです。
+候補となるターゲット像を3案、それぞれの悩み・検索しそうな言葉・
+最も適したゴール行動（問い合わせ/予約/資料請求/LINE登録）まで
+表にして提案し、最後にあなたの推奨と理由を200字で述べてください。
+【事業内容】<span class="fill">〔業種・エリア・強み・価格帯・実績を箇条書き〕</span>
+【今困っていること】<span class="fill">〔例：新規のお客様が来ない／単価が上がらない〕</span></pre>
+        </div>
+        <div class="warn"><div class="wt">⚠️ よくある失敗</div>「全部盛り」にしないこと。BtoBもBtoCも採用も1ページに詰めると、誰の心にも刺さらないページになります。<b>目的が2つ以上あるなら、ページを分ける</b>のが正解です。</div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>迷ったら「一番利益率が高くて、一番リピートしてくれるお客様」を思い浮かべて。その人だけに向けて書くと、なぜか他の人にも刺さるんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:#C4623C;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">MATERIALS</span><div class="st-ttl">材料を集める（ここが唯一の“人間の仕事”）</div></div></div>
+      <div class="step-body">
+        <p class="desc">AIは文章を整えるのは得意ですが、<b>あなたの現場にしかない事実</b>は作れません。ここだけは自分で集めます。所要30〜60分。</p>
+        <div class="mini-h">集めるものリスト</div>
+        <ul class="use">
+          <li><b>写真</b>：現場・商品・スタッフ・店内。スマホで十分。素材サイトの綺麗な写真より、自分の現場写真のほうが信用されます</li>
+          <li><b>実績・数字</b>：創業年、施工件数、対応エリア、平均◯日で納品、リピート率など</li>
+          <li><b>お客様の声</b>：Googleクチコミ、LINEのやりとり、アンケート。実名や写真つきだと効果は跳ね上がります</li>
+          <li><b>よくある質問</b>：普段お客様に聞かれることを10個。そのままFAQになり、後述のAI検索対策にも直結します</li>
+          <li><b>会社情報</b>：所在地・電話・営業時間・許認可番号。<b>信用の土台</b>で、AIにも人にも参照されます</li>
+        </ul>
+        <div class="mini-h">音声メモをそのまま原稿にする</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 しゃべった内容を素材に変換</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下は、私が自社の仕事について思いつくままに話した文字起こしです。
+①強み ②お客様の悩み ③他社との違い ④実績の数字 ⑤お客様の声に使えそうな言葉
+の5つに分類して箇条書きに整理してください。話し言葉は残さず、
+事実として書けるものだけを抜き出し、根拠が曖昧なものは「要確認」と印をつけてください。
+【文字起こし】<span class="fill">〔スマホの音声入力やボイスメモの書き起こしを貼り付け〕</span></pre>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>キーボードが苦手なら、スマホの音声入力で5分しゃべるだけでいいよ。「書けない」の正体は、だいたい「打つのが面倒」だからね。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:#10A37F;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">STRUCTURE</span><div class="st-ttl">構成（骨組み）をAIに作らせる</div></div></div>
+      <div class="step-body">
+        <p class="desc">売れているLPは、ほぼ同じ順番で並んでいます。この“型”をAIに渡すだけで、素人っぽさが一気に消えます。</p>
+
+        <div class="mini-h">反響が出るLPの王道12ブロック</div>
+        <ol class="mini">
+          <li>ファーストビュー：誰の何が、どう良くなるかを1行で</li>
+          <li>共感：「こんなことで困っていませんか？」3〜5個</li>
+          <li>結論：だからこのサービスです（提供価値）</li>
+          <li>選ばれる理由：3つに絞る（多いほど弱くなる）</li>
+          <li>証拠：実績数字・ビフォーアフター・資格・受賞</li>
+          <li>お客様の声：3件以上、できれば顔・実名・具体的な数字</li>
+          <li>料金：レンジでもいいので必ず出す（不明瞭は離脱の最大要因）</li>
+          <li>流れ：問い合わせ→当日→完了までの5ステップ</li>
+          <li>よくある質問：7〜10問</li>
+          <li>会社情報・スタッフ紹介（顔出しは信用に直結）</li>
+          <li>リスクの解消：キャンセル可・見積無料・しつこい営業なし</li>
+          <li>行動の入口（CTA）：電話・LINE・フォームを、指が届く位置に繰り返し</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 構成とコピーを一気に作らせる</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたはCVR改善が専門のLPディレクター兼コピーライターです。
+下の【材料】をもとに、以下の12ブロック構成でLPの原稿を作ってください。
+①ファーストビュー②共感③提供価値④選ばれる理由3つ⑤実績・証拠
+⑥お客様の声⑦料金⑧ご利用の流れ⑨FAQ7問⑩会社情報⑪不安の解消⑫CTA
+
+条件：
+- 中学生でも読める平易な日本語。専門用語は使うたびに1行で言い換える
+- 誇大表現・断定は禁止。材料にない事実は絶対に創作せず「〔要確認〕」と書く
+- 各ブロックに「見出し」「本文」「入れる画像の指示」をセットで出す
+- スマホで読む前提。1文は45字以内、1段落は3行以内
+【ターゲットと目的】<span class="fill">〔STEP1で決めた1行〕</span>
+【材料】<span class="fill">〔STEP2で整理した箇条書きを貼り付け〕</span></pre>
+        </div>
+        <div class="warn"><div class="wt">⚠️ ここが最重要チェック</div>AIは、材料にない実績・数字・受賞歴を<b>それらしく創作すること</b>があります（ハルシネーション）。数字と固有名詞は、公開前に必ず1つずつ目視で確認してください。<b>嘘の実績表示は景品表示法違反</b>になり得ます。</div>
+      </div>
+    </div>
+
+    <!-- STEP4 ツール選び -->
+    <div class="step" style="--accent:#EAA800;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">TOOL SELECT</span><div class="st-ttl">作る道具を選ぶ（ここで9割決まる）</div></div></div>
+      <div class="step-body">
+        <p class="desc">道具選びを間違えると、途中で必ず止まります。判断軸はシンプルに<b>「自分で更新し続けられるか」</b>の一点です。</p>
+        <p class="link-note" style="margin:0 0 8px;">※料金・仕様は各社の改定で変わります。申し込み前に必ず公式サイトの最新情報をご確認ください。</p>
+
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>タイプ</th><th>代表例</th><th>費用の目安</th><th>向いている人</th></tr></thead>
+            <tbody>
+              <tr><th>地図情報（まず無料）</th><td>Googleビジネスプロフィール</td><td class="win">0円</td><td>店舗・地域密着業。<b>全業種これは最優先</b></td></tr>
+              <tr><th>かんたん作成型</th><td>ペライチ / ジンドゥー</td><td class="win">月1,000円前後〜</td><td>とにかく早く1枚公開したい人</td></tr>
+              <tr><th>AI自動生成型</th><td>Wix（AIビルダー） 他</td><td>月1,000〜3,000円台</td><td>質問に答えるだけで下地を作りたい人</td></tr>
+              <tr><th>デザイン重視・国産</th><td>STUDIO</td><td>無料〜月数百円台〜</td><td>見た目にこだわりたい／独自ドメインで運用したい人</td></tr>
+              <tr><th>本格・拡張型</th><td>WordPress＋レンタルサーバー</td><td>サーバー月500〜1,500円＋ドメイン年1,000円台〜</td><td>記事を量産してSEOで戦う人</td></tr>
+              <tr><th>AI丸投げ生成型</th><td>Lovable / Bolt 等のAIビルダー</td><td>無料枠あり／有料は月20〜25ドル前後</td><td>会話だけで作りたい人・試作を高速で回したい人</td></tr>
+              <tr><th>AI＋無料公開</th><td>ChatGPT・Claude で HTML生成 → GitHub Pages 等で公開</td><td class="win">ほぼ0円（独自ドメイン代のみ）</td><td>コストを極限まで抑えたい人・自分で触る覚悟がある人</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="combo">
+          <h4>迷ったらこの順番でOK（うごく君の推奨ルート）</h4>
+          <div class="flow">
+            <span class="b">① Googleビジネスプロフィール（0円）</span><span class="ar">→</span>
+            <span class="b">② かんたん作成型でLP1枚</span><span class="ar">→</span>
+            <span class="b">③ 反響が出たらHP本体へ拡張</span>
+          </div>
+          <p style="margin:6px 0 0;font-size:13.6px;color:var(--ink-soft);">①だけで問い合わせが増える業種は本当に多いです。<b>お金をかける前に、無料でできることを全部やる</b>。これが一番の費用対効果です。</p>
+        </div>
+
+        <div class="mini-h">公式サイト（ここから開けば安全）</div>
+        <a class="link-btn" href="https://www.google.com/intl/ja_jp/business/" target="_blank" rel="noopener">Googleビジネスプロフィール ↗</a>
+        <a class="link-btn" href="https://peraichi.com/" target="_blank" rel="noopener" style="--accent:#2E7D6B;">ペライチ ↗</a>
+        <a class="link-btn" href="https://studio.design/ja" target="_blank" rel="noopener" style="--accent:#211C12;">STUDIO ↗</a>
+        <a class="link-btn" href="https://ja.wix.com/" target="_blank" rel="noopener" style="--accent:#3B5BDB;">Wix ↗</a>
+        <p class="link-note">似た名前の広告や偽サイトに注意。開いたら<b>ブックマーク</b>しておくと次から確実です。</p>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「一番いいツール」は存在しないよ。あるのは「自分が来月も触れるツール」だけ。触るのが億劫な道具を選んだ時点で、そのHPは更新が止まっちゃうんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:#7B5EA7;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">WRITE &amp; DESIGN</span><div class="st-ttl">文章・画像をAIで仕上げる</div></div></div>
+      <div class="step-body">
+        <p class="desc">STEP3の原稿を、実際に画面に載る形へ。ここはAIの独壇場ですが、<b>チェックだけは人間の責任</b>です。</p>
+
+        <div class="mini-h">スマホで読まれる文章に整える</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 読みやすさリライト</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の文章を、スマホで読む人向けに整えてください。
+条件：1文45字以内／1段落3行以内／専門用語は初出で括弧書きの言い換え／
+自慢ではなく「お客様の得」に言い換える／煽らない／絵文字は使わない。
+整えた本文のあとに、変更した意図を3行で説明してください。
+【元の文章】<span class="fill">〔貼り付け〕</span></pre>
+        </div>
+
+        <div class="mini-h">キャッチコピーを量産して選ぶ</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ファーストビュー案を20個</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>下のサービスのファーストビュー用キャッチコピーを20案ください。
+内訳：①悩み提示型5 ②数字・実績型5 ③常識否定型5 ④共感・情景型5。
+すべて全角25字以内。誇大表現と「No.1」「最安」などの根拠不要な断定は禁止。
+最後に、想定ターゲットに最も刺さる3案とその理由を書いてください。
+【サービス】<span class="fill">〔STEP1の1行＋強み3つ〕</span></pre>
+        </div>
+
+        <div class="mini-h">画像も、AIと現場写真の合わせ技で</div>
+        <ul class="use">
+          <li><b>主役は現場写真</b>：施工前後・調理中・スタッフの表情。信用はここから生まれます</li>
+          <li><b>AI生成画像は脇役</b>：背景・イメージカット・アイコン・図解に。人物の顔は不自然になりやすく注意</li>
+          <li><b>図解はAIが得意</b>：「サービスの流れを5ステップの図にして」と頼めば構成案まで出ます</li>
+          <li><b>画像は必ず軽くする</b>：スマホで表示が遅いページは、それだけで離脱されます</li>
+        </ul>
+
+        <div class="warn"><div class="wt">⚠️ 公開前チェック4点（法律・権利）</div>
+        ①<b>実績・数字</b>は根拠があるか（景品表示法／優良誤認）／②<b>効果効能の言い切り</b>をしていないか（健康・美容・食品は薬機法に注意）／③<b>写真・イラスト・フォント</b>の権利は大丈夫か（他社サイトからの流用は不可）／④<b>お客様の声・写真</b>は本人の許可を取ったか。AIは法務チェックをしてくれません。</div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>AIの文章がなんとなく“よそ行き”に感じたら、あなたが普段お客様に言っている言葉に置き換えてみて。その一言だけで、急に「その会社らしさ」が出るよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:#2F80ED;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>6</b></div><div><span class="st-chip">PUBLISH</span><div class="st-ttl">公開する（ドメイン・フォーム・計測）</div></div></div>
+      <div class="step-body">
+        <p class="desc">「作ったのに問い合わせが来ない」の半分は、ここの抜けが原因です。公開時に必ず4点セットで。</p>
+        <ol class="mini">
+          <li><b>独自ドメイン</b>：年1,000円台〜。<code>自社名.com</code> のように短く。名義は必ず自社</li>
+          <li><b>SSL（https）</b>：鍵マークが出ているか。無いと警告が出て信用を大きく損ないます</li>
+          <li><b>問い合わせ導線</b>：フォーム・電話タップ・LINE。<b>最低3つ</b>用意し、スマホで実際に送信テストを</li>
+          <li><b>計測</b>：Googleアナリティクス（GA4）とサーチコンソールを最初に入れる。後から過去は取れません</li>
+        </ol>
+        <a class="link-btn" href="https://search.google.com/search-console/about" target="_blank" rel="noopener">Search Console（無料）↗</a>
+        <a class="link-btn" href="https://analytics.google.com/" target="_blank" rel="noopener" style="--accent:#E8710A;">Googleアナリティクス（無料）↗</a>
+        <p class="link-note">どちらも無料。「誰が・どこから来て・どこで離脱したか」が見えるようになります。</p>
+
+        <div class="mini-h">公開直後にやると効くこと</div>
+        <ul class="use">
+          <li>Googleビジネスプロフィール・名刺・請求書・見積書・車両・のぼりに<b>URLとQRコード</b>を載せる</li>
+          <li>既存のお客様・取引先へ「HPを作りました」と一斉に一報（最初の反響はほぼここから）</li>
+          <li>SNSのプロフィールリンクを差し替える</li>
+          <li>1週間後にサーチコンソールで「検索に出ているか」を確認</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STEP7 -->
+    <div class="step" style="--accent:#C4623C;">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>7</b></div><div><span class="st-chip">AI SEARCH ／ 2026年の必須</span><div class="st-ttl">「AIに引用されるページ」に仕上げる</div></div></div>
+      <div class="step-body">
+        <p class="desc">2026年、お客様は検索窓ではなく<b>ChatGPTやGeminiに「◯◯でおすすめの会社は？」と話しかけて</b>探し始めています。人だけでなく<b>AIに読ませる設計</b>が要る時代です。この最適化はLLMO／AEO／GEOなどと呼ばれます。</p>
+
+        <div class="mini-h">今日からできる5つ</div>
+        <ol class="mini">
+          <li><b>冒頭300字で結論を書く</b>：AIは「最短で答えが書いてある場所」を引用します</li>
+          <li><b>FAQを7〜10問置く</b>：質問と答えの形は、AIが最も引用しやすい形式です</li>
+          <li><b>事実を数字で書く</b>：「創業2014年」「年間120件」「対応エリア：伊勢崎市・前橋市・高崎市」など、曖昧語を数字に</li>
+          <li><b>会社情報を統一する</b>：社名・住所・電話をHP・地図・SNSで一字一句そろえる（表記ゆれはAIの誤認のもと）</li>
+          <li><b>実体験・現場写真・担当者名</b>を載せる：一次情報のあるページが選ばれます</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 AI検索に引用されやすい形へ変換</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下のページ原稿を、AI検索（ChatGPT・Gemini・Perplexity等）に引用されやすい形へ
+再構成してください。条件：
+①冒頭に「結論」「この記事の要点3つ」「対象読者」を置く
+②見出しは「質問形」にする ③断定するのは事実だけ、推測は推測と明記
+④よくある質問を7問追加（質問文は実際に検索されそうな話し言葉で）
+⑤会社の基本情報（社名・所在地・電話・対応エリア・営業時間）を1か所にまとめる
+【原稿】<span class="fill">〔貼り付け〕</span></pre>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 誤解に注意</div>AI検索対策は「魔法の裏技」ではありません。中身が薄いページを小細工で引用させることはできません。<b>正確な事実を、探しやすい形で置く</b>——結局それが唯一の近道です。</div>
+      </div>
+    </div>
+
+    <!-- ═══ 費用対効果 ═══ -->
+    <h3 class="blk">費用対効果と予算感 ― 「いくらかけて、いくら返るか」</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">感覚で決めず、数字で判断できるようにしておきましょう。制作会社に依頼する場合の相場観は次のとおりです。</p>
+
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>作り方</th><th>初期費用</th><th>月額</th><th>期間</th><th>向き・不向き</th></tr></thead>
+        <tbody>
+          <tr><th>AIで自作（LP1枚）</th><td class="win">0〜3万円</td><td class="win">0〜1,500円</td><td>1日〜1週間</td><td>◎ 速い・安い／△ 品質は自分の力量次第</td></tr>
+          <tr><th>かんたん作成サービス</th><td>0〜5万円</td><td>1,000〜3,000円</td><td>数日</td><td>◎ 更新が楽／△ デザインの自由度は限定的</td></tr>
+          <tr><th>フリーランス依頼</th><td>10〜40万円</td><td>0〜1万円</td><td>2週間〜1.5か月</td><td>◎ コスパ／△ 品質と継続性に幅がある</td></tr>
+          <tr><th>制作会社にLP依頼</th><td>30〜60万円台<br><small>（相場の中心帯）</small></td><td>1〜5万円</td><td>1〜2か月</td><td>◎ 戦略から任せられる／△ 更新は都度費用</td></tr>
+          <tr><th>制作会社にHP一式</th><td>50〜300万円</td><td>1〜10万円</td><td>2〜4か月</td><td>◎ 信用・拡張性／△ 中小には過剰なことも</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note" style="margin-top:8px;">※業界調査では、LP制作の平均発注額はおよそ55万円、中央値は40万円前後とされ、<b>約4分の3が60万円以内</b>に収まっています。金額の幅は「デザイン品質」「戦略設計の有無」「公開後の運用支援」で生まれます。</p>
+
+    <div class="combo" style="margin-top:18px;">
+      <h4>回収シミュレーション（考え方の型）</h4>
+      <p style="margin:0 0 8px;font-size:14px;">難しく考えず、この3つの掛け算だけで判断できます。</p>
+      <div class="flow">
+        <span class="b">月間アクセス</span><span class="ar">×</span>
+        <span class="b">問い合わせ率（1〜3%が目安）</span><span class="ar">×</span>
+        <span class="b">成約率 × 粗利単価</span>
+      </div>
+      <p style="margin:8px 0 0;font-size:13.8px;color:var(--ink-soft);">
+      例）月300人が見て、2%（6件）が問い合わせ、うち3割成約＝約2件。粗利が1件8万円なら<b>月16万円</b>。<br>
+      → 自作（初期3万円）なら<b>約1週間で回収</b>。制作会社に40万円なら<b>約2.5か月で回収</b>。<br>
+      つまり<b>「高い／安い」ではなく「何か月で戻るか」</b>で決めるのが正解です。回収に1年以上かかる計算なら、その投資はまだ早い、という判断ができます。</p>
+    </div>
+
+    <div class="ba">
+      <div class="c bad"><div class="lb">✗ 失敗する予算の使い方</div>デザインに全額を使い、公開後の更新・広告・写真撮影の予算がゼロ。→ 誰にも見られないまま1年経過。</div>
+      <div class="c good"><div class="lb">✓ 成果が出る配分</div>制作は必要最小限に抑え、<b>予算の3〜5割を公開後（写真・記事追加・広告・改善）に残す</b>。ページは公開してからが本番です。</div>
+    </div>
+
+    <!-- ═══ プロンプトの型 ═══ -->
+    <h3 class="blk">AIへの頼み方には「型」がある</h3>
+    <div class="formula">
+      <p style="margin:0 0 4px;font-size:14.6px;color:var(--ink-soft);">思ったものが出てこないのは、AIのせいではなく指示の情報不足です。この5つを入れるだけで精度が変わります。</p>
+      <div class="f-grid">
+        <div class="f-item"><span class="no">1</span><span class="t"><b>役割</b>「あなたはLPのプロです」</span></div>
+        <div class="f-item"><span class="no">2</span><span class="t"><b>目的</b>「問い合わせを増やしたい」</span></div>
+        <div class="f-item"><span class="no">3</span><span class="t"><b>相手</b>「築15年の戸建て所有者」</span></div>
+        <div class="f-item"><span class="no">4</span><span class="t"><b>条件</b>「25字以内・煽らない・20案」</span></div>
+        <div class="f-item"><span class="no">5</span><span class="t"><b>材料</b>「実績・価格・お客様の声」</span></div>
+        <div class="f-item"><span class="no">＋</span><span class="t"><b>禁止事項</b>「事実にないことは書かない」</span></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✗ 悪い例</div>「うちの会社のホームページの文章を作って」<br><small>→ 誰にでも当てはまる、当たり障りのない文章が出てくる。</small></div>
+        <div class="c good"><div class="lb">✓ 良い例</div>「あなたは地域密着の建設業に強いコピーライターです。伊勢崎市で外壁の劣化に悩む築15年の戸建て所有者へ、無料診断の申込を増やすLPの見出しを、全角25字以内で20案。誇大表現禁止。材料は下記だけを使い、無い情報は〔要確認〕と書いてください」</div>
+      </div>
+    </div>
+
+    <!-- ═══ 反響が出る型 ═══ -->
+    <h3 class="blk">反響が伸びている発信に共通する7つの型</h3>
+    <p class="sec-sub" style="margin-bottom:12px;">同業他社で保存・コメント・問い合わせが多く付いている投稿やページを観察すると、驚くほど共通点があります。HP・LP・SNSのどれにも使えます。</p>
+    <div class="ideas">
+      <div class="idea"><h4><span class="e">💰</span>① 価格を最初に出す</h4><ul><li>「料金：3万円〜（税込）」と冒頭で明示</li><li>不明瞭な料金は最大の離脱理由</li><li>幅表示でもいいので必ず出す</li></ul></div>
+      <div class="idea"><h4><span class="e">📸</span>② ビフォーアフター</h4><ul><li>写真2枚＋一言。最も保存される型</li><li>数字を添えると説得力が倍増</li><li>施工・清掃・美容・整体は特に有効</li></ul></div>
+      <div class="idea"><h4><span class="e">🙅</span>③ 「やらないこと」を書く</h4><ul><li>「しつこい営業はしません」</li><li>「対応できないケース」も正直に</li><li>断ることで、逆に信用が上がる</li></ul></div>
+      <div class="idea"><h4><span class="e">👤</span>④ 顔と名前を出す</h4><ul><li>担当者の写真・経歴・想い</li><li>AI時代ほど「誰が」が効く</li><li>採用にも直結する</li></ul></div>
+      <div class="idea"><h4><span class="e">❓</span>⑤ 質問の形で書く</h4><ul><li>見出しをお客様の言葉そのままに</li><li>検索にもAI引用にも強い</li><li>FAQは最低7問</li></ul></div>
+      <div class="idea"><h4><span class="e">⏱️</span>⑥ 所要時間・流れを見せる</h4><ul><li>「問い合わせから最短翌日訪問」</li><li>当日の流れを5ステップで図解</li><li>「知らない怖さ」を消す</li></ul></div>
+      <div class="idea"><h4><span class="e">📱</span>⑦ 入口をLINEにする</h4><ul><li>フォームより心理的ハードルが低い</li><li>写真を送ってもらえる＝見積が早い</li><li>電話・フォームと併設が鉄則</li></ul></div>
+      <div class="idea"><h4><span class="e">🔁</span>＋ 一度で終わらせない</h4><ul><li>公開後に月1回、事例を1本追加</li><li>更新されているサイトは信用される</li><li>AIにも「生きている情報」と判断される</li></ul></div>
+    </div>
+
+    <!-- ═══ 自立型AI ═══ -->
+    <h3 class="blk">ここに「自立型AI（AIエージェント）」が加わると</h3>
+    <p class="sec-sub" style="margin-bottom:12px;">2026年の最大の変化は、AIが<b>指示待ちの相談相手から、自分で手を動かす作業者へ</b>変わったことです。チャットに答えを返すだけでなく、ファイルを直し、確認し、公開まで担うようになりました。ページ制作の景色は、ここから大きく変わります。</p>
+    <div class="ideas">
+      <div class="idea"><h4><span class="e">🛠️</span>作る：会話だけでページが完成</h4><ul><li>「こんなLPが欲しい」と伝えるだけでデザイン・文章・公開まで一括</li><li>エラーを自分で調べて直すモードも登場</li><li>試作を1日に何案も回せる</li></ul></div>
+      <div class="idea"><h4><span class="e">📈</span>直す：数字を見て改善案を出す</h4><ul><li>アクセス解析を読ませ、離脱箇所を特定</li><li>「見出しA/B案」を自動で用意</li><li>改善が“月イチの仕事”から“毎週”に</li></ul></div>
+      <div class="idea"><h4><span class="e">✍️</span>増やす：事例記事を継続生産</h4><ul><li>現場写真＋音声メモ→事例ページ化</li><li>更新が止まる問題を構造的に解決</li><li>AI検索での引用機会も増える</li></ul></div>
+      <div class="idea"><h4><span class="e">💬</span>受ける：問い合わせ対応まで自動化</h4><ul><li>よくある質問への一次回答</li><li>見積の概算提示・日程調整</li><li>電話が取れない現場業ほど効果大</li></ul></div>
+    </div>
+    <div class="warn"><div class="wt">⚠️ 自立型AIを使う前に、必ず決めておくこと</div>
+    ①<b>公開ボタンは人間が押す</b>（AIが勝手に本番反映しない設計に）／②<b>入力してよい情報の線引き</b>（顧客名簿・個人情報・見積原価などは投入しない）／③<b>作ったものの責任は自社</b>（生成コードの脆弱性・表記ミスも含めて）／④<b>ログを残す</b>（誰がいつ何をAIにやらせたか）。<b>「自動で動く」ほど、止め方を先に決めておく</b>のが実務の鉄則です。</div>
+
+    <!-- ═══ 仕事とプライベート ═══ -->
+    <h3 class="blk">仕事にも、私生活にも効く使い方</h3>
+    <div class="split">
+      <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 売上・採用・社内に</div>
+        <ul>
+          <li>商品・キャンペーンごとに<b>LPを使い分ける</b>（広告の費用対効果が跳ね上がる）</li>
+          <li>採用ページを1枚作る。求人媒体からの応募率が変わる</li>
+          <li>お客様への説明資料をWebページ化してURLで渡す（印刷不要・更新も一瞬）</li>
+          <li>社内マニュアルを社外非公開のページにまとめ、教育コストを削減</li>
+          <li>展示会・イベント用の特設ページをその都度AIで即席作成</li>
+        </ul>
+      </div>
+      <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 暮らし・地域・趣味に</div>
+        <ul>
+          <li>自治会・PTA・部活の<b>お知らせページ</b>（紙の配布と電話連絡が激減）</li>
+          <li>結婚式・同窓会の案内と出欠フォームを1ページに</li>
+          <li>趣味の作品・作曲・写真のポートフォリオ</li>
+          <li>副業・個人事業の名刺代わりの1枚</li>
+          <li>子ども向けの学習ページや自由研究のまとめを一緒に作る</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ═══ 安全 ═══ -->
+    <h3 class="blk">安全に運用するための4か条</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>個人情報を入れない</div><p>顧客名簿・電話番号・カルテ・見積原価などは、AIに貼り付けない。社内ルールとして明文化を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>ID・ドメインは自社名義</div><p>ドメイン・サーバー・各種管理画面の契約名義とログイン情報は、必ず自社で保管しておく。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>公開前は必ず人が読む</div><p>数字・固有名詞・法令表現の3点は目視確認。AIの創作をそのまま公開しない。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>フォームは実際に送信テスト</div><p>「届いていなかった」は最悪の機会損失。スマホ・PC両方から、公開後にも定期的に確認を。</p></div>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>パソコンが苦手ですが、本当にできますか？</summary><div class="ans">できます。今のツールは「質問に答える」「文章を貼り付ける」の2つで進みます。スマホだけでも1枚のページは公開可能です。不安ならまずGoogleビジネスプロフィール（無料）から始めてください。</div></details>
+      <details><summary>結局、自作と外注はどちらが得ですか？</summary><div class="ans">判断軸は「時間」と「戦略」です。作業時間を確保でき、月1回は自分で更新できるなら自作が圧倒的に安い。逆に本業が忙しく、誰に何を売るかの設計から相談したいなら外注に価値があります。折衷案として「構成と原稿は自社でAIを使って作り、仕上げだけプロに頼む」も現実的です。</div></details>
+      <details><summary>AIが作った文章をそのまま公開して大丈夫？</summary><div class="ans">おすすめしません。AIは事実にない実績や数字を、それらしく書いてしまうことがあります。数字・固有名詞・効果に関する表現は必ず人が確認してください。特に健康・美容・食品・金融は法規制があります。</div></details>
+      <details><summary>AIで作ったページはGoogleに評価されませんか？</summary><div class="ans">「AIで作ったから低評価」ということはありません。評価されるのは、実際に役立つか・独自の情報があるか・誰が書いたか分かるかです。逆に、中身のない量産ページは手書きでも評価されません。現場写真と一次情報を必ず入れましょう。</div></details>
+      <details><summary>公開したのに問い合わせが来ません。</summary><div class="ans">ほぼ以下のどれかです。①そもそも見られていない（アクセス数が月数十件）②料金が書いていない③問い合わせ先が分かりにくい④スマホで見づらい。まずアクセス解析で①かどうかを切り分けてください。見られていないなら中身ではなく集客の問題です。</div></details>
+      <details><summary>作ったあと、何をすればいいですか？</summary><div class="ans">月1回、事例を1本追加するだけで十分です。写真2枚と数行のコメントを音声入力し、AIに整えてもらう。この習慣がある会社とない会社では、1年後の差が決定的になります。</div></details>
+      <details><summary>費用はどのくらいから始められますか？</summary><div class="ans">独自ドメイン（年1,000円台〜）とサーバー／作成サービス（月0〜1,500円程度）があれば始められます。つまり<b>年間1〜2万円台</b>が最小構成です。制作会社に依頼する場合はLPで30〜60万円台が中心帯です。</div></details>
+    </div>
+
+    <div class="tip" style="margin-top:22px;"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のまとめ</b>作ることは、もうAIが引き受けてくれる。人間に残った仕事は「誰に何を約束するか」を決めることと、現場の事実を渡すこと。この2つさえあれば、今日から始められるよ。</div></div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まずはここから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで、今日から始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ad-image-guide/"><span class="r-ic">🖼️</span><span><span class="r-k">あわせて読む</span><span class="r-t">広告用画像生成 完全ガイド<small>／ 素材からプロのデザインへ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">デザインを整える</span><span class="r-t">Canvaって何？活かし方10選<small>／ 使い方・料金・AI活用まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/video-guide/"><span class="r-ic">🎬</span><span><span class="r-k">次に読む</span><span class="r-t">AI×動画編集 入門マニュアル<small>／ スマホ1台で今日から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chrome-guide/"><span class="r-ic">🌐</span><span><span class="r-k">土台を知る</span><span class="r-t">Google Chromeって何？<small>／ ブラウザの歴史・料金・AI活用</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.google.com/intl/ja_jp/business/" target="_blank" rel="noopener"><span class="r-ic">📍</span><span><span class="r-k">公式・無料</span><span class="r-t">Googleビジネスプロフィール<small>／ まずここから（Google公式）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://search.google.com/search-console/about" target="_blank" rel="noopener"><span class="r-ic">🔎</span><span><span class="r-k">公式・無料</span><span class="r-t">Google Search Console<small>／ 検索に出ているかを確認する</small></span></span><span class="r-arw">↗</span></a>
+</div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>ページは作れる時代。<br>問題は<span class="hl">「何を載せるか」</span>です。</h2>
+    <p>「自社なら、どんなページで・誰に・何を打ち出すべきか」。UGOKU AIは、現場で回るところまで一緒に設計します。まずは無料のAI化診断から。数分で、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・料金・手順は、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

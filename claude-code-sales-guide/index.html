@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Codeに営業資料を丸ごと作らせてわかった8つのこと｜AI初心者のための実践マニュアル ― UGOKU AI</title>
+<meta name="description" content="Claude Codeに営業資料を丸ごと作らせて、わかったことが8つありました。AI初心者でも今日から始められる手順、コピペで使えるプロンプト、費用対効果の計算、失敗しやすい注意点まで。自律型AIエージェント時代の資料づくりを、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="Claude Codeに営業資料を丸ごと作らせてわかった8つのこと｜UGOKU AI">
+<meta property="og:description" content="「Code」と付いていても、プログラミングの話ではありません。日本語で頼むだけで、営業資料が“ファイルごと”出てくる時代の、いちばんやさしい始め方。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-sales-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-sales-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claude Codeに営業資料を丸ごと作らせてわかった8つのこと ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Codeに営業資料を丸ごと作らせてわかった8つのこと｜UGOKU AI">
+<meta name="twitter:description" content="日本語で頼むだけで、営業資料が“ファイルごと”出てくる。実際にやってみて分かった8つのことを、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-sales-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">CLAUDE CODE × 営業資料</span>
+      <h1>Claude Codeに<br>営業資料を<span class="hl">丸ごと</span>作らせて<br>わかった8つのこと。</h1>
+      <p class="lead">名前に「Code」と付いていますが、<b>プログラミングの話ではありません</b>。日本語でお願いするだけで、提案書が“ファイルごと”出てくる。実際にやってみて分かったことを、包み隠さず8つに整理しました。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。専門用語ゼロ、つまずくポイントは先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">8つのことを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>「営業資料づくりに、毎回まる一日つぶれる」——よく聞くお悩みです。この記事を上から読むだけで、次のことが分かります。</p>
+        <ul class="checklist">
+          <li>Claude Codeが「何をしてくれる道具なのか」が30秒で分かる</li>
+          <li>営業資料を丸ごと作らせて分かった、成功／失敗のリアルな8つの学び</li>
+          <li>初心者が今日から始めるための、5ステップの手順とコピペ用プロンプト</li>
+          <li>「月いくらで、何時間浮くのか」——費用対効果を自分で計算できる</li>
+          <li>絶対にやってはいけない注意点（情報漏えい・数字の間違い）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、3つの「AIの働き方」を掴もう</h2>
+    <p class="sec-sub">同じClaudeでも、入口によって“できること”がまったく違います。ここを間違えると、いつまでも効率化できません。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">💬</div>
+        <h4>チャット型<br><span>＝ 相談する</span></h4>
+        <p>ChatGPTやClaudeの通常画面。質問して答えをもらい、<b>コピペは自分</b>。下書きづくりには最適ですが、作業そのものは人がやります。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">⚙️</div>
+        <h4>Claude Code<br><span>＝ 作業させる</span></h4>
+        <p>日本語で頼むと、AIが<b>自分でファイルを作り・直し・チェックまで</b>やります。営業資料を「丸ごと」任せられるのはこの型です。</p>
+      </div>
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🤝</div>
+        <h4>Cowork<br><span>＝ 画面で任せる</span></h4>
+        <p>ターミナル（黒い画面）が苦手な人向けの、デスクトップアプリ版。<b>フォルダを指定して頼むだけ</b>。中身の考え方はClaude Codeと同じです。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">8 LESSONS</div>
+    <h2 class="sec-title">営業資料を丸ごと作らせて、<br>わかった8つのこと</h2>
+    <p class="sec-sub">きれいごと抜きの実践記録です。うまくいったことも、失敗したことも、そのまま書きます。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>Claude Codeは<strong>「文章を返してくれるAI」ではなく、「手を動かして成果物を置いていくAI」</strong>です。だから頼み方も変わります。“質問”ではなく<strong>“発注”</strong>。ここを切り替えた瞬間、営業資料づくりは半日から30分になりました。</p>
+    </div>
+
+    <!-- 前提 -->
+    <h3 class="blk">前提：Claude Codeは「エンジニア専用」ではありません</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">FACT 01</div>
+        <h4>もう黒い画面はいりません</h4>
+        <p>Claude Codeは<b>ターミナル・IDE・デスクトップアプリ・ブラウザ</b>から使えます。<a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">公式ドキュメント</a>でも「ファイルを編集し、コマンドを実行し、開発ツールと連携するエージェント型ツール」と定義されており、扱う対象はコードに限られません。CSV・PDF・スライドも同じ道具で扱えます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">FACT 02</div>
+        <h4>非エンジニアの導入が一気に増えた</h4>
+        <p>2026年に入ってから、<b>ブラウザ版・デスクトップアプリ・スマホからの遠隔指示（Dispatch）・定期実行</b>が相次いで整備され、コードを1行も書かない人が使う前提の道具になりました。実際、経理・法務・営業・人事での活用事例が国内メディアでも数多く公開されています。</p>
+      </div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「Code」の3文字で敬遠しちゃう人が本当に多いんだ。でも実際にやることは、チャットと同じ「日本語でお願いする」だけだよ。</div></div>
+
+    <!-- 01 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>1</b></div><div><span class="st-chip">材料 ＞ 指示</span><div class="st-ttl">「作って」より先に、<br>「材料を渡す」が9割だった</div></div></div>
+      <div class="step-body">
+        <p class="desc">最初の失敗はこれでした。「弊社の営業資料を作って」とだけ頼むと、どこにでもある“それっぽい”資料が出てきます。当たり前です、AIは自社を知らないのですから。</p>
+
+        <div class="mini-h">実際にやったこと</div>
+        <ol class="mini">
+          <li>過去の提案書・見積書・会社案内を1つのフォルダにまとめる（PDFでもWordでも可）</li>
+          <li>受注できた案件と、失注した案件を分けて置く</li>
+          <li>お客様の業種・規模・課題をメモにして同じフォルダへ</li>
+          <li>そのフォルダごと「これを読んでから作って」と渡す</li>
+        </ol>
+
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ もったいない例</div>「うちの営業資料を作って」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 一般論の羅列。差別化ゼロ。結局イチから書き直し</span></div>
+          <div class="c good"><div class="lb">◎ 効いた例</div>「resources/ の過去提案書5本を読んで、勝ちパターンを抽出してから、A社向けの提案書を作って」<br><span style="color:#7A5B12;font-size:12.5px;">→ 自社の言い回し・強み・価格の見せ方まで再現される</span></div>
+        </div>
+
+        <div class="warn"><div class="wt">⚠️ ここが分かれ道</div>チャット型AIは「貼り付けられる分」しか読めませんが、Claude Codeは<b>フォルダごと読ませられる</b>のが最大の違い。手持ちの資産が多い会社ほど、効果が跳ね上がります。</div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>2</b></div><div><span class="st-chip">出力形式</span><div class="st-ttl">「どの形で出すか」を決めた瞬間、<br>品質が安定した</div></div></div>
+      <div class="step-body">
+        <p class="desc">同じ内容でも、出力形式を指定しないと毎回バラバラになります。逆に形式を固定すると、2回目以降は「同じ品質」が再現されます。</p>
+        <div class="mini-h">営業資料でよく使う3つの形式</div>
+        <ul class="use">
+          <li><b>PowerPoint（.pptx）</b>：そのまま商談に持っていける。枚数・章立てまで指定できる</li>
+          <li><b>HTML1枚（Webページ）</b>：URLで送れる提案書。スマホでも崩れず、更新も一瞬</li>
+          <li><b>Excel（.xlsx）</b>：見積・比較表・ROI試算。数式まで入った状態で出てくる</li>
+        </ul>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 形式まで指定する頼み方</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>output/ フォルダに、PowerPoint形式（.pptx）で提案書を作ってください。
+構成は全12枚：表紙／課題／原因／解決策／導入事例／料金／
+導入スケジュール／体制／リスクと対策／効果試算／よくある質問／次のアクション。
+1枚あたり文字数は<span class="fill">〔120字以内〕</span>、フォントは<span class="fill">〔メイリオ〕</span>、
+コーポレートカラーは<span class="fill">〔#〇〇〇〇〇〇〕</span>で統一してください。</pre>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「枚数」「1枚あたりの文字数」「色」——この3つを言うだけで、資料の見栄えは別物になるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>3</b></div><div><span class="st-chip">3周まわす</span><div class="st-ttl">1回で完成を狙わない。<br>「骨 → 肉 → 化粧」の3周が最速</div></div></div>
+      <div class="step-body">
+        <p class="desc">一発で完璧を狙うと、直しづらい大作が出てきて、結局最初から作り直すことになります。3周に分けたほうが、圧倒的に速くて質が高い。</p>
+        <div class="combo">
+          <h4>🔁 3周まわしの型</h4>
+          <div class="flow"><span class="b">① 骨<br>目次だけ作る</span><span class="ar">→</span><span class="b">② 肉<br>本文を書かせる</span><span class="ar">→</span><span class="b">③ 化粧<br>体裁と数字を整える</span></div>
+          <p style="margin:0;font-size:14px;color:var(--ink-soft);">①で<b style="color:var(--pine);">目次だけ</b>を出させて、人間が並び替える。ここが一番大事な工程で、ここさえ合っていれば残りは自動で進みます。②で肉付け、③でデザイン・数字チェック。<b style="color:var(--pine);">①に5分かけると、③が10分で終わります。</b></p>
+        </div>
+        <div class="mini-h">周回ごとの指示のしかた</div>
+        <ol class="mini">
+          <li><b>1周目</b>：「まず目次案を3パターン出して。本文はまだ書かないで」</li>
+          <li><b>2周目</b>：「案Bで進めて。各章の本文を書いて、根拠が薄い箇所には【要確認】と付けて」</li>
+          <li><b>3周目</b>：「体裁を整えて。数字が入る箇所を一覧にして、出典も並べて」</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>4</b></div><div><span class="st-chip">CLAUDE.md</span><div class="st-ttl">一番効いたのは、<br>「会社のルールを覚えさせる」1ファイル</div></div></div>
+      <div class="step-body">
+        <p class="desc">8つの中で、最も費用対効果が高かったのがこれです。Claude Codeには<code>CLAUDE.md</code>という“社内ルール帳”を置く仕組みがあり、<b>毎回の作業開始時に自動で読み込まれます</b>。一度書けば、以降の指示が驚くほど短くて済みます。</p>
+        <a class="link-btn" href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener">CLAUDE.md の公式解説を見る ↗</a>
+        <p class="link-note">プロジェクトのルート（一番上の階層）に置くだけです。</p>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 CLAUDE.md にコピペする雛形</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre># 会社情報
+社名：<span class="fill">〔株式会社〇〇〕</span>／事業：<span class="fill">〔〇〇〕</span>／所在地：<span class="fill">〔〇〇〕</span>
+強み：<span class="fill">〔他社にない3点を箇条書き〕</span>
+NGワード：<span class="fill">〔業界No.1／絶対に／必ず儲かる 等〕</span>
+
+# 資料づくりのルール
+・敬体（です・ます）で統一。専門用語は初出でカッコ書き解説
+・1スライド1メッセージ。文字は120字以内
+・価格は必ず税抜表記＋「別途消費税」を明記
+・出典のない数字は使わない。推計値には「推計」と明記
+
+# 出力ルール
+・成果物は output/ に保存
+・ファイル名は「YYYYMMDD_顧客名_資料種別」
+・数字が入った箇所は最後に一覧にして提示すること</pre>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>これ、新人さんに渡す「うちのやり方メモ」と同じ。人にもAIにも効く資産になるから、最初の30分を投資する価値があるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>5</b></div><div><span class="st-chip">ハルシネーション</span><div class="st-ttl">数字と固有名詞は、<br>100%人間が確認しないと事故る</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここは正直に書きます。<b>AIはもっともらしく間違えます</b>（ハルシネーション）。市場規模、シェア、他社の料金、法律の条文——見た目は完璧なのに、出典を辿ると存在しない、ということが実際に起きました。営業資料でこれをやると、信用を一発で失います。</p>
+        <div class="mini-h">事故を防ぐ運用ルール</div>
+        <ul class="use">
+          <li><b>数字は必ず一覧化させる</b>：「この資料に出てくる数値と出典を、表にして出して」</li>
+          <li><b>推測に印をつけさせる</b>：「確証がない箇所には【要確認】と明記して」</li>
+          <li><b>出典URLを踏む</b>：一次情報（官公庁・業界団体・公式サイト）まで自分で確認</li>
+          <li><b>最終責任は自社</b>：提出した資料の内容責任は、AIではなく提出者にあります</li>
+        </ul>
+        <div class="warn"><div class="wt">⚠️ 特に危ない3つ</div>①競合他社の価格・実績　②統計データの出典　③法令・助成金の要件。この3つは<b>AIの出力をそのまま載せない</b>と決めておくのが安全です。</div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>6</b></div><div><span class="st-chip">コスト構造</span><div class="st-ttl">コストは「月額」ではなく、<br>「作り直しの回数」で決まった</div></div></div>
+      <div class="step-body">
+        <p class="desc">月額の話は後述しますが、実感としてのコストは<b>やり直し回数</b>でほぼ決まります。指示が曖昧だと5回やり直す。材料とルールを渡せば1〜2回で終わる。同じ月額でも、こなせる本数が3倍変わります。</p>
+        <div class="mini-h">やり直しを減らす、たった3つの工夫</div>
+        <div class="rule2">
+          <div class="rule-card">
+            <div class="rn">TIPS 01</div>
+            <h4>完成イメージを先に見せる</h4>
+            <p>「この資料と同じ構成で」と<b>既存の1本を見本として渡す</b>だけで、やり直しが激減しました。言葉で説明するより早いです。</p>
+          </div>
+          <div class="rule-card">
+            <div class="rn">TIPS 02</div>
+            <h4>1回の依頼を小さく切る</h4>
+            <p>「資料を作って」ではなく「まず目次」「次に第3章だけ」。<b>小さく頼むほど手戻りが小さい</b>のは、人への依頼と同じです。</p>
+          </div>
+          <div class="rule-card">
+            <div class="rn">TIPS 03</div>
+            <h4>成功した指示文を保存する</h4>
+            <p>うまくいったプロンプトは、必ずテキストで保存。<b>次回は貼り付けるだけ</b>で同じ品質が出ます。これがチームの財産になります。</p>
+          </div>
+          <div class="rule-card">
+            <div class="rn">TIPS 04</div>
+            <h4>ムダな長文を渡さない</h4>
+            <p>関係ないファイルまで読ませると、その分だけ処理量（＝上限の消費）が増えます。<b>フォルダを整理してから</b>渡すのがコツ。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>7</b></div><div><span class="st-chip">自律型（エージェント）</span><div class="st-ttl">「放っておいたら終わっていた」が、<br>現実になっていた</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここが2026年の一番大きな変化です。従来のAIは「聞く→答える」の往復でしたが、<b>自律型（エージェント型）AI</b>は、ゴールを渡すと途中の判断・エラー対処まで自分で進めます。</p>
+        <div class="mini-h">営業資料まわりで“任せきり”にできたこと</div>
+        <ul class="use">
+          <li><b>定期実行</b>：毎週月曜の朝に、先週の商談メモから週報と次週の提案骨子を自動生成</li>
+          <li><b>遠隔指示</b>：移動中にスマホから「A社向けの資料、たたき台まで作っておいて」</li>
+          <li><b>ゴール指定</b>：「全12枚・誤字ゼロ・数字一覧つきになるまで直し続けて」と条件で頼む</li>
+          <li><b>外部連携</b>：Google ドライブ・Slack・Notion など社内ツールと接続して材料を自動収集</li>
+        </ul>
+        <div class="combo">
+          <h4>🤖 自律型が加わると、こう変わる</h4>
+          <div class="flow"><span class="b">今まで<br>人が全工程</span><span class="ar">→</span><span class="b">AIが下書き<br>人が判断</span><span class="ar">→</span><span class="b">AIが完成まで<br>人は最終承認だけ</span></div>
+          <p style="margin:0;font-size:14px;color:var(--ink-soft);">重要なのは、<b style="color:var(--pine);">人の仕事が「作る」から「決める」に移る</b>ということ。資料づくりの時間が減った分を、商談と関係構築に回せたかどうかで、成果はまったく変わります。</p>
+        </div>
+        <div class="warn"><div class="wt">⚠️ 自律型ゆえの注意</div>自動で動くということは、<b>間違ったまま進む</b>可能性もあるということ。①作業させるフォルダを限定する ②社外に出す前に必ず人が承認する ③実行ログを残す。この3点はセットで決めてください。</div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>LESSON</small><b>8</b></div><div><span class="st-chip">最大の収穫</span><div class="st-ttl">残ったのは資料ではなく、<br>「誰でも同じ資料が作れる型」だった</div></div></div>
+      <div class="step-body">
+        <p class="desc">これが8つの中で、いちばん価値のあった発見です。手に入ったのは1本の営業資料ではなく、<b>「材料フォルダ ＋ ルール帳 ＋ 成功プロンプト」という再現装置</b>でした。</p>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">Before</span> 属人化していた状態</div>
+            <ul>
+              <li>エース営業の資料が一番良いが、本人しか作れない</li>
+              <li>新人は見よう見まねで、品質がバラバラ</li>
+              <li>作成に半日〜1日。だから提案の本数が増やせない</li>
+              <li>退職・異動でノウハウが消える</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">After</span> 型が残った状態</div>
+            <ul>
+              <li>誰が頼んでも、エースの構成・言い回しで出てくる</li>
+              <li>新人でも初日から「合格点の資料」を出せる</li>
+              <li>30分〜1時間。提案本数を増やせる</li>
+              <li>ノウハウが会社の資産としてファイルに残る</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>AI導入で一番もったいないのは「便利だったね」で終わること。型として残す設計にしておくと、効果がずっと続くよ。</div></div>
+      </div>
+    </div>
+
+    <!-- ═══ 初心者マニュアル ═══ -->
+    <div class="cmp">
+      <h3 class="blk">初心者が今日から始める、合理的な5ステップ</h3>
+      <p class="sec-sub" style="margin-top:-6px;">遠回りしないための最短ルートです。所要時間の目安つき。</p>
+
+      <div class="step" style="--accent:var(--google);">
+        <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">準備（10分）</span><div class="st-ttl">アカウントとプランを用意する</div></div></div>
+        <div class="step-body">
+          <p class="desc">Claude Codeを使うには、Claudeの有料プラン（Pro以上）が基本です。無料プランではエージェント機能は使えません。</p>
+          <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claude を開く ↗</a>
+          <p class="link-note">Googleアカウントでそのままログインできます。アカウントの作り方は<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/">はじめてのAI活用ガイド</a>で解説しています。</p>
+          <ol class="mini">
+            <li>Claudeにログインし、有料プラン（Pro：月20ドル前後）に加入</li>
+            <li>まずは<b>デスクトップアプリ版かブラウザ版</b>を選ぶ（黒い画面は不要）</li>
+            <li>お試しなので、いきなり上位プランに行かないこと</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="step" style="--accent:var(--pine);">
+        <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">材料集め（30分）</span><div class="st-ttl">1つのフォルダに「材料」を放り込む</div></div></div>
+        <div class="step-body">
+          <p class="desc">ここが成果を決めます。手を抜かないでください。</p>
+          <ol class="mini">
+            <li>デスクトップに <code>eigyo-shiryo</code> というフォルダを作る</li>
+            <li>中に <code>resources</code>（材料）と <code>output</code>（成果物）を作る</li>
+            <li><code>resources</code> に、過去の提案書・会社案内・価格表・受注事例を入れる</li>
+            <li>顧客情報が入っている資料は、<b>入れる前に個人名・電話番号を伏せる</b></li>
+          </ol>
+          <div class="warn"><div class="wt">⚠️ ここで必ず</div>お客様の個人情報・機密情報は、社内ルールを決めてから扱ってください。判断に迷うものは<b>入れない</b>が正解です。</div>
+        </div>
+      </div>
+
+      <div class="step" style="--accent:var(--claude);">
+        <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">ルール作り（30分）</span><div class="st-ttl">CLAUDE.md を1枚だけ書く</div></div></div>
+        <div class="step-body">
+          <p class="desc">LESSON 4の雛形をコピーして、自社の情報に書き換え、<code>CLAUDE.md</code> という名前でフォルダの一番上に保存するだけ。ここまでが“下ごしらえ”です。</p>
+          <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>完璧じゃなくて大丈夫。使いながら追記していくのが正解だよ。最初は10行でも効果あり。</div></div>
+        </div>
+      </div>
+
+      <div class="step" style="--accent:var(--chatgpt);">
+        <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">初回実行（20分）</span><div class="st-ttl">「目次だけ」を作らせてみる</div></div></div>
+        <div class="step-body">
+          <p class="desc">いきなり完成品を狙わないこと。まずは目次3案から。</p>
+          <div class="copybox">
+            <div class="cb-top"><span class="cb-lbl">📋 いちばん最初に貼るプロンプト</span><button class="cb-btn" type="button">コピー</button></div>
+            <pre>resources/ の中のファイルをすべて読んで、
+当社の強み・よく使う言い回し・価格の見せ方を整理してください。
+そのうえで、<span class="fill">〔顧客名〕</span>（業種：<span class="fill">〔〇〇〕</span>／規模：<span class="fill">〔〇名〕</span>／
+課題：<span class="fill">〔〇〇〕</span>）向けの提案書の目次案を3パターン出してください。
+本文はまだ書かないでください。各案の狙いも1行で添えてください。</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="step" style="--accent:var(--ember-2);">
+        <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">仕上げ（30分）</span><div class="st-ttl">本文 → 体裁 → 数字チェック</div></div></div>
+        <div class="step-body">
+          <p class="desc">目次を選んだら、本文・体裁・検算の順に進めます。この3つを別々に頼むのがコツです。</p>
+          <div class="copybox">
+            <div class="cb-top"><span class="cb-lbl">📋 本文を書かせる</span><button class="cb-btn" type="button">コピー</button></div>
+            <pre>案<span class="fill">〔B〕</span>で進めてください。各章の本文を、1スライド120字以内で書き、
+output/ に .pptx で保存してください。
+根拠が弱い箇所には【要確認】と明記してください。</pre>
+          </div>
+          <div class="copybox">
+            <div class="cb-top"><span class="cb-lbl">📋 数字を検算させる（必須）</span><button class="cb-btn" type="button">コピー</button></div>
+            <pre>この資料に出てくる数値・固有名詞・他社名をすべて抜き出し、
+「記載内容／出典／確認要否」の3列の表にしてください。
+出典が確認できないものは、はっきり「出典不明」と書いてください。</pre>
+          </div>
+          <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>この最後の検算プロンプトだけは、絶対に省略しないで。ここが信用を守る最後の砦だよ。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 費用対効果 ═══ -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、数字で見える化する</h3>
+      <p class="sec-sub" style="margin-top:-6px;">「なんとなく便利」では社内が動きません。自社の数字を入れて計算してみてください。</p>
+
+      <div class="mini-h">まず、かかる費用（2026年7月時点の目安）</div>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>プラン</th><th>月額の目安</th><th>向いている人</th></tr></thead>
+          <tbody>
+            <tr><th>無料</th><td class="mid">0円</td><td class="mid">チャットのお試しのみ。Claude Codeは使えません</td></tr>
+            <tr><th>Pro</th><td class="win">約20ドル／月</td><td class="win">◎ まずはここ。1人で1日数時間の利用なら十分</td></tr>
+            <tr><th>Max（5倍）</th><td class="mid">約100ドル／月</td><td class="mid">上限に頻繁に当たる人。資料を毎日量産する営業向け</td></tr>
+            <tr><th>Max（20倍）</th><td class="mid">約200ドル／月</td><td class="mid">1日中AIに作業させる人。上限をほぼ気にしない</td></tr>
+            <tr><th>Team／Enterprise</th><td class="mid">要問合せ</td><td class="mid">チーム管理・セキュリティ要件がある企業向け</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="link-note">※料金・上限は改定されることがあります。契約前に必ず<a href="https://claude.ai" target="_blank" rel="noopener">公式サイト</a>でご確認ください。上限は5時間ごと・週ごとの2段構えで管理される仕組みです。</p>
+
+      <div class="mini-h">次に、浮く時間（実測ベースの試算）</div>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>工程</th><th>これまで</th><th>Claude Code導入後</th></tr></thead>
+          <tbody>
+            <tr><th>顧客リサーチ・整理</th><td class="mid">90分</td><td class="win">15分</td></tr>
+            <tr><th>構成（目次）づくり</th><td class="mid">60分</td><td class="win">10分</td></tr>
+            <tr><th>本文・スライド作成</th><td class="mid">180分</td><td class="win">20分</td></tr>
+            <tr><th>体裁・デザイン調整</th><td class="mid">60分</td><td class="win">10分</td></tr>
+            <tr><th>数字・誤字チェック</th><td class="mid">30分</td><td class="mid">25分（※人の確認は減らさない）</td></tr>
+            <tr><th>合計（1本あたり）</th><td class="mid">約7時間</td><td class="win">約1時間20分</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="combo">
+        <h4>💰 回収ラインの計算（例）</h4>
+        <div class="flow"><span class="b">1本あたり<br>5.7時間短縮</span><span class="ar">×</span><span class="b">月8本<br>作成する</span><span class="ar">＝</span><span class="b">月45時間<br>浮く</span></div>
+        <p style="margin:0 0 10px;font-size:14px;color:var(--ink-soft);">営業担当の時間単価を<b>3,000円</b>とすると、月45時間 × 3,000円 ＝ <b style="color:var(--pine);">約13万5,000円／月の効果</b>。対して費用は月3,000円前後（Pro）。ざっくり<b style="color:var(--pine);">45倍</b>の計算になります。</p>
+        <p style="margin:0;font-size:13.5px;color:var(--ink-soft);">ただし、これは「浮いた時間を商談に使えた場合」の話です。<b>空いた時間の使い道を決めていない導入は、効果が数字に出ません。</b>ここが導入設計の肝です。</p>
+      </div>
+
+      <div class="mini-h">効果測定は、この4つだけ見れば十分</div>
+      <div class="safe-grid">
+        <div class="safe-item"><div class="si-h"><span class="no">1</span>1本あたり作成時間</div><p>導入前後で比較。最も分かりやすく、社内説明に効きます。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">2</span>月間の提案本数</div><p>時間が浮いた分、提案数が増えたか。増えていなければ設計ミスです。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">3</span>作成者の人数</div><p>エース1人 → 全員が作れるようになったか。属人化解消の指標です。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">4</span>受注率の変化</div><p>3か月単位で。資料の質が上がれば、ここに遅れて効いてきます。</p></div>
+      </div>
+    </div>
+
+    <!-- ═══ プロンプトの型 ═══ -->
+    <div class="cmp">
+      <h3 class="blk">うごく君の「発注の型」——5つの要素</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Claude Codeへの指示は“質問”ではなく“発注”。この5つを足すだけで、結果が一段変わります。</p>
+      <div class="formula">
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>材料はどこ？</b>例：resources/ の全ファイルを読んで</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>誰向け？</b>例：製造業・従業員50名・人手不足が課題</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>何を作る？</b>例：提案書12枚／見積比較表／想定質問集</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>どんな形で？</b>例：.pptx で output/ に保存・1枚120字</div></div>
+          <div class="f-item"><div class="no">5</div><div class="t"><b>完了条件は？</b>例：誤字ゼロ・数字一覧つきになるまで</div></div>
+        </div>
+        <div class="copybox" style="margin-top:14px;">
+          <div class="cb-top"><span class="cb-lbl">📋 そのまま使える万能テンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>【材料】<span class="fill">〔resources/ のファイルをすべて読んでから〕</span>
+【相手】<span class="fill">〔業種・規模・役職・課題〕</span>
+【依頼】<span class="fill">〔作ってほしい成果物と枚数〕</span>
+【形式】<span class="fill">〔ファイル形式・保存先・文字数・トーン〕</span>
+【完了条件】<span class="fill">〔この条件を満たすまで直し続けてください〕</span>
+※根拠が確認できない数値には【要確認】と明記すること。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 仕事と私生活 ═══ -->
+    <div class="cmp">
+      <h3 class="blk">営業資料だけじゃない。あらゆる局面での使い道</h3>
+      <p class="sec-sub" style="margin-top:-6px;">同じ「材料を渡して成果物を作らせる」型は、そのまま他の場面にも効きます。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">📊</span>営業・マーケで</h4><ul>
+          <li>商談メモ50件から「失注の共通パターン」を抽出</li>
+          <li>顧客別の想定質問集＋回答例を自動生成</li>
+          <li>競合との比較表を、公開情報から作成（要検証）</li>
+          <li>フォローメール文面を、温度感別に3パターン</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🧾</span>バックオフィスで</h4><ul>
+          <li>請求書CSVの突合チェックと差異レポート</li>
+          <li>売掛金の年齢表（エイジング）を自動作成</li>
+          <li>契約書を自社ひな型と条項単位で比較</li>
+          <li>就業規則・社内マニュアルの改訂差分を整理</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏪</span>現場・店舗で</h4><ul>
+          <li>日報・シフト表から、月次の傾向レポート</li>
+          <li>クチコミを読み込んで、改善優先順位を提案</li>
+          <li>スタッフ向け作業手順書を、写真つきで整備</li>
+          <li>多言語スタッフ向けに、同じ手順書を翻訳版で出力</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>私生活で</h4><ul>
+          <li>家計簿CSVから、月次の支出レポートとグラフ</li>
+          <li>写真フォルダを日付・イベント別に自動整理</li>
+          <li>旅行の予約メールから、しおりを1枚に</li>
+          <li>子どもの学習プリントを、単元別に整理・出題</li>
+        </ul></div>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>共通しているのは「バラバラのファイルを、意味のある1つの成果物にまとめる」こと。この形に当てはまる作業は、全部任せられる可能性があるよ。</div></div>
+    </div>
+
+    <!-- ═══ 注意点 ═══ -->
+    <h3 class="blk">導入前に必ず決めておく、8つの注意点</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>機密情報の線引き</div><p>顧客の個人情報・カード番号・未公開の経営数値は入れない。<b>入れてよい／悪いの一覧を先に作る</b>のが確実です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>作業範囲の限定</div><p>AIに触らせるフォルダを限定する。デスクトップ全体やCドライブ直下を渡さないこと。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>社外提出前の人間承認</div><p>「AIが作った資料は、必ず人が承認してから外に出す」を明文化。承認者も決めておきます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>数字と出典の検証</div><p>統計・他社価格・法令は、必ず一次情報を確認。出典が辿れないものは載せない。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>著作権・引用ルール</div><p>他社の文章や画像をそのまま使わせない。生成物の内容責任は、提出した自社にあります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>上限（レート制限）の理解</div><p>プランごとに一定時間内の利用上限があります。締切直前に上限到達、を避ける段取りを。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>属人化のつくり直しに注意</div><p>「AIを使えるのは〇〇さんだけ」では意味がありません。ルール帳とプロンプトを共有資産に。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>浮いた時間の使い道を決める</div><p>ここが最重要。時間を空けただけでは成果になりません。<b>商談・訪問・改善に振り替える</b>まで設計します。</p></div>
+    </div>
+
+    <!-- ═══ FAQ ═══ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>プログラミングの知識は本当にゼロで大丈夫？</summary><div class="ans">大丈夫です。やることは日本語で依頼するだけ。むしろ「コードを書こうとする」人ほど詰まります。黒い画面が苦手なら、デスクトップアプリ版（Cowork）から始めれば、フォルダを指定して頼むだけで動きます。</div></details>
+      <details><summary>ChatGPTでも同じことができるのでは？</summary><div class="ans">下書きづくりなら十分できます。違うのは「作業まで任せられるか」です。チャット型は答えを返すところまで、Claude Codeはフォルダを読み、ファイルを作り、保存し、直すところまでを一気に行います。目的が「相談」ならチャット型、「成果物を出す」ならエージェント型、と使い分けるのが合理的です。</div></details>
+      <details><summary>まず何本くらい試せば効果が判断できますか？</summary><div class="ans">3本が目安です。1本目は準備込みで時間がかかりますが、2本目から材料とルール帳が効き始め、3本目でおおよその所要時間が見えます。この3本の実測値を持って社内説明するのが、一番説得力があります。</div></details>
+      <details><summary>導入費用に使える助成金はありますか？</summary><div class="ans">AI活用の社内研修は、厚生労働省の人材開発支援助成金（人への投資促進コース等）の対象になる場合があります。要件・支給額は年度や制度改正で変わるため、必ず最新の公募要領で確認が必要です。UGOKU AIでは、助成金の活用可否を含めた設計からご相談いただけます。</div></details>
+      <details><summary>社内に広めるとき、何から始めるべき？</summary><div class="ans">全社一斉ではなく、<b>資料作成に一番時間を取られている1部署</b>から。そこで型（材料フォルダ・ルール帳・成功プロンプト）を完成させ、実測データを持って横展開するのが最短です。逆に「全員にアカウントを配る」から始めると、ほぼ定着しません。</div></details>
+      <details><summary>入力した内容は学習に使われますか？</summary><div class="ans">学習利用の扱いは、プラン・契約形態・設定によって異なります。法人利用では、契約内容とデータ取り扱いのポリシーを事前に確認してください。判断に迷う情報は入れない、というルールが最も安全です。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🌱</span><span><span class="r-k">まずはここから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで、今日から始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-2026-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">次に読む</span><span class="r-t">2026年後半、今からAIを学ぶなら？<small>／ どこに張れば外さないか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-sales-guide/"><span class="r-ic">📈</span><span><span class="r-k">あわせて読む</span><span class="r-t">AI×営業の活かし方<small>／ 商談準備・提案・フォローを効率化する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/canva-guide/"><span class="r-ic">🎨</span><span><span class="r-k">あわせて読む</span><span class="r-t">Canvaって何？活かし方10選<small>／ 資料のデザインを一段引き上げる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"><span class="r-ic">📘</span><span><span class="r-k">公式ドキュメント</span><span class="r-t">Claude Code 公式ガイド<small>／ Anthropic公式（英語）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://claude.ai" target="_blank" rel="noopener"><span class="r-ic">🤖</span><span><span class="r-k">公式サイト</span><span class="r-t">Claude を始める<small>／ プラン・料金の最新情報はこちら</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>その資料づくり、<br><span class="hl">もう半日</span>かけなくていい。</h2>
+    <p>「材料フォルダ・ルール帳・成功プロンプト」——効果が続く型づくりまで、UGOKU AIが一緒に設計します。まずは無料のAI化診断から。数分で、あなたの会社のAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※料金・機能・上限は提供元の更新により変わることがあります。本記事の数値は2026年7月時点の公開情報および実測に基づく目安です。契約前に必ず公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

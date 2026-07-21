@@ -1086,7 +1086,20 @@
       .fixed-cta .f2 {
         border: 1px solid rgba(199, 255, 240, 0.35);
         color: #eafffb;
-        flex: 0 0 34%;
+        flex: 0 0 24%;
+      }
+      .fixed-cta .f3 {
+        border: 1px solid rgba(234, 211, 154, 0.55);
+        color: #ead39a;
+        flex: 0 0 27%;
+      }
+      .fixed-cta .f3:hover { background: rgba(234, 211, 154, 0.12); }
+      .fixed-cta .f1 { flex: 1 1 auto; }
+      @media (max-width: 400px) {
+        .fixed-cta { gap: 7px; padding-left: 10px; padding-right: 10px; }
+        .fixed-cta a { font-size: 12.5px; padding: 12px 4px; }
+        .fixed-cta .f2 { flex: 0 0 22%; }
+        .fixed-cta .f3 { flex: 0 0 26%; }
       }
       .section-cta {
         margin-top: 44px;
@@ -1481,7 +1494,17 @@
       .flm-vol{display:block;margin-top:7px;font-size:13px;font-weight:700;letter-spacing:.04em;color:rgba(234,211,154,.82);-webkit-text-fill-color:rgba(234,211,154,.82)}
       .flm-title b{background:linear-gradient(90deg,#18d6bd,#ead39a);-webkit-background-clip:text;background-clip:text;color:transparent}
       .flm-desc{margin:0;font-size:13px;color:rgba(199,255,240,.72);letter-spacing:.02em}
-      .flm-rows{display:flex;flex-direction:column;gap:14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+            .flm-toggle{display:inline-flex;align-items:center;gap:9px;margin-top:16px;cursor:pointer;
+        font-family:'Zen Kaku Gothic New',system-ui,sans-serif;font-size:12.5px;font-weight:800;
+        letter-spacing:.12em;color:#08201d;background:linear-gradient(90deg,#18d6bd,#ead39a);
+        border:none;border-radius:100px;padding:11px 22px;box-shadow:0 6px 18px rgba(24,214,189,.22);transition:.16s}
+      .flm-toggle:hover{transform:translateY(-1px);filter:brightness(1.04)}
+      .flm-toggle .cv{display:inline-block;font-size:11px;transition:transform .28s}
+      .flm-toggle[aria-expanded="false"] .cv{transform:rotate(-90deg)}
+      .flm-collapse{display:grid;grid-template-rows:1fr;transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1)}
+      .flm-collapse.closed{grid-template-rows:0fr}
+      .flm-collapse__inner{overflow:hidden;min-height:0}
+.flm-rows{display:flex;flex-direction:column;gap:14px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
       .flm-row{overflow:hidden}
       .flm-track{display:flex;gap:14px;width:max-content;will-change:transform}
       .flm-track.l{animation:flmL var(--flm-dur,120s) linear infinite}
@@ -1526,8 +1549,11 @@
         <span class="flm-kicker">FREE ┃ 無料でAIを学ぶ</span>
         <h2 class="flm-title">パソコンが苦手でも動き出せる、<b>120本の無料ガイド</b><span class="flm-vol">（約136万文字 ／ 読了 約45時間相当）</span></h2>
         <p class="flm-desc">気になるバナーをタップ。横にスワイプ／ドラッグでも探せます。ChatGPT・Claude・Gemini・MEO・SNS・動画まで、うごく君がやさしく解説。</p>
+        <button type="button" class="flm-toggle" id="flm-toggle" aria-expanded="true" aria-controls="flm-collapse"><span class="tx">一覧を閉じる</span><span class="cv" aria-hidden="true">▼</span></button>
       </div>
-      <div class="flm-rows">
+      <div class="flm-collapse" id="flm-collapse">
+        <div class="flm-collapse__inner">
+          <div class="flm-rows">
     <div class="flm-row">
       <div class="flm-track l" style="--flm-dur:128s">
         <a class="flm-card" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/small-company-10/">
@@ -2741,11 +2767,28 @@
       </div>
     </div>
       </div>
-      <div class="flm-more">
+          <div class="flm-more">
         <a href="#free-learn">無料ガイド一覧をすべて見る ↓</a>
       </div>
+        </div>
+      </div>
     </section>
-    <script>
+        <script>
+    /* 無料ガイド一覧：開閉トグル（既定は開いた状態＝横スクロールの幅計測を確実にするため） */
+    (function(){
+      var btn=document.getElementById('flm-toggle');
+      var box=document.getElementById('flm-collapse');
+      if(!btn||!box) return;
+      var tx=btn.querySelector('.tx');
+      btn.addEventListener('click',function(){
+        var open=btn.getAttribute('aria-expanded')==='true';
+        btn.setAttribute('aria-expanded',String(!open));
+        box.classList.toggle('closed',open);
+        tx.textContent=open?'一覧を開く':'一覧を閉じる';
+      });
+    })();
+    </script>
+<script>
     /* 無料ガイド 横スクロール：CSSアニメ自動流しを保険に残しつつ、JSで「手動スワイプ/ドラッグ＋自動流し」を実現。
        JSが動かない/計測できない場合は何もせず、CSSアニメのまま表示され続ける（＝消えない）。 */
     (function(){
@@ -3759,7 +3802,7 @@
 
     <!-- ▼▼ うごく君 入門ガイド 誘導バナー（自動挿入：AI入門＋Googleガイド） ▼▼ -->
 
-    <div id="free-learn" style="max-width:960px;margin:40px auto 0;padding:0 20px;text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;"><button id="ugk-idx-toggle" type="button" aria-expanded="false" aria-controls="ugk-idx-collapse" style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:.12em;color:#B8860B;background:#FCF6E8;border:1px solid rgba(234,168,0,.55);padding:11px 20px;border-radius:100px;box-shadow:0 4px 12px rgba(234,168,0,.15);transition:.16s;">AIやGoogleが初めての方へ ― 無料の入門ガイド 一覧<span id="ugk-idx-chev" aria-hidden="true" style="display:inline-block;transition:transform .28s;font-size:11px;">▼</span></button></div>
+    <div id="free-learn" style="max-width:960px;margin:40px auto 0;padding:0 20px;text-align:center;font-family:'Zen Kaku Gothic New',sans-serif;"><button id="ugk-idx-toggle" type="button" aria-expanded="false" aria-controls="ugk-idx-collapse" style="display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:.12em;color:#B8860B;background:#FCF6E8;border:1px solid rgba(234,168,0,.55);padding:11px 20px;border-radius:100px;box-shadow:0 4px 12px rgba(234,168,0,.15);transition:.16s;">AIやGoogleが初めての方へ ― 無料の入門ガイド 一覧<span id="ugk-idx-lbl" style="font-weight:900;">（開く）</span><span id="ugk-idx-chev" aria-hidden="true" style="display:inline-block;transition:transform .28s;font-size:11px;">▼</span></button></div>
 <!-- ▼▼ うごく君 入門ガイド：ジャンル別タブ・記事インデックス（開閉式／自動挿入） ▼▼ -->
 <!-- 記事を増やしたら下の DATA 配列に1行足すだけでOK。cat=ジャンルID -->
 <div class="ugk-idx" id="ugk-idx">
@@ -4031,6 +4074,8 @@
         var open = collapse.classList.toggle("open");
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
         if(chev) chev.style.transform = open ? "rotate(180deg)" : "rotate(0deg)";
+            var lbl = document.getElementById("ugk-idx-lbl");
+            if(lbl) lbl.textContent = open ? "（閉じる）" : "（開く）";
         if(inner){ if(open) inner.removeAttribute("inert"); else inner.setAttribute("inert",""); }
       });
     }
@@ -4089,6 +4134,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugk-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugk-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugk-foot .ugk-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugk-foot{padding:0 20px 22px;}}
     .ugk-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugk-thumb{
@@ -4114,7 +4162,6 @@
       <span class="ugk-eb">📘 無料ガイド</span>
       <h3>「AIって何から？」を<br><span class="hl">今日で終わり</span>にする入門ガイド</h3>
       <p>Googleアカウント1つで、YouTube・ChatGPT・Claudeを今日から。パソコンが苦手な方でも読める、いちばんやさしいAIの始め方。</p>
-      <span class="ugk-btn">ガイドを読む →</span>
     </div>
     <div class="ugk-r">
       <div class="ugk-thumb">
@@ -4128,6 +4175,10 @@
         </div>
       </div>
     </div>
+  
+    <div class="ugk-foot">
+      <span class="ugk-btn">記事を読む →</span>
+    </div>
   </a>
 
   <a class="ugk-card" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-jinzai-guide/" style="text-decoration:none;">
@@ -4135,7 +4186,6 @@
       <span class="ugk-eb">🎓 無料ガイド・新着</span>
       <h3>リアルなAI人材育成、<br><span class="hl">どうしてる？</span></h3>
       <p>研修はやった。なのに誰も使ってない――原因は「教え方」ではなく設計。セオリー・最新データ・90日マニュアル・費用対効果・自律型AIの注意点まで、まるごと視える化。</p>
-      <span class="ugk-btn">ガイドを読む →</span>
     </div>
     <div class="ugk-r">
       <div class="ugk-thumb">
@@ -4149,6 +4199,10 @@
         </div>
       </div>
     </div>
+  
+    <div class="ugk-foot">
+      <span class="ugk-btn">記事を読む →</span>
+    </div>
   </a>
 
   <a class="ugk-card" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/gunma-ai-guide/" style="text-decoration:none;">
@@ -4156,7 +4210,6 @@
       <span class="ugk-eb">🏔️ 無料ガイド・地域版</span>
       <h3>群馬県でAI導入<br><span class="hl">するなら？</span></h3>
       <p>群馬の中小企業のための完全ガイド。何から始めるか、いくらかかるか、どの補助金が使えるか。地元で実装している立場から、現実的な順番でまとめました。</p>
-      <span class="ugk-btn">ガイドを読む →</span>
     </div>
     <div class="ugk-r">
       <div class="ugk-thumb">
@@ -4170,6 +4223,10 @@
         </div>
       </div>
     </div>
+  
+    <div class="ugk-foot">
+      <span class="ugk-btn">記事を読む →</span>
+    </div>
   </a>
 
   <a class="ugk-card" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/phone-ai-guide/" style="text-decoration:none;">
@@ -4177,7 +4234,6 @@
       <span class="ugk-eb">☎️ 無料ガイド・実装編</span>
       <h3>電話対応、AIに<br><span class="hl">任せられる？</span></h3>
       <p>鳴り止まない一次受付を自動化する。できること・できないこと、費用相場、導入5ステップ、失敗しない予算感を2026年版で整理しました。</p>
-      <span class="ugk-btn">ガイドを読む →</span>
     </div>
     <div class="ugk-r">
       <div class="ugk-thumb">
@@ -4190,6 +4246,10 @@
           <span class="chip">予算感</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugk-foot">
+      <span class="ugk-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4236,6 +4296,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkc-foot .ugkc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkc-foot{padding:0 20px 22px;}}
     .ugkc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkc-thumb{text-align:center; padding:24px;}
@@ -4259,7 +4322,6 @@
       <span class="ugkc-eb">✨ 無料ガイド ｜ SERIES ②</span>
       <h3>ChatGPTが<span class="hl">“活きる”</span><br>10の使いどころ</h3>
       <p>「なんか便利らしい」で止まっていませんか。仕事と遊びで本当に役立つ場面を10コに厳選。コピペで使える頼み方・各プランの予算感・注意点まで、うごく君が解説します。</p>
-      <span class="ugkc-btn">10選を読む →</span>
     </div>
     <div class="ugkc-r">
       <div class="ugkc-thumb">
@@ -4273,6 +4335,10 @@
           <span class="chip">自分専用AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkc-foot">
+      <span class="ugkc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4319,6 +4385,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkcc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcc-foot .ugkcc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcc-foot{padding:0 20px 22px;}}
     .ugkcc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcc-thumb{text-align:center; padding:24px;}
@@ -4342,7 +4411,6 @@
       <span class="ugkcc-eb">🤖 無料ガイド ｜ SERIES ③</span>
       <h3>Claude Codeが<span class="hl">“活きる”</span><br>10の使いどころ</h3>
       <p>“答えるだけ”のAIから、実際に手を動かすAIへ。日本語で頼むだけで、集計・資料作り・自分専用ツールまで。仕事と遊びで本当に活きる10場面を、各プランの予算感・注意点つきで、うごく君が解説します。</p>
-      <span class="ugkcc-btn">10選を読む →</span>
     </div>
     <div class="ugkcc-r">
       <div class="ugkcc-thumb">
@@ -4356,6 +4424,10 @@
           <span class="chip">公開</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcc-foot">
+      <span class="ugkcc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4404,6 +4476,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkm-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkm-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkm-foot .ugkm-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkm-foot{padding:0 20px 22px;}}
     .ugkm-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkm-thumb{text-align:center; padding:24px;}
@@ -4427,7 +4502,6 @@
       <span class="ugkm-eb">🗺️ 無料ガイド ｜ SERIES ④</span>
       <h3>MEOって何？<span class="hl">すぐにできる</span><br>MEO対策10選</h3>
       <p>Googleマップで“選ばれる店”になる方法を、初心者向けに。無料の始め方・各機能の使い方・料金プランの予算感・AI（Gemini）活用・注意点まで、うごく君が10コに整理して解説します。</p>
-      <span class="ugkm-btn">10選を読む →</span>
     </div>
     <div class="ugkm-r">
       <div class="ugkm-thumb">
@@ -4441,6 +4515,10 @@
           <span class="chip">料金相場</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkm-foot">
+      <span class="ugkm-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4490,6 +4568,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkci-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkci-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkci-foot .ugkci-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkci-foot{padding:0 20px 22px;}}
     .ugkci-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkci-thumb{text-align:center; padding:24px;}
@@ -4513,7 +4594,6 @@
       <span class="ugkci-eb">🚀 無料マニュアル ｜ Claude Code 導入編</span>
       <h3>「Claude Code」を<span class="hl">Macで0から</span><br>始める導入マニュアル</h3>
       <p>PC初心者でも大丈夫。インストール〜ログイン〜はじめての操作まで、Mac（Google Chrome推奨）での0→1を、料金プランの予算感・注意点つきで、うごく君が手取り足取り解説します。</p>
-      <span class="ugkci-btn">導入手順を読む →</span>
     </div>
     <div class="ugkci-r">
       <div class="ugkci-thumb">
@@ -4527,6 +4607,10 @@
           <span class="chip">初期設定</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkci-foot">
+      <span class="ugkci-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4575,6 +4659,9 @@
       padding:14px 24px; border-radius:12px; box-shadow:0 6px 16px rgba(234,168,0,.35);
       font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
+    .ugkg-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkg-foot .ugkg-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkg-foot{padding:0 20px 22px;}}
     .ugkg-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkg-thumb{text-align:center; padding:24px;}
@@ -4598,7 +4685,6 @@
       <span class="ugkg-eb">📗 無料ガイド</span>
       <h3>Googleアカウント、<br><span class="hl">実はこんなに使える</span>。</h3>
       <p>Gmail・ドライブ・スプレッドシート・フォーム・マップを、仕事と遊びで活かす方法。さらにAIを足すとどう変わるか、注意点まで、やさしく解説。</p>
-      <span class="ugkg-btn">ガイドを読む →</span>
     </div>
     <div class="ugkg-r">
       <div class="ugkg-thumb">
@@ -4612,6 +4698,10 @@
           <span class="chip">マップ</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkg-foot">
+      <span class="ugkg-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4659,6 +4749,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugks-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugks-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugks-foot .ugks-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugks-foot{padding:0 20px 22px;}}
     .ugks-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugks-thumb{text-align:center; padding:24px;}
@@ -4682,7 +4775,6 @@
       <span class="ugks-eb">📣 無料ガイド ｜ SERIES ⑤</span>
       <h3>SNSマーケって何？<span class="hl">すぐにできる</span><br>SNSマーケ10選</h3>
       <p>SNSで“選ばれる・売れる”仕組みを、初心者向けに。反応が増える投稿の型・各SNS広告の予算感・仕事と遊びでの活かし方・AIを足すと何ができるか（注意点つき）まで、うごく君が10コに整理して解説します。</p>
-      <span class="ugks-btn">10選を読む →</span>
     </div>
     <div class="ugks-r">
       <div class="ugks-thumb">
@@ -4696,6 +4788,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugks-foot">
+      <span class="ugks-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4743,6 +4839,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkch-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkch-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkch-foot .ugkch-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkch-foot{padding:0 20px 22px;}}
     .ugkch-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkch-thumb{text-align:center; padding:24px;}
@@ -4766,7 +4865,6 @@
       <span class="ugkch-eb">🌐 無料ガイド ｜ SERIES ⑥</span>
       <h3>Google Chromeって何？<span class="hl">歴史・料金・AI</span><br>まるわかり解説</h3>
       <p>毎日ひらくのに、実はよく知らないChromeを、web初心者向けに。ブラウザの正体・Googleとの関係・歴史と哲学・各プランの予算感・仕事と遊びでの使い方・Gemini（AI）で何ができるか（注意点つき）まで、うごく君がやさしく解説します。</p>
-      <span class="ugkch-btn">解説を読む →</span>
     </div>
     <div class="ugkch-r">
       <div class="ugkch-thumb">
@@ -4780,6 +4878,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkch-foot">
+      <span class="ugkch-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4828,6 +4930,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkcs-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcs-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcs-foot .ugkcs-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcs-foot{padding:0 20px 22px;}}
     .ugkcs-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcs-thumb{text-align:center; padding:24px;}
@@ -4851,7 +4956,6 @@
       <span class="ugkcs-eb">💬 無料ガイド ｜ SERIES ⑦</span>
       <h3>ChatGPTって結局なにもの？<span class="hl">歴史・哲学・日本</span><br>との未来まで解説</h3>
       <p>毎日ニュースで聞くのに、実はよく知らないChatGPTを、初心者向けに。作った会社OpenAIの10年の歴史・「全人類のためのAGI」という哲学・各プランの予算感・仕事と遊びでの全機能の使い方・そしてソフトバンク／Stargateなど日本とのこれから（注意点つき）まで、うごく君がやさしく解説します。</p>
-      <span class="ugkcs-btn">物語を読む →</span>
     </div>
     <div class="ugkcs-r">
       <div class="ugkcs-thumb">
@@ -4865,6 +4969,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcs-foot">
+      <span class="ugkcs-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4906,6 +5014,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkd-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkd-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkd-foot .ugkd-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkd-foot{padding:0 20px 22px;}}
     .ugkd-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkd-thumb{text-align:center; padding:24px;}
@@ -4929,7 +5040,6 @@
       <span class="ugkd-eb">✨ 無料ガイド ｜ Claude 活用編</span>
       <h3>Claudeが<span class="hl">“活きる”</span><br>10のこと</h3>
       <p>登録はしたけど、質問するだけで終わっていませんか。長文まるごと要約・図解・データ分析から、Cowork・Claude Codeまで。仕事と遊びで本当に効く場面を10コに厳選し、コピペ例・各プランの予算感・注意点つきで、うごく君が解説します。</p>
-      <span class="ugkd-btn">10選を読む →</span>
     </div>
     <div class="ugkd-r">
       <div class="ugkd-thumb">
@@ -4943,6 +5053,10 @@
           <span class="chip">Cowork</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkd-foot">
+      <span class="ugkd-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -4984,6 +5098,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugke-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugke-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugke-foot .ugke-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugke-foot{padding:0 20px 22px;}}
     .ugke-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugke-thumb{text-align:center; padding:24px;}
@@ -5007,7 +5124,6 @@
       <span class="ugke-eb">📖 無料ガイド ｜ Claude 深掘り編</span>
       <h3>Claudeの<span class="hl">歴史と哲学</span><br>日本とのこれから</h3>
       <p>「Claudeって何がすごいの？」を初心者向けに。作った会社Anthropicの歴史と“安全第一”の哲学、各プランの予算感、仕事と遊びでの活かし方、そして日本とのこれからの関係まで、うごく君がやさしく解説します。</p>
-      <span class="ugke-btn">記事を読む →</span>
     </div>
     <div class="ugke-r">
       <div class="ugke-thumb">
@@ -5021,6 +5137,10 @@
           <span class="chip">日本との関係</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugke-foot">
+      <span class="ugke-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5062,6 +5182,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkn-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkn-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkn-foot .ugkn-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkn-foot{padding:0 20px 22px;}}
     .ugkn-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkn-thumb{text-align:center; padding:24px;}
@@ -5085,7 +5208,6 @@
       <span class="ugkn-eb">📒 無料ガイド ｜ NotebookLM編</span>
       <h3>NotebookLMって<span class="hl">何？</span><br>料金・全機能の使い方</h3>
       <p>自分の資料“だけ”を根拠に、出典つきで答えてくれるGoogleのAIノート。無料〜有料の予算感、音声概要・動画解説・マインドマップ・Deep Researchなど全機能を、仕事と遊びの両面でやさしく解説します。</p>
-      <span class="ugkn-btn">記事を読む →</span>
     </div>
     <div class="ugkn-r">
       <div class="ugkn-thumb">
@@ -5099,6 +5221,10 @@
           <span class="chip">料金</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkn-foot">
+      <span class="ugkn-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5140,6 +5266,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkv-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkv-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkv-foot .ugkv-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkv-foot{padding:0 20px 22px;}}
     .ugkv-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkv-thumb{text-align:center; padding:24px;}
@@ -5163,7 +5292,6 @@
       <span class="ugkv-eb">🎨 無料ガイド ｜ Canva編</span>
       <h3>Canvaって<span class="hl">何？</span><br>活かし方10選</h3>
       <p>デザイン初心者でも“それっぽく”作れる万能ツール。使い方・料金・テンプレ活用から、AIでの時短術まで。チラシ・SNS・POP・資料づくりに効く場面を10コに厳選して解説します。</p>
-      <span class="ugkv-btn">10選を読む →</span>
     </div>
     <div class="ugkv-r">
       <div class="ugkv-thumb">
@@ -5177,6 +5305,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkv-foot">
+      <span class="ugkv-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5219,6 +5351,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkceo-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkceo-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkceo-foot .ugkceo-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkceo-foot{padding:0 20px 22px;}}
     .ugkceo-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkceo-thumb{text-align:center; padding:24px;}
@@ -5242,7 +5377,6 @@
       <span class="ugkceo-eb">👑 無料ガイド ｜ トップ経営者編</span>
       <h3>トップ経営者の<span class="hl">AI活用術</span><br>10選</h3>
       <p>ソフトバンク孫正義・DeNA南場智子・サイバーエージェント藤田晋・GMO熊谷正寿。日本を代表する4人の“実際の使い方”を、初心者でも今日マネできる形に翻訳。壁打ち・ディベート・音声入力・自動化まで、仕事と私生活で効く10の型を、注意点つきで解説します。</p>
-      <span class="ugkceo-btn">10選を読む →</span>
     </div>
     <div class="ugkceo-r">
       <div class="ugkceo-thumb">
@@ -5256,6 +5390,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkceo-foot">
+      <span class="ugkceo-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5298,6 +5436,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkw-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkw-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkw-foot .ugkw-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkw-foot{padding:0 20px 22px;}}
     .ugkw-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkw-thumb{text-align:center; padding:24px;}
@@ -5321,7 +5462,6 @@
       <span class="ugkw-eb">🤝 無料ガイド ｜ Claude Cowork編</span>
       <h3>Claude Coworkって<span class="hl">何？</span><br>活かし方10選</h3>
       <p>“任せて終わる”AI同僚。資料作成・リサーチ・整理などの多段タスクを、あなたの代わりに進めます。はじめ方から仕事で本当に効く使い方10選まで、コピペ例・注意点つきで解説します。</p>
-      <span class="ugkw-btn">10選を読む →</span>
     </div>
     <div class="ugkw-r">
       <div class="ugkw-thumb">
@@ -5335,6 +5475,10 @@
           <span class="chip">自動化</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkw-foot">
+      <span class="ugkw-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5380,6 +5524,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkx-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkx-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkx-foot .ugkx-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkx-foot{padding:0 20px 22px;}}
     .ugkx-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkx-thumb{text-align:center; padding:24px;}
@@ -5403,7 +5550,6 @@
       <span class="ugkx-eb">🧩 無料ガイド ｜ OpenAI Codex編</span>
       <h3>Codexって<span class="hl">何？</span><br>活かし方10選</h3>
       <p>OpenAIの“コードを書くAIエージェント”Codex。指示するだけでコード生成・修正・自動化までこなします。専門知識ゼロからのはじめ方と、仕事＆遊びで本当に役立つ使い方10選を、コピペ例・注意点つきで解説します。</p>
-      <span class="ugkx-btn">10選を読む →</span>
     </div>
     <div class="ugkx-r">
       <div class="ugkx-thumb">
@@ -5417,6 +5563,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkx-foot">
+      <span class="ugkx-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5464,6 +5614,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkfde-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfde-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfde-foot .ugkfde-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfde-foot{padding:0 20px 22px;}}
     .ugkfde-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfde-thumb{text-align:center; padding:24px;}
@@ -5487,7 +5640,6 @@
       <span class="ugkfde-eb">🚀 無料ガイド ｜ TECH TREND解説</span>
       <h3>年収<span class="hl">5000万円</span>の新職種<br>「FDE」って、何者？</h3>
       <p>いま世界のAI業界でいちばん奪い合いになっている新職種FDEを、テック初心者にもやさしく。年収の実態・求人800%増の理由から、その考え方を自分の仕事と遊びに活かす方法まで、うごく君が解説します。</p>
-      <span class="ugkfde-btn">記事を読む →</span>
     </div>
     <div class="ugkfde-r">
       <div class="ugkfde-thumb">
@@ -5500,6 +5652,10 @@
           <span class="chip">OpenAI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfde-foot">
+      <span class="ugkfde-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5541,6 +5697,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkai26-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkai26-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkai26-foot .ugkai26-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkai26-foot{padding:0 20px 22px;}}
     .ugkai26-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkai26-thumb{text-align:center; padding:24px;}
@@ -5564,7 +5723,6 @@
       <span class="ugkai26-eb">🤖 無料ガイド ｜ 2026年後半編</span>
       <h3>2026年後半、今から<br><span class="hl">AIを学ぶ・活かす</span>なら？</h3>
       <p>今からでも遅くない。ChatGPT・Gemini・Claudeを、どれを・いくらで・仕事と遊びにどう活かすか。無料/有料の予算感、各機能の使い方、AIが加わる可能性と注意点まで、初心者にいちばんやさしく解説します。</p>
-      <span class="ugkai26-btn">ガイドを読む →</span>
     </div>
     <div class="ugkai26-r">
       <div class="ugkai26-thumb">
@@ -5578,6 +5736,10 @@
           <span class="chip">使い方</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkai26-foot">
+      <span class="ugkai26-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5621,6 +5783,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkvid-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkvid-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkvid-foot .ugkvid-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkvid-foot{padding:0 20px 22px;}}
     .ugkvid-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkvid-thumb{text-align:center; padding:24px;}
@@ -5644,7 +5809,6 @@
       <span class="ugkvid-eb">🎬 無料ガイド ｜ AI動画編集編</span>
       <h3>「動画編集、むずかしそう…」を<br><span class="hl">今日で終わり</span>に。</h3>
       <p>カットも字幕もナレーションもAIで自動。テキストから映像を“生成”するSora・Veo・Klingまで。2026年の最新トレンドと、初心者が挫折しない始め方を、仕事と遊びの活かし方・注意点までやさしく解説します。</p>
-      <span class="ugkvid-btn">ガイドを読む →</span>
     </div>
     <div class="ugkvid-r">
       <div class="ugkvid-thumb">
@@ -5658,6 +5822,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkvid-foot">
+      <span class="ugkvid-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5700,6 +5868,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkkid-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkkid-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkkid-foot .ugkkid-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkkid-foot{padding:0 20px 22px;}}
     .ugkkid-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkkid-thumb{text-align:center; padding:24px;}
@@ -5723,7 +5894,6 @@
       <span class="ugkkid-eb">🧸 無料ガイド ｜ AI×子育て編</span>
       <h3>「AIで子育て、ラクになる？」を<br><span class="hl">10の場面</span>で。</h3>
       <p>献立・連絡帳・「なんで？」への答え方・声かけ・寝かしつけ…毎日の10場面を、子育ての定石とコピペOKのプロンプトで。仕事にも効く応用、自立型AIでの“回り続ける”仕組み、そして注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkkid-btn">ガイドを読む →</span>
     </div>
     <div class="ugkkid-r">
       <div class="ugkkid-thumb">
@@ -5737,6 +5907,10 @@
           <span class="chip">自立型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkkid-foot">
+      <span class="ugkkid-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5782,6 +5956,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkjimu-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkjimu-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkjimu-foot .ugkjimu-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkjimu-foot{padding:0 20px 22px;}}
     .ugkjimu-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkjimu-thumb{text-align:center; padding:24px;}
@@ -5805,7 +5982,6 @@
       <span class="ugkjimu-eb">🗂️ 無料ガイド ｜ AI×事務編</span>
       <h3>「事務、まだ手作業ですか？」を<br><span class="hl">今日で終わり</span>に。</h3>
       <p>メール・議事録・Excel・データ整理を、コピペで今日から時短。2026年の主役「自律型AI（AIエージェント）」で作業を丸ごと任せる方法まで。仕事も私生活も変わる活かし方・注意点を、やさしく解説します。</p>
-      <span class="ugkjimu-btn">ガイドを読む →</span>
     </div>
     <div class="ugkjimu-r">
       <div class="ugkjimu-thumb">
@@ -5819,6 +5995,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkjimu-foot">
+      <span class="ugkjimu-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5860,6 +6040,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkprad-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkprad-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkprad-foot .ugkprad-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkprad-foot{padding:0 20px 22px;}}
     .ugkprad-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkprad-thumb{text-align:center; padding:24px;}
@@ -5883,7 +6066,6 @@
       <span class="ugkprad-eb">📣 無料ガイド ｜ AI×広報・広告編</span>
       <h3>「発信、大事なのは分かる。でも何を？」を<br><span class="hl">今日で終わり</span>に。</h3>
       <p>反響が出る投稿の"型"・プレスリリース・広告コピー・SNSの書き分けを、コピペで今日から。2026年の主役「自律型AI（AIエージェント）」で"作って・出して・測る"まで回す方法まで。仕事も私生活も変わる活かし方・注意点を、やさしく解説します。</p>
-      <span class="ugkprad-btn">ガイドを読む →</span>
     </div>
     <div class="ugkprad-r">
       <div class="ugkprad-thumb">
@@ -5897,6 +6079,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkprad-foot">
+      <span class="ugkprad-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -5939,6 +6125,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkfin-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfin-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfin-foot .ugkfin-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfin-foot{padding:0 20px 22px;}}
     .ugkfin-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfin-thumb{text-align:center; padding:24px;}
@@ -5962,7 +6151,6 @@
       <span class="ugkfin-eb">🧾 無料ガイド ｜ AI×経理・財務編</span>
       <h3>「経理、まだ手入力ですか？」を<br><span class="hl">今日で終わり</span>に。</h3>
       <p>請求書・仕訳・経費精算・月次レポートの"毎月の手作業"を、コピペで使えるプロンプトと合理的な4ステップでラクに。freee・マネーフォワードの最新トレンド、2026年の主役「自律型AI（AIエージェント）」で"集めて・記帳して・分析"まで回す方法、仕事も私生活（家計・確定申告）も変わる活かし方・注意点まで、やさしく解説します。</p>
-      <span class="ugkfin-btn">ガイドを読む →</span>
     </div>
     <div class="ugkfin-r">
       <div class="ugkfin-thumb">
@@ -5976,6 +6164,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfin-foot">
+      <span class="ugkfin-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6018,6 +6210,9 @@
       transition:.16s; font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;
     }
     .ugkcon-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcon-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcon-foot .ugkcon-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcon-foot{padding:0 20px 22px;}}
     .ugkcon-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcon-thumb{text-align:center; padding:24px;}
@@ -6041,7 +6236,6 @@
       <span class="ugkcon-eb">🏗️ 無料ガイド ｜ AI×建設業界編</span>
       <h3>「AIは大手だけの話」を<br><span class="hl">今日で終わり</span>に。</h3>
       <p>書類・積算・安全管理・技術継承まで、現場で今日から効くAI活用術10選を、コピペで使えるプロンプトと合理的な始め方3ステップで。2024年問題・i-Construction 2.0・人手不足という最新トレンド、2026年の主役「自律型AI（AIエージェント）」が現場にもたらす可能性、仕事も私生活も変わる使い方・注意点まで、現場のプロ目線でやさしく解説します。</p>
-      <span class="ugkcon-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcon-r">
       <div class="ugkcon-thumb">
@@ -6055,6 +6249,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcon-foot">
+      <span class="ugkcon-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6098,6 +6296,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkads-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkads-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkads-foot .ugkads-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkads-foot{padding:0 20px 22px;}}
     .ugkads-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkads-thumb{text-align:center; padding:24px;}
@@ -6121,7 +6322,6 @@
       <span class="ugkads-eb">🎯 無料ガイド ｜ AI×Google広告編</span>
       <h3>「広告費、溶かした」を<br><span class="hl">設計</span>で終わりに。</h3>
       <p>計測の土台づくり・目標CPAの逆算式・検索意図の4分類・除外キーワード・広告文の型・入札の階段・P-MAX／AI Maxの使い分け・週15分のPDCAまで、プロが踏む7ステップを初心者向けに分解。コピペで使えるAIプロンプト7本つき。2026年9月からのAI Max自動移行スケジュール、自律型AI（AIエージェント）に任せてよい範囲と注意点まで、仕事も私生活も変わる使い方をやさしく解説します。</p>
-      <span class="ugkads-btn">マニュアルを読む →</span>
     </div>
     <div class="ugkads-r">
       <div class="ugkads-thumb">
@@ -6135,6 +6335,10 @@
           <span class="chip">プロンプト7本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkads-foot">
+      <span class="ugkads-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6178,6 +6382,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksmc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksmc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksmc-foot .ugksmc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksmc-foot{padding:0 20px 22px;}}
     .ugksmc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksmc-thumb{text-align:center; padding:24px;}
@@ -6201,8 +6408,6 @@
       <span class="ugksmc-eb">🏢 無料ガイド ｜ 社員20人以下の会社編</span>
       <h3>「うちみたいな小さい会社に、AIなんて」が<br><span class="hl">一番もったいない</span>。</h3>
       <p>一人何役だからこそ効く・決めた翌日に始められる・「採れない」を採らずに埋める・社長の頭の中を資産に変える・月3,000円で専門家チーム・集客は資本力から回数へ・経理の手作業が消える・多言語教育が回り出す・助成金で学ぶコストを下げる——社員20人以下の会社にAIが効く理由を10個、2026年の最新データ（中小機構／帝国データバンク／Gartner）とあわせて分解。コピペで使えるプロンプト12本・30日ロードマップ・自律型AI（AIエージェント）の「任せ方4段階」と注意点まで、初心者の経営者向けにやさしく解説します。</p>
-
-      <span class="ugksmc-btn">理由10選を読む →</span>
     </div>
     <div class="ugksmc-r">
       <div class="ugksmc-thumb">
@@ -6216,6 +6421,10 @@
           <span class="chip">プロンプト12本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksmc-foot">
+      <span class="ugksmc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6259,6 +6468,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkceo2-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkceo2-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkceo2-foot .ugkceo2-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkceo2-foot{padding:0 20px 22px;}}
     .ugkceo2-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkceo2-thumb{text-align:center; padding:24px;}
@@ -6282,7 +6494,6 @@
       <span class="ugkceo2-eb">⏳ 無料ガイド ｜ 社長の時間術編</span>
       <h3>社長の1日から、<br><span class="hl">毎日2時間</span>を取り戻す。</h3>
       <p>新しく雇わない。早起きもしない。まず時間ログで現在地を測り、返信・議事録・数字チェック・発信・調べもの・判断の壁打ちまで、1日およそ2時間5分を空ける7ステップに分解。コピペで使えるプロンプト13本つき。自律型AI（AIエージェント）で今できること・順番を間違えないための注意点、そして空いた時間を何に使うかまで、仕事も私生活も軽くなる使い方をやさしく解説します。</p>
-      <span class="ugkceo2-btn">ガイドを読む →</span>
     </div>
     <div class="ugkceo2-r">
       <div class="ugkceo2-thumb">
@@ -6296,6 +6507,10 @@
           <span class="chip">プロンプト13本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkceo2-foot">
+      <span class="ugkceo2-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6339,6 +6554,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcxo-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcxo-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcxo-foot .ugkcxo-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcxo-foot{padding:0 20px 22px;}}
     .ugkcxo-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcxo-thumb{text-align:center; padding:24px;}
@@ -6362,7 +6580,6 @@
       <span class="ugkcxo-eb">🧠 無料ガイド ｜ AI×CXO編</span>
       <h3>「社長ひとりで全部」を、<br><span class="hl">経営参謀チーム</span>と。</h3>
       <p>CFO・CMO・COO…役割は多いのに、人は足りない。AIをあなた専属の“経営参謀”に変える方法を、役割ごとの頼み方と具体例で分解しました。数字の読み解き、打ち手の比較、反対意見の引き出し方まで、コピペで使えるプロンプトつき。最新トレンドと注意点も網羅して、うごく君がやさしく解説します。</p>
-      <span class="ugkcxo-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcxo-r">
       <div class="ugkcxo-thumb">
@@ -6376,6 +6593,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcxo-foot">
+      <span class="ugkcxo-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6419,6 +6640,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksub-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksub-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksub-foot .ugksub-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksub-foot{padding:0 20px 22px;}}
     .ugksub-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksub-thumb{text-align:center; padding:24px;}
@@ -6442,7 +6666,6 @@
       <span class="ugksub-eb">🎫 無料ガイド ｜ AI×補助金・助成金編</span>
       <h3>補助金は「知らない」から使えない。<br><span class="hl">探し方</span>を、持つ。</h3>
       <p>制度は毎年変わります。だから覚えるのではなく“探し方”を持つ人が勝つ。2026年度の最新制度をふまえ、AIで候補を洗い出し、要件を整理し、申請書の骨子まで作る10の型を公開。仕事にも暮らしにも効く使い方と、締切・要件の確認で外してはいけない注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugksub-btn">ガイドを読む →</span>
     </div>
     <div class="ugksub-r">
       <div class="ugksub-thumb">
@@ -6456,6 +6679,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksub-foot">
+      <span class="ugksub-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6499,6 +6726,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksal-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksal-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksal-foot .ugksal-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksal-foot{padding:0 20px 22px;}}
     .ugksal-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksal-thumb{text-align:center; padding:24px;}
@@ -6522,7 +6752,6 @@
       <span class="ugksal-eb">💼 無料ガイド ｜ AI×営業編</span>
       <h3>「AIで営業、何が変わるの？」を<br><span class="hl">今日で終わり</span>にする。</h3>
       <p>7割の営業がまだAIを使っていない今がチャンス。リスト作成・下調べ・提案書・追客メール・商談の議事録まで、営業の“面倒”を前倒しで片づける手順を初心者向けに分解しました。2026年の最新トレンドと、コピペで使えるプロンプト、自律型AIに任せてよい範囲と注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugksal-btn">ガイドを読む →</span>
     </div>
     <div class="ugksal-r">
       <div class="ugksal-thumb">
@@ -6536,6 +6765,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksal-foot">
+      <span class="ugksal-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6579,6 +6812,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkhr-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkhr-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkhr-foot .ugkhr-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkhr-foot{padding:0 20px 22px;}}
     .ugkhr-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkhr-thumb{text-align:center; padding:24px;}
@@ -6602,7 +6838,6 @@
       <span class="ugkhr-eb">🧑‍💼 無料ガイド ｜ AI×人事編</span>
       <h3>「AI、人事でどう使う？」を<br><span class="hl">今日で終わり</span>にする。</h3>
       <p>むずかしい知識はナシ。人事の“どの仕事から”AIを始めるかを、採用・労務・育成の順に整理しました。求人票の書き直し、面接記録の整形、評価面談の伝え方、研修資料づくりまで、コピペで使える手順つき。最新トレンドと、自立型AIで変わること、そして個人情報の扱いで外せない注意点まで、うごく君が解説します。</p>
-      <span class="ugkhr-btn">ガイドを読む →</span>
     </div>
     <div class="ugkhr-r">
       <div class="ugkhr-thumb">
@@ -6616,6 +6851,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkhr-foot">
+      <span class="ugkhr-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6659,6 +6898,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkkeiri-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkkeiri-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkkeiri-foot .ugkkeiri-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkkeiri-foot{padding:0 20px 22px;}}
     .ugkkeiri-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkkeiri-thumb{text-align:center; padding:24px;}
@@ -6682,7 +6924,6 @@
       <span class="ugkkeiri-eb">🧮 無料ガイド ｜ AI×経理財務 入門編</span>
       <h3>「数字、苦手…」の経理を、<br>AIで<span class="hl">わかる</span>に変える。</h3>
       <p>むずかしい簿記の話はナシ。クラウド会計＋ChatGPT・Claudeで、経理も家計も“数字がわかる”に変わります。仕訳の考え方、試算表の読み解き、資金繰りの見方を、専門用語をやさしく置き換えながら解説。最新トレンド・コピペプロンプト・検算を欠かせない注意点まで、うごく君が案内します。</p>
-      <span class="ugkkeiri-btn">ガイドを読む →</span>
     </div>
     <div class="ugkkeiri-r">
       <div class="ugkkeiri-thumb">
@@ -6696,6 +6937,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkkeiri-foot">
+      <span class="ugkkeiri-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6739,6 +6984,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkfood-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfood-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfood-foot .ugkfood-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfood-foot{padding:0 20px 22px;}}
     .ugkfood-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfood-thumb{text-align:center; padding:24px;}
@@ -6762,7 +7010,6 @@
       <span class="ugkfood-eb">🍽️ 無料ガイド ｜ AI×飲食業編</span>
       <h3>「AI、飲食でどう使う？」に、<br><span class="hl">10の答え</span>。</h3>
       <p>人手不足も、集客も、値上げ時代の原価管理も。スマホ1台・無料から始められる「飲食店のためのAI活用術10選」を、現場目線でまとめました。MEOとクチコミ返信、メニュー開発、FL比率の管理、多言語での教育まで。最新トレンドと注意点つきで、うごく君がやさしく解説します。</p>
-      <span class="ugkfood-btn">ガイドを読む →</span>
     </div>
     <div class="ugkfood-r">
       <div class="ugkfood-thumb">
@@ -6776,6 +7023,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfood-foot">
+      <span class="ugkfood-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6819,6 +7070,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmono-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmono-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmono-foot .ugkmono-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmono-foot{padding:0 20px 22px;}}
     .ugkmono-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmono-thumb{text-align:center; padding:24px;}
@@ -6842,7 +7096,6 @@
       <span class="ugkmono-eb">🏭 無料ガイド ｜ AI×製造・ものづくり編</span>
       <h3>人手不足の現場を、<br><span class="hl">AIで動かす</span>。</h3>
       <p>見積・検図・品質・技能継承・予知保全・補助金まで、製造業の現場で今日から効く活用術10選を、いちばんやさしい言葉で。ベテランの勘を手順書に変える方法、図面や仕様書の読み解き、不良の傾向分析まで具体例つき。最新トレンドと、現場に入れる前の注意点も網羅して、うごく君が解説します。</p>
-      <span class="ugkmono-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmono-r">
       <div class="ugkmono-thumb">
@@ -6856,6 +7109,10 @@
           <span class="chip">補助金</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmono-foot">
+      <span class="ugkmono-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6899,6 +7156,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkec-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkec-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkec-foot .ugkec-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkec-foot{padding:0 20px 22px;}}
     .ugkec-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkec-thumb{text-align:center; padding:24px;}
@@ -6922,7 +7182,6 @@
       <span class="ugkec-eb">🛒 無料ガイド ｜ AI×EC・小売編</span>
       <h3>お客様の隣に、<br><span class="hl">AIという買い物係</span>が座った。</h3>
       <p>「AIが買い物を代行する時代」に、小さなお店は何をすればいい？ 商品ページの書き方、在庫と価格の見直し、クチコミ対応、そしてAIに見つけてもらうための対策まで、今日からできる10の使い方を整理しました。2026年の業界トレンドと注意点も、やさしく解説します。</p>
-      <span class="ugkec-btn">ガイドを読む →</span>
     </div>
     <div class="ugkec-r">
       <div class="ugkec-thumb">
@@ -6936,6 +7195,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkec-foot">
+      <span class="ugkec-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -6979,6 +7242,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkins-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkins-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkins-foot .ugkins-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkins-foot{padding:0 20px 22px;}}
     .ugkins-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkins-thumb{text-align:center; padding:24px;}
@@ -7002,7 +7268,6 @@
       <span class="ugkins-eb">🛡️ 無料ガイド ｜ AI×保険代理店編</span>
       <h3>保険代理店の毎日、AIで、<br>まだ<span class="hl">半分ラク</span>にできる。</h3>
       <p>意向把握から提案・発信・事務まで、保険代理店の現場で本当に効くAI活用術10選。ヒアリング内容の整理、提案書のたたき台、更新案内、事務の照合作業まで、コピペで使える形にまとめました。自立型AIの可能性と最新トレンド、そしてコンプライアンス上の注意点も網羅して、うごく君が解説します。</p>
-      <span class="ugkins-btn">ガイドを読む →</span>
     </div>
     <div class="ugkins-r">
       <div class="ugkins-thumb">
@@ -7016,6 +7281,10 @@
           <span class="chip">コンプラ注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkins-foot">
+      <span class="ugkins-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7059,6 +7328,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkshi-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkshi-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkshi-foot .ugkshi-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkshi-foot{padding:0 20px 22px;}}
     .ugkshi-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkshi-thumb{text-align:center; padding:24px;}
@@ -7082,7 +7354,6 @@
       <span class="ugkshi-eb">⚖️ 無料ガイド ｜ AI×士業編</span>
       <h3>士業の「面倒」は、<br><span class="hl">AIに動かせる</span>時代へ。</h3>
       <p>ChatGPT・Claude・Geminiで“事務所の面倒”を動かす活用術10選と、2026年の士業AIトレンドを、初心者にもやさしく整理しました。資料の下読み、書面のたたき台、顧問先向けの案内文、事務所内のマニュアル化まで。コピペで使えるプロンプトと、守秘義務まわりの注意点つきで、うごく君が解説します。</p>
-      <span class="ugkshi-btn">ガイドを読む →</span>
     </div>
     <div class="ugkshi-r">
       <div class="ugkshi-thumb">
@@ -7096,6 +7367,10 @@
           <span class="chip">守秘義務の注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkshi-foot">
+      <span class="ugkshi-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7139,6 +7414,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkelec-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkelec-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkelec-foot .ugkelec-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkelec-foot{padding:0 20px 22px;}}
     .ugkelec-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkelec-thumb{text-align:center; padding:24px;}
@@ -7162,7 +7440,6 @@
       <span class="ugkelec-eb">🗳️ 無料ガイド ｜ AI×選挙・政治編</span>
       <h3>選挙・政治の現場も、<br><span class="hl">AIで動く</span>時代に。</h3>
       <p>情勢の整理、発信文のたたき台、事務作業の効率化、有権者からの問い合わせ対応まで、現場の実務で効く活用術10選をまとめました。最新トレンドとあわせて、公職選挙法まわりで外してはいけない注意点、事実確認を人が担うべき理由も明記。うごく君がやさしく解説します。</p>
-      <span class="ugkelec-btn">ガイドを読む →</span>
     </div>
     <div class="ugkelec-r">
       <div class="ugkelec-thumb">
@@ -7176,6 +7453,10 @@
           <span class="chip">法令の注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkelec-foot">
+      <span class="ugkelec-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7219,6 +7500,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmeta-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmeta-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmeta-foot .ugkmeta-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmeta-foot{padding:0 20px 22px;}}
     .ugkmeta-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmeta-thumb{text-align:center; padding:24px;}
@@ -7242,7 +7526,6 @@
       <span class="ugkmeta-eb">📱 無料ガイド ｜ AI×Meta広告編</span>
       <h3>広告費を溶かす前に。広告は<br>「勘」じゃなく<span class="hl">手順</span>でできている。</h3>
       <p>1日1,000円から始めて、AIに任せる所と人が決める所を線引きする。ピクセルの設定、ペルソナ設計、クリエイティブの型、予算の積み上げ方、そして週次の見直しまで、Meta広告のセオリーをまるごと1本に。コピペで使えるAIプロンプトと、自律型AIの最前線・注意点まで、うごく君が解説します。</p>
-      <span class="ugkmeta-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmeta-r">
       <div class="ugkmeta-thumb">
@@ -7256,6 +7539,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmeta-foot">
+      <span class="ugkmeta-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7299,6 +7586,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkws-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkws-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkws-foot .ugkws-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkws-foot{padding:0 20px 22px;}}
     .ugkws-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkws-thumb{text-align:center; padding:24px;}
@@ -7322,7 +7612,6 @@
       <span class="ugkws-eb">🗓️ 無料ガイド ｜ Google Workspace編</span>
       <h3>「Google Workspaceってなに？」を、<br><span class="hl">10の活用術</span>に。</h3>
       <p>メール・カレンダー・ファイル・会議がひとつに。無料のGoogleアカウントとの違い、料金と予算感、共有と権限の考え方、そして会社で使うときのつまずきどころを整理しました。自立型AI（Workspace Studio）で何が変わるかまで、初心者にもわかる言葉で、うごく君がやさしく解説します。</p>
-      <span class="ugkws-btn">ガイドを読む →</span>
     </div>
     <div class="ugkws-r">
       <div class="ugkws-thumb">
@@ -7336,6 +7625,10 @@
           <span class="chip">自立型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkws-foot">
+      <span class="ugkws-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7379,6 +7672,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkeng-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkeng-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkeng-foot .ugkeng-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkeng-foot{padding:0 20px 22px;}}
     .ugkeng-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkeng-thumb{text-align:center; padding:24px;}
@@ -7402,7 +7698,6 @@
       <span class="ugkeng-eb">🗣️ 無料ガイド ｜ AI×英会話編</span>
       <h3>「英語、いつか話せたら」を、<br><span class="hl">今日から</span>動かす。</h3>
       <p>話す量が10倍に。英会話のプロのセオリーとAIを掛け合わせれば、恥ずかしさゼロ・24時間の練習相手が手に入ります。発音の添削、場面別のロールプレイ、伸びを実感するための学習設計まで、スマホ1台で今日から始められる活用術10選を、うごく君がやさしく解説します。</p>
-      <span class="ugkeng-btn">ガイドを読む →</span>
     </div>
     <div class="ugkeng-r">
       <div class="ugkeng-thumb">
@@ -7416,6 +7711,10 @@
           <span class="chip">恥ずかしさゼロ</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkeng-foot">
+      <span class="ugkeng-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7459,6 +7758,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmkt-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmkt-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmkt-foot .ugkmkt-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmkt-foot{padding:0 20px 22px;}}
     .ugkmkt-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmkt-thumb{text-align:center; padding:24px;}
@@ -7482,8 +7784,6 @@
       <span class="ugkmkt-eb">📈 無料ガイド ｜ AI×マーケティング編</span>
       <h3>「いいモノなのに、売れない」の正体は、<br><span class="hl">伝え方</span>。</h3>
       <p>マーケティングは、センスでも根性でもなく「順番が決まっている作業」です。調べる → 誰に何をを決める → 言葉をつくる → 見た目をつくる → SNS → SEO・AEO → MEO → 広告 → リピート → 分析。プロが実際にやっている10ステップを、AIでそのまま実行できる形に分解しました。コピペで使えるプロンプト23本、上限CPAの計算式、仕事とプライベート両方の使い方つき。さらに2026年の最新業界トレンド（検索から“代行”へ／LLMO・GEO・AEO／超個別化／人間らしさの再評価）と、自律型AI（AIエージェント）を任せる順番と注意点まで、初心者向けにやさしく解説します。</p>
-
-      <span class="ugkmkt-btn">10選を読む →</span>
     </div>
     <div class="ugkmkt-r">
       <div class="ugkmkt-thumb">
@@ -7497,6 +7797,10 @@
           <span class="chip">プロンプト23本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmkt-foot">
+      <span class="ugkmkt-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7539,6 +7843,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkchs-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkchs-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkchs-foot .ugkchs-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkchs-foot{padding:0 20px 22px;}}
     .ugkchs-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkchs-thumb{text-align:center; padding:24px;}
@@ -7562,7 +7869,6 @@
       <span class="ugkchs-eb">🌾 無料ガイド ｜ AI×地方創生編</span>
       <h3>「人が減る」を嘆く側から、<br><span class="hl">減っても回る</span>を作る側へ。</h3>
       <p>地方創生は、気合いでも補助金頼みでもありません。プロが外さない4原則と、2026年の最新トレンド7（地方創生2.0で交付金が倍増／自治体の生成AI導入率／人手不足倒産が過去最多／RAGの標準化／観光の24時間多言語化／ノーコード内製化／自立型AI）を整理したうえで、制度の翻訳・関係人口・観光インバウンド・移住空き家・特産品・一次産業・多国籍スタッフ・議事録・データEBPM・防災まで、活用術10選を仕事と私生活の両面から解説。コピペで使えるプロンプト、自立型AI（AIエージェント）の可能性と注意点、90日の始め方マニュアルつき。</p>
-      <span class="ugkchs-btn">10選を読む →</span>
     </div>
     <div class="ugkchs-r">
       <div class="ugkchs-thumb">
@@ -7576,6 +7882,10 @@
           <span class="chip">自立型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkchs-foot">
+      <span class="ugkchs-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7619,6 +7929,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkpft-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkpft-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkpft-foot .ugkpft-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkpft-foot{padding:0 20px 22px;}}
     .ugkpft-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkpft-thumb{text-align:center; padding:24px;}
@@ -7642,7 +7955,6 @@
       <span class="ugkpft-eb">💹 無料ガイド ｜ AI×利益率編</span>
       <h3>同じ売上でも、<span class="hl">残る利益</span>が変わる。</h3>
       <p>「AIを入れたのに、儲かった実感がない」——それは入れる場所を間違えているだけです。利益がこぼれる穴はどの会社にもあり、しかもだいたい同じ場所にあります。どこにAIを入れると利益が残るのか、実際に利益率が上がった会社の共通点を10のパターンに整理しました。粗利の考え方から投資判断の順番まで、初心者にもわかるように解説します。</p>
-      <span class="ugkpft-btn">10選を読む →</span>
     </div>
     <div class="ugkpft-r">
       <div class="ugkpft-thumb">
@@ -7656,6 +7968,10 @@
           <span class="chip">経営者向け</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkpft-foot">
+      <span class="ugkpft-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7699,6 +8015,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkovt-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkovt-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkovt-foot .ugkovt-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkovt-foot{padding:0 20px 22px;}}
     .ugkovt-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkovt-thumb{text-align:center; padding:24px;}
@@ -7722,7 +8041,6 @@
       <span class="ugkovt-eb">🕒 無料ガイド ｜ AI×残業半減編</span>
       <h3>「忙しい」の正体を、<span class="hl">数字</span>で暴く。</h3>
       <p>残業は根性では減りません。減るのは「測る → 型化する → 自動化する → 任せる」の順番で手を打ったときだけです。まず何にどれだけ時間を使っているかを見える化し、繰り返し作業をテンプレートに変え、AIに渡せる形にし、最後は自律型AIに任せる。現場で実際に効いた手順を、コピペで使えるプロンプトつきで、やさしく解説します。</p>
-      <span class="ugkovt-btn">ガイドを読む →</span>
     </div>
     <div class="ugkovt-r">
       <div class="ugkovt-thumb">
@@ -7736,6 +8054,10 @@
           <span class="chip">労務改善</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkovt-foot">
+      <span class="ugkovt-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7788,6 +8110,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugknbz-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugknbz-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugknbz-foot .ugknbz-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugknbz-foot{padding:0 20px 22px;}}
     .ugknbz-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugknbz-thumb{text-align:center; padding:24px;}
@@ -7811,7 +8136,6 @@
       <span class="ugknbz-eb">🚀 無料ガイド ｜ AI×新規事業編</span>
       <h3>新規事業を、<span class="hl">思いつき</span>で終わらせない。</h3>
       <p>新規事業の成否を分けるのは、アイデアの良し悪しではなく「検証を何回まわせたか」です。市場スキャン・課題発掘・顧客インタビュー・MVP検証・収支設計・集客・営業・撤退判断まで、プロのセオリーを10の型に分解しました。2026年の最新業界トレンド（AIエージェント市場78億ドル／人とAIのハイブリッドチーム／ROI格差の拡大）と、自律型AIに「どこまで任せていいか」の線引き、そして90日ロードマップまで。コピペで使えるプロンプト12本つきで、やさしく解説します。</p>
-      <span class="ugknbz-btn">ガイドを読む →</span>
     </div>
     <div class="ugknbz-r">
       <div class="ugknbz-thumb">
@@ -7825,6 +8149,10 @@
           <span class="chip">プロンプト12本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugknbz-foot">
+      <span class="ugknbz-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7868,6 +8196,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkrea-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkrea-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkrea-foot .ugkrea-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkrea-foot{padding:0 20px 22px;}}
     .ugkrea-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkrea-thumb{text-align:center; padding:24px;}
@@ -7891,7 +8222,6 @@
       <span class="ugkrea-eb">🏘️ 無料ガイド ｜ AI×不動産業界編</span>
       <h3>不動産の仕事は、<span class="hl">AI</span>でいちばん変わる。</h3>
       <p>査定・物件紹介文・反響対応・重説チェック——不動産の実務は「調べる・書く・確認する」の連続です。だからこそAIの効き方がいちばん大きい業界でもあります。2026年の不動産×AI最新トレンドと、初心者が挫折しない始め方、現場で使える活用術10選を、仕事と私生活の両面から。自律型AI（AIエージェント）の可能性と、宅建業法・公正競争規約まわりの注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkrea-btn">ガイドを読む →</span>
     </div>
     <div class="ugkrea-r">
       <div class="ugkrea-thumb">
@@ -7905,6 +8235,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkrea-foot">
+      <span class="ugkrea-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -7948,6 +8282,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkagr-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkagr-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkagr-foot .ugkagr-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkagr-foot{padding:0 20px 22px;}}
     .ugkagr-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkagr-thumb{text-align:center; padding:24px;}
@@ -7971,7 +8308,6 @@
       <span class="ugkagr-eb">🚜 無料ガイド ｜ AI×農業・畜産編</span>
       <h3>現場のプロが、<span class="hl">10個</span>に絞って教えます。</h3>
       <p>高齢化、猛暑、資材高騰、そして人手不足。農業・畜産の現場が抱える課題に、AIはどこまで届くのか。作業日誌の記録、病害虫の診断、繁殖・飼養管理、直売所やECでの販売まで、現場で本当に使える活用術を10個に絞りました。スマート農業の最新トレンドと、自立型AI（AIエージェント）が加わると何が変わるかを、注意点つきで見える化します。</p>
-      <span class="ugkagr-btn">ガイドを読む →</span>
     </div>
     <div class="ugkagr-r">
       <div class="ugkagr-thumb">
@@ -7985,6 +8321,10 @@
           <span class="chip">スマート農業</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkagr-foot">
+      <span class="ugkagr-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8028,6 +8368,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkinv-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkinv-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkinv-foot .ugkinv-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkinv-foot{padding:0 20px 22px;}}
     .ugkinv-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkinv-thumb{text-align:center; padding:24px;}
@@ -8051,7 +8394,6 @@
       <span class="ugkinv-eb">💰 無料ガイド ｜ AI×投資編</span>
       <h3>「投資、こわい」を、<span class="hl">今日</span>で終わりにする。</h3>
       <p>投資がはじめての方へ。生成AIを「調べる・検証する・続ける」の3役で使い倒す活用術10選と、2026年の最新業界トレンド（金融庁のAIエージェント論点整理、エージェンティック・ファイナンス、こどもNISA・iDeCo改正）を、うごく君がやさしく解説します。仕事と私生活それぞれの活かし方、コピペで使えるプロンプト、そして投資詐欺やハルシネーションへの注意点まで網羅。※本ガイドは情報提供であり、投資助言ではありません。</p>
-      <span class="ugkinv-btn">ガイドを読む →</span>
     </div>
     <div class="ugkinv-r">
       <div class="ugkinv-thumb">
@@ -8065,6 +8407,10 @@
           <span class="chip">詐欺対策</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkinv-foot">
+      <span class="ugkinv-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8107,6 +8453,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkhitori-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkhitori-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkhitori-foot .ugkhitori-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkhitori-foot{padding:0 20px 22px;}}
     .ugkhitori-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkhitori-thumb{text-align:center; padding:24px;}
@@ -8130,7 +8479,6 @@
       <span class="ugkhitori-eb">👷 無料ガイド ｜ AI×一人親方編</span>
       <h3>現場が終わってから、<span class="hl">もう一つの仕事</span>が始まる人へ。</h3>
       <p>見積・積算の下書き／請求書とインボイス（2026年10月の2割特例終了）／現場写真の整理と作業日報／元請けへの言いにくい連絡（値上げ・工期・断り）／MEOと施工事例で仕事を取る／安全書類とKY／段取りと材料の抜け潰し／資格と法改正の勉強／常用単価の逆算と確定申告／体と家族と自分の頭の中——一人親方に効くAIの使いどころを10個に分解。コピペで使える現場向けプロンプト12本、3日で始める最短マニュアル、自律型AI（AIエージェント）の「任せ方4段階」と各項目の注意点まで、AI初心者の職人向けにやさしく解説します。</p>
-      <span class="ugkhitori-btn">ガイドを読む →</span>
     </div>
     <div class="ugkhitori-r">
       <div class="ugkhitori-thumb">
@@ -8144,6 +8492,10 @@
           <span class="chip">プロンプト12本</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkhitori-foot">
+      <span class="ugkhitori-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8186,6 +8538,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkfree-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfree-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfree-foot .ugkfree-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfree-foot{padding:0 20px 22px;}}
     .ugkfree-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfree-thumb{text-align:center; padding:24px;}
@@ -8209,7 +8564,6 @@
       <span class="ugkfree-eb">🧑‍💻 無料ガイド ｜ AI×フリーランス編</span>
       <h3>ひとり分の時間で、<span class="hl">チーム分</span>の仕事を。</h3>
       <p>営業・提案・制作・請求・確定申告まで、全部ひとりで回すフリーランスへ。AIを「もう一人の自分」として使い倒す活用術10選を、うごく君がやさしく解説。仕事と私生活それぞれの活かし方、コピペで使えるプロンプト、自律型AI（AIエージェント）の任せ方と注意点まで網羅しています。</p>
-      <span class="ugkfree-btn">ガイドを読む →</span>
     </div>
     <div class="ugkfree-r">
       <div class="ugkfree-thumb">
@@ -8223,6 +8577,10 @@
           <span class="chip">時間術</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfree-foot">
+      <span class="ugkfree-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8265,6 +8623,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcar-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcar-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcar-foot .ugkcar-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcar-foot{padding:0 20px 22px;}}
     .ugkcar-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcar-thumb{text-align:center; padding:24px;}
@@ -8288,7 +8649,6 @@
       <span class="ugkcar-eb">🚗 無料ガイド ｜ AI×自動車業界編</span>
       <h3>クルマの仕事は、AIで<span class="hl">まだ伸ばせる</span>。</h3>
       <p>整備・販売・鈑金・買取まで。集客、見積、車検の案内、在庫の見せ方、スタッフ教育——自動車業界のAI活用を効く順に10個。2026年の最新業界トレンド分析、コピペで使えるプロンプト、自律型AI（AIエージェント）の使いどころと注意点まで、初心者向けに解説します。</p>
-      <span class="ugkcar-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcar-r">
       <div class="ugkcar-thumb">
@@ -8302,6 +8662,10 @@
           <span class="chip">スタッフ教育</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcar-foot">
+      <span class="ugkcar-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8344,6 +8708,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmed-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmed-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmed-foot .ugkmed-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmed-foot{padding:0 20px 22px;}}
     .ugkmed-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmed-thumb{text-align:center; padding:24px;}
@@ -8367,7 +8734,6 @@
       <span class="ugkmed-eb">🏥 無料ガイド ｜ AI×医療業界編</span>
       <h3>医療のAI活用、<span class="hl">効く順に10個</span>だけ。</h3>
       <p>クリニック・病院・歯科・調剤まで。予約と問い合わせ、書類作成、患者説明、スタッフ教育、そして院内のDX。医療現場で本当に効くAIの使いどころを10個に絞って解説します。2026年の最新トレンド、コピペで使えるプロンプト、個人情報・医療広告規制の注意点まで網羅。</p>
-      <span class="ugkmed-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmed-r">
       <div class="ugkmed-thumb">
@@ -8381,6 +8747,10 @@
           <span class="chip">個人情報</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmed-foot">
+      <span class="ugkmed-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8423,6 +8793,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksch-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksch-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksch-foot .ugksch-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksch-foot{padding:0 20px 22px;}}
     .ugksch-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksch-thumb{text-align:center; padding:24px;}
@@ -8446,7 +8819,6 @@
       <span class="ugksch-eb">🏫 無料ガイド ｜ AI×学校教育編</span>
       <h3>AIは、先生の代わりじゃない。<span class="hl">副担任</span>です。</h3>
       <p>先生・保護者・生徒それぞれの立場から、AIの正しい始め方を。授業準備、通知表所見、たより作成、保護者対応、そして子どもに「どう使わせるか」。2026年の最新トレンドとガイドラインを踏まえ、コピペで使えるプロンプトと自律型AIの注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugksch-btn">ガイドを読む →</span>
     </div>
     <div class="ugksch-r">
       <div class="ugksch-thumb">
@@ -8460,6 +8832,10 @@
           <span class="chip">使わせ方</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksch-foot">
+      <span class="ugksch-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8502,6 +8878,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksnr-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksnr-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksnr-foot .ugksnr-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksnr-foot{padding:0 20px 22px;}}
     .ugksnr-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksnr-thumb{text-align:center; padding:24px;}
@@ -8525,7 +8904,6 @@
       <span class="ugksnr-eb">🌾 無料ガイド ｜ AI×シルバー世代編</span>
       <h3>「もう歳だから」を、<span class="hl">いちばんの武器</span>に。</h3>
       <p>60代・70代からの、いちばんやさしいAIの始め方。スマホひとつで、調べもの、健康、家計、手紙、趣味、そして家族との会話まで。難しい言葉は一切使わず、大きな文字とゆっくりした手順で。うごく君が最初の一歩から最後までご案内します。</p>
-      <span class="ugksnr-btn">ガイドを読む →</span>
     </div>
     <div class="ugksnr-r">
       <div class="ugksnr-thumb">
@@ -8539,6 +8917,10 @@
           <span class="chip">趣味</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksnr-foot">
+      <span class="ugksnr-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8581,6 +8963,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkgem-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkgem-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkgem-foot .ugkgem-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkgem-foot{padding:0 20px 22px;}}
     .ugkgem-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkgem-thumb{text-align:center; padding:24px;}
@@ -8604,7 +8989,6 @@
       <span class="ugkgem-eb">💎 無料ガイド ｜ Gemini編</span>
       <h3>「Geminiって何？」を、<span class="hl">10の武器</span>に変える。</h3>
       <p>Googleが作ったAI「Gemini」の正体を、初心者向けにやさしく。使い方・料金・ChatGPTやClaudeとの違い、GmailやスプレッドシートなどGoogleサービスとの連携、そして自律型AIとしての可能性まで。コピペで使えるプロンプトと注意点も、うごく君が解説します。</p>
-      <span class="ugkgem-btn">ガイドを読む →</span>
     </div>
     <div class="ugkgem-r">
       <div class="ugkgem-thumb">
@@ -8618,6 +9002,10 @@
           <span class="chip">プロンプト</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkgem-foot">
+      <span class="ugkgem-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8660,6 +9048,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkind-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkind-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkind-foot .ugkind-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkind-foot{padding:0 20px 22px;}}
     .ugkind-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkind-thumb{text-align:center; padding:24px;}
@@ -8683,7 +9074,6 @@
       <span class="ugkind-eb">🔍 無料ガイド ｜ Indeed編</span>
       <h3>「人が採れない」を、<span class="hl">求人票</span>から変える。</h3>
       <p>Indeedの正体、無料掲載と有料運用の違い、費用対効果の考え方、そして受かる求人票の書き方まで。中小企業・店舗の採用担当が最初に読むべき導入＆活用ガイド。AIで求人原稿を作る手順、コピペで使えるプロンプト、運用の注意点まで解説します。</p>
-      <span class="ugkind-btn">ガイドを読む →</span>
     </div>
     <div class="ugkind-r">
       <div class="ugkind-thumb">
@@ -8697,6 +9087,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkind-foot">
+      <span class="ugkind-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8739,6 +9133,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkline-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkline-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkline-foot .ugkline-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkline-foot{padding:0 20px 22px;}}
     .ugkline-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkline-thumb{text-align:center; padding:24px;}
@@ -8762,7 +9159,6 @@
       <span class="ugkline-eb">💚 無料ガイド ｜ LINE公式アカウント編</span>
       <h3>「作ったけど眠ってる」を、<span class="hl">今日</span>で終わりに。</h3>
       <p>LINE公式アカウントの開設から、友だちの集め方、配信の設計、クーポン・予約・自動応答の作り方まで。料金プランの選び方と、配信でブロックされないコツも。AIで配信文を作る手順とコピペプロンプト、運用の注意点まで、初心者向けにやさしく解説します。</p>
-      <span class="ugkline-btn">ガイドを読む →</span>
     </div>
     <div class="ugkline-r">
       <div class="ugkline-thumb">
@@ -8776,6 +9172,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkline-foot">
+      <span class="ugkline-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8818,6 +9218,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugklnh-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugklnh-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugklnh-foot .ugklnh-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugklnh-foot{padding:0 20px 22px;}}
     .ugklnh-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugklnh-thumb{text-align:center; padding:24px;}
@@ -8841,7 +9244,6 @@
       <span class="ugklnh-eb">🔗 無料ガイド ｜ LINE Harness編</span>
       <h3>月2万円のLINE運用が、<span class="hl">0円</span>になった。</h3>
       <p>LINE Harnessの正体と導入方法、そして実際の運用手順を初心者向けに。高額な配信ツールに頼らずLINE運用を回す考え方、設定の勘所、AIとの組み合わせ方まで。コピペで使えるプロンプトと、導入前に必ず確認すべき注意点も網羅しています。</p>
-      <span class="ugklnh-btn">ガイドを読む →</span>
     </div>
     <div class="ugklnh-r">
       <div class="ugklnh-thumb">
@@ -8855,6 +9257,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugklnh-foot">
+      <span class="ugklnh-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8897,6 +9303,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugklvc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugklvc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugklvc-foot .ugklvc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugklvc-foot{padding:0 20px 22px;}}
     .ugklvc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugklvc-thumb{text-align:center; padding:24px;}
@@ -8920,7 +9329,6 @@
       <span class="ugklvc-eb">📺 無料ガイド ｜ ライブコマース編</span>
       <h3>「ライブ配信で売る」を、<span class="hl">勘から手順</span>へ。</h3>
       <p>ライブコマースの基本、使うべきプラットフォームの選び方、機材と配信の型、台本の作り方、そして売れる導線設計まで。2026年の最新トレンドを踏まえた運用マニュアル。AIで台本と告知文を作る手順、コピペプロンプト、注意点まで解説します。</p>
-      <span class="ugklvc-btn">ガイドを読む →</span>
     </div>
     <div class="ugklvc-r">
       <div class="ugklvc-thumb">
@@ -8934,6 +9342,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugklvc-foot">
+      <span class="ugklvc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -8976,6 +9388,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugktka-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugktka-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugktka-foot .ugktka-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugktka-foot{padding:0 20px 22px;}}
     .ugktka-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugktka-thumb{text-align:center; padding:24px;}
@@ -8999,7 +9414,6 @@
       <span class="ugktka-eb">🎵 無料ガイド ｜ TikTok広告編</span>
       <h3>「うちには関係ない」を、<span class="hl">今日</span>で終わりに。</h3>
       <p>TikTok広告の仕組み、アカウント開設から初回配信までの手順、予算の決め方、クリエイティブの型、そして数字の見方まで。AI時代の勝ち方を踏まえた運用マニュアル。AIで台本とバナー文を作る手順、コピペプロンプト、注意点も網羅しています。</p>
-      <span class="ugktka-btn">ガイドを読む →</span>
     </div>
     <div class="ugktka-r">
       <div class="ugktka-thumb">
@@ -9013,6 +9427,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugktka-foot">
+      <span class="ugktka-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9055,6 +9473,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkxad-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkxad-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkxad-foot .ugkxad-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkxad-foot{padding:0 20px 22px;}}
     .ugkxad-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkxad-thumb{text-align:center; padding:24px;}
@@ -9078,7 +9499,6 @@
       <span class="ugkxad-eb">✖️ 無料ガイド ｜ X広告編</span>
       <h3>X広告は、<span class="hl">「バズ待ち」を卒業</span>する道具です。</h3>
       <p>X（旧Twitter）広告の仕組み、アカウント設定から配信開始までの手順、ターゲティングの考え方、クリエイティブの作り方、そして費用対効果の測り方まで。AI時代の始め方を踏まえた運用マニュアル。コピペで使えるプロンプトと注意点も解説します。</p>
-      <span class="ugkxad-btn">ガイドを読む →</span>
     </div>
     <div class="ugkxad-r">
       <div class="ugkxad-thumb">
@@ -9092,6 +9512,10 @@
           <span class="chip">AI活用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkxad-foot">
+      <span class="ugkxad-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9135,6 +9559,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksec-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksec-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksec-foot .ugksec-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksec-foot{padding:0 20px 22px;}}
     .ugksec-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksec-thumb{text-align:center; padding:24px;}
@@ -9158,7 +9585,6 @@
       <span class="ugksec-eb">🛡️ 無料ガイド ｜ AIサイバーセキュリティ編</span>
       <h3>「うちは狙われない」を、<span class="hl">今日で終わり</span>に。</h3>
       <p>ランサム被害の約3分の2は中小企業。復旧に1,000万円以上かかった組織は約6割（警察庁）。さらにIPA「情報セキュリティ10大脅威2026」では“AIの利用をめぐるサイバーリスク”が初選出でいきなり3位に。棚卸し・多要素認証・バックアップ・更新・人の訓練・AI利用ルール・初動体制という7ステップを、地方の中小企業がそのまま実行できる形に分解しました。費用対効果の実額試算、シャドーAI対策、自律型AIに「どこまで任せるか」の4段階、30日ロードマップ、コピペで使えるプロンプトつき。</p>
-      <span class="ugksec-btn">ガイドを読む →</span>
     </div>
     <div class="ugksec-r">
       <div class="ugksec-thumb">
@@ -9172,6 +9598,10 @@
           <span class="chip">30日ロードマップ</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksec-foot">
+      <span class="ugksec-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9215,6 +9645,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugk3y-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugk3y-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugk3y-foot .ugk3y-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugk3y-foot{padding:0 20px 22px;}}
     .ugk3y-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugk3y-thumb{text-align:center; padding:24px;}
@@ -9238,7 +9671,6 @@
       <span class="ugk3y-eb">📊 無料ガイド ｜ 3年後シミュレーション編</span>
       <h3>3年後、<span class="hl">差がつくのは今日</span>の判断です。</h3>
       <p>AIを導入した会社と、しなかった会社。3年後に何が起きるのかを、時間と金額で見える化しました。最新の公的調査データ、AIが効く仕事の3条件、初心者社長のための90日導入マニュアル、業種別の成功事例、費用対効果の試算、そして自律型AI（AIエージェント）の可能性と注意点まで。うごく君がやさしく解説します。</p>
-      <span class="ugk3y-btn">ガイドを読む →</span>
     </div>
     <div class="ugk3y-r">
       <div class="ugk3y-thumb">
@@ -9252,6 +9684,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugk3y-foot">
+      <span class="ugk3y-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9295,6 +9731,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkfail-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfail-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfail-foot .ugkfail-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfail-foot{padding:0 20px 22px;}}
     .ugkfail-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfail-thumb{text-align:center; padding:24px;}
@@ -9318,7 +9757,6 @@
       <span class="ugkfail-eb">⚠️ 無料ガイド ｜ 失敗回避編</span>
       <h3>「入れたのに<span class="hl">誰も使ってない</span>」の正体。</h3>
       <p>AI導入がうまくいかない原因は、性能でも料金でもなく「進め方」です。中小企業が失敗する7つの理由を、症状・原因・明日やること・コピペプロンプト・自律型AI（AIエージェント）の使いどころと注意点まで、AI初心者にもわかるように分解。90日ロードマップと成功パターンつき。</p>
-      <span class="ugkfail-btn">ガイドを読む →</span>
     </div>
     <div class="ugkfail-r">
       <div class="ugkfail-thumb">
@@ -9332,6 +9770,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfail-foot">
+      <span class="ugkfail-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9375,6 +9817,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkuba-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkuba-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkuba-foot .ugkuba-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkuba-foot{padding:0 20px 22px;}}
     .ugkuba-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkuba-thumb{text-align:center; padding:24px;}
@@ -9398,7 +9843,6 @@
       <span class="ugkuba-eb">⏳ 無料ガイド ｜ AI経営レポート2026</span>
       <h3>仕事を奪うのはAIではなく、<span class="hl">AIを使う同業</span>です。</h3>
       <p>奪われる会社に共通する7つの兆候、AI初心者の経営者でも今日から動ける90日マニュアル、費用対効果を円単位で示した試算表、成功事例、そして自律型AIエージェントで何が変わるかと注意点まで。案内役のうごく君が、脅しではなく打ち手としてやさしく解説します。</p>
-      <span class="ugkuba-btn">ガイドを読む →</span>
     </div>
     <div class="ugkuba-r">
       <div class="ugkuba-thumb">
@@ -9412,6 +9856,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkuba-foot">
+      <span class="ugkuba-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9455,6 +9903,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkclim-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkclim-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkclim-foot .ugkclim-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkclim-foot{padding:0 20px 22px;}}
     .ugkclim-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkclim-thumb{text-align:center; padding:24px;}
@@ -9478,7 +9929,6 @@
       <span class="ugkclim-eb">🧭 無料ガイド ｜ AI導入の本質編</span>
       <h3>ChatGPTを入れた。<span class="hl">それでも変わらない</span>理由。</h3>
       <p>原因はスキルでも料金でもありません。AI導入の「4階層モデル」で、いま自社がどこで止まっているのかを特定します。2026年の最新トレンド、90日で仕組みに変える実装マニュアル、費用対効果の具体金額、自律型AI（AIエージェント）の可能性と注意点まで、初心者の経営者向けにやさしく解説。</p>
-      <span class="ugkclim-btn">ガイドを読む →</span>
     </div>
     <div class="ugkclim-r">
       <div class="ugkclim-thumb">
@@ -9492,6 +9942,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkclim-foot">
+      <span class="ugkclim-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9535,6 +9989,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkdsg-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkdsg-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkdsg-foot .ugkdsg-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkdsg-foot{padding:0 20px 22px;}}
     .ugkdsg-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkdsg-thumb{text-align:center; padding:24px;}
@@ -9558,7 +10015,6 @@
       <span class="ugkdsg-eb">📐 無料ガイド ｜ AI導入設計編</span>
       <h3>AI導入は<span class="hl">ツール選びではなく</span>、設計で決まる。</h3>
       <p>なぜ導入の多くが失敗するのか。その構造と回避策を「設計」の視点から解説します。90日で回す6ステップの導入マニュアル、費用対効果の金額試算、業種別の成功事例、自律型AI（AIエージェント）の可能性と注意点まで、案内役のうごく君がやさしく網羅します。</p>
-      <span class="ugkdsg-btn">ガイドを読む →</span>
     </div>
     <div class="ugkdsg-r">
       <div class="ugkdsg-thumb">
@@ -9572,6 +10028,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkdsg-foot">
+      <span class="ugkdsg-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9615,6 +10075,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkdev-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkdev-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkdev-foot .ugkdev-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkdev-foot{padding:0 20px 22px;}}
     .ugkdev-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkdev-thumb{text-align:center; padding:24px;}
@@ -9638,7 +10101,6 @@
       <span class="ugkdev-eb">💻 無料ガイド ｜ 機材の選び方編</span>
       <h3>「いいパソコン、<span class="hl">買わなきゃダメ？</span>」→ ほぼNOです。</h3>
       <p>2026年のメモリ高騰・NPUの実力・クラウドAIの現状をふまえ、地方の経営者が最短で成果を出すための機材の選び方を整理しました。予算0円／5万円／20万円／50万円の4段階と、具体的な費用対効果の金額つき。自律型AIエージェント時代に効く機材の考え方まで、やさしく解説します。</p>
-      <span class="ugkdev-btn">ガイドを読む →</span>
     </div>
     <div class="ugkdev-r">
       <div class="ugkdev-thumb">
@@ -9652,6 +10114,10 @@
           <span class="chip">買う前チェック</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkdev-foot">
+      <span class="ugkdev-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9695,6 +10161,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkloc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkloc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkloc-foot .ugkloc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkloc-foot{padding:0 20px 22px;}}
     .ugkloc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkloc-thumb{text-align:center; padding:24px;}
@@ -9718,7 +10187,6 @@
       <span class="ugkloc-eb">🌄 無料ガイド ｜ 地方企業編</span>
       <h3>都会の会社より、<span class="hl">地方のほうが</span>AIは効きます。</h3>
       <p>「うちみたいな田舎の小さい会社にはまだ早い」は、実は逆です。人手不足倒産441件（過去最多）、中小のAI導入率20.4%——2026年の最新データで、地方企業ほどAIが効く8つの理由を解説。費用対効果の試算金額、成功パターン、仕事と私生活での使い方、自律型AI（AIエージェント）の可能性と注意点、90日導入マニュアルまで。</p>
-      <span class="ugkloc-btn">ガイドを読む →</span>
     </div>
     <div class="ugkloc-r">
       <div class="ugkloc-thumb">
@@ -9732,6 +10200,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkloc-foot">
+      <span class="ugkloc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9775,6 +10247,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugknbo-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugknbo-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugknbo-foot .ugknbo-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugknbo-foot{padding:0 20px 22px;}}
     .ugknbo-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugknbo-thumb{text-align:center; padding:24px;}
@@ -9798,7 +10273,6 @@
       <span class="ugknbo-eb">🗒️ 無料ガイド ｜ NotebookLM × Obsidian編</span>
       <h3>「調べたのに、<span class="hl">もう思い出せない</span>」を終わらせる。</h3>
       <p>NotebookLMとObsidianは何が違い、どう使い分けるのか。初心者向けに、比較表・3分/10分で始める手順・仕事と私生活の活用術10選・自律型AI（MCP）連携までを、案内役のうごく君がやさしく解説します。コピペで使えるプロンプトつき。</p>
-      <span class="ugknbo-btn">ガイドを読む →</span>
     </div>
     <div class="ugknbo-r">
       <div class="ugknbo-thumb">
@@ -9812,6 +10286,10 @@
           <span class="chip">プロンプト</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugknbo-foot">
+      <span class="ugknbo-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9855,6 +10333,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkprep-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkprep-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkprep-foot .ugkprep-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkprep-foot{padding:0 20px 22px;}}
     .ugkprep-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkprep-thumb{text-align:center; padding:24px;}
@@ -9878,7 +10359,6 @@
       <span class="ugkprep-eb">✅ 無料ガイド ｜ 導入前の準備編</span>
       <h3>AIが失敗する会社は、<span class="hl">入れる前に</span>負けている。</h3>
       <p>AIを入れる前の「準備」で9割が決まります。目的の絞り込み・業務の棚卸し・データ整理・社内ルール・人と体制の5つを、AI初心者の経営者向けにやさしく解説。最新の自律型AI（AIエージェント）トレンド、具体的な費用対効果の金額シミュレーション、成功事例、注意点、コピペで使えるプロンプトまで丁寧にご案内します。</p>
-      <span class="ugkprep-btn">ガイドを読む →</span>
     </div>
     <div class="ugkprep-r">
       <div class="ugkprep-thumb">
@@ -9892,6 +10372,10 @@
           <span class="chip">人と体制</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkprep-foot">
+      <span class="ugkprep-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -9935,6 +10419,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkprof-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkprof-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkprof-foot .ugkprof-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkprof-foot{padding:0 20px 22px;}}
     .ugkprof-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkprof-thumb{text-align:center; padding:24px;}
@@ -9958,7 +10445,6 @@
       <span class="ugkprof-eb">💹 無料ガイド ｜ AI×利益編</span>
       <h3>AIは人を減らす道具じゃない。<span class="hl">利益を増やす</span>道具だ。</h3>
       <p>「AI＝リストラ」は誤解です。利益が増える3ルート、2026年最新の公的調査データ、初心者経営者でも回せる導入7ステップ、月額コストと年間リターンの試算モデル、業種別の成功パターン、自律型AI（AIエージェント）の使い所と注意点まで。案内役のうごく君が、数字で見える形にやさしく解説します。</p>
-      <span class="ugkprof-btn">ガイドを読む →</span>
     </div>
     <div class="ugkprof-r">
       <div class="ugkprof-thumb">
@@ -9972,6 +10458,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkprof-foot">
+      <span class="ugkprof-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10015,6 +10505,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugk26-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugk26-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugk26-foot .ugk26-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugk26-foot{padding:0 20px 22px;}}
     .ugk26-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugk26-thumb{text-align:center; padding:24px;}
@@ -10038,7 +10531,6 @@
       <span class="ugk26-eb">🗓️ 無料ガイド ｜ 2026年後半編</span>
       <h3>2026年後半、<span class="hl">どこに張れば</span>外さないか。</h3>
       <p>今からAIを学ぶ・活かすなら、何を選び、何を捨てるか。ChatGPT・Gemini・Claudeの立ち位置の違い、初心者が最短で戦力化する順番、そしてこの先1年で伸びる使い方まで。案内役のうごく君が、迷わないための地図としてやさしく解説します。</p>
-      <span class="ugk26-btn">ガイドを読む →</span>
     </div>
     <div class="ugk26-r">
       <div class="ugk26-thumb">
@@ -10052,6 +10544,10 @@
           <span class="chip">最新トレンド</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugk26-foot">
+      <span class="ugk26-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10095,6 +10591,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugk2h-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugk2h-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugk2h-foot .ugk2h-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugk2h-foot{padding:0 20px 22px;}}
     .ugk2h-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugk2h-thumb{text-align:center; padding:24px;}
@@ -10118,7 +10617,6 @@
       <span class="ugk2h-eb">⏱️ 無料ガイド ｜ 社長の時間編</span>
       <h3>社長の1日から、<span class="hl">毎日2時間</span>を取り戻す。</h3>
       <p>返信・議事録・数字チェック——社長がやらなくていい仕事を手放すための7ステップ。何を人に渡し、何をAIに渡し、何を自分に残すのかを具体的に整理します。コピペで使えるプロンプトと、自律型AI（AIエージェント）の使いどころ・注意点つき。</p>
-      <span class="ugk2h-btn">ガイドを読む →</span>
     </div>
     <div class="ugk2h-r">
       <div class="ugk2h-thumb">
@@ -10132,6 +10630,10 @@
           <span class="chip">プロンプト</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugk2h-foot">
+      <span class="ugk2h-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10175,6 +10677,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkadimg-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkadimg-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkadimg-foot .ugkadimg-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkadimg-foot{padding:0 20px 22px;}}
     .ugkadimg-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkadimg-thumb{text-align:center; padding:24px;}
@@ -10198,7 +10703,6 @@
       <span class="ugkadimg-eb">🖼️ 無料ガイド ｜ 広告用画像生成編</span>
       <h3>AIの画像は、もう<span class="hl">「素材」ではなく</span>デザインだ。</h3>
       <p>きれいな絵が出るだけでは、広告になりません。文字・レイアウト・視線の流れまで含めて“売れる1枚”に仕上げる手順を、デザインのプロが守る7つのセオリーと2026年の最新トレンド（Nano Banana 2）から解説。地方の中小企業のための6ステップ導入マニュアル、反響が出る投稿の型7つ、予算感と費用対効果の具体金額、自律型AI（AIエージェント）を足したときの可能性と注意点まで、コピペで使えるプロンプトつきでやさしくご案内します。</p>
-      <span class="ugkadimg-btn">ガイドを読む →</span>
     </div>
     <div class="ugkadimg-r">
       <div class="ugkadimg-thumb">
@@ -10212,6 +10716,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkadimg-foot">
+      <span class="ugkadimg-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10255,6 +10763,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkzero-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkzero-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkzero-foot .ugkzero-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkzero-foot{padding:0 20px 22px;}}
     .ugkzero-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkzero-thumb{text-align:center; padding:24px;}
@@ -10278,7 +10789,6 @@
       <span class="ugkzero-eb">🔥 無料ガイド ｜ ゼロ円スタート編</span>
       <h3>金も人も経験もない。それでも<span class="hl">今日から</span>成り上がれる。</h3>
       <p>金も、人も、経験もゼロ。それでも無料AIだけで戦えます。調査・企画・文章・画像・動画・MEO・数字・学習・交渉・自律型AIまで、成り上がるための10の使いどころを、初心者向けに手順・コピペプロンプト・費用対効果・予算感・注意点つきで解説。案内役のうごく君がやさしくご案内します。</p>
-      <span class="ugkzero-btn">ガイドを読む →</span>
     </div>
     <div class="ugkzero-r">
       <div class="ugkzero-thumb">
@@ -10292,6 +10802,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkzero-foot">
+      <span class="ugkzero-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10335,6 +10849,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkp100-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkp100-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkp100-foot .ugkp100-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkp100-foot{padding:0 20px 22px;}}
     .ugkp100-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkp100-thumb{text-align:center; padding:24px;}
@@ -10358,7 +10875,6 @@
       <span class="ugkp100-eb">💯 無料ガイド ｜ 社長のプロンプト編</span>
       <h3>社長が今すぐ使える、<span class="hl">プロンプト100選</span>。</h3>
       <p>AI初心者の経営者向け。コピペで使えるプロンプト100選を、経営判断・営業マーケ・人と組織・数字・文書会議・現場改善・私生活の7カテゴリで網羅。プロンプトの型、費用対効果の試算、2026年の自律型AIエージェントで何が変わるか、失敗しない注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkp100-btn">ガイドを読む →</span>
     </div>
     <div class="ugkp100-r">
       <div class="ugkp100-thumb">
@@ -10372,6 +10888,10 @@
           <span class="chip">私生活</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkp100-foot">
+      <span class="ugkp100-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10415,6 +10935,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmuda-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmuda-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmuda-foot .ugkmuda-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmuda-foot{padding:0 20px 22px;}}
     .ugkmuda-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmuda-thumb{text-align:center; padding:24px;}
@@ -10438,7 +10961,6 @@
       <span class="ugkmuda-eb">🧹 無料ガイド ｜ AI化診断 実例編</span>
       <h3>そのムダ、社内では<span class="hl">「仕事」に見えて</span>います。</h3>
       <p>AI初心者でもわかる、中小企業の「ムダ作業」総点検。AI化診断の現場で実際に改善されたムダ作業10選を、Before/After・コピペプロンプト・自律型AI（AIエージェント）でどこまで自動化できるか・月あたりの費用対効果・注意点まで全部“視える化”して解説します。</p>
-      <span class="ugkmuda-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmuda-r">
       <div class="ugkmuda-thumb">
@@ -10452,6 +10974,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmuda-foot">
+      <span class="ugkmuda-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10495,6 +11021,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcday-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcday-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcday-foot .ugkcday-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcday-foot{padding:0 20px 22px;}}
     .ugkcday-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcday-thumb{text-align:center; padding:24px;}
@@ -10518,7 +11047,6 @@
       <span class="ugkcday-eb">⏱️ 無料ガイド ｜ 社長の1日編</span>
       <h3>AI導入前と導入後、<span class="hl">社長の1日</span>を比較してみた。</h3>
       <p>AI導入前／対話型AI導入後／自律型AIエージェント導入後。社長の1日を時間割で並べて比較しました。何が減り、何が増えるのか。費用対効果の計算式、月額の目安、失敗しない始め方、注意点まで、AI初心者の経営者向けにうごく君がやさしく解説します。</p>
-      <span class="ugkcday-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcday-r">
       <div class="ugkcday-thumb">
@@ -10532,6 +11060,10 @@
           <span class="chip">始め方</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcday-foot">
+      <span class="ugkcday-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10575,6 +11107,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkatck-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkatck-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkatck-foot .ugkatck-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkatck-foot{padding:0 20px 22px;}}
     .ugkatck-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkatck-thumb{text-align:center; padding:24px;}
@@ -10598,7 +11133,6 @@
       <span class="ugkatck-eb">🧾 無料ガイド ｜ AI研修 発注前編</span>
       <h3>AI研修に100万円。払う前に、<span class="hl">この22項目</span>。</h3>
       <p>AI研修は高い買い物です。払う前に確認すべき22項目を、AI実装のプロが公開。形式別の費用相場、隠れコスト、人材開発支援助成金で実質負担を75%下げる方法、費用対効果（ROI）の計算式、定着させる90日運用、そして自律型AIが加わると何が変わるかまで解説します。</p>
-      <span class="ugkatck-btn">ガイドを読む →</span>
     </div>
     <div class="ugkatck-r">
       <div class="ugkatck-thumb">
@@ -10612,6 +11146,10 @@
           <span class="chip">90日運用</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkatck-foot">
+      <span class="ugkatck-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10655,6 +11193,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkshad-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkshad-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkshad-foot .ugkshad-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkshad-foot{padding:0 20px 22px;}}
     .ugkshad-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkshad-thumb{text-align:center; padding:24px;}
@@ -10678,7 +11219,6 @@
       <span class="ugkshad-eb">🕶️ 無料ガイド ｜ AIガバナンス編</span>
       <h3>「社員に自由に使わせる」が、<span class="hl">危険な理由</span>。</h3>
       <p>禁止しても放置しても危ない。社員が勝手にAIを使う「シャドーAI」の何が危険なのかを、AI初心者にもわかる言葉で解説。5つのリスク、30分でできるリスクアセスメント、そのまま使える利用ルール10か条、自律型AIエージェント時代の守り方、費用感まで網羅します。</p>
-      <span class="ugkshad-btn">ガイドを読む →</span>
     </div>
     <div class="ugkshad-r">
       <div class="ugkshad-thumb">
@@ -10692,6 +11232,10 @@
           <span class="chip">費用感</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkshad-foot">
+      <span class="ugkshad-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10735,6 +11279,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugktacit-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugktacit-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugktacit-foot .ugktacit-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugktacit-foot{padding:0 20px 22px;}}
     .ugktacit-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugktacit-thumb{text-align:center; padding:24px;}
@@ -10758,7 +11305,6 @@
       <span class="ugktacit-eb">🧠 無料ガイド ｜ 暗黙知の共有編</span>
       <h3>「社長しか知らない」を、<span class="hl">全店の共有財産</span>に。</h3>
       <p>社長の頭の中にしかない判断基準・例外対応・人の機微。多店舗経営で最大のボトルネックになるこの「暗黙知」を、AIで形式知に変えて全店で共有する方法を、AI初心者にもわかるように解説。理論（SECIモデル）、2026年の最新トレンド、6ステップの実装手順まで。</p>
-      <span class="ugktacit-btn">ガイドを読む →</span>
     </div>
     <div class="ugktacit-r">
       <div class="ugktacit-thumb">
@@ -10772,6 +11318,10 @@
           <span class="chip">定着</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugktacit-foot">
+      <span class="ugktacit-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10815,6 +11365,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugknbsc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugknbsc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugknbsc-foot .ugknbsc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugknbsc-foot{padding:0 20px 22px;}}
     .ugknbsc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugknbsc-thumb{text-align:center; padding:24px;}
@@ -10838,7 +11391,6 @@
       <span class="ugknbsc-eb">🗝️ 無料ガイド ｜ 属人化の解消編</span>
       <h3>「社長しか知らない仕事」を、<span class="hl">会社の資産</span>に。</h3>
       <p>値決めの根拠、断る基準、機械のクセ。社長の頭の中だけにある仕事を、NotebookLMで“誰でも引ける仕組み”に変える30日マニュアル。AI初心者向けに、最新機能・料金・費用対効果・注意点・自律型AIへの発展まで、うごく君がやさしく解説します。</p>
-      <span class="ugknbsc-btn">ガイドを読む →</span>
     </div>
     <div class="ugknbsc-r">
       <div class="ugknbsc-thumb">
@@ -10852,6 +11404,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugknbsc-foot">
+      <span class="ugknbsc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10895,6 +11451,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkgtl10-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkgtl10-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkgtl10-foot .ugkgtl10-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkgtl10-foot{padding:0 20px 22px;}}
     .ugkgtl10-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkgtl10-thumb{text-align:center; padding:24px;}
@@ -10918,7 +11477,6 @@
       <span class="ugkgtl10-eb">🏔️ 無料ガイド ｜ 群馬の中小企業編</span>
       <h3>最初に入れるべきAIは、<span class="hl">この10個</span>で決まり。</h3>
       <p>AI初心者の経営者・現場担当者へ。群馬県の中小企業が「最初に」導入すべきAIツールを、費用対効果・導入手順・つまずきポイント込みでTOP10形式に。仕事とプライベート両方の活かし方、コピペで使えるプロンプト、そして自律型AI（AIエージェント）の可能性と注意点まで解説します。</p>
-      <span class="ugkgtl10-btn">ガイドを読む →</span>
     </div>
     <div class="ugkgtl10-r">
       <div class="ugkgtl10-thumb">
@@ -10932,6 +11490,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkgtl10-foot">
+      <span class="ugkgtl10-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -10975,6 +11537,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkgprm-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkgprm-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkgprm-foot .ugkgprm-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkgprm-foot{padding:0 20px 22px;}}
     .ugkgprm-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkgprm-thumb{text-align:center; padding:24px;}
@@ -10998,7 +11563,6 @@
       <span class="ugkgprm-eb">📈 無料ガイド ｜ 群馬の利益化編</span>
       <h3>AIで「便利」は、もう十分。<span class="hl">次は利益</span>にする。</h3>
       <p>AI初心者の経営者へ。群馬の中小企業がAIで利益を増やすための、90日ロードマップ。最新データ（中小企業のAI導入率20.4%／群馬の最低賃金1,063円）をもとに、何から始めるか・費用対効果はいくらか・自律型AI（AIエージェント）で何が変わるかを、具体的な数字で解説します。</p>
-      <span class="ugkgprm-btn">ガイドを読む →</span>
     </div>
     <div class="ugkgprm-r">
       <div class="ugkgprm-thumb">
@@ -11012,6 +11576,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkgprm-foot">
+      <span class="ugkgprm-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11055,6 +11623,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkaist-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkaist-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkaist-foot .ugkaist-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkaist-foot{padding:0 20px 22px;}}
     .ugkaist-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkaist-thumb{text-align:center; padding:24px;}
@@ -11078,7 +11649,6 @@
       <span class="ugkaist-eb">👔 無料ガイド ｜ AI社員編</span>
       <h3>Claude Codeだけで、<span class="hl">AI社員を5人</span>雇う。</h3>
       <p>AI初心者でも大丈夫。Claude Codeだけで、事務・営業・経理・広報・リサーチの“AI社員”を5人つくる手順を、コピペできる設定ファイルつきで解説。費用対効果の試算、自律型AI（AIエージェント）の可能性と注意点、仕事とプライベート両方の活かし方まで網羅しています。</p>
-      <span class="ugkaist-btn">ガイドを読む →</span>
     </div>
     <div class="ugkaist-r">
       <div class="ugkaist-thumb">
@@ -11092,6 +11662,10 @@
           <span class="chip">リサーチ</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkaist-foot">
+      <span class="ugkaist-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11135,6 +11709,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkccnb-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkccnb-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkccnb-foot .ugkccnb-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkccnb-foot{padding:0 20px 22px;}}
     .ugkccnb-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkccnb-thumb{text-align:center; padding:24px;}
@@ -11158,7 +11735,6 @@
       <span class="ugkccnb-eb">🔗 無料ガイド ｜ CC×NotebookLM編</span>
       <h3>営業も、現場も、事務も。<span class="hl">1本の流れ</span>で自動化する。</h3>
       <p>「AIで自動化」を、今日から本当に動く形に。会社の頭脳をつくるNotebookLM（2026年7月にGemini Notebookへ改称）と、実際に手を動かすClaude Code／Coworkを1本につなぐ実装マニュアル。営業・現場・事務それぞれの手順とプロンプト、費用対効果、注意点まで解説します。</p>
-      <span class="ugkccnb-btn">ガイドを読む →</span>
     </div>
     <div class="ugkccnb-r">
       <div class="ugkccnb-thumb">
@@ -11172,6 +11748,10 @@
           <span class="chip">事務</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkccnb-foot">
+      <span class="ugkccnb-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11215,6 +11795,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkccsl-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkccsl-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkccsl-foot .ugkccsl-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkccsl-foot{padding:0 20px 22px;}}
     .ugkccsl-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkccsl-thumb{text-align:center; padding:24px;}
@@ -11238,7 +11821,6 @@
       <span class="ugkccsl-eb">📊 無料ガイド ｜ 営業資料編</span>
       <h3>Claude Codeに営業資料を丸ごと作らせて、<span class="hl">わかった8つ</span>。</h3>
       <p>Claude Codeに営業資料を丸ごと作らせて、わかったことが8つありました。AI初心者でも今日から始められる手順、コピペで使えるプロンプト、費用対効果の計算、失敗しやすい注意点まで。自律型AIエージェント時代の資料づくりを、案内役のうごく君が解説します。</p>
-      <span class="ugkccsl-btn">ガイドを読む →</span>
     </div>
     <div class="ugkccsl-r">
       <div class="ugkccsl-thumb">
@@ -11252,6 +11834,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkccsl-foot">
+      <span class="ugkccsl-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11295,6 +11881,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkkscc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkkscc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkkscc-foot .ugkkscc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkkscc-foot{padding:0 20px 22px;}}
     .ugkkscc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkkscc-thumb{text-align:center; padding:24px;}
@@ -11318,7 +11907,6 @@
       <span class="ugkkscc-eb">🏗️ 無料ガイド ｜ 建設×Claude Code編</span>
       <h3>「人は増えない、残業もできない」を、<span class="hl">年間500時間</span>で。</h3>
       <p>人手は増えない、残業はできない。建設会社の“事務と段取り”はAIで動かせます。Claude Code（クロード・コード）とは何かから、初日〜90日の導入手順、年間500時間の削減内訳、月1.5万円の費用対効果、自律型AIの可能性、やってはいけない注意点まで解説します。</p>
-      <span class="ugkkscc-btn">ガイドを読む →</span>
     </div>
     <div class="ugkkscc-r">
       <div class="ugkkscc-thumb">
@@ -11332,6 +11920,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkkscc-foot">
+      <span class="ugkkscc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11375,6 +11967,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkksai-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkksai-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkksai-foot .ugkksai-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkksai-foot{padding:0 20px 22px;}}
     .ugkksai-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkksai-thumb{text-align:center; padding:24px;}
@@ -11398,7 +11993,6 @@
       <span class="ugkksai-eb">🪜 無料ガイド ｜ 建設業の採用編</span>
       <h3>「募集は出してる。<span class="hl">でも、来ない。</span>」を終わりにする。</h3>
       <p>躯体工事7.48倍、建設・採掘5.94倍。募集しても応募が来ない建設業へ。求人票のマスター化・求人SEO・応募単価の逆算・現場動画の量産・スカウト1to1・3分返信の自動化まで、AI初心者でも今日から動ける10の手順を、コピペプロンプト・費用対効果つきで解説します。</p>
-      <span class="ugkksai-btn">ガイドを読む →</span>
     </div>
     <div class="ugkksai-r">
       <div class="ugkksai-thumb">
@@ -11412,6 +12006,10 @@
           <span class="chip">スカウト</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkksai-foot">
+      <span class="ugkksai-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11455,6 +12053,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmf30-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmf30-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmf30-foot .ugkmf30-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmf30-foot{padding:0 20px 22px;}}
     .ugkmf30-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmf30-thumb{text-align:center; padding:24px;}
@@ -11478,7 +12079,6 @@
       <span class="ugkmf30-eb">🏭 無料ガイド ｜ 製造業30日編</span>
       <h3>設備投資ゼロ。社員14名の会社が、<span class="hl">30日で</span>変わった。</h3>
       <p>設備投資ゼロ。社員14名の製造会社が、AIを導入した最初の30日で何が変わったか。Week0〜Week4の進め方、現場でそのまま使えるプロンプト、費用対効果の試算（月45時間削減・年約119万円）、自律型AI（AIエージェント）の可能性と注意点まで解説します。</p>
-      <span class="ugkmf30-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmf30-r">
       <div class="ugkmf30-thumb">
@@ -11492,6 +12092,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmf30-foot">
+      <span class="ugkmf30-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11535,6 +12139,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkrmai-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkrmai-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkrmai-foot .ugkrmai-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkrmai-foot{padding:0 20px 22px;}}
     .ugkrmai-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkrmai-thumb{text-align:center; padding:24px;}
@@ -11558,7 +12165,6 @@
       <span class="ugkrmai-eb">🍽️ 無料ガイド ｜ 飲食店の店長編</span>
       <h3>「店長がぜんぶ抱える」を、<span class="hl">今日で終わり</span>に。</h3>
       <p>予約電話・シフト・発注・口コミ返信・スタッフ対応。店長がひとりで抱えていた“管理業務”を、AI秘書に渡す時代になりました。AI初心者でも今日から動けるように、始め方の手順・コピペで使えるプロンプト・費用対効果の計算・自律型AI（AIエージェント）の使いどころと注意点まで解説します。</p>
-      <span class="ugkrmai-btn">ガイドを読む →</span>
     </div>
     <div class="ugkrmai-r">
       <div class="ugkrmai-thumb">
@@ -11572,6 +12178,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkrmai-foot">
+      <span class="ugkrmai-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11615,6 +12225,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmnl-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmnl-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmnl-foot .ugkmnl-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmnl-foot{padding:0 20px 22px;}}
     .ugkmnl-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmnl-thumb{text-align:center; padding:24px;}
@@ -11638,7 +12251,6 @@
       <span class="ugkmnl-eb">📕 無料ガイド ｜ 社内マニュアル編</span>
       <h3>「書ける人がいない」を、<span class="hl">今日で終わり</span>にする。</h3>
       <p>「マニュアルを作りたいけど、書ける人がいない」を今日で終わりにする。NotebookLM（2026年7月にGemini Notebookへ改称）で社内の知識を溜め、Claudeで読める文章に整える——AI初心者でも1本1.5時間で社内マニュアルを量産できる実装手順と費用対効果を解説します。</p>
-      <span class="ugkmnl-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmnl-r">
       <div class="ugkmnl-thumb">
@@ -11652,6 +12264,10 @@
           <span class="chip">費用対効果</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmnl-foot">
+      <span class="ugkmnl-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11695,6 +12311,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkhpg-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkhpg-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkhpg-foot .ugkhpg-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkhpg-foot{padding:0 20px 22px;}}
     .ugkhpg-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkhpg-thumb{text-align:center; padding:24px;}
@@ -11718,7 +12337,6 @@
       <span class="ugkhpg-eb">🖥️ 無料ガイド ｜ HP作成編</span>
       <h3>「HPは今すぐ欲しい」を、<span class="hl">今日で解決</span>にする。</h3>
       <p>ホームページが欲しい。でも何から？知識ゼロ・デザイン経験ゼロでも、AIを使えば最短1日で“働くHP”が持てます。3つの作り方ルート・費用相場と予算感・コピペで使えるプロンプト・公開前チェック・AI検索（LLMO）対策・自律型AIでの運用自動化まで解説します。</p>
-      <span class="ugkhpg-btn">ガイドを読む →</span>
     </div>
     <div class="ugkhpg-r">
       <div class="ugkhpg-thumb">
@@ -11732,6 +12350,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkhpg-foot">
+      <span class="ugkhpg-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11775,6 +12397,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkbrn-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkbrn-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkbrn-foot .ugkbrn-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkbrn-foot{padding:0 20px 22px;}}
     .ugkbrn-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkbrn-thumb{text-align:center; padding:24px;}
@@ -11798,7 +12423,6 @@
       <span class="ugkbrn-eb">🧩 無料ガイド ｜ コンテンツ販売編</span>
       <h3>「情報商材ってオワコン？」を、<span class="hl">今日で判断</span>できる。</h3>
       <p>知識共有プラットフォーム「Brain」の仕組み（手数料12%・紹介機能・審査／レビュー）から、2026年の『情報商材オワコン論』の正体、買う側・売る側の実践手順、費用対効果と予算感、そして自律型AIを組み込んだ次世代の作り方まで、うごく君がやさしく解説します。</p>
-      <span class="ugkbrn-btn">ガイドを読む →</span>
     </div>
     <div class="ugkbrn-r">
       <div class="ugkbrn-thumb">
@@ -11812,6 +12436,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkbrn-foot">
+      <span class="ugkbrn-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11855,6 +12483,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkpod-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkpod-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkpod-foot .ugkpod-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkpod-foot{padding:0 20px 22px;}}
     .ugkpod-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkpod-thumb{text-align:center; padding:24px;}
@@ -11878,7 +12509,6 @@
       <span class="ugkpod-eb">🎙️ 無料ガイド ｜ ポッドキャスト編</span>
       <h3>「結局なに？」を、<span class="hl">スマホ1台0円</span>で終わりにする。</h3>
       <p>ポッドキャスト初心者へ。仕組み・始め方・機材・費用対効果・予算感から、反響が出ている番組の型、AI活用事例10選と自律型AIの可能性、注意点までまるごと解説。スマホ1台0円で今日から始められる導入マニュアルを、案内役のうごく君がやさしく解説します。</p>
-      <span class="ugkpod-btn">ガイドを読む →</span>
     </div>
     <div class="ugkpod-r">
       <div class="ugkpod-thumb">
@@ -11892,6 +12522,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkpod-foot">
+      <span class="ugkpod-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -11935,6 +12569,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkplx-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkplx-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkplx-foot .ugkplx-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkplx-foot{padding:0 20px 22px;}}
     .ugkplx-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkplx-thumb{text-align:center; padding:24px;}
@@ -11958,7 +12595,6 @@
       <span class="ugkplx-eb">🔎 無料ガイド ｜ Perplexity編</span>
       <h3>「調べる」が変わる。<span class="hl">出典つき</span>で答えるAI。</h3>
       <p>AI初心者向けにPerplexity（パープレキシティ）をゼロから解説。ChatGPTとの違い、無料アカウントの作り方、Pro Search・Deep Research・Spaces・Cometの使い分け、料金とソフトバンク特典、仕事と私生活の活用事例10選、注意点まで網羅します。</p>
-      <span class="ugkplx-btn">ガイドを読む →</span>
     </div>
     <div class="ugkplx-r">
       <div class="ugkplx-thumb">
@@ -11972,6 +12608,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkplx-foot">
+      <span class="ugkplx-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12015,6 +12655,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkrag-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkrag-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkrag-foot .ugkrag-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkrag-foot{padding:0 20px 22px;}}
     .ugkrag-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkrag-thumb{text-align:center; padding:24px;}
@@ -12038,7 +12681,6 @@
       <span class="ugkrag-eb">📚 無料ガイド ｜ RAG編</span>
       <h3>RAGってなに？<span class="hl">AIに自社を覚えさせる</span>技術。</h3>
       <p>RAG（検索拡張生成）を専門知識ゼロから解説。仕組み・ゼロから始める導入5ステップ・無料で今日試す方法・活用事例10選・費用相場（PoC／本番／月額）と投資回収の計算・自律型AI（Agentic RAG）の可能性と注意点まで、案内役のうごく君が解説します。</p>
-      <span class="ugkrag-btn">ガイドを読む →</span>
     </div>
     <div class="ugkrag-r">
       <div class="ugkrag-thumb">
@@ -12052,6 +12694,10 @@
           <span class="chip">Agentic RAG</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkrag-foot">
+      <span class="ugkrag-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12095,6 +12741,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcpil-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcpil-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcpil-foot .ugkcpil-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcpil-foot{padding:0 20px 22px;}}
     .ugkcpil-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcpil-thumb{text-align:center; padding:24px;}
@@ -12118,7 +12767,6 @@
       <span class="ugkcpil-eb">🟦 無料ガイド ｜ Copilot編</span>
       <h3>「Copilot、うちにも要る？」を、<span class="hl">今日で判断</span>。</h3>
       <p>Copilotは1つではありません。無料のCopilot Chat／Microsoft 365 Copilot／GitHub Copilot、そして自律型のCopilot Cowork。2026年の最新料金（月2,698円〜）と、ゼロから始める導入手順、活用事例10選、費用対効果、注意点まで解説します。</p>
-      <span class="ugkcpil-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcpil-r">
       <div class="ugkcpil-thumb">
@@ -12132,6 +12780,10 @@
           <span class="chip">費用対効果</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcpil-foot">
+      <span class="ugkcpil-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12175,6 +12827,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcurs-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcurs-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcurs-foot .ugkcurs-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcurs-foot{padding:0 20px 22px;}}
     .ugkcurs-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcurs-thumb{text-align:center; padding:24px;}
@@ -12198,7 +12853,6 @@
       <span class="ugkcurs-eb">🖱️ 無料ガイド ｜ Cursor編</span>
       <h3>「エンジニアの道具」だと思って、<span class="hl">損してる</span>。</h3>
       <p>Cursorは「AIが中に住んでいるエディタ」。エンジニアでなくても使えます。2026年最新の料金プラン・Cursor 3のAgents Window・Composer 2、インストールから日本語化・Privacy Modeまでの導入手順、活用事例10選と注意点を解説します。</p>
-      <span class="ugkcurs-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcurs-r">
       <div class="ugkcurs-thumb">
@@ -12212,6 +12866,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcurs-foot">
+      <span class="ugkcurs-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12255,6 +12913,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcdag-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcdag-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcdag-foot .ugkcdag-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcdag-foot{padding:0 20px 22px;}}
     .ugkcdag-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcdag-thumb{text-align:center; padding:24px;}
@@ -12278,7 +12939,6 @@
       <span class="ugkcdag-eb">⚔️ 無料ガイド ｜ コーディングエージェント編</span>
       <h3>もうコードを書かない時代？<span class="hl">半分だけ</span>、本当です。</h3>
       <p>2026年、AIは「補完」から「自分で書いて直して仕上げる」エージェントへ。Claude Code・Codex・Cursor・Copilot・Antigravity・Devinを、性能（SWE-bench）と料金（無料〜月$200）の同じ物差しで徹底比較。選び方と注意点まで解説します。</p>
-      <span class="ugkcdag-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcdag-r">
       <div class="ugkcdag-thumb">
@@ -12292,6 +12952,10 @@
           <span class="chip">選び方</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcdag-foot">
+      <span class="ugkcdag-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12335,6 +12999,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkvibe-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkvibe-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkvibe-foot .ugkvibe-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkvibe-foot{padding:0 20px 22px;}}
     .ugkvibe-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkvibe-thumb{text-align:center; padding:24px;}
@@ -12358,7 +13025,6 @@
       <span class="ugkvibe-eb">🎧 無料ガイド ｜ バイブコーディング編</span>
       <h3>コードは書かない。でも、<span class="hl">事故らせない</span>。</h3>
       <p>プログラミング未経験でも大丈夫。AIに日本語で伝えるだけでアプリや業務ツールが作れる「バイブコーディング」を、プロのセオリー・2026年の最新トレンド・安全に進めるための7つのチェック・費用対効果の具体金額・成功事例・自律型AIを足したときの可能性まで解説します。</p>
-      <span class="ugkvibe-btn">ガイドを読む →</span>
     </div>
     <div class="ugkvibe-r">
       <div class="ugkvibe-thumb">
@@ -12372,6 +13038,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkvibe-foot">
+      <span class="ugkvibe-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12415,6 +13085,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkgmnb-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkgmnb-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkgmnb-foot .ugkgmnb-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkgmnb-foot{padding:0 20px 22px;}}
     .ugkgmnb-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkgmnb-thumb{text-align:center; padding:24px;}
@@ -12438,7 +13111,6 @@
       <span class="ugkgmnb-eb">🔀 無料ガイド ｜ Gemini×NotebookLM編</span>
       <h3>「あの資料どこ？」を、<span class="hl">会社から消す</span>。</h3>
       <p>2026年7月、NotebookLMは「Gemini Notebook」へ改称。Geminiとノートブックが1本につながった今、中小企業の情報共有は何が変わるのか。仕組みの理屈・初心者の始め方・コピペプロンプト・費用対効果の試算・自律型AIの可能性と注意点まで解説します。</p>
-      <span class="ugkgmnb-btn">ガイドを読む →</span>
     </div>
     <div class="ugkgmnb-r">
       <div class="ugkgmnb-thumb">
@@ -12452,6 +13124,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkgmnb-foot">
+      <span class="ugkgmnb-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12495,6 +13171,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkc50t-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkc50t-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkc50t-foot .ugkc50t-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkc50t-foot{padding:0 20px 22px;}}
     .ugkc50t-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkc50t-thumb{text-align:center; padding:24px;}
@@ -12518,7 +13197,6 @@
       <span class="ugkc50t-eb">🔌 無料ガイド ｜ MCP連携編</span>
       <h3>AIに「聞く」のは、もう終わり。<span class="hl">動かす時代</span>へ。</h3>
       <p>Claudeは「答えるAI」から「動くAI」へ。MCPコネクタでGmail・Slack・Googleドライブ・Excel・Canvaなど50のツールとつなぐ方法を、AI初心者にもわかるように解説。導入6ステップ、業種別の使いどころ、コピペプロンプト、費用対効果の計算、自律型AIの可能性と注意点まで網羅します。</p>
-      <span class="ugkc50t-btn">ガイドを読む →</span>
     </div>
     <div class="ugkc50t-r">
       <div class="ugkc50t-thumb">
@@ -12532,6 +13210,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkc50t-foot">
+      <span class="ugkc50t-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12575,6 +13257,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkccg-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkccg-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkccg-foot .ugkccg-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkccg-foot{padding:0 20px 22px;}}
     .ugkccg-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkccg-thumb{text-align:center; padding:24px;}
@@ -12598,7 +13283,6 @@
       <span class="ugkccg-eb">🤖 無料ガイド ｜ Claude Code編</span>
       <h3>「AIに相談する」で止まっていた会社が、<span class="hl">動き出す</span>。</h3>
       <p>Claude Codeは「エンジニアの道具」から「会社の実務を動かすAI」へ。2026年最新のトレンド、初心者でも今日から始められる導入手順、仕事が変わる10の使い方、コピペで使えるプロンプト、費用対効果の具体金額、そして自律型AIエージェントを足したときの可能性と注意点を解説します。</p>
-      <span class="ugkccg-btn">ガイドを読む →</span>
     </div>
     <div class="ugkccg-r">
       <div class="ugkccg-thumb">
@@ -12612,6 +13296,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkccg-foot">
+      <span class="ugkccg-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12655,6 +13343,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkloop-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkloop-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkloop-foot .ugkloop-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkloop-foot{padding:0 20px 22px;}}
     .ugkloop-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkloop-thumb{text-align:center; padding:24px;}
@@ -12678,7 +13369,6 @@
       <span class="ugkloop-eb">🔁 無料ガイド ｜ ループエンジニアリング編</span>
       <h3>AIに「毎回お願いする」のを、<span class="hl">やめる時代</span>。</h3>
       <p>2026年に広がった新概念「ループエンジニアリング」を、AI初心者向けにやさしく解説。プロンプト→コンテキスト→ハーネス→ループの進化、4ステップの中身、仕事と私生活で今すぐ回せる10の型、費用対効果（ループ税）、停止条件と注意点まで、具体例で解説します。</p>
-      <span class="ugkloop-btn">ガイドを読む →</span>
     </div>
     <div class="ugkloop-r">
       <div class="ugkloop-thumb">
@@ -12692,6 +13382,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkloop-foot">
+      <span class="ugkloop-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12735,6 +13429,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkmai-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkmai-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkmai-foot .ugkmai-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkmai-foot{padding:0 20px 22px;}}
     .ugkmai-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkmai-thumb{text-align:center; padding:24px;}
@@ -12758,7 +13455,6 @@
       <span class="ugkmai-eb">⚖️ 無料ガイド ｜ AI使い分け編</span>
       <h3>AIは、<span class="hl">1つ選ぶ時代</span>ではない。</h3>
       <p>「結局どのAIに課金すればいいの？」その問いはもう古い。2026年の正解は“1つ選ばない”こと。AI実装のプロが、初心者向けに三刀流の始め方・局面別の使い分け・費用対効果・自律型AI（AIエージェント）の可能性と注意点まで、コピペで使えるプロンプト付きで丁寧に解説します。</p>
-      <span class="ugkmai-btn">ガイドを読む →</span>
     </div>
     <div class="ugkmai-r">
       <div class="ugkmai-thumb">
@@ -12772,6 +13468,10 @@
           <span class="chip">費用対効果</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkmai-foot">
+      <span class="ugkmai-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12815,6 +13515,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugknb10-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugknb10-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugknb10-foot .ugknb10-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugknb10-foot{padding:0 20px 22px;}}
     .ugknb10-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugknb10-thumb{text-align:center; padding:24px;}
@@ -12838,7 +13541,6 @@
       <span class="ugknb10-eb">📓 無料ガイド ｜ NotebookLM実践編</span>
       <h3>資料を放り込むだけ。<span class="hl">読む・探す・まとめる</span>が消える。</h3>
       <p>NotebookLMを毎日使い倒す“AIガチ勢”の実践活用法を10個に厳選。2026年6月の大型アップデート（自律型エージェント化・Deep Research・Gemini 3.5）を踏まえ、初心者が今日から導入できる手順、仕事と私生活の使い分け、成功事例、金額まで出した費用対効果、注意点を解説します。</p>
-      <span class="ugknb10-btn">ガイドを読む →</span>
     </div>
     <div class="ugknb10-r">
       <div class="ugknb10-thumb">
@@ -12852,6 +13554,10 @@
           <span class="chip">費用対効果</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugknb10-foot">
+      <span class="ugknb10-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12895,6 +13601,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkhjk26-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkhjk26-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkhjk26-foot .ugkhjk26-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkhjk26-foot{padding:0 20px 22px;}}
     .ugkhjk26-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkhjk26-thumb{text-align:center; padding:24px;}
@@ -12918,7 +13627,6 @@
       <span class="ugkhjk26-eb">🎫 無料ガイド ｜ 2026年後半の補助金編</span>
       <h3>AIに使えるお金は、まだ残っている。<span class="hl">知らない人が損</span>をする。</h3>
       <p>IT導入補助金は「デジタル化・AI導入補助金2026」に、ものづくり補助金は「新事業進出・ものづくり補助金」に。2026年後半に間に合う主要7制度を、締切・上限・補助率・費用対効果の実数字で一枚に整理。初心者の申請手順、コピペで使えるプロンプト、自律型AI（AIエージェント）の使いどころと注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkhjk26-btn">ガイドを読む →</span>
     </div>
     <div class="ugkhjk26-r">
       <div class="ugkhjk26-thumb">
@@ -12932,6 +13640,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkhjk26-foot">
+      <span class="ugkhjk26-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -12975,6 +13687,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkexl-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkexl-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkexl-foot .ugkexl-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkexl-foot{padding:0 20px 22px;}}
     .ugkexl-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkexl-thumb{text-align:center; padding:24px;}
@@ -12998,7 +13713,6 @@
       <span class="ugkexl-eb">📊 無料ガイド ｜ AI×Excel編</span>
       <h3>Excelの「関数、覚えなきゃ」を、<span class="hl">今日で終わり</span>にする。</h3>
       <p>関数が苦手でも大丈夫。ChatGPT・Claude・Copilot・GeminiでExcel作業を効率化する、いちばんやさしい実践マニュアル。準備の型・コピペで使えるプロンプト・活用事例10選・費用対効果の計算・自律型AI（AIエージェント）の可能性と注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkexl-btn">ガイドを読む →</span>
     </div>
     <div class="ugkexl-r">
       <div class="ugkexl-thumb">
@@ -13012,6 +13726,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkexl-foot">
+      <span class="ugkexl-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13055,6 +13773,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkgsp-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkgsp-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkgsp-foot .ugkgsp-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkgsp-foot{padding:0 20px 22px;}}
     .ugkgsp-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkgsp-thumb{text-align:center; padding:24px;}
@@ -13078,7 +13799,6 @@
       <span class="ugkgsp-eb">✳️ 無料ガイド ｜ Genspark編</span>
       <h3>「調べる→まとめる→作る」を、<span class="hl">ぜんぶ1つ</span>で。</h3>
       <p>Genspark（ジェンスパーク）は「調べる・まとめる・作る」を1つで完結させるオールインワンAIワークスペース。初心者向けに、できること・料金・始め方5STEP・仕事と私生活の活用事例10選・費用対効果・注意点まで、案内役のうごく君がやさしく解説します。</p>
-      <span class="ugkgsp-btn">ガイドを読む →</span>
     </div>
     <div class="ugkgsp-r">
       <div class="ugkgsp-thumb">
@@ -13092,6 +13812,10 @@
           <span class="chip">注意点</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkgsp-foot">
+      <span class="ugkgsp-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13135,6 +13859,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkamz-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkamz-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkamz-foot .ugkamz-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkamz-foot{padding:0 20px 22px;}}
     .ugkamz-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkamz-thumb{text-align:center; padding:24px;}
@@ -13158,7 +13885,6 @@
       <span class="ugkamz-eb">📦 無料ガイド ｜ Amazon EC編</span>
       <h3>Amazon ECって、<span class="hl">結局なにをする</span>こと？</h3>
       <p>Amazon出品をゼロから始めたい方へ。出品プランの選び方・手数料の3層構造・FBA・広告（ACoS）・費用対効果と予算感を、初心者にもわかるように順番どおりに解説。さらにAI活用事例10選と、自律型AIエージェントで何が自動化できるかまで、うごく君がやさしく整理します。</p>
-      <span class="ugkamz-btn">ガイドを読む →</span>
     </div>
     <div class="ugkamz-r">
       <div class="ugkamz-thumb">
@@ -13172,6 +13898,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkamz-foot">
+      <span class="ugkamz-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13215,6 +13945,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkfit-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkfit-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkfit-foot .ugkfit-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkfit-foot{padding:0 20px 22px;}}
     .ugkfit-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkfit-thumb{text-align:center; padding:24px;}
@@ -13238,7 +13971,6 @@
       <span class="ugkfit-eb">🎯 無料ガイド ｜ AI導入 適性編</span>
       <h3>「うちにAIって、必要？」の答えは<span class="hl">業種じゃなく“特徴”</span>。</h3>
       <p>「うちにAIって必要？」の答えは、業種ではなく“会社の特徴”で決まります。AI実装のプロが、導入すべき会社の10の特徴、今は待つべき会社、初心者でも回る5ステップの導入マニュアル、費用対効果の計算式、自律型AI（AIエージェント）の可能性と注意点まで、うごく君がやさしく解説します。</p>
-      <span class="ugkfit-btn">ガイドを読む →</span>
     </div>
     <div class="ugkfit-r">
       <div class="ugkfit-thumb">
@@ -13252,6 +13984,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkfit-foot">
+      <span class="ugkfit-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13295,6 +14031,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkroi-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkroi-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkroi-foot .ugkroi-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkroi-foot{padding:0 20px 22px;}}
     .ugkroi-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkroi-thumb{text-align:center; padding:24px;}
@@ -13318,7 +14057,6 @@
       <span class="ugkroi-eb">💹 無料ガイド ｜ AI投資の回収編</span>
       <h3>AI実証実験の95%は効果ゼロ。<span class="hl">では、どう回収</span>するか。</h3>
       <p>AI実証実験の95%は財務効果ゼロ。では、どうすれば回収できるのか。ROIの計算式、業務の選び方、30日パイロット、金額換算のしかた、自律型AI（AIエージェント）の使いどころ、助成金で投資額を下げる方法まで。AI初心者でもそのまま動かせる実務マニュアルを、うごく君がやさしく解説します。</p>
-      <span class="ugkroi-btn">ガイドを読む →</span>
     </div>
     <div class="ugkroi-r">
       <div class="ugkroi-thumb">
@@ -13332,6 +14070,10 @@
           <span class="chip">助成金</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkroi-foot">
+      <span class="ugkroi-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13375,6 +14117,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugksub26-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugksub26-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugksub26-foot .ugksub26-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugksub26-foot{padding:0 20px 22px;}}
     .ugksub26-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugksub26-thumb{text-align:center; padding:24px;}
@@ -13398,7 +14143,6 @@
       <span class="ugksub26-eb">🗓️ 無料ガイド ｜ 2026年後半 制度別・実務編</span>
       <h3>「補助金？うちは関係ない」を、<span class="hl">今期で終わり</span>にする。</h3>
       <p>2026年後半（令和8年度下期）に間に合う補助金・助成金を、初心者向けに一本化。デジタル化・AI導入補助金2026（旧IT導入補助金）、中小企業省力化投資補助金、新事業進出・ものづくり商業サービス補助金、小規模事業者持続化補助金 第20回、人材開発支援助成金（リスキリング）、業務改善助成金の締切・上限・補助率を一覧化。費用対効果の計算式、通る計画書の型、コピペで使えるプロンプト、自律型AIエージェントの使いどころと注意点まで解説します。</p>
-      <span class="ugksub26-btn">ガイドを読む →</span>
     </div>
     <div class="ugksub26-r">
       <div class="ugksub26-thumb">
@@ -13412,6 +14156,10 @@
           <span class="chip">業務改善</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugksub26-foot">
+      <span class="ugksub26-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13455,6 +14203,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkstore-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkstore-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkstore-foot .ugkstore-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkstore-foot{padding:0 20px 22px;}}
     .ugkstore-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkstore-thumb{text-align:center; padding:24px;}
@@ -13478,7 +14229,6 @@
       <span class="ugkstore-eb">🏪 無料ガイド ｜ AI×店舗運営編</span>
       <h3>人が足りない。原価も上がる。<span class="hl">それでも店は回す</span>。</h3>
       <p>人手不足・原価高騰・集客難。店舗の三重苦を、AIで抜ける。初心者でも今日から動ける「ゼロから始める実践マニュアル」と、現場で効いたAI活用事例10選。コピペで使えるプロンプト・費用対効果の目安・自律型AI（AIエージェント）で何がどこまで自動化できるか・失敗しないための注意点まで解説します。</p>
-      <span class="ugkstore-btn">ガイドを読む →</span>
     </div>
     <div class="ugkstore-r">
       <div class="ugkstore-thumb">
@@ -13492,6 +14242,10 @@
           <span class="chip">自律型AI</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkstore-foot">
+      <span class="ugkstore-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13535,6 +14289,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkcm01-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkcm01-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkcm01-foot .ugkcm01-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkcm01-foot{padding:0 20px 22px;}}
     .ugkcm01-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkcm01-thumb{text-align:center; padding:24px;}
@@ -13558,7 +14315,6 @@
       <span class="ugkcm01-eb">🎓 無料ガイド ｜ Claude実践シリーズ 第1回</span>
       <h3>Claudeは「使う前」に整えると、<span class="hl">別物になる</span>。</h3>
       <p>Claude実践シリーズ第1回。AI初心者でも15分で終わる「正しいAIワークスペース」の作り方を、アカウント設定・プラン選び・メモリ・スタイル・プロジェクト・コネクタ・Cowork（自律型AI）まで全網羅。費用対効果の計算式、コピペで使えるカスタム指示、仕事と私生活での活かし方、注意点まで解説します。</p>
-      <span class="ugkcm01-btn">ガイドを読む →</span>
     </div>
     <div class="ugkcm01-r">
       <div class="ugkcm01-thumb">
@@ -13572,6 +14328,10 @@
           <span class="chip">Cowork</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkcm01-foot">
+      <span class="ugkcm01-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13615,6 +14375,9 @@
       box-shadow:0 6px 18px rgba(224,145,42,.35); transition:.16s;
     }
     .ugkvsc-btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+    .ugkvsc-foot{grid-column:1/-1; order:9; padding:0 28px 26px;}
+    .ugkvsc-foot .ugkvsc-btn{display:flex; width:100%; justify-content:center; font-size:15.5px; padding:15px 24px;}
+    @media(max-width:640px){.ugkvsc-foot{padding:0 20px 22px;}}
     .ugkvsc-r{position:relative; min-height:210px; background:var(--pd);
       display:flex; align-items:center; justify-content:center; overflow:hidden;}
     .ugkvsc-thumb{text-align:center; padding:24px;}
@@ -13638,7 +14401,6 @@
       <span class="ugkvsc-eb">🧰 無料ガイド ｜ VS Code編</span>
       <h3>Visual Studio Codeって、<span class="hl">もう「AIの仕事場」</span>です。</h3>
       <p>VS Code（Visual Studio Code）とは何かを、AI初心者向けにゼロから解説。インストール・日本語化・画面の見方から、拡張機能、GitHub CopilotやClaude Codeなど自律型AIエージェントの導入手順、2026年最新トレンド（エージェントモード・MCP・週次リリース・使用量ベース課金）、仕事と私生活での活かし方、注意点まで解説します。</p>
-      <span class="ugkvsc-btn">ガイドを読む →</span>
     </div>
     <div class="ugkvsc-r">
       <div class="ugkvsc-thumb">
@@ -13652,6 +14414,10 @@
           <span class="chip">エージェント</span>
         </div>
       </div>
+    </div>
+  
+    <div class="ugkvsc-foot">
+      <span class="ugkvsc-btn">記事を読む →</span>
     </div>
   </a>
 </div>
@@ -13717,7 +14483,8 @@
         >無料AI化診断（3分）</a
       >
       <a class="f2" href="#price">料金を見る</a>
-    </div>
+        <a class="f3" href="#free-learn" id="fx-column" aria-label="無料ガイド一覧（コラム）を開く">コラムを読む</a>
+      </div>
 
     <script id="ugoku-anim-script">
       (function () {
@@ -13915,5 +14682,24 @@
         });
       })();
     </script>
-  </body>
+  
+    <script>
+      /* 下部固定バー「コラムを読む」→ 無料ガイド一覧へスクロールし、閉じていれば自動で開く */
+      (function () {
+        var btn = document.getElementById("fx-column");
+        if (!btn) return;
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          var toggle = document.getElementById("ugk-idx-toggle");
+          var collapse = document.getElementById("ugk-idx-collapse");
+          var target = document.getElementById("free-learn");
+          if (toggle && collapse && !collapse.classList.contains("open")) toggle.click();
+          if (target) {
+            var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+          }
+        });
+      })();
+    </script>
+</body>
 </html>

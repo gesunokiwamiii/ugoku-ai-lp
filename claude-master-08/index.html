@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8回：会議の準備｜アジェンダと要約を自動生成する10分の型 ― UGOKU AI</title>
+<meta name="description" content="Claude実践シリーズ第8回。AI初心者でも10分で終わる「会議の準備」の自動化を、目的の1行化・アジェンダ自動生成・事前資料の要点出し・録音と文字起こし・決定/宿題/期限の要約・タスク化まで全網羅。2026年の会議実態データ、費用対効果の計算式、コピペで使えるプロンプト、自立型AIの使いどころと注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第8回：会議の準備 ― アジェンダと要約を自動生成する10分の型｜UGOKU AI">
+<meta property="og:description" content="会議は「始まる前」と「終わったあと」で決まる。アジェンダ自動生成から議事録・宿題の割り振りまで、10分で組み上げる手順を初心者向けに全公開します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-08/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-08/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第8回：会議の準備 ― アジェンダと要約を自動生成 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第8回：会議の準備 ― アジェンダと要約を自動生成する10分の型｜UGOKU AI">
+<meta name="twitter:description" content="「結論が出ない会議」を、10分の準備で終わらせる。アジェンダと要約の自動化を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-08/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Claude実践シリーズ 第8回 ｜ 所要10分</span>
+      <h1>会議は「始まる前」と<br>「終わったあと」で<span class="hl">決まる</span>。</h1>
+      <p class="lead">長引く。結論が出ない。議事録が上がってこない。——原因のほとんどは会議中ではなく、<b>準備と後始末</b>にあります。この記事は、アジェンダの自動生成から要約・宿題の割り振りまでを、10分で仕組みにするための手順書です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">10分の準備を始める <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「議事録をAIに作らせたけど、結局使われない」——これ、すごく多い失敗です。理由はかんたんで、<b>アジェンダが無い会議の記録は、要約しても意味が通らない</b>から。この記事を上から10分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>会議の<b>目的が1行</b>で書けるようになる（これが全部の起点）</li>
+          <li>案内メールを貼るだけで<b>アジェンダと時間配分</b>が出てくる</li>
+          <li>録音・文字起こしの<b>入口が1本</b>に決まる（無料でも可）</li>
+          <li>要約が<b>「決定・宿題・期限・保留」</b>の4点で毎回そろう</li>
+          <li>宿題が<b>担当と期日つき</b>でタスク化され、放置されなくなる</li>
+          <li>ここまでを自立型AIに任せる場合の、<b>安全な線引き</b>が分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 会議の3工程 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">「会議の準備」って、<br>結局どこを自動化するの？</h2>
+    <p class="sec-sub">会議は3つの工程でできています。AIが強いのは、実は真ん中ではなく<b>前と後ろ</b>です。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">📋</div>
+        <h4>1. 前<br><span>＝ 目的とアジェンダ</span></h4>
+        <p>何を決める会議かを1行にし、議題・時間配分・事前資料の要点を用意する層。ここが8割です。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🎙️</div>
+        <h4>2. 中<br><span>＝ 記録（人はやらない）</span></h4>
+        <p>録音・文字起こしはAIに任せ、人は議論に集中する層。メモ取り役を置く時代は終わりました。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">✅</div>
+        <h4>3. 後<br><span>＝ 要約と宿題の配布</span></h4>
+        <p>決定・宿題・期限に整理し、担当へ配る層。ここまで来て初めて「会議が仕事になる」。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CLAUDE MASTER ｜ LESSON 08</div>
+    <h2 class="sec-title">第8回：会議の準備<br>― アジェンダと要約を自動生成する ―</h2>
+    <p class="sec-sub">パソコンが得意でない方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計10分です。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>AIに議事録を書かせる前に、<strong>「この会議で決めることは何か」を1行</strong>にしてください。この1行があるだけで、アジェンダも要約も宿題も、全部そこから逆算して自動で作れます。逆に1行が無いままAIに任せると、<strong>長い文字起こしが増えるだけ</strong>で、誰も読まない資料が量産されます。</p>
+    </div>
+
+    <!-- なぜ準備なのか -->
+    <h3 class="blk">なぜ「会議中」ではなく「準備」を変えるのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">2026年の調査データを見ると、問題のありかがはっきりします。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">DATA 01</div>
+        <h4>管理職は、週の約1営業日を会議に使っている</h4>
+        <p>2026年5月の調査では、<b>上位管理職は週の17.2%（約1営業日分）を会議の準備と出席に費やしている</b>と報告されています。ここを1割削るだけで、月に半日以上が戻ってきます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">DATA 02</div>
+        <h4>会議の目的は「情報共有」が最多で40.1%</h4>
+        <p>同じ調査で、会議の目的は<b>情報共有40.1%に対し、意思決定は18.0%</b>。つまり多くの会議は「読めば済む話」に人を集めています。ここはAIの要約に置き換えられる部分です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">DATA 03</div>
+        <h4>課題の1位は「結論が出ない」で53.3%</h4>
+        <p>別の2026年4月の調査では、会議の課題1位が<b>「結論が出ない」53.3%</b>、約5割が「会議が長い」と回答し、<b>理想の会議時間は30分（50.7%）</b>が最多。長さの問題は、アジェンダの問題です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">DATA 04</div>
+        <h4>AIを使う人と使わない人で、満足度に46.2ポイント差</h4>
+        <p>会議にAIを活用している層の満足度は<b>64.9%、非活用層は18.7%</b>。<b>46.2ポイント</b>もの差がついています。差がついているのは能力ではなく、<b>やり方を知っているかどうか</b>だけです。</p>
+      </div>
+    </div>
+    <p class="link-note" style="margin-top:10px;">出典：ナイスモバイル「ビジネスパーソンの会議・AI活用実態調査 2026」（2026年5月／有効回答488名）、会議室.COM（アスノシステム）「ビジネスパーソンの会議実態調査2026」（2026年4月／300名）。</p>
+
+    <!-- 失敗しない2つのルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>「議題」ではなく「問い」で書く</h4>
+        <p><b>×「新店舗の件」→ ○「新店舗の出店時期を、今日この場で決める」</b>。議題を問いの形にすると、AIも人も、答えるべきものが分かります。アジェンダの1行を変えるだけで、会議は短くなります。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>録音・共有の前に、ひとこと断る</h4>
+        <p>AIによる録音・文字起こしは、<b>参加者への事前の告知が原則</b>。社外が入る会議は特に必須です。「記録のためAIで録音します」の一言と、議事録の共有範囲を先に決めておけば、あとで揉めません。</p>
+      </div>
+    </div>
+
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>全部やる時間がない日は、STEP1（目的の1行）とSTEP5（決定・宿題・期限の要約）の2つだけでも効果が出るよ。この2つが会議の背骨だからね。</div></div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">2分 ｜ PURPOSE</span><div class="st-ttl">会議の目的を、1行にする</div></div></div>
+      <div class="step-body">
+        <p class="desc">最初の2分が、いちばん効きます。「集まる理由」を言語化しないまま招集された会議は、ほぼ必ず伸びます。</p>
+
+        <div class="mini-h">目的の1行は、この形で書く</div>
+        <ol class="mini">
+          <li><b>誰が</b>（決める人＝決裁者は誰か）</li>
+          <li><b>何を</b>（決める対象を1つに絞る）</li>
+          <li><b>いつまでに</b>（この場で／今週中に）</li>
+          <li><b>決められないなら何が足りないのか</b>（次に必要な材料）</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 目的の1行をAIに整えてもらう</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>次の会議の「目的」を1行に整理してください。
+形式：「〔決裁者〕が〔対象〕を〔期限〕までに決める会議」
+そのうえで、この会議が本当に必要かも判定してください。
+（メール共有や資料回覧で代替できる場合はそう指摘して）
+
+【会議の背景】
+<span class="fill">〔案内メールやチャットの文面をそのまま貼り付け〕</span></pre>
+        </div>
+
+        <div class="warn"><div class="wt">⚠️ ここでよくある間違い</div>
+          目的を「情報共有」と書いてしまうこと。情報共有だけなら、その会議は<b>要約の配布に置き換えられます</b>。集めるなら「共有した内容をもとに、何を決めるか」まで書いてください。</div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">2分 ｜ AGENDA</span><div class="st-ttl">アジェンダと時間配分を、自動生成する</div></div></div>
+      <div class="step-body">
+        <p class="desc">目的の1行が決まれば、アジェンダはAIが作れます。人がやるのは「削ること」だけです。</p>
+
+        <div class="mini-h">良いアジェンダに必ず入っている5要素</div>
+        <ul class="use">
+          <li><b>目的の1行</b>（STEP1で作ったもの）</li>
+          <li><b>議題ごとの持ち時間</b>（合計が会議時間を超えていないか）</li>
+          <li><b>各議題の種別</b>（決める／意見をもらう／報告するの3択）</li>
+          <li><b>事前に読んでおく資料</b>とその要点</li>
+          <li><b>ゴール状態</b>（終わったときに何が確定していれば成功か）</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 アジェンダ自動生成（これ1本で足ります）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは会議設計の専門家です。
+以下の情報から、アジェンダを作ってください。
+
+【条件】
+・会議時間：<span class="fill">〔30分／60分〕</span>／参加者：<span class="fill">〔役職と人数〕</span>
+・目的：<span class="fill">〔STEP1で作った1行〕</span>
+・議題ごとに「決める／意見をもらう／報告する」を明記
+・議題ごとに持ち時間（分）を割り振り、合計が会議時間に収まること
+・報告だけの議題は、事前配布に回せないか提案すること
+・最後に「この会議のゴール状態」を1行で
+
+【材料】
+<span class="fill">〔前回の議事録・関連メール・資料のメモを貼り付け〕</span></pre>
+        </div>
+
+        <div class="mini-h">出てきたら、この2つだけ人がやる</div>
+        <ol class="mini">
+          <li>議題を<b>3つ以内</b>に削る（4つ以上ある会議は、だいたい終わりません）</li>
+          <li>最重要の議題を<b>いちばん前</b>に置き直す（後半は集中力が落ちます）</li>
+        </ol>
+
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>アジェンダは会議の前日までに配ろうね。当日の朝に配ると、誰も読めないまま集まって、結局その場で読み合わせになっちゃうよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">2分 ｜ PRE-READ</span><div class="st-ttl">事前資料の要点と「聞かれそうな質問」を先出しする</div></div></div>
+      <div class="step-body">
+        <p class="desc">分厚い資料は、読まれません。会議前にAIで要点にしておくと、当日の読み合わせ時間がまるごと消えます。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 事前資料の要約＋想定質問</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>添付の資料を、会議参加者向けに整理してください。
+①要点を5つ（各50字以内）
+②数字だけを抜き出した表（項目／数値／出典ページ）
+③この資料を見た人から出そうな質問トップ5と、
+　現時点で答えられること／答えられないこと
+④資料の中で、根拠が弱い・確認が必要な箇所
+
+会議の目的：<span class="fill">〔STEP1の1行〕</span></pre>
+        </div>
+
+        <div class="mini-h">自分が説明する側なら、これも足す</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 想定問答の「壁打ち」</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>あなたは、この提案に否定的な立場の役員です。
+以下の提案に対して、厳しい質問を10個ぶつけてください。
+そのあと、立場を戻して、
+各質問への回答案を1つずつ作ってください。
+
+【提案】
+<span class="fill">〔提案の内容を貼り付け〕</span></pre>
+        </div>
+        <p class="link-note">※ 長い資料・複数ファイルをまとめて扱うなら <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-guide/">NotebookLM の活用ガイド</a> も合わせてどうぞ。</p>
+
+        <div class="warn"><div class="wt">⚠️ 資料をAIに渡す前に</div>
+          お客様の個人情報・未公開の見積・人事評価などは、<b>そのまま貼らない</b>。社名を伏せる、数字を丸める、該当ページだけにする——この3つで、ほとんどのリスクは消えます。</div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">2分 ｜ RECORD</span><div class="st-ttl">録音・文字起こしの「入口」を1本に決める</div></div></div>
+      <div class="step-body">
+        <p class="desc">2026年時点で、文字起こしは「あって当然」の機能になりました。<b>いま使っているWeb会議ツールに、すでに付いている</b>ことがほとんどです。まずはそこから。</p>
+
+        <div class="mini-h">まず、これを確認する（追加費用ゼロで始まることが多い）</div>
+        <ul class="use">
+          <li><b>Zoom</b>を使っている → <b>AI Companion</b>（有料プランに標準搭載）</li>
+          <li><b>Google Meet</b>を使っている → <b>Geminiのメモ機能</b>（対象プランで利用可）</li>
+          <li><b>Microsoft Teams</b>を使っている → <b>Copilot／Teams Premium</b></li>
+          <li>対面の会議が多い → スマホ録音＋専用ツール、またはICレコーダー型端末</li>
+        </ul>
+
+        <div class="mini-h">足りなければ、専用ツールを1本だけ足す</div>
+        <p style="font-size:14.3px;margin:6px 0 0;">日本語中心の会議なら国産・日本語特化型（Notta、Rimo Voice、toruno など）が有力。英語混在ならtl;dvやOtterに分があります。Nottaは無料枠（毎月120分程度）から試せるので、<b>まず無料で自社の音声環境の精度を確かめてから</b>有料化するのが失敗しない順番です。</p>
+
+        <div class="cmp-wrap" style="margin-top:14px;">
+          <table class="cmp-t">
+            <thead><tr><th>タイプ</th><th>代表例</th><th>向いている会社</th><th>注意点</th></tr></thead>
+            <tbody>
+              <tr><th>Web会議 組込み型</th><td>Zoom AI Companion／Gemini in Meet／Teams Copilot</td><td class="win">◎ 追加契約なしで始めたい</td><td class="mid">会議ツールをまたぐと使えない</td></tr>
+              <tr><th>専用ツール型</th><td>Notta／Rimo Voice／tl;dv／Otter</td><td class="win">◎ 複数ツールを横断／日本語精度重視</td><td class="mid">月額と、データ保存先の確認が必要</td></tr>
+              <tr><th>録音デバイス型</th><td>ICレコーダー型端末</td><td class="win">◎ 対面・現場・外出先が多い</td><td class="mid">端末の管理と充電、置き忘れ</td></tr>
+              <tr><th>要約・後工程</th><td>Claude／NotebookLM／Cowork</td><td class="win">◎ 議事録の「その後」まで自動化</td><td class="mid">文字起こし自体は別ツールが必要</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="link-note">※ 料金・機能は各社の改定で変わります。契約前に必ず公式サイトでご確認ください。</p>
+
+        <div class="warn"><div class="wt">⚠️ 中小企業がいちばん見落とす2点</div>
+          <b>①録音の告知</b>：参加者に断りなく録音・文字起こしをしない。冒頭のひとことで十分です。<b>②保存先</b>：音声と文字起こしがどこの国のサーバーに、いつまで残るのか。機密会議を扱うなら、契約前に必ず確認を。</div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">1分 ｜ SUMMARY</span><div class="st-ttl">要約の「型」を固定する（決定・宿題・期限・保留）</div></div></div>
+      <div class="step-body">
+        <p class="desc">AIの要約が使われない最大の理由は、<b>毎回フォーマットが違う</b>から。型を固定した瞬間、議事録は「読む資料」から「動かす資料」に変わります。</p>
+
+        <div class="mini-h">この4点だけそろえば、議事録は完成です</div>
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>決定事項</b>誰が何を決めたか（決めていないなら書かない）</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>宿題（ToDo）</b>担当者名と、具体的な行動</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>期限</b>「なるはや」を禁止し、日付で書く</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>保留・持ち帰り</b>次回までに誰が何を調べるか</div></div>
+        </div>
+
+        <div class="copybox" style="margin-top:14px;">
+          <div class="cb-top"><span class="cb-lbl">📋 議事録の型（これを毎回そのまま使う）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の文字起こしから、議事録を作成してください。
+
+【出力形式】
+■ 会議の目的（1行）
+■ 決定事項（箇条書き／誰が決めたかを明記）
+■ 宿題（表：担当者／やること／期限）
+■ 保留・持ち帰り（理由と、次回までに必要な材料）
+■ 議論の要点（300字以内）
+
+【ルール】
+・発言していないことを補わない
+・決まっていないことを「決定」と書かない
+・聞き取りが不確かな箇所は〔要確認〕と明記
+・期限が言及されていない宿題は〔期限未定〕とする
+
+【文字起こし】
+<span class="fill">〔文字起こしを貼り付け〕</span></pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 参加していない人向けの「3行サマリー」</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>上の議事録を、会議に出ていない社員向けに
+3行で書き直してください。
+1行目：何が決まったか
+2行目：自分に関係があるのは誰か
+3行目：いつまでに何をすればいいか
+専門用語は使わず、中学生でも分かる言葉で。</pre>
+        </div>
+
+        <div class="warn"><div class="wt">⚠️ AIの要約を、そのまま配らない</div>
+          AIは<b>もっともらしく間違えます</b>（ハルシネーション）。金額・日付・固有名詞・「決まったかどうか」の4点だけは、必ず人が目視で確認してから配布してください。ここを省くと、間違った決定が社内に流通します。</div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>6</b></div><div><span class="st-chip">1分 ｜ ASSET</span><div class="st-ttl">テンプレをプロジェクトに置いて、資産にする</div></div></div>
+      <div class="step-body">
+        <p class="desc">ここまでのプロンプトを毎回コピペしていては、続きません。<b>第1回で作ったプロジェクト</b>に置いて、次回から「文字起こしを貼るだけ」にします。</p>
+        <ol class="mini">
+          <li>Claudeで「会議」という<b>プロジェクトを1つ</b>作る</li>
+          <li>プロジェクトの指示欄に、STEP5の<b>議事録の型</b>を貼る</li>
+          <li>知識欄に、<b>自社の用語集</b>（社名・店舗名・略語・人名）を入れる</li>
+          <li>次回からは、文字起こしを貼るだけで<b>同じ形式の議事録</b>が出る</li>
+        </ol>
+        <p class="link-note">用語集を入れておくと、文字起こしの誤変換（人名・商品名など）をAIが自動で直してくれます。ここが精度を上げる、いちばん地味で効く一手です。</p>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>プロジェクトの作り方が分からない人は、<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/" style="color:var(--ember-2);font-weight:800;">第1回：正しいAIワークスペースの設定</a> に戻ってね。土台ができていれば、この記事は本当に10分で終わるよ。</div></div>
+      </div>
+    </div>
+
+    <!-- チェックリスト -->
+    <h3 class="blk">10分の準備・最終チェックリスト</h3>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>やること</th><th>目安</th><th>できたか</th></tr></thead>
+        <tbody>
+          <tr><th>会議の目的を1行にした</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>アジェンダを生成し、議題を3つ以内に削った</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>事前資料の要点＋想定質問を作った</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>録音・文字起こしの入口を1本決めた</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>議事録の型（決定・宿題・期限・保留）を固定した</th><td>1分</td><td class="win">□</td></tr>
+          <tr><th>テンプレをプロジェクトに保存した</th><td>1分</td><td class="win">□</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 費用対効果 -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、数字で出しておく</h3>
+      <p class="sec-sub" style="margin-top:-6px;">導入を上に通すときも、続けるかを判断するときも、この計算式1本で足ります。</p>
+      <div class="formula">
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">計算式（かんたん版）</div>
+            月の削減額 ＝ <b>1回あたりの削減時間 × 月の会議数 × 時給</b><br>
+            回収率 ＝ 月の削減額 ÷ ツール月額
+          </div>
+          <div class="c good">
+            <div class="lb">当てはめた例（中小企業の1人分）</div>
+            議事録作成 <b>40分 → 10分</b>（削減30分）<br>
+            月12回・時給3,000円 → <b>月18,000円分</b><br>
+            ツール月額 約2,000円 → <b>回収率 約9倍</b>
+          </div>
+        </div>
+        <div class="cmp-wrap" style="margin-top:14px;">
+          <table class="cmp-t">
+            <thead><tr><th>削減できる作業</th><th>これまで</th><th>AI導入後</th><th>効果</th></tr></thead>
+            <tbody>
+              <tr><th>アジェンダ作成</th><td>20分</td><td>3分</td><td class="win">▲17分</td></tr>
+              <tr><th>事前資料の読み込み・要点整理</th><td>30分</td><td>5分</td><td class="win">▲25分</td></tr>
+              <tr><th>議事録の作成・清書</th><td>40分</td><td>10分</td><td class="win">▲30分</td></tr>
+              <tr><th>宿題の割り振り・リマインド</th><td>15分</td><td>3分</td><td class="win">▲12分</td></tr>
+              <tr><th>欠席者への共有・説明</th><td>15分</td><td>2分</td><td class="win">▲13分</td></tr>
+              <tr><th>合計（1会議あたり）</th><td>約2時間</td><td>約23分</td><td class="win">▲約1時間37分</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;color:var(--ink-soft);">※ 数値は一般的な業務時間を前提とした試算です。<b style="color:var(--pine);">まず自社の1会議で実測し、この表を自社の数字に置き換えてください。</b>「体感で早くなった」ではなく、分単位で記録すること。それが、社内に横展開するときの唯一の説得材料になります。</p>
+      </div>
+      <p class="link-note">投資回収の考え方をもっと詳しく知りたい方は <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-roi-guide/">AI投資のROI計算ガイド</a> へ。</p>
+    </div>
+
+    <!-- 会議の種類別 使い分け -->
+    <div class="cmp">
+      <h3 class="blk">会議の種類ごとの、使い分け早見表</h3>
+      <p class="sec-sub" style="margin-top:-6px;">同じ「会議」でも、力を入れる場所は違います。迷ったらこの表に戻ってください。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>会議の種類</th><th>準備で効くこと</th><th>記録</th><th>後工程で効くこと</th></tr></thead>
+          <tbody>
+            <tr><th>定例会議（週次・月次）</th><td class="win">◎ 前回の宿題を冒頭に自動再掲</td><td class="mid">○ 自動でOK</td><td class="win">◎ 宿題の消し込み</td></tr>
+            <tr><th>意思決定会議</th><td class="win">◎ 論点整理と選択肢の比較表</td><td class="win">◎ 決定の根拠を残す</td><td class="win">◎ 決定事項の全社共有</td></tr>
+            <tr><th>お客様との商談</th><td class="win">◎ 想定質問と提案の壁打ち</td><td class="win">◎ 要望の抜け防止</td><td class="win">◎ お礼メール＋議事メモ即送</td></tr>
+            <tr><th>採用面接</th><td class="win">◎ 質問リストと評価軸の統一</td><td class="mid">△ 要事前同意</td><td class="mid">○ 評価コメント下書き</td></tr>
+            <tr><th>ブレスト・企画会議</th><td class="mid">○ 論点は少なめでよい</td><td class="win">◎ 全部拾う</td><td class="win">◎ 発散した案の分類・整理</td></tr>
+            <tr><th>朝礼・現場ミーティング</th><td class="mid">○ 3点だけの箇条書き</td><td class="mid">△ 短いので任意</td><td class="win">◎ 欠勤者へ3行共有</td></tr>
+            <tr><th>1on1・面談</th><td class="mid">○ 前回の話題を思い出す</td><td class="mid">× 録音は慎重に</td><td class="mid">○ 本人と合意したメモのみ</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いちばん効く流れ</h4>
+        <div class="flow"><span class="b">目的1行→<br>アジェンダ</span><span class="ar">→</span><span class="b">会議は<br>議論に集中</span><span class="ar">→</span><span class="b">AIが要約・<br>宿題を抽出</span><span class="ar">→</span><span class="b">人が確認<br>して配布</span></div>
+        <p style="margin:0;font-size:14px;color:var(--ink-soft);">準備はAIに書かせ、議論は人がやり、記録はAIに任せ、確認と配布は人が締める。ひとことで言えば——<b style="color:var(--pine);">段取りと記録はAI、判断と責任は人。</b></p>
+      </div>
+    </div>
+
+    <!-- 仕事と私生活 -->
+    <div class="cmp">
+      <h3 class="blk">この「準備の型」を、どこで活かすか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">目的を1行にして、要点を先に出し、決めたことを残す——この型は、会議室の外でも同じように効きます。</p>
+      <div class="split">
+        <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 今日から効く場面</div>
+          <ul>
+            <li>役員会・経営会議の論点整理と、決定事項の全社共有</li>
+            <li>商談前の想定問答づくりと、直後のお礼メール自動化</li>
+            <li>現場の朝礼メモを、3行の共有文にして欠勤者へ配信</li>
+            <li>協力会社との打合せ記録を、書面化して認識ズレを防ぐ</li>
+            <li>クレーム対応の記録を、時系列で整理して報告書へ</li>
+            <li>面接記録から、評価軸に沿ったコメント案を作る</li>
+            <li>補助金・行政の説明会メモを、社内向けに翻訳する</li>
+            <li>前回議事録から「未完了の宿題」だけを自動抽出</li>
+          </ul>
+        </div>
+        <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 暮らしでも同じ型が効く</div>
+          <ul>
+            <li>PTA・自治会・消防団の会合メモを、要点だけの回覧文に</li>
+            <li>家族会議（引っ越し・進学・介護）の論点と選択肢を整理</li>
+            <li>学校の保護者会・三者面談の記録と、やることリスト化</li>
+            <li>病院での説明を録音（要許可）し、家族向けに要約</li>
+            <li>住宅・保険・車の商談メモから、比較表を自動作成</li>
+            <li>相続・行政手続きの説明を、やさしい言葉に置き換える</li>
+            <li>友人との旅行の相談を、決定事項と担当に整理</li>
+            <li>趣味のサークル・チームの連絡係の負担を丸ごと軽く</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>まずは社内の小さな定例会議で試すのがおすすめ。いきなり社長会議や商談で使うと、失敗したときの傷が大きいからね。1回試して、型を直して、それから広げよう。</div></div>
+    </div>
+
+    <!-- 自立型AI -->
+    <div class="cmp">
+      <h3 class="blk">ここに「自立型AI」が加わると、何が起きるか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">チャット型は<b>要約してくれる相手</b>。自立型（エージェント）は、カレンダーやドライブ、チャットまでまたいで<b>会議の前後を勝手に片づける同僚</b>です。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">📅</span>会議の「前」が自動で整う</h4><ul>
+          <li>カレンダーの予定を読み、前日にアジェンダ案を下書き</li>
+          <li>前回の議事録から未完了の宿題だけを抽出して冒頭に再掲</li>
+          <li>関連資料をドライブから探して、要点つきで添付</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📤</span>会議の「後」が自動で配られる</h4><ul>
+          <li>文字起こしから議事録を作り、指定の形式でドライブに保存</li>
+          <li>宿題を担当者ごとに切り分け、チャットへ個別に通知</li>
+          <li>期限の前日にリマインドを自動送信</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔗</span>ツールをまたいで動く</h4><ul>
+          <li>議事録の決定事項を、タスク管理ツールへ自動登録</li>
+          <li>商談メモから、CRMの案件情報を更新</li>
+          <li>複数回の議事録を横断し、決定の変遷を1枚にまとめる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>暮らしの側でも</h4><ul>
+          <li>子どもの学校からのお便りを読み、家族の予定に反映</li>
+          <li>複数の見積の打合せメモから、比較表を自動生成</li>
+          <li>介護・通院の記録を時系列で整理し、家族に共有</li>
+        </ul></div>
+      </div>
+      <div class="warn"><div class="wt">⚠️ 自立型に任せる前の、5つの注意点</div>
+        <b>①送信は人がやる</b>：議事録の「作成」は任せてよいが、社外への「送信」は人が押す。<b>②録音の同意</b>：自動で会議に参加させるボットは、参加者への告知を運用ルールに組み込む。<b>③接続先を絞る</b>：カレンダーとドライブの、必要なフォルダだけ。全部つながないこと。<b>④作業ログを見る</b>：何を読み、何を書き換えたかを確認してから採用する。<b>⑤責任は人に残る</b>：AIが作った議事録でも、内容の責任は発信した人のものです。
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>自立型は「新人の秘書」だと思ってね。段取りは任せられるけど、社外に出す文章を最終確認せずに送らせるのは早すぎるよ。まずは社内向けから。</div></div>
+    </div>
+
+    <!-- シリーズ予告 -->
+    <h3 class="blk">このシリーズの進み方</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span><a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/" style="color:inherit;">第1回：正しいAIワークスペースの設定</a></div><p>アカウント・プラン・メモリ・スタイル・プロジェクト・接続まで15分で。この回の土台になります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span><a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-07/" style="color:inherit;">第7回：コンテンツ制作</a></div><p>投稿・台本・コピーを15分で。素材を渡す→まとめて出す→人が選ぶ、の三段構え。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>第8回：会議の準備（この記事）</div><p>目的の1行化からアジェンダ生成、要約・宿題の割り振りまで。会議の前後を10分で仕組みにする。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">9</span>第9回：自律型に仕事を渡す</div><p>コネクタ・スキル・Coworkで作業そのものを委譲。安全に運用する社内ルールづくりまで。</p></div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">うまくいかない・困ったとき</h3>
+    <div class="compact">
+      <details open><summary>要約が長すぎて、結局読まれない</summary><div class="ans">形式を指定していないのが原因です。「決定事項は箇条書き5つ以内、議論の要点は300字以内」のように<b>字数と個数を数字で指定</b>してください。さらに、参加していない人向けの「3行サマリー」を別に作って、本文はその下に置くと読まれます。</div></details>
+      <details><summary>人名・社名・専門用語が誤変換される</summary><div class="ans">プロジェクトの知識欄に<b>自社の用語集</b>（社名・店舗名・略語・人名の一覧）を入れておくと、AIが自動で直します。専用の議事録ツールを使っている場合は、カスタム辞書に登録してください。これだけで体感精度が大きく変わります。</div></details>
+      <details><summary>決まっていないことが「決定事項」に書かれている</summary><div class="ans">AIは会話の流れから「決まったっぽい」ものを補完しがちです。プロンプトに<b>「決まっていないことを決定と書かない」「不確かな箇所は〔要確認〕と明記」</b>を必ず入れてください。それでも、配布前に決定事項だけは人の目で確認を。</div></details>
+      <details><summary>文字起こしの精度が低い</summary><div class="ans">多くはツールではなく<b>音環境</b>の問題です。①発言者の近くにマイクを置く（会議室の中央に1台は不利）②ヘッドセットを使う③同時発話を減らす、の順で改善します。ハウリングやエアコンの音も精度を大きく下げます。</div></details>
+      <details><summary>録音していいのか、社内で判断がつかない</summary><div class="ans">「記録目的で録音・文字起こしを行う」「共有範囲は◯◯まで」「保存期間は◯ヶ月」の3点を紙1枚のルールにして、会議冒頭で告知する運用にしてください。社外・面接・1on1は、その都度の同意を原則に。</div></details>
+      <details><summary>議事録は出るのに、宿題が実行されない</summary><div class="ans">議事録が「文書」で終わっているサインです。宿題は<b>担当者・行動・期限の3点セット</b>で切り出し、議事録とは別に本人へ直接送ってください。次回の会議の冒頭に、前回の宿題の消し込みを固定議題として入れると、一気に回り始めます。</div></details>
+    </div>
+
+    <!-- 安全に使う -->
+    <h3 class="blk">会社で使うなら、この4点だけ先に決める</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>録音・記録の告知ルール</div><p>誰が、いつ、どう告知するか。社外・面接・1on1は個別同意を原則に。紙1枚で十分です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>議事録の共有範囲</div><p>全社／部門内／参加者のみ、の3段階を先に決める。人事・与信・未公開の数字を含む会議は別扱いに。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>データの保存先と期間</div><p>音声と文字起こしがどこに、いつまで残るか。契約前に確認し、不要な録音は定期的に削除する運用に。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>最終確認の責任者</div><p>AIが作った議事録を、誰が確認して配るのか。名前を決めておかないと、誰も確認しなくなります。</p></div>
+    </div>
+    <p class="link-note">社内ルールの作り方は <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/">AIサイバーセキュリティガイド</a>、無届けツールの乱立対策は <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/shadow-ai-guide/">シャドーAI対策ガイド</a> をどうぞ。</p>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>無料のままでも、ここまでできますか？</summary><div class="ans">できます。アジェンダ生成・資料の要約・議事録の整形は、無料プランのAIでも十分に実用的です。文字起こしも、Web会議ツールに付属する機能や無料枠（月120分程度）から始められます。上限にぶつかったら有料へ、が失敗しない順番です。</div></details>
+      <details><summary>録音せずに、メモだけからでも作れますか？</summary><div class="ans">作れます。むしろ現実的なのはこちらです。手書きの走り書きや箇条書きのメモを貼って、STEP5の型で整えるだけで、読める議事録になります。録音ができない会議（機密性が高い、同意が取れない）は、この方法で十分です。</div></details>
+      <details><summary>ChatGPTやGeminiでも同じことができますか？</summary><div class="ans">できます。ただし得意分野に差があります。長い文字起こしをまとめて読ませるのはClaude、Google MeetやドキュメントとつなぐならGemini、幅広い試行はChatGPT。詳しくは <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/">3社の使い分けガイド</a> をどうぞ。</div></details>
+      <details><summary>会議の内容をAIに入れるのが不安です</summary><div class="ans">不安な会議は入れない、が正解です。それ以外の会議でも、社名を伏せる・数字を丸める・該当部分だけにする、の3つでリスクは大きく下がります。設定でデータの扱いを確認したうえで、機密度の高い会議は録音自体を行わない運用にしてください。</div></details>
+      <details><summary>参加者が「録音は嫌だ」と言った場合は？</summary><div class="ans">録音をやめて、メモからの整形に切り替えてください。強行すると信頼を失い、その後の導入自体が止まります。抵抗の理由の多くは「監視されている感じ」なので、目的が評価ではなく議事録作成であることと、共有範囲を明示すると受け入れられやすくなります。</div></details>
+      <details><summary>今日は10分も取れません。何からやれば？</summary><div class="ans">STEP1（目的を1行にする）だけ、2分でやってください。それだけで会議の長さは変わります。慣れてきたらSTEP5（議事録の型）を足す。この2つで、効果の8割は取れます。</div></details>
+      <details><summary>社員に展開するには、何から始めますか？</summary><div class="ans">①録音と共有範囲のルールを紙1枚で配る ②いちばん短い定例会議1つで、担当者が試す ③削減できた時間を分単位で記録する ④その数字を持って、他の会議へ広げる、の順です。ツールを配るだけでは定着しません。1つの会議で成功例を作るのが最短です。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-07/"><span class="r-ic">🎬</span><span><span class="r-k">← 前回・シリーズ第7回</span><span class="r-t">コンテンツ制作｜投稿・台本・コピーを15分で<small>／ 素材を渡して、まとめて出す</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">シリーズ第1回</span><span class="r-t">正しいAIワークスペースの設定<small>／ 土台があると10分で終わる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-guide/"><span class="r-ic">📚</span><span><span class="r-k">資料の読み込みに</span><span class="r-t">NotebookLM 活用ガイド<small>／ 長い資料を根拠つきで要約</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">📝</span><span><span class="r-k">頼み方を増やす</span><span class="r-t">社長が今すぐ使えるプロンプト100選<small>／ 経営・営業・数字・私生活まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/"><span class="r-ic">🤝</span><span><span class="r-k">自立型AIを知る</span><span class="r-t">Claude Coworkって何？活かし方10選<small>／ 作業を任せる同僚型AI</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-50tools-guide/"><span class="r-ic">🔌</span><span><span class="r-k">カレンダー連携なら</span><span class="r-t">Claude×50ツール連携 完全ガイド<small>／ MCPコネクタで“動くAI”に</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/muda-10-guide/"><span class="r-ic">🧹</span><span><span class="r-k">会議以外のムダも</span><span class="r-t">社内のムダ仕事10選と、その消し方<small>／ 会議・報告・転記</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-roi-guide/"><span class="r-ic">💹</span><span><span class="r-k">数字で証明する</span><span class="r-t">AI投資は回収できるのか<small>／ ROIの計算式と90日の証明手順</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">社内ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">あわせて読む</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>会議は片づいた。<br>次は、<span class="hl">あなたの会社の仕事</span>を載せませんか？</h2>
+    <p>「どの業務から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※ 本記事の料金・機能・調査データは2026年7月時点の情報です。各サービスの画面や手順・料金は、提供元の更新により変わることがあります。契約前に公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

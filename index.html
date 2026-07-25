@@ -1,8 +1,20 @@
 <!doctype html>
 <html lang="ja">
   <head>
-    <!-- UGOKU Analytics -->
-    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EE7R6VFKYR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EE7R6VFKYR');
+      document.addEventListener('click', function(e){
+        var a = e.target.closest && e.target.closest('a'); if(!a||!a.href) return;
+        if(a.href.indexOf('tel:')===0) gtag('event','cta_tel',{link_url:a.href,page_path:location.pathname});
+        else if(a.href.indexOf('mailto:')===0) gtag('event','cta_mail',{link_url:a.href,page_path:location.pathname});
+        else if(/contact|form|entry|apply|line\.me|lin\.ee|docs\.google/i.test(a.href)) gtag('event','cta_contact',{link_url:a.href,page_path:location.pathname});
+      }, true);
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11回：Computer Use｜デスクトップ上でClaudeを操作させる（15分） ― UGOKU AI</title>
+<meta name="description" content="Claude実践シリーズ第11回。AIがマウスとキーボードを使って、あなたのパソコンで作業を終わらせる「Computer Use」を、初心者向けに15分で導入。対応環境・権限設定・最初の1タスク・指示の型・Dispatchでのスマホ依頼・費用対効果の計算式・プロンプトインジェクション対策まで、仕事と私生活の活かし方を全網羅。案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第11回：Computer Use ― デスクトップ上でClaudeを操作させる（15分）｜UGOKU AI">
+<meta property="og:description" content="「頼む」から「席を譲る」へ。Claudeがアプリを開き、入力し、書き出す。15分で始めるComputer Useの手順・安全設計・費用対効果を、初心者向けに解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-11/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-11/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第11回：Computer Use ― デスクトップ上でClaudeを操作させる ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第11回：Computer Use ― デスクトップ上でClaudeを操作させる（15分）｜UGOKU AI">
+<meta name="twitter:description" content="AIがあなたの画面で手を動かす時代。15分で始めるComputer Useの手順と、安全に運用する型を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-11/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Claude実践シリーズ 第11回 ｜ 所要15分</span>
+      <h1>AIに「頼む」から、<br><span class="hl">席を譲る</span>へ。</h1>
+      <p class="lead">Claudeが、あなたのマウスとキーボードを使って、画面の中で作業を終わらせる——それが<b>Computer Use（コンピュータ操作）</b>です。2026年3月に登場したこの機能を、専門知識ゼロの方が15分で安全に立ち上げるための手順書です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。「怖い」の正体と、その外し方から教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">15分で始める <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「AIがパソコンを勝手に触るなんて、怖くない？」——正しい感覚です。だからこの回は、<b>できることを増やす前に、触らせない範囲を決める</b>ところから始めます。上から15分やり切ると、こうなります。</p>
+        <ul class="checklist">
+          <li>Computer Useが<b>何で、何ではないか</b>が一言で説明できる</li>
+          <li>自分のパソコンで<b>安全に試せる「練習部屋」</b>ができる</li>
+          <li>最初の1タスクが動き、<b>成功と失敗の見分け方</b>が分かる</li>
+          <li>任せる指示の<b>型（ゴール・成果物・停止条件）</b>が手に入る</li>
+          <li>スマホから頼んで、机の上で仕上がっている<b>Dispatch</b>が使える</li>
+          <li>会社で使うときの<b>禁止事項と、費用対効果の数字</b>が出せる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの手段 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">Claudeが「手を動かす」<br>3つの手段と、その優先順位</h2>
+    <p class="sec-sub">Computer Useは最強の手段ではなく、<b>最後の手段</b>です。Claudeは正確で速い順に手段を選びます。この順番を知っているかどうかが、成功率をいちばん左右します。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🔌</div>
+        <h4>1. コネクタ<br><span>＝ 正規の入口（最優先）</span></h4>
+        <p>Slack・Googleカレンダー・ドライブなど、公式の連携で直接つなぐ方法。いちばん速く、いちばん間違えません。</p>
+      </div>
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🌐</div>
+        <h4>2. ブラウザ操作<br><span>＝ Webの中で完結</span></h4>
+        <p>コネクタが無いサービスは、ブラウザを操作して用を足します。画面全体を触るより被害範囲が小さい方法です。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🖱️</div>
+        <h4>3. 画面操作（Computer Use）<br><span>＝ 最後の手段</span></h4>
+        <p>スクリーンショットを見て、マウスとキーボードで人と同じように操作。どんな古いソフトでも動かせる反面、いちばん遅く、いちばん慎重さが要ります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CLAUDE MASTER ｜ LESSON 11</div>
+    <h2 class="sec-title">第11回：Computer Use<br>― デスクトップ上でClaudeを操作させる ―</h2>
+    <p class="sec-sub">パソコンが得意でない方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計15分です。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>Computer Useは「AIが賢くなった話」ではなく、<strong>AIに“作業机”を渡す話</strong>です。だから成果を決めるのは能力ではなく、<strong>渡す机の広さ（＝権限の設計）</strong>。狭く始めて、成功したぶんだけ広げる。この順番さえ守れば、誰でも安全に始められます。</p>
+    </div>
+
+    <!-- なぜ今か -->
+    <h3 class="blk">なぜ今、「画面を触るAI」なのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">2年かけて、技術と製品の両方が実用ラインに届きました。数字で見ると分かりやすいです。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>精度が「使えない」から「任せられる」へ</h4>
+        <p>パソコン操作の能力を測るベンチマーク（OSWorld）で、Anthropicが公表したスコアは<b>2024年10月の14.9%から、2025年9月には61.4%</b>へ。1年で約4倍です。「たまに成功する」から「だいたい成功する」に変わったのが、この2年でした。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>それでも「研究プレビュー」のままな理由</h4>
+        <p>精度が上がってもラベルは慎重なままです。ボトルネックはAIの賢さではなく、<b>権限をどう区切るか・失敗を誰が確認するか</b>という運用側の設計。つまり、勝敗を分けるのは使う側の準備です。この記事はそこを埋めます。</p>
+      </div>
+    </div>
+
+    <!-- ここまでの経緯 -->
+    <h3 class="blk">ここまでの流れ（2026年の主な動き）</h3>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>時期</th><th>できごと</th><th>意味</th></tr></thead>
+        <tbody>
+          <tr><th>2026年1月</th><td>Claude Cowork（自律型の作業アプリ）登場</td><td class="mid">まずファイル操作を任せられるように</td></tr>
+          <tr><th>2026年3月17日</th><td>Dispatch（スマホから継続依頼）</td><td class="mid">外出先から机の上の作業を動かす</td></tr>
+          <tr><th>2026年3月23日</th><td class="win">Computer Use 研究プレビュー開始（macOS）</td><td>Cowork／Claude Codeが画面を操作</td></tr>
+          <tr><th>2026年4月3日</th><td class="win">Windowsにも拡大</td><td>国内の業務PCの多数派が対象に</td></tr>
+          <tr><th>2026年7月7日</th><td>Coworkがブラウザ・スマホにも拡大（ベータ）</td><td class="mid">ただし画面操作はデスクトップ側の話</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">※ 提供状況・対象プランは改定されます。導入前に必ず公式のヘルプセンターで最新をご確認ください。</p>
+
+    <!-- 失敗しない2つのルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>いきなり「本番の机」で試さない</h4>
+        <p>初日は、<b>コピーしたフォルダ・ダミーの資料・練習用の画面</b>だけで試します。銀行アプリ、給与ソフト、顧客名簿を開いたままにしない。これだけで、事故のほとんどは起きません。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>「取り消せない操作」は人が押す</h4>
+        <p><b>送信・削除・支払い・申請の確定</b>——この4つはAIに実行させず、直前まで作らせて人が最後のボタンを押す。責任の所在も、精神衛生も、これで守れます。</p>
+      </div>
+    </div>
+
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>Computer Useは「新人に自分のパソコンを貸す」のと同じだよ。有能でも、初日にいきなり請求業務は任せないよね。順番はそれとまったく同じでいいんだ。</div></div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">3分 ｜ 前提の確認</span><div class="st-ttl">使える環境かどうかを、先に確かめる</div></div></div>
+      <div class="step-body">
+        <p class="desc">Computer Useは、ブラウザ版のチャットではなく<b>パソコンにインストールするデスクトップアプリ</b>の機能です。まずここを間違えないでください。</p>
+        <div class="mini-h">3つの条件</div>
+        <ul class="use">
+          <li><b>プラン</b>：Claude Pro または Max（研究プレビューとして提供。無料プランは対象外）</li>
+          <li><b>OS</b>：macOS または Windows のデスクトップアプリ</li>
+          <li><b>入口</b>：Claude Cowork（一般業務向け）または Claude Code（開発者向け）</li>
+        </ul>
+        <a class="link-btn" href="https://claude.ai/download" target="_blank" rel="noopener">デスクトップアプリを入手する ↗</a>
+        <p class="link-note">スマホアプリだけでは画面操作はできません（スマホは「依頼する側」＝Dispatchの役割になります）。</p>
+        <ol class="mini">
+          <li>デスクトップアプリを入れ、第1回で決めた<b>同じ入口</b>でログイン</li>
+          <li>アプリを最新版に更新する（機能が出てこない原因の第1位）</li>
+          <li>Cowork（またはClaude Code）を開く</li>
+          <li>設定・メニューから<b>コンピュータ操作（Computer Use）</b>を有効化</li>
+        </ol>
+        <div class="warn"><div class="wt">⚠️ 会社支給のPCの場合</div>IT管理者がインストールや権限付与を制限していることがあります。<b>勝手に入れない</b>のが鉄則。「業務効率化の検証のため、指定フォルダのみで試したい」と目的・範囲・期間を書いて申請してください。この一手間が、社内展開のときに効いてきます。</div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">2分 ｜ 権限</span><div class="st-ttl">OSの許可を、必要な分だけ渡す</div></div></div>
+      <div class="step-body">
+        <p class="desc">AIが画面を「見る」「触る」ためには、OS側の許可が要ります。ここが未設定だと、指示しても<b>何も起きない／途中で止まる</b>という症状になります。</p>
+        <ol class="mini">
+          <li>アプリが求める許可のダイアログを、飛ばさずに読む</li>
+          <li>macOSは<b>システム設定 → プライバシーとセキュリティ</b>で<b>「アクセシビリティ」（操作するため）と「画面収録」（見るため）</b>を許可</li>
+          <li>Windowsも同様に、アプリからの操作許可を承認する</li>
+          <li>許可を入れたら、<b>アプリを再起動</b>（反映されない原因の第2位）</li>
+          <li>あとで外せるように、<b>どこで許可したかをメモ</b>しておく</li>
+        </ol>
+        <div class="mini-h">同時にやっておく「片づけ」</div>
+        <ul class="use">
+          <li><b>機密のウィンドウを閉じる</b>：会計・給与・顧客名簿・銀行のページは閉じる</li>
+          <li><b>ブラウザを分ける</b>：業務用プロファイルと、AIに触らせる検証用を分離する</li>
+          <li><b>通知をオフ</b>：作業中にポップアップが出ると、誤クリックの原因になります</li>
+          <li><b>ディスプレイは1枚に</b>：マルチモニターは挙動が読みにくく、初回は不利です</li>
+        </ul>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「見える範囲＝渡した情報」だと思ってね。画面に映っているものは、そのままAIの目に入る。だから“机の上を片づけてから座らせる”のが、いちばん簡単なセキュリティ対策なんだ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">2分 ｜ 練習部屋</span><div class="st-ttl">安全に失敗できる「サンドボックス」を作る</div></div></div>
+      <div class="step-body">
+        <p class="desc">いきなり本番データで試すのが、いちばんの失敗パターン。<b>壊れても困らない場所</b>を1つ作ってから始めます。3分でできます。</p>
+        <ol class="mini">
+          <li>デスクトップに <code>AI検証</code> というフォルダを作る</li>
+          <li>その中に <code>入力</code> <code>出力</code> <code>バックアップ</code> の3つを作る</li>
+          <li>本物の資料は<b>コピーだけ</b>を <code>入力</code> に置く（原本は絶対に置かない）</li>
+          <li>Coworkで作業フォルダとして <code>AI検証</code> <b>だけ</b>を許可する</li>
+          <li>個人情報が含まれる資料は、名前・電話番号を伏せてから入れる</li>
+        </ol>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">置いてよい</span> 練習に向く資料</div>
+            <ul>
+              <li>公開済みのチラシ・パンフレット・HP原稿</li>
+              <li>数字をダミーに置き換えた売上表</li>
+              <li>過去の議事録（社名・個人名を伏せたもの）</li>
+              <li>自分で撮った写真、自分宛の資料</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">置かない</span> 練習に使ってはいけない資料</div>
+            <ul>
+              <li>顧客の氏名・住所・電話番号を含む名簿</li>
+              <li>口座情報・カード情報・パスワード一覧</li>
+              <li>未公開の見積・原価・給与データ</li>
+              <li>他社から預かった秘密保持契約の対象資料</li>
+            </ul>
+          </div>
+        </div>
+        <div class="warn"><div class="wt">⚠️ バックアップは「AIに触らせない場所」へ</div>同じフォルダ内にバックアップを置くと、片づけの巻き添えで一緒に動かされることがあります。<b>別ドライブ、またはクラウドの別フォルダ</b>に退避してから始めてください。</div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">3分 ｜ 初回テスト</span><div class="st-ttl">最初の1タスクで、動作と“癖”を確かめる</div></div></div>
+      <div class="step-body">
+        <p class="desc">いきなり複雑な業務を頼まないでください。<b>成否がひと目で分かる小さな作業</b>を1つ。ここで動けば、権限設定は合格です。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ① 動作確認（30秒で終わる最小テスト）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>コンピュータ操作を使って、次を実行してください。
+1. 「AI検証/出力」フォルダに test.txt を新規作成
+2. 中身に今日の日付と「動作確認OK」と書く
+3. 保存したら、実行した手順を箇条書きで報告
+
+途中でうまくいかない場合は、勝手に別の方法を試さず、
+その場で止まって私に状況を教えてください。</pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ② 実務の入口（いちばん反響が大きい定番）</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>「AI検証/入力」フォルダの中を整理してください。
+
+【ルール】
+・種類別（請求書／写真／資料／その他）にサブフォルダを作る
+・ファイル名は「YYYYMMDD_種類_内容」に統一
+・判断に迷うファイルは動かさず、一覧にして最後に報告
+・削除は絶対にしない（不要そうなものは「要確認」へ移動）
+
+作業前に、これから何をするかの計画を先に見せてください。</pre>
+        </div>
+
+        <div class="mini-h">見るべきは「結果」ではなく「経過」</div>
+        <ul class="use">
+          <li><b>計画を先に出したか</b>：いきなり動き出すより、確認してから動くほうが安全です</li>
+            <li><b>止まるべきところで止まったか</b>：迷ったら聞き返せる指示になっているか</li>
+          <li><b>報告が具体的か</b>：「整理しました」ではなく、どのファイルをどこへ動かしたか</li>
+          <li><b>速度感</b>：画面操作はコネクタより明らかに遅い。これは仕様です</li>
+        </ul>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>最初の1回で「速い！」と感動する人は少ないよ。むしろ「自分でやったほうが早い」と感じるはず。価値が出るのは<b>2回目以降と、自分がその場にいないとき</b>。そこを見誤らないでね。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">3分 ｜ 指示の型</span><div class="st-ttl">任せる指示には「停止条件」を入れる</div></div></div>
+      <div class="step-body">
+        <p class="desc">チャットの指示と、作業を任せる指示は別物です。会話は「良い答え」を求めますが、作業は<b>「どこで止まるか」まで決めて</b>初めて任せられます。</p>
+        <div class="formula">
+          <div class="f-grid">
+            <div class="f-item"><div class="no">1</div><div class="t"><b>ゴール</b>何が終わったら完了か（状態で書く）</div></div>
+            <div class="f-item"><div class="no">2</div><div class="t"><b>成果物</b>どこに、どんな形式で残すか</div></div>
+            <div class="f-item"><div class="no">3</div><div class="t"><b>手段の制限</b>触ってよいアプリ・フォルダ・範囲</div></div>
+            <div class="f-item"><div class="no">4</div><div class="t"><b>停止条件</b>迷ったら止まる・確定操作はしない</div></div>
+          </div>
+          <div class="ba">
+            <div class="c bad"><div class="lb">✕ 事故になりやすい指示</div>「請求書フォルダをきれいにしといて」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 範囲も停止条件も無い。削除されても文句が言えない</span></div>
+            <div class="c good"><div class="lb">◎ 任せられる指示</div>「入力フォルダ内のPDFだけを、種類別に移動。削除禁止。迷ったら止めて報告」<br><span style="color:#7A5B12;font-size:12.5px;">→ 失敗しても、被害が“移動”で止まる</span></div>
+          </div>
+          <div class="copybox" style="margin-top:14px;">
+            <div class="cb-top"><span class="cb-lbl">📋 そのまま使える「任せる指示」テンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+            <pre>【お願いしたいこと】
+<span class="fill">〔例：先月の請求書PDFから一覧表を作る〕</span>
+
+【完了の定義】
+<span class="fill">〔例：出力フォルダに一覧.xlsxがあり、日付・取引先・金額の3列が埋まっている〕</span>
+
+【触ってよい範囲】
+・フォルダ：<span class="fill">〔AI検証/入力 と AI検証/出力 のみ〕</span>
+・アプリ：<span class="fill">〔Excel と ブラウザのみ〕</span>
+
+【禁止事項】
+・ファイルの削除、メールの送信、支払い・申請の確定は行わない
+・上記の範囲外のフォルダ・アプリは開かない
+
+【止まるルール】
+・判断に迷ったら作業を止め、選択肢を挙げて私に聞く
+・同じ操作を2回失敗したら、そこで止めて状況を報告する
+
+【最後に】
+実行した手順と、確認してほしい点を箇条書きで報告してください。</pre>
+          </div>
+          <p style="margin:12px 0 0;font-size:14px;color:var(--ink-soft);">コツはひとつだけ。<b style="color:var(--pine);">「やってほしいこと」より「やってほしくないこと」を先に書く。</b>禁止事項が具体的なほど、任せられる範囲は広がります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP6 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>6</b></div><div><span class="st-chip">2分 ｜ 遠隔と定例化</span><div class="st-ttl">スマホから頼み、机の上で受け取る</div></div></div>
+      <div class="step-body">
+        <p class="desc">Computer Useの本当の価値は「速さ」ではなく<b>「自分がその場にいなくても進むこと」</b>。ここで効いてくるのが<b>Dispatch</b>です。</p>
+        <div class="mini-h">Dispatchでできること</div>
+        <ul class="use">
+          <li><b>移動中にスマホから依頼</b>して、会社のデスクトップ側で作業を進めてもらう</li>
+          <li><b>ひとつづきの会話</b>として続くので、スマホ⇄PCで説明し直さなくていい</li>
+          <li>終わったら<b>通知が届き</b>、戻ったときには成果物ができている</li>
+        </ul>
+        <div class="mini-h">現場で効く使い方</div>
+        <ol class="mini">
+          <li>朝の移動中に「昨日の日報3件を要約して、月次シートに追記して」</li>
+          <li>現場から「この写真を報告書テンプレに貼って、PDFで出力しておいて」</li>
+          <li>会食前に「明日の来客資料を印刷用に整えて、出力フォルダへ」</li>
+          <li>定例作業は<b>スケジュール実行</b>に登録して、毎週自動で回す</li>
+        </ol>
+        <div class="warn"><div class="wt">⚠️ 遠隔で任せるときの3点</div><b>①PCをスリープさせない</b>設定を確認する。<b>②席を外す前に画面を片づける</b>（機密ウィンドウを閉じる）。<b>③戻ったら必ず作業ログを見る</b>。遠隔ほど「終わったこと」より「何をしたか」の確認が大事です。</div>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>ここまでで第11回は合格！ ちなみにCowork自体は2026年7月からブラウザやスマホでも動くようになったけど、<b>“あなたの画面を直接触る”のはデスクトップアプリだけ</b>。ここは混同しやすいから覚えておいてね。</div></div>
+      </div>
+    </div>
+
+    <!-- 15分チェックリスト -->
+    <h3 class="blk">15分の導入・最終チェックリスト</h3>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>やること</th><th>目安</th><th>できたか</th></tr></thead>
+        <tbody>
+          <tr><th>プラン・OS・アプリの前提を確認</th><td>3分</td><td class="win">□</td></tr>
+          <tr><th>OSの権限（操作・画面）を許可して再起動</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>「AI検証」フォルダで練習部屋を作る</th><td>2分</td><td class="win">□</td></tr>
+          <tr><th>test.txt作成テストで動作確認</th><td>3分</td><td class="win">□</td></tr>
+          <tr><th>「任せる指示」テンプレを保存する</th><td>3分</td><td class="win">□</td></tr>
+          <tr><th>Dispatchでスマホから1件依頼してみる</th><td>2分</td><td class="win">□</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 使い分け表 -->
+    <div class="cmp">
+      <h3 class="blk">「どの手段で頼むか」の使い分け表</h3>
+      <p class="sec-sub" style="margin-top:-6px;">画面操作は万能ですが、遅く、失敗もします。速い順に試すのが鉄則です。迷ったらこの表に戻ってください。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>やりたいこと</th><th>コネクタ</th><th>ブラウザ操作</th><th>画面操作</th><th>自分でやる</th></tr></thead>
+          <tbody>
+            <tr><th>カレンダー・Slackの確認</th><td class="win">◎ 最速</td><td class="mid">△</td><td class="mid">×</td><td class="mid">○</td></tr>
+            <tr><th>クラウドのSaaSに大量入力</th><td class="mid">○</td><td class="win">◎</td><td class="mid">○</td><td class="mid">×</td></tr>
+            <tr><th>連携のない古い業務ソフトへの転記</th><td class="mid">×</td><td class="mid">×</td><td class="win">◎ 独壇場</td><td class="mid">△</td></tr>
+            <tr><th>PC内のファイル整理・命名統一</th><td class="mid">×</td><td class="mid">×</td><td class="win">◎</td><td class="mid">△</td></tr>
+            <tr><th>資料の作成・書き出し・添付</th><td class="mid">△</td><td class="mid">○</td><td class="win">◎</td><td class="mid">○</td></tr>
+            <tr><th>送信・支払い・申請の確定</th><td class="mid">×</td><td class="mid">×</td><td class="mid">× 禁止</td><td class="win">◎ 人が実行</td></tr>
+            <tr><th>1分で終わる単発作業</th><td class="mid">○</td><td class="mid">△</td><td class="mid">△ 大げさ</td><td class="win">◎</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いちばん効く流れ</h4>
+        <div class="flow"><span class="b">コネクタで<br>情報を集める</span><span class="ar">→</span><span class="b">画面操作で<br>手を動かす</span><span class="ar">→</span><span class="b">人が<br>最終確定</span></div>
+        <p style="margin:0;font-size:14px;color:var(--ink-soft);">全部を画面操作でやろうとすると、遅く・脆くなります。ひとことで言えば——<b style="color:var(--pine);">情報は正規ルートで、手作業だけを画面操作に。決定は人の手に残す。</b></p>
+      </div>
+    </div>
+
+    <!-- 反響の大きい使い方 -->
+    <div class="cmp">
+      <h3 class="blk">実際に反響が大きい「効いた使い方」10選</h3>
+      <p class="sec-sub" style="margin-top:-6px;">同ジャンルの発信で、保存・コメント・再現報告が集まっているのは、派手なデモではなく<b>地味で、毎週発生して、誰もやりたがらない作業</b>でした。共通点は「①手順が決まっている ②取り消せる ③時間を食う」の3つです。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🗂️</span>1. ダウンロードフォルダの棚卸し</h4><ul>
+          <li>種類別に仕分け、命名規則を統一、重複を「要確認」へ</li>
+          <li>反響の理由：誰の画面にも散らかっていて、失敗しても無害</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🧾</span>2. 請求書PDF → 一覧表</h4><ul>
+          <li>PDFを順に開き、日付・取引先・金額を表に転記</li>
+          <li>反響の理由：毎月来る／転記ミスが起きやすい／効果が数字で出る</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🖥️</span>3. 連携のない業務システムへの入力</h4><ul>
+          <li>APIも連携も無い古いソフトに、表からひたすら転記</li>
+          <li>反響の理由：「うちのシステムは対象外」という諦めが崩れる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📤</span>4. 資料の書き出しと添付までの一連</h4><ul>
+          <li>スライドをPDFに書き出し、指定の場所に保存し、下書きに添付</li>
+          <li>反響の理由：手順が多いのに頭は使わない、典型的な消耗作業</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🌅</span>5. 朝いちの「ブリーフィング」生成</h4><ul>
+          <li>予定・未読・前日の日報を集めて、A4一枚に要約して出力</li>
+          <li>反響の理由：移動中にスマホから頼み、席に着くと出来ている</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📸</span>6. 現場写真 → 報告書テンプレ流し込み</h4><ul>
+          <li>写真を日付順に並べ、決まったフォーマットへ配置してPDF化</li>
+          <li>反響の理由：建設・不動産・保険など、現場系で刺さりやすい</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔁</span>7. SaaS管理画面の一括設定変更</h4><ul>
+          <li>ユーザー権限の付け替え、価格表の一括更新など</li>
+          <li>反響の理由：件数が多いほど、人力との差が開く</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔍</span>8. 画面の見た目チェック（目視の代行）</h4><ul>
+          <li>更新前後のページを開いて撮影し、崩れている箇所を報告</li>
+          <li>反響の理由：見落としが減り、確認の心理的負担が消える</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📚</span>9. バラバラの資料 → 社内マニュアル化</h4><ul>
+          <li>複数フォルダの手順書を読み、章立てを揃えて1本に統合</li>
+          <li>反響の理由：「やらなきゃ」と5年言い続けた作業が終わる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>10. 私生活側：写真・レシート・書類の整理</h4><ul>
+          <li>撮りためた写真を日付とテーマで分類、レシートを家計表へ</li>
+          <li>反響の理由：休日に手を付けられなかった山が、平日に片づく</li>
+        </ul></div>
+      </div>
+      <div class="warn"><div class="wt">⚠️ 逆に「伸びているけど真似してはいけない」型</div>ログイン画面の自動操作、他社サイトの大量アクセス、返信の自動送信——<b>相手がいる操作・規約に触れる操作</b>は、動いてしまうぶん危険です。動くこと＝やってよいこと、ではありません。</div>
+    </div>
+
+    <!-- 仕事と私生活 -->
+    <div class="cmp">
+      <h3 class="blk">仕事と私生活、それぞれの活かし方</h3>
+      <p class="sec-sub" style="margin-top:-6px;">「手順が決まっていて、頭を使わないのに時間がかかる」——その条件に当てはまる作業が、すべて対象です。</p>
+      <div class="split">
+        <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 今日から効く場面</div>
+          <ul>
+            <li>請求書・領収書の転記と、月次一覧の作成</li>
+            <li>紙の申請書のスキャン → 台帳への入力</li>
+            <li>見積書の作成、テンプレへの流し込みとPDF化</li>
+            <li>求人媒体・SNSへの同一内容の複数投稿の下書き</li>
+            <li>複数フォルダに散った資料の統合と命名統一</li>
+            <li>週次レポートの数字収集と、決まった様式への反映</li>
+            <li>クチコミ・問い合わせの一覧化と分類</li>
+            <li>新人向け手順書の、画面キャプチャつきでの整備</li>
+          </ul>
+        </div>
+        <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 暮らしが軽くなる場面</div>
+          <ul>
+            <li>撮りためた写真を、日付とテーマで自動分類</li>
+            <li>レシート画像から、月別の家計表を作成</li>
+            <li>年賀状・宛名リストの整理と重複の統合</li>
+            <li>旅行候補の比較表づくり（条件・価格・移動時間）</li>
+            <li>役所・保険の書類をスキャンして、家族用フォルダへ</li>
+            <li>子どもの学校プリントを月別に整理し、予定を一覧化</li>
+            <li>資格勉強の教材を単元別に整理し、進捗表を更新</li>
+            <li>ネット上の情報を集めて、比較メモに落とす</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>おすすめは、まず<b>私生活の写真整理</b>から。壊れても誰にも迷惑がかからないのに、Claudeの得意・不得意がいちばんよく分かるんだ。ここで掴んだ感覚が、そのまま仕事の判断力になるよ。</div></div>
+    </div>
+
+    <!-- 自立型AI -->
+    <div class="cmp">
+      <h3 class="blk">ここに「自立型AI」が加わると、何が起きるか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">画面操作は“手”。自立型（エージェント）は、その手を<b>自分で計画して動かす頭</b>です。両方そろうと、依頼の単位が「作業」から「役割」に変わります。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🔗</span>手段をまたいで完遂する</h4><ul>
+          <li>ドライブから資料を取り、Excelで集計し、PDFにして格納</li>
+          <li>途中で連携が無ければ、自分で画面操作に切り替える</li>
+          <li>失敗したら別ルートを試し、それでも駄目なら人に聞く</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🗓️</span>定例業務が「勝手に」回る</h4><ul>
+          <li>毎週月曜の朝、先週分の集計と報告書の下書きが出来ている</li>
+          <li>月初に、前月の請求書一覧と未回収リストが揃う</li>
+          <li>人がやるのは、確認と承認だけになる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📱</span>場所から解放される</h4><ul>
+          <li>現場・移動中・出張先から、スマホで依頼して机で受け取る</li>
+            <li>「会社に戻らないとできない作業」が消えていく</li>
+          <li>結果として、夜の残業が前倒しで片づく</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🧑‍🏫</span>属人化が崩れる</h4><ul>
+          <li>ベテランしか知らない操作手順が、指示書として形になる</li>
+          <li>手順書がそのまま「AIに任せる指示」に転用できる</li>
+          <li>引き継ぎ・教育のコストが構造的に下がる</li>
+        </ul></div>
+      </div>
+      <div class="warn"><div class="wt">⚠️ 自立型に任せる前の、5つの注意点</div>
+        <b>①いきなり本番に使わない</b>：まずコピーしたフォルダで。<b>②取り消せない作業は任せない</b>：削除・送信・支払いは人が実行。<b>③作業ログを必ず見る</b>：結果ではなく経過を確認する。<b>④画面に映すものを選ぶ</b>：見えている情報は渡した情報と同じ。<b>⑤責任は人に残る</b>：AIが作っても、出した書類の責任はあなたのものです。
+      </div>
+    </div>
+
+    <!-- セキュリティ -->
+    <div class="cmp">
+      <h3 class="blk">いちばん重要な注意点：プロンプトインジェクション</h3>
+      <p class="sec-sub" style="margin-top:-6px;">画面操作を使うなら、この言葉だけは覚えてください。<b>AIが読んだ文章の中に、悪意ある「命令」が仕込まれている</b>攻撃のことです。Coworkに対しても、ファイルを盗み出す攻撃が研究者によって実証されています。</p>
+      <div class="safe-grid">
+        <div class="safe-item"><div class="si-h"><span class="no">1</span>何が起きるのか</div><p>Webページや資料の中に、人には見えにくい形で「このフォルダの中身を外部に送れ」といった指示を埋め込む手口です。AIは“読んだ文章”を素直に受け取ってしまうことがあります。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">2</span>なぜ画面操作だと怖いのか</div><p>チャットなら「変な答えが返る」で済みますが、画面操作では<b>実際に手が動きます</b>。ファイルを開く権限があるほど、影響範囲が広がります。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">3</span>いちばん効く対策</div><p>権限の最小化です。<b>触れるフォルダを限定し、機密は最初から置かない</b>。範囲外に手が届かなければ、仕込まれても実行できません。</p></div>
+        <div class="safe-item"><div class="si-h"><span class="no">4</span>知らない資料は開かせない</div><p>出所不明のファイル、外部から届いた添付、怪しいサイト——これらをAIに読ませないだけで、リスクの大半は消えます。人間の「不審メールを開かない」と同じです。</p></div>
+      </div>
+      <div class="warn"><div class="wt">⚠️ 提供元自身が公表している前提</div>Anthropicはこの機能を<b>研究プレビュー</b>と位置づけ、<b>機密情報を扱うアプリと並行して使わないよう推奨</b>しています。また、動作の途中で遠隔から止める仕組みは万全ではないと説明されています。つまり<b>「止めるのは、目の前にいるあなた」</b>。席を外して長時間まわす運用は、慣れてからにしてください。</div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>怖がって使わないのも、無防備に使うのも、どちらも損だよ。正解は「危ないことができない場所で、たくさん使う」。範囲を絞れば絞るほど、安心して回数を増やせるんだ。</div></div>
+    </div>
+
+    <!-- 費用対効果 -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、数字で判断する</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Computer Useを使うには Pro または Max が必要です。「高いかどうか」は感覚ではなく式で決めます。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>プラン</th><th>月額の目安</th><th>Computer Use</th><th>こんな人に</th></tr></thead>
+          <tbody>
+            <tr><th>Free（無料）</th><td>0円</td><td class="mid">対象外</td><td class="mid">まずチャットで試す段階</td></tr>
+            <tr><th>Pro</th><td class="win">$20（約3,000円）</td><td class="win">◎ ここから</td><td>毎日仕事で使う個人・社長。<b>最初の有料はここ</b></td></tr>
+            <tr><th>Max 5x</th><td>$100（約15,000円）</td><td class="win">◎</td><td class="mid">長時間まわす人・上限に毎日ぶつかる人</td></tr>
+            <tr><th>Max 20x</th><td>$200（約30,000円）</td><td class="win">◎</td><td class="mid">業務の中心に据えるヘビーユーザー</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="link-note">※ 為替1ドル≒150円で換算した目安です。料金・対象プラン・提供状況は改定されるため、契約前に必ず公式の料金ページでご確認ください。</p>
+      <a class="link-btn" href="https://claude.com/pricing" target="_blank" rel="noopener">公式の最新料金を見る ↗</a>
+
+      <div class="formula" style="margin-top:16px;">
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ ありがちな判断</div>「AIにPCを触らせるなんて、まだ早い」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 判断を先送りにすると、比較材料が一生増えない</span></div>
+          <div class="c good"><div class="lb">◎ 正しい判断</div>浮いた時間 × 時給 ＞ 月額 ＋ 確認にかかる時間<br><span style="color:#7A5B12;font-size:12.5px;">→ 「確認の手間」を式に入れるのが、実務のコツ</span></div>
+        </div>
+        <div class="cmp-wrap" style="margin-top:14px;">
+          <table class="cmp-t">
+            <thead><tr><th>置き換える作業</th><th>今かかっている時間</th><th>削減の目安</th><th>月額の回収</th></tr></thead>
+            <tbody>
+              <tr><th>請求書の転記（月80件）</th><td>月4時間</td><td class="win">▲3時間</td><td class="mid">時給1,500円でも回収</td></tr>
+              <tr><th>ファイル整理・命名統一</th><td>月3時間</td><td class="win">▲2.5時間</td><td class="mid">1人で余裕を持って回収</td></tr>
+              <tr><th>週次レポートの数字集め</th><td>月6時間</td><td class="win">▲4時間</td><td class="mid">管理職なら圧倒的黒字</td></tr>
+              <tr><th>報告書テンプレへの写真差し込み</th><td>月5時間</td><td class="win">▲3.5時間</td><td class="mid">現場業務で効果が大きい</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;color:var(--ink-soft);">現実的な目安は、<b style="color:var(--pine);">定型の転記・整理業務がある職場で1人あたり月5〜15時間</b>。ただし導入初月は<b>確認の時間が増えます</b>。ここを織り込んでおかないと「思ったより効かない」と感じて止めてしまいます。<b style="color:var(--pine);">評価は3か月目に。</b></p>
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>費用対効果を出すコツは、<b>置き換える作業を1つに絞って、時間を測る</b>こと。「なんとなく楽になった」では、社内の稟議は通らないからね。</div></div>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全11回）</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>第8回：会議の準備</div><p>アジェンダと要約を自動生成。会議前後の手間を10分の型に。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">9</span>第9回：タスク自動化</div><p>最も繰り返しの多い作業を自動化。任せる範囲を見極める回。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">10</span>第10回：Artifacts</div><p>コーディングなしで自社専用の道具を作って配る。試作→検証→本格導入の流れ。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">11</span>第11回：Computer Use（この記事）</div><p>頭で任せてきた作業を、ついに「手」ごと任せる。導入・権限設計・指示の型・Dispatch・費用対効果・安全対策まで。</p></div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">うまくいかない・困ったとき</h3>
+    <div class="compact">
+      <details open><summary>メニューにコンピュータ操作が出てこない</summary><div class="ans">①プランがPro／Maxか、②ブラウザ版ではなくデスクトップアプリか、③アプリが最新版か、の順に確認してください。研究プレビューのため、提供対象や表示は順次変わります。それでも出ない場合は、いったんサインアウトして入り直すと反映されることがあります。</div></details>
+      <details><summary>指示しても、まったく動かない／画面が反応しない</summary><div class="ans">ほぼOSの権限です。macOSならシステム設定のプライバシーとセキュリティで「アクセシビリティ」と「画面収録」の両方が許可されているか確認し、<b>許可後にアプリを再起動</b>してください。Windowsも操作許可の承認を確認します。</div></details>
+      <details><summary>クリックする場所がずれる／別のボタンを押してしまう</summary><div class="ans">画面の見え方に影響されます。①ディスプレイを1枚にする、②ウィンドウを最大化して固定する、③表示倍率を標準（100%）に戻す、④操作対象のアプリを手前に出しておく。この4つでかなり安定します。</div></details>
+      <details><summary>途中で止まる／同じ操作を繰り返している</summary><div class="ans">一度に頼んでいる工程が多すぎるサインです。作業を2〜3工程に割って、段階ごとに報告させてください。「同じ操作を2回失敗したら止めて報告」という停止条件を最初から入れておくのが有効です。</div></details>
+      <details><summary>思っていたより遅い</summary><div class="ans">仕様です。画面操作はスクリーンショットを撮って判断しながら進むため、コネクタ経由より時間がかかります。速さを求める作業ではなく、<b>自分がいない時間に進む作業</b>に割り当ててください。</div></details>
+      <details><summary>やめたい・権限を返したい</summary><div class="ans">機能をオフにするか、OSの設定から該当アプリの「アクセシビリティ」「画面収録」の許可を外せば、画面を見ることも触ることもできなくなります。試してみて合わなければ、いつでも元に戻せます。</div></details>
+    </div>
+
+    <!-- 会社で使うなら -->
+    <h3 class="blk">会社で使うなら、この4点だけ先に決める</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>触ってよい範囲の指定</div><p>フォルダとアプリを名指しで許可制に。「業務PC全部」ではなく「この1フォルダ」から。範囲を書いた紙1枚があれば十分です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>禁止操作の明文化</div><p>削除・送信・支払い・申請の確定はAIに実行させない。ここを共通ルールにしておけば、担当者ごとの判断ブレが消えます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>記録と確認の担当</div><p>誰が作業ログを見て、誰が成果物を承認するかを決める。AIが作った書類も、対外的な責任は会社に残ります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>勝手に増やさない（シャドーAI対策）</div><p>各自が別々に権限を付け始めると、どのPCが何に触れるか追えなくなります。導入台数と許可範囲は、必ず一覧で管理を。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>無料プランでも使えますか？</summary><div class="ans">Computer Useは研究プレビューとして、Claude ProまたはMaxの契約者向けに提供されています。無料プランは対象外です。まずは無料でチャットとファイル操作に慣れ、「定型の転記作業を任せたい」と感じたタイミングでProへ、が失敗しない順番です。</div></details>
+      <details><summary>WindowsでもMacでも使えますか？</summary><div class="ans">はい。2026年3月にmacOSで研究プレビューが始まり、同年4月にWindowsへ拡大しました。いずれもデスクトップアプリ（Cowork／Claude Code）が入口です。スマホアプリからは、Dispatchで「依頼する」側として使います。</div></details>
+      <details><summary>会社のパソコンに入れても大丈夫ですか？</summary><div class="ans">必ず責任者・IT管理者の承認を取ってください。おすすめは「検証用の1台・1フォルダに限定し、期間を区切って効果を測る」進め方です。範囲と期間を書いて申請すれば、話は通りやすくなります。</div></details>
+      <details><summary>作業中に勝手なことをされたら、止められますか？</summary><div class="ans">実行中はユーザーがいつでも停止できる設計になっており、新しいアプリに触れる前には確認を求める仕組みがあります。ただし提供元自身が、遠隔から確実に止める仕組みは万全ではないと説明しています。<b>長時間の無人運用は避け、最初は目の前で見ながら</b>使ってください。</div></details>
+      <details><summary>RPAとは何が違いますか？</summary><div class="ans">従来のRPAは画面の要素や座標を事前に登録するため、画面の作りが変わると止まりやすい仕組みでした。Computer Useは画面を見て判断するので、変化に強く、設定作業もほぼ不要です。反面、毎回まったく同じ動きをする保証はないため、<b>厳密な再現性が要る基幹業務にはRPA、変化する雑多な作業にはComputer Use</b>という住み分けが現実的です。</div></details>
+      <details><summary>結局、最初は何を任せればいいですか？</summary><div class="ans">「①毎週発生する ②手順が決まっている ③失敗しても取り消せる」の3条件を満たす作業を1つだけ選んでください。ファイル整理か、PDFからの転記が定番です。1つで成果が出てから、2つ目に進むのが最短ルートです。</div></details>
+      <details><summary>社員に展開したいのですが、何から？</summary><div class="ans">①禁止操作を紙1枚のルールにして配る ②検証用の1台で、代表者が1業務を回して時間を測る ③その手順をそのまま指示テンプレとして共有する、の順です。ツールを配るだけでは定着しません。<b>「同じ範囲・同じ指示文」で始めるのが、いちばん早い研修になります。</b></div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/"><span class="r-ic">🛠️</span><span><span class="r-k">← 前の記事（シリーズ第10回）</span><span class="r-t">Claude Artifacts ― ツールを構築<small>／ コーディングなしで道具を作る</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">シリーズ最初から</span><span class="r-t">第1回：Claudeの基礎<small>／ 正しいAIワークスペースの設定</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/"><span class="r-ic">🤝</span><span><span class="r-k">まず読む</span><span class="r-t">Claude Coworkって何？活かし方10選<small>／ 作業を任せる同僚型AI</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-50tools-guide/"><span class="r-ic">🔌</span><span><span class="r-k">手段の優先順位を深掘り</span><span class="r-t">Claude×50ツール連携 完全ガイド<small>／ まずコネクタで済ませる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">社内ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 権限とインジェクション対策</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/shadow-ai-guide/"><span class="r-ic">👤</span><span><span class="r-k">あわせて読む</span><span class="r-t">シャドーAIにどう向き合うか<small>／ 勝手に増やさない仕組み</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-guide/"><span class="r-ic">⌨️</span><span><span class="r-k">開発者はこちら</span><span class="r-t">Claude Code 実践ガイド<small>／ ターミナルから画面操作まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/manual-guide/"><span class="r-ic">📚</span><span><span class="r-k">属人化の解消に</span><span class="r-t">社内マニュアルをAIで整える<small>／ 手順書が指示書になる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/ai-roi-guide/"><span class="r-ic">💹</span><span><span class="r-k">効果を数字にする</span><span class="r-t">AI投資は回収できるのか？<small>／ ROIの計算式と90日の証明手順</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">はじめての方へ</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://claude.com/pricing" target="_blank" rel="noopener"><span class="r-ic">💳</span><span><span class="r-k">公式</span><span class="r-t">Claudeの料金プラン<small>／ Anthropic公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://support.claude.com/" target="_blank" rel="noopener"><span class="r-ic">🤖</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">Claude ヘルプセンター<small>／ 対応状況・権限設定の最新手順</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>手は増やせた。<br>次は、<span class="hl">どの作業から渡すか</span>を決めませんか？</h2>
+    <p>「任せられる作業が、どれか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社で置き換えられる業務が見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※ 本記事の料金・機能・提供状況は2026年7月時点の情報です。Computer Useは研究プレビュー段階のため、対象プラン・対応OS・画面や手順は提供元の更新により変わることがあります。導入前に必ず公式サイトでご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

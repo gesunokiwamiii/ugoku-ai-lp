@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>【第10回】Claude Artifacts ― コーディングなしでツールを構築（10分）｜UGOKU AI</title>
+<meta name="description" content="Claude実践シリーズ 第10回。プログラミング未経験でも10分で「動く自社ツール」が作れるClaude Artifactsの入門ガイド。設定・作り方・育て方・URLでの配り方から、費用対効果の計算式、コピペで使えるプロンプト、仕事と私生活での活用アイデア、自律型AIを組み合わせた可能性と注意点まで、AI初心者向けに網羅解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="【第10回】Claude Artifacts ― コーディングなしでツールを構築（10分）｜UGOKU AI">
+<meta property="og:description" content="コードは1行も書かない。話しかけるだけで、見積計算機もチェックリストも社内マニュアルも作れる。10分で作って、URLで配るまでを、うごく君がやさしく解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Claude Artifacts ― コーディングなしでツールを構築 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第10回】Claude Artifacts ― コーディングなしでツールを構築（10分）｜UGOKU AI">
+<meta name="twitter:description" content="話しかけるだけで、自社専用の道具ができる。10分で作って配るまでを、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/og-image.png">
+<link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Claude実践シリーズ 第10回 ｜ 所要10分</span>
+      <h1>コードは1行も書かない。<br><span class="hl">自社専用の道具</span>を、<br>話しかけて作る。</h1>
+      <p class="lead">Claude Artifacts（アーティファクト）は、<b>「こんな道具がほしい」と話すだけで、その場で動くツールが出てくる機能</b>。見積計算機、シフト表、点検チェックリスト、社内マニュアル——外注も、エンジニアも、待ちません。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。10分で「1つ作って、配る」ところまで一緒に行きます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">ガイドを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>第10回のテーマは「作る」です。これまでの回は<b>Claudeに手伝ってもらう</b>話でしたが、今回は<b>Claudeに道具を作ってもらう</b>話。プログラミングの知識は一切いりません。この記事を上から進めるだけで、こうなります。</p>
+        <ul class="checklist">
+          <li>Artifactsが何なのか、普通のチャットと何が違うのかが分かる</li>
+            <li>10分で「自社の仕事に合った道具」を1つ完成させられる</li>
+          <li>作った道具をURLで配り、スタッフに使ってもらえる</li>
+          <li>費用対効果の計算と、「任せてはいけない線引き」が分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの役割 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">Artifactsには「3つの顔」がある</h2>
+    <p class="sec-sub">「AIが作った文章」ではありません。チャットの右側に、<b>成果物そのもの</b>が出てくる。ここが決定的な違いです。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🖥️</div>
+        <h4>みえる<br><span>＝ その場で表示</span></h4>
+        <p>コードの説明文ではなく、実際に動く画面が出ます。図・グラフ・表・スライドも、見た目のまま確認できます。</p>
+      </div>
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🛠️</div>
+        <h4>さわれる<br><span>＝ 道具として使える</span></h4>
+        <p>数字を入力すれば計算し、ボタンを押せば反応する。「読むもの」ではなく「使うもの」が手に入ります。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">🔗</div>
+        <h4>くばれる<br><span>＝ URLで共有</span></h4>
+        <p>リンクを送るだけで、スタッフや取引先が使えます。インストールもサーバーも不要です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CLAUDE MASTER ｜ LESSON 10</div>
+    <h2 class="sec-title">Claude Artifacts<br>― コーディングなしでツールを構築 ―</h2>
+    <p class="sec-sub">パソコンが得意でない方、プログラミングを一度も触ったことがない方に向けて書いています。所要10分。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>Artifactsは<strong>「作ってほしいものを、日本語で説明するだけ」</strong>で使えます。特別な準備はほぼ不要。<strong>無料プランでも作れます</strong>（回数の上限あり）。ただし設定で<strong>「コード実行とファイル作成（Code execution and file creation）」をONにしておく必要</strong>があります。ここだけ、先に確認しておきましょう。</p>
+    </div>
+
+    <!-- 共通ルール -->
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>「作って」ではなく「◯◯する道具を作って」</h4>
+        <p>Artifactsは<b>用途を言われた瞬間に強くなる</b>機能です。「表を作って」ではなく「<b>職人5人分の日当と現場を入れると、月の労務費が出る表を作って</b>」。誰が・何を入れて・何が出るか。この3つを言うだけで、精度が段違いになります。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>一度に完成させようとしない</h4>
+        <p>最初は<b>いちばん単純な形</b>で作らせ、動くのを見てから「消費税も足して」「印刷できるように」と<b>1つずつ育てる</b>。欲張って全部盛りを頼むと、直す場所が分からなくなります。育てるほど自社仕様になります。</p>
+      </div>
+    </div>
+
+    <!-- STEP1 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>1</b></div><div><span class="st-chip">準備・1分</span><div class="st-ttl">設定を1か所だけ確認する</div></div></div>
+      <div class="step-body">
+        <p class="desc">Artifactsは初期状態でもだいたい動きますが、<b>作れないときの原因はほぼここ</b>です。先に見ておきましょう。</p>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claude を開く ↗</a>
+        <p class="link-note">スマホでも作れますが、初回はパソコン（またはタブレット）の大きな画面が断然ラクです。</p>
+        <ol class="mini">
+          <li>左下の<b>自分の名前（イニシャル）</b>をクリック</li>
+          <li><b>設定 → 機能（Capabilities）</b>を開く</li>
+          <li><b>「コード実行とファイル作成」をON</b>にする</li>
+          <li>AI入りの道具も作りたい人は<b>「AI搭載アーティファクトを作成」もON</b>（ベータ）</li>
+          <li>左メニューに<b>「アーティファクト」</b>の項目があるか確認</li>
+        </ol>
+        <div class="mini-h">サイドバーの「アーティファクト」でできること</div>
+        <ul class="use">
+          <li><b>一覧で管理</b>：これまで作ったものが、1か所にまとまる</li>
+          <li><b>お手本を見る</b>：Anthropic製のサンプルを開いて、中身を真似できる</li>
+          <li><b>作り直す</b>：既存のものを土台に、自社版へ作り替える（リミックス）</li>
+        </ul>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>いきなり普通のチャットで頼んでもOKだけど、<b>サイドバーの「アーティファクト」から始める</b>と「道具を作りたいんだな」と伝わりやすいよ。まずはお手本を1つ開いて、触ってみるのが最短だよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP2 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>2</b></div><div><span class="st-chip">最初の1つ・3分</span><div class="st-ttl">まず「動くもの」を1つ出す</div></div></div>
+      <div class="step-body">
+        <p class="desc">説明を読むより、1つ作ってしまうのが最速です。下のどれかをそのままコピーして貼るだけ。〔　〕の中を自社の言葉に変えてください。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ①いちばん簡単：現場チェックリスト</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>〔業種：例）建設現場〕で使う、朝の安全確認チェックリストを
+ブラウザで使えるツールとして作ってください。
+・チェック項目は〔例：ヘルメット、KY活動、天候確認、工具点検〕
+・スマホで見やすい大きな文字とボタン
+・全部チェックすると「完了」と表示される
+・日付と担当者名を入力できる
+まずは一番シンプルな形で作ってください。</pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ②数字が出る：かんたん見積・原価計算ツール</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>〔例：飲食店〕向けの、原価率をその場で計算できるツールを作ってください。
+【入力】商品名／売価／材料費（複数行を追加できるように）
+【出力】1品ごとの原価率と粗利、全体の平均原価率
+・原価率が35%を超えた行は赤く表示
+・スマホでも使える見た目で
+専門用語は使わず、パートさんでも迷わない画面にしてください。</pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ③見せる用：数字を図に変える</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre>以下の数字を、会議で一目でわかるグラフのページにしてください。
+・棒グラフと、前年比の増減がわかる表示
+・重要な変化には短いコメントを添える
+・印刷しても崩れないように
+【データ】
+〔ここに数字を貼り付け（表のコピペでOK）〕</pre>
+        </div>
+
+        <div class="warn"><div class="wt">⚠️ ここでつまずく人の共通点</div>
+          <b>「いい感じにして」だけで頼むと、いい感じになりません。</b>「誰が使うか」「何を入れるか」「何が出てほしいか」の3つを必ず書く。逆に言えば、それさえ書けば専門用語はゼロで大丈夫です。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP3 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>3</b></div><div><span class="st-chip">育てる・3分</span><div class="st-ttl">会話で直して、自社仕様に育てる</div></div></div>
+      <div class="step-body">
+        <p class="desc">出てきたものを触ってみて、気になった点を<b>そのまま日本語で言う</b>だけ。ここがArtifactsのいちばん面白いところです。</p>
+        <div class="mini-h">そのまま言えばいい「直しの言葉」</div>
+        <ul class="use">
+          <li><b>見た目</b>：「文字をもっと大きく」「スマホで縦に並ぶように」「会社の色（〇〇色）に」</li>
+          <li><b>機能</b>：「消費税10%の欄を足して」「合計を一番上にも出して」「印刷ボタンを付けて」</li>
+          <li><b>使い勝手</b>：「入力を間違えたら警告を出して」「入力した内容が消えないように保存して」</li>
+          <li><b>戻す</b>：「1つ前の状態に戻して」（履歴からバージョンを行き来できます）</li>
+        </ul>
+        <div class="mini-h">直しが効かないときの、最後の一手</div>
+        <ol class="mini">
+          <li>直したい箇所を<b>1つだけ</b>に絞って伝える（同時に3つ言わない）</li>
+          <li>それでも直らなければ「<b>この部分だけ作り直して</b>」と指定する</li>
+          <li>会話が長くなりすぎたら、<b>新しい会話で作り直す</b>のが早い（今の状態を貼り付ける）</li>
+        </ol>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「思ってたのと違う」は失敗じゃなくて<b>途中経過</b>。ここで諦める人と、あと3往復する人で、成果がまるっきり変わるよ。3往復＝だいたい2分だよ。</div></div>
+      </div>
+    </div>
+
+    <!-- STEP4 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>4</b></div><div><span class="st-chip">配る・2分</span><div class="st-ttl">URLにして、現場に配る</div></div></div>
+      <div class="step-body">
+        <p class="desc">自分だけで使うなら不要ですが、<b>スタッフに使ってもらう</b>ならここまでやって初めて価値が出ます。</p>
+        <ol class="mini">
+          <li>アーティファクト右上の<b>共有／公開（Publish）</b>を押す</li>
+          <li>発行されたURLを、LINEやメールで配る</li>
+          <li>受け取った人はブラウザで開くだけ（アプリのインストール不要）</li>
+        </ol>
+        <div class="mini-h">共有まわりで、先に知っておくべきこと</div>
+        <ul class="use">
+          <li><b>やめるときは注意</b>：公開を取り消す（Unpublish）と、<b>同じものを再公開できません</b>。作り直しになります。保存データも消えます。</li>
+          <li><b>社内だけに配りたい</b>：組織内限定の共有はTeam／Enterpriseプランの機能です</li>
+          <li><b>AI入りの道具を配る場合</b>：使う人が自分のClaudeアカウントでログインして使う形になり、<b>APIキーは不要・配る側に追加料金は発生しません</b>（利用量は使う人それぞれの契約に計上）</li>
+          <li><b>自社サイトに埋め込む</b>：埋め込みを許可するURLを指定する必要があります</li>
+        </ul>
+        <a class="link-btn" href="https://support.claude.com/en/articles/9547008-publish-and-share-artifacts" target="_blank" rel="noopener">公開と共有の公式ヘルプ ↗</a>
+        <p class="link-note">英語ページですが、ブラウザの翻訳機能で十分読めます。</p>
+        <div class="warn"><div class="wt">⚠️ 公開前の3秒チェック</div>
+          <b>取引先名・単価・原価・個人名が画面に残っていませんか？</b> リンクを知っている人は誰でも開けます。中の数字は「見られてもいいもの」に置き換えてから公開を。
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP5 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head"><div class="step-badge"><small>STEP</small><b>5</b></div><div><span class="st-chip">残す・1分</span><div class="st-ttl">作りっぱなしにしない</div></div></div>
+      <div class="step-body">
+        <p class="desc">Artifactsが業務で効くかどうかは、<b>作った後の1分</b>で決まります。</p>
+        <ul class="use">
+          <li><b>ダウンロードして保管</b>：HTMLファイルとして手元に残す（会社の共有フォルダへ）</li>
+          <li><b>プロジェクトに置く</b>：第1回で作ったプロジェクトに入れておくと、次の改良が速い</li>
+          <li><b>入口を1つに</b>：現場のスマホのホーム画面にURLを追加してもらう（＝アプリと同じ感覚に）</li>
+          <li><b>「誰が直すか」を決める</b>：改良担当を1人決める。これがないと、作った道具は半年で死にます</li>
+        </ul>
+        <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>作るのは10分。でも<b>使い続ける仕組み</b>を決めるのに必要なのは1分だけ。この1分をサボると、せっかくの道具が「あの時作ったやつ」になっちゃうよ。</div></div>
+      </div>
+    </div>
+
+    <!-- 使い分け -->
+    <div class="cmp">
+      <h3 class="blk">Artifacts／普通のチャット／外注、どう使い分ける？</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Artifactsは万能ではありません。「向いている場所」を知ると、迷いがなくなります。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>やりたいこと</th><th>普通のチャット</th><th>Artifacts</th><th>外注・既製ソフト</th></tr></thead>
+          <tbody>
+            <tr><th>相談したい・聞きたい</th><td class="win">◎</td><td class="mid">△</td><td class="mid">×</td></tr>
+            <tr><th>計算する道具がほしい</th><td class="mid">△</td><td class="win">◎ 数分で</td><td class="mid">○（費用と納期）</td></tr>
+            <tr><th>数字を図・グラフで見せる</th><td class="mid">△</td><td class="win">◎</td><td class="mid">○</td></tr>
+            <tr><th>チェックリスト・簡易入力</th><td class="mid">×</td><td class="win">◎</td><td class="mid">○</td></tr>
+            <tr><th>社内マニュアル・研修教材</th><td class="mid">○</td><td class="win">◎ 触れる形に</td><td class="mid">○</td></tr>
+            <tr><th>お客様の個人情報を扱う</th><td class="mid">×</td><td class="mid">× 業務システムへ</td><td class="win">◎</td></tr>
+            <tr><th>会計・請求など基幹業務</th><td class="mid">×</td><td class="mid">×</td><td class="win">◎ 専用ソフトを</td></tr>
+            <tr><th>試作・たたき台づくり</th><td class="mid">○</td><td class="win">◎ 圧倒的に速い</td><td class="mid">△</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="combo">
+        <h4>🤝 いちばん現実的な使い方</h4>
+        <div class="flow"><span class="b">Artifactsで<br>10分で試作</span><span class="ar">→</span><span class="b">現場で1週間<br>使ってみる</span><span class="ar">→</span><span class="b">効いたものだけ<br>本格導入・外注</span></div>
+        <p style="margin:0;font-size:14px;color:var(--ink-soft);">いきなり100万円のシステムを頼む前に、10分の試作で「本当に使うか」を確かめる。これがArtifacts最大の費用対効果です。ひとことで言えば——<b style="color:var(--pine);">Artifactsは「作る道具」ではなく「確かめる道具」。</b></p>
+      </div>
+    </div>
+
+    <!-- 費用対効果 -->
+    <div class="cmp">
+      <h3 class="blk">費用対効果を、数字で見る</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Claude Proはおおよそ月20ドル前後（為替により変動）。作れる道具1つあたりで考えると、こう見えます。</p>
+      <div class="cmp-wrap">
+        <table class="cmp-t">
+          <thead><tr><th>作るもの</th><th>外注した場合の目安</th><th>Artifacts</th><th>削減できる時間</th></tr></thead>
+          <tbody>
+            <tr><th>簡易チェックリスト</th><td>5〜15万円</td><td class="win">10分／0円</td><td>紙の集計 月2〜4時間</td></tr>
+            <tr><th>見積・原価計算ツール</th><td>20〜60万円</td><td class="win">30分／0円</td><td>手計算 月4〜8時間</td></tr>
+            <tr><th>社内マニュアル（触れる形）</th><td>10〜30万円</td><td class="win">30分／0円</td><td>教育の説明 月3〜6時間</td></tr>
+            <tr><th>会議用ダッシュボード</th><td>30〜100万円</td><td class="win">30分／0円</td><td>資料作成 月4〜10時間</td></tr>
+            <tr><th>試作・要件の確認</th><td>要件定義だけで数十万円</td><td class="win">当日／0円</td><td>やり直しの防止が最大効果</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="formula" style="margin-top:16px;">
+        <div class="mini-h" style="margin-top:0;">計算の型（これだけ）</div>
+        <div class="ba">
+          <div class="c good"><div class="lb">◎ 月あたりの効果</div>（削減時間 × 時給）−（月額利用料）<br><span style="color:#7A5B12;font-size:12.5px;">例：月8時間 × 時給2,000円 ＝ 16,000円 − 約3,000円 ＝ <b>月13,000円のプラス</b></span></div>
+          <div class="c bad"><div class="lb">✕ 見落としがちなコスト</div>作る時間・教える時間・直す時間<br><span style="color:#8A5A5A;font-size:12.5px;">→ 初月は「作る＋教える」で3〜5時間見ておくと現実的。2か月目から効きます。</span></div>
+        </div>
+        <p style="margin:14px 0 0;font-size:14px;color:var(--ink-soft);">ポイントは<b style="color:var(--pine);">「1つの大作」より「小さい道具を10個」</b>。1個あたりの効果は小さくても、現場に定着する確率が段違いに高くなります。</p>
+      </div>
+    </div>
+
+    <!-- プロンプトの型 -->
+    <div class="cmp">
+      <h3 class="blk">うごく君の「道具づくりの型」</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Artifacts用のお願いは、次の4つを足すだけ。文章力はいりません。</p>
+      <div class="formula">
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>だれが使う？</b>例：現場の職人／パート／自分だけ</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>何を入れる？</b>例：日付・数量・単価・写真</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>何が出る？</b>例：合計金額／◯×判定／グラフ</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>どこで使う？</b>例：スマホ・屋外・手袋のまま</div></div>
+        </div>
+        <div class="ba">
+          <div class="c bad"><div class="lb">✕ もったいない例</div>「便利なツールを作って」<br><span style="color:#8A5A5A;font-size:12.5px;">→ 何にも使えない“それっぽい画面”が出る</span></div>
+          <div class="c good"><div class="lb">◎ 効く例</div>「現場の職人がスマホで使う、資材の数量を入れると合計金額が出るツール。屋外なので文字は大きく」<br><span style="color:#7A5B12;font-size:12.5px;">→ 初回からほぼ使える形で出てくる</span></div>
+        </div>
+        <div class="copybox" style="margin-top:14px;">
+          <div class="cb-top"><span class="cb-lbl">📋 そのまま使えるテンプレ</span><button class="cb-btn" type="button">コピー</button></div>
+          <pre><span class="fill">〔だれが〕</span>が<span class="fill">〔どこで〕</span>使う、
+<span class="fill">〔何を入力すると〕</span>→<span class="fill">〔何が出てくる〕</span>ツールを作ってください。
+【条件】
+・<span class="fill">〔スマホ対応／大きな文字／印刷できる など〕</span>
+・専門用語は使わず、初めての人でも迷わない画面に
+まずは一番シンプルな形で。あとから機能を足していきます。</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- アイデア集 -->
+    <div class="cmp">
+      <h3 class="blk">あらゆる場面で使える｜活用アイデア集</h3>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🏗️</span>現場・製造で</h4><ul>
+          <li>安全点検・KYシートのデジタル化</li>
+          <li>資材数量から金額を出す簡易積算ツール</li>
+          <li>作業手順書を、写真つきの操作画面に</li>
+          <li>日報の入力フォーム（集計まで自動）</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏪</span>店舗・飲食で</h4><ul>
+          <li>原価率・FL比率のその場計算ツール</li>
+          <li>新人向けの調理手順・接客チェック表</li>
+          <li>多言語スタッフ向けの用語カード</li>
+          <li>シフト希望の集計・簡易ダッシュボード</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🧑‍💼</span>事務・経営で</h4><ul>
+          <li>会議用に、数字をグラフページ化</li>
+          <li>助成金・補助金の要件チェックツール</li>
+          <li>アンケートの集計・可視化</li>
+          <li>取引先ごとの利益シミュレーター</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🏠</span>私生活で</h4><ul>
+          <li>家計・住宅ローンの試算ツール</li>
+          <li>子どもの学習クイズ・九九ドリル</li>
+          <li>旅行の持ち物・予算チェックリスト</li>
+          <li>趣味の記録帳（釣果・走行距離・読書）</li>
+        </ul></div>
+      </div>
+      <div class="split" style="margin-top:16px;">
+        <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 効くのはこういう場面</div>
+          <ul>
+            <li>「毎回エクセルで手計算している」作業がある</li>
+            <li>紙のチェック表を、あとで誰かが打ち直している</li>
+            <li>新人に毎回、同じ説明を口頭でしている</li>
+            <li>会議のために、毎月同じグラフを作り直している</li>
+            <li>システム化したいが、費用が合わず放置している</li>
+          </ul>
+        </div>
+        <div class="col life"><div class="ch"><span class="badge-mini">プライベート</span> 練習台にちょうどいい</div>
+          <ul>
+            <li>まず家庭のことで1つ作ると、感覚が一気に掴める</li>
+            <li>失敗しても誰にも迷惑がかからない</li>
+            <li>子ども向けの教材は反応がすぐ返ってきて面白い</li>
+            <li>「これ仕事でも使えるな」が必ず出てくる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 自立型AI -->
+    <div class="cmp">
+      <h3 class="blk">ここに「自立型AI」が加わると、何が起きるか</h3>
+      <p class="sec-sub" style="margin-top:-6px;">Artifactsは<b>道具を作る</b>機能。自立型（エージェント）は<b>その道具を使って作業を終わらせる</b>存在です。組み合わさると、景色が変わります。</p>
+      <div class="ideas">
+        <div class="idea"><h4><span class="e">🤖</span>道具の中にAIを入れる</h4><ul>
+          <li>入力した文章をAIが添削・言い換えするツール</li>
+          <li>クチコミを貼ると返信文が出る、店舗用の道具</li>
+          <li>質問を打つと社内ルールを答えるFAQ画面</li>
+          <li>使う人が自分のアカウントで使うので、配る側に追加費用なし</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">🔌</span>社内データとつながる</h4><ul>
+          <li>接続（MCP）で、実データを反映する画面に</li>
+          <li>保存機能で、入力内容が次に開いても残る</li>
+          <li>開くたびに最新数値が入る、簡易ダッシュボード</li>
+          <li>「毎朝の集計」そのものが、なくなる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">⚙️</span>作る作業自体を任せる</h4><ul>
+          <li>「この業務、道具にできない？」から相談できる</li>
+          <li>複数の道具をまとめて作らせ、比較して選ぶ</li>
+          <li>使われていない道具を見つけて、改善案を出させる</li>
+        </ul></div>
+        <div class="idea"><h4><span class="e">📈</span>結果として起きること</h4><ul>
+          <li>「システム化＝大きな投資」という前提が崩れる</li>
+            <li>現場の人が、自分で自分の道具を直せるようになる</li>
+          <li>改善のスピードが、月単位から日単位になる</li>
+        </ul></div>
+      </div>
+      <div class="warn"><div class="wt">⚠️ 自立型に任せる前の、4つの注意点</div>
+        <b>①本番データで試さない</b>：まずダミーの数字で動きを確認する。<b>②取り消せない操作は任せない</b>：送信・削除・支払いは人の手で。<b>③何をしたか必ず見る</b>：作業の記録を確認してから採用する。<b>④責任は人に残る</b>：AIが作った道具が出した数字でも、お客様に出した瞬間、責任はあなたのものです。
+      </div>
+      <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>自立型を入れる前に、まず<b>自分で1つ作って配る</b>のを体験してほしい。ここを飛ばすと「何を任せられるか」の感覚が育たないんだ。順番が大事だよ。</div></div>
+    </div>
+
+    <!-- 注意点 -->
+    <h3 class="blk">会社で使うなら、この4点だけ先に決める</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>入れていい情報の線引き</div><p>個人情報・カード情報・未公開の数字は入れない。特に<b>公開URLにする道具</b>には、社外に出て困る数字を残さない。ダミー値で作り、実データは手元で入れるのが安全です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>計算結果は必ず検算する</div><p>Artifactsが作る計算式は、たいてい正しいですが<b>必ず正しいとは限りません</b>。実際の数字で3パターン試し、電卓と合うか確認してから配ること。ここを飛ばした事故が最も多いです。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>基幹業務は置き換えない</div><p>会計・請求・給与・個人情報管理は、専用ソフトの領域です。Artifactsは<b>その手前の補助・試作・可視化</b>に徹する。ここを守るとリスクはほぼ消えます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>作った道具の管理者を決める</div><p>誰が作り、誰が直し、いつ見直すか。各自が勝手に作り始めると<b>似た道具が乱立</b>します。一覧で管理し、使われていないものは畳む。これだけで運用は回ります。</p></div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">うまくいかない・困ったとき</h3>
+    <div class="compact">
+      <details open><summary>右側にプレビューが出ない／コードだけ表示される</summary><div class="ans">まず設定＞機能で「コード実行とファイル作成」がONか確認を。ONでも出ない場合は、「<b>これをアーティファクトとして、動く形で作ってください</b>」と明示的に頼むと出ます。内容が短すぎる（15行未満程度）と、通常の返信になることもあります。</div></details>
+      <details><summary>作ったツールが動かない／画面が真っ白</summary><div class="ans">エラーが出ていれば、その表示をそのまま貼って「直して」と伝えるのが最速です。何も出ない場合は「動きません。原因を調べて、一番シンプルな形で作り直して」と頼んでください。作り直しは数十秒で終わります。</div></details>
+      <details><summary>直すたびに、別の場所が壊れる</summary><div class="ans">機能を詰め込みすぎているサインです。「今の状態で一度確定し、余計な機能を削って軽くして」と頼み、<b>道具を2つに分ける</b>のが根本解決。1つの道具に1つの目的、が鉄則です。</div></details>
+      <details><summary>上限に達しました、と表示される</summary><div class="ans">無料・有料とも利用量に上限があり、一定時間で回復します。混み合う夕方〜夜より、午前中のほうが快適なことが多いです。毎日ぶつかるなら、有料プランへの切り替えが費用対効果に見合うサインです。</div></details>
+      <details><summary>共有したURLを、相手が開けない</summary><div class="ans">公開（Publish）を押したかを確認してください。押さずにチャット画面のURLを送っても相手には見えません。社内限定で配りたい場合は、Team／Enterpriseプランの組織内共有をご検討ください。</div></details>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>本当にプログラミングの知識はいりませんか？</summary><div class="ans">いりません。必要なのは「何に困っていて、どうなれば助かるか」を日本語で説明する力だけです。むしろ<b>現場を知っている人ほど良い道具が作れます</b>。コードは見なくても構いませんが、ダウンロードして手元に残しておくと後々役立ちます。</div></details>
+      <details><summary>無料プランでもできますか？</summary><div class="ans">できます。基本的な作成・プレビュー・ダウンロードは無料プランでも利用可能で、AI入りの道具の作成にも対応しています。ただし1日の利用回数に上限があるため、毎日いくつも作るなら有料プラン（Pro）が現実的です。まず無料で数個作り、上限にぶつかってから検討する順番をおすすめします。</div></details>
+      <details><summary>スマホだけでも作れますか？</summary><div class="ans">作れます。ただし画面が狭く、修正のやり取りがしづらいので、<b>作るのはパソコン、使うのはスマホ</b>という分担が現実的です。作った道具はスマホのブラウザで問題なく動きます。</div></details>
+      <details><summary>作ったツールは、ずっと残りますか？</summary><div class="ans">サイドバーの「アーティファクト」から一覧で管理できます。ただし仕様変更のリスクもあるため、<b>大事なものはHTMLファイルとしてダウンロードし、会社の共有フォルダに保管</b>しておくのが安全です。なお公開を取り消すと同じものは再公開できず、保存データも消える点にご注意を。</div></details>
+      <details><summary>Excelやスプレッドシートとどう違いますか？</summary><div class="ans">表計算は「作れる人が作り、作れる人が直す」もの。Artifactsは<b>「使う人の言葉で作り、使う人の言葉で直せる」</b>のが違いです。関数を知らない人でも改良を頼めるため、現場に近い改善が回りやすくなります。複雑な集計や既存の業務フローはExcelのままで構いません。</div></details>
+      <details><summary>Claude Codeの「Artifacts」とは別ものですか？</summary><div class="ans">2026年6月からClaude Code側にもアーティファクト機能が加わり、作業中の成果物をURL付きのページとして共有できるようになりました。開発者向けの機能ですが、考え方は同じ「成果物をそのまま見せる・配る」です。本記事はブラウザ版Claudeでの使い方を扱っています。</div></details>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全10回）</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>第7回：コンテンツ制作</div><p>投稿・台本・コピーを15分で。発信の量産を、品質を落とさず回す型。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>第8回：会議の準備</div><p>アジェンダと要約を自動生成。会議前後の手間を10分の型に。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">9</span>第9回：タスク自動化</div><p>最も繰り返しの多い作業を自動化。任せる範囲を見極める回。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">10</span>第10回：Artifacts（この記事）</div><p>コーディングなしで自社専用の道具を作って配る。試作→検証→本格導入の流れをつくる、シリーズの締めくくり。</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-09/"><span class="r-ic">🔁</span><span><span class="r-k">← 前の記事（シリーズ第9回）</span><span class="r-t">タスク自動化<small>／ 繰り返し作業を自動化する方法</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">シリーズ最初から</span><span class="r-t">第1回：Claudeの基礎<small>／ 正しいAIワークスペースの設定</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-10/"><span class="r-ic">🤖</span><span><span class="r-k">あわせて読む</span><span class="r-t">Claude活用10選<small>／ 何ができるかを一望する</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/vibe-coding-guide/"><span class="r-ic">🧑‍💻</span><span><span class="r-k">次に読む</span><span class="r-t">バイブコーディング入門<small>／ 話しかけて作る、をもう一歩深く</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">📋</span><span><span class="r-k">あわせて読む</span><span class="r-t">コピペで使えるプロンプト100<small>／ 頼み方の引き出しを増やす</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/"><span class="r-ic">⚙️</span><span><span class="r-k">自立型AIを知る</span><span class="r-t">Claude Coworkって何？活用10選<small>／ 作業そのものを任せる段階へ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-50tools-guide/"><span class="r-ic">🔗</span><span><span class="r-k">つなげて使う</span><span class="r-t">Claude×50ツール連携ガイド<small>／ 社内データとつなぐ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">🌱</span><span><span class="r-k">はじめての方へ</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://support.claude.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them" target="_blank" rel="noopener"><span class="r-ic">📘</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">アーティファクトとは／使い方<small>／ Anthropic公式</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>その作業、<br><span class="hl">10分で道具にできる</span>かもしれません。</h2>
+    <p>「毎回エクセルで手計算している」「紙のチェック表を打ち直している」——そんな作業を教えてください。AIで動かせるかどうか、無料で診断します。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※各サービスの画面・機能・料金は、提供元の更新により変わることがあります。本記事は2026年7月時点の情報です。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

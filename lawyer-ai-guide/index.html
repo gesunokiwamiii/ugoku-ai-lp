@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/lawyer-ai-guide/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI×弁護士 最新市場動向とAI活用術10選｜守秘義務・ハルシネーション・弁護士法72条まで ― UGOKU AI</title>
+<meta name="description" content="AI初心者の弁護士・法務担当者向け。2026年のAI×法務の市場動向（企業導入率57.7％、AI誤情報が問題化した裁判事例432件、Claude for Legal、弁護士法72条の運用見直し）から、実務で効くAI活用術10選を、コピペできるプロンプト・費用対効果の試算・注意点まで見える化。自律型AIエージェントの可能性と危険も、うごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="AI×弁護士 最新市場動向とAI活用術10選｜UGOKU AI">
+<meta property="og:description" content="「AIに仕事を奪われる」の前に、まず事務作業を奪わせる。市場動向・活用術10選・費用対効果・守秘義務と72条の線引きまで、AI初心者の弁護士向けに解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/lawyer-ai-guide/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/lawyer-ai-guide/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AI×弁護士 最新市場動向とAI活用術10選 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI×弁護士 最新市場動向とAI活用術10選｜UGOKU AI">
+<meta name="twitter:description" content="市場動向・AI活用術10選・費用対効果・守秘義務とハルシネーションの線引きまで。AI初心者の弁護士向けに、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/lawyer-ai-guide/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+  /* ═══ 追加：数字カード ═══ */
+  .stat-grid{display:grid;gap:12px;margin:16px 0 6px;}
+  @media(min-width:560px){.stat-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:860px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
+  .stat{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--ember));border-radius:14px;padding:16px 16px 14px;box-shadow:var(--shadow-sm);}
+  .stat .sv{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(21px,4.6vw,26px);line-height:1.2;color:var(--pine);}
+  .stat .sv small{font-size:13.5px;font-weight:800;margin-left:2px;}
+  .stat .sl{font-size:12.6px;font-weight:800;color:var(--ember-2);margin-top:5px;}
+  .stat .sn{font-size:12px;color:var(--ink-soft);margin-top:5px;line-height:1.75;}
+
+  /* ═══ 追加：タイムライン ═══ */
+  .tl{list-style:none;margin:16px 0 0;padding:0 0 0 4px;position:relative;}
+  .tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .tl li{position:relative;padding:0 0 20px 38px;}
+  .tl li:last-child{padding-bottom:0;}
+  .tl li::before{content:"";position:absolute;left:5px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--ember);border:3px solid var(--paper);box-shadow:0 0 0 1.5px var(--ember-2);}
+  .tl .d{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--ember-2);letter-spacing:.02em;}
+  .tl .h{font-weight:800;font-size:15px;margin:1px 0 4px;}
+  .tl p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 追加：費用対効果ボックス ═══ */
+  .roi{background:#FCFBF6;border:1px solid var(--line);border-left:5px solid var(--pine);border-radius:12px;padding:14px 16px;margin:16px 0 2px;}
+  .roi .rh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13px;color:var(--pine);margin-bottom:9px;display:flex;align-items:center;gap:7px;}
+  .roi table{width:100%;border-collapse:collapse;font-size:13.2px;}
+  .roi td{padding:6px 0;border-bottom:1px dashed var(--line);vertical-align:top;}
+  .roi td:first-child{width:44%;color:var(--ink-soft);font-weight:700;}
+  .roi tr:last-child td{border-bottom:none;font-weight:800;}
+  .roi tr:last-child td:last-child{color:var(--ember-2);}
+
+  /* ═══ 追加：出典・注記 ═══ */
+  .srcnote{font-size:12px;color:var(--ink-soft);margin:12px 0 0;line-height:1.85;}
+  .srcnote a{color:var(--pine);}
+  .lead-p{font-size:15.5px;margin:6px 0 0;}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">AI×弁護士 実践ガイド</span>
+      <h1>「AIに仕事を奪われる」の前に、<br>まず<span class="hl">事務作業</span>を奪わせる。</h1>
+      <p class="lead">2026年、弁護士業務のAIは「使うか・使わないか」から、<b>「どこまで任せ、どこで人が止めるか」</b>の段階に入りました。市場動向・実務家のセオリー・AI活用術10選を、<b>費用対効果と注意点まで数字で</b>見える化します。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役は<b>うごく君</b>。AIをさわったことがない先生でも、順番に読むだけで大丈夫。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">ガイドを読む <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。この記事は「弁護士・法務担当の方で、AIはまだほとんど触っていない」という方向け。専門用語は最小限にして、順番に読むだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>2026年のAI×法務の“現在地”を、数字と一次情報で説明できるようになる</li>
+          <li>汎用AI・法務特化サービス・自律型エージェントの使い分けが分かる</li>
+          <li>AI活用術10選を、費用対効果つきで自分の事務所に当てはめられる</li>
+          <li>守秘義務・ハルシネーション・弁護士法72条の“越えてはいけない線”が分かる</li>
+          <li>仕事だけでなく、私生活でもAIを使えるようになる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3つの層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">「法律AI」は、3つの層に分かれています</h2>
+    <p class="sec-sub">ここを混ぜると事故ります。全部おなじ「AI」ではありません。役割が違います。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">💬</div>
+        <h4>① 汎用AI<br><span>＝ 読む・整える・壁打ち</span></h4>
+        <p>ChatGPT・Claude・Gemini。要約や構造化、文章の推敲が得意。ただし<b>判例や条文を「生成」させるのは危険</b>な層です。</p>
+      </div>
+      <div class="role" style="--accent:var(--claude);">
+        <div class="ic">⚖️</div>
+        <h4>② 法務特化サービス<br><span>＝ 調べる・裏取りする</span></h4>
+        <p>判例DBや電子書籍と連携したリーガルテック。出典リンクから原典に飛べるため、<b>誤情報のリスクを下げられる</b>層です。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">🤖</div>
+        <h4>③ 自律型エージェント<br><span>＝ 手順ごと任せる</span></h4>
+        <p>指示を待たずに調査や作業を進める第3世代。期日監視や法改正の追跡が得意。<b>権限設計をしないと事故る</b>層でもあります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+
+    <div class="keystone">
+      <div class="kl">💡 この記事の結論</div>
+      <p>生成AIは<strong>「文章をつくる」より「文章を読む・整える」ほうが圧倒的に強い</strong>——ここを理解した瞬間に、弁護士業務との相性は一気に良くなります。したがって実務の型は1つ。<strong>「汎用AIで下ごしらえ → 特化型サービスで裏取り → 最終判断は弁護士」</strong>。この三層を守れるかどうかが、生産性の差ではなく<strong>事故るかどうかの差</strong>になります。</p>
+    </div>
+
+    <!-- ① 市場データ -->
+    <h3 class="blk">① 数字で見る、2026年のAI×法務</h3>
+    <p class="lead-p">まずは共通の“地図”を持ちましょう。この数字は、そのまま依頼者企業への説明や、セミナーの冒頭スライドにも使えます。</p>
+
+    <div class="stat-grid">
+      <div class="stat" style="--accent:var(--chatgpt);">
+        <div class="sv">57.7<small>％</small></div>
+        <div class="sl">企業の生成AI導入率</div>
+        <div class="sn">2023年33.8％→2024年44.8％→2025年57.7％と増加（野村総合研究所「IT活用実態調査（2025年）」）。依頼者側はもう使っています。</div>
+      </div>
+      <div class="stat" style="--accent:var(--claude);">
+        <div class="sv">432<small>件</small></div>
+        <div class="sl">AI誤情報が問題になった裁判事例</div>
+        <div class="sn">海外の集約データベースでの件数。うち約65％が米国、104件は2026年に入ってからの事例（東京弁護士会「LIBRA」2026年7・8月号）。</div>
+      </div>
+      <div class="stat" style="--accent:var(--ember-2);">
+        <div class="sv">2026<small>年1月9日</small></div>
+        <div class="sl">弁護士法72条まわりが動いた日</div>
+        <div class="sn">規制改革推進会議で「弁護士法におけるAI活用の更なる明確化」を議論。法務省は2023年8月ガイドラインの<b>運用見直し</b>方針を示しました。</div>
+      </div>
+      <div class="stat" style="--accent:var(--pine);">
+        <div class="sv">2026<small>年5月12日</small></div>
+        <div class="sl">大手AIが「法務」に本気で参入</div>
+        <div class="sn">法務特化のプラグイン12種と、既存の法務ソフトと接続する20超のコネクタが発表。AIが“外側の便利ツール”から“業務の中”に入りました。</div>
+      </div>
+    </div>
+
+    <div class="mini-h" style="--accent:var(--pine);">2023年→2026年で、何が変わったのか</div>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>切り口</th><th>これまで</th><th>2026年のいま</th></tr></thead>
+        <tbody>
+          <tr><th>AIの守備範囲</th><td>契約書レビューなど「1分野に特化」</td><td class="win">起案補助・調査・複数業務の連携まで拡大。エージェント（自律型）も登場</td></tr>
+          <tr><th>会内ルール</th><td class="mid">明文の指針が乏しい</td><td class="win">東京弁護士会のガイドラインが2025年3月27日施行／日弁連AI戦略WGの注意事項が2025年9月・2026年2月更新</td></tr>
+          <tr><th>規制の議論</th><td>2023年8月の法務省ガイドラインで一区切り</td><td class="win">生成AIの浸透を踏まえ、2026年1月から運用の再整理へ</td></tr>
+          <tr><th>リスクの中身</th><td class="mid">「情報漏えいが怖い」が中心</td><td class="win">守秘義務に加え、<b>架空判例の引用</b>と<b>所内の情報遮断がAI経由で抜ける</b>問題が現実の論点に</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「57.7％の企業がもう使っている」——これがいちばん大事な数字だよ。依頼者がAIを使って作った契約書やAIが答えた法的判断を持ってくる時代になった、ということでもあるんだ。</div>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 世界で432件。これは「他人事」ではありません</div>
+      問題化した事例は4類型に整理されています。<b>①実在しない裁判例・条文を生成した</b>／<b>②裁判例は実在するがそこに書かれていない文言を引用した</b>／<b>③関連性のない裁判例を引用した</b>／<b>④その後の判例変更や法改正で古くなった内容を引用した</b>。<b>①だけを警戒しても足りない</b>のがポイントです。汎用AIが出力した裁判例は、必ず判例データベースで原典を確認してから書面に載せてください。
+    </div>
+
+    <!-- ② タイムライン -->
+    <h3 class="blk">② 3年でここまで決まった ― ルールのタイムライン</h3>
+    <p class="lead-p">「まだルールが無いから様子見」は、もう成り立ちません。<b>使うための土台は、すでに揃っています</b>。</p>
+
+    <ul class="tl">
+      <li>
+        <div class="d">2023年8月</div>
+        <div class="h">法務省ガイドライン ― AI契約書サービスと弁護士法72条の関係を整理</div>
+        <p>「ＡＩ等を用いた契約書等関連業務支援サービスの提供と弁護士法第72条との関係について」。予測可能性を高めるため、問題となり得る点ごとに考慮要素を明確化しました。<b>弁護士・弁護士法人に提供する場合</b>は通常72条違反にならない、という整理も示されています。</p>
+      </li>
+      <li>
+        <div class="d">2024年6月</div>
+        <div class="h">弁護士情報セキュリティ規程が施行</div>
+        <p>各自が「情報セキュリティを確保するための基本的な取扱方法」（いわゆるキホトリ）を策定する義務。<b>AI導入の前に、まずここを見直す</b>のが順番です。</p>
+      </li>
+      <li>
+        <div class="d">2025年3月27日</div>
+        <div class="h">東京弁護士会「弁護士業務における生成AIサービスの適正利用ガイドライン」施行</div>
+        <p>サービスの選定基準／誤情報とファクトチェック／依頼者への説明／弁護士報酬／安全管理措置の5論点で整理。<b>義務ではなく推奨事項</b>ですが、実務の出発点として確認しておきたい内容です。</p>
+      </li>
+      <li>
+        <div class="d">2025年9月 ＋ 2026年2月更新</div>
+        <div class="h">日弁連AI戦略WG「弁護士業務における生成AIの利活用等に関する注意事項」</div>
+        <p>守秘義務・誤情報・責任の所在・職務上の倫理を網羅的に整理。会員専用資料のため、詳細は会員サイトでご確認を。</p>
+      </li>
+      <li>
+        <div class="d">2026年1月9日 ★いまここ</div>
+        <div class="h">規制改革推進会議で「弁護士法におけるAI活用の更なる明確化」を議論</div>
+        <p>法務省は現行指針の運用見直しの方針を表明。業界団体からは、リーガルテックが<b>「第3世代（エージェント機能）」</b>に入り、自律的に契約生成や法務相談の一次回答を行う段階に達しているとの報告がありました。</p>
+      </li>
+      <li>
+        <div class="d">これから</div>
+        <div class="h">民事判決情報のオープンデータ化で、調べる量が跳ね上がる</div>
+        <p>参照すべき裁判例が大量になれば、<b>AIによる一次スクリーニングに頼らざるを得ない場面</b>が増えます。「AIに慣れておく」は、そのときの準備でもあります。</p>
+      </li>
+    </ul>
+
+    <div class="rule2" style="margin-top:22px;">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>ガイドラインは「使うな」ではない</h4>
+        <p>各ガイドラインは利用を止めるものではなく、<b>安全に使うための条件</b>を並べたものです。学習に使われない設定、出典の確認、依頼者への説明——条件を満たせば、堂々と使えます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>いちばんの差は「慣れ」だけ</h4>
+        <p>ある調査では、AI活用の課題の1位が<b>「リテラシーやスキルが不足している」（70.3％）</b>でした。技術より、触った時間の差です。今日30分でも触った人から、差が開いていきます。</p>
+      </div>
+    </div>
+
+    <p class="srcnote">
+      出典（一次情報）：<a href="https://www.moj.go.jp/housei/shihouseido/housei10_00134.html" target="_blank" rel="noopener">法務省「弁護士法（その他）」＝72条ガイドライン掲載ページ ↗</a>／<a href="https://www.moj.go.jp/content/001400675.pdf" target="_blank" rel="noopener">法務省ガイドライン本文（PDF）↗</a>／<a href="https://www.toben.or.jp/message/libra/pdf/2026_0708/P02-18.pdf" target="_blank" rel="noopener">東京弁護士会「LIBRA」2026年7・8月号 特集（PDF）↗</a>／<a href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener">AI Hallucination Cases（誤情報事例データベース）↗</a>　※記載は2026年7月時点の公開情報に基づく整理です。制度・運用は変わります。実際の判断は必ず最新の一次情報でご確認ください。
+    </p>
+
+    <!-- ③ 反響コンテンツの型 -->
+    <h3 class="blk">③ 同業の発信で“反響が出ている”5つの型</h3>
+    <p class="lead-p">弁護士・法務系のSNS・ブログ・YouTubeで、コメントや保存、そして<b>実際の問い合わせ</b>につながっている投稿を並べてみると、中身はバラバラでも「型」は驚くほど共通しています。丸ごと真似るのではなく、型だけ借りて中身を自分のものに差し替えるのがコツです。</p>
+
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>型</th><th>なぜ反響が出るのか</th><th>AIでの作り方</th></tr></thead>
+        <tbody>
+          <tr><th>①数字断定型</th><td>「432件」「57.7％」など検証できる数字が入ると、信頼と保存率が上がる</td><td class="win">公式PDFをAIに読ませ、要点＋図表用の数字だけを抽出させる</td></tr>
+          <tr><th>②失敗事例型</th><td>「架空の判例を引用してしまった」系は、自分ごと化してシェアが伸びる王道</td><td class="win">公開事例を類型化し、「自分の事務所ならどこで止められたか」を追記</td></tr>
+          <tr><th>③コピペ提供型</th><td>そのまま使えるプロンプトや書式は、保存・スクショが圧倒的に多い</td><td class="win">自分が実際に使っているプロンプトを、固有名詞を伏せて公開</td></tr>
+          <tr><th>④ビフォーアフター型</th><td>「3時間→30分」のように時間で示すと、経営者層に刺さる</td><td class="win">作業ログをAIに集計させ、削減時間を金額換算して1枚の表に</td></tr>
+          <tr><th>⑤線引き型</th><td>「ここまでOK・ここからNG」は、専門家にしか書けないため権威性が出る</td><td class="win">ガイドライン原文をAIに読ませ、実務チェックリスト形式に変換</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>この5つを「毎週どれか1本」出すだけで、発信は続くよ。ネタ切れの原因は才能じゃなくて、“型が決まっていないこと”なんだ。特に⑤の線引き型は、弁護士の先生にしか書けない最強の型だね。</div>
+    </div>
+
+    <!-- ④ AI活用術10選 -->
+    <h3 class="blk">④ AI活用術10選 ― 費用対効果と注意点つき</h3>
+    <p class="lead-p">ここからが本編です。<b>10個すべてをやる必要はありません。</b>いま自分がいちばん時間を食っている順に、上から2つだけ選んでください。</p>
+
+    <div class="keystone" style="margin:16px 0 26px;">
+      <div class="kl">📐 費用対効果の前提（共通）</div>
+      <p>この記事の試算は<strong>「弁護士1時間＝20,000円」（タイムチャージの目安）</strong>、<strong>「事務職員1時間＝2,500円」</strong>で計算しています。自分の水準に置き換えてお読みください。AIツールは<strong>1人あたり月3,000円前後（無料プランで始められるものが大半）</strong>を想定。数字は<strong>効果を保証するものではなく、判断のための目安</strong>です。</p>
+    </div>
+
+    <!-- 01 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>1</b></div>
+        <div>
+          <div class="st-chip">初回相談・受任判断</div>
+          <div class="st-ttl">相談メモを「時系列・論点・追加質問」に自動で開く</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最初にやるべきはここです。資料が多い事件ほどAIが効きます。相談者から届いた資料や自分のメモを渡すだけで、事実の時系列化・論点の洗い出し・追加ヒアリング項目・想定される証拠まで、まとめて下ごしらえができます。<b>「要約・構造化」はAIがいちばん得意で、いちばん間違えにくい領域</b>です。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>相談メモ・資料から<b>当事者を特定できる情報を仮名に置換</b>（Wordなら Ctrl+H の置換機能で一括）</li>
+          <li>AIに貼り付けて「時系列表／争点候補／追加で聞くべきこと／想定される証拠」の4点セットで出させる</li>
+          <li>出てきた論点に自分の見立てを足す。ここからが弁護士の仕事です</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 初回相談の下ごしらえ</span><button class="cb-btn">コピー</button></div>
+          <pre>以下は法律相談のメモです（当事者名は仮名に置換済み）。
+次の4つを、それぞれ見出しをつけて整理してください。
+①事実の時系列表（日付／出来事／出典＝メモの該当箇所）
+②法的に問題となり得る論点の候補（条文の構造がわかる形で）
+③追加でヒアリングすべき事項（優先度つき10個）
+④想定される証拠と、その入手先
+
+【禁止】メモに書かれていない事実を補わない。
+推測した箇所は必ず「推測」と明示する。
+裁判例や条文番号は、確実でない場合は挙げずに【要確認】と書く。
+
+【相談メモ】
+<span class="fill">〔ここに仮名化したメモを貼り付け〕</span></pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>1件あたり資料の読み込みと整理に約60分／月10件＝10時間</td></tr>
+            <tr><td>AI導入後</td><td>1件あたり約20分（確認と加筆のみ）／月10件＝3.3時間</td></tr>
+            <tr><td>初期費用</td><td>0円〜（無料プランで開始可。仮名化ルールづくりに約1時間）</td></tr>
+            <tr><td>削減額の目安</td><td>6.7時間×20,000円＝<b>月13.4万円／年約160万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          <b>氏名・住所・生年月日・事件番号・勤務先などは、そのまま入れない</b>のが原則です。仮名化・抽象化してから使い、業務利用では入力内容が学習に使われない設定（データ管理の設定や法人向けプラン）を確認してください。マスキングを謳うWebサービスも、結局そのサーバーに情報が送られる点は同じです。手元での置換のほうが安全な場面が多くあります。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">相談予約フォームの入力が届いた時点で、<b>受付→仮名化→論点の下書き→初回面談用のヒアリングシート作成</b>までを、面談前に自動で用意させられます。到達点は「面談の30分前に、争点整理メモが手元にある」状態。ただし<b>受任の可否・利益相反チェックは必ず人が</b>行ってください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>2</b></div>
+        <div>
+          <div class="st-chip">リーガルリサーチ</div>
+          <div class="st-ttl">「AIに判例を作らせない」調べ方に切り替える</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここが最大の分かれ道です。汎用AIに「この論点の判例を教えて」と聞く——これがいちばんやってはいけない使い方。正解は<b>「参照する資料を自分で指定して、その中だけで答えさせる」</b>やり方に変えることです。誤情報が激減し、出典の確認も一瞬で終わります。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>調べたい分野の<b>一次資料を集める</b>（法令、府省庁のガイドライン、パブコメ回答、公表判決文、自分の書籍PDFなど）</li>
+          <li>資料指定型のAI（アップロードした資料だけを根拠に答えるタイプ）に読み込ませ、そこで質問する</li>
+          <li>裁判例の引用が必要な場面では、<b>判例データベースと連携した法務特化サービス</b>を使い、リンクから原典を必ず開く</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 資料限定リサーチ（ハルシネーション抑制型）</span><button class="cb-btn">コピー</button></div>
+          <pre>アップロードした資料<span class="fill">のみ</span>を根拠に回答してください。
+資料に書かれていないことは「資料に記載なし」と答えてください。
+一般的な知識で補わないでください。
+
+【質問】<span class="fill">〔調べたい論点〕</span>
+【出力形式】
+①結論（1〜2行）
+②根拠となる記載（ファイル名＋該当箇所を明示）
+③反対の結論を導きうる記載があれば、それも提示
+④この資料だけでは判断できない点のリスト</pre>
+        </div>
+
+        <div class="mini-h">使い分けの目安</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead><tr><th>やりたいこと</th><th>汎用AI</th><th>資料指定型AI</th><th>法務特化サービス</th></tr></thead>
+            <tbody>
+              <tr><th>未知の分野の全体像をつかむ</th><td class="win">◎ とっかかりに最適</td><td>○</td><td class="mid">○</td></tr>
+              <tr><th>法令・ガイドラインの横断整理</th><td class="mid">△</td><td class="win">◎ 誤情報が少ない</td><td>○</td></tr>
+              <tr><th>裁判例の調査・引用</th><td>✕ 危険</td><td class="mid">△（自分で入れた判決文の範囲のみ）</td><td class="win">◎ 原典リンクで確認できる</td></tr>
+              <tr><th>英文の海外規制の把握</th><td class="win">◎ 要約＋翻訳が速い</td><td>○</td><td class="mid">○</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>調査の初動（当たりをつける作業）に月20時間</td></tr>
+            <tr><td>AI導入後</td><td>月10時間（原典精読の時間は減らさない前提）</td></tr>
+            <tr><td>初期費用</td><td>0円〜／特化型サービスを併用する場合は別途</td></tr>
+            <tr><td>削減額の目安</td><td>10時間×20,000円＝<b>月20万円／年約240万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          AIが挙げた裁判例は、<b>実在するか・その判示が本当にあるか・今も生きているか</b>を必ず判例データベースで確認してください。「嘘をつかないで」とプロンプトで指示しても、誤った引用や要約は起こります。<b>プロンプトでは制御しきれない</b>——これは前提として持っておくべき事実です。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">担当分野の<b>官公庁サイト・パブコメ・法改正情報を毎日巡回</b>し、変更点だけを要約して通知させられます。さらに「その改正の影響を受ける自事務所の書式・チェックリストを洗い出す」まで任せると、改正対応の抜けが構造的に減ります。<b>通知は受け取るだけ、判断は人</b>——この分担が安全です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>3</b></div>
+        <div>
+          <div class="st-chip">訴訟実務</div>
+          <div class="st-ttl">相手方書面を要約させ、反論の“壁打ち相手”にする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">AI初心者の先生に、最初の1つとしていちばんおすすめするのがこれです。<b>読ませて整理させるだけ</b>なので誤情報のリスクが最も低く、それでいて効果をその日に実感できます。相手方の主張構造を可視化し、反論の切り口を10個出させて、そこから自分で選ぶ——という使い方が現実的です。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>相手方書面と自分の直前の書面を、仮名化してアップロード</li>
+          <li>「主張の構造」「前提としている経験則」「争点ごとの対立点」を表で出させる</li>
+          <li>反論の切り口を数を指定して出させ、<b>採用するかは自分で判断</b>する</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 相手方書面の分解と反論の壁打ち</span><button class="cb-btn">コピー</button></div>
+          <pre>本件は<span class="fill">〔事件の類型〕</span>の訴訟で、当方は<span class="fill">〔原告／被告〕</span>です。
+添付は、当方の前回書面と、これに対する相手方の反論書面です。
+
+次の順で出力してください。
+①相手方の主張を、争点ごとに「主張／根拠／依拠する経験則」の表に分解
+②相手方の主張のうち、客観的証拠と整合しない可能性がある箇所
+③想定される反論の切り口を10個（強い順に並べ、それぞれ想定リスクも）
+④この段階で当方が追加で用意すべき証拠
+
+【禁止】存在しない裁判例・条文を挙げない。
+不確かな点は【要確認】と明示する。</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>相手方書面の読み込みと反論方針の検討に、1件あたり約4時間／月4件</td></tr>
+            <tr><td>AI導入後</td><td>1件あたり約2時間（構造化された状態から検討を開始できる）</td></tr>
+            <tr><td>初期費用</td><td>0円〜</td></tr>
+            <tr><td>削減額の目安</td><td>8時間×20,000円＝<b>月16万円／年約192万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          AIの出す反論案は<b>「もっともらしいが的外れ」が普通に混じります</b>。10個出させて2〜3個使えれば上出来、という感覚で。そして反論の採否は、事件の全体戦略と依頼者の意向を踏まえた<b>弁護士の判断</b>です。AIは選択肢を増やす道具であって、選ぶ道具ではありません。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">案件フォルダを監視させ、<b>新しい書面が入るたびに自動で要約・争点表の更新・過去書面との矛盾チェック</b>までを回せます。長期の事件ほど効き、担当交代時の引継ぎコストも激減します。ただし<b>提出物の作成・送信は絶対に自動化しない</b>こと。人の承認を必ず挟んでください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>4</b></div>
+        <div>
+          <div class="st-chip">起案</div>
+          <div class="st-ttl">ひな形×事実で、ファーストドラフトを一気に作る</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">定型的な訴状・答弁書・内容証明であれば、<b>自分のひな形を読み込ませたうえで事実を渡す</b>と、埋めた状態で出てきます。ゼロから書くより速く、しかも自分の書き癖が保たれます。非定型の書面は、AIと会話しながら構成を練るほうが現実的です。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>よく使う書面のひな形を5〜10種類、1か所にまとめてAIに登録（プロジェクト機能などが便利）</li>
+          <li>事実関係と請求内容を渡して「このひな形の形式で」とドラフトさせる</li>
+          <li>誤字脱字・表記ゆれ・条番号のズレの一覧も、あわせて出させる</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 ひな形ベースの起案＋校正</span><button class="cb-btn">コピー</button></div>
+          <pre>添付の「ひな形」の書式・言い回し・構成をそのまま踏襲して、
+以下の事実関係にもとづく<span class="fill">〔書面の種類〕</span>のドラフトを作成してください。
+
+【条件】
+・ひな形に無い項目を勝手に追加しない
+・事実関係に書かれていない事実を補わない（不足は【要確認】と表示）
+・法令の条番号は、確実なもの以外は【要確認】とする
+・最後に「誤字脱字・表記ゆれ・条番号のズレ」を一覧表で指摘
+
+【事実関係】
+<span class="fill">〔仮名化した事実を時系列で貼り付け〕</span></pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>書面1本あたり約3時間／月6本＝18時間</td></tr>
+            <tr><td>AI導入後</td><td>1本あたり約1.5時間（ドラフト修正＋確認）／月6本＝9時間</td></tr>
+            <tr><td>初期費用</td><td>0円〜（ひな形の集約に約2時間）</td></tr>
+            <tr><td>削減額の目安</td><td>9時間×20,000円＝<b>月18万円／年約216万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          生成AIは<b>「要約」は得意でも「生成」は用心が必要</b>です。特に法令の条番号、判例の引用、計算（遅延損害金・過失相殺など）は誤りが混じります。ドラフトはあくまで下書き。<b>提出前の全文精読は省略できません</b>。校正は「指摘だけさせて、直すのは自分」にすると、意図しない改変を防げます。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">「事件フォルダの資料を読む→ドラフト作成→ひな形との差分チェック→校正一覧の添付」までを一続きで実行させられます。<b>若手弁護士のOJTが減る</b>という副作用は、業界全体の宿題です。ドラフトを渡す前に「まず自分で書いてみる」時間を意識的に残す運用を、事務所として決めておくことをおすすめします。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 -->
+    <div class="step" style="--accent:var(--claude);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>5</b></div>
+        <div>
+          <div class="st-chip">尋問準備</div>
+          <div class="st-ttl">主尋問・反対尋問の質問案を、たたき台として量産する</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">陳述書と証拠がそろっている段階なら、AIは相当使えます。主尋問はオープンクエスチョン中心に、反対尋問は客観証拠との矛盾をクローズドで詰める形に——といった<b>技術的な条件を指定できる</b>のがポイント。自分側の証人への「予想反対尋問」を作らせるのも有効です。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>陳述書・証拠申出書・主要な書証を仮名化してアップロード</li>
+          <li>立証趣旨と質問の形式（オープン／クローズド）を明示して質問案を生成</li>
+          <li>相手方代理人の視点で「予想反対尋問」も出させ、弱点を先に潰す</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 主尋問の質問案</span><button class="cb-btn">コピー</button></div>
+          <pre>以下の立証趣旨を立証するための、主尋問の質問案を作成してください。
+回答の基礎となる内容は、添付ファイルの中にあります。
+
+【条件】
+・原則オープンクエスチョン。前提事実の確認はクローズドで可
+・一度に多くの要素を答えさせず、事実を一つずつ積み上げる構成に
+・各質問に、想定される回答例も併記する
+・ファイルに根拠がない質問は作らない
+
+【立証趣旨】<span class="fill">〔ここに記載〕</span>
+【尋問事項】<span class="fill">〔ここに記載〕</span></pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 反対尋問の質問案</span><button class="cb-btn">コピー</button></div>
+          <pre>添付は相手方証人の陳述書と、当方の書証です。
+当方が矛盾していると考えている点は次のとおりです。
+<span class="fill">〔矛盾点をメモで列挙〕</span>
+
+証人の供述をピンで留めたうえで、客観的証拠との矛盾・
+不合理さ・経験則との齟齬を、クローズドクエスチョンで
+段階的に詰めていく質問案を作成してください。
+各質問には「この質問の狙い」を一行で添えてください。</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>尋問1件の準備に約6時間／月2件＝12時間</td></tr>
+            <tr><td>AI導入後</td><td>1件あたり約3.5時間（たたき台からの練り直し）／月2件＝7時間</td></tr>
+            <tr><td>初期費用</td><td>0円〜</td></tr>
+            <tr><td>削減額の目安</td><td>5時間×20,000円＝<b>月10万円／年約120万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          質問案は<b>証拠の内容との整合性を含め、必ず自分の目で最終確認</b>してください。AIは「記録にない事実」を前提にした質問を作ることがあります。法廷でそれをそのまま読むと、証人に否定されて心証を損ないます。<b>たたき台として使う分には十分、そのまま使うには足りない</b>——この距離感が適切です。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">尋問後の<b>調書の文字起こし→供述の整理→陳述書や書証との矛盾一覧→最終準備書面の骨子</b>まで、一気につながります。尋問の“前”より“後”のほうが、実は効率化の余地が大きい領域です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>6</b></div>
+        <div>
+          <div class="st-chip">企業法務・契約審査</div>
+          <div class="st-ttl">「書かれていないリスク」を機械的に洗い出す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">契約審査でAIがいちばん効くのは、条項を評価することではなく<b>「無いものを見つけること」</b>です。相手方ドラフトと自社ひな形の両方を読ませて差分を出させれば、損害賠償の上限条項や不可抗力条項といった<b>“沈黙しているリスク”</b>が機械的に浮かび上がります。長文契約の定義のズレや条番号の参照ミス探しも得意分野です。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>自分（または依頼者）の標準ひな形と、相手方ドラフトを両方アップロード</li>
+          <li>「ひな形にあって相手方に無い条項」をリスト化させる</li>
+          <li>あわせて「論理的矛盾・複数の解釈が生じうる曖昧な表現・条番号のズレ」を指摘させる</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 契約書の差分・抜け漏れチェック</span><button class="cb-btn">コピー</button></div>
+          <pre>添付A＝当方の標準ひな形、添付B＝相手方ドラフトです。
+次の4点を、それぞれ表で出力してください。
+
+①ひな形Aにあって、Bに存在しない条項（重要度つき）
+②Bにあって、Aより当方に不利になっている条項
+③B内の論理的矛盾・定義の不整合・条番号の参照ズレ
+④複数の解釈が生じうる曖昧な表現（該当条文の引用つき）
+
+【禁止】法的な最終評価や「締結すべき／すべきでない」の結論は書かない。
+指摘は「確認すべき論点」として提示する。</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>1件あたり約90分／月12件＝18時間</td></tr>
+            <tr><td>AI導入後</td><td>1件あたり約40分（AIの指摘を起点に精読）／月12件＝8時間</td></tr>
+            <tr><td>初期費用</td><td>0円〜（ひな形と社内基準の整理に約3時間）</td></tr>
+            <tr><td>削減額の目安</td><td>10時間×20,000円＝<b>月20万円／年約240万円</b></td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点 ― ここは弁護士法72条が絡む唯一の論点です</div>
+          弁護士が<b>自分の業務のために</b>AIを使う分には、72条の問題は生じません（法務省ガイドラインでも、弁護士・弁護士法人に提供されるサービスは通常72条違反にならないと整理されています）。注意が必要なのは<b>「非弁護士が、報酬を得て、業として、個別具体の事案に法的リスクの有無や程度を表示する」形</b>で提供する場合です。事務所が依頼者向けにAI診断ツールを開放する、といった展開を考える際は、この線引きを必ず確認してください。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">契約管理システムや電子契約サービスと接続し、<b>「契約書が届いた瞬間に一次スクリーニング→赤・黄・青で仕分け→黄と赤だけ人に回す」</b>という運用が現実になっています。海外では法務ソフトとAIを直接つなぐ動きが本格化しました。<b>「青」の基準を誰がどう決めるか</b>——ここを弁護士が握るのが、この先の付加価値です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>7</b></div>
+        <div>
+          <div class="st-chip">依頼者対応</div>
+          <div class="st-ttl">説明を「図と表」に変えて、受任率と満足度を上げる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">見落とされがちですが、<b>売上に直結するのはここ</b>です。制度や手続の流れを分かりやすく言い換える・図解する・比較表にする——AIの得意領域そのもの。相談者が「理解できた」と感じた瞬間に、受任率も紹介も変わります。報酬基準を読み込ませておけば、簡易な見積り説明の作成もできます。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>よく説明する手続（相続・離婚・債権回収・労働審判など）を10個リストアップ</li>
+          <li>それぞれ「中学生でも分かる説明」「流れの図解」「よくある誤解3つ」をAIに作らせる</li>
+          <li>内容を自分で確認し、事務所の標準説明資料として保存・使い回す</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 依頼者向け説明資料の下書き</span><button class="cb-btn">コピー</button></div>
+          <pre>法律の予備知識がない一般の方向けに、<span class="fill">〔手続の名称〕</span>について
+説明する資料の下書きを作ってください。
+
+【形式】
+①ひとことで言うと（40字以内）
+②全体の流れ（ステップ形式・各段階の目安期間つき）
+③よくある誤解を3つ（誤解→実際は、の形で）
+④ご準備いただくもの（チェックリスト）
+⑤費用の考え方（金額は書かず、何で決まるかだけ）
+
+【トーン】専門用語は使わず、使う場合は必ずかっこ書きで言い換える
+【禁止】断定しない。個別事情で変わる点は「ケースによります」と明示</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>説明資料の作成・説明の反復に月4時間＋説明不足による再面談</td></tr>
+            <tr><td>AI導入後</td><td>月1時間（資料は使い回し）。相談から受任までの意思決定も速くなる</td></tr>
+            <tr><td>初期費用</td><td>0円〜（初回の資料10本づくりに約5時間）</td></tr>
+            <tr><td>削減額の目安</td><td>3時間×20,000円＝<b>月6万円／年約72万円</b>＋受任率の改善分</td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          依頼者に渡す資料は<b>公開物と同じ責任</b>が生じます。数字・期間・要件はAIが最も間違えやすい部分なので、配布前の確認を運用として固定してください。また、秘匿性の高い情報をAIに入力する場合は、<b>依頼者への説明・必要に応じた同意取得・委任契約書への記載</b>を検討することが推奨されています。方針を事務所サイトで公表しているところも出てきました。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">案件の進行に合わせて、<b>依頼者への定期報告メールの下書きを自動生成</b>させられます。「連絡が来ない」は懲戒相談でも上位の不満。ここを仕組みで潰せる意味は小さくありません。ただし<b>送信は必ず人が承認</b>。自動送信は事故の元です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 08 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>8</b></div>
+        <div>
+          <div class="st-chip">事務所運営</div>
+          <div class="st-ttl">「弁護士でなくてもできる仕事」から先に消す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">効果を実感しやすく、リスクも低い。<b>AI初心者が最初に触るならここでも構いません。</b>定型メール、領収書・名刺のデータ化、事務所内マニュアルの整備、勤怠や採用の文書——月額数千円のAI1つで、日々の細かい作業が目に見えて減ります。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>紹介お礼・受任のお断り・セミナー告知など、よく書く文面を10種類あげる</li>
+          <li>領収書・名刺・手書きメモをスマホで撮って、AIに表やCSVで書き出させる</li>
+          <li>口頭で教えていた事務手順を吹き込み、AIにマニュアル化させる</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 書きにくいメールの下書き</span><button class="cb-btn">コピー</button></div>
+          <pre>ご紹介いただいた案件が、残念ながら受任に至りませんでした。
+紹介者への感謝を伝えつつ、次のご紹介にもつながるよう
+印象を大切にした短いお礼メールを作成してください。
+
+【条件】300字以内／敬語／押しつけがましくしない
+【禁止】受任しなかった理由の詳細には触れない</pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 領収書・名刺の一括データ化</span><button class="cb-btn">コピー</button></div>
+          <pre>添付の画像は領収書です。
+日付／支払先／金額／但し書き／勘定科目の候補を抽出し、
+表形式で出力してください。読み取れない項目は「不明」と記載。
+
+※名刺の場合：氏名／会社名／役職／電話／メールをCSV形式で出力</pre>
+        </div>
+
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span>事務所での効き方</div>
+            <ul>
+              <li>確定申告前の経費整理が数時間で終わる</li>
+              <li>新人事務員への引継ぎマニュアルが1日でできる</li>
+              <li>言いにくい連絡（お断り・催促）の下書きに</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span>暮らしでの効き方</div>
+            <ul>
+              <li>家計のレシート整理、保険証券の内容比較</li>
+              <li>PTA・町内会の案内文、挨拶状の下書き</li>
+              <li>取扱説明書や役所の書類を「要するに何？」に要約</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>事務職員の定型業務に月30時間（文書作成・データ入力・整理）</td></tr>
+            <tr><td>AI導入後</td><td>月12時間。空いた時間を依頼者対応と期日管理に回せる</td></tr>
+            <tr><td>初期費用</td><td>0円〜／有料プランでも1人あたり月3,000円前後</td></tr>
+            <tr><td>削減額の目安</td><td>18時間×2,500円＝<b>月4.5万円／年約54万円</b>＋残業削減効果</td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          事務所スタッフが使う場合こそ、<b>「入力してよい情報／だめな情報」のリストを1枚作る</b>ことが必須です。弁護士本人より、事務局のほうが依頼者情報に触れる機会は多いもの。あわせて、利用してよいサービスを事務所として限定し、設定（学習利用のオプトアウト・履歴の共有範囲）を初期設定のままにしないことを確認してください。<b>既定で「リンクを知っていれば誰でも閲覧可」になっていた例</b>も報告されています。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">請求書の発行漏れ・入金消込・期日リマインドなど、<b>「気づかないと事故になる」系の管理業務</b>を常時見張らせられます。事務職員の負担で最も重いのは作業量より“抜けたら大事”という緊張感。そこを機械に預けられる意味は大きいです。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 -->
+    <div class="step" style="--accent:var(--youtube);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>9</b></div>
+        <div>
+          <div class="st-chip">集客・情報発信</div>
+          <div class="st-ttl">コラム・セミナー・スライドを、途切れさせない仕組みに</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">事務所サイトの法律コラムは有効だと分かっていても、<b>書く時間が確保できない</b>のが実情です。AIをドラフト役に回せば、月4本の更新が現実的な負荷になります。セミナー構成案、ケーススタディ教材、スライドの下書きまで一気通貫で作れます。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>自分の得意分野で、よく相談される質問を30個書き出す（これがネタ帳になります）</li>
+          <li>1本ずつAIにドラフトさせ、<b>自分の見解と実務感覚を加筆</b>して公開</li>
+          <li>同じ原稿からSNS投稿・動画台本・セミナー構成を派生させる</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 法律コラムのドラフト</span><button class="cb-btn">コピー</button></div>
+          <pre>一般読者向けに、<span class="fill">〔テーマ〕</span>について1,500字程度で解説する
+法律コラムのドラフトを作成してください。
+
+【条件】
+・専門用語は避ける（使う場合はかっこ書きで言い換え）
+・見出しを3〜4個つける
+・最後に「弁護士に相談すべきケース」を3つ挙げる
+【禁止】
+・条文番号や裁判例は、確実でない場合は挙げず【要確認】と表示
+・断定的な結論を書かない（個別事情で変わることを明示）
+・私を特定できる表現や、実在の依頼者を想起させる事例は入れない</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>コラム1本に約3時間／月4本＝12時間（そもそも書けていないことも）</td></tr>
+            <tr><td>AI導入後</td><td>1本あたり約1時間（加筆と確認）／月4本＝4時間</td></tr>
+            <tr><td>初期費用</td><td>0円〜</td></tr>
+            <tr><td>削減額の目安</td><td>8時間×20,000円＝<b>月16万円／年約192万円</b>＋集客効果</td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点</div>
+          対外発信の内容は、<b>正確性について弁護士が責任を持つ</b>前提です。AIの下書きをそのまま公開しないこと。さらに、実際の事件を題材にする場合は<b>守秘義務</b>に触れないよう抽象化を徹底し、事務所の広告規制（弁護士の業務広告に関する規程）にも留意してください。生成物が既存の著作物と類似していないかの確認も必要です。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">「法改正を検知→影響する自分の過去コラムを洗い出し→更新案を作成」まで自動で回せます。<b>古い記事が誤情報になる</b>リスクを構造的に潰せるのが最大の価値。公開は必ず人の承認を挟んでください。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>METHOD</small><b>10</b></div>
+        <div>
+          <div class="st-chip">経営・人材育成</div>
+          <div class="st-ttl">経営の壁打ち相手と、事務所ナレッジの継承役にする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">料金設定、採用、専門特化か総合か——<b>弁護士同士では相談しにくい経営の悩み</b>こそ、AIは気兼ねなく壁打ちできる相手です。加えて、事務所の過去の書面・ノウハウ・判断基準を1か所に集約すれば、若手が「先輩の頭の中」に24時間アクセスできる状態がつくれます。</p>
+
+        <div class="mini-h">やること（3手順）</div>
+        <ol class="mini">
+          <li>事務所の書式・チェックリスト・過去の判断基準を1か所に集める（要仮名化）</li>
+          <li>それを参照する専用のAI（マイGPT／プロジェクト機能など）を作る</li>
+          <li>若手が最初に聞く先を、そこに変える。答えられない質問だけが人に上がってくる</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 経営の壁打ち（複数の視点で議論させる）</span><button class="cb-btn">コピー</button></div>
+          <pre>開業<span class="fill">〔◯〕</span>年目、弁護士<span class="fill">〔◯〕</span>名の法律事務所です。
+今後の方針として「専門分野に特化して深掘りする」か
+「総合型として分野を広げる」かで悩んでいます。
+
+3人の異なる立場のコンサルタント（①財務重視 ②ブランド重視
+③人材・組織重視）に、それぞれの立場から意見を述べさせ、
+互いの主張に反論させてください。
+最後に、三者の議論を踏まえた折衷案と、
+最初の90日でやるべきことを提示してください。</pre>
+        </div>
+
+        <div class="roi">
+          <div class="rh">💴 費用対効果の試算例</div>
+          <table>
+            <tr><td>いまの状態</td><td>若手からの質問対応・指導に月6時間（都度中断されるコストは別）</td></tr>
+            <tr><td>AI導入後</td><td>月3時間。基礎的な質問はAIが吸収し、判断が必要な相談だけ人へ</td></tr>
+            <tr><td>初期費用</td><td>0円〜（ナレッジの集約に約8時間。ここは投資と割り切る）</td></tr>
+            <tr><td>削減額の目安</td><td>3時間×20,000円＝<b>月6万円／年約72万円</b>＋育成スピードの改善</td></tr>
+          </table>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 注意点 ― これが最も見落とされているリスクです</div>
+          <b>事務所内で共通のAIを使う場合、利益相反事件の情報遮断（ウォール）がAI経由で抜ける</b>おそれがあります。ある事件の情報を入力し、それが学習・参照の対象になると、別の弁護士が別事件で同じAIを使ったときに出てくる可能性がある。<b>従来の情報管理では想定されていなかった、生成AI特有の問題</b>です。係属中の事件情報は共通AIに入れない、あるいは参照対象から除外する運用を、導入前に決めてください。
+        </div>
+
+        <div class="combo">
+          <h4>🤖 ここに自律型AIが加わると</h4>
+          <p style="margin:0;font-size:13.8px;">未処理案件・期日・売掛・稼働時間を集計した<b>月次ダッシュボードの自動作成</b>まで到達できます。数字が毎月自動で出てくる事務所と、年に一度しか見ない事務所では、3年後の姿が変わります。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ 費用対効果まとめ -->
+    <h3 class="blk">⑤ 10選まとめ ― 費用対効果の一覧</h3>
+    <p class="lead-p">同じ前提（弁護士1時間＝20,000円／事務職員1時間＝2,500円）で並べ直しました。<b>自分の件数に置き換えて、上位2つから着手</b>してください。</p>
+
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>活用術</th><th>月あたり削減時間</th><th>年間の金額換算（目安）</th><th>難易度</th></tr></thead>
+        <tbody>
+          <tr><th>1. 初回相談の下ごしらえ</th><td>6.7時間</td><td class="win">約160万円</td><td class="mid">★☆☆ 今日からできる</td></tr>
+          <tr><th>2. リーガルリサーチ</th><td>10時間</td><td class="win">約240万円</td><td class="mid">★★☆ 資料の集約が必要</td></tr>
+          <tr><th>3. 相手方書面の要約・壁打ち</th><td>8時間</td><td class="win">約192万円</td><td class="mid">★☆☆ 最初の1つに最適</td></tr>
+          <tr><th>4. 起案のファーストドラフト</th><td>9時間</td><td class="win">約216万円</td><td class="mid">★★☆ ひな形の整備が要</td></tr>
+          <tr><th>5. 尋問準備</th><td>5時間</td><td class="win">約120万円</td><td class="mid">★★☆ 確認工数は残る</td></tr>
+          <tr><th>6. 契約審査の抜け漏れ検出</th><td>10時間</td><td class="win">約240万円</td><td class="mid">★☆☆ 効果が見えやすい</td></tr>
+          <tr><th>7. 依頼者への説明資料</th><td>3時間＋受任率</td><td class="win">約72万円＋α</td><td class="mid">★☆☆ 今日からできる</td></tr>
+          <tr><th>8. 事務所バックオフィス</th><td>18時間（事務職員）</td><td class="win">約54万円</td><td class="mid">★☆☆ 今日からできる</td></tr>
+          <tr><th>9. 集客・情報発信</th><td>8時間</td><td class="win">約192万円＋集客</td><td class="mid">★☆☆ 継続が鍵</td></tr>
+          <tr><th>10. 経営の壁打ち・ナレッジ継承</th><td>3時間</td><td class="win">約72万円</td><td class="mid">★★★ 情報遮断の設計が要</td></tr>
+          <tr><th>合計（重複を除いた目安）</th><td>約81時間／月</td><td class="win">年 約1,500万円規模</td><td class="mid">投資は月数千円〜</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>この数字は「全部やった場合の理論値」だよ。現実は7割いけば大成功。でもね、月数千円の投資でこの規模の話になるのが、いまのAIなんだ。しかも空いた時間は、そのまま「受任できる件数」か「早く帰れる時間」に変わるよ。</div>
+    </div>
+
+    <!-- ⑥ 自律型AI -->
+    <h3 class="blk">⑥ 自律型AI（AIエージェント）が加わると、何が変わるか</h3>
+    <p class="lead-p">ここまでの10選は「頼めばやってくれるAI」の話でした。自律型AIは<b>「頼まなくても、手順を決めておけば自分で最後まで進めるAI」</b>です。業界団体からは、リーガルテックはすでに<b>「第3世代（エージェント機能）」</b>に入り、自律的に契約生成や法務相談の一次回答を行う段階に達しているとの報告が出ています。</p>
+
+    <div class="f-grid" style="grid-template-columns:1fr;">
+      <div class="f-item"><div class="no">1</div><div class="t"><b>第1世代：検索・管理</b>判例検索、文書管理、電子契約。「既存の業務を電子化して速くする」段階。</div></div>
+      <div class="f-item"><div class="no">2</div><div class="t"><b>第2世代：分析・生成（いまここが多数）</b>要約、契約レビュー、ドラフト作成。人が毎回指示を出す。<b>思考プロセスの外部化</b>が始まった段階。</div></div>
+      <div class="f-item"><div class="no">3</div><div class="t"><b>第3世代：自律運用</b>指示を待たずに調査・作業を進める。期日監視、法改正の追跡、書面の一次スクリーニング、月次レポート。<b>人は「例外」と「判断」だけ</b>を担当する。</div></div>
+    </div>
+
+    <div class="mini-h" style="--accent:var(--ember-2);margin-top:26px;">弁護士業務で、いちばん効く4つのシナリオ</div>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">⏰</span>期日・時効の“見張り番”</h4>
+        <ul>
+          <li>全案件の期日・消滅時効・除斥期間を毎日チェック</li>
+          <li>90日前／30日前／7日前に自動通知</li>
+          <li>必要書類のリストを添えて担当者へ</li>
+          <li>「うっかり」を構造的に消せる＝最大の事故予防</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📡</span>法改正・ガイドラインの“追跡係”</h4>
+        <ul>
+          <li>官公庁サイトとパブコメを毎日巡回</li>
+          <li>変更点だけを要約して通知</li>
+          <li>影響を受ける自事務所の書式を洗い出す</li>
+          <li>過去コラムの更新漏れも同時に検出</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🗂️</span>案件記録の“自動整理係”</h4>
+        <ul>
+          <li>新しい書面・証拠が入るたびに索引を更新</li>
+          <li>争点表と時系列表を最新状態に保つ</li>
+          <li>過去書面との矛盾を自動でフラグ</li>
+          <li>担当交代・引継ぎのコストが激減</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📊</span>事務所の“月次ダッシュボード”</h4>
+        <ul>
+          <li>未処理案件・稼働時間・売掛を集計</li>
+          <li>分野別の収益性を可視化</li>
+          <li>改善提案の下書きまで用意</li>
+          <li>経営判断が「勘」から「数字」へ</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warn" style="margin-top:20px;">
+      <div class="wt">⚠️ 自律型AIを入れる前に、必ず決めておく5つ</div>
+      <b>①止め方</b>（どうやって即時停止するか）／<b>②権限</b>（送信・保存・課金・ファイル操作をどこまで許すか）／<b>③記録</b>（何をしたかログが残るか）／<b>④人の関門</b>（対外送信・提出・入金処理の前に必ず人が承認）／<b>⑤事件情報の遮断</b>（係属中の案件を、他の弁護士も使う共通AIの参照対象にしない）。この5つを決めずに走らせると、便利さより事故が先に来ます。<b>「外に出るもの」と「お金が動くもの」は、必ず人の承認を挟む</b>のが鉄則です。
+    </div>
+
+    <!-- ⑦ 90日ロードマップ -->
+    <h3 class="blk">⑦ AI初心者の弁護士のための、90日ロードマップ</h3>
+    <p class="lead-p">いきなり全部はうまくいきません。<b>「1人・1業務・30日」</b>から始めるのが、いちばん失敗しない順番です。</p>
+
+    <ul class="tl">
+      <li>
+        <div class="d">DAY 1-30 ｜ 慣れる</div>
+        <div class="h">「読ませて整理させる」だけを、毎日やる</div>
+        <p>おすすめは<b>METHOD 3（相手方書面の要約）</b>か<b>METHOD 8（バックオフィス）</b>。どちらも<b>要約・整理</b>なので誤情報のリスクが最も低く、効果はその日に見えます。まずは無料プランで十分。<b>削減できた時間だけメモ</b>しておきましょう。この段階で「AIに判例を聞く」ことだけは絶対にしないでください。</p>
+      </li>
+      <li>
+        <div class="d">DAY 31-60 ｜ 型にする</div>
+        <div class="h">プロンプトとルールを、事務所の共有資産に</div>
+        <p>個人のコツで終わらせないこと。うまくいったプロンプトを1枚のファイルにまとめ、あわせて<b>「入力してよい情報／だめな情報」のリスト</b>と<b>利用してよいサービスの限定</b>を明文化します。会のガイドラインに沿って、設定（学習利用のオプトアウト、履歴の共有範囲）も点検を。ここで<b>事務局を含めて3〜5人に広げる</b>と、削減時間が一気に伸びます。</p>
+      </li>
+      <li>
+        <div class="d">DAY 61-90 ｜ つなげる</div>
+        <div class="h">ナレッジを1か所に集め、自動化の第一歩へ</div>
+        <p>書式・チェックリスト・判断基準を集約して<b>事務所専用のAI（METHOD 10）</b>をつくる。裁判例を扱う場面は<b>法務特化サービスの試用</b>を始める。ここまで来たら、期日通知など<b>自律型AIの第1歩</b>を。同時に90日分の削減時間を集計して、<b>投資対効果を数字で確認</b>しましょう。</p>
+      </li>
+    </ul>
+
+    <div class="combo" style="margin-top:20px;">
+      <h4>🎓 費用のはなし ― 研修費には助成金の検討余地があります</h4>
+      <p style="margin:0;font-size:13.8px;">事務所や法人でAI研修を実施する場合、<b>人材開発支援助成金</b>などの活用を検討できるケースがあります。要件・支給額は制度改正や事業所の状況で変わるため、必ず最新の公式情報と労働局への確認を。UGOKU AIの実装型研修は、この検討にも対応しています。</p>
+      <div class="flow" style="margin-top:12px;">
+        <span class="b">現状の棚卸し</span><span class="ar">→</span><span class="b">1業務でAI化</span><span class="ar">→</span><span class="b">所内展開</span><span class="ar">→</span><span class="b">自動化</span>
+      </div>
+    </div>
+
+    <!-- ⑧ プロンプトの型 -->
+    <h3 class="blk">⑧ うごく君の「効くお願いの型」</h3>
+    <p class="lead-p">AIの答えがイマイチなときは、AIの性能ではなく<b>お願いの仕方</b>が原因です。弁護士業務の場合、特に<b>「禁止事項」を書くかどうか</b>で結果がまるで変わります。</p>
+
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>目的</b>例：争点整理のたたき台／依頼者説明用／社内共有用</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>前提条件</b>例：当方は被告／争点は◯◯／すでに提出済みの書面はこれ</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>出力形式</b>例：表で／箇条書き5つ／1,500字／見出しつき</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>禁止事項</b>例：資料にない事実を補わない／裁判例を創作しない／断定しない</div></div>
+        <div class="f-item" style="grid-column:1/-1;"><div class="no">5</div><div class="t"><b>材料</b>仮名化した資料・メモ。ここが空だと、AIは想像で埋めます。<b>「材料が少ないほど誤情報が増える」</b>と覚えてください。</div></div>
+      </div>
+
+      <div class="ba">
+        <div class="c bad">
+          <div class="lb">✕ もったいない例</div>
+          「この論点の判例を教えて」<br>→ もっともらしい架空の裁判例が返ってくる、最も危険な聞き方
+        </div>
+        <div class="c good">
+          <div class="lb">◎ 効く例</div>
+          「添付した判決文とガイドラインだけを根拠に、◯◯の論点を整理して。資料に無いことは『記載なし』と答えて」
+        </div>
+      </div>
+
+      <div class="copybox" style="margin-top:16px;">
+        <div class="cb-top"><span class="cb-lbl">📋 そのまま使える万能テンプレ（法務版）</span><button class="cb-btn">コピー</button></div>
+        <pre>【目的】<span class="fill">〔何のために使う成果物か〕</span>
+【前提】<span class="fill">〔事件類型・当方の立場・争点・すでにある資料〕</span>
+【依頼内容】<span class="fill">〔してほしいこと〕</span>
+【出力形式】<span class="fill">〔表／箇条書き／◯字／見出しつき など〕</span>
+【禁止事項】
+・資料に書かれていない事実を補わない（推測は「推測」と明示）
+・裁判例・条文番号は確実なもの以外挙げず【要確認】と表示
+・法的な最終結論を断定しない
+・個人が特定できる情報を出力に含めない
+【材料】
+<span class="fill">〔仮名化した資料・メモを貼り付け〕</span></pre>
+      </div>
+
+      <div class="tip" style="margin-top:16px;">
+        <svg class="av msc"><use href="#ugoku"/></svg>
+        <div class="tx"><b>うごく君のひとこと</b>「役割を指定するといい」ってよく言われるけど、事実整理みたいな作業では無理に役割を書かなくても大丈夫。それより<b>禁止事項と材料</b>のほうがずっと効くよ。</div>
+      </div>
+    </div>
+
+    <!-- ⑨ アイデア集 -->
+    <h3 class="blk">⑨ もっと使える！活用アイデア集</h3>
+    <p class="lead-p">10選に入らなかったけれど、実際に効く使い方を集めました。<b>私生活のほうが、練習台としては優秀</b>です。守秘義務を気にせず、思い切り試せますから。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">⚖️</span>訴訟・一般民事で</h4>
+        <ul>
+          <li>長い陳述書・診断書・調書の要約</li>
+          <li>複雑な家系図・取引関係図の作成</li>
+          <li>計算書の検算（最後は必ず自分で）</li>
+          <li>刑事弁護での情状に関する事情の整理</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏢</span>企業法務で</h4>
+        <ul>
+          <li>海外規制（GDPR等）の英文資料を日本語要約</li>
+          <li>取締役会議事録の文字起こしからの整形</li>
+          <li>社内規程・プライバシーポリシーのたたき台</li>
+          <li>コンプライアンス研修のケーススタディ作成</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・自己研鑽で</h4>
+        <ul>
+          <li>長編の法律論文・ガイドラインを音声解説化して“ながら学習”</li>
+          <li>不慣れな分野の全体像と論点マップを作る</li>
+          <li>体系をマインドマップで可視化する</li>
+          <li>新しい制度を「自分の言葉で説明できるか」テストしてもらう</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>私生活で（練習に最適）</h4>
+        <ul>
+          <li>冷蔵庫の中身から30分で作れる献立を提案</li>
+          <li>旅行プラン、子どもの宿題の「なぜ？」を解説</li>
+          <li>結婚式のスピーチ・お礼状・年賀状の下書き</li>
+          <li>保険・住宅ローン・家電の比較表づくり</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>上達のコツは、実は私生活なんだ。仕事だと「間違ってたら困る」と身構えるけど、献立や旅行プランなら気楽に何度でも直せる。1週間それをやった人は、仕事での指示の出し方が驚くほど上手くなるよ。</div>
+    </div>
+
+    <!-- ⑩ 注意点 -->
+    <h3 class="blk">⑩ 弁護士だからこそ、絶対に守ること</h3>
+    <p class="lead-p">ここは飛ばさずに読んでください。<b>守秘義務・専門家責任を負う職業</b>である以上、他業種より一段高い注意が必要です。以下は各会のガイドライン等で整理されている論点を、実務目線でまとめたものです。</p>
+
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>依頼者情報は、仮名化・抽象化してから</div><p>氏名・住所・生年月日・事件番号・勤務先は原則入れない。手元の置換機能で仮名にしてから使うのが、いちばん確実です。匿名化してもなおリスクが残るなら、<b>「入力しない」という選択</b>も含めて検討を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>サービス選定を、感覚で決めない</div><p>①入力が学習に使われないか ②事業者が正当な理由なくアクセスできないか ③暗号化等の対策 ④一定期間後に削除されるか ⑤データの保存先と外国法令・ガバメントアクセスの可能性。<b>個人向けプランはデータ処理契約（DPA）の対象外</b>である点にも注意。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>裁判例・条文は必ず一次資料で確認</div><p>不存在／言っていない引用／無関係／時代遅れ、の4類型があります。プロンプトで「嘘をつくな」と書いても防げません。<b>出典URLを示させて必ず開く</b>運用を固定してください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>依頼者への説明と同意を検討する</div><p>秘匿性の高い情報を入力する場合には、利用について説明し、必要に応じて同意を得る、委任契約書に明記する等の対応が推奨されています。AI活用方針を事務所サイトで公表する例も増えています。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>弁護士法72条の線を意識する</div><p>弁護士自身の業務利用は問題になりません。<b>非弁護士が報酬を得て業として、個別事案に応じた法的リスクや契約内容を表示する</b>形は別の話。事務所発のサービス展開を考えるときは、この線を必ず確認してください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>利益相反と情報遮断が、AI経由で抜ける</div><p>所内共通AIに事件情報を入れると、別の弁護士が別事件で使ったときに出てくる可能性があります。<b>従来の情報管理では想定されていなかった論点</b>です。係属中の事件は入力制限・参照除外を。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>著作権は入力・生成・利用の3段階で見る</div><p>情報解析目的なら30条の4の適用が考えられますが、既存著作物に類似する生成物を得る目的が併存する場合は否定され得ます。出力を公開・配布する段階での確認も忘れずに。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>最終責任は、常に弁護士にある</div><p>誠実義務・専門家責任の観点から、生成物の適切性については弁護士が最終責任を負います。差別的表現・プライバシー侵害・名誉毀損が混じっていないかの確認も含めて。<b>AIは下書きと相談相手、判断は人</b>。</p></div>
+    </div>
+
+    <div class="warn" style="margin-top:20px;">
+      <div class="wt">⚠️ 情報セキュリティ規程と「キホトリ」の確認を先に</div>
+      2024年6月から施行されている<b>弁護士情報セキュリティ規程</b>と、これに基づき各自が策定を義務付けられている「情報セキュリティを確保するための基本的な取扱方法（キホトリ）」。AI導入は、これを見直すいい機会でもあります。<b>ツールを入れる前に、まず自分のキホトリを開く</b>——順番はこちらが先です。
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details open><summary>パソコンが苦手でも、本当にできますか？</summary><div class="ans">できます。この記事のプロンプトは、コピーして貼り付け、材料を足すだけです。スマホのアプリでも構いません。最初の1週間は「長い書面を貼って、3行でまとめて」とだけやってみてください。それで手応えを感じたら、次に進めば十分です。課題の第1位は技術ではなく<b>「触った時間の不足」</b>です。</div></details>
+      <details><summary>まず何にいくら払えばいいですか？</summary><div class="ans">最初は0円で構いません。主要なAIは無料で始められます。ただし<b>業務で依頼者情報に近いものを扱うなら、法人向け・組織向けプランの検討が前提</b>になります（個人向けプランはデータ処理契約の対象外であることが多いため）。目安は1人あたり月3,000円前後から。10選のうち1つが回るだけで、費用は月単位で回収できる計算です。</div></details>
+      <details><summary>結局、ChatGPTとClaude、どちらを使えばいいですか？</summary><div class="ans">一般に、総合力とマルチな処理はChatGPT、長文処理と自然な日本語表現はClaude、Google Workspaceとの連携はGemini、そして<b>「指定した資料だけを根拠に答えさせる」用途にはNotebookLM</b>が向いていると言われます。弁護士業務で最初に効くのは、実は最後のNotebookLM型です。ただし日々変わるので、まずは1つに絞って毎日使うのが上達の近道。詳しくは「使い分け完全マニュアル」もどうぞ。</div></details>
+      <details><summary>AIが出した判例が本物か、どう確かめれば？</summary><div class="ans">判例データベースで原典を開く、これ以外にありません。加えて<b>①事件番号と裁判所名が実在するか ②その判示が本当にその判決にあるか ③その後の判例変更・法改正で古くなっていないか</b>の3点を確認してください。海外では、この確認を怠って制裁を受けた事例が数百件単位で積み上がっています。日本でも民事判決情報の公開が進めば、他人事ではなくなります。</div></details>
+      <details><summary>依頼者の書類をAIに読ませるのは、守秘義務違反になりませんか？</summary><div class="ans">「入れ方」次第です。仮名化・抽象化したうえで、入力が学習に使われない設定・契約のサービスを使えば、実務上取り得る選択肢とされています。逆に、個人向け無料プランに実名の資料をそのまま貼るのは避けるべきです。あわせて、秘匿性の高い情報を入力する場合は<b>依頼者への説明と、必要に応じた同意</b>を検討してください。</div></details>
+      <details><summary>AIを入れると、若手が育たなくなりませんか？</summary><div class="ans">これは業界で実際に指摘されている懸念です。尋問事項案の作成やドラフト起案は、従来OJTの中心でした。対策はシンプルで、<b>「まず自分で書いてから、AIの案と突き合わせる」</b>という順番を事務所のルールにすること。AIを答え合わせに使うと、むしろ従来より速く育ちます。禁止ではなく、順番の設計が効きます。</div></details>
+      <details><summary>AIに仕事を奪われるのでは？</summary><div class="ans">減るのは、要約・整理・書類チェック・定型文といった<b>事務作業</b>です。増えるのは、依頼者と向き合う時間と、扱える案件数。判断・戦略・交渉・法廷での立ち居振る舞いは、当面AIの外側にあります。むしろ本当のリスクは、<b>依頼者がAIで一次回答を得たうえで相談に来る</b>時代に、こちらが同じ道具を持っていないことのほうです。</div></details>
+      <details><summary>この記事の内容は、そのまま社内・所内研修に使えますか？</summary><div class="ans">構成の下敷きとしてお使いください。ただし各会のガイドラインや情報セキュリティ規程は<b>所属会・事務所によって前提が異なる</b>ため、必ず原文をご確認のうえ調整してください。実装型の研修設計や、事務所ごとのルールづくりが必要な場合は、無料AI化診断からご相談いただけます。</div></details>
+    </div>
+
+    <p class="srcnote">
+      ※本記事は2026年7月時点の公開情報に基づく整理であり、法的助言ではありません。数値・制度・各サービスの仕様は変わります。主な参照元：東京弁護士会「LIBRA」2026年7・8月号 特集「弁護士業務における生成AIの利活用と留意点」、法務省「ＡＩ等を用いた契約書等関連業務支援サービスの提供と弁護士法第72条との関係について」（令和5年8月）、内閣府 規制改革推進会議 デジタル・AI分野の小委員会（2026年1月9日）配布資料、野村総合研究所「IT活用実態調査（2025年）」、個人情報保護委員会「生成AIサービスの利用に関する注意喚起等」、文化庁「AIと著作権に関する考え方について」。会内ガイドライン・注意事項の詳細は、所属会および日弁連の会員向け資料をご確認ください。費用対効果の試算は一定の前提を置いた目安であり、効果を保証するものではありません。実際の判断は必ず最新の一次情報に基づいて行ってください。
+    </p>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/foreign-talent-guide/"><span class="r-ic">🌏</span><span><span class="r-k">← 前の記事（同シリーズ）</span><span class="r-t">AI×外国人材ビジネス 最新市場動向とAI活用術10選<small>／ 2027年育成就労までにやること</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">はじめての方はこちら</span><span class="r-t">「AIって何から？」を今日で終わりにする入門ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">次に読む</span><span class="r-t">ChatGPT・Gemini・Claudeの「使い分け」完全マニュアル<small>／ どれを何に使うかが分かる</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-10/"><span class="r-ic">📓</span><span><span class="r-k">リサーチ強化に</span><span class="r-t">AIガチ勢のNotebookLM実践活用法10選<small>／ 資料を指定して誤情報を減らす</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://www.moj.go.jp/housei/shihouseido/housei10_00134.html" target="_blank" rel="noopener"><span class="r-ic">🏛️</span><span><span class="r-k">一次情報</span><span class="r-t">法務省：AI契約書サービスと弁護士法72条<small>／ ガイドライン掲載ページ</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.toben.or.jp/message/libra/pdf/2026_0708/P02-18.pdf" target="_blank" rel="noopener"><span class="r-ic">📕</span><span><span class="r-k">一次情報</span><span class="r-t">東京弁護士会 LIBRA 2026年7・8月号 特集<small>／ 弁護士業務における生成AIの利活用と留意点（PDF）</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener"><span class="r-ic">🚨</span><span><span class="r-k">一次情報</span><span class="r-t">AI Hallucination Cases<small>／ AI誤情報が問題化した裁判例のデータベース</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA + フォーム ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>その事務作業、<br><span class="hl">AIで動かし</span>ませんか？</h2>
+    <p>資料の読み込み、書面の下書き、契約書のチェック、依頼者への説明資料。「どこから手をつけるか」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの事務所・法務部門に合うAIの使いどころと、越えてはいけない線が見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。<br>※本診断は業務効率化に関するご相談です。個別の法律問題への回答は行いません。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事は一般的な情報提供であり、法的助言ではありません。制度・各サービスの内容は、提供元や関係機関の更新により変わります。最新情報は公式サイトをご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

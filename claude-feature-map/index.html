@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-feature-map/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>あなたのタスクに最適なClaude機能はどれ？｜10の質問で選ぶ判断チャート＆活かし方 ― UGOKU AI</title>
+<meta name="description" content="Claudeの機能が多すぎて選べない方へ。10の質問に「はい／いいえ」で答えるだけで、Chat・Cowork・Code・Skills・Routines・Connectors・Design・Projects・拡張思考のどれを使うべきかが決まる判断チャート。仕事とプライベート両方の具体的な使い方、コピペプロンプト、モデルの選び方、注意点まで、うごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="あなたのタスクに最適なClaude機能はどれ？｜10の質問で選ぶ判断チャート｜UGOKU AI">
+<meta property="og:description" content="機能が多すぎて選べない、を今日で終わりに。10の質問に答えるだけで使う機能が決まる判断チャートと、仕事・私生活での具体的な活かし方を、うごく君が解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-feature-map/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-feature-map/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="あなたのタスクに最適なClaude機能はどれ？ ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="あなたのタスクに最適なClaude機能はどれ？｜10の質問で選ぶ判断チャート｜UGOKU AI">
+<meta name="twitter:description" content="10の質問に答えるだけ。Chat・Cowork・Code・Skills・Routines・Connectors・Designの使いどころが1枚でわかる判断ガイド。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-feature-map/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style><style>
+  /* ═══ 本記事で追加するパーツ ═══ */
+  :root{
+    --chrome:#3B7DD8; --cowork:#2E7D64; --team:#7A5CC4; --code:#20507F;
+    --skill:#C08A00; --routine:#0E8398; --ctask:#B0641F; --conn:#5E7A2C;
+    --design:#B8497C; --proj:#6A5A93; --think:#7E4BB0; --chat:#2E2815;
+  }
+
+  /* ── 文字サイズ切替バー（冒頭・追従） ── */
+  .fsbar{position:sticky;top:0;z-index:60;background:rgba(32,27,14,.96);
+    backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(234,168,0,.35);}
+  .fsbar-in{max-width:840px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .fsbar .fsl{font-size:12px;font-weight:800;color:#EAD9A8;letter-spacing:.04em;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+  .fsbar .fsbtns{display:flex;gap:7px;flex-wrap:wrap;}
+  .fsbar button{font-family:inherit;cursor:pointer;border:1px solid rgba(234,168,0,.5);
+    background:rgba(255,255,255,.06);color:#F6F1E2;font-weight:800;border-radius:100px;
+    padding:7px 14px;transition:.15s;line-height:1;}
+  .fsbar button:hover{background:rgba(234,168,0,.22);}
+  .fsbar button[aria-pressed="true"]{background:var(--ember);color:var(--pine-deep);border-color:var(--ember);}
+  .fsbar button.s1{font-size:12.5px;}
+  .fsbar button.s2{font-size:14.5px;}
+  .fsbar button.s3{font-size:16.5px;}
+  .fsbar .fsnote{font-size:11px;color:#B8AD8E;margin-left:auto;}
+  #doc{zoom:var(--zoom,1);}
+  @media(max-width:520px){.fsbar .fsnote{display:none;}}
+
+  /* ── 結論ボックス ── */
+  .verdict{background:linear-gradient(135deg,#FFFDF6,#FBF3DC);border:1px solid #E7C97A;
+    border-radius:18px;padding:22px 24px;margin:10px 0 30px;box-shadow:var(--shadow-sm);}
+  .verdict .vl{display:inline-block;background:var(--pine);color:#fff;font-weight:900;
+    font-size:11.5px;letter-spacing:.1em;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .verdict ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;}
+  .verdict li{position:relative;padding-left:26px;font-size:14.8px;font-weight:500;}
+  .verdict li::before{content:"→";position:absolute;left:0;top:0;color:var(--ember-2);font-weight:900;}
+  .verdict li b{background:linear-gradient(transparent 62%,var(--ember-soft) 62%);padding:0 2px;font-weight:900;}
+
+  /* ── 判断チャート（10の質問） ── */
+  .qchart{display:grid;gap:12px;margin:14px 0 8px;}
+  .qrow{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow-sm);overflow:hidden;}
+  .qrow-h{display:flex;gap:13px;align-items:flex-start;padding:16px 18px 12px;}
+  .qnum{flex:none;width:34px;height:34px;border-radius:11px;background:var(--pine);color:#fff;
+    font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;
+    display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.13);}
+  .qrow-h .qt{flex:1;min-width:0;}
+  .qrow-h .qk{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:2px;}
+  .qrow-h .qq{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;line-height:1.5;}
+  .qbranch{padding:0 18px 16px;display:grid;gap:9px;}
+  .yes,.no{display:flex;gap:11px;align-items:flex-start;border-radius:12px;padding:11px 14px;font-size:14px;}
+  .yes{background:#F2F7F1;border:1px solid #CFE0CB;}
+  .no{background:#FAF7EF;border:1px dashed var(--line);}
+  .ybadge,.nbadge{flex:none;font-weight:900;font-size:11.5px;padding:3px 10px;border-radius:7px;letter-spacing:.04em;}
+  .ybadge{background:#2E7D42;color:#fff;}
+  .nbadge{background:#EDE7D8;color:var(--ink-soft);}
+  .yes .yt b,.no .nt b{font-weight:900;}
+  .yes .yt a{color:var(--pine);font-weight:900;text-decoration:none;border-bottom:2px solid var(--ember);}
+  .yes .yt a:hover{background:var(--ember-soft);}
+  .qsub{margin:0 18px 16px;background:#FCFBF6;border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .qsub .qsh{font-size:12px;font-weight:900;color:var(--ember-2);margin-bottom:7px;letter-spacing:.04em;}
+  .qsub .qsl{display:grid;gap:7px;}
+  .qsub .qsl div{font-size:13.6px;padding-left:18px;position:relative;}
+  .qsub .qsl div::before{content:"┗";position:absolute;left:0;color:var(--ink-soft);}
+
+  /* ── 機能カード（図鑑） ── */
+  .fcard{background:var(--card);border:1px solid var(--line);border-radius:18px;
+    box-shadow:var(--shadow);margin:18px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .fcard-h{display:flex;align-items:flex-start;gap:14px;padding:19px 22px 6px;}
+  .fcard-h .fic{flex:none;width:50px;height:50px;border-radius:14px;display:grid;place-items:center;
+    background:var(--accent,var(--pine));color:#fff;font-size:23px;box-shadow:0 5px 14px rgba(0,0,0,.14);}
+  .fcard-h .fnm{flex:1;min-width:0;}
+  .fcard-h .fen{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--accent,var(--pine));}
+  .fcard-h .fjp{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .fcard-b{padding:6px 22px 22px;}
+  .fmeta{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 4px;}
+  .fmeta span{font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:8px;background:#F2EFE5;color:var(--ink-soft);}
+  .fmeta span.md{background:var(--ember-soft);color:#8A5300;}
+  .fmeta span.pl{background:#EAF1EA;color:#2E5B3A;}
+  .fmeta span.lv{background:#EFEAF6;color:#5B4A83;}
+  .exbox{background:#FBFAF5;border:1px solid var(--line);border-left:4px solid var(--accent,var(--pine));
+    border-radius:12px;padding:13px 15px;margin:12px 0 2px;font-size:13.8px;}
+  .exbox .exh{font-weight:900;font-size:12.5px;color:var(--accent,var(--pine));margin-bottom:5px;
+    font-family:"Zen Kaku Gothic New",sans-serif;}
+  .cau{background:#FDF4EC;border:1px solid #EDCBA9;border-radius:12px;padding:12px 15px;margin:12px 0 2px;font-size:13.6px;}
+  .cau .ch2{font-weight:900;color:#A9601C;font-size:12.5px;margin-bottom:5px;display:flex;gap:6px;align-items:center;}
+  .cau ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;}
+  .cau li{position:relative;padding-left:16px;}
+  .cau li::before{content:"!";position:absolute;left:2px;color:#C0762A;font-weight:900;}
+
+  /* ── 早見表 ── */
+  .quick-t{width:100%;border-collapse:collapse;font-size:13.6px;min-width:560px;}
+  .quick-t th,.quick-t td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  .quick-t thead th{background:var(--pine);color:#fff;font-weight:800;font-size:12.5px;
+    font-family:"Zen Kaku Gothic New",sans-serif;position:sticky;top:0;}
+  .quick-t tbody td:first-child{font-weight:700;white-space:nowrap;background:#F8F7F2;}
+  .quick-t .fn{font-weight:900;color:var(--pine);white-space:nowrap;}
+
+  /* ── ロードマップ ── */
+  .road{display:grid;gap:12px;margin-top:14px;}
+  @media(min-width:720px){.road{grid-template-columns:repeat(3,1fr);}}
+  .rd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 19px;
+    box-shadow:var(--shadow-sm);border-top:4px solid var(--accent,var(--ember));}
+  .rd .rw{font-size:11.5px;font-weight:900;letter-spacing:.08em;color:var(--ember-2);margin-bottom:4px;}
+  .rd h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 8px;}
+  .rd ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;}
+  .rd li{position:relative;padding-left:17px;font-size:13.6px;color:#3B463E;}
+  .rd li::before{content:"▸";position:absolute;left:0;color:var(--ember-2);font-weight:900;}
+  .rd .rgoal{margin-top:10px;background:var(--ember-soft);border-radius:9px;padding:8px 11px;font-size:12.6px;font-weight:700;color:#7A5200;}
+
+  /* ── 人生への活かし方（シナリオ） ── */
+  .scn{display:grid;gap:13px;margin-top:14px;}
+  @media(min-width:640px){.scn{grid-template-columns:1fr 1fr;}}
+  .sc{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px 19px;box-shadow:var(--shadow-sm);}
+  .sc .sch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin-bottom:4px;display:flex;gap:8px;align-items:center;}
+  .sc .scw{font-size:12px;font-weight:800;color:var(--ink-soft);margin-bottom:9px;}
+  .sc .flowmini{display:grid;gap:6px;margin:0 0 10px;}
+  .sc .flowmini div{font-size:13.3px;padding:7px 11px;background:#F7F5EE;border-radius:9px;position:relative;padding-left:32px;}
+  .sc .flowmini div::before{content:attr(data-n);position:absolute;left:9px;top:7px;width:16px;height:16px;
+    background:var(--pine);color:#fff;border-radius:5px;font-size:10.5px;font-weight:900;display:grid;place-items:center;}
+  .sc .scr{font-size:12.8px;font-weight:800;color:#2E5B3A;background:#EDF4ED;border-radius:9px;padding:8px 11px;}
+
+  /* ── ミニ注意帯 ── */
+  .band{background:var(--pine);color:#F3F5F1;border-radius:14px;padding:16px 20px;margin:18px 0;font-size:14.2px;}
+  .band b{color:var(--ember);}
+</style>
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ 文字サイズ切替（冒頭・スクロール追従） ═══ -->
+<div class="fsbar" id="fsbar" role="group" aria-label="文字サイズの変更">
+  <div class="fsbar-in">
+    <span class="fsl">🔍 文字サイズ</span>
+    <div class="fsbtns">
+      <button type="button" class="s1" data-zoom="1" aria-pressed="true">標準</button>
+      <button type="button" class="s2" data-zoom="1.15" aria-pressed="false">大きい</button>
+      <button type="button" class="s3" data-zoom="1.32" aria-pressed="false">もっと大きい</button>
+    </div>
+    <span class="fsnote">押すだけで全体が拡大します（次回も保持）</span>
+  </div>
+</div>
+
+<div id="doc">
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Claude機能の選び方ガイド</span>
+      <h1>「機能が多すぎて<br>選べない」を、<span class="hl">10の質問</span>で終わりにする。</h1>
+      <p class="lead">Chat・Cowork・Code・Skills・Routines・Connectors・Design——名前は違っても、選ぶ基準はたった1つ。<b>「その作業は、どこで・誰が・いつ動くのか」</b>だけです。上から順に「はい／いいえ」で答えてください。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。使う前に知っておきたい落とし穴も、先回りで教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#chart" class="btn btn-primary">判断チャートを見る <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>Claudeを触り始めた人が最初にぶつかる壁は「性能」ではなく<b>「どの入口から入ればいいか」</b>です。この記事を上から順に読むだけで、次のことができるようになります。</p>
+        <ul class="checklist">
+          <li>自分のタスクに合う機能を、10の質問で3秒で選べる</li>
+          <li>12の機能それぞれの「できること・向かないこと」がわかる</li>
+          <li>仕事と私生活、両方の具体的な使い道が手に入る</li>
+          <li>やりがちな失敗（課金・情報漏れ・動かない設定）を先に避けられる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 30秒でわかる：3つの入口 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">まず、Claudeには<br>「3つの入口」があります</h2>
+    <p class="sec-sub">機能名を覚える前に、これだけ。どこで動くか＝どこまで任せられるか、が決まります。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chat);">
+        <div class="ic">💬</div>
+        <h4>ブラウザ・アプリ<br><span>＝ 会話して手伝ってもらう</span></h4>
+        <p>いわゆるチャット。質問・下書き・要約・相談。無料でここから始められます。ファイルは「渡す」形。</p>
+      </div>
+      <div class="role" style="--accent:var(--cowork);">
+        <div class="ic">🗂️</div>
+        <h4>パソコンの中<br><span>＝ ファイルを触ってもらう</span></h4>
+        <p>Cowork。自分のPCのフォルダを開き、資料を読んで直して保存まで。有料プランの世界です。</p>
+      </div>
+      <div class="role" style="--accent:var(--code);">
+        <div class="ic">⌨️</div>
+        <h4>ターミナル・クラウド<br><span>＝ 自走してもらう</span></h4>
+        <p>Claude Code／Routines。コードや定期実行など、人が見ていない間も動かす領域です。</p>
+      </div>
+    </div>
+    <div class="band">
+      <b>選び方の一本槍：</b>「相談したいだけ」→チャット。「自分のファイルを直したい」→Cowork。「勝手に動いてほしい」→Routines／Code。まずこの3択に落として、そのあと細かい機能を足していくのが、いちばん遠回りしない順番です。
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="chart">
+  <div class="wrap">
+    <div class="sec-eyebrow">DECISION CHART</div>
+    <h2 class="sec-title">あなたのタスクに最適な<br>Claude機能はどれ？</h2>
+    <p class="sec-sub">上から順に「はい／いいえ」で答えるだけ。<b>最初に「はい」になったところ</b>が、いま使うべき機能です。</p>
+
+    <div class="verdict">
+      <span class="vl">先に結論だけ</span>
+      <ul>
+        <li>いま開いているブラウザの画面で作業を進めたい → <b>Claude in Chrome</b></li>
+        <li>手元のPDF・Word・Excelを読んで直してほしい → <b>Claude Cowork</b></li>
+        <li>コードを書かせたい → <b>Claude Code</b>（大規模で並列なら Agent Teams）</li>
+        <li>同じ作業を何度も繰り返す → <b>Skills</b>（手順書を覚えさせる）</li>
+        <li>決まった時間に勝手に動かす → <b>Routines</b>（クラウド）／<b>定期タスク</b>（PC）</li>
+        <li>Gmail・Slack・Driveなどとつなぐ → <b>Connectors（MCP）</b></li>
+        <li>見た目・デザインを作る → <b>Claude Design</b></li>
+        <li>長期の案件をまとめて管理 → <b>Projects</b></li>
+        <li>難しい判断をじっくり考えさせる → <b>拡張思考（適応的思考）</b></li>
+        <li>どれでもない・とりあえず相談 → <b>Claude（チャット）</b>でOK</li>
+      </ul>
+    </div>
+
+    <div class="keystone">
+      <span class="kl">💡 迷子にならないコツ</span>
+      <p>機能は「上に行くほど身近、下に行くほど自動化」の順に並んでいます。<strong>迷ったら必ず上から順に</strong>。いきなり Agent Teams や Routines から入ると、料金も設定も一気に難しくなり、9割の人がここで挫折します。</p>
+    </div>
+
+    <h3 class="blk">10の質問で選ぶ、判断チャート</h3>
+
+    <div class="qchart">
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">1</div><div class="qt">
+          <div class="qk">Q1 ｜ ブラウザで作業している？</div>
+          <div class="qq">いま、ブラウザ（Webサービス・管理画面）の上で作業していますか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-chrome">Claude in Chrome</a></b>｜画面を見たまま、タブを切り替えずに任せられます。予約サイト・在庫画面・SNS管理など「その画面でしか完結しない作業」向き。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q2へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">2</div><div class="qt">
+          <div class="qk">Q2 ｜ ファイルを扱っている？</div>
+          <div class="qq">PDF・Word・Excelなど、パソコンの中のファイルを編集する必要がありますか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-cowork">Claude Cowork</a></b>｜毎回アップロードせずに、フォルダをそのまま開いて読み・直し・保存まで。見積書、議事録、月次レポートの実務はここが本命。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q3へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">3</div><div class="qt">
+          <div class="qk">Q3 ｜ コーディングに関するタスク？</div>
+          <div class="qq">コードの作成・修正・実行・説明をさせたいですか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt">もう一段だけ質問があります（すぐ下へ）</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q4へ</div></div>
+        </div>
+        <div class="qsub">
+          <div class="qsh">Q3-2 ｜ 複数のAIに、同じ仕事を並行して実行させますか？</div>
+          <div class="qsl">
+            <div><b>はい</b> → <a href="#f-team" style="color:var(--pine);font-weight:900;">Agent Teams</a>（リーダー役のAIが分担・並列処理。大規模レビューや並行開発向け／消費量が跳ね上がるので上級者向け）</div>
+            <div><b>いいえ</b> → <a href="#f-code" style="color:var(--pine);font-weight:900;">Claude Code</a>（ターミナルから実行。1人＋1AIの基本形。まずこちらから）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">4</div><div class="qt">
+          <div class="qk">Q4 ｜ 同じ作業を繰り返す？</div>
+          <div class="qq">この作業を、これから何度も同じ手順で繰り返す必要がありますか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-skills">Claude Skills</a></b>｜手順・書式・ルールを一度保存すれば、以後は呼び出すだけ。「毎回同じ長い指示を打ち直している」人の特効薬です。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q5へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">5</div><div class="qt">
+          <div class="qk">Q5 ｜ 自動で実行させたい？</div>
+          <div class="qq">決まった時間に、こちらが何も言わなくても自動で走らせたいですか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt">分かれ道があります（すぐ下へ）</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q6へ</div></div>
+        </div>
+        <div class="qsub">
+          <div class="qsh">Q5-2 ｜ パソコンの電源はどうしますか？</div>
+          <div class="qsl">
+            <div><b>電源を切っていても実行したい</b> → <a href="#f-routines" style="color:var(--pine);font-weight:900;">Routines</a>（クラウド側で実行。デバイスの状態に左右されない）</div>
+            <div><b>パソコンは基本つけている</b> → <a href="#f-ctasks" style="color:var(--pine);font-weight:900;">定期タスク（Cowork Tasks）</a>（自分のPC上で実行。ローカルのファイル整理まで任せられる）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">6</div><div class="qt">
+          <div class="qk">Q6 ｜ 外部サービスと連携したい？</div>
+          <div class="qq">Gmail・Slack・Google Drive・Notion・カレンダーなど、他のアプリの中身を見せたいですか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-conn">Connectors（コネクタ／MCP）</a></b>｜Claudeに「読み取り」や「作業」の権限を渡す仕組み。コピペ地獄がここで終わります。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q7へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">7</div><div class="qt">
+          <div class="qk">Q7 ｜ ビジュアルを作りたい？</div>
+          <div class="qq">ゼロから見た目のあるもの（画面・資料・図）をデザインしたいですか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-design">Claude Design</a></b>｜文章の指示から画面や資料のたたき台を組み立て、チャットで直しながら仕上げられます。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q8へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">8</div><div class="qt">
+          <div class="qk">Q8 ｜ プロジェクトを進めている？</div>
+          <div class="qq">この作業を、何日・何週間にわたって続けますか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-projects">Projects（プロジェクト）</a></b>｜資料・指示・会話履歴をひとまとめに保管。毎回の説明が不要になり、続きから再開できます。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q9へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">9</div><div class="qt">
+          <div class="qk">Q9 ｜ 複雑な問題を解決したい？</div>
+          <div class="qq">このタスクには、慎重で段階的な推論（じっくり考えること）が必要ですか？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">はい</span><div class="yt"><b><a href="#f-think">拡張思考／適応的思考</a></b>＋上位モデル｜答える前に考える時間を長く取るモード。契約の論点整理、数字の検算、方針決めなど「間違えたら痛い」場面で。</div></div>
+          <div class="no"><span class="nbadge">いいえ</span><div class="nt">→ Q10へ</div></div>
+        </div>
+      </div>
+
+      <div class="qrow">
+        <div class="qrow-h"><div class="qnum">10</div><div class="qt">
+          <div class="qk">Q10 ｜ 特に当てはまるものはない</div>
+          <div class="qq">ここまで全部「いいえ」だった。それなら？</div>
+        </div></div>
+        <div class="qbranch">
+          <div class="yes"><span class="ybadge">結論</span><div class="yt"><b><a href="#f-chat">Claude（チャット）</a></b>で十分です。質問・アイデア出し・執筆・調べもの・気持ちの整理。セットアップ不要、無料から。<b>ここが9割の人の正解</b>です。</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>「全部いいえだった…」は失敗じゃないよ。むしろ正常。上級機能は“困ってから”増やすもの。困ってないのに増やすと、使わない機能の月額だけが残るんだ。</div></div>
+  </div>
+</div>
+
+<!-- ═══ 機能図鑑 ═══ -->
+<div class="article" id="features" style="padding-top:10px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">FEATURE BOOK</div>
+    <h2 class="sec-title">12機能ぜんぶ、<br>「できること・向かないこと」で見る</h2>
+    <p class="sec-sub">チャートで出た機能だけ読んでもOK。各カードに「仕事」「私生活」「具体例」「注意点」を入れています。</p>
+
+    <!-- 01 Chrome -->
+    <div class="fcard" id="f-chrome" style="--accent:var(--chrome);">
+      <div class="fcard-h"><div class="fic">🌐</div><div class="fnm"><span class="fen">01 ｜ CLAUDE IN CHROME</span><div class="fjp">Claude in Chrome（クローム拡張）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">Chromeに入れる拡張機能。<b>いま開いているページを、Claudeが一緒に見ながら</b>手伝ってくれます。タブを行き来してコピペする必要がありません。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Sonnet</span><span class="pl">有料プラン向けに提供拡大中</span><span class="lv">難易度：★☆☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>ページを理解する</b>：長い規約・料金表・仕様書を、開いたまま要約させる</li>
+          <li><b>閲覧を助ける</b>：「この画面のどこに◯◯の設定がある？」と聞く</li>
+          <li><b>画面上で作業する</b>：フォーム入力の下書き、表の書き写し、比較整理</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 管理画面・調べもの</div>
+            <ul>
+              <li>求人サイトの応募者一覧を見ながら、返信文をその場で作る</li>
+              <li>競合のサービスページを開いて、価格と特徴の比較表にする</li>
+              <li>補助金・助成金の公募要領ページを、要件だけ抜き出して整理</li>
+              <li>グルメサイトのクチコミ画面を見ながら、返信の下書きを作る</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 契約・比較・手続き</div>
+            <ul>
+              <li>保険や携帯プランの比較ページを、条件だけに絞って読み解く</li>
+              <li>賃貸情報を見ながら「初期費用の総額はいくら？」と確認</li>
+              <li>学校からのお知らせPDFをブラウザで開いて、やること表に変換</li>
+              <li>海外サイトの買い物ページを、日本語で読みながら注文</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：クチコミ返信が10分→1分に</div>グルメサイトの管理画面を開き、Claudeに「この★3のクチコミに、感謝＋改善予定を伝える返信を、120字・敬語で」と依頼。画面のクチコミ本文をコピペせずに済むので、10件でも15分あれば片づきます。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>拡張機能は<b>ページの内容を読み取る</b>もの。給与明細・顧客名簿・カルテなどを開いたタブでは使わない。</li>
+          <li>画面操作を任せる場合、<b>送信ボタンや購入ボタンは自分で押す</b>。取り消せない操作は人が最後に確認。</li>
+          <li>会社支給PCでは、拡張機能の追加が禁止されていることがあります。情報システム担当に確認を。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 02 Cowork -->
+    <div class="fcard" id="f-cowork" style="--accent:var(--cowork);">
+      <div class="fcard-h"><div class="fic">🗂️</div><div class="fnm"><span class="fen">02 ｜ CLAUDE COWORK</span><div class="fjp">Claude Cowork（コワーク）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">パソコンにインストールして使う<b>デスクトップ版のはたらく相棒</b>。フォルダを指定すると、その中のファイルを開いて読み、直して、保存まで一気にやってくれます。<b>非エンジニアの主戦場</b>はここ。</p>
+        <div class="fmeta"><span class="md">Sonnet＝普段使い／Opus＝長文・複雑</span><span class="pl">Pro以上の有料プラン</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>アップロード不要</b>：毎回ファイルを添付しなくても、フォルダごと任せられる</li>
+          <li><b>作って保存まで</b>：Word・Excel・PowerPoint・PDFの作成と修正</li>
+          <li><b>複数ファイルをまとめて</b>：30枚の請求書PDFから一覧表を作るなど</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 資料・数字・報告</div>
+            <ul>
+              <li>会議の文字起こしファイルから、議事録＋やることリストを生成</li>
+              <li>月次の売上CSVを読み込ませ、前年比コメント付きレポートに</li>
+              <li>提案書のたたき台をPowerPointで作り、社内フォーマットに整える</li>
+              <li>古いマニュアルWordを、写真差し替え＋読みやすい体裁に一括改訂</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 家計・書類・思い出</div>
+            <ul>
+              <li>家計簿CSVを渡して「先月使いすぎた費目トップ3」を出す</li>
+              <li>確定申告用の領収書PDFを、日付・金額・用途の表に整理</li>
+              <li>写真フォルダの名前を、日付＋出来事に一括リネーム</li>
+              <li>子どもの学校書類PDFを、月ごとの提出カレンダーに変換</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：現場写真つき日報が5分で完成</div>「このフォルダの今日の写真と作業メモを読んで、日報のWordを作って。天候・作業内容・使用資材・翌日予定の4項目で」と1行頼むだけ。写真の並べ替えと体裁調整まで済んだファイルが、そのフォルダに保存されます。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>アクセスを許すフォルダは<b>作業用に絞る</b>。デスクトップ全体やドキュメント全体を丸ごと渡さない。</li>
+          <li>上書き保存されると戻せません。<b>大事なファイルはコピーを作ってから</b>渡すのが鉄則。</li>
+          <li>数式・合計・請求金額は<b>必ず自分で検算</b>。もっともらしい間違いが最も危険です。</li>
+          <li>無料プランでは使えません。まずチャットで価値を確かめてから課金するのが安全。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 03 Agent Teams -->
+    <div class="fcard" id="f-team" style="--accent:var(--team);">
+      <div class="fcard-h"><div class="fic">🕸️</div><div class="fnm"><span class="fen">03 ｜ AGENT TEAMS</span><div class="fjp">Agent Teams（エージェントチーム）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc"><b>複数のAIがチームを組んで、並行して働く</b>仕組み。1体がリーダー役になって仕事を配り、メンバーが同時に進めます。<span style="color:#8A3E3E;font-weight:800;">上級者向け・費用も重い</span>ので、初心者は「そういうものがある」と知っておくだけで十分です。</p>
+        <div class="fmeta"><span class="md">ワーカー：Sonnet／リード：Opus</span><span class="pl">Claude Codeの機能</span><span class="lv">難易度：★★★</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>役割分担</b>：調査役・実装役・レビュー役に分かれて同時進行</li>
+          <li><b>並列処理</b>：独立した作業が多いほど、時間の短縮幅が大きい</li>
+          <li><b>大規模な棚卸し</b>：システム全体の点検や、まとまった量のレビュー</li>
+        </ul>
+
+        <div class="mini-h">向いている場面／向かない場面</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">向く</span> 量があって、分けられる</div>
+            <ul>
+              <li>大量のコードレビュー、独立した機能の並行開発</li>
+              <li>複数拠点・複数店舗のデータを別々に集計して最後に統合</li>
+              <li>大量の資料を分担して読み、観点別に要約させる</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">向かない</span> 小さい・つながっている</div>
+            <ul>
+              <li>1ファイルの修正、短いメール作成（普通に頼むほうが速い）</li>
+              <li>前の結果を見ないと次に進めない、順番が命の作業</li>
+              <li>「なんとなく効率化したい」だけの動機（費用だけ増えます）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li><b>消費量が通常の数倍</b>になります。プランの上限に一気に届くので、まず小さく試して費用を確認。</li>
+          <li>人数を増やせば速くなるわけではありません。<b>まず3〜5体</b>から。人間のチームと同じで、増えるほど調整の手間も増えます。</li>
+          <li>実験的な位置づけの機能です。仕様が変わる前提で、業務の要にしないこと。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 04 Claude Code -->
+    <div class="fcard" id="f-code" style="--accent:var(--code);">
+      <div class="fcard-h"><div class="fic">⌨️</div><div class="fnm"><span class="fen">04 ｜ CLAUDE CODE</span><div class="fjp">Claude Code（コード）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">ターミナル（黒い画面）から動かす開発用のClaude。コードを<b>読む・書く・実行する・テストする</b>まで一気通貫。エンジニアでなくても、Excelの自動処理や資料の一括変換など「作業を仕組みにする」用途で使えます。</p>
+        <div class="fmeta"><span class="md">Sonnet＝日常／Opus＝設計・複雑</span><span class="pl">有料プランまたはAPI</span><span class="lv">難易度：★★★</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>コードベースの理解</b>：既存のプログラム全体を読んで説明・改修</li>
+          <li><b>作成〜デバッグ</b>：作って、動かして、エラーを直すまで自分で回す</li>
+          <li><b>反復作業の自動化</b>：ファイル一括変換、名前の付け直し、集計処理</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 仕組みを作る</div>
+            <ul>
+              <li>見積の計算ツールを社内向けに作る（Excelの限界を超える）</li>
+              <li>店舗別の日次データを自動で集計して、共有シートに書き出す</li>
+              <li>自社サイトの表示崩れを直す、フォームを追加する</li>
+              <li>大量のファイル名・フォルダ構成を、ルール通りに一括整理</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 個人の困りごと</div>
+            <ul>
+              <li>家計データを自動でグラフ化する小さな道具を作る</li>
+              <li>趣味の記録（釣果・走行距離・読書）を集計するツール</li>
+              <li>スマホから移した写真を、日付フォルダに自動振り分け</li>
+              <li>作りたかった簡単なWebページを、公開まで持っていく</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：非エンジニアの入口はここ</div>「このフォルダのExcel30個から、A列とC列だけを抜いて1つの表にまとめて」。この一言で終わる作業が、手作業だと2時間かかります。プログラムを書けなくても、<b>やってほしいことを日本語で言えれば</b>成立します。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>ファイルを<b>実際に書き換えます</b>。必ずバックアップか、コピーしたフォルダで試す。</li>
+          <li>「全部消して作り直して」のような曖昧な指示は事故になります。範囲を具体的に区切る。</li>
+          <li>本番環境・公開サーバーに直接つながせない。まず手元で確認してから。</li>
+        </ul></div>
+        <a class="link-btn" href="https://code.claude.com/docs/ja/scheduled-tasks" target="_blank" rel="noopener">Claude Code 公式ドキュメント（日本語） ↗</a>
+      </div>
+    </div>
+
+    <!-- 05 Skills -->
+    <div class="fcard" id="f-skills" style="--accent:var(--skill);">
+      <div class="fcard-h"><div class="fic">⚡</div><div class="fnm"><span class="fen">05 ｜ CLAUDE SKILLS</span><div class="fjp">Claude Skills（スキル）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">自分の会社の<b>手順書・書式・言葉づかいを、Claudeに覚えさせておく機能</b>。一度用意すれば、毎回あの長い指示を打ち直さなくても、同じ品質で出てきます。<b>費用対効果がいちばん高い機能</b>です。</p>
+        <div class="fmeta"><span class="md">タスクに合うモデルでOK</span><span class="pl">公式スキルはすぐ使える</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>ワークフローの保存</b>：手順・禁止事項・フォーマットをひとまとめに</li>
+          <li><b>呼び出すだけ</b>：関係する話題になると、Claudeが自分で使い始める</li>
+          <li><b>成果物の再現</b>：PowerPoint・Excel・PDFなど、毎回同じ体裁で出す</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 社内標準を固定する</div>
+            <ul>
+              <li>自社フォーマットの見積書・請求書スキル（項目と計算ルールを固定）</li>
+              <li>クチコミ返信スキル（言ってはいけない表現・署名まで統一）</li>
+              <li>採用の一次スクリーニングスキル（評価軸を4つに固定）</li>
+              <li>店舗日報スキル（FL比率・客数・気づきの3点セットで毎日同じ形）</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 自分ルールを固定する</div>
+            <ul>
+              <li>献立スキル（家族のアレルギー・苦手・予算を先に登録）</li>
+              <li>学習スキル（資格勉強を毎回同じ形式で要点化＋クイズ化）</li>
+              <li>読書メモスキル（要約→引用→自分の行動、の3段構成で固定）</li>
+              <li>旅行計画スキル（予算・移動距離の上限・好みを毎回反映）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：まず公式スキルを触ってみる</div>自分で作る前に、用意されているスキル（資料作成・表計算・文書作成など）を使うのが最短ルート。さらに「スキルを作るためのスキル」もあるので、<b>「◯◯用のスキルを作って」と頼めば下書きが出てきます</b>。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>Claudeは「どんな時に使うスキルか」の<b>説明文を手がかりに起動</b>します。説明が曖昧だと、作ったのに動きません。</li>
+          <li>入れすぎると管理できなくなります。<b>週1回以上使う作業だけ</b>スキル化する。</li>
+          <li>スキルの中に、顧客名や個人情報を書き込まない（使い回す前提の文書です）。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 06 Routines -->
+    <div class="fcard" id="f-routines" style="--accent:var(--routine);">
+      <div class="fcard-h"><div class="fic">☁️</div><div class="fnm"><span class="fen">06 ｜ ROUTINES</span><div class="fjp">Routines（ルーティン）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">クラウド側で動く定期実行。<b>自分のパソコンの電源が入っていなくても、決めた時間に勝手に走ります</b>。「朝起きたら、もうできている」を作る機能です。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Sonnet</span><span class="pl">クラウドで実行</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>スケジュール実行</b>：毎朝・毎週・平日のみ、など頻度を指定</li>
+          <li><b>デバイス非依存</b>：出張中・スマホだけの日でも予定通り動く</li>
+          <li><b>結果を受け取る</b>：終わったら通知で知らせてくれる</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 朝の30分を消す</div>
+            <ul>
+              <li>毎朝7時：昨日の売上・予約状況・重要メールを1枚のブリーフに</li>
+              <li>毎週月曜：先週の数値まとめと、今週の重点3つを提案させる</li>
+              <li>毎月1日：前月の振り返りレポートのたたき台を用意</li>
+              <li>平日夕方：翌日の段取りと、抜けているタスクの洗い出し</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 続かないを仕組みで解く</div>
+            <ul>
+              <li>毎朝：天気・持ち物・その日の予定をまとめて1通</li>
+              <li>毎週日曜：1週間の献立と買い物リストを自動生成</li>
+              <li>毎月：サブスクの棚卸しと、見直し候補の提示</li>
+              <li>毎晩：3行日記の問いかけを届けてもらう（振り返りの習慣化）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>止め忘れが一番の落とし穴。<b>使わなくなったルーティンは削除</b>する（消費だけ続きます）。</li>
+          <li>自動で外部に送る設定（メール送信・投稿）は要注意。<b>最初は「下書きまで」</b>にとどめる。</li>
+          <li>1つのルーティンに欲張らない。「集める」「まとめる」「送る」は分けたほうが直しやすい。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 07 Cowork Tasks -->
+    <div class="fcard" id="f-ctasks" style="--accent:var(--ctask);">
+      <div class="fcard-h"><div class="fic">⚙️</div><div class="fnm"><span class="fen">07 ｜ COWORK SCHEDULED TASKS</span><div class="fjp">定期タスク（コワークタスク）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">Routinesと似ていますが、こちらは<b>自分のパソコンの中で実行</b>されます。ローカルのフォルダやファイルを触る自動化はこちら。パソコンが寝ていた場合は、起きたタイミングで実行されます。</p>
+        <div class="fmeta"><span class="md">Sonnet＝軽い／Opus＝重い処理</span><span class="pl">Coworkの機能（Pro以上）</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">Routinesとの使い分け（ここだけ覚える）</div>
+        <ul class="use">
+          <li><b>Routines</b>：クラウドで動く → 電源オフでもOK。メールやWebの情報を扱う仕事に</li>
+          <li><b>定期タスク</b>：自分のPCで動く → <b>手元のファイルを整理・作成できる</b></li>
+          <li>迷ったら：<b>ファイルを触るなら定期タスク、触らないならRoutines</b></li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 手元の書類まわり</div>
+            <ul>
+              <li>毎週金曜：最新データからダッシュボードのExcelを再生成</li>
+              <li>毎朝：ダウンロードフォルダの請求書PDFを取引先別に振り分け</li>
+              <li>毎月末：領収書フォルダを日付順にリネームして一覧表を更新</li>
+              <li>毎日：現場写真を日付フォルダに整理して、報告用に縮小コピー</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 散らかるものを自動整理</div>
+            <ul>
+              <li>スクリーンショットの山を、週1回テーマ別フォルダへ</li>
+              <li>子どもの写真を月別に整理して、アルバム用に厳選</li>
+              <li>ダウンロードした資料を、種類別に自動仕分け</li>
+              <li>家計のCSVを毎月まとめて、年間推移シートに追記</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>「削除」を含む自動化は原則やらない。<b>移動・コピーまで</b>にとどめる。</li>
+          <li>パソコンを閉じている時間が長い人は、Routinesのほうが向いています。</li>
+          <li>最初の1〜2週は<b>実行結果を必ず目視確認</b>。放置は事故の温床です。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 08 Connectors -->
+    <div class="fcard" id="f-conn" style="--accent:var(--conn);">
+      <div class="fcard-h"><div class="fic">🔗</div><div class="fnm"><span class="fen">08 ｜ CONNECTORS / MCP</span><div class="fjp">Connectors（コネクタ／MCP）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">Gmail・Slack・Google Drive・Notion・カレンダー・GitHubなど、<b>普段使っているアプリとClaudeをつなぐ</b>仕組み。つなぐとコピペが消えます。「MCP」はこの共通規格の名前です。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Sonnet</span><span class="pl">連携先ごとに許可が必要</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>読み取り</b>：「今週のメールで返信漏れはある？」と横断的に確認</li>
+          <li><b>作業</b>：予定を入れる、下書きを作る、資料を探して要約する</li>
+          <li><b>横断検索</b>：Drive・Slack・Notionをまたいで「あの資料」を見つける</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 情報を探す時間を消す</div>
+            <ul>
+              <li>「先月の見積、どのフォルダ？」をDrive横断で一発回答</li>
+              <li>Slackの決定事項だけを拾って、週報のたたき台にする</li>
+              <li>カレンダーを見て、来週の会議の準備資料リストを作らせる</li>
+              <li>問い合わせメールを分類し、担当ごとに割り振り案を出す</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 家の予定と書類</div>
+            <ul>
+              <li>家族カレンダーを見て、送迎と重複を洗い出す</li>
+              <li>Driveに入れた保険証券・保証書を、必要な時に探し出す</li>
+              <li>旅行のメール（航空券・宿）をまとめて日程表に整える</li>
+              <li>写真や資料の保管ルールを決めて、探せる状態を保つ</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li><b>権限が最大の論点</b>です。まず「読み取りだけ」で始め、必要になってから書き込みを許す。</li>
+          <li>会社アカウントを勝手につながない。<b>情報システム部門・上司の承認を先に</b>。</li>
+          <li>公式でない外部のコネクタは、提供元が信頼できるか確認する（データの通り道になります）。</li>
+          <li>連携先の中身に書かれた指示を、Claudeが命令と誤解する事故もありえます。<b>重要な操作は人が承認</b>。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 09 Design -->
+    <div class="fcard" id="f-design" style="--accent:var(--design);">
+      <div class="fcard-h"><div class="fic">🎨</div><div class="fnm"><span class="fen">09 ｜ CLAUDE DESIGN</span><div class="fjp">Claude Design（デザイン）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">文章で指示すると、<b>画面や資料のデザインを組み立ててくれる</b>機能。キャンバス上で見ながら、チャットで直していけます。デザインの言葉を知らなくても「もっと余白を」「文字を大きく」で伝わります。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Sonnet</span><span class="pl">有料プランで提供</span><span class="lv">難易度：★★☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>UIのたたき台</b>：申込フォーム、予約画面、社内ツールの画面案</li>
+          <li><b>プレゼン資料</b>：伝えたい順番を渡して、見せ方に落とす</li>
+          <li><b>ビジュアル構成</b>：チラシ・POP・LPの構成案を形にする</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 見せ方で決まる場面</div>
+            <ul>
+              <li>店頭POP・メニュー表の案を、複数パターン一気に出す</li>
+              <li>採用ページの構成案（誰に・何を・どの順で見せるか）</li>
+              <li>社内申請フォームの画面案を作って、現場に見せて詰める</li>
+              <li>提案書の表紙とサマリーページだけ、印象を強くする</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 手作りのものを整える</div>
+            <ul>
+              <li>子ども会・町内会のお知らせを、読みやすい紙面に</li>
+              <li>結婚式の席次表・プロフィールブックの構成案</li>
+              <li>趣味の作品を並べる、簡単な作品集ページ</li>
+              <li>家族の当番表・時間割を、見て分かる形に</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>他社のロゴ・キャラクター・有名な写真を真似させない。<b>権利の問題は自分に返ってきます</b>。</li>
+          <li>「たたき台」として強い機能です。印刷・公開前には人の目で最終確認を。</li>
+          <li>ブランドの色・フォントが決まっている会社は、先にそれを伝えると手戻りが減ります。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 10 Projects -->
+    <div class="fcard" id="f-projects" style="--accent:var(--proj);">
+      <div class="fcard-h"><div class="fic">📁</div><div class="fnm"><span class="fen">10 ｜ PROJECTS</span><div class="fjp">Projects（プロジェクト）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">案件ごとの<b>専用の部屋</b>。資料・前提・言葉づかいのルール・会話履歴をまとめて置いておけるので、毎回ゼロから説明し直す必要がなくなります。<b>地味ですが、効果は最大級</b>。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Sonnet</span><span class="pl">有料プランで拡張</span><span class="lv">難易度：★☆☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>前提の保管</b>：会社概要・商品リスト・過去資料を置いておく</li>
+          <li><b>文脈の維持</b>：数日後でも「あの案件の続き」から始められる</li>
+          <li><b>共有</b>：チームで同じ前提を使い、出力のばらつきを減らす</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 案件ごとに1部屋</div>
+            <ul>
+              <li>「新店舗の出店準備」：物件情報・収支計画・工程を1か所に</li>
+              <li>「採用2026」：募集要項・面接評価軸・過去の質問集</li>
+              <li>「補助金申請」：公募要領・自社データ・下書きを同じ部屋で</li>
+              <li>「クレーム対応」：過去の対応履歴と返信の型を蓄積</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 長く続くテーマごとに</div>
+            <ul>
+              <li>「家づくり」：見積・仕様・打合せメモを全部入れて相談</li>
+              <li>「親の介護」：制度・書類・関係者のメモを整理して判断に使う</li>
+              <li>「資格試験」：教材の要点と苦手分野を蓄積して復習</li>
+              <li>「家計の見直し」：固定費リストと過去の判断理由を残す</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：最初にやる価値がある1手</div>「自社の基本情報（事業内容・強み・お客様像・使ってはいけない表現）」を書いた1枚を、プロジェクトに入れておくだけ。以後すべての文章の精度が上がります。<b>時間投資10分、効果は毎日</b>。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>共有プロジェクトには<b>個人情報・給与・評価情報を入れない</b>。見える範囲を必ず確認。</li>
+          <li>古い資料が残ると、古い前提で答えます。<b>四半期に1回は棚卸し</b>を。</li>
+          <li>入れる資料は「決定版」だけ。ボツ案を混ぜると出力が混乱します。</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <!-- 11 拡張思考 -->
+    <div class="fcard" id="f-think" style="--accent:var(--think);">
+      <div class="fcard-h"><div class="fic">🧠</div><div class="fnm"><span class="fen">11 ｜ ADAPTIVE THINKING</span><div class="fjp">拡張思考／適応的思考</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">答える前に<b>「考える時間」を長く取らせるモード</b>。難しさに応じて、Claudeが自分で考える量を決めます。画面上は「じっくり考える（拡張思考）」のスイッチを入れるだけです。</p>
+        <div class="fmeta"><span class="md">おすすめモデル：Opus</span><span class="pl">上位モデルで有効</span><span class="lv">難易度：★☆☆</span></div>
+
+        <div class="mini-h">使うべき場面／使わなくていい場面</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">使う</span> 間違えたら痛い判断</div>
+            <ul>
+              <li>契約書・規約の論点整理、リスクの洗い出し</li>
+              <li>収支計画の前提チェック、複数シナリオの比較</li>
+              <li>値上げ・撤退・出店など、条件が絡み合う意思決定</li>
+              <li>トラブルの原因究明（順番に絞り込む必要がある問題）</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">使わない</span> 軽い作業</div>
+            <ul>
+              <li>短いメールの下書き、言い換え、誤字チェック</li>
+              <li>「今日の献立」など、答えが1つに決まらない相談</li>
+              <li>単純な検索・要約（待ち時間が増えるだけ）</li>
+              <li>雑談・アイデア出しの初期段階</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exbox"><div class="exh">具体例：使い分けのコツ</div>日々の7割は普通のモードで十分。<b>残り3割の「重い判断」だけ</b>スイッチを入れる。これだけで、待ち時間も利用量もムダなく収まります。</div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>じっくり考えても<b>間違いはゼロになりません</b>。数字・法令・固有名詞は必ず自分で確認。</li>
+          <li>使用量の消費は増えます。上限が気になる人は、重い問いだけに絞る。</li>
+          <li>「考えた過程」は参考情報。最終判断は人が持つ、が原則です。</li>
+        </ul></div>
+        <a class="link-btn" href="https://platform.claude.com/docs/ja/build-with-claude/adaptive-thinking" target="_blank" rel="noopener">適応的思考の公式ドキュメント ↗</a>
+      </div>
+    </div>
+
+    <!-- 12 Chat -->
+    <div class="fcard" id="f-chat" style="--accent:var(--chat);">
+      <div class="fcard-h"><div class="fic">💬</div><div class="fnm"><span class="fen">12 ｜ CLAUDE CHAT</span><div class="fjp">Claude（チャット）</div></div></div>
+      <div class="fcard-b">
+        <p class="desc">いちばん基本の使い方。<b>セットアップ不要・無料から</b>。質問、アイデア出し、執筆、要約、調べもの、気持ちの整理。ここが9割の人の正解であり、他のすべての機能の土台です。</p>
+        <div class="fmeta"><span class="md">Sonnet＝ほとんどの会話／Haiku＝軽くて速い</span><span class="pl">無料プランからOK</span><span class="lv">難易度：★☆☆</span></div>
+
+        <div class="mini-h">できること</div>
+        <ul class="use">
+          <li><b>書く・整える</b>：メール、案内文、マニュアル、原稿の下書きと推敲</li>
+          <li><b>読む・要約する</b>：長い資料を貼って「3行で」「5つの論点で」</li>
+          <li><b>考える相手</b>：反対意見を言わせて、自分の判断を検証する</li>
+        </ul>
+
+        <div class="mini-h">仕事 × 私生活での活かし方</div>
+        <div class="split">
+          <div class="col work"><div class="ch"><span class="badge-mini">仕事</span> 毎日の言葉まわり</div>
+            <ul>
+              <li>お断り・催促・お詫びの、角が立たない文面</li>
+              <li>会議メモ → 議事録（決定事項・担当・期限の3点）</li>
+              <li>採用の募集文、SNS投稿、POPのコピー案</li>
+              <li>難しい制度・専門用語を、現場に伝わる言葉に翻訳</li>
+            </ul>
+          </div>
+          <div class="col life"><div class="ch"><span class="badge-mini">私生活</span> 暮らしと学び</div>
+            <ul>
+              <li>役所の書類や保険の説明を、中学生でも分かる言葉に</li>
+              <li>スピーチ・手紙・お礼状の下書き</li>
+              <li>語学の練習相手、子どもの「なぜ？」への説明</li>
+              <li>もやもやの整理、迷っていることの壁打ち</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cau"><div class="ch2">⚠ 注意点</div><ul>
+          <li>顧客名・住所・カード番号・従業員情報などは<b>入力しない</b>。伏せ字か一般化して渡す。</li>
+          <li>もっともらしく間違えます。数字・名前・法律・医療は必ず一次情報で確認。</li>
+          <li>「AIに聞いたから正しい」は通りません。<b>最後に決めるのは自分</b>です。</li>
+        </ul></div>
+        <a class="link-btn" href="https://claude.ai" target="_blank" rel="noopener">Claude を開く（無料で試す） ↗</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 早見表 ═══ -->
+<div class="cmp">
+  <div class="wrap">
+    <h3 class="blk" id="quick">保存版：3秒で選ぶ早見表</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">「こんな時」から逆引きできます。横にスクロールできます。</p>
+    <div class="cmp-wrap">
+      <table class="quick-t">
+        <thead><tr><th>こんな時</th><th>使う機能</th><th>ひとことメモ</th></tr></thead>
+        <tbody>
+          <tr><td>とりあえず相談したい</td><td class="fn">Claude（チャット）</td><td>無料。まずここ。迷ったら全部これでいい</td></tr>
+          <tr><td>手元のファイルを直したい</td><td class="fn">Cowork</td><td>コピーを渡す。上書きは戻せない</td></tr>
+          <tr><td>開いている画面で作業したい</td><td class="fn">Claude in Chrome</td><td>機密情報のタブでは使わない</td></tr>
+          <tr><td>毎回同じ指示を打っている</td><td class="fn">Skills</td><td>週1回以上の作業だけスキル化</td></tr>
+          <tr><td>朝までに用意しておいてほしい</td><td class="fn">Routines</td><td>PCオフでも動く。止め忘れに注意</td></tr>
+          <tr><td>PC内のフォルダを定期整理したい</td><td class="fn">定期タスク</td><td>削除はさせない。移動までに</td></tr>
+          <tr><td>メールやSlackを見て判断させたい</td><td class="fn">Connectors</td><td>まず読み取りのみで許可</td></tr>
+          <tr><td>見た目のあるものを作りたい</td><td class="fn">Claude Design</td><td>他社デザインの模倣はしない</td></tr>
+          <tr><td>長い案件を続けている</td><td class="fn">Projects</td><td>会社情報1枚を入れるだけで効く</td></tr>
+          <tr><td>重い判断・検算をさせたい</td><td class="fn">拡張思考＋Opus</td><td>全体の3割だけに使う</td></tr>
+          <tr><td>コードを書かせたい</td><td class="fn">Claude Code</td><td>必ずバックアップを取ってから</td></tr>
+          <tr><td>大量作業を並列でさばきたい</td><td class="fn">Agent Teams</td><td>消費量が跳ねる。上級者向け</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="blk">モデルはどう選ぶ？（3つだけ）</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">機能とは別に「どのモデルで動かすか」も選べます。難しく考えず、この3択で十分です。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead><tr><th>選ぶ場面</th><th>Haiku</th><th>Sonnet</th><th>Opus</th></tr></thead>
+        <tbody>
+          <tr><th>ひとことで言うと</th><td class="mid">軽くて速い</td><td class="win">普段使いの主役</td><td class="win">重い判断の切り札</td></tr>
+          <tr><th>日常の会話・下書き</th><td>○</td><td class="win">◎</td><td>○（過剰）</td></tr>
+          <tr><th>長い資料の要約・分析</th><td class="mid">△</td><td class="win">◎</td><td class="win">◎</td></tr>
+          <tr><th>契約・数字・意思決定</th><td class="mid">×</td><td>○</td><td class="win">◎</td></tr>
+          <tr><th>大量・単純な処理</th><td class="win">◎</td><td>○</td><td class="mid">△（もったいない）</td></tr>
+          <tr><th>速さ</th><td class="win">◎</td><td>○</td><td class="mid">△</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="combo">
+      <h4>🤝 いちばん現実的な運用</h4>
+      <div class="flow">
+        <span class="b">普段は<br>Sonnet</span><span class="ar">→</span><span class="b">重い判断だけ<br>Opusに切替</span><span class="ar">→</span><span class="b">大量処理は<br>Haiku</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;">最上位モデルを常用すると、上限に届くのが早くなるだけで、成果は大きく変わりません。ひとことで言えば——<b>普段はSonnet、勝負どころだけOpus。</b></p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 30日ロードマップ ═══ -->
+<div class="article" style="padding-top:8px;">
+  <div class="wrap">
+    <h3 class="blk">初心者が挫折しない、30日の順番</h3>
+    <p class="sec-sub" style="margin-bottom:6px;">失敗する人は「機能から」入ります。続く人は「毎日やっている面倒から」入ります。</p>
+    <div class="road">
+      <div class="rd" style="--accent:var(--chat);">
+        <div class="rw">DAY 1-10</div>
+        <h4>チャットだけで100回使う</h4>
+        <ul>
+          <li>無料で開始。課金はまだしない</li>
+          <li>毎日の「書く仕事」を全部投げる</li>
+          <li>お願いの型（誰に・何を・どんな形で・どんなトーン）を身につける</li>
+          <li>「もっと短く」「やわらかく」で直す練習</li>
+        </ul>
+        <div class="rgoal">🎯 目標：AIに頼むのが習慣になる</div>
+      </div>
+      <div class="rd" style="--accent:var(--proj);">
+        <div class="rw">DAY 11-20</div>
+        <h4>Projects＋Skillsで型を作る</h4>
+        <ul>
+          <li>会社情報1枚をProjectsに入れる</li>
+          <li>週1回以上やる作業を1つだけスキル化</li>
+          <li>公式スキルで資料・表を作ってみる</li>
+          <li>この段階で有料プランを検討する</li>
+        </ul>
+        <div class="rgoal">🎯 目標：毎回の説明がゼロになる</div>
+      </div>
+      <div class="rd" style="--accent:var(--routine);">
+        <div class="rw">DAY 21-30</div>
+        <h4>Cowork・自動化に広げる</h4>
+        <ul>
+          <li>作業フォルダを1つ決めてCoworkを試す</li>
+          <li>朝のブリーフをRoutinesで1本作る</li>
+          <li>Connectorsは読み取りのみで1つ連携</li>
+          <li>効果が出た作業を数字で記録する</li>
+        </ul>
+        <div class="rgoal">🎯 目標：見ていない間も進む状態を作る</div>
+      </div>
+    </div>
+    <div class="tip"><svg class="av msc"><use href="#ugoku"/></svg><div class="tx"><b>うごく君のひとこと</b>1日目からRoutinesやAgent Teamsを触ろうとして止まる人、すごく多いよ。順番を守るだけで、続く確率がぜんぜん違うんだ。</div></div>
+  </div>
+</div>
+
+<!-- ═══ 人生への活かし方 ═══ -->
+<div class="article" style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-eyebrow">FOR YOUR LIFE</div>
+    <h2 class="sec-title">仕事だけじゃない。<br>「人生の時間」をどう取り戻すか</h2>
+    <p class="sec-sub">機能の話はここまで。ここからは「で、生活は何が変わるの？」の話です。実際の流れで見ていきます。</p>
+
+    <div class="scn">
+      <div class="sc">
+        <div class="sch">🍖 飲食店の店長</div>
+        <div class="scw">課題：閉店後の事務作業で毎日1時間残る</div>
+        <div class="flowmini">
+          <div data-n="1">日次の売上・人件費をCoworkに読ませる</div>
+          <div data-n="2">日報スキルで、毎日同じ形式のレポートに</div>
+          <div data-n="3">Routinesで翌朝7時に本部共有用の要約を用意</div>
+        </div>
+        <div class="scr">結果：事務1時間 → 10分。空いた時間を試食と仕込みに回せる</div>
+      </div>
+
+      <div class="sc">
+        <div class="sch">🏗️ 建設・現場管理</div>
+        <div class="scw">課題：日報と写真整理が終わらない</div>
+        <div class="flowmini">
+          <div data-n="1">現場写真フォルダを定期タスクで日付整理</div>
+          <div data-n="2">音声メモをClaudeに渡して日報の下書きに</div>
+          <div data-n="3">Projectsに現場ごとの前提を置き、続きから再開</div>
+        </div>
+        <div class="scr">結果：帰社後の作業がほぼ消え、翌日の段取りに使える</div>
+      </div>
+
+      <div class="sc">
+        <div class="sch">💼 営業・個人事業主</div>
+        <div class="scw">課題：提案書づくりに時間がかかりすぎる</div>
+        <div class="flowmini">
+          <div data-n="1">Connectorsでメール・カレンダーから商談履歴を集約</div>
+          <div data-n="2">拡張思考で提案の論点と反論の想定を整理</div>
+          <div data-n="3">Coworkで自社フォーマットの提案書を出力</div>
+        </div>
+        <div class="scr">結果：半日仕事が1時間。訪問件数を増やせる</div>
+      </div>
+
+      <div class="sc">
+        <div class="sch">🏠 共働き・子育て世帯</div>
+        <div class="scw">課題：家の「見えない事務作業」が積み上がる</div>
+        <div class="flowmini">
+          <div data-n="1">学校のお知らせPDFを、月別の提出カレンダーに</div>
+          <div data-n="2">Routinesで日曜に献立＋買い物リストを自動生成</div>
+          <div data-n="3">保険・携帯の見直しを、拡張思考で条件比較</div>
+        </div>
+        <div class="scr">結果：週2〜3時間が戻る。家族の会話が「調整」から「話」に</div>
+      </div>
+
+      <div class="sc">
+        <div class="sch">🎓 学び直し・資格</div>
+        <div class="scw">課題：時間がなくて勉強が続かない</div>
+        <div class="flowmini">
+          <div data-n="1">Projectsに教材の要点と苦手分野を蓄積</div>
+          <div data-n="2">学習スキルで、毎回同じ形の要約＋クイズを生成</div>
+          <div data-n="3">Routinesで毎晩5問だけ届けてもらう</div>
+        </div>
+        <div class="scr">結果：まとまった時間がなくても前に進む状態になる</div>
+      </div>
+
+      <div class="sc">
+        <div class="sch">🌏 多国籍チームの現場</div>
+        <div class="scw">課題：指示が伝わらない・伝え直しに時間がかかる</div>
+        <div class="flowmini">
+          <div data-n="1">作業手順を、やさしい日本語＋多言語で並記させる</div>
+          <div data-n="2">Skillsに「使ってはいけない曖昧表現」を登録</div>
+          <div data-n="3">Claude Designで、絵と文字の掲示物に落とす</div>
+        </div>
+        <div class="scr">結果：聞き返しが減り、事故とやり直しが減る</div>
+      </div>
+    </div>
+
+    <div class="band">
+      <b>この記事で本当に伝えたいこと：</b>AIの価値は「速く作れること」ではなく、<b>返ってきた時間を何に使うか</b>で決まります。浮いた1時間を、また別の作業で埋めてしまうなら、導入した意味は半分。先に「その時間で何をするか」を決めておいてください。
+    </div>
+  </div>
+</div>
+
+<!-- ═══ コピペプロンプト ═══ -->
+<div class="article" style="padding-top:8px;">
+  <div class="wrap">
+    <h3 class="blk" id="prompt">そのまま使えるコピペ集</h3>
+    <p class="sec-sub" style="margin-bottom:10px;">〔　〕の中だけ、自分の情報に書き換えてください。</p>
+
+    <div class="mini-h">① まず自分に合う機能を決めてもらう</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 機能選びの相談</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>あなたはClaudeの活用に詳しいアドバイザーです。
+私の状況を踏まえて、いま使うべきClaudeの機能を1つだけ選び、理由と最初の3手順を教えてください。
+候補：チャット／Cowork／Claude Code／Skills／Routines／定期タスク／Connectors／Design／Projects／拡張思考
+【私の状況】
+・仕事：<span class="fill">〔業種・役割〕</span>
+・いま一番面倒な作業：<span class="fill">〔具体的に〕</span>
+・その作業の頻度：<span class="fill">〔毎日／週1／月1〕</span>
+・扱うもの：<span class="fill">〔紙／PDF／Excel／メール／Webの画面〕</span>
+・使える環境：<span class="fill">〔スマホのみ／PCあり／有料プラン有無〕</span>
+条件：専門用語は使わず、初心者向けに。増やしすぎないこと。</pre>
+    </div>
+
+    <div class="mini-h">② 面倒な作業を「自動化できる形」に分解する</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 業務の棚卸し</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>以下の作業を、AIに任せられる部分と人がやるべき部分に分けてください。
+出力は「①手順 ②任せられる/人がやる ③使う機能 ④注意点」の表で。
+【作業の流れ】
+<span class="fill">〔ふだんの手順を、思い出せる順に箇条書きで〕</span>
+条件：任せる範囲は小さく始める前提で。取り返しがつかない操作は人に残すこと。</pre>
+    </div>
+
+    <div class="mini-h">③ 自分専用スキルの下書きを作らせる</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 スキルのたたき台</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre><span class="fill">〔作業名：例）店舗日報の作成〕</span>用のスキルの下書きを作ってください。
+含めてほしい内容：
+・どんな時に使うスキルかの説明（起動条件がはっきり分かる書き方で）
+・毎回守る手順
+・出力フォーマット（項目と順番）
+・使ってはいけない表現・禁止事項
+・個人情報は書かない（伏せ字にする）
+【前提】
+<span class="fill">〔会社・業種・読み手・現在のやり方〕</span></pre>
+    </div>
+
+    <div class="mini-h">④ 定期実行の設計を相談する</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 自動化の設計</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>毎日/毎週やっている次の作業を自動化したいです。
+Routines（クラウド実行）と定期タスク（自分のPCで実行）のどちらが適切か判断し、
+設定内容（頻度・時刻・やること・結果の受け取り方）を提案してください。
+最初は「下書きまで」にとどめる設計にしてください。
+【作業】
+<span class="fill">〔いつ・何を・何のために〕</span>
+【私のPCの使い方】
+<span class="fill">〔常時つけている／持ち歩いて閉じている〕</span></pre>
+    </div>
+
+    <div class="mini-h">⑤ 重い判断を検証させる（拡張思考ON推奨）</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 意思決定のセカンドオピニオン</span><button class="cb-btn" type="button">コピー</button></div>
+      <pre>次の判断について、賛成する理由と反対する理由を各3つ、
+前提が崩れる条件、確認すべき数字、最悪のケースを整理してください。
+最後に「決める前に必ず確かめること」を3つに絞ってください。
+【判断したいこと】
+<span class="fill">〔例）来期に2店舗目を出すべきか〕</span>
+【いまわかっている情報】
+<span class="fill">〔数字・条件・制約を箇条書きで〕</span>
+条件：私に都合のよい結論に寄せないこと。不明な点は「不明」と書くこと。</pre>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ よくある失敗 ═══ -->
+<div class="article" style="padding-top:8px;">
+  <div class="wrap">
+    <h3 class="blk" id="mistake">先に知っておきたい、8つの落とし穴</h3>
+    <p class="sec-sub" style="margin-bottom:14px;">導入がうまくいかない会社は、だいたいこのどれかです。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>機能から入ってしまう</div><p>「Agent Teamsがすごいらしい」から始めると必ず止まります。<b>面倒な作業から</b>入り、その作業に必要な機能だけ足す。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>機密情報をそのまま渡す</div><p>顧客名・住所・連絡先・従業員情報・カード番号はNG。伏せ字やイニシャル、一般化した表現に置き換えて渡す。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>バックアップを取らない</div><p>Cowork・Codeは実際にファイルを書き換えます。<b>コピーしたフォルダで試す</b>だけで、事故の9割は防げます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>連携の権限を広く渡す</div><p>いきなり書き込み許可を出さない。<b>読み取りのみ</b>で始め、必要になった分だけ広げる。会社アカウントは要承認。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>自動化を放置する</div><p>止め忘れたルーティンが消費を食い続けます。最初の2週間は結果を目視確認し、使わなくなったら削除。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>数字を検算しない</div><p>もっともらしい間違いが一番危険。合計・比率・日付・固有名詞は必ず人が確認。特に請求と法令まわり。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>上位モデルを常用する</div><p>常にOpusだと上限に早く届くだけ。<b>普段はSonnet、勝負どころだけOpus</b>で十分な成果が出ます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>浮いた時間を測らない</div><p>「なんとなく便利」で終わらせない。1作業あたり<b>Before/Afterの分数</b>を記録すると、社内の説得材料になります。</p></div>
+    </div>
+
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details><summary>無料プランだけでも意味はありますか？</summary><div class="ans">十分あります。判断チャートで最後に残る「チャット」は無料から使えて、書く・読む・整える・相談するの大半をカバーします。まず10日間チャットだけで使い込み、上限や機能で困ってから有料を検討する順番が、いちばん損をしません。</div></details>
+      <details><summary>CoworkとClaude Codeは何が違うの？</summary><div class="ans">動く場所は近いですが、対象と入口が違います。Coworkは<b>ふつうの仕事の書類</b>を、画面上のやさしい操作で扱うもの。Claude Codeは<b>ターミナルからプログラムやファイル処理</b>を回すもの。事務職・経営者・現場管理ならまずCowork、仕組みや道具を自作したい人はClaude Codeです。</div></details>
+      <details><summary>RoutinesとCoworkの定期タスク、どちらを選べば？</summary><div class="ans">判断軸は2つだけ。<b>①手元のファイルを触るか</b>（触るなら定期タスク）、<b>②パソコンを閉じている時間が長いか</b>（長いならRoutines）。メールやWebの情報をまとめて朝届けてほしいだけならRoutines、フォルダ整理や書類生成なら定期タスクです。</div></details>
+      <details><summary>SkillsとProjectsは似ていませんか？</summary><div class="ans">役割が違います。Projectsは<b>置き場所</b>（資料・前提・履歴をまとめる部屋）、Skillsは<b>やり方</b>（手順とフォーマットの指示書）。「うちの会社はこういう会社です」はProjects、「この作業はこう進めます」はSkills。両方そろうと精度が一段上がります。</div></details>
+      <details><summary>Agent Teamsは中小企業でも使うべき？</summary><div class="ans">急ぐ必要はありません。並列で分担できる大きな作業がある場合に効く機能で、消費量も大きく増えます。まずはSkillsとRoutinesで足元の反復作業を消すほうが、投資対効果はずっと高くなります。</div></details>
+      <details><summary>入力した内容は学習に使われますか？</summary><div class="ans">扱いはプランや設定によって変わります。気になる場合は各サービスの設定（データ管理）を確認し、迷ったら機密情報は入れないのがもっとも安全です。会社で使う場合は、社内ルールと合わせて事前に確認してください。</div></details>
+      <details><summary>スマホだけでも使えますか？</summary><div class="ans">チャット・Projects・拡張思考はスマホで問題なく使えます。一方でCoworkや定期タスクはパソコンにインストールして使う機能なので、ファイルを扱う自動化まで進めたい場合はパソコンが必要になります。</div></details>
+      <details><summary>社内に広げるとき、何から手をつければ？</summary><div class="ans">①禁止事項（入力してはいけない情報）を1枚で配る、②いちばん面倒な作業を1つ選んで型（Skills）を作る、③Before/Afterの時間を記録する、の順が確実です。全員に自由に使わせる前に、この3つを用意しておくと事故も反発も減ります。研修として設計したい場合は、助成金の活用も検討できます。</div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">← 前に読むならこれ</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで今日から始める</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-10/"><span class="r-ic">✨</span><span><span class="r-k">次に読む</span><span class="r-t">Claudeが“活きる”10のこと<small>／ 具体的な使いどころから入りたい方へ</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/cowork-10/"><span class="r-ic">🤝</span><span><span class="r-k">機能を深掘り</span><span class="r-t">Claude Coworkって何？活かし方10選<small>／ ファイル作業を任せる本命機能</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-50tools-guide/"><span class="r-ic">🔌</span><span><span class="r-k">機能を深掘り</span><span class="r-t">Claude×50ツール連携 完全ガイド（MCP）<small>／ Connectorsの実践編</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-code-10/"><span class="r-ic">🤖</span><span><span class="r-k">機能を深掘り</span><span class="r-t">Claude Codeが“活きる”10の使いどころ<small>／ 非エンジニアの入口から</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">あわせて読む</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ そもそもどのAIを使うか</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://claude.ai" target="_blank" rel="noopener"><span class="r-ic">💬</span><span><span class="r-k">公式サイト</span><span class="r-t">Claude を開く<small>／ 無料で今日から試す</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://support.claude.com" target="_blank" rel="noopener"><span class="r-ic">🛟</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">Claude ヘルプセンター<small>／ プラン・機能の最新の対応状況</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://code.claude.com/docs/ja/scheduled-tasks" target="_blank" rel="noopener"><span class="r-ic">⏱️</span><span><span class="r-k">公式ドキュメント</span><span class="r-t">スケジュール実行の仕様<small>／ Routines・定期タスクの違い</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://platform.claude.com/docs/ja/build-with-claude/adaptive-thinking" target="_blank" rel="noopener"><span class="r-ic">🧠</span><span><span class="r-k">公式ドキュメント</span><span class="r-t">適応的思考（Adaptive Thinking）<small>／ じっくり考えるモードの中身</small></span></span><span class="r-arw">↗</span></a>
+</div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>どの機能を使うかより、<br><span class="hl">どの作業を消すか</span>から。</h2>
+    <p>「機能は分かったけど、自社のどこに当てるか」で止まっている方へ。無料のAI化診断で、いちばん効く一手を一緒に決めましょう。Googleフォームで数分です。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※機能名・提供プラン・画面や手順は、提供元の更新により変わることがあります。導入前に公式の最新情報をご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /#doc -->
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+
+  // 文字サイズ切替（記事全体を拡大／設定を保持）
+  (function(){
+    var bar = document.getElementById('fsbar');
+    if(!bar) return;
+    var btns = bar.querySelectorAll('button[data-zoom]');
+    function apply(z){
+      document.documentElement.style.setProperty('--zoom', z);
+      btns.forEach(function(b){
+        b.setAttribute('aria-pressed', String(b.dataset.zoom === String(z)));
+      });
+      try{ localStorage.setItem('ugoku-fs', z); }catch(e){}
+    }
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){ apply(b.dataset.zoom); });
+    });
+    try{
+      var saved = localStorage.getItem('ugoku-fs');
+      if(saved){ apply(saved); }
+    }catch(e){}
+  })();
+</script>
+
+</body>
+</html>

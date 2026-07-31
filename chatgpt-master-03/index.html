@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3回：ドキュメント分析｜PDF・長文・紙の書類を数分で要点化（15分） ― UGOKU AI</title>
+<meta name="description" content="ChatGPT実践シリーズ第3回。AI初心者でも15分で身につく「書類をAIに読ませる技術」を、渡す４ルート（撮る・貼る・アップ・つなぐ）・紙と手書きの表化・長文PDFの3段構え・契約書の点検・複数資料の横断比較・検算と裏取りまで全網羅。2026年最新の上限・社内ナレッジ連携、コピペで使えるテンプレ、時間で測る費用対効果、自立型AIへの渡し方と注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第3回：ドキュメント分析 ― PDF・長文・紙の書類を数分で要点化（15分）｜UGOKU AI">
+<meta property="og:description" content="その書類、もう読まなくていい。100ページのPDFも、手書きの伝票も。15分で「読む仕事」をAIに渡す手順を、初心者向けに全手順・費用対効果・注意点つきで解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第3回：ドキュメント分析 ― PDF・長文・紙の書類を数分で要点化 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第3回：ドキュメント分析 ― PDF・長文・紙の書類を数分で要点化（15分）｜UGOKU AI">
+<meta name="twitter:description" content="「読む時間」は、AIに渡せます。紙もPDFも手書きも。15分で身につく書類分析の型を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+
+  /* ═══ 読了率アップ施策 ═══ */
+  /* スクロール進捗バー */
+  .prog{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(32,27,14,.16);z-index:999;}
+  .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);transition:width .1s linear;}
+  .prog-badge{position:fixed;top:12px;right:12px;z-index:999;background:rgba(32,27,14,.88);color:#F3F5F1;font-size:11.5px;font-weight:800;
+    padding:6px 13px;border-radius:100px;backdrop-filter:blur(6px);opacity:0;transition:.25s;pointer-events:none;letter-spacing:.02em;}
+  .prog-badge.on{opacity:1;}
+  .prog-badge b{color:var(--ember);}
+
+  /* 冒頭の“こうなる”宣言 */
+  .promise{padding:34px 0 0;}
+  .promise-card{background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;box-shadow:var(--shadow);}
+  .promise-k{display:inline-flex;align-items:center;gap:7px;background:var(--pine);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 14px;border-radius:100px;margin-bottom:14px;}
+  .promise-card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,4.8vw,27px);line-height:1.5;margin:0 0 6px;}
+  .promise-card h2 .hl{background:linear-gradient(transparent 58%,var(--ember-soft) 58%);padding:0 3px;}
+  .promise-card>p{color:var(--ink-soft);font-size:14.6px;margin:0 0 18px;}
+  .ba2{display:grid;gap:12px;align-items:stretch;}
+  @media(min-width:640px){.ba2{grid-template-columns:1fr 54px 1fr;}}
+  .ba2 .bx{border-radius:15px;padding:16px 17px;}
+  .ba2 .bx .bt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;margin-bottom:9px;}
+  .ba2 .bef{background:#F4F2EC;border:1px solid #DFD9C9;}
+  .ba2 .bef .bt{color:#8A8373;}
+  .ba2 .aft{background:linear-gradient(160deg,var(--pine),var(--pine-deep));border:1px solid var(--pine-deep);color:#F3F5F1;box-shadow:0 8px 22px rgba(32,27,14,.22);}
+  .ba2 .aft .bt{color:var(--ember);}
+  .ba2 ul{list-style:none;margin:0;padding:0;}
+  .ba2 li{position:relative;padding:5px 0 5px 21px;font-size:13.8px;border-bottom:1px dashed rgba(0,0,0,.09);}
+  .ba2 .aft li{border-bottom-color:rgba(255,255,255,.14);}
+  .ba2 li:last-child{border-bottom:none;}
+  .ba2 .bef li::before{content:"✕";position:absolute;left:0;top:5px;color:#B08A6A;font-weight:900;font-size:12px;}
+  .ba2 .aft li::before{content:"✓";position:absolute;left:0;top:5px;color:var(--ember);font-weight:900;font-size:12px;}
+  .ba2 .mid-ar{display:grid;place-items:center;font-size:26px;color:var(--ember-2);font-weight:900;}
+  @media(max-width:639px){.ba2 .mid-ar{transform:rotate(90deg);padding:2px 0;}}
+  .promise-foot{margin:16px 0 0;padding:14px 16px;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:13px;font-size:14px;color:#6B4A12;}
+  .promise-foot b{color:var(--ember-2);}
+
+  /* 目次 */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:20px 22px;margin:28px 0 8px;}
+  .toc .tt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+  .toc .ts{font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:2px;}
+  @media(min-width:640px){.toc ol{grid-template-columns:1fr 1fr;gap:2px 18px;}}
+  .toc li{counter-increment:t;}
+  .toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:13.9px;font-weight:600;padding:7px 8px;border-radius:9px;transition:.14s;}
+  .toc a:hover{background:#F6F3EA;}
+  .toc a::before{content:counter(t);flex:none;width:21px;height:21px;border-radius:7px;background:#F1EEE4;color:var(--pine);font-size:11px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .toc a.cur{background:var(--ember-soft);}
+  .toc a.cur::before{background:var(--ember);color:var(--pine-deep);}
+  .toc a .mn{margin-left:auto;font-size:11.5px;color:var(--ink-soft);font-weight:700;flex:none;}
+
+  /* 図解 */
+  figure.fig{margin:18px 0 6px;padding:0;}
+  figure.fig svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow-sm);}
+  figure.fig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:7px;text-align:center;}
+
+  /* STEP 完了チェック */
+  .done{display:flex;align-items:center;gap:10px;margin:18px 0 0;padding:12px 15px;background:#FCFCF9;border:1px dashed var(--line);border-radius:12px;cursor:pointer;user-select:none;transition:.15s;}
+  .done:hover{background:#F6F3EA;}
+  .done input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--accent,var(--pine));border-radius:7px;cursor:pointer;position:relative;margin:0;transition:.15s;}
+  .done input:checked{background:var(--accent,var(--pine));}
+  .done input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900;}
+  .done span{font-size:13.6px;font-weight:700;color:var(--ink-soft);}
+  .done input:checked + span{color:var(--accent,var(--pine));}
+
+  /* 章末ミニまとめ */
+  .gain{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--pine);border-radius:14px;padding:17px 20px;margin:26px 0 6px;box-shadow:var(--shadow-sm);}
+  .gain .gt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--pine);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+  .gain ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;}
+  .gain li{position:relative;padding-left:23px;font-size:14px;}
+  .gain li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ember-2);font-weight:900;font-size:13px;}
+  .gain .nx{margin:11px 0 0;font-size:13.6px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;}
+  .gain .nx b{color:var(--ember-2);}
+
+  /* 理解度クイズ */
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;}
+  .quiz .qh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:9px;}
+  .quiz .qs{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .qitem{border-top:1px solid var(--line);padding:16px 0 4px;}
+  .qitem:first-of-type{border-top:none;padding-top:4px;}
+  .qq{font-weight:800;font-size:14.8px;margin-bottom:10px;display:flex;gap:9px;}
+  .qq .qn{flex:none;width:23px;height:23px;border-radius:7px;background:var(--pine);color:#fff;font-size:12px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .qopts{display:grid;gap:8px;}
+  .qopt{text-align:left;background:#FCFCF9;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;font-size:13.8px;font-family:inherit;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.65;}
+  .qopt:hover{border-color:var(--pine-2);background:#F6F3EA;}
+  .qopt.ok{background:#FBEFC9;border-color:#E7C97A;font-weight:700;}
+  .qopt.ng{background:#FBECEC;border-color:#F0C2C2;opacity:.85;}
+  .qopt:disabled{cursor:default;}
+  .qfb{display:none;margin-top:10px;padding:12px 15px;border-radius:11px;font-size:13.6px;background:var(--ember-soft);border:1px solid #EBCF95;color:#6B4A12;}
+  .qfb.show{display:block;}
+  .qfb b{color:var(--ember-2);}
+  .qscore{margin-top:16px;padding:15px 17px;border-radius:13px;background:linear-gradient(160deg,var(--pine),var(--pine-deep));color:#F3F5F1;font-size:14px;display:none;}
+  .qscore.show{display:block;}
+  .qscore b{color:var(--ember);font-size:17px;}
+
+  /* 完読バッジ */
+  .finish{text-align:center;background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:26px 0 0;box-shadow:var(--shadow-sm);}
+  .finish .fk{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:10px;}
+  .finish h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(18px,4.2vw,23px);margin:0 0 10px;line-height:1.5;}
+  .finish p{font-size:14.3px;color:var(--ink-soft);margin:0 auto 14px;max-width:520px;}
+  .fbar{max-width:420px;margin:0 auto;background:#F1EEE4;border-radius:100px;height:12px;overflow:hidden;}
+  .fbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);border-radius:100px;transition:width .4s cubic-bezier(.2,.7,.3,1);}
+  .fnum{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;color:var(--pine);margin-top:9px;}
+  .fnum b{color:var(--ember-2);font-size:19px;}
+
+  /* ═══ 第2回 追加パーツ（既存トーンに合わせた最小限の追加） ═══ */
+  /* 3段階レベルの階段 */
+  .ladder{display:grid;gap:11px;margin:14px 0 0;}
+  @media(min-width:700px){.ladder{grid-template-columns:repeat(3,1fr);align-items:stretch;}}
+  .lv{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--pine));border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .lv .lv-n{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;font-weight:900;letter-spacing:.1em;color:var(--accent,var(--pine));margin-bottom:5px;}
+  .lv h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 7px;line-height:1.45;}
+  .lv p{margin:0 0 8px;font-size:13.4px;color:var(--ink-soft);}
+  .lv .lv-t{display:inline-block;font-size:11px;font-weight:800;background:#F3EFE3;color:var(--pine);border-radius:7px;padding:3px 10px;}
+  /* 材料タグ */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;}
+  .tags span{background:#F3EFE3;border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:12.5px;font-weight:700;color:var(--pine);}
+  /* 曖昧語 → 具体語 の言い換え表（軽量） */
+  .swap{display:grid;gap:9px;margin:12px 0 0;}
+  @media(min-width:620px){.swap{grid-template-columns:1fr 1fr;}}
+  .swap .sw{display:flex;align-items:center;gap:10px;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:10px 13px;font-size:13.3px;}
+  .swap .sw .x{color:#B23A3A;font-weight:800;white-space:nowrap;}
+  .swap .sw .ar{color:var(--ember-2);font-weight:900;flex:none;}
+  .swap .sw .o{color:var(--pine);font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- ═══ 読了プログレスバー ═══ -->
+<div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+<div class="prog-badge" id="progBadge">残り <b id="progMin">15</b> 分</div>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">ChatGPT実践シリーズ 第3回 ｜ 所要15分</span>
+      <h1>その書類、<br>もう<span class="hl">読まなくていい</span>。</h1>
+      <p class="lead">100ページのPDF、机に積まれた紙の書類、読みにくい手書きのメモ。<b>「読む時間」は、AIに渡せます。</b>この記事は、初めての方が15分で「書類をAIに読ませて、要点だけ受け取る」ところまで到達するための実践手順書です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">15分で書類を片づける <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 冒頭：結論先出し ═══ -->
+<div class="promise">
+  <div class="wrap">
+    <div class="promise-card">
+      <span class="promise-k">🏁 結論から言います</span>
+      <h2>この15分を終えると、<br>書類仕事は<span class="hl">「読む仕事」から「決める仕事」</span>に変わります。</h2>
+      <p>AIが賢くなって、いちばん劇的に変わったのが、この分野です。読むだけでは変わりませんが、手元の書類を1枚渡すだけで、その日のうちに差が出ます。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">BEFORE ／ 今のあなた</div>
+          <ul>
+            <li>届いた資料を「あとで読む」フォルダに入れて忘れる</li>
+            <li>契約書・仕様書を、どこを見ればいいか分からず全部読む</li>
+            <li>手書きの注文票・日報を、手で打ち直している</li>
+            <li>会議前夜に、資料5本をまとめて読み込むはめになる</li>
+            <li>要約させたら、書いていないことが混ざっていて怖い</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">AFTER ／ 15分後のあなた</div>
+          <ul>
+            <li>届いたその場で「自分に関係ある3行」だけ受け取れる</li>
+            <li>確認すべき条項が、根拠ページ付きで先に出てくる</li>
+            <li>紙を撮るだけで、表・CSVになって返ってくる</li>
+            <li>資料5本を横断して、比較表と論点リストが出る</li>
+            <li>「書いていないことは書かせない」頼み方が身についている</li>
+          </ul>
+        </div>
+      </div>
+      <div class="promise-foot">
+        📌 <b>この記事のいちばん新しい部分：</b>2026年に入り、AIの書類処理は「1枚を要約する」から<b>「社内に散らばった資料を横断して答える」</b>段階に入りました。<b>STEP5</b>で、その使い方と、中小企業が今日から取れる現実的な一歩をお渡しします。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>おかえりなさい、うごく君です。第1回で<b>土台</b>、第2回で<b>頼み方</b>ができました。今回はいよいよ、<b>あなたの会社にある本物の書類</b>を渡します。ここからが、AIが「便利な話し相手」から「実際に仕事が減る道具」に変わるところです。この記事を上から15分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>書類を渡す<b>4つのルート</b>を、場面で選べるようになる</li>
+          <li>紙・手書き・写真を<b>その場で表やCSV</b>にできる</li>
+          <li>長いPDFを<b>3段構え</b>で、崩さずに要点化できる</li>
+          <li>契約書・見積・仕様書を<b>「点検」</b>させる型が手に入る</li>
+          <li>いちばん怖い<b>「もっともらしい嘘」</b>の防ぎ方が分かる</li>
+          <li>自立型AIに<b>書類処理ごと渡す</b>ときの線引きが見える</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">「ドキュメント分析」って、<br>結局なにをするの？</h2>
+    <p class="sec-sub">難しい話ではありません。やることは、たった3つ。この順番で考えると、迷いません。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">📥</div>
+        <h4>1. 渡す<br><span>＝ どのルートで入れるか</span></h4>
+        <p>撮る・貼る・アップする・つなぐ。書類の種類と量で、正解のルートが変わります。ここを間違えると精度が落ちます。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">🔍</div>
+        <h4>2. 絞る<br><span>＝ 何のために読むか</span></h4>
+        <p>「要約して」ではなく「何を判断したいか」を先に渡す層。同じ資料でも、目的が違えば拾うべき要点は変わります。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">✅</div>
+        <h4>3. 確かめる<br><span>＝ 根拠まで出させる</span></h4>
+        <p>要約の怖さは「もっともらしい嘘」。根拠のページや原文を一緒に出させて、人が1点だけ検算する層です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CHATGPT MASTER ｜ LESSON 03</div>
+    <h2 class="sec-title">第3回：ドキュメント分析<br>― PDF・長文・紙の書類を、数分で要点化する ―</h2>
+    <p class="sec-sub">パソコンが得意でない方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計15分です。</p>
+
+    <!-- 目次 -->
+    <nav class="toc" id="toc">
+      <div class="tt">🗺️ この記事の地図（全6ステップ・15分）</div>
+      <p class="ts">気になるところから読んでも大丈夫。上から順に進めば15分で終わります。</p>
+      <ol>
+        <li><a href="#s1">書類を渡す4つのルート<span class="mn">2分</span></a></li>
+        <li><a href="#s2">紙・手書きを撮って要点化<span class="mn">3分</span></a></li>
+        <li><a href="#s3">長文PDFを“構造”で読ませる<span class="mn">3分</span></a></li>
+        <li><a href="#s4">★書類を“点検”させる<span class="mn">3分</span></a></li>
+        <li><a href="#s5">複数の資料を横断して比べる<span class="mn">2分</span></a></li>
+        <li><a href="#s6">検算と裏取り（最重要）<span class="mn">2分</span></a></li>
+        <li><a href="#s7">費用対効果を時間で測る<span class="mn">＋</span></a></li>
+        <li><a href="#s8">自立型AIへの渡し方<span class="mn">＋</span></a></li>
+        <li><a href="#quiz">理解度チェック（3問）<span class="mn">1分</span></a></li>
+        <li><a href="#cta">無料AI化診断<span class="mn">数分</span></a></li>
+      </ol>
+    </nav>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>ドキュメント分析でいちばん大事なのは、<strong>「要約して」と言わないこと</strong>です。渡すべきは<strong>「この資料を読んで、私は何を決めたいのか」</strong>。目的が変われば、拾うべき要点は変わります。ここだけで、返ってくる答えの実用度が一段変わります。</p>
+    </div>
+    <p class="link-note" style="margin:-28px 0 34px;">※本記事は<b>2026年7月時点</b>の公開情報に基づきます。ファイルの上限や連携できるサービスは更新の速い領域です。契約前・全社導入前には、必ず<a href="https://help.openai.com/" target="_blank" rel="noopener">OpenAI ヘルプセンター</a>の最新表記をご確認ください。</p>
+
+    <!-- なぜ差がつくのか -->
+    <h3 class="blk">なぜ「渡し方」だけで、ここまで差がつくのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">同じPDFを渡しても、人によって返ってくる答えの質が違います。理由は2つだけです。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>AIは「全部を等しく覚えている」わけではない</h4>
+        <p>長い資料を渡すと、AIは全体をざっと把握しますが、<b>細部は薄くなります</b>。人間が分厚い資料を斜め読みするのと同じで、真ん中あたりの細かい数字ほど抜けやすい。だから長文は「1回で全部」ではなく、<b>まず地図を作り、次に必要な章だけ深く読ませる</b>のが正解です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>「要約して」は、AIにとって指示になっていない</h4>
+        <p>要約とは<b>捨てる作業</b>です。何を残すかは目的で決まります。値上げ交渉のために読むのか、リスク確認のために読むのか、社内共有のために読むのか——目的を渡さないと、AIは「一般的に重要そうな部分」を残します。<b>当たり障りのない要約が返ってくるのは、目的を渡していないから</b>です。</p>
+      </div>
+    </div>
+
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>渡す前に、必ず一度立ち止まる</h4>
+        <p>書類には、あなたが渡すつもりのない情報が必ず載っています。<b>顧客名・住所・電話番号・従業員の個人情報・原価・取引条件</b>。写真なら該当部分を隠して撮る、ファイルなら必要なページだけ抜き出す。<b>これは技術の話ではなく、最初に決めるルール</b>です。第1回の宿題と同じ線引きが、ここで効いてきます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>「書いていないこと」は書かせない</h4>
+        <p>要約でいちばん怖いのは、それらしく<b>存在しない条項や数字</b>が混ざることです（ハルシネーション）。防ぎ方は簡単で、<b>「資料に書かれていないことは推測せず、『記載なし』と書いてください」</b>の一文を足すだけ。この1行の有無が、実務で使えるかどうかを分けます。</p>
+      </div>
+    </div>
+
+    <!-- 3段階レベル -->
+    <h3 class="blk">この記事のゴール：ドキュメント分析にも「3段階」がある</h3>
+    <p class="sec-sub" style="margin-top:-6px;">全部を今日やる必要はありません。まずレベル1、慣れたらレベル2。レベル3は会社の資料全体を扱う段階です。</p>
+    <div class="ladder">
+      <div class="lv" style="--accent:var(--chatgpt);">
+        <div class="lv-n">LEVEL 1 ／ 今日から</div>
+        <h4>1枚を撮って、要点化</h4>
+        <p>スマホで書類を撮って渡すだけ。紙・手書き・スクショが、その場で文字と表になります。</p>
+        <span class="lv-t">STEP 1・2 で解説</span>
+      </div>
+      <div class="lv" style="--accent:var(--ember-2);">
+        <div class="lv-n">LEVEL 2 ／ 仕事で使う</div>
+        <h4>長文を構造で読ませる</h4>
+        <p>100ページのPDFを、地図→深掘り→点検の3段構えで。契約書・仕様書の確認もここです。</p>
+        <span class="lv-t">STEP 3・4 で解説</span>
+      </div>
+      <div class="lv" style="--accent:var(--pine);">
+        <div class="lv-n">LEVEL 3 ／ 2026年の新常識</div>
+        <h4>資料を横断して答えさせる</h4>
+        <p>複数のファイル・社内ツールをまたいで、引用付きで答える段階。自立型AIの入口です。</p>
+        <span class="lv-t">STEP 5・自立型AIの章で解説</span>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip" id="s1">INPUT ／ 所要2分</span>
+          <div class="st-ttl">書類を渡す「4つのルート」を使い分ける</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">まずは入口です。ChatGPTに書類を渡す方法は4つあり、<b>どれを選ぶかで精度も速さも変わります</b>。難しくはありません。表で一発です。</p>
+
+        <div class="mini-h">4つのルートと、向き不向き</div>
+        <div class="cmp-wrap" style="margin-top:10px;">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>ルート</th><th>やり方</th><th>向いている場面</th><th>初心者の使いやすさ</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>① 撮る<br><span style="font-weight:500;font-size:12px;">（写真・スクショ）</span></th><td>スマホアプリの「＋」から撮影・選択</td><td>紙の書類、手書き、看板、エラー画面</td><td class="win">◎ いちばん速い</td></tr>
+              <tr><th>② 貼る<br><span style="font-weight:500;font-size:12px;">（テキスト貼り付け）</span></th><td>本文をコピーして入力欄に貼る</td><td>メール本文、Webの一部、短い条文</td><td class="win">◎ 必要な箇所だけ渡せる</td></tr>
+              <tr><th>③ アップする<br><span style="font-weight:500;font-size:12px;">（ファイル添付）</span></th><td>クリップのアイコン、またはドラッグ＆ドロップ</td><td>PDF・Word・Excel・CSV・PowerPoint</td><td class="win">◎ 長い資料はこれ一択</td></tr>
+              <tr><th>④ つなぐ<br><span style="font-weight:500;font-size:12px;">（アプリ連携）</span></th><td>設定からGoogle Drive等を接続</td><td>毎日同じ場所の資料を扱う人</td><td class="mid">△ 慣れてから・社内ルール確認を</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="fig">
+          <svg viewBox="0 0 640 310" role="img" aria-label="書類を渡す4つのルートの分岐図。紙なら撮る、一部なら貼る、長い資料ならアップロード、毎日同じ資料ならアプリ連携">
+            <rect width="640" height="310" fill="#FDFCF8"/>
+            <g font-family="Noto Sans JP, sans-serif">
+              <rect x="18" y="122" width="120" height="62" rx="14" fill="#2E2815"/>
+              <text x="78" y="148" font-size="13" font-weight="900" fill="#EAA800" text-anchor="middle">START</text>
+              <text x="78" y="170" font-size="15" font-weight="900" fill="#fff" text-anchor="middle">その書類は？</text>
+
+              <path d="M144 153 L182 153" stroke="#EAA800" stroke-width="3" stroke-linecap="round"/>
+              <path d="M176 145 L190 153 L176 161 Z" fill="#EAA800"/>
+
+              <rect x="196" y="14" width="196" height="62" rx="12" fill="#fff" stroke="#10A37F" stroke-width="2"/>
+              <text x="214" y="40" font-size="15" font-weight="900" fill="#10A37F">①</text>
+              <text x="236" y="40" font-size="15.5" font-weight="900" fill="#211C12">撮る</text>
+              <text x="214" y="62" font-size="12.5" fill="#5A5240">紙・手書き・エラー画面</text>
+
+              <rect x="196" y="88" width="196" height="62" rx="12" fill="#fff" stroke="#9A7000" stroke-width="2"/>
+              <text x="214" y="114" font-size="15" font-weight="900" fill="#9A7000">②</text>
+              <text x="236" y="114" font-size="15.5" font-weight="900" fill="#211C12">貼る</text>
+              <text x="214" y="136" font-size="12.5" fill="#5A5240">メール本文・条文の一部</text>
+
+              <rect x="196" y="162" width="196" height="62" rx="12" fill="#FBEFC9" stroke="#EAA800" stroke-width="2.5"/>
+              <text x="214" y="188" font-size="15" font-weight="900" fill="#9A7000">③</text>
+              <text x="236" y="188" font-size="15.5" font-weight="900" fill="#211C12">アップする</text>
+              <text x="214" y="210" font-size="12.5" fill="#5A5240">PDF・Excel・長い資料</text>
+
+              <rect x="196" y="236" width="196" height="62" rx="12" fill="#fff" stroke="#2E2815" stroke-width="2"/>
+              <text x="214" y="262" font-size="15" font-weight="900" fill="#2E2815">④</text>
+              <text x="236" y="262" font-size="15.5" font-weight="900" fill="#211C12">つなぐ</text>
+              <text x="214" y="284" font-size="12.5" fill="#5A5240">毎日同じ場所の資料</text>
+
+              <path d="M398 45 L432 45" stroke="#E7E1D2" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M398 119 L432 119" stroke="#E7E1D2" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M398 193 L432 193" stroke="#EAA800" stroke-width="3" stroke-linecap="round"/>
+              <path d="M398 267 L432 267" stroke="#E7E1D2" stroke-width="2.5" stroke-linecap="round"/>
+
+              <rect x="438" y="14" width="186" height="284" rx="16" fill="#2E2815"/>
+              <text x="531" y="52" font-size="12.5" font-weight="900" fill="#EAA800" text-anchor="middle" letter-spacing="1">共通のコツ</text>
+              <text x="531" y="92" font-size="17" font-weight="900" fill="#fff" text-anchor="middle">先に渡すのは</text>
+              <text x="531" y="118" font-size="17" font-weight="900" fill="#fff" text-anchor="middle">「何を判断したいか」</text>
+              <rect x="462" y="140" width="138" height="30" rx="8" fill="#EAA800"/>
+              <text x="531" y="161" font-size="13.5" font-weight="900" fill="#201B0E" text-anchor="middle">出力の形も指定する</text>
+              <text x="531" y="200" font-size="13" fill="#D8CBA1" text-anchor="middle">表で／CSVで／箇条書きで</text>
+              <rect x="462" y="220" width="138" height="30" rx="8" fill="#fff" opacity=".13"/>
+              <text x="531" y="241" font-size="13.5" font-weight="900" fill="#fff" text-anchor="middle">記載なしと書かせる</text>
+              <text x="531" y="276" font-size="12.5" fill="#D8CBA1" text-anchor="middle">これだけで実用度が変わります</text>
+            </g>
+          </svg>
+          <figcaption>図1：迷ったらこの分岐。「紙なら撮る・長いならアップ・一部なら貼る」で9割は決まります。</figcaption>
+        </figure>
+
+        <div class="mini-h">知っておくと安心な、上限のはなし</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">公式のFAQでは、<b>1ファイルあたり最大512MB</b>まで扱える設計とされています。また2026年2月のアップデートで、<b>1メッセージに添付できるファイル数が10→20</b>に拡張されました。ただし現場で先に当たるのは容量ではなく<b>文章量（トークン）の上限</b>です。数百ページの資料は、章ごとに分けたほうが確実に安定します。<a href="https://help.openai.com/en/articles/8555545-file-uploads-faq" target="_blank" rel="noopener">公式FAQを見る ↗</a></p>
+
+        <div class="mini-h">そのまま渡せるもの</div>
+        <div class="tags">
+          <span>📄 PDF</span>
+          <span>📝 Word</span>
+          <span>📊 Excel・CSV</span>
+          <span>📽️ PowerPoint</span>
+          <span>📷 紙の書類の写真</span>
+          <span>✍️ 手書きメモ</span>
+          <span>🖼️ スクリーンショット</span>
+          <span>🔗 WebページのURL</span>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ アップロードできない・読めないときの主な原因</div>
+          ①<b>スキャン画像だけのPDF</b>（文字が画像として埋まっている）は、テキストが取り出せず読めないことがあります。この場合はページを画像として渡すほうが確実です。②<b>パスワード付きPDF</b>は開けません。③<b>ファイル名が長すぎる・特殊文字を含む</b>と失敗することがあります。④それでもダメなら、<b>必要なページだけを別ファイルに分ける</b>のがいちばん速い解決策です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>迷ったら<b>「撮る」</b>から始めてみて。パソコンを開く必要すらないから、いちばん挫折しにくいんだ。机の上にある書類を1枚、今スマホで撮ってみるだけでいいよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="1"><span>STEP1 完了：書類を1つ渡してみた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip" id="s2">CAPTURE ／ 所要3分</span>
+          <div class="st-ttl">紙・手書きを撮って、そのまま「表」にする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">中小企業の現場で、いちばん時間を食っているのがここです。<b>手書きの注文票・日報・領収書・FAXを、手で打ち直す作業</b>。ここは丸ごと消せます。</p>
+
+        <div class="mini-h">AIの文字読み取りが、従来のOCRと違うところ</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">従来のOCRソフトは「形が似ている文字」を機械的に判定するため、癖字やかすれに弱いものでした。いまのAIは<b>前後の文脈から意味を推測できる</b>ため、多少読みにくい手書きでも、意味の通る文章として書き起こせます。しかも<b>読み取ったあと、そのまま集計や整形まで頼める</b>のが決定的な違いです。</p>
+
+        <figure class="fig">
+          <svg viewBox="0 0 640 280" role="img" aria-label="書類を撮るときの良い例と悪い例の比較図">
+            <rect width="640" height="280" fill="#FDFCF8"/>
+            <g font-family="Noto Sans JP, sans-serif">
+              <text x="24" y="30" font-size="14" font-weight="900" fill="#B34A3A">✕ 読み取りが落ちる撮り方</text>
+              <rect x="24" y="44" width="272" height="196" rx="14" fill="#fff" stroke="#E7E1D2" stroke-width="2"/>
+              <g transform="rotate(-9 160 140)">
+                <rect x="86" y="76" width="148" height="128" rx="6" fill="#F6F3EA" stroke="#D8CBA1" stroke-width="2"/>
+                <path d="M100 100 H206 M100 118 H206 M100 136 H180 M100 154 H206 M100 172 H164" stroke="#C9C0A8" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <path d="M86 76 L234 204" stroke="#B34A3A" stroke-width="0" />
+              <path d="M180 60 L296 60 L296 240 L180 240 Z" fill="#211C12" opacity=".16"/>
+              <text x="160" y="262" font-size="12.5" fill="#5A5240" text-anchor="middle">影が落ちている・傾いている・端が切れている</text>
+
+              <text x="344" y="30" font-size="14" font-weight="900" fill="#10A37F">◎ そのまま表になる撮り方</text>
+              <rect x="344" y="44" width="272" height="196" rx="14" fill="#fff" stroke="#10A37F" stroke-width="2.5"/>
+              <rect x="406" y="72" width="148" height="136" rx="6" fill="#fff" stroke="#2E2815" stroke-width="2"/>
+              <path d="M420 96 H540 M420 116 H540 M420 136 H540 M420 156 H540 M420 176 H500" stroke="#5A5240" stroke-width="4" stroke-linecap="round"/>
+              <rect x="406" y="72" width="148" height="24" fill="#FBEFC9"/>
+              <path d="M420 84 H540" stroke="#9A7000" stroke-width="4" stroke-linecap="round"/>
+              <text x="480" y="262" font-size="12.5" fill="#5A5240" text-anchor="middle">真上から・明るい場所で・全体が入っている</text>
+
+              <rect x="298" y="128" width="40" height="28" rx="8" fill="#EAA800"/>
+              <text x="318" y="147" font-size="15" font-weight="900" fill="#201B0E" text-anchor="middle">→</text>
+            </g>
+          </svg>
+          <figcaption>図2：撮り方で精度は変わります。影・傾き・見切れの3つを避けるだけで十分です。</figcaption>
+        </figure>
+
+        <div class="mini-h">精度を上げる、撮影の4つのコツ</div>
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>影を作らない</b>自分の手やスマホの影が文字にかからない角度で。窓際の自然光がいちばん読めます</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>真上から、まっすぐ</b>斜めから撮ると、行がゆがんで対応がずれます。書類の縁を画面と平行に</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>1枚に詰め込みすぎない</b>A3や見開きは、左右に分けて2枚で撮るほうが確実です</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>出力の形を必ず指定する</b>ここが最重要。「表で」「CSVで」と言うだけで、実用度が跳ね上がります</div></div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 紙 → 表 変換テンプレ（注文票・日報・名簿に）</span><button class="cb-btn">コピー</button></div>
+<pre>添付の写真は<span class="fill">〔書類の種類：例 手書きの注文票〕</span>です。
+書かれている内容を、そのまま表にしてください。
+
+# 列の指定
+<span class="fill">〔日付〕</span>／<span class="fill">〔品名〕</span>／<span class="fill">〔数量〕</span>／<span class="fill">〔単価〕</span>／<span class="fill">〔備考〕</span>
+
+# ルール
+・写真に書かれていない項目は、空欄のままにしてください。
+・読み取りに自信がない文字は、【？】を付けて教えてください。
+・勝手に補完・修正はしないでください。
+・最後に、合計金額と件数だけ計算して添えてください。</pre>
+        </div>
+
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">✕ もったいない頼み方</div>
+            「この写真、文字起こしして」<br><br><b>結果：</b>だらだらとした文章で返ってきて、結局Excelに手で入れ直すことになる
+          </div>
+          <div class="c good">
+            <div class="lb">◎ 効く頼み方</div>
+            「表にして。列は日付／品名／数量／単価。自信のない文字は【？】付きで」<br><br><b>結果：</b>コピーしてそのまま貼れる。確認すべき箇所も一目で分かる
+          </div>
+        </div>
+
+        <div class="mini-h">現場での使いどころ（そのまま真似できます）</div>
+        <ul class="use">
+          <li>手書きの<b>注文票・伝票</b>を撮って、表とCSVに</li>
+          <li>スタッフの<b>日報・作業報告</b>を撮って、要点と申し送りに分ける</li>
+          <li><b>領収書・レシート</b>をまとめて撮って、日付・金額・科目の表に</li>
+          <li>ホワイトボードの<b>会議メモ</b>を撮って、決定事項・宿題・期限に整理</li>
+          <li><b>名刺</b>を撮って、社名・氏名・連絡先の一覧に（※社外持ち出しの可否は社内ルールに従って）</li>
+          <li>読みにくい<b>FAXの発注書</b>を撮って、内容を確認しやすい形に</li>
+        </ul>
+
+        <div class="warn">
+          <div class="wt">⚠️ 撮る前に、隠す</div>
+          写真は<b>写り込みの事故</b>がいちばん多いルートです。顧客の氏名・住所・電話番号、従業員の個人情報、原価や取引条件——これらが写る場合は、<b>付箋で隠してから撮る／トリミングする</b>のが確実です。「表にしてほしいだけ」の書類に、渡す必要のない情報が載っていることは珍しくありません。<b>渡すのは、目的に必要な範囲だけ。</b>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「うちの現場、字が汚くて無理でしょ」——って言われるんだけど、意外といけるよ。ただし<b>数量と金額だけは、必ず人が見て</b>ね。文字は文脈で直せても、数字は文脈で直せないんだ。ここは第6回のデータ分析にもつながる大事なところ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="2"><span>STEP2 完了：紙を撮って表にできた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip" id="s3">LONG DOC ／ 所要3分</span>
+          <div class="st-ttl">長いPDFは「3段構え」で読ませる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">100ページの資料を「要約して」と一言で頼むと、<b>浅い箇条書き</b>が返ってきます。これはAIの限界ではなく、頼み方の問題です。プロは必ず3段階に分けます。</p>
+
+        <figure class="fig">
+          <svg viewBox="0 0 640 320" role="img" aria-label="長文PDFを地図づくり・深掘り・根拠照合の3段構えで読ませる流れ図">
+            <rect width="640" height="320" fill="#FDFCF8"/>
+            <g font-family="Noto Sans JP, sans-serif">
+              <rect x="20" y="24" width="120" height="272" rx="14" fill="#F6F3EA" stroke="#E7E1D2" stroke-width="2"/>
+              <text x="80" y="52" font-size="12.5" font-weight="900" fill="#9A7000" text-anchor="middle">INPUT</text>
+              <rect x="44" y="66" width="72" height="96" rx="4" fill="#fff" stroke="#D8CBA1" stroke-width="2"/>
+              <rect x="52" y="78" width="72" height="96" rx="4" fill="#fff" stroke="#D8CBA1" stroke-width="2"/>
+              <rect x="60" y="90" width="72" height="96" rx="4" fill="#fff" stroke="#2E2815" stroke-width="2"/>
+              <path d="M72 110 H120 M72 126 H120 M72 142 H104 M72 158 H120" stroke="#C9C0A8" stroke-width="3.5" stroke-linecap="round"/>
+              <text x="80" y="216" font-size="15" font-weight="900" fill="#211C12" text-anchor="middle">100ページ</text>
+              <text x="80" y="238" font-size="13" fill="#5A5240" text-anchor="middle">の資料</text>
+              <text x="80" y="272" font-size="12.5" fill="#B34A3A" text-anchor="middle">「要約して」だけだと</text>
+              <text x="80" y="290" font-size="12.5" fill="#B34A3A" text-anchor="middle">薄い箇条書きに</text>
+
+              <path d="M148 160 L182 160" stroke="#EAA800" stroke-width="3" stroke-linecap="round"/>
+              <path d="M176 152 L190 160 L176 168 Z" fill="#EAA800"/>
+
+              <rect x="198" y="28" width="424" height="76" rx="13" fill="#fff" stroke="#10A37F" stroke-width="2.5"/>
+              <circle cx="230" cy="66" r="17" fill="#10A37F"/><text x="230" y="72" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">1</text>
+              <text x="258" y="60" font-size="16" font-weight="900" fill="#211C12">地図をつくる</text>
+              <text x="258" y="84" font-size="13" fill="#5A5240">章立てと、目的に関係が深い章はどれか</text>
+
+              <rect x="198" y="120" width="424" height="76" rx="13" fill="#fff" stroke="#9A7000" stroke-width="2.5"/>
+              <circle cx="230" cy="158" r="17" fill="#9A7000"/><text x="230" y="164" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">2</text>
+              <text x="258" y="152" font-size="16" font-weight="900" fill="#211C12">必要な章だけ深掘り</text>
+              <text x="258" y="176" font-size="13" fill="#5A5240">範囲を狭めるほど、細部の精度は上がる</text>
+
+              <rect x="198" y="212" width="424" height="76" rx="13" fill="#FBEFC9" stroke="#EAA800" stroke-width="2.5"/>
+              <circle cx="230" cy="250" r="17" fill="#2E2815"/><text x="230" y="256" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">3</text>
+              <text x="258" y="244" font-size="16" font-weight="900" fill="#211C12">根拠を照合させる ★最重要</text>
+              <text x="258" y="268" font-size="13" fill="#5A5240">ページ数と原文の一文を出させ、1か所を目視</text>
+
+              <path d="M410 104 L410 118" stroke="#E7E1D2" stroke-width="3" stroke-linecap="round"/>
+              <path d="M410 196 L410 210" stroke="#E7E1D2" stroke-width="3" stroke-linecap="round"/>
+              <text x="640" y="316" font-size="0" fill="#fff">.</text>
+            </g>
+          </svg>
+          <figcaption>図3：一発で全部を読ませようとしない。地図→深掘り→照合の3段構えが、いちばん速くて正確です。</figcaption>
+        </figure>
+
+        <div class="mini-h">1段目：まず「地図」を作らせる</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">中身を要約する前に、<b>目次と構造だけ</b>を出させます。「この資料は何章立てで、それぞれ何ページから何が書かれているか」。これで、<b>自分がどこを読むべきか</b>が決まります。全体を読む必要は、そもそもありません。</p>
+
+        <div class="mini-h">2段目：必要な章だけ、深く読ませる</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">地図で当たりをつけたら、「第4章と第7章だけを、詳しく」と指定します。範囲が狭いほど、細部の精度は上がります。<b>全体を薄く読ませるより、必要な部分を濃く読ませる</b>——これが長文攻略のいちばんの近道です。</p>
+
+        <div class="mini-h">3段目：根拠を照合させる</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">最後に「その要点は、何ページのどの表現に基づくか」を出させます。ここまでやると、<b>人が確認すべき箇所が1〜2か所に絞れます</b>。全文チェックは不要になります。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 長文PDF 3段構えテンプレ（そのまま順に投げる）</span><button class="cb-btn">コピー</button></div>
+<pre>■ 1段目：地図を作らせる
+添付の資料について、まず全体の構成だけ教えてください。
+・章立て（見出しと、おおよそのページ）
+・それぞれの章に書かれていることを1行で
+・私の目的「<span class="fill">〔何を判断したいか〕</span>」に関係が深い章はどれか
+※この段階では、中身の詳しい要約はしないでください。
+
+■ 2段目：必要な章だけ深く読ませる
+<span class="fill">〔第◯章と第◯章〕</span>だけを、詳しく整理してください。
+・要点を5つまで
+・数字・期日・条件は原文のまま抜き出す
+・資料に書かれていないことは推測せず「記載なし」と書く
+
+■ 3段目：根拠を照合させる
+上の要点それぞれについて、根拠となる箇所を
+「ページ数」と「原文の一文」で示してください。
+根拠が見つからない項目があれば、正直に申告してください。</pre>
+        </div>
+
+        <div class="mini-h">目的の渡し方で、要約はここまで変わる</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 8px;">同じ資料でも、目的が違えば残すべき情報は変わります。<b>「要約して」の前に、この一文を足すだけ</b>で結果が別物になります。</p>
+        <div class="swap">
+          <div class="sw"><span class="x">要約して</span><span class="ar">→</span><span class="o">来週の商談で値上げを断る材料を探したい。関係する条項だけ抜き出して</span></div>
+          <div class="sw"><span class="x">この資料まとめて</span><span class="ar">→</span><span class="o">現場スタッフに5分で説明したい。専門用語なしの箇条書き7行で</span></div>
+          <div class="sw"><span class="x">内容教えて</span><span class="ar">→</span><span class="o">うちが対応しなければいけない作業と、その期限だけ表にして</span></div>
+          <div class="sw"><span class="x">短くして</span><span class="ar">→</span><span class="o">社長に口頭で報告する想定。結論・理由・判断が必要な点の3段で</span></div>
+          <div class="sw"><span class="x">読んでおいて</span><span class="ar">→</span><span class="o">前回版との違いだけを、変更箇所の一覧で</span></div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 分割するとき、いちばん多い失敗</div>
+          長い資料を分けて渡すのは正解ですが、<b>途中から前提が抜け落ちる</b>ことがあります。防ぐには、分割した各回の冒頭に「これは全◯回中の◯回目です。目的は〜」と一言添えること。そして最後に<b>「ここまでの全回をまとめて、通した要点を作って」</b>と頼みます。この最後の統合を飛ばすと、部分の要約が集まっただけの、使えない資料になります。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>この3段構え、実は<b>人が資料を読むときと同じ順番</b>なんだ。目次を見て、必要なところを読んで、大事なところに付箋を貼る。AIにも同じ順番でやらせるだけ。難しいことは何もしてないよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="3"><span>STEP3 完了：長い資料を3段構えで読ませた</span></label>
+      </div>
+    </div>
+
+    <div class="gain">
+      <div class="gt">🎒 ここまでの3ステップで、手に入ったもの</div>
+      <ul>
+        <li>書類を渡す<b>4つのルート</b>と、その使い分け</li>
+        <li>紙・手書きを<b>その場で表にする</b>頼み方</li>
+        <li>長文を崩さずに読ませる<b>3段構え</b></li>
+      </ul>
+      <p class="nx">残り<b>7分</b>。ここから先が、この記事でいちばん実務に効く部分です。<b>「読ませる」から「点検させる」へ。</b>次のSTEP4だけでも読んでいってください。</p>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip" id="s4">REVIEW ／ 所要3分</span>
+          <div class="st-ttl">★ 要約の次は「点検」——見落としを、先に出させる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここが、この記事でいちばん価値の高いパートです。多くの人は要約で止まりますが、実務で本当に助かるのは<b>「私が見落としそうな箇所を、先に教えて」</b>という使い方のほうです。</p>
+
+        <div class="mini-h">要約と点検は、まったく別の仕事</div>
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">要約：何が書いてあるか</div>
+            「この契約は、期間2年・自動更新・解約は3か月前通知です」<br><br><b>→</b> 内容は分かる。でも、<b>危ないかどうかは分からない</b>
+          </div>
+          <div class="c good">
+            <div class="lb">点検：どこに注意すべきか</div>
+            「解約通知が3か月前かつ書面限定です。更新月の逆算だと通知期限は◯月。ここが実務上の要注意点です」<br><br><b>→</b> <b>次に何をすべきか</b>まで分かる
+          </div>
+        </div>
+
+        <div class="mini-h">点検させたい書類、代表的な4つ</div>
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>契約書・注文請書</b>期間／自動更新／解約条件／責任範囲／支払サイト／遅延損害</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>見積書・請求書</b>数量と単価の整合、諸経費の内訳、含まれない範囲、有効期限</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>仕様書・図面の注記</b>納期、検査条件、支給品の有無、追加費用が発生する条件</div></div>
+          <div class="f-item"><div class="no">4</div><div class="t"><b>補助金・助成金の公募要領</b>対象要件、対象外経費、提出期限、必要書類、実績報告の条件</div></div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 書類点検テンプレ（契約書・見積・仕様書に）</span><button class="cb-btn">コピー</button></div>
+<pre>あなたは、中小企業の実務に詳しい事務方の担当者です。
+添付の<span class="fill">〔書類の種類〕</span>を、当社（<span class="fill">〔立場：発注側／受注側〕</span>）の視点で点検してください。
+
+# 出したいもの
+1. この書類の要点（5行以内）
+2. 当社にとって不利になり得る箇所と、その理由
+3. 期日・金額・数量など、間違えると事故になる数字の一覧
+4. 書かれていない＝あとで揉めそうな項目（記載漏れ）
+5. 先方に確認すべき質問（そのまま送れる文面で3つ）
+
+# ルール
+・各指摘には、根拠となるページ／条項番号を必ず添える
+・資料に書かれていないことは推測せず「記載なし」と明記する
+・確信度を「高／中／低」で示す
+・最終判断は人が行う前提で、断定を避ける</pre>
+        </div>
+
+        <div class="mini-h">「記載漏れ」を出させるのが、いちばん効きます</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">経験のある人が書類を見て「あれ、これ書いてないな」と気づく——その部分をAIに担わせる使い方です。<b>書いてあることを読むのは誰でもできますが、書いていないことに気づくのは経験が要ります。</b>ここを補ってもらえるのが、いちばん現場が助かるポイントです。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ ここは絶対に外せない一線です</div>
+          AIの点検結果は<b>「見落としを減らすための下読み」</b>であって、法的な判断ではありません。契約・税務・許認可・労務に関わる最終判断は、必ず<b>弁護士・税理士・社会保険労務士などの専門家</b>にご確認ください。AIに点検させる価値は、<b>専門家に相談する前に論点が整理されている</b>ことにあります。相談時間そのものが短く、濃くなります。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「そのまま送れる質問文を3つ」——ここ、地味だけどすごく効くよ。指摘だけもらっても、結局こちらが文面を考えることになるからね。<b>次の行動まで出させる</b>のが、時間が本当に減る頼み方なんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="4"><span>STEP4 完了：書類を点検させた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip" id="s5">CROSS ／ 所要2分</span>
+          <div class="st-ttl">複数の資料を、横断して比べさせる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">1枚の要約に慣れたら、次は<b>「まとめて渡して、比べさせる」</b>です。2026年2月のアップデートで、1メッセージあたり<b>20ファイル</b>まで添付できるようになり、この使い方が一気に現実的になりました。</p>
+
+        <div class="mini-h">よくある3つの型</div>
+        <ul class="use">
+          <li><b>相見積の比較</b>：3社の見積PDFを渡して、項目をそろえた比較表と、各社に確認すべき点</li>
+          <li><b>会議の事前準備</b>：議題に関わる資料5本を渡して、論点・対立点・決めるべきことを1枚に</li>
+          <li><b>改訂前後の差分</b>：旧版と新版を渡して、変更点だけを一覧に（規程・仕様・料金表など）</li>
+        </ul>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 複数資料の横断テンプレ（相見積・会議準備に）</span><button class="cb-btn">コピー</button></div>
+<pre>添付した<span class="fill">〔◯〕</span>件の資料を読み比べてください。
+目的は「<span class="fill">〔何を決めたいか〕</span>」です。
+
+# 出したいもの
+1. 比較表（行＝比較項目、列＝各資料）
+   ※項目名が資料ごとに違う場合は、揃えたうえで注記する
+2. 各資料にしか書かれていない独自の条件
+3. 資料間で食い違っている箇所（ここが最重要）
+4. 判断のために、まだ足りない情報
+
+# ルール
+・各セルに、出典（ファイル名・ページ）を添える
+・記載がない項目は空欄にせず「記載なし」と書く
+・優劣の断定はせず、判断材料の提示にとどめる</pre>
+        </div>
+
+        <div class="mini-h">毎回アップし直さなくていい方法</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">同じ資料を何度も使うなら、第1回で作った<b>プロジェクト</b>に置いておくのが正解です。価格表・マニュアル・社内規程などを入れておけば、その部屋での会話は常にその資料を前提に進みます。<b>「毎回アップロードする」から「置いておく」へ</b>——第1回の設定が、ここで効いてきます。<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/">第1回・プロジェクトの作り方へ →</a></p>
+
+        <div class="mini-h">法人向け：社内ツールを横断して答えさせる</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">Business・Enterprise・Eduのプランでは、<b>社内ナレッジ（company knowledge）</b>という機能が使えます。ドライブやチャットツールなど接続したアプリを横断して検索し、<b>引用元付きで</b>答える仕組みです。「その情報、どこに書いてありました？」に答えられるのが実務上の要です。ただし現時点ではWeb版が中心で、この機能を有効にしている間は<b>Web検索や画像生成が同時に使えない</b>といった制約もあります。<a href="https://help.openai.com/ja-jp/articles/12628342-company-knowledge-in-chatgpt-business-enterprise-and-edu" target="_blank" rel="noopener">公式の説明を見る ↗</a></p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 連携を広げる前に、必ず決めること</div>
+          「全部つないだほうが便利」は、事故が起きたときの<b>影響範囲も全部になる</b>ということです。接続は<b>必要なフォルダ・必要な範囲だけ</b>に絞る。誰がその情報にアクセスできるのかを、接続前に確認する。人事・給与・個人情報を含む領域は、原則つながない。これは技術ではなく、<b>社内ルールで決める話</b>です。<a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/">社内ルールの作り方はこちら →</a>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>比較で狙うべきは<b>「食い違っている箇所」</b>だよ。全部そろっている部分は、どうせ問題にならない。<b>違うところにしか、判断の余地はない</b>んだ。だから比較表より、3番の「食い違い一覧」のほうが実は価値が高いよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="5"><span>STEP5 完了：複数の資料を比べさせた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip" id="s6">VERIFY ／ 所要2分</span>
+          <div class="st-ttl">最重要：検算と裏取りの、現実的なやり方</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここを飛ばすと、他の全部が台無しになります。<b>AIの要約は、もっともらしく間違えることがあります。</b>全部を人が確認したら意味がない——では、どこを見ればいいのか。答えは決まっています。</p>
+
+        <figure class="fig">
+          <svg viewBox="0 0 640 300" role="img" aria-label="AIの要約後に人が確認すべき3種類（数字・期日と条件・固有名詞）を示す図">
+            <rect width="640" height="300" fill="#FDFCF8"/>
+            <g font-family="Noto Sans JP, sans-serif">
+              <text x="320" y="34" font-size="15" font-weight="900" fill="#9A7000" text-anchor="middle">全文チェックは要りません。見るのはこの3つだけ。</text>
+
+              <rect x="24" y="56" width="592" height="58" rx="12" fill="#fff" stroke="#E7E1D2" stroke-width="2"/>
+              <text x="48" y="82" font-size="14" font-weight="900" fill="#5A5240">AIが読んだ範囲</text>
+              <text x="48" y="102" font-size="12.5" fill="#5A5240">要点整理・構造化・論点抽出・比較 — ここは任せてよい</text>
+              <rect x="440" y="70" width="152" height="30" rx="8" fill="#F6F3EA"/>
+              <text x="516" y="90" font-size="13" font-weight="900" fill="#5A5240" text-anchor="middle">人の確認は不要</text>
+
+              <rect x="24" y="128" width="188" height="148" rx="14" fill="#fff" stroke="#EAA800" stroke-width="2.5"/>
+              <text x="118" y="164" font-size="30" text-anchor="middle">🔢</text>
+              <text x="118" y="196" font-size="16.5" font-weight="900" fill="#211C12" text-anchor="middle">数字</text>
+              <text x="118" y="222" font-size="12.5" fill="#5A5240" text-anchor="middle">金額・数量・料率・寸法</text>
+              <text x="118" y="252" font-size="12.5" font-weight="900" fill="#9A7000" text-anchor="middle">文脈で補正が効かない</text>
+
+              <rect x="226" y="128" width="188" height="148" rx="14" fill="#fff" stroke="#EAA800" stroke-width="2.5"/>
+              <text x="320" y="164" font-size="30" text-anchor="middle">📅</text>
+              <text x="320" y="196" font-size="16.5" font-weight="900" fill="#211C12" text-anchor="middle">期日と条件</text>
+              <text x="320" y="222" font-size="12.5" fill="#5A5240" text-anchor="middle">◯日前まで／◯の場合に限り</text>
+              <text x="320" y="252" font-size="12.5" font-weight="900" fill="#9A7000" text-anchor="middle">条件だけ落ちるのが危険</text>
+
+              <rect x="428" y="128" width="188" height="148" rx="14" fill="#fff" stroke="#EAA800" stroke-width="2.5"/>
+              <text x="522" y="164" font-size="30" text-anchor="middle">🏷️</text>
+              <text x="522" y="196" font-size="16.5" font-weight="900" fill="#211C12" text-anchor="middle">固有名詞</text>
+              <text x="522" y="222" font-size="12.5" fill="#5A5240" text-anchor="middle">社名・製品名・法令名</text>
+              <text x="522" y="252" font-size="12.5" font-weight="900" fill="#9A7000" text-anchor="middle">実在しないものが混ざる</text>
+            </g>
+          </svg>
+          <figcaption>図4：全文チェックは不要。人が見るべきは、この3種類だけです。</figcaption>
+        </figure>
+
+        <div class="mini-h">人が必ず自分の目で見る、3種類</div>
+        <div class="f-grid">
+          <div class="f-item"><div class="no">1</div><div class="t"><b>数字</b>金額・数量・料率・面積。1文字違うと事故になるもの。文脈で補正が効かない領域です</div></div>
+          <div class="f-item"><div class="no">2</div><div class="t"><b>期日と条件</b>「◯日前まで」「◯の場合に限り」。要約で条件だけ落ちるのが、いちばん危ない落ち方です</div></div>
+          <div class="f-item"><div class="no">3</div><div class="t"><b>固有名詞</b>会社名・製品名・法令名・制度名。実在しないものが混ざることがあります</div></div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 裏取りテンプレ（要約を受け取った直後に投げる）</span><button class="cb-btn">コピー</button></div>
+<pre>いまの要約について、確認させてください。
+
+1. 各項目の根拠を、ページ数と原文の一文で示してください。
+2. 資料に根拠が見つからなかった項目があれば、正直に挙げてください。
+3. あなた自身が「自信が低い」と感じる箇所を3つ、理由つきで挙げてください。
+4. 私が自分の目で必ず確認すべき箇所を、優先度順に3つだけ挙げてください。
+
+推測で埋めないでください。分からない場合は「不明」と書いてください。</pre>
+        </div>
+
+        <div class="mini-h">カスタム指示に入れておくと、毎回効きます</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 0;">書類を扱うことが多い方は、第1回で設定した<b>カスタム指示</b>に「資料を扱うときは、書かれていないことを推測せず『記載なし』と明記する」と入れておくと、毎回書かなくて済みます。<b>プロンプトは消耗品、設定は資産</b>——第1回の原則が、ここでも効きます。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ いちばん危ない誤解</div>
+          「根拠ページを出させたから安全」ではありません。<b>ページ番号そのものが、もっともらしく生成されることもあります。</b>だからこそ、最後は<b>原文をその場で開いて、1か所だけ目視する</b>。全文ではなく1か所でいいのです。この一手間がある運用と、無い運用では、事故率がまったく違います。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ここまで読んで「やっぱり面倒」と思った？大丈夫、比べてみて。<b>60分かけて全文を読む</b>のと、<b>5分で要点を受け取って、2か所だけ原文で確かめる</b>の。後者のほうが、速いうえに見落としが少ないんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="6"><span>STEP6 完了：根拠を出させて、1か所を目視で確認した</span></label>
+      </div>
+    </div>
+
+    <div class="gain">
+      <div class="gt">🏆 6ステップ、お疲れさまでした</div>
+      <ul>
+        <li>紙も長文も、<b>渡し方で使い分けられる</b>ようになりました</li>
+        <li>要約だけでなく<b>点検・比較</b>まで頼めるようになりました</li>
+        <li>いちばん怖い<b>もっともらしい嘘</b>の防ぎ方が身につきました</li>
+      </ul>
+      <p class="nx">ここから先は<b>おまけの実務編</b>です。「で、それって何分の得になるの？」——社内で必ず聞かれるこの質問に、数字で答えられるようにしておきましょう。</p>
+    </div>
+
+    <!-- 使い分け -->
+    <h3 class="blk">結局、どの渡し方を選べばいい？</h3>
+    <p class="sec-sub" style="margin-top:-6px;">4つのルートを覚えましたが、迷う必要はありません。次の1枚で決着します。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>やりたいこと</th><th>撮る</th><th>貼る</th><th>アップする</th><th>つなぐ</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>手書きの伝票・日報をデータ化</th><td class="win">◎</td><td>×</td><td class="mid">△</td><td>×</td></tr>
+          <tr><th>メール本文の要点整理・返信案</th><td class="mid">△</td><td class="win">◎</td><td class="mid">△</td><td>○</td></tr>
+          <tr><th>100ページのPDFを要点化</th><td>×</td><td class="mid">△</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>契約書・見積の点検</th><td>○</td><td class="mid">△</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>Excel・CSVの集計と傾向分析</th><td>×</td><td class="mid">△</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>相見積3社の比較</th><td class="mid">△</td><td>×</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>エラー画面・操作方法の相談</th><td class="win">◎</td><td class="mid">△</td><td>×</td><td>×</td></tr>
+          <tr><th>毎日同じフォルダの資料を扱う</th><td>×</td><td>×</td><td>○</td><td class="win">◎</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>🤝 3つがそろうと、こうなる</h4>
+      <div class="flow">
+        <span class="b">目的を先に<br>1行で渡す</span><span class="ar">→</span>
+        <span class="b">地図を作らせ<br>読む範囲を絞る</span><span class="ar">→</span>
+        <span class="b">要点＋点検＋<br>次の行動を出させる</span><span class="ar">→</span>
+        <span class="b">根拠を1か所<br>目視で確かめる</span>
+      </div>
+      <p style="margin:8px 0 0;font-size:14.3px;">この4手だけです。難しい設定も、特別なツールも要りません。ひとことで言えば——<b>ドキュメント分析とは、読む作業ではなく「読む範囲を決める作業」。</b>そこさえ人がやれば、残りは全部渡せます。</p>
+    </div>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk" id="s7">費用対効果を「時間」で見える化する</h3>
+    <p class="sec-sub" style="margin-top:-6px;">第1回は設定の効果、第2回はやり直しの減少。第3回で測るのは、いちばん分かりやすい<b>「読む時間」と「打ち直す時間」</b>です。ここは体感ではなく、ストップウォッチで測れます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>よくある業務</th><th>これまで</th><th>AIに渡すと</th><th>月20回で</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>手書き伝票のデータ入力（20行）</th><td>25分</td><td>5分（確認込み）</td><td class="win">▲6.6時間</td></tr>
+          <tr><th>契約書・注文請書の確認</th><td>50分</td><td>12分（点検＋目視1か所）</td><td class="win">▲12.6時間</td></tr>
+          <tr><th>公募要領・制度資料の読み込み</th><td>90分</td><td>20分</td><td class="win">▲23.3時間</td></tr>
+          <tr><th>相見積3社の比較表づくり</th><td>60分</td><td>15分</td><td class="win">▲15時間</td></tr>
+          <tr><th>会議前の資料5本の読み込み</th><td>75分</td><td>15分</td><td class="win">▲20時間</td></tr>
+          <tr><th>日報・報告書の要点まとめ</th><td>30分</td><td>7分</td><td class="win">▲7.6時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="fig">
+      <svg viewBox="0 0 640 300" role="img" aria-label="書類業務の所要時間の比較棒グラフ。これまでとAIに渡した場合">
+            <rect width="640" height="300" fill="#FDFCF8"/>
+            <g font-family="Noto Sans JP, sans-serif">
+              <text x="24" y="30" font-size="14" font-weight="900" fill="#9A7000">1件あたりの所要時間（分・目安）</text>
+              <g font-size="12.5" fill="#5A5240">
+                <text x="24" y="70">手書き伝票の入力</text>
+                <text x="24" y="126">契約書の確認</text>
+                <text x="24" y="182">公募要領の読み込み</text>
+                <text x="24" y="238">会議前の資料5本</text>
+              </g>
+              <g>
+                <rect x="176" y="54" width="125" height="18" rx="5" fill="#C9C0A8"/>
+                <rect x="176" y="76" width="25" height="18" rx="5" fill="#10A37F"/>
+                <text x="311" y="68" font-size="12" font-weight="900" fill="#5A5240">25分</text>
+                <text x="211" y="90" font-size="12" font-weight="900" fill="#10A37F">5分</text>
+
+                <rect x="176" y="110" width="250" height="18" rx="5" fill="#C9C0A8"/>
+                <rect x="176" y="132" width="60" height="18" rx="5" fill="#10A37F"/>
+                <text x="436" y="124" font-size="12" font-weight="900" fill="#5A5240">50分</text>
+                <text x="246" y="146" font-size="12" font-weight="900" fill="#10A37F">12分</text>
+
+                <rect x="176" y="166" width="430" height="18" rx="5" fill="#C9C0A8"/>
+                <rect x="176" y="188" width="96" height="18" rx="5" fill="#EAA800"/>
+                <text x="576" y="160" font-size="12" font-weight="900" fill="#5A5240">90分</text>
+                <text x="282" y="202" font-size="12" font-weight="900" fill="#9A7000">20分</text>
+
+                <rect x="176" y="222" width="360" height="18" rx="5" fill="#C9C0A8"/>
+                <rect x="176" y="244" width="72" height="18" rx="5" fill="#10A37F"/>
+                <text x="546" y="236" font-size="12" font-weight="900" fill="#5A5240">75分</text>
+                <text x="258" y="258" font-size="12" font-weight="900" fill="#10A37F">15分</text>
+              </g>
+              <g font-size="12.5" font-weight="900">
+                <rect x="176" y="274" width="14" height="12" rx="3" fill="#C9C0A8"/>
+                <text x="196" y="285" fill="#5A5240">これまで（自分で読む）</text>
+                <rect x="356" y="274" width="14" height="12" rx="3" fill="#10A37F"/>
+                <text x="376" y="285" fill="#5A5240">AIに渡す（確認時間を含む）</text>
+              </g>
+            </g>
+          </svg>
+      <figcaption>図5：削減幅がいちばん大きいのは「長い資料を読む時間」。ここは丸ごと渡せます。</figcaption>
+    </figure>
+
+    <p class="link-note">※目安です。書類の質（手書きの読みやすさ・PDFの作られ方）、求められる正確さ、担当者の習熟度により大きく変動します。実際の判断は、必ずご自身の業務で実測してください。</p>
+
+    <div class="combo">
+      <h4>📐 いちばん簡単な測り方</h4>
+      <div class="flow">
+        <span class="b">今週たまった<br>書類を1種類<br>選ぶ</span><span class="ar">→</span>
+        <span class="b">1件だけ<br>いつも通り<br>手で処理して計測</span><span class="ar">→</span>
+        <span class="b">次の1件を<br>AIに渡して計測<br>（確認時間も含む）</span><span class="ar">→</span>
+        <span class="b">差 × 月の件数</span>
+      </div>
+      <p style="margin:8px 0 0;font-size:14.3px;">2件測れば十分です。<b>「読む時間」は誰でも計れて、しかも一番はっきり減ります。</b>この数字が1つあるだけで、社内での説明も、研修投資の判断も、格段にラクになります。</p>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 数字を出すときの注意</div>
+      短縮時間には、必ず<b>確認と手直しの時間を含めて</b>ください。特にドキュメント分析は、<b>目視で確かめる工程を省いてはいけない</b>領域です。それを含めない試算は、社内で必ず崩れます。含めても十分に速い——それが正直な結論です。
+    </div>
+
+    <!-- 落とし穴 -->
+    <h3 class="blk">プロが見ている、初心者がやりがちな8つの落とし穴</h3>
+    <p class="sec-sub" style="margin-top:-6px;">研修の現場で、実際に多い順に並べました。当てはまるものがあれば、そこが伸びしろです。</p>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>目的を渡さず「要約して」と言う</div>
+        <p>要約は捨てる作業。何を残すかは目的で決まります。<b>「何を判断したいか」を1行</b>足すだけで別物になります。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>100ページを1回で読ませようとする</div>
+        <p>細部が薄くなります。<b>地図 → 必要な章だけ深掘り</b>の2段に分けるほうが、速くて正確です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>出力形式を指定しない</div>
+        <p>文字起こしは「表で」「CSVで」と言うだけで実用度が跳ね上がります。<b>形を決めないと、貼り直す作業が残ります。</b></p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>写り込みを確認せずに撮る</div>
+        <p>顧客名・住所・原価。<b>目的に必要のない情報は、隠してから撮る。</b>これは技術ではなくルールの話です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>数字をそのまま転記する</div>
+        <p>文字は文脈で補正できても、<b>数字は補正できません。</b>金額・数量・期日は、必ず人が原本と突き合わせを。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>「記載なし」と言わせる指示を入れない</div>
+        <p>この一文が無いと、AIは空白を一般論で埋めます。<b>推測させない指示</b>が、実務利用の前提条件です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">7</span>同じ資料を毎回アップし直す</div>
+        <p>よく使う資料は<b>プロジェクトに置く</b>。第1回で作った部屋が、そのまま資料棚になります。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">8</span>AIの点検結果を最終判断にする</div>
+        <p>AIは下読みです。<b>契約・税務・許認可・労務の最終判断は専門家へ。</b>論点整理までがAIの仕事です。</p>
+      </div>
+    </div>
+
+    <!-- 局面別 -->
+    <h3 class="blk">ドキュメント分析が効く、局面別の使いどころ</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「何に使えばいいか分からない」を消すための一覧です。まずこの中から、<b>今週やる予定のもの</b>を1つ選んで試してみてください。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>店舗・現場で</h4>
+        <ul>
+          <li>手書きの注文票・仕入伝票を撮って、表とCSVに</li>
+          <li>スタッフの日報を撮って、申し送りとクレーム兆候を抽出</li>
+          <li>メーカーの仕様変更の案内を渡して、現場が変える作業だけ抜き出す</li>
+          <li>外国語の資料や取扱説明書を、やさしい日本語＋多言語に</li>
+          <li>設備の点検表を撮って、前回との差分をチェック</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで</h4>
+        <ul>
+          <li>契約書を点検させて、確認すべき条項と質問文を用意</li>
+          <li>相見積3社を比較表に、食い違いを一覧化</li>
+          <li>補助金の公募要領から、自社の対象可否と必要書類を整理</li>
+          <li>会議資料5本を、論点・対立点・決定事項の1枚に</li>
+          <li>規程の旧版と新版を渡して、変更点だけ抜き出す</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで</h4>
+        <ul>
+          <li>役所からの通知を撮って「何を・いつまでに」だけ抽出</li>
+          <li>保険証券・約款のPDFを渡して、対象外の条件を確認</li>
+          <li>賃貸契約書を点検させて、退去時の負担範囲を把握</li>
+          <li>医師からの説明資料を、平易な言葉に置き換えて理解</li>
+          <li>家電の分厚い取説から、必要な操作だけ抜き出す</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・子育てで</h4>
+        <ul>
+          <li>学校からのプリントを撮って、持ち物と提出期限をカレンダー用に</li>
+          <li>板書の写真から、要点と練習問題を作らせる</li>
+          <li>資格試験の分厚いテキストを、章ごとの地図にしてから読む</li>
+          <li>英語の論文・資料を、要点と用語解説つきで日本語に</li>
+          <li>読書ノートを撮って、テーマ別に整理し直す</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自立型AI -->
+    <h3 class="blk" id="s8">ここに「自立型AI」が加わると、何が変わるか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">ドキュメント分析は、自立型AIと<b>いちばん相性が良い領域</b>です。同時に、事故が起きやすい領域でもあります。両方お伝えします。</p>
+    <p style="font-size:15px;margin:0 0 14px;">ChatGPTの業務エージェント <b>Work</b>、Claude Cowork、Microsoft 365 Copilot——2026年に出そろったこれらは、目標を伝えると工程を自分で分解し、複数のファイルやアプリを横断して<b>完成した成果物</b>まで仕上げます。これまでの「1つの資料を要約させる」が、<b>「この案件の資料を全部読んで、報告書を作っておいて」</b>に変わる、ということです。</p>
+
+    <div class="combo">
+      <h4>🔭 いちばん大事な前提</h4>
+      <p style="margin:0;font-size:14.5px;">自立型AIの成果は、<b>渡した資料の整い方</b>にそのまま比例します。ファイル名がバラバラで、最新版がどれか分からず、同じ内容の資料が3つある——その状態のまま渡しても、AIは迷います。<b>書類を任せられる会社とは、書類が整理されている会社</b>です。逆に言えば、第3回の練習は、そのまま自立型AIの準備運動になります。</p>
+    </div>
+
+    <div class="split" style="margin-top:16px;">
+      <div class="col work">
+        <div class="ch">✅ 任せやすい仕事 <span class="badge-mini">向いている</span></div>
+        <ul>
+          <li>複数の資料を読み比べて、比較表・論点整理にまとめる</li>
+          <li>定型書類から、決まった項目を抜き出して一覧化する</li>
+          <li>会議準備（資料収集→要点抽出→アジェンダ作成）</li>
+          <li>旧版と新版の差分を洗い出し、変更一覧を作る</li>
+          <li>手順メモや議事録から、読めるマニュアルを起こす</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">⛔ まだ任せない仕事 <span class="badge-mini">要注意</span></div>
+        <ul>
+          <li>読み取った内容を、そのまま基幹システムへ登録する処理</li>
+          <li>契約の締結可否、支払いの実行を伴う判断</li>
+          <li>法令・許認可・税務の最終判断</li>
+          <li>顧客の個人情報を含む書類の、一括処理</li>
+          <li>誤りが即事故になる数値（見積原価・投薬量・寸法など）の確定</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:24px;">自立型AIに書類処理を渡すときの、追加の型</div>
+    <div class="copybox">
+      <div class="cb-top"><span class="cb-lbl">📋 エージェント向けテンプレ（第13回への予習）</span><button class="cb-btn">コピー</button></div>
+<pre># ゴール
+<span class="fill">〔最終成果物と、それが使われる場面〕</span>
+
+# 使ってよい資料
+<span class="fill">〔対象フォルダ／ファイル名／期間の指定〕</span>
+※指定した範囲以外は参照しないでください。
+
+# 合格条件
+1. すべての項目に、出典（ファイル名・ページ）が付いていること
+2. 資料に記載がない項目は「記載なし」と明記されていること
+3. <span class="fill">〔案件固有の条件〕</span>
+
+# 絶対にやらないこと
+・外部への送信、公開、システムへの登録は行わない
+・不確かな数字を断定しない（根拠が無いものは「要確認」と明記）
+・個人情報を成果物に転記しない（必要な場合は伏せ字にする）
+
+# 途中で必ず止まるポイント
+・<span class="fill">〔ここまで進んだら、一度こちらに確認する〕</span>
+
+# 完成時の報告
+・合格条件1〜3の達成状況を1行ずつ
+・自信のない箇所と、その理由
+・人が必ず原本で検算すべき箇所を3つ</pre>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 書類×自立型AIで、いちばん多い事故のもと</div>
+      <b>「参照してよい範囲」を指定し忘れること</b>です。フォルダごと渡すと、古い版・下書き・別案件の資料まで判断材料にしてしまい、正しそうな顔をした間違いが生まれます。<b>①参照範囲を絞る ②出典を必ず付けさせる ③送信・登録・公開の前は人が承認する</b>——この3点は、便利さと引き換えにしてはいけない部分です。
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「自立型AIなんてまだ先」と思ってる方へ。今日やった<b>「出典を付けさせる」「記載なしと書かせる」</b>、これがそのまま入場券だよ。第3回をやっておくと、第13回でいきなり動けるんだ。</div>
+    </div>
+
+    <!-- つまずいたとき -->
+    <h3 class="blk">つまずいたときのチェックリスト</h3>
+    <div class="compact">
+      <details>
+        <summary>PDFをアップしたのに「読み取れません」と言われる</summary>
+        <div class="ans">多いのは<b>スキャン画像だけのPDF</b>です。文字が画像として埋め込まれていて、テキストが取り出せない状態。この場合は、そのページを<b>画像（スクリーンショットや写真）として渡す</b>と読めることがあります。ほかには、パスワード保護、ファイル名の特殊文字、容量超過も原因になります。いちばん確実なのは、<b>必要なページだけを別ファイルに分けて渡す</b>ことです。</div>
+      </details>
+      <details>
+        <summary>要約させたら、資料に無いことが書かれていた</summary>
+        <div class="ans">プロンプトに<b>「資料に書かれていないことは推測せず『記載なし』と書いてください」</b>が入っているか確認してください。この1行の有無で、発生率が大きく変わります。それでも起きる場合は、範囲が広すぎるサインです。章を絞って読ませ直し、<b>根拠のページと原文の一文</b>を必ず出させてください。頻繁に書類を扱う方は、第1回のカスタム指示に常設しておくのがおすすめです。</div>
+      </details>
+      <details>
+        <summary>長い資料の後半になると、内容が雑になる</summary>
+        <div class="ans">一度に読ませる量が多すぎます。<b>章ごとに分けて渡し、最後に統合させる</b>のが確実です。分割時は各回の冒頭に「全◯回中の◯回目、目的は〜」と添え、最後に「ここまでを通した要点を作って」と頼んでください。また、会話が長くなりすぎた場合も同じ症状が出ます。方向性が固まったら、<b>新しい会話を開いて要点だけ渡し直す</b>と復調します。</div>
+      </details>
+      <details>
+        <summary>手書きの読み取りが、思ったより外れる</summary>
+        <div class="ans">まず撮り方を見直してください（影・傾き・見切れ）。そのうえで<b>「自信のない文字には【？】を付けて」</b>と指定すると、どこを見ればいいかが分かるので実用度が上がります。それでも厳しい場合は、<b>1枚に写す範囲を減らす</b>のが効きます。A3の見開きを1枚で撮るより、半分ずつ2枚のほうが確実です。</div>
+      </details>
+      <details>
+        <summary>Excelを渡したのに、集計が合わない</summary>
+        <div class="ans">よくある原因は、<b>結合セル・複数シート・見出しが2行にまたがる表</b>です。人間には読めても、機械的には行と列の対応が崩れます。対処は3つ。①<b>必要なシートだけ</b>を別ファイルにする ②<b>CSVに書き出して</b>渡す ③「1行目が見出し、A列が日付です」と<b>構造を言葉で伝える</b>。数字を扱う話は、第6回でさらに詳しく扱います。</div>
+      </details>
+      <details>
+        <summary>社内の資料を渡していいのか、判断がつかない</summary>
+        <div class="ans">判断に迷う情報は、<b>そもそも入力しない</b>のが最も確実です。そのうえで、会社として使うなら「①入れてはいけない情報 ②使ってよい業務 ③人が必ず確認する工程」の3点を<b>紙1枚</b>にして共有してください。Business／Enterpriseでは、入力内容が学習に使われない扱いが標準で、管理者側で設定を統一できます。<b>「禁止」より「安全な選択肢を配る」</b>ほうが、現場では機能します。</div>
+      </details>
+    </div>
+
+    <!-- 安全に -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>渡す範囲を、目的に必要な分だけに絞る</div>
+        <p>ファイルは必要なページだけ、写真は隠してから撮る。個人情報・原価・取引条件は入れない。この線引きが最初のルールです。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>他社の資料の扱いに注意する</div>
+        <p>他社の提案書や記事を読ませて<b>酷似したものを作らせる</b>使い方は避けてください。分析・比較にとどめ、成果物は自社の言葉で作り直します。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>数字と期日は、必ず人が原本で確認する</div>
+        <p>要約は下読みです。金額・数量・期限・条件だけは、原本と突き合わせる運用を崩さないでください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>最終判断は人と専門家が行う</div>
+        <p>契約・税務・許認可・労務の判断は専門家へ。AIの役割は、相談前に論点を整理しておくことです。</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料プランでも、書類の読み込みはできますか？</summary>
+        <div class="ans">はい、基本的な読み込みは無料プランでも利用できます。差が出るのは<b>1日に扱える回数と、使えるモデルの範囲</b>です。長い資料を毎日扱うなら有料プランが快適ですが、まずは無料で「自分の業務で本当に効くか」を確かめるのが合理的です。上限に当たる頻度が分かってから決めれば十分です（プラン選びは第1回で解説しています）。</div>
+      </details>
+      <details>
+        <summary>スマホだけでも大丈夫ですか？</summary>
+        <div class="ans">むしろスマホが強い領域です。<b>紙を撮る用途では、スマホがいちばん速い</b>ので、現場での活用は十分に可能です。一方、長いPDFの読み込みや、複数ファイルをまとめて扱う作業はパソコンのほうが快適です。<b>撮るのはスマホ、まとめるのはPC</b>という組み合わせが、実務ではいちばんラクだと思います。</div>
+      </details>
+      <details>
+        <summary>アップロードした資料は、学習に使われますか？</summary>
+        <div class="ans">扱いはプランと設定によって変わります。Business／Enterpriseでは、入力内容がモデルの学習に使われない扱いが標準です。個人プランでも設定画面（データ管理）から選択できる項目があります。ただし最も確実なのは、<b>判断に迷う情報はそもそも入力しない</b>ことです。会社で使うなら、社内ルールと合わせてご確認ください。</div>
+      </details>
+      <details>
+        <summary>紙の書類が毎日大量にあります。1枚ずつ撮るしかないですか？</summary>
+        <div class="ans">枚数が多い場合は、<b>複合機のスキャン機能でまとめてPDF化</b>し、ファイルとして渡すほうが速いです。1回の会話で扱う量が多すぎる場合は、日別・種類別に分けてください。さらに件数が多い、毎日発生する、という段階になったら、それは<b>自動化を検討するサイン</b>です（第12回・第13回で扱います）。まずは今の運用で、どれだけ時間が減るかを実測してからでも遅くありません。</div>
+      </details>
+      <details>
+        <summary>ChatGPTとClaude、書類分析はどちらが得意ですか？</summary>
+        <div class="ans">優劣ではなく得意分野の違いです。<b>写真から読み取る・表計算と組み合わせる・画像も含めて扱う</b>といった幅広さではChatGPT、<b>長い文章を丁寧に読み込み、慎重な日本語で整理する</b>用途ではClaudeを好む方が多い印象です。どちらも無料枠があるので、同じ資料を両方に渡して比べてみるのがいちばん早い判断方法です。姉妹シリーズで同じテーマを扱っているので、読み比べてみてください。</div>
+      </details>
+      <details>
+        <summary>社内に広めたいのですが、何から始めればいいですか？</summary>
+        <div class="ans">3つの順で進めると定着します。①<b>いちばん時間を食っている書類を1種類だけ</b>決めて、全員でそれだけやる ②うまくいったプロンプトを1つ、共通のテンプレとして配る ③慣れてきたら、その資料をプロジェクトに置いて共有する。<b>いきなり「何でもAIに読ませていい」とすると、ほぼ確実に事故か放置になります。</b>1種類から始めるのが確実です。</div>
+      </details>
+      <details>
+        <summary>研修として社内に導入する場合、助成金は使えますか？</summary>
+        <div class="ans">人材開発支援助成金など、要件を満たせば活用を検討できる制度があります。ただし対象コース・訓練時間・申請時期などの要件は毎年更新されるため、必ず最新の公募要領と、管轄の労働局へのご確認をお願いします。UGOKU AIでは、要件の整理からご相談いただけます。</div>
+      </details>
+    </div>
+
+    <!-- クイズ -->
+    <h3 class="blk" id="quiz">理解度チェック（3問・1分）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">読んだだけだと、たいてい3日で忘れます。3問だけ答えて、記憶に固定してから閉じてください。</p>
+    <div class="quiz" id="quizBox">
+      <div class="qh">🧠 3問クイズ</div>
+      <p class="qs">選ぶだけ。すぐに答えと解説が出ます。</p>
+
+      <div class="qitem" data-ans="2">
+        <div class="qq"><span class="qn">1</span><span>100ページのPDFを要点化したい。いちばん確実な進め方は？</span></div>
+        <div class="qopts">
+          <button class="qopt">「要約して」と一言で頼む</button>
+          <button class="qopt">全ページを画像にして1枚ずつ渡す</button>
+          <button class="qopt">まず章立ての地図を作らせ、必要な章だけ深く読ませる</button>
+          <button class="qopt">有料プランに変更してから渡す</button>
+        </div>
+        <div class="qfb"><b>正解：まず地図を作らせ、必要な章だけ深く読ませる。</b>一度に全部読ませると細部が薄くなります。<b>地図 → 深掘り → 根拠の照合</b>の3段構えが、いちばん速くて正確です。</div>
+      </div>
+
+      <div class="qitem" data-ans="1">
+        <div class="qq"><span class="qn">2</span><span>要約に「資料に無いこと」が混ざるのを防ぐ、いちばん効く一文は？</span></div>
+        <div class="qopts">
+          <button class="qopt">「正確に要約してください」</button>
+          <button class="qopt">「書かれていないことは推測せず『記載なし』と書いてください」</button>
+          <button class="qopt">「専門家として回答してください」</button>
+          <button class="qopt">「短くまとめてください」</button>
+        </div>
+        <div class="qfb"><b>正解：「記載なし」と書かせる一文。</b>AIは空白を一般論で埋めようとします。<b>推測を禁止し、根拠のページと原文を出させる</b>——この2つで、実務に耐える精度になります。</div>
+      </div>
+
+      <div class="qitem" data-ans="3">
+        <div class="qq"><span class="qn">3</span><span>AIに書類を読ませたあと、人が必ず自分の目で確認すべきなのは？</span></div>
+        <div class="qopts">
+          <button class="qopt">文章のトーンや言い回し</button>
+          <button class="qopt">見出しの付け方</button>
+          <button class="qopt">全文（省略してはいけない）</button>
+          <button class="qopt">数字・期日と条件・固有名詞</button>
+        </div>
+        <div class="qfb"><b>正解：数字・期日と条件・固有名詞。</b>文字は文脈で補正が効きますが、<b>数字は補正が効きません</b>。全文チェックは不要。この3種類だけ原本と突き合わせれば、事故はほぼ防げます。</div>
+      </div>
+
+      <div class="qscore" id="qScore"></div>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全15回＋番外編）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">1回あたり10〜15分、上から順に積み上がる設計です。<b>読む→書く→作る→見せる→任せる→広げる</b>の順で進みます。第3回は、AIが<b>「あなたの会社の情報」を扱い始める</b>最初の回です。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>回</th><th>テーマ</th><th>この回で手に入るもの</th><th>時間</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>第1回</th><td>ChatGPTの基礎</td><td>毎回説明しなくていいワークスペース</td><td>15分</td></tr>
+          <tr><th>第2回</th><td>伝わる頼み方</td><td>10倍の結果を引き出すプロンプトの型</td><td>10分</td></tr>
+          <tr><th>第3回</th><td class="win">ドキュメント分析（この記事）</td><td class="win">PDF・長文・紙の書類を数分で要点化</td><td>15分</td></tr>
+          <tr><th>第4回</th><td>メール＆文書</td><td>数秒でプロの文面。断り方・詫び方の型</td><td>10分</td></tr>
+          <tr><th>第5回</th><td>Deep Research</td><td>調査レポートの自動生成と、裏取りの手順</td><td>15分</td></tr>
+          <tr><th>第6回</th><td>データ分析＆Excel連携</td><td>表計算の中でAIを直接動かす</td><td>10分</td></tr>
+          <tr><th>第7回</th><td>画像生成＆写真編集</td><td>POP・バナー・商品ビジュアルを内製化</td><td>15分</td></tr>
+          <tr><th>第8回</th><td>音声モード＆会議</td><td>ハンズフリー活用と、録音→議事録</td><td>10分</td></tr>
+          <tr><th>第9回</th><td>コンテンツ制作</td><td>SNS投稿・台本・コピーの量産（動画生成も）</td><td>15分</td></tr>
+          <tr><th>第10回</th><td>Canvas</td><td>会話ではなく“編集画面”で仕上げる</td><td>10分</td></tr>
+          <tr><th>第11回</th><td>マイGPT（GPTs）</td><td>自分専用AIを作り、社内に配る</td><td>15分</td></tr>
+          <tr><th>第12回</th><td>タスク自動化＆アプリ連携</td><td>定時実行と、Drive・カレンダー等との接続</td><td>10分</td></tr>
+          <tr><th>第13回</th><td>ChatGPT Work</td><td>自立型AIに“仕事”ごと渡す</td><td>15分</td></tr>
+          <tr><th>第14回</th><td>チーム導入</td><td>Business設定・共有・社内ルールづくり</td><td>10分</td></tr>
+          <tr><th>第15回</th><td>フルワークフロー</td><td>1〜14をつないだ完全AI自動化システム</td><td>15分</td></tr>
+          <tr><th>番外編</th><td>総括／セキュリティ</td><td>情報漏洩・コンプライアンス・社内規程の型</td><td>15分</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">合計 約190分（＋番外編15分）。第3回で身につけた「渡し方」と「検算」は、第5回のDeep Research、第6回のデータ分析、第13回の自立型AIまで、そのまま効き続けます。</p>
+
+    <div class="finish">
+      <div class="fk">COMPLETE</div>
+      <h4 id="fTtl">最後まで読んでくれて、ありがとう。</h4>
+      <p id="fMsg">上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。</p>
+      <div class="fbar"><i id="fBar"></i></div>
+      <div class="fnum"><b id="fNum">0</b> / 6 ステップ完了</div>
+    </div>
+
+    <div class="keystone" style="margin-top:32px;">
+      <span class="kl">🎓 第3回の宿題</span>
+      <p>この記事を閉じる前に、<strong>机の上にある書類を1枚だけ撮って、「何を判断したいか」を1行添えて渡してみて</strong>ください。それだけで第3回は合格です。次の第4回では、この読み取った内容を使って <strong>「数秒でプロの文面をつくる——断り方・詫び方の型」</strong> を扱います（所要10分）。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-02/"><span class="r-ic">📝</span><span><span class="r-k">← 前の回（第2回）</span><span class="r-t">10倍の結果を引き出すプロンプトの型<small>／ ChatGPT実践シリーズ 第2回（10分）</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">✉️</span><span><span class="r-k">▶ 次に読む（第4回）</span><span class="r-t">メール＆文書：断り方・詫び方の型<small>／ ChatGPT実践シリーズ 第4回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">土台をまだの方は</span><span class="r-t">正しいAIワークスペースの設定方法<small>／ ChatGPT実践シリーズ 第1回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-03/"><span class="r-ic">🔁</span><span><span class="r-k">姉妹シリーズ・読み比べ</span><span class="r-t">Claude実践シリーズ 第3回：あらゆる文書を数分で要約<small>／ 同じテーマを、Claudeで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まだの方はこちらから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">💡</span><span><span class="r-k">頼み方を増やすなら</span><span class="r-t">社長が今すぐ使えるプロンプト100選<small>／ 経営・営業・数字・私生活まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">書類を扱う前に</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">あわせて読む</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://help.openai.com/en/articles/8555545-file-uploads-faq" target="_blank" rel="noopener"><span class="r-ic">📎</span><span><span class="r-k">公式</span><span class="r-t">ファイルアップロードのFAQ<small>／ 対応形式・上限の最新情報</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://help.openai.com/" target="_blank" rel="noopener"><span class="r-ic">🛟</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">OpenAI ヘルプセンター<small>／ 機能・設定の最新情報</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>読む時間は減らせる。<br>次は、<span class="hl">あなたの会社の書類</span>で試しませんか？</h2>
+    <p>「どの書類から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の内容は2026年7月時点の公開情報に基づきます。各サービスの画面・機能・料金・上限は、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。また、契約・税務・許認可・労務に関する最終判断は、必ず専門家にご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── 1. 読了プログレス＋残り時間 ── */
+  var bar=document.getElementById('progBar'),
+      badge=document.getElementById('progBadge'),
+      minEl=document.getElementById('progMin'),
+      TOTAL=15, ticking=false;
+  function onScroll(){
+    var h=document.documentElement,
+        max=(h.scrollHeight-h.clientHeight)||1,
+        r=Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max));
+    bar.style.width=(r*100).toFixed(1)+'%';
+    var left=Math.max(1,Math.ceil(TOTAL*(1-r)));
+    minEl.textContent=left;
+    badge.classList.toggle('on', r>0.04 && r<0.97);
+    spy();
+    ticking=false;
+  }
+  /* ── 2. 目次のスクロール追従 ── */
+  var links=[].slice.call(document.querySelectorAll('.toc a')),
+      targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function spy(){
+    var best=-1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].getBoundingClientRect().top<140) best=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('cur',i===best);});
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+  },{passive:true});
+  onScroll();
+
+  /* ── 3. STEP完了チェック（保存つき・失敗しても動作継続） ── */
+  var KEY='ugoku_cm03_steps',
+      boxes=[].slice.call(document.querySelectorAll('.done input')),
+      fBar=document.getElementById('fBar'),
+      fNum=document.getElementById('fNum'),
+      fTtl=document.getElementById('fTtl'),
+      fMsg=document.getElementById('fMsg');
+  function load(){
+    try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];}
+  }
+  function save(v){ try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){} }
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    if(fBar) fBar.style.width=(n/6*100)+'%';
+    if(fNum) fNum.textContent=n;
+    if(!fTtl) return;
+    if(n===0){
+      fTtl.textContent='最後まで読んでくれて、ありがとう。';
+      fMsg.innerHTML='上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。';
+    }else if(n<3){
+      fTtl.textContent='いいスタートです。';
+      fMsg.innerHTML='読むだけで終わる人が大半のなか、あなたはもう手を動かしています。<b>次の1つ</b>をやると、型が体に入ります。';
+    }else if(n<6){
+      fTtl.textContent='もう「書類を渡せる人」です。';
+      fMsg.innerHTML='あとはSTEP6の検算まで。<b>根拠を出させて1か所目視する</b>ここが、実務で使えるかどうかの分かれ目です。';
+    }else{
+      fTtl.textContent='第3回、完全クリアです。おめでとう！';
+      fMsg.innerHTML='6ステップすべて実践しました。ここまでできたら、次は<b>その資料をプロジェクトに置く</b>番。第13回の自立型AIに直結します。';
+    }
+  }
+  var saved=load();
+  boxes.forEach(function(b){
+    if(saved.indexOf(b.dataset.step)>-1) b.checked=true;
+    b.addEventListener('change',function(){
+      save(boxes.filter(function(x){return x.checked;}).map(function(x){return x.dataset.step;}));
+      paint();
+    });
+  });
+  paint();
+
+  /* ── 4. 理解度クイズ ── */
+  var items=[].slice.call(document.querySelectorAll('.qitem')),
+      scoreEl=document.getElementById('qScore'), correct=0, answered=0;
+  items.forEach(function(it){
+    var ans=parseInt(it.dataset.ans,10),
+        opts=[].slice.call(it.querySelectorAll('.qopt')),
+        fb=it.querySelector('.qfb');
+    opts.forEach(function(btn,idx){
+      btn.addEventListener('click',function(){
+        if(it.dataset.locked) return;
+        it.dataset.locked='1'; answered++;
+        var hit=(idx===ans);
+        if(hit) correct++;
+        opts.forEach(function(o,i){
+          o.disabled=true;
+          if(i===ans) o.classList.add('ok');
+          else if(i===idx) o.classList.add('ng');
+        });
+        fb.classList.add('show');
+        if(answered===items.length && scoreEl){
+          var msg = correct===3 ? '完璧です。もう社内に教えられるレベル。'
+                  : correct===2 ? 'good。取りこぼした1問だけ、上に戻って確認を。'
+                  : '大丈夫、ここが伸びしろです。STEP3とSTEP6をもう一度どうぞ。';
+          scoreEl.innerHTML='🎯 <b>'+correct+' / 3 問正解</b>　'+msg;
+          scoreEl.classList.add('show');
+        }
+      });
+    });
+  });
+})();
+</script>
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

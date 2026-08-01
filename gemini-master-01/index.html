@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/gemini-master-01/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1回：Geminiの基礎｜正しいAIワークスペースの設定方法（15分） ― UGOKU AI</title>
+<meta name="description" content="Gemini実践シリーズ第1回。AI初心者でも15分で終わる「正しいAIワークスペース」の作り方を、Googleアカウントの一本化・プラン選び・パーソナライズ（保存された情報）・アプリ連携・Gem・Gemini Notebook・Gemini Spark（自立型AI）まで全網羅。費用対効果の計算式、コピペで使えるテンプレ、仕事と私生活での活かし方、注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第1回：Geminiの基礎 ― 正しいAIワークスペースの設定方法（15分）｜UGOKU AI">
+<meta property="og:description" content="毎日使っているGoogleの中に、AIはもう入っている。15分の設定で、Gemini はGmailもDriveも知っている“社内の人”に変わります。初心者向けに全手順・費用対効果・注意点つきで解説。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/gemini-master-01/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/gemini-master-01/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第1回：Geminiの基礎 ― 正しいAIワークスペースの設定方法 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第1回：Geminiの基礎 ― 正しいAIワークスペースの設定方法（15分）｜UGOKU AI">
+<meta name="twitter:description" content="設定を整えるだけで、Geminiの答えは変わる。15分で終わるGoogle側の初期設計を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/gemini-master-01/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル（bilibili風のぷにっとした震え） */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  /* 常時プルプルするのは“キャラ”として登場する箇所だけ */
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  /* どのアイコンもタップ／ホバーでプルッと反応 */
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .form-wrap{max-width:560px;margin:0 auto;text-align:left;}
+  .form-row{margin-bottom:14px;}
+  .form-row.two{display:grid;gap:14px;}
+  @media(min-width:520px){.form-row.two{grid-template-columns:1fr 1fr;}}
+  .form-wrap label{display:block;font-size:12.5px;font-weight:800;color:#E9E1CE;margin-bottom:6px;}
+  .form-wrap label .req{color:var(--ember);margin-left:4px;}
+  .form-wrap input,.form-wrap textarea{width:100%;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.4);border-radius:11px;padding:13px 15px;font-size:15px;font-family:inherit;color:var(--ink);transition:.15s;}
+  .form-wrap input:focus,.form-wrap textarea:focus{outline:none;border-color:var(--ember);box-shadow:0 0 0 3px rgba(224,145,42,.35);}
+  .form-wrap textarea{min-height:110px;resize:vertical;}
+  .form-submit{width:100%;border:none;cursor:pointer;background:var(--ember);color:var(--pine-deep);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16.5px;padding:16px;border-radius:13px;margin-top:6px;box-shadow:0 6px 18px rgba(224,145,42,.35);transition:.16s;}
+  .form-submit:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .or-line{display:flex;align-items:center;gap:14px;color:#B8AD8E;font-size:12.5px;margin:26px 0 16px;}
+  .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.18);}
+  .quick-btns{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta-actions .or-line{margin:4px 0;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+</style>
+
+</head>
+<body>
+
+<!-- うごく君 マスコット（再利用SVG）— サイズは各所のCSSで調整 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">Gemini実践シリーズ 第1回 ｜ 所要15分</span>
+      <h1>Geminiは「使う前」に<br><span class="hl">整える</span>と、別物になる。</h1>
+      <p class="lead">GeminiがほかのAIと決定的に違うのは、<b>あなたの会社の情報がすでにGoogleの中にある</b>ことです。Gmail、ドライブ、カレンダー、スプレッドシート。その資産に手を伸ばせる状態にするまでが、この15分の作業です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">15分の設定を始める <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「Geminiはスマホに勝手に入ってたけど、検索と何が違うのか分からない」——これ、いちばん多いつまずきです。この記事を上から15分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>会社用・個人用が混ざらない<b>アカウントの入口</b>が1本に決まる</li>
+          <li>自分に合った<b>プラン</b>と、その費用対効果が数字で分かる</li>
+          <li>パーソナライズで<b>「毎回の前置き」がゼロ</b>になる</li>
+          <li>Gmail・ドライブ・カレンダーと<b>つながった状態</b>になる</li>
+          <li>自分専用の<b>Gem</b>が1つ完成し、明日から即戦力になる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ワークスペースの3層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">Geminiで整えるのは、<br>たった3層だけです。</h2>
+    <p class="sec-sub">難しい話ではありません。上から順に固めれば、それで土台は完成します。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--google);">
+        <div class="ic">🔑</div>
+        <h4>1. 土台<br><span>＝ Googleアカウントとプラン</span></h4>
+        <p>どのGoogleアカウントで使うかを決める層。ここを間違えると、会社の資料に一生たどり着けません。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🧠</div>
+        <h4>2. 記憶<br><span>＝ パーソナライズと保存された情報</span></h4>
+        <p>「あなたが誰で、どんな文体が好きか」をGemini側に置いておく層。毎回の自己紹介が消えます。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">🔌</div>
+        <h4>3. 現場<br><span>＝ アプリ連携とGem</span></h4>
+        <p>Gmail・ドライブ・カレンダーをつなぎ、用途別のGemを置く層。ここまで来ると“自立型”の入口です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">GEMINI MASTER ｜ LESSON 01</div>
+    <h2 class="sec-title">第1回：Geminiの基礎<br>― 正しいAIワークスペースの設定方法 ―</h2>
+    <p class="sec-sub">パソコンが得意でない方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計15分です。</p>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>Geminiの本当の強みは、賢さではなく<strong>置き場所</strong>です。あなたの会社の見積書も、議事録も、写真も、たいていGoogleドライブの中にあります。他のAIは「資料をアップロードする」ところから始まりますが、Geminiは<strong>すでにそこにいる</strong>。この記事は、そのつながりを開通させる作業です。</p>
+    </div>
+
+    <!-- なぜ設定で差がつくのか -->
+    <h3 class="blk">なぜ「設定」だけで、ここまで差がつくのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">AIは、渡された情報の範囲でしか考えられません。差はここで生まれます。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>資料を探す人 vs 探さない人</h4>
+        <p>「先月の請求書、どのフォルダだっけ」——この探す時間が、設定ひとつで消えます。ドライブとつないだGeminiは、<b>ファイル名を覚えていなくても中身から探し当てます</b>。逆に、つないでいないGeminiは、世界中のことは知っているのに、あなたの会社のことだけ何も知らない状態です。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>アカウントが割れている人 vs 一本化した人</h4>
+        <p>スマホは個人のGmail、パソコンは会社のアカウント。この状態でGeminiを使うと、<b>片方からは会社の資料が一切見えません</b>。「Geminiは大したことない」という感想の半分くらいは、実はこれが原因です。最初に入口を決めるだけで解決します。</p>
+      </div>
+    </div>
+
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>仕事で使うなら、会社のアカウントで</h4>
+        <p>個人のGmailで始めると、あとから<b>会社の資料につなぎ直せません</b>（アカウントをまたいだ参照はできない設計です）。退職・引き継ぎのときにも必ず効いてきます。Google Workspaceを契約しているなら、迷わず会社のアカウントで。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>入れる情報の線を、先に引く</h4>
+        <p>お客様の個人情報・見積の原価・社外秘は入れない。これは<b>設定の前に決めておく</b>ルールです。会社で使うなら、この線引きを紙1枚にして共有するところまでが第1回の宿題です。</p>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip">ACCOUNT ／ 所要3分</span>
+          <div class="st-ttl">入口を、1つのGoogleアカウントに決める</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Geminiに新規登録はありません。<b>Googleアカウントがあれば、それがそのままGeminiのアカウント</b>です。だからこそ「どのアカウントで使うか」を最初に決めるのが、この回でいちばん大事な判断になります。</p>
+        <a class="link-btn" style="--accent:var(--google);" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini を開く ↗</a>
+        <p class="link-note">スマホは「Gemini」アプリ（提供元：Google）。Androidは標準搭載されている場合もあります。</p>
+
+        <div class="mini-h">手順</div>
+        <ol class="mini">
+          <li>Geminiを開き、右上のアイコンで<b>今どのアカウントか</b>を確認する</li>
+          <li>会社のアカウント（〜@自社ドメイン）があれば、そちらに切り替える</li>
+          <li>無ければ個人のGmailでOK。ただし<b>仕事用は将来まとめ直す前提</b>で</li>
+          <li>パソコンとスマホで<b>同じアカウント</b>になっているか、両方で確認</li>
+          <li>ブラウザをブックマークしておく（偽サイト対策）</li>
+        </ol>
+
+        <div class="warn">
+          <div class="wt">⚠️ 一番の落とし穴</div>
+          Geminiは<b>ログイン中のアカウントの中身しか見られません</b>。個人Gmailで開いたGeminiに「会社の見積書を探して」と頼んでも、永遠に見つかりません。「使えない」と感じたら、まず右上のアイコンを確認してください。9割はこれです。
+        </div>
+
+        <div class="mini-h">まだGoogleアカウントが無い方へ</div>
+        <p style="font-size:14.3px;color:var(--ink-soft);margin:4px 0 8px;">5分で作れます。作り方は、シリーズの入門記事で細かく解説しています。</p>
+        <a class="link-btn" style="--accent:var(--pine);" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/google-guide/" target="_blank" rel="noopener">Googleアカウント活用術を見る →</a>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>会社で本気で使うなら、Google Workspace（法人契約）を先に検討してほしいな。<b>入力した内容が学習に使われない扱い</b>が標準だから、「社員に自由に使わせていいのか問題」がここでほぼ片づくよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip">PLAN ／ 所要2分</span>
+          <div class="st-ttl">プランを「時間」で決める</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">2026年のGeminiは、無料版に加えて Google AI Plus・Google AI Pro・Google AI Ultra（5x／20x）という個人向けプラン、そして法人向けの Google Workspace という構成です。迷ったときの判断基準は、機能の数ではなく<b>「その差額を、何分の時短で取り返せるか」</b>です。</p>
+
+        <div class="mini-h">プラン早見（2026年7月時点の目安）</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>プラン</th><th>月額の目安</th><th>向いている人</th><th>元を取る目安</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>無料</th><td>0円</td><td>まず試す・週に数回使う</td><td class="mid">—</td></tr>
+              <tr><th>Google AI Plus</th><td>1,000円前後</td><td>無料では足りないが Pro は高い層</td><td class="win">月に約25分の時短</td></tr>
+              <tr><th>Google AI Pro</th><td>2,900円前後</td><td>毎日使う。個人利用の標準</td><td class="win">月に約70分の時短</td></tr>
+              <tr><th>Google AI Ultra 5x</th><td>14,500円前後</td><td>上限が仕事を止めている人</td><td class="mid">要検証。Proで詰まってから</td></tr>
+              <tr><th>Google AI Ultra 20x</th><td>32,000円前後</td><td>動画生成・長時間の自動処理が主戦場</td><td class="mid">用途が明確な人だけ</td></tr>
+              <tr><th>Google Workspace</th><td>1席あたり数百円〜</td><td>2名以上のチーム・法人</td><td class="win">1人あたり月1時間の時短</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="link-note">※料金・プラン名は変更が非常に速い領域です（旧「Gemini Advanced」は Google AI Pro に改称、Ultra は2段階に再編されています）。契約前に必ず公式の表示価格をご確認ください。</p>
+        <a class="link-btn" style="--accent:var(--google);" href="https://gemini.google/subscriptions/" target="_blank" rel="noopener">Google公式 プランページ ↗</a>
+
+        <div class="mini-h">法人の方が見落としがちな2点</div>
+        <ul class="use">
+          <li><b>データの扱い</b>：Google Workspace（法人契約）では、入力内容がモデルの学習に使われない扱いが標準です。「社員が勝手に個人アカウントで使う」より「会社が管理して使わせる」ほうが、結果的に安全になります。</li>
+          <li><b>すでに払っている可能性</b>：Workspaceを契約済みなら、Gemini機能が<b>追加料金なしで含まれている</b>場合があります。課金する前に、いまの契約プランを確認してください。</li>
+        </ul>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>おすすめの順番は「まず無料で2週間 → 上限に当たった日をメモ → 当たる頻度でPlusかProを決める」。<b>先に課金してから使い方を探す</b>のが、いちばんもったいないパターンだよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip">PERSONALIZATION ／ 所要4分</span>
+          <div class="st-ttl">「毎回の自己紹介」を、保存して消す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">この記事でいちばん効果が大きい設定です。Geminiには、あなたの前提を覚えさせておく<b>「保存された情報」</b>があります。一度書けば、以降すべての会話に効きます。</p>
+
+        <div class="mini-h">設定場所</div>
+        <ol class="mini">
+          <li>Geminiを開き、左下（スマホは右上）の<b>「設定」</b>を開く</li>
+          <li><b>「保存された情報」</b>を選ぶ</li>
+          <li>下のテンプレを貼り付け、〔　〕を自分の情報に置き換える</li>
+          <li>保存する</li>
+          <li>新しい会話を開いて「私のことを説明して」と聞き、効いているか確認</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 そのままコピーして、〔　〕だけ置き換え</span><button class="cb-btn">コピー</button></div>
+          <pre>私は<span class="fill">〔群馬県で足場工事と飲食店を経営している会社の代表〕</span>です。
+主な相手は<span class="fill">〔元請けの現場監督と、店舗のお客様、求職者〕</span>です。
+回答は<span class="fill">〔専門用語を避け、結論から先に、300字以内〕</span>でお願いします。
+文体は<span class="fill">〔丁寧だが堅すぎない。断定しすぎない〕</span>でお願いします。
+情報が足りないときは、書き始める前に質問してください。</pre>
+        </div>
+        <p class="link-note" style="margin-top:10px;">5行で十分です。長く書くほど効くわけではなく、むしろ優先順位が薄まります。「あとで足す」で構いません。</p>
+
+        <div class="mini-h">ついでに見ておく2つの設定</div>
+        <ul class="use">
+          <li><b>Gemini アプリ アクティビティ</b>：会話の保存期間を選べます。オフにもできますが、オフにすると「保存された情報」や過去の文脈を活かした回答が弱くなります。<b>便利さと引き換え</b>だと理解したうえで選んでください。</li>
+          <li><b>パーソナライズ（検索履歴などの参照）</b>：Googleの他サービスの履歴を参照させるかどうかの設定です。仕事用アカウントでは、必要になるまでオフのままで問題ありません。</li>
+        </ul>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ここに書くのは「<b>変わらないこと</b>」だけにしてね。今月の売上とか進行中の案件とか、移り変わる情報を書くと、半年後に古い前提で答えられて混乱するよ。案件の話は STEP 5 の Gem に入れよう。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--google);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip">CONNECT ／ 所要3分</span>
+          <div class="st-ttl">Gmail・ドライブ・カレンダーをつなぐ</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここがGeminiの本体です。他のAIには真似できない部分なので、面倒でも必ず通してください。つなぐと、<b>「探す・開く・貼り付ける」という前準備が丸ごと消えます</b>。</p>
+
+        <div class="mini-h">設定場所</div>
+        <ol class="mini">
+          <li>設定 →<b>「アプリ」</b>（接続済みのアプリ）を開く</li>
+          <li><b>Gmail・ドライブ・カレンダー</b>をオンにする（まずこの3つで十分）</li>
+          <li>必要に応じて マップ・YouTube・Keep なども追加</li>
+          <li>会話に戻り、<b>つながったか動作確認</b>をする（下のテンプレ）</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 つながったか確認するひとこと</span><button class="cb-btn">コピー</button></div>
+          <pre>今週の予定を、重要な順に3つだけ教えてください。
+あわせて、ドライブの中から<span class="fill">〔見積〕</span>という言葉が入った資料を
+新しい順に3件、ファイル名と一言の要約で挙げてください。</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ つなぐ前に決めておくこと</div>
+          連携は<b>必要な範囲だけ</b>。「全部つないでおけば便利」は、事故が起きたときの被害範囲も全部になるということです。とくに複数人で共有しているドライブをつなぐ場合は、<b>自分が見える権限＝Geminiが見える範囲</b>である点を、社内で先に共有してください。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ここまで来ると、「あのメール、なんて返そう」で止まる時間がなくなるよ。メールを開いたまま Gemini に頼めば、<b>相手の文面を貼り付けなくても</b>下書きが出てくる。第4回で、この使い方をとことん深掘りするよ。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip">GEM ／ 所要3分</span>
+          <div class="st-ttl">自分専用の「Gem」を1つ作る</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">Gem（ジェム）は、役割と手順を仕込んでおける<b>自分専用のGemini</b>です。「毎回同じ説明をしている作業」がある人ほど、効果がすぐ出ます。1つ作れば、この回は完了です。</p>
+
+        <div class="mini-h">手順</div>
+        <ol class="mini">
+          <li>左メニューの<b>「Gem マネージャー」</b>を開く</li>
+          <li><b>「新しい Gem」</b>を選ぶ</li>
+          <li>名前を付ける（例：クチコミ返信担当）</li>
+          <li>下のテンプレを手順欄に貼り、自社の内容に書き換える</li>
+          <li>必要ならドライブのファイルを<b>参考資料として添付</b>して保存</li>
+        </ol>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 最初の1体・Gemの中身テンプレ</span><button class="cb-btn">コピー</button></div>
+          <pre>あなたは<span class="fill">〔当社の店舗クチコミ返信担当〕</span>です。
+【目的】<span class="fill">〔投稿されたクチコミへの返信文を作る〕</span>
+【手順】
+1. 投稿の内容を、良い点／不満点に分けて整理する
+2. 不満点があれば、まず事実確認とお詫びを1文で書く
+3. 具体的な改善の一言を入れる（できない約束はしない）
+4. 最後に、再来店につながる一言で締める
+【条件】150字以内・敬体・絵文字なし・定型文っぽくしない
+【禁止】値引きや無料の約束、他店の話、個人名の記載
+迷ったら、書き始める前に質問してください。</pre>
+        </div>
+        <p class="link-note" style="margin-top:10px;">この「役割・目的・手順・条件・禁止」の5枠は、そのまま他の業務にも使い回せます。求人票、日報の清書、元請けへの報告書——同じ形で量産できます。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>Gemのすごいところは、<b>作った人以外も同じ品質で使える</b>こと。設定が「個人の工夫」から「会社の資産」に変わる瞬間だよ。第12回で、この量産のしかたを扱うね。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 使い分け -->
+    <h3 class="blk">保存された情報・Gem・Gemini Notebook、どう使い分ける？</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">3つとも「Geminiに前提を持たせる」機能なので、初心者がいちばん混乱するところです。次の1枚で決着します。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>観点</th><th>保存された情報</th><th>Gem</th><th>Gemini Notebook</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>入れるもの</th><td>立場・文体・出力形式</td><td>業務ごとの手順とルール</td><td>社内資料そのもの</td></tr>
+          <tr><th>効く範囲</th><td class="win">全会話</td><td>そのGemの中だけ</td><td>そのノートの中だけ</td></tr>
+          <tr><th>得意なこと</th><td>毎回の前置きを消す</td><td class="win">品質を一定にする</td><td class="win">出典つきで答える</td></tr>
+          <tr><th>混ざり事故</th><td class="mid">起きにくい</td><td class="win">起きない</td><td class="win">起きない</td></tr>
+          <tr><th>人に配れるか</th><td class="mid">配れない</td><td class="win">配れる</td><td class="win">配れる</td></tr>
+          <tr><th>まず設定すべき順</th><td class="win">1番目</td><td>2番目</td><td>3番目（第11回）</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">※Gemini Notebook は、資料を放り込むと出典つきで答えてくれるGoogleのAIノートです（旧 NotebookLM）。属人化の解消に効くので、第11回でまるごと1回使います。</p>
+
+    <div class="combo">
+      <h4>🤝 3つがそろうと、こうなる</h4>
+      <div class="flow">
+        <span class="b">保存された情報で<br>「私は誰か」</span><span class="ar">→</span>
+        <span class="b">Gemで<br>「この仕事の作法」</span><span class="ar">→</span>
+        <span class="b">Notebookで<br>「うちの正解」</span>
+      </div>
+      <p style="margin:0;font-size:14.2px;color:var(--ink-soft);">この3層がそろって初めて、Geminiは「事情を知っている社内の人」として答え始めます。ひとことで言えば——<b>設定は、AIへの引き継ぎ書。</b></p>
+    </div>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk">費用対効果を「時間」で見える化する</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">AI導入の判断でいちばん確実なのは、削減できる<b>時間</b>で測ることです。売上インパクトは読みにくくても、時間は測れます。下は、設定済みのGeminiを使った場合の、現場でよく見る短縮幅の目安です（業務内容により変動します）。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>よくある業務</th><th>これまで</th><th>設定後</th><th>月20回で</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>メールの下書き（Gmail内で完結）</th><td>20分</td><td class="win">4分</td><td class="win">▲5.3時間</td></tr>
+          <tr><th>「あの資料どこ？」の捜索</th><td>10分</td><td class="win">1分</td><td class="win">▲3時間</td></tr>
+          <tr><th>会議メモ→議事録</th><td>40分</td><td class="win">10分</td><td class="win">▲10時間</td></tr>
+          <tr><th>スプレッドシートの集計・整形</th><td>45分</td><td class="win">10分</td><td class="win">▲11.6時間</td></tr>
+          <tr><th>長い資料の要点整理</th><td>45分</td><td class="win">10分</td><td class="win">▲11.6時間</td></tr>
+          <tr><th>クチコミ返信（Gem使用）</th><td>15分</td><td class="win">3分</td><td class="win">▲4時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>📐 かんたんな損益分岐の出し方</h4>
+      <div class="flow">
+        <span class="b">月額 2,900円</span><span class="ar">÷</span>
+        <span class="b">自分の時給<br>（例 2,500円）</span><span class="ar">＝</span>
+        <span class="b">月に約70分<br>時短できれば元が取れる</span>
+      </div>
+      <p style="margin:0;font-size:14.2px;color:var(--ink-soft);">上の表なら、議事録の作成だけで初月から超えます。しかも Workspace を契約済みなら、<b>追加費用ゼロで同じ効果が出る</b>ケースもあります。<b>まず1業務、1か月、実測</b>。この数字が出せると、社内の説得もほぼ終わります。</p>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 数字を出すときの注意</div>
+      「40分が10分になった」は、<b>確認と手直しの時間を含めて</b>測ってください。AIの下書きを鵜呑みにできない以上、チェック時間は必ず発生します。ここを含めない試算は社内で必ず崩れます。含めても十分に速い——それが正直な結論です。
+    </div>
+
+    <!-- Gemini独自の武器 -->
+    <h3 class="blk">第1回のうちに知っておきたい、Geminiならではの4つの武器</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">ここまでの設定は、どのAIでも通じる“土台”です。そのうえで、Geminiには他のAIに無い武器があります。この4つを知っているかどうかで、シリーズ全体の使い倒し方が変わります。<b>いま覚える必要はありません</b>。「そんなことまでできるのか」だけ持ち帰ってください。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🗂️</span>いつもの道具の中で動く（第3・4・6回）</h4>
+        <ul>
+          <li>Gmailを開いたまま、返信の下書きが出る</li>
+          <li>ドライブの資料を、開かずに横断で要約できる</li>
+          <li>スプレッドシートの中で、関数を書かずに集計</li>
+          <li>「AIを使う」ではなく「仕事の途中で呼ぶ」形になる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🔎</span>出典つきで深く調べる（第5回）</h4>
+        <ul>
+          <li>Deep Research が、調べて比べて1本のレポートに</li>
+          <li>参照元が並ぶので、裏取りの当たりがつけやすい</li>
+          <li>結果をそのままドキュメントへ書き出せる</li>
+          <li>半日の調査が、待っているだけで終わる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📓</span>自社資料“だけ”で答えさせる（第11回）</h4>
+        <ul>
+          <li>Gemini Notebook（旧NotebookLM）に社内資料を投入</li>
+          <li>ネットの一般論ではなく、うちのルールで答える</li>
+          <li>回答に出典（どのページか）が付く</li>
+          <li>ベテランの頭の中を、引ける仕組みに変えられる</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🎬</span>画像も動画も、その場で作る（第7回）</h4>
+        <ul>
+          <li>POP・バナー・チラシ案を会話で作って直せる</li>
+          <li>写真の背景差し替え・不要物の除去</li>
+          <li>短い動画の生成まで同じ画面の中で</li>
+          <li>外注費と待ち時間が、そのまま減る領域</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>Geminiを「Googleが作ったChatGPT」だと思っていると、たぶん半分も使えていないよ。<b>いつもの道具の中で動く</b>——これがGeminiのいちばんの武器。だから STEP 4 の連携を飛ばしちゃダメなんだ。</div>
+    </div>
+
+    <!-- プロンプトの型 -->
+    <h3 class="blk">設定が済んだら：うごく君の「効くお願いの型」</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">第2回で本格的に扱いますが、第1回のうちに型だけ持ち帰ってください。次の4つを足すだけで、結果が一段変わります。</p>
+    <div class="formula">
+      <div class="f-grid">
+        <div class="f-item"><div class="no">1</div><div class="t"><b>だれに向けて？</b>例：元請け／お客様／新人スタッフ</div></div>
+        <div class="f-item"><div class="no">2</div><div class="t"><b>何をしてほしい？</b>例：メールを書く／要約する／比較する</div></div>
+        <div class="f-item"><div class="no">3</div><div class="t"><b>どんな形で？</b>例：箇条書き5つ／表／200字</div></div>
+        <div class="f-item"><div class="no">4</div><div class="t"><b>どの材料を見て？</b>例：ドライブのこのファイル／このメール</div></div>
+      </div>
+      <div class="ba">
+        <div class="c bad"><div class="lb">✕ もったいない例</div>「報告書を書いて」<br>→ 何の現場の話か分からず、当たり障りのない文章に</div>
+        <div class="c good"><div class="lb">◎ 効く例</div>「ドライブの『◯◯現場 日報』フォルダの今週分を読んで、元請け向けの週次報告を、進捗・課題・来週の予定の3見出し・400字で」<br>→ そのまま出せる文章に近づく</div>
+      </div>
+      <div class="copybox">
+        <div class="cb-top"><span class="cb-lbl">📋 そのまま使えるテンプレ</span><button class="cb-btn">コピー</button></div>
+        <pre>あなたは<span class="fill">〔役割〕</span>です。
+<span class="fill">〔だれに〕</span>向けに、<span class="fill">〔してほしいこと〕</span>を、
+<span class="fill">〔形式：箇条書き／表／字数〕</span>・<span class="fill">〔トーン〕</span>で作ってください。
+【材料】<span class="fill">〔ドライブのファイル名／メール／貼り付けた文章〕</span>
+不足している情報があれば、作る前に質問してください。</pre>
+      </div>
+      <p class="link-note" style="margin-top:10px;">最後の1行「不足があれば質問して」を足すだけで、的外れな出力が体感で半分になります。第1回で覚える裏ワザは、これひとつで十分です。</p>
+    </div>
+
+    <!-- 局面別の活用 -->
+    <h3 class="blk">設定済みGeminiの、局面別の使いどころ</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">「何に使えばいいか分からない」を消すための一覧です。まずこの中から、<b>自分が今週やる予定のもの</b>を1つ選んで試してみてください。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>店舗・現場で</h4>
+        <ul>
+          <li>クチコミへの返信文づくり（Gemで量産）</li>
+          <li>シフト調整の連絡文、募集の告知</li>
+          <li>多国籍スタッフ向けの、やさしい日本語＋多言語変換</li>
+          <li>現場写真をそのまま渡して、日報の下書きへ</li>
+          <li>POP・メニュー説明のキャッチコピー案</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>デスクワークで</h4>
+        <ul>
+          <li>Gmailを開いたまま、返信の下書きを出す</li>
+          <li>ドライブの過去資料を横断して、比較表にする</li>
+          <li>スプレッドシートの集計・グラフ化を頼む</li>
+          <li>カレンダーを見て、来週の段取りを整理させる</li>
+          <li>長い添付PDFを、要点3つに畳む</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・暮らしで</h4>
+        <ul>
+          <li>スマホのカメラで撮った書類を、その場で翻訳・要約</li>
+          <li>資格勉強の要点まとめ・クイズ出題</li>
+          <li>旅行や外食の候補を、地図と一緒に絞り込む</li>
+          <li>子どもの「なぜ？」に、年齢に合わせて答える</li>
+          <li>家計の記録を渡して、使いすぎの傾向を出す</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自立型AI -->
+    <h3 class="blk">ここに「自立型AI」が加わると、何が変わるか</h3>
+    <p style="font-size:15.2px;margin:0 0 14px;">2026年5月のGoogle I/Oで、Geminiに自律型エージェント <b>Gemini Spark</b> が発表されました。クラウド上で動き続け、Gmail・ドキュメント・スライドなどを横断して、指示された仕事を<b>自分で進める</b>タイプです。日本語対応は2026年7月に開始し、当初は上位プラン限定でしたが、その後 Google AI Pro への展開も発表されています（提供は順次）。同じ方向のツールとして Claude Cowork、ChatGPT Work なども出そろい、業界全体が「相談相手」から「担当者」へ移りつつあります。</p>
+
+    <div class="keystone">
+      <span class="kl">🔭 いちばん大事な前提</span>
+      <p>自立型AIの実力は、<strong>ワークスペースの設定と、社内データの整い方</strong>にそのまま比例します。第1回で整えた3層（保存された情報・アプリ連携・Gem）は、Sparkのようなエージェントを使い始めたときに<strong>そのまま効きます</strong>。設定が空っぽのまま仕事を渡しても、的外れな成果物が返ってくるだけです。</p>
+    </div>
+
+    <div class="split">
+      <div class="col work">
+        <div class="ch">✅ 任せやすい仕事 <span class="badge-mini">向いている</span></div>
+        <ul>
+          <li>月次の集計と、報告資料の型づくり</li>
+          <li>複数の資料を読み比べて、比較表にまとめる</li>
+          <li>会議の準備（資料収集→論点整理→アジェンダ）</li>
+          <li>定例のリサーチを、毎週決まった時間に回す</li>
+          <li>手順のメモから、読めるマニュアルを起こす</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">⛔ まだ任せない仕事 <span class="badge-mini">要注意</span></div>
+        <ul>
+          <li>社外への送信・発注・支払いを伴う操作</li>
+          <li>人事評価・採否など、人の処遇に関わる判断</li>
+          <li>法令・許認可・税務の最終判断</li>
+          <li>顧客の個人情報を含むデータの一括処理</li>
+          <li>数字が一次情報のまま検証されていない資料</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:22px;">自立型AIを入れる前に決めておく6つ</div>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>承認ポイントを決める</div>
+        <p>「送信」「公開」「外部連携」の直前は、必ず人が承認する設計にします。多くのツールが承認プロセスを前提に作られていますが、その設定を確認せずに使うのが危険です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>接続先を絞る</div>
+        <p>ドライブ・メールなどの連携は、必要な範囲だけ許可します。「全部つなげば便利」は、事故のときの被害範囲も全部になるということです。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>成果物の検算ルール</div>
+        <p>AIが作った表や数字は、必ず1か所は人が手で検算する。全部見るのは無理でも、抜き打ちの1点確認があるだけで品質は保てます。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>費用と時間の上限</div>
+        <p>長時間動くタイプのエージェントは、その分コストも使います。「1タスクあたり何分まで」「月いくらまで」を先に決めておきます。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>やらせないことリスト</div>
+        <p>禁止事項を紙1枚で共有します。ルールが無いと、現場は「たぶん大丈夫」で使い、情シスは「たぶん危険」で止める。どちらも損です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>まず1業務で実証</div>
+        <p>全社展開の前に、1部署・1業務で1か月。削減時間と失敗パターンを実測してから広げると、社内の反発がほとんど起きません。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「危なそうだから禁止」も、「便利そうだから全解禁」も、どちらも失敗するよ。<b>承認つきで、狭く始める。</b>これが2026年の正解だと思う。</div>
+    </div>
+
+    <!-- 困ったとき -->
+    <h3 class="blk">つまずいたときのチェックリスト</h3>
+    <div class="compact">
+      <details>
+        <summary>ドライブの資料を「見つからない」と言われる</summary>
+        <div class="ans">まず右上のアイコンで<b>アカウントを確認</b>してください。会社の資料は、会社のアカウントでログインしていないと見えません。次に、設定→アプリで<b>ドライブがオンか</b>を確認。それでも見つからない場合は、そのファイルが自分に共有されているか（自分の権限で開けるか）を確認してください。Geminiが見られる範囲は、あなたが見られる範囲と同じです。</div>
+      </details>
+      <details>
+        <summary>「保存された情報」が効いていない気がする</summary>
+        <div class="ans">保存されているか確認を（設定→保存された情報）。次に、長すぎないか。書きすぎると優先順位が薄まります。5〜10行に絞るほうが確実に効きます。また、その会話の中で別の前提を伝えていると、そちらが優先されることがあります。</div>
+      </details>
+      <details>
+        <summary>昨日までの会話が見当たらない</summary>
+        <div class="ans">ほぼ確実に、別アカウントに入っています。スマホとパソコンで違うアカウントになっていないか確認してください。もう一つの可能性は、アクティビティの保存をオフにしている場合です（設定から確認できます）。</div>
+      </details>
+      <details>
+        <summary>作ったGemが、指示どおりに動かない</summary>
+        <div class="ans">手順が抽象的すぎることが多いです。「丁寧に書いて」ではなく「敬体・150字以内・絵文字なし」のように、<b>数えられる条件</b>に置き換えてください。あわせて【禁止】の欄を足すと、精度がはっきり上がります。</div>
+      </details>
+      <details>
+        <summary>使いたい機能が画面に出てこない</summary>
+        <div class="ans">プランによって使える機能が異なります。また、新機能は地域やアカウントごとに<b>順次提供</b>されるため、発表されていても手元にはまだ来ていない場合があります。アプリの更新、ログインし直し、しばらく待つ、の順で試してください。法人アカウントの場合、管理者側で機能が制限されていることもあります。</div>
+      </details>
+    </div>
+
+    <!-- 安全に -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>入れない情報の線を引く</div>
+        <p>お客様の個人情報・カード番号・社外秘・未公開の数字は入力しない。個人利用でも組織利用でも、これが最初のルールです。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>組織で使うなら統制ごと</div>
+        <p>Google Workspace（法人契約）なら、管理者側で設定を統一でき、入力内容が学習に使われない扱いが標準です。「禁止」より「安全な選択肢を配る」ほうが機能します。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>連携は最小限から</div>
+        <p>Geminiが見られる範囲は、あなたが見られる範囲と同じです。共有ドライブをつなぐときは、社内で先に線引きを合意しておいてください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>答えは鵜呑みにしない</div>
+        <p>AIはもっともらしく間違えます（ハルシネーション）。数字・固有名詞・法律・助成金の要件は、必ず一次情報で確認してください。最終責任は人の側にあります。</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料のままでも、この設定はできますか？</summary>
+        <div class="ans">保存された情報・アプリ連携・Gemの作成は、無料でも利用できる範囲があります。使えるモデルの性能、1日に使える回数、扱えるファイルの量などにプランごとの差があります。まず無料で設定を済ませ、上限に当たる頻度を見てから課金を検討するのが合理的です。</div>
+      </details>
+      <details>
+        <summary>スマホだけでも大丈夫ですか？</summary>
+        <div class="ans">基本の設定はスマホアプリでも可能です。ただしGemの作成や細かい設定は、画面の広いパソコンのほうが圧倒的にラクです。最初の設定だけPCで済ませ、日々の利用はスマホ、という組み合わせがいちばん現実的です。</div>
+      </details>
+      <details>
+        <summary>ChatGPTを使っています。乗り換えるべきですか？</summary>
+        <div class="ans">乗り換えではなく、使い分けをおすすめします。GmailやドライブがGoogleに乗っているなら、Geminiは<b>探す・つなぐ</b>が圧倒的にラク。文章の作り込みや画像生成の自由度では他が強い場面もあります。どれも無料枠があるので、両方持っておくのが実務的です。詳しくは使い分けガイドで比較しています。</div>
+      </details>
+      <details>
+        <summary>入力した内容は、学習に使われますか？</summary>
+        <div class="ans">扱いはプランと設定によって変わります。Google Workspace（法人契約）では学習に使われない扱いが標準です。個人プランでも、アクティビティの保存設定から選択できる項目があります。判断に迷う情報は、そもそも入力しないのが最も確実です。会社で使うなら社内ルールもあわせて確認してください。</div>
+      </details>
+      <details>
+        <summary>従業員に使わせるのが不安です</summary>
+        <div class="ans">不安の正体はたいてい「ルールが無いこと」です。①入れてはいけない情報 ②使ってよい業務 ③人が必ず確認する工程、この3点を紙1枚にするだけで、現場は安心して使い始めます。研修で最初に作るのも、この1枚です。</div>
+      </details>
+      <details>
+        <summary>研修として社内に導入する場合、助成金は使えますか？</summary>
+        <div class="ans">人材開発支援助成金など、要件を満たせば活用を検討できる制度があります。ただし対象コース・訓練時間・申請時期などの要件は毎年更新されるため、必ず最新の公募要領と、管轄の労働局へのご確認をお願いします。UGOKU AIでは、要件の整理からご相談いただけます。</div>
+      </details>
+    </div>
+
+    <!-- シリーズ予告 -->
+    <h3 class="blk">このシリーズの進み方（全15回＋番外編）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">1回あたり10〜15分、上から順に積み上がる設計です。<b>整える→頼む→読ませる→書かせる→調べる→作る→任せる→広げる</b>の順で進みます。第1回の土台が、以降すべての回に効いてきます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>回</th><th>テーマ</th><th>この回で手に入るもの</th><th>時間</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>第1回</th><td class="win">Geminiの基礎（この記事）</td><td>Googleとつながったワークスペース</td><td>15分</td></tr>
+          <tr><th>第2回</th><td>伝わる頼み方</td><td>資料を渡す前提のプロンプトの型</td><td>10分</td></tr>
+          <tr><th>第3回</th><td class="win">ドライブ横断の資料分析</td><td>探さずに、まとめて要点化する</td><td>15分</td></tr>
+          <tr><th>第4回</th><td class="win">Gmail連携のメール術</td><td>受信トレイを離れずに返信を終える</td><td>10分</td></tr>
+          <tr><th>第5回</th><td>Deep Research</td><td>出典つき調査レポートと、裏取りの手順</td><td>15分</td></tr>
+          <tr><th>第6回</th><td class="win">スプレッドシート分析</td><td>関数を書かずに集計・グラフ化</td><td>10分</td></tr>
+          <tr><th>第7回</th><td>画像・動画の制作</td><td>POP・バナー・短尺動画の内製化</td><td>15分</td></tr>
+          <tr><th>第8回</th><td>会議の準備と議事録</td><td>カレンダー連携と、録音→決定事項</td><td>10分</td></tr>
+          <tr><th>第9回</th><td>タスク自動化</td><td>定型処理を書かせて消す</td><td>15分</td></tr>
+          <tr><th>第10回</th><td>Canvas</td><td>会話ではなく“編集画面”で仕上げる</td><td>10分</td></tr>
+          <tr><th>第11回</th><td class="win">Gemini Notebook</td><td>自社資料だけで答える社内辞書</td><td>15分</td></tr>
+          <tr><th>第12回</th><td>Gemの量産</td><td>役割ごとのAI担当者を並べる</td><td>10分</td></tr>
+          <tr><th>第13回</th><td class="win">Workspace展開</td><td>チーム全員の標準にする設定と権限</td><td>15分</td></tr>
+          <tr><th>第14回</th><td>高度なプロンプト</td><td>自分で考えさせる指示の組み立て</td><td>10分</td></tr>
+          <tr><th>第15回</th><td>フルワークフロー</td><td>1〜14をつないだ完全AI自動化システム</td><td>15分</td></tr>
+          <tr><th>番外編</th><td>総括／セキュリティ</td><td>情報漏洩・コンプライアンス・社内規程の型</td><td>15分</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">合計 約190分（＋番外編15分）。<b class="win">色つきの5回</b>は、Geminiならではの機能を扱う回です。他のAIでは代えがきかない部分なので、時間が取れない方はここだけでも。</p>
+
+    <div class="keystone" style="margin-top:32px;">
+      <span class="kl">🎓 第1回の宿題</span>
+      <p>この記事を閉じる前に、<strong>「保存された情報」を5行だけ</strong>書いて保存し、<strong>ドライブの連携をオン</strong>にしてください。それだけで第1回は合格です。次の第2回では、その土台の上で <strong>「同じAIでも、資料の渡し方で答えが変わる」</strong> プロンプトの型を扱います（所要10分）。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">← まだの方はこちらから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/gemini-guide/"><span class="r-ic">💎</span><span><span class="r-k">Geminiの全体像から知りたい方へ</span><span class="r-t">Geminiって何？活用術10選<small>／ 料金・Google連携・使い分け</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">📝</span><span><span class="r-k">▶ 次に読む（第2回）</span><span class="r-t">資料の渡し方で、答えが変わる<small>／ Gemini実践シリーズ 第2回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">姉妹シリーズ</span><span class="r-t">ChatGPT実践シリーズ 第1回<small>／ 同じ15分設定を、ChatGPTで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-01/"><span class="r-ic">🔁</span><span><span class="r-k">姉妹シリーズ</span><span class="r-t">Claude実践シリーズ 第1回<small>／ 同じ15分設定を、Claudeで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">あわせて読む</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/workspace-guide/"><span class="r-ic">🗓️</span><span><span class="r-k">土台をそろえるなら</span><span class="r-t">Google Workspace 活用術10選<small>／ メール・会議・ファイルをひとつに</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/notebooklm-guide/"><span class="r-ic">📒</span><span><span class="r-k">第11回の予習に</span><span class="r-t">NotebookLM入門<small>／ 自社資料だけで、出典つきで答える</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">社内ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gemini.google/subscriptions/" target="_blank" rel="noopener"><span class="r-ic">💳</span><span><span class="r-k">公式</span><span class="r-t">Google AI プラン<small>／ Google公式</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>設定は済んだ。<br>次は、<span class="hl">あなたの会社の仕事</span>を載せませんか？</h2>
+    <p>「どの業務から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の内容は2026年8月時点の公開情報に基づきます。各サービスの画面・機能・料金は、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-06/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6回：データ分析＆Excel連携｜表計算の中でAIを直接動かす（10分） ― UGOKU AI</title>
+<meta name="description" content="ChatGPT実践シリーズ第6回。AI初心者でも10分で身につく「表計算の中でAIを直接動かす」手順を、分析できるデータの整え方・チャットへのファイル渡し方・ChatGPT for Excel／Googleスプレッドシートのアドイン導入・検算3分ルーティン・月次レポートへの変換・定点観測の自動化まで全網羅。2026年最新のアドイン提供状況、スキルとアプリ連携、自立型AIの使いどころ、コピペで使えるプロンプト、時間で測る費用対効果、注意点まで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第6回：データ分析＆Excel連携 ― 表計算の中でAIを直接動かす（10分）｜UGOKU AI">
+<meta property="og:description" content="関数を覚えなくても、集計もグラフも終わる。2026年はAIが表計算ソフトの中に入りました。データの整え方から検算まで、初心者向けに全手順・テンプレ・費用対効果・注意点つきで解説します。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-06/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-06/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第6回：データ分析＆Excel連携 ― 表計算の中でAIを直接動かす ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第6回：データ分析＆Excel連携 ― 表計算の中でAIを直接動かす（10分）｜UGOKU AI">
+<meta name="twitter:description" content="関数を覚えなくても、集計は終わります。ただし検算は人の仕事。10分で身につくデータ分析の型を、うごく君が解説します。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-06/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+  /* ═══ 読了率アップ施策 ═══ */
+  .prog{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(32,27,14,.16);z-index:999;}
+  .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);transition:width .1s linear;}
+  .prog-badge{position:fixed;top:12px;right:12px;z-index:999;background:rgba(32,27,14,.88);color:#F3F5F1;font-size:11.5px;font-weight:800;
+    padding:6px 13px;border-radius:100px;backdrop-filter:blur(6px);opacity:0;transition:.25s;pointer-events:none;letter-spacing:.02em;}
+  .prog-badge.on{opacity:1;}
+  .prog-badge b{color:var(--ember);}
+
+  .promise{padding:34px 0 0;}
+  .promise-card{background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;box-shadow:var(--shadow);}
+  .promise-k{display:inline-flex;align-items:center;gap:7px;background:var(--pine);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 14px;border-radius:100px;margin-bottom:14px;}
+  .promise-card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,4.8vw,27px);line-height:1.5;margin:0 0 6px;}
+  .promise-card h2 .hl{background:linear-gradient(transparent 58%,var(--ember-soft) 58%);padding:0 3px;}
+  .promise-card>p{color:var(--ink-soft);font-size:14.6px;margin:0 0 18px;}
+  .ba2{display:grid;gap:12px;align-items:stretch;}
+  @media(min-width:640px){.ba2{grid-template-columns:1fr 54px 1fr;}}
+  .ba2 .bx{border-radius:15px;padding:16px 17px;}
+  .ba2 .bx .bt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;margin-bottom:9px;}
+  .ba2 .bef{background:#F4F2EC;border:1px solid #DFD9C9;}
+  .ba2 .bef .bt{color:#8A8373;}
+  .ba2 .aft{background:linear-gradient(160deg,var(--pine),var(--pine-deep));border:1px solid var(--pine-deep);color:#F3F5F1;box-shadow:0 8px 22px rgba(32,27,14,.22);}
+  .ba2 .aft .bt{color:var(--ember);}
+  .ba2 ul{list-style:none;margin:0;padding:0;}
+  .ba2 li{position:relative;padding:5px 0 5px 21px;font-size:13.8px;border-bottom:1px dashed rgba(0,0,0,.09);}
+  .ba2 .aft li{border-bottom-color:rgba(255,255,255,.14);}
+  .ba2 li:last-child{border-bottom:none;}
+  .ba2 .bef li::before{content:"✕";position:absolute;left:0;top:5px;color:#B08A6A;font-weight:900;font-size:12px;}
+  .ba2 .aft li::before{content:"✓";position:absolute;left:0;top:5px;color:var(--ember);font-weight:900;font-size:12px;}
+  .ba2 .mid-ar{display:grid;place-items:center;font-size:26px;color:var(--ember-2);font-weight:900;}
+  @media(max-width:639px){.ba2 .mid-ar{transform:rotate(90deg);padding:2px 0;}}
+  .promise-foot{margin:16px 0 0;padding:14px 16px;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:13px;font-size:14px;color:#6B4A12;}
+  .promise-foot b{color:var(--ember-2);}
+
+  /* 目次 */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:20px 22px;margin:28px 0 8px;}
+  .toc .tt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+  .toc .ts{font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:2px;}
+  @media(min-width:640px){.toc ol{grid-template-columns:1fr 1fr;gap:2px 18px;}}
+  .toc li{counter-increment:t;}
+  .toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:13.9px;font-weight:600;padding:7px 8px;border-radius:9px;transition:.14s;}
+  .toc a:hover{background:#F6F3EA;}
+  .toc a::before{content:counter(t);flex:none;width:21px;height:21px;border-radius:7px;background:#F1EEE4;color:var(--pine);font-size:11px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .toc a.cur{background:var(--ember-soft);}
+  .toc a.cur::before{background:var(--ember);color:var(--pine-deep);}
+  .toc a .mn{margin-left:auto;font-size:11.5px;color:var(--ink-soft);font-weight:700;flex:none;}
+
+  /* 図解 */
+  figure.fig{margin:18px 0 6px;padding:0;}
+  figure.fig svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow-sm);}
+  figure.fig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:7px;text-align:center;}
+
+  /* STEP 完了チェック */
+  .done{display:flex;align-items:center;gap:10px;margin:18px 0 0;padding:12px 15px;background:#FCFCF9;border:1px dashed var(--line);border-radius:12px;cursor:pointer;user-select:none;transition:.15s;}
+  .done:hover{background:#F6F3EA;}
+  .done input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--accent,var(--pine));border-radius:7px;cursor:pointer;position:relative;margin:0;transition:.15s;}
+  .done input:checked{background:var(--accent,var(--pine));}
+  .done input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900;}
+  .done span{font-size:13.6px;font-weight:700;color:var(--ink-soft);}
+  .done input:checked + span{color:var(--accent,var(--pine));}
+
+  /* 章末ミニまとめ */
+  .gain{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--pine);border-radius:14px;padding:17px 20px;margin:26px 0 6px;box-shadow:var(--shadow-sm);}
+  .gain .gt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--pine);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+  .gain ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;}
+  .gain li{position:relative;padding-left:23px;font-size:14px;}
+  .gain li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ember-2);font-weight:900;font-size:13px;}
+  .gain .nx{margin:11px 0 0;font-size:13.6px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;}
+  .gain .nx b{color:var(--ember-2);}
+
+  /* 理解度クイズ */
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;}
+  .quiz .qh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:9px;}
+  .quiz .qs{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .qitem{border-top:1px solid var(--line);padding:16px 0 4px;}
+  .qitem:first-of-type{border-top:none;padding-top:4px;}
+  .qq{font-weight:800;font-size:14.8px;margin-bottom:10px;display:flex;gap:9px;}
+  .qq .qn{flex:none;width:23px;height:23px;border-radius:7px;background:var(--pine);color:#fff;font-size:12px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .qopts{display:grid;gap:8px;}
+  .qopt{text-align:left;background:#FCFCF9;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;font-size:13.8px;font-family:inherit;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.65;}
+  .qopt:hover{border-color:var(--pine-2);background:#F6F3EA;}
+  .qopt.ok{background:#FBEFC9;border-color:#E7C97A;font-weight:700;}
+  .qopt.ng{background:#FBECEC;border-color:#F0C2C2;opacity:.85;}
+  .qopt:disabled{cursor:default;}
+  .qfb{display:none;margin-top:10px;padding:12px 15px;border-radius:11px;font-size:13.6px;background:var(--ember-soft);border:1px solid #EBCF95;color:#6B4A12;}
+  .qfb.show{display:block;}
+  .qfb b{color:var(--ember-2);}
+  .qscore{margin-top:16px;padding:15px 17px;border-radius:13px;background:linear-gradient(160deg,var(--pine),var(--pine-deep));color:#F3F5F1;font-size:14px;display:none;}
+  .qscore.show{display:block;}
+  .qscore b{color:var(--ember);font-size:17px;}
+
+  /* 完読バッジ */
+  .finish{text-align:center;background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:26px 0 0;box-shadow:var(--shadow-sm);}
+  .finish .fk{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:10px;}
+  .finish h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(18px,4.2vw,23px);margin:0 0 10px;line-height:1.5;}
+  .finish p{font-size:14.3px;color:var(--ink-soft);margin:0 auto 14px;max-width:520px;}
+  .fbar{max-width:420px;margin:0 auto;background:#F1EEE4;border-radius:100px;height:12px;overflow:hidden;}
+  .fbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);border-radius:100px;transition:width .4s cubic-bezier(.2,.7,.3,1);}
+  .fnum{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;color:var(--pine);margin-top:9px;}
+  .fnum b{color:var(--ember-2);font-size:19px;}
+
+  /* 3段階レベルの階段 */
+  .ladder{display:grid;gap:11px;margin:14px 0 0;}
+  @media(min-width:700px){.ladder{grid-template-columns:repeat(3,1fr);align-items:stretch;}}
+  .lv{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--pine));border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .lv .lv-n{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;font-weight:900;letter-spacing:.1em;color:var(--accent,var(--pine));margin-bottom:5px;}
+  .lv h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 7px;line-height:1.45;}
+  .lv p{margin:0 0 8px;font-size:13.4px;color:var(--ink-soft);}
+  .lv .lv-t{display:inline-block;font-size:11px;font-weight:800;background:#F3EFE3;color:var(--pine);border-radius:7px;padding:3px 10px;}
+  /* 材料タグ */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;}
+  .tags span{background:#F3EFE3;border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:12.5px;font-weight:700;color:var(--pine);}
+  /* 言い換え表 */
+  .swap{display:grid;gap:9px;margin:12px 0 0;}
+  @media(min-width:620px){.swap{grid-template-columns:1fr 1fr;}}
+  .swap .sw{display:flex;align-items:center;gap:10px;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:10px 13px;font-size:13.3px;}
+  .swap .sw .x{color:#B23A3A;font-weight:800;white-space:nowrap;}
+  .swap .sw .ar{color:var(--ember-2);font-weight:900;flex:none;}
+  .swap .sw .o{color:var(--pine);font-weight:700;}
+
+  /* ═══ 第5回 追加パーツ（レポート断面カード・工程レイヤー） ═══ */
+  .mail{background:#FCFCF9;border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .mail .mh{display:flex;align-items:center;gap:9px;padding:10px 15px;background:#F1EEE4;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;color:var(--pine);}
+  .mail .mh .tagx{margin-left:auto;font-size:10.5px;font-weight:800;background:var(--pine);color:#fff;border-radius:6px;padding:2px 9px;}
+  .mail .mb{padding:15px 17px;font-size:13.9px;line-height:1.95;white-space:pre-wrap;}
+  .mail .mb .fill{color:var(--ember-2);font-weight:700;}
+  .mail .mnote{border-top:1px dashed var(--line);padding:11px 17px;font-size:12.6px;color:var(--ink-soft);background:#fff;}
+  .mail .mnote b{color:var(--pine);}
+  /* 型の5段構成 */
+  .layers{display:grid;gap:9px;margin:12px 0 0;counter-reset:ly;}
+  .layer{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent,var(--pine));border-radius:12px;padding:12px 15px;counter-increment:ly;}
+  .layer .ln{flex:none;width:25px;height:25px;border-radius:8px;background:var(--accent,var(--pine));color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12.5px;display:grid;place-items:center;}
+  .layer .lt{font-size:13.7px;}
+  .layer .lt b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.3px;margin-bottom:2px;}
+  .layer .lt .why{color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<!-- ═══ 読了プログレスバー ═══ -->
+<div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+<div class="prog-badge" id="progBadge">残り <b id="progMin">10</b> 分</div>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">ChatGPT実践シリーズ 第6回 ｜ 所要10分</span>
+      <h1>その集計、<span class="hl">関数を覚えなくても</span><br>終わります。</h1>
+      <p class="lead">毎月の売上集計、シフトの実績、原価の一覧、アンケートの自由記述。Excelの前で固まっている時間の正体は、たいてい<b>「関数が思い出せない」</b>か<b>「どこを見ればいいか分からない」</b>のどちらかです。2026年のChatGPTは、ファイルを渡すだけでなく、<b>表計算ソフトの中に入って直接動きます。</b>この記事は、渡す前のデータの整え方から、表の中でAIを動かす手順、そして<b>数字を間違えないための検算</b>までを、10分で持ち帰るための手順書です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">10分でデータ分析の型を手に入れる <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 冒頭：結論先出し ═══ -->
+<div class="promise">
+  <div class="wrap">
+    <div class="promise-card">
+      <span class="promise-k">🏁 結論から言います</span>
+      <h2>データ分析でAIに任せていいのは「手」だけ。<br><span class="hl">「どこを見るか」と「合っているか」は、人が持つ。</span></h2>
+      <p>関数を書く、行を並べ替える、グラフにする——ここはもうAIのほうが速く、正確です。けれど<b>「何を知りたいのか」を決めるのと、出てきた数字が合っているか確かめるのは、人の仕事のまま</b>です。第6回でいちばん練習してほしいのは、実は分析ではなく<b>検算</b>です。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">BEFORE ／ 今のあなた</div>
+          <ul>
+            <li>関数を検索しては忘れ、毎月同じことを調べている</li>
+            <li>集計はできたが、そこから何を言えばいいか分からない</li>
+            <li>グラフを作るだけで午前中が終わる</li>
+            <li>AIに表を渡したが、数字が合っているか不安で使えない</li>
+            <li>アドインの話は聞いたが、入れ方が分からない</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">AFTER ／ 10分後のあなた</div>
+          <ul>
+            <li><b>分析できる表の形</b>が分かり、渡す前に3分で整えられる</li>
+            <li>集計・グラフ・Excel出力まで<b>会話だけ</b>で終わる</li>
+            <li><b>表計算ソフトの中</b>でAIを動かせる（アドイン導入まで完了）</li>
+            <li><b>検算3分ルーティン</b>で、そのまま社内に出せる</li>
+            <li>毎月の集計を<b>同じ形で回す</b>入口が見える</li>
+          </ul>
+        </div>
+      </div>
+      <div class="promise-foot">
+        📌 <b>この記事のいちばん新しい部分：</b>2026年3月にExcel用の公式アドイン、4月にGoogleスプレッドシート版が登場しました。<b>いまは無料プランを含む各プランに提供されており、表計算ソフトのサイドバーにChatGPTが常駐します</b>（プランごとに利用量の制限あり）。「ファイルを書き出してAIに渡す」から<b>「表の中にAIが入ってくる」</b>段階へ。<b>STEP3と自立型AIの章</b>で、その入れ方と、中小企業が今日から取れる安全な一歩をお渡しします。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「グラフは出たけど、で？」——これ、第6回でいちばん多い“もったいない”です。原因はAIの性能ではなくて、<b>渡した表の形</b>と、<b>お願いが「集計して」で止まっていること</b>。この記事を上から10分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>AIが読める<b>「1行1件」の表</b>が、3分で作れるようになる</li>
+          <li>ファイルを渡して、<b>集計・グラフ・Excel出力</b>まで会話で終わる</li>
+          <li><b>ExcelとGoogleスプレッドシートの中</b>でChatGPTを動かせる</li>
+          <li>いちばん大事な<b>検算3分ルーティン</b>が習慣になる</li>
+          <li>毎月の数字仕事を<b>同じ形で回す</b>型が手に入る</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">「AIでデータ分析」って、<br>結局なにをするの？</h2>
+    <p class="sec-sub">難しい話ではありません。やることは、たった3つ。この順番でしか、うまくいきません。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🧹</div>
+        <h4>1. 整える<br><span>＝ 1行1件の表にする</span></h4>
+        <p>見出しは1行、結合セルなし、1行が1件。ここが崩れていると、どんな高性能なAIでも読み違えます。実は成果の9割がここで決まります。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">⚙️</div>
+        <h4>2. 動かす<br><span>＝ 渡す or 中で動かす</span></h4>
+        <p>チャットにファイルを渡す方法と、表計算ソフトの中でAIを動かす方法の2つ。用途がはっきり分かれています（STEP2・STEP3）。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🧮</div>
+        <h4>3. 確かめる<br><span>＝ 合計と件数を突き合わせる</span></h4>
+        <p>合計・件数・期間の3つを元データと照合する。この3分を通って初めて、その数字は「社内で使える数字」になります。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CHATGPT MASTER ｜ LESSON 06</div>
+    <h2 class="sec-title">第6回：データ分析＆Excel連携<br>― 表計算の中でAIを直接動かす ―</h2>
+    <p class="sec-sub">パソコンが得意でない方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計10分です（アドインのインストール待ちは除きます）。</p>
+
+    <!-- 目次 -->
+    <nav class="toc" id="toc">
+      <div class="tt">🗺️ この記事の地図（全6ステップ・10分）</div>
+      <p class="ts">気になるところから読んでも大丈夫。上から順に進めば10分で終わります。</p>
+      <ol>
+        <li><a href="#s1">分析できるデータの形にする<span class="mn">2分</span></a></li>
+        <li><a href="#s2">★チャットに渡して分析する<span class="mn">2分</span></a></li>
+        <li><a href="#s3">★表の中でChatGPTを動かす<span class="mn">2分</span></a></li>
+        <li><a href="#s4">★検算3分ルーティン<span class="mn">2分</span></a></li>
+        <li><a href="#s5">数字を「決める資料」に変える<span class="mn">1分</span></a></li>
+        <li><a href="#s6">毎月、同じ形で回す<span class="mn">1分</span></a></li>
+        <li><a href="#s7">局面別・分析テーマ15種<span class="mn">＋</span></a></li>
+        <li><a href="#s8">費用対効果を時間で測る<span class="mn">＋</span></a></li>
+        <li><a href="#s9">自立型AIが加わると<span class="mn">＋</span></a></li>
+        <li><a href="#quiz">理解度チェック（3問）<span class="mn">1分</span></a></li>
+      </ol>
+    </nav>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>AIにデータを渡す前に、その表を<strong>「1行＝1件」の形にしてください</strong>。人が見やすいように結合したセル、途中に挟まった小計行、色でしか意味が分からない印——これらは、AIにとってはすべて<strong>ノイズ</strong>です。逆に言えば、形さえ整っていれば、関数を1つも知らなくても集計は終わります。<strong>分析の精度は、表の形が上限</strong>になります。</p>
+    </div>
+    <p class="link-note" style="margin:-28px 0 34px;">※本記事は<b>2026年7月時点</b>の公開情報に基づきます。アドインの対応プラン・利用量の上限・提供地域は更新の速い領域です。導入判断の前には、必ず<a href="https://help.openai.com/" target="_blank" rel="noopener">OpenAI ヘルプセンター</a>の最新表記と、自社の情報取扱いルールをご確認ください。</p>
+
+    <!-- なぜ差がつくのか -->
+    <h3 class="blk">なぜ「同じChatGPT」で、ここまで差がつくのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">同じファイルを渡して、片方は5分で会議資料になり、片方は「よく分からないグラフ」で終わる。違いは2つだけです。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>表が「人が読む形」のまま</h4>
+        <p>月ごとにシートが分かれている、見出しが2段になっている、「合計」行が途中に挟まっている、単位が「1,200円」と文字で入っている——どれも人には親切ですが、AIには<b>読み違いの原因</b>です。研修の現場で「AIの集計が合わない」と言われる案件の大半は、AIではなく<b>表の形</b>が原因でした。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>お願いが「集計して」で止まっている</h4>
+        <p>「集計して」だけだと、合計と平均が並んだ表が返ってきます。それは<b>作業の結果であって、答えではありません</b>。効くのは<b>「先月と比べて、いちばん落ちた商品を3つ。落ちた理由の仮説も3つずつ」</b>のような、<b>判断につながる問い</b>。同じデータでも、返ってくるものが別物になります。</p>
+      </div>
+    </div>
+
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>原本は触らせない。必ずコピーで作業する</h4>
+        <p>表の中でAIを動かせるということは、<b>AIがセルを書き換えられる</b>ということです。変更前に確認を求める作りにはなっていますが、それでも<b>作業は複製したファイルで</b>。元に戻せる状態を先に作ってから始めてください。これは月次の締めや請求まわりのファイルほど、効いてきます。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>個人が特定できる列は、渡す前に消す</h4>
+        <p>氏名・電話番号・住所・口座・従業員の識別番号などは、<b>分析にほぼ不要</b>です。渡す前に列ごと削除するか、<b>A・B・Cや通し番号に置き換え</b>てください。対応表は自分の手元だけに置きます。「消してから渡す」を先にルール化しておくと、現場は迷いません。第1回・第5回と同じ線引きが、ここでも効きます。</p>
+      </div>
+    </div>
+
+    <!-- 3段階レベル -->
+    <h3 class="blk">この記事のゴール：データ活用にも「3段階」がある</h3>
+    <p class="sec-sub" style="margin-top:-6px;">全部を今日やる必要はありません。まずレベル1、慣れたらレベル2。レベル3は、集計が「業務」ではなく「仕組み」になる段階です。</p>
+    <div class="ladder">
+      <div class="lv" style="--accent:var(--chatgpt);">
+        <div class="lv-n">LEVEL 1 ／ 今日から</div>
+        <h4>ファイルを渡して、1枚にする</h4>
+        <p>整えたCSVをチャットに渡し、集計とグラフを出させる。ここまでで、毎月の集計時間は半分以下になります。</p>
+        <span class="lv-t">STEP 1〜2 で解説</span>
+      </div>
+      <div class="lv" style="--accent:var(--ember-2);">
+        <div class="lv-n">LEVEL 2 ／ 仕事で使う</div>
+        <h4>表の中で、AIを動かす</h4>
+        <p>ExcelやGoogleスプレッドシートにアドインを入れ、開いたまま指示する。検算まで含めて、資料が完成します。</p>
+        <span class="lv-t">STEP 3〜5 で解説</span>
+      </div>
+      <div class="lv" style="--accent:var(--pine);">
+        <div class="lv-n">LEVEL 3 ／ 2026年の新常識</div>
+        <h4>毎月を、自動で回す</h4>
+        <p>同じ形・同じ列で毎月更新し、定時実行や自立型AIにつなぐ段階。数字を「見に行く」から「届く」へ変わります。</p>
+        <span class="lv-t">STEP 6・自立型AIの章で解説</span>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip" id="s1">DATA ／ 所要2分</span>
+          <div class="st-ttl">まず、分析できる形にする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いきなりAIに渡す前に、ここだけ整えてください。<b>この2分が、後の8分すべての精度を決めます</b>。難しい作業はありません。5つ確認するだけです。</p>
+
+        <div class="mini-h">分析できる表の「5条件」</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">1</div>
+            <div class="lt"><b>1行＝1件にする</b><span class="why">売上なら「1明細1行」。1つの行に複数の商品や日付が混ざっていると、集計は必ずずれます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">2</div>
+            <div class="lt"><b>1列＝1種類の情報にする</b><span class="why">「群馬県／店舗A」のように1つのセルに2つ入れない。県と店舗は別の列に分けます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">3</div>
+            <div class="lt"><b>見出しは1行だけ・結合セルは使わない</b><span class="why">2段見出しと結合セルは、読み違いの最大要因。見出しの上にあるタイトル行や空白行も削ります。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">4</div>
+            <div class="lt"><b>表記ゆれと空白をそろえる</b><span class="why">「A店／Ａ店／a店」は別物として数えられます。気づかない差の代表格です。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">5</div>
+            <div class="lt"><b>数字は数字のまま入れる</b><span class="why">「1,200円」「約30」「-」は文字です。数値列は数値だけにし、単位は列名のほう（例：金額_円）に書きます。</span></div>
+          </div>
+        </div>
+
+        <div class="mini-h">よくある「惜しい表」と、直し方</div>
+        <div class="swap">
+          <div class="sw"><span class="x">✕ 月ごとにシートが分かれている</span><span class="ar">➜</span><span class="o">◎ 1枚にまとめて「年月」列を作る</span></div>
+          <div class="sw"><span class="x">✕ 途中に小計行が挟まっている</span><span class="ar">➜</span><span class="o">◎ 明細だけにする（小計はAIが出す）</span></div>
+          <div class="sw"><span class="x">✕ 色で意味を分けている</span><span class="ar">➜</span><span class="o">◎ 「区分」列を作って文字で書く</span></div>
+          <div class="sw"><span class="x">✕ 「1,200円」「¥1200」が混在</span><span class="ar">➜</span><span class="o">◎ 1200 と数値で統一</span></div>
+          <div class="sw"><span class="x">✕ 日付が「4/3」「2026年4月3日」</span><span class="ar">➜</span><span class="o">◎ 2026-04-03 の形にそろえる</span></div>
+          <div class="sw"><span class="x">✕ 空欄と「-」と「0」が混在</span><span class="ar">➜</span><span class="o">◎ 0なら0、無いなら空欄で統一</span></div>
+        </div>
+
+        <div class="mini-h">整え終わったら（渡す準備）</div>
+        <ol class="mini">
+          <li>ファイルを<b>複製</b>する（原本は絶対に触らない）</li>
+          <li>不要な列——とくに<b>個人が特定できる列</b>——を削除する</li>
+          <li>列名を分かりやすく短くする（例：<code>売上日 / 店舗 / 商品 / 数量 / 金額_円</code>）</li>
+          <li>「名前を付けて保存」で <b>CSV</b> か <b>xlsx</b> にする</li>
+          <li>行数が多い場合は、まず<b>1か月分だけ</b>で試す（練習は小さく）</li>
+        </ol>
+        <p class="link-note">列名は、<b>毎月まったく同じ名前・同じ順番</b>にしておくのがコツです。ここがブレると、翌月から自動化が崩れます（STEP6につながる、地味でいちばん効く準備です）。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 渡す前に、必ず消す列</div>
+          氏名・電話番号・住所・メールアドレス・口座情報・マイナンバー・従業員の個人識別情報・お客様の個別コメントに含まれる固有名詞。<b>これらは分析にほとんど必要ありません。</b>どうしても必要な場合は「顧客001」のような<b>記号に置き換え</b>、対応表は自分の手元に残します。会社で使うなら、この線引きを<b>紙1枚で共有</b>するところまでが第6回の宿題です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「整えるのが面倒」と思ったら、<b>整える作業自体をAIに手伝ってもらう</b>のもアリだよ。汚い表を渡して「1行1件の形に整え直して、直した内容を一覧で出して」と頼めばいい。<b>ただし、直した内容は必ず目で見ること。</b>ここを飛ばすのがいちばん危ないんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="1"><span>STEP1 完了：1行1件の表を作り、個人情報の列を消した</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip" id="s2">ANALYZE ／ 所要2分</span>
+          <div class="st-ttl">★ チャットに渡して、5分で1枚にする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">いちばん手軽で、いちばん最初にやるべき方法です。ChatGPTにファイルを渡すと、AIは裏側で<b>Pythonという言語を書いて実行し</b>、集計・グラフ・ファイル出力までを行います。プログラミングの知識は一切要りません。渡して、日本語でお願いするだけです。</p>
+
+        <div class="mini-h">手順（2分）</div>
+        <ol class="mini">
+          <li>新しい会話を開く（前の案件の情報を引きずらせないため）</li>
+          <li>整えたCSV／xlsxを、入力欄に<b>ドラッグ＆ドロップ</b>する</li>
+          <li>いきなり集計させず、まず<b>「列の意味と件数、期間を教えて」</b>と聞く</li>
+          <li>認識が合っていることを確認してから、本題の分析を頼む</li>
+          <li>グラフや表を出させ、必要なら<b>Excel形式で書き出し</b>てもらう</li>
+        </ol>
+        <p class="link-note">3番目の「まず確認」が効きます。ここでAIが列を取り違えていたら、その先の数字はすべてずれます。<b>30秒の確認が、30分の手戻りを消します。</b></p>
+
+        <div class="mini-h">コピペで使える：分析依頼テンプレ</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 基本の分析依頼</span><button class="cb-btn">コピー</button></div>
+          <pre>添付したファイルを分析してください。
+
+【データの中身】<span class="fill">〔例：当社の日次売上明細。2026年1月〜6月〕</span>
+【知りたいこと】<span class="fill">〔例：どの商品が、いつ、どれくらい落ちているか〕</span>
+【使う目的】<span class="fill">〔例：来月の仕入れと販促を決めるため〕</span>
+
+進め方：
+ 1. まず列の意味・件数・対象期間を要約して、認識合わせをする
+ 2. 読み込めなかった行・空欄・重複があれば、件数とともに報告する
+ 3. そのうえで集計する（合計・件数は必ず両方出す）
+ 4. 気づいた点を「事実」と「推測」に分けて書く
+ 5. 最後に、追加で見たほうがよい観点を3つ提案する
+
+条件：推測で数字を埋めない。分からない箇所は「不明」と書く。</pre>
+        </div>
+
+        <div class="mini-h">よく使う4つの依頼</div>
+        <div class="ideas">
+          <div class="idea">
+            <h4><span class="e">📊</span>集計・ランキング</h4>
+            <ul>
+              <li>「月別・店舗別の売上を表にして、グラフも」</li>
+              <li>「売上上位10商品と、下位10商品を並べて」</li>
+              <li>「曜日別・時間帯別の平均客単価を出して」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🔍</span>比較・変化</h4>
+            <ul>
+              <li>「前年同月と比べて、増減の大きい順に並べて」</li>
+              <li>「値上げ前後で、数量がどう動いたか」</li>
+              <li>「新店と既存店で、売れ筋の違いを比べて」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🚨</span>異常値・抜けの発見</h4>
+            <ul>
+              <li>「明らかにおかしい数字があれば、行番号つきで指摘して」</li>
+              <li>「重複入力・入力もれの疑いがある行を出して」</li>
+              <li>「平均から大きく外れた日を、理由の仮説つきで」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">💬</span>自由記述の整理</h4>
+            <ul>
+              <li>「アンケートの自由記述を10分類にまとめて件数を」</li>
+              <li>「クチコミを、良い点・不満点・要望に仕分けして」</li>
+              <li>「多い順に3つ、改善案を添えて」</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">コピペで使える：そのまま使える形で受け取る</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 Excelで書き出してもらう</span><button class="cb-btn">コピー</button></div>
+          <pre>いまの集計結果を、Excelファイルで書き出してください。
+
+シート構成：
+ 1. サマリー（重要な数字を5つ以内。グラフを1枚）
+ 2. 集計表（<span class="fill">〔例：月×店舗〕</span>のクロス集計）
+ 3. 明細（元データのうち、集計に使った行のみ）
+ 4. 補足（読み込めなかった行、除外した行とその理由）
+
+条件：数値はカンマ区切りの表示形式。見出しは1行。
+シート4に「元データの合計」と「集計後の合計」を並べて書く。</pre>
+        </div>
+        <p class="link-note">最後の1行がポイントです。<b>元データの合計と、集計後の合計を並べて書かせる</b>——これだけで、STEP4の検算が半分終わります。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 大きなファイル・重いファイルの注意</div>
+          行数が非常に多いファイル、シートが何十枚もあるファイル、マクロが入ったファイルは、途中で処理が止まったり、一部だけ読み込まれたりすることがあります。まずは<b>1か月分・1シートだけ</b>で試し、うまくいった手順を広げてください。また、<b>「全部読み込めましたか？ 読めなかった行はありますか？」と必ず聞く</b>こと。黙って一部を落としているケースが、実務ではいちばん怖い形です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>グラフの日本語が文字化けすることがあるんだ。そのときは<b>「軸のラベルを英語で」</b>か、<b>「表だけ出して、グラフはExcel側で作るから数字をください」</b>でOK。ここで悩む時間がいちばんもったいないよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="2"><span>STEP2 完了：ファイルを渡し、認識合わせをしてから集計させた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip" id="s3">ADD-IN ／ 所要2分</span>
+          <div class="st-ttl">★ 表計算ソフトの「中」でChatGPTを動かす</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">第6回の主役です。2026年3月にExcel用の公式アドイン、4月にGoogleスプレッドシート版が登場しました。<b>表計算ソフトの横にChatGPTのパネルが出て、開いているファイルをそのまま読み、書き換えてくれます</b>。ファイルを書き出して渡す手間が、まるごと消えます。</p>
+
+        <div class="mini-h">何ができるのか（公式に案内されている範囲）</div>
+        <ol class="mini">
+          <li>ゼロから<b>表・予算・トラッカー・テンプレート</b>を作る</li>
+          <li>散らかったシートの<b>書式・表記ゆれ・重複・壊れた数式</b>を直す</li>
+          <li>引き継いだ<b>知らないファイルの構造</b>（前提・数式のつながり）を説明させる</li>
+          <li>前提を変えたときに、<b>どこがどう変わったか</b>を要約させる</li>
+          <li>複数シートをまたいで<b>参照関係をたどり、エラーの原因</b>を特定させる</li>
+          <li>強気・弱気などの<b>シナリオ比較シート</b>を作らせる</li>
+        </ol>
+        <p class="link-note">計算はChatGPTの中ではなく<b>Excel側で実行</b>され、参照・更新したセルが回答の中に示されます。また<b>ファイルを書き換える前に許可を求める</b>作りになっているため、1手ずつ確認しながら進められます。</p>
+
+        <div class="mini-h">導入手順：Excel（2分）</div>
+        <ol class="mini">
+          <li>Excel（デスクトップ版またはWeb版）を開く</li>
+          <li>「ホーム」タブ →「アドイン」を開く</li>
+          <li><b>ChatGPT</b> を検索して追加する</li>
+          <li>リボンに追加されたボタンから、パネルを開く</li>
+          <li>対応プランの<b>ChatGPTアカウントでサインイン</b>する</li>
+        </ol>
+
+        <div class="mini-h">導入手順：Googleスプレッドシート</div>
+        <ol class="mini">
+          <li>Google Workspace Marketplace から ChatGPT を追加する</li>
+          <li>スプレッドシートを開き、<b>「拡張機能」メニュー</b>から ChatGPT を開く</li>
+          <li>同じアカウントでサインインする</li>
+        </ol>
+        <p class="link-note">会社のアカウントでは、<b>管理者側で許可されていないと表示されない</b>ことがあります。出てこない場合は、情シスや管理者にご相談ください（Excel側はMicrosoft 365管理センターからの配布、Google側は権限設定で有効化する運用が案内されています）。似た名前の<b>第三者製アドイン</b>もあるため、提供元が OpenAI であることを必ず確認してください。</p>
+
+        <div class="mini-h">30秒で分かる使い分け</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>やりたいこと</th><th>チャットに渡す</th><th>表の中で動かす</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>ざっと傾向をつかむ</th><td class="win">◎ 速い</td><td class="mid">○</td></tr>
+              <tr><th>グラフ画像がほしい</th><td class="win">◎</td><td class="mid">○</td></tr>
+              <tr><th>既存ファイルを直す</th><td>△ 書き出しが要る</td><td class="win">◎</td></tr>
+              <tr><th>数式のエラーを追う</th><td>△</td><td class="win">◎ 参照をたどれる</td></tr>
+              <tr><th>書式・体裁を整える</th><td>×</td><td class="win">◎</td></tr>
+              <tr><th>複数シートの照合</th><td class="mid">○</td><td class="win">◎</td></tr>
+              <tr><th>自由記述の分類</th><td class="win">◎</td><td class="win">◎</td></tr>
+              <tr><th>過去の会話の続きでやる</th><td class="win">◎</td><td>× 履歴は別</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mini-h">効く頼み方の3原則</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">1</div>
+            <div class="lt"><b>触ってよい範囲を、先に指定する</b><span class="why">「入力タブだけ更新。書式は変えない。他のシートには触らない」——ここを言うか言わないかで、事故率がまるで違います。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">2</div>
+            <div class="lt"><b>大きな編集の前に、計画を出させる</b><span class="why">「編集の前に、どのシートのどの範囲を変えるつもりか一覧で出して」。読んでから「進めて」と言えば、取り返しのつく状態を保てます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">3</div>
+            <div class="lt"><b>変更後は、変更点の一覧を出させる</b><span class="why">「何をどう変えたか、セル番地つきで一覧に」。この一覧が、そのまま検算のチェックリストになります（STEP4）。</span></div>
+          </div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 表の中で安全に動かす頼み方</span><button class="cb-btn">コピー</button></div>
+          <pre>このブックについて、次の作業をお願いします。
+
+【やってほしいこと】<span class="fill">〔例：「実績」シートの表記ゆれを統一し、重複行をまとめる〕</span>
+【触ってよい範囲】<span class="fill">〔例：「実績」シートのA〜F列のみ〕</span>
+【触らないでほしいもの】書式、他のシート、数式が入っているセル
+
+進め方：
+ 1. 編集する前に、変更する範囲と内容を一覧で提示する
+ 2. 私が「進めて」と言ってから実行する
+ 3. 実行後、変更したセルを番地つきで一覧にする
+ 4. 変更前後で、合計値と行数がどう変わったかを並べて示す
+
+条件：判断に迷う箇所は、勝手に決めずに質問する。</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 使う前に知っておく5つの制限</div>
+          ①<b>会話が別扱い</b>：表計算の中でのやりとりは、通常のChatGPTのチャット履歴とは分かれています。②<b>メモリは効きません</b>：第1回で設定したメモリは、こちらでは参照されない案内になっています。③<b>VBA・マクロは十分に対応していない</b>場合があります。④<b>出力は必ず確認</b>：数式・計算・変更セルを見てから共有してください。⑤<b>重要なファイルは複製してから</b>。加えて、アドインの仕組み上、<b>Microsoft／Google側の規約が適用される</b>点、安全確保のため一定期間ログが保存される点も、社内説明では触れておくと丁寧です。
+        </div>
+
+        <p class="link-note">なお、デスクトップアプリの Codex から、開いているExcelブックを直接操作する使い方も案内されています（現時点ではExcelのみ）。ここは第12回・第13回の領域なので、いまは<b>「その先がある」</b>とだけ覚えておけば十分です。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>最初の1回は、<b>絶対に大事じゃないファイル</b>で試してね。練習用に、適当な売上表を10行だけ作るのがおすすめ。慣れてから本番のファイルへ。順番を逆にした人だけが、痛い目を見るんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="3"><span>STEP3 完了：アドインを入れ、練習用ファイルで1回動かした</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip" id="s4">VERIFY ／ 所要2分</span>
+          <div class="st-ttl">★ 検算3分ルーティン ― ここが第6回の心臓部</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">AIの集計は速いですが、<b>もっともらしく間違えることがあります</b>。しかも数字は、間違っていても見た目では分かりません。だからこの3分だけは、絶対に飛ばさないでください。逆に言えば、<b>ここさえ通せば社内に出せます</b>。全部を検算する必要はありません。5か所だけです。</p>
+
+        <div class="mini-h">見るのは、この5つだけ</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">1</div>
+            <div class="lt"><b>合計が、元データと一致するか</b><span class="why">元のファイルでSUMした金額と、AIの集計の総合計。ここが1円でも違えば、どこかで行が落ちています。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">2</div>
+            <div class="lt"><b>件数（行数）が合っているか</b><span class="why">合計だけ合っていても、重複と欠落が相殺していることがあります。件数もセットで見ます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">3</div>
+            <div class="lt"><b>期間が、意図どおりか</b><span class="why">「最初の日付と最後の日付を出して」と聞くだけ。翌月1日が混ざっている、月末が抜けている、は本当によくあります。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">4</div>
+            <div class="lt"><b>いちばん大きい数字と、小さい数字</b><span class="why">桁の間違い（単位の取り違え、千円と円の混在）は、最大値・最小値を見るといちばん早く見つかります。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">5</div>
+            <div class="lt"><b>除外された行が、何行あるか</b><span class="why">空欄・文字化け・形式違いで落とされた行の件数と理由。ここを聞かないと、静かにずれ続けます。</span></div>
+          </div>
+        </div>
+
+        <div class="mini-h">コピペで使える：検算依頼</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 出た数字を、そのまま検算させる</span><button class="cb-btn">コピー</button></div>
+          <pre>いまの集計について、検算用の確認表を作ってください。
+
+出す項目：
+ 1. 元データの行数 ／ 集計に使った行数 ／ 除外した行数と理由
+ 2. 元データの合計金額 ／ 集計後の合計金額 ／ 差額
+ 3. 対象期間（最初の日付・最後の日付）
+ 4. 最大値・最小値の行（そのまま元データの何行目か）
+ 5. 空欄・重複・形式が違うセルの件数
+
+条件：
+・差額が0でない場合は、原因の候補を挙げる
+・推測で埋めず、確認できない項目は「要確認」と書く
+・この表だけを、コピーしやすい形で出力する</pre>
+        </div>
+        <p class="link-note">この確認表は、そのまま<b>資料の末尾に添付</b>してください。「AIで作った数字ですが、ここまで確認しています」と示せる状態が、社内の信頼をいちばん早く作ります。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ いちばん多い、静かな事故</div>
+          <b>文字コードの行けつ</b>（日本語が混ざったCSVで一部の行が読めない）、<b>日付形式のばらつき</b>（4/3が4月3日と3月4日で解釈される）、<b>全角スペース</b>による表記ゆれ。どれもエラーが出ずに、黙って結果だけがずれます。<b>合計と件数の突き合わせ</b>は、これらをまとめて捕まえるための最短ルートです。1回3分。月に何度もやる作業ではありません。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「AIが計算したから合ってるはず」は、いちばん危ない考え方だよ。逆に<b>「AIが計算して、私が合計を確かめました」</b>と言える人は、社内でいちばん強い。第6回で持ち帰ってほしいのは、実は分析スキルじゃなくて<b>この一言</b>なんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="4"><span>STEP4 完了：合計・件数・期間を、元データと突き合わせた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip" id="s5">OUTPUT ／ 所要1分</span>
+          <div class="st-ttl">数字を「読む物」から「決める物」に変える</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">集計表は、そのままでは誰も読みません。<b>数字の価値は、変換して初めて現れます</b>。検算が済んだら、同じ会話の中で目的の形に作り直させてください。ここは数十秒で終わります。</p>
+
+        <div class="mini-h">よく使う4つの変換</div>
+        <div class="ideas">
+          <div class="idea">
+            <h4><span class="e">📄</span>月次1枚レポートにする</h4>
+            <ul>
+              <li>「重要な数字5つ＋グラフ1枚＋所感3行」で固定</li>
+              <li>前月比・前年比を必ず並べる</li>
+              <li>毎月同じ形にすると、変化だけが目に入る</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">📝</span>稟議・提案書にする</h4>
+            <ul>
+              <li>「結論・根拠・費用・リスク・次の一手」の順で</li>
+              <li>数字は3つまで。多いほど通らない</li>
+              <li>反対意見と、それへの回答も先に用意させる</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🗣️</span>会議用の3分原稿にする</h4>
+            <ul>
+              <li>「3分で話せる原稿に。数字は3つまで」</li>
+              <li>想定質問と回答を5組つけさせる</li>
+              <li>専門用語は、その場で言い換えさせる</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">✅</span>やることリストにする</h4>
+            <ul>
+              <li>「今週やること／今月やること／保留」に仕分け</li>
+              <li>各項目に、担当と期限の欄をつけさせる</li>
+              <li>数字が足りない点は「追加集計」として分離</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">コピペで使える：変換プロンプト</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 集計 → 意思決定資料</span><button class="cb-btn">コピー</button></div>
+          <pre>いまの集計結果をもとに、社内の意思決定資料に作り直してください。
+
+【読み手】<span class="fill">〔例：数字が苦手な現場責任者3名〕</span>
+【決めたいこと】<span class="fill">〔例：来月、どの商品の仕入れを減らすか〕</span>
+
+構成：
+ 1. 結論（3行）
+ 2. そう判断した根拠（数字は3つまで）
+ 3. 反対する立場からの指摘と、それへの回答
+ 4. まだ分かっていないこと
+ 5. 決めるために、次にやること（担当と期限の欄つき）
+
+条件：A4で1枚に収まる分量。専門用語は使わない。
+検算できていない数字には〔要確認〕と付ける。</pre>
+        </div>
+
+        <div class="split">
+          <div class="col work">
+            <div class="ch">🏢 仕事での効き方 <span class="badge-mini">BUSINESS</span></div>
+            <ul>
+              <li>月次の売上・原価・粗利の集計と、前年比の1枚レポート</li>
+              <li>シフト実績と人件費率の突き合わせ</li>
+              <li>仕入単価の推移と、値上げ交渉の材料づくり</li>
+              <li>アンケート・クチコミの自由記述を分類して件数化</li>
+              <li>在庫・ロスの傾向分析と、発注量の見直し</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">🏠 私生活での効き方 <span class="badge-mini">PRIVATE</span></div>
+            <ul>
+              <li>家計簿CSVを渡して、費目別の推移をグラフに</li>
+              <li>光熱費・通信費の1年分を比較して、見直し候補を出す</li>
+              <li>体重・歩数・睡眠などの記録を、月単位でならして見る</li>
+              <li>住宅ローンの返済シミュレーション表を作る</li>
+              <li>子どもの学習記録や部活の記録を、集計して振り返る</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>変換のときに<b>「検算できていない数字には〔要確認〕と付けて」</b>と頼むのが地味に効くよ。資料の中で、確かめた数字とまだの数字が一目で分かる。そのまま人に渡せる状態になるんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="5"><span>STEP5 完了：集計を、1枚の意思決定資料に変換した</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip" id="s6">ROUTINE ／ 所要1分</span>
+          <div class="st-ttl">1回きりで終わらせず、「毎月同じ形」で回す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">データがいちばん効くのは、<b>同じ形で、定期的に見たとき</b>です。1回の集計は情報ですが、毎月の集計は<b>変化</b>を教えてくれます。ここまで来ると、数字仕事は業務ではなく仕組みになります。</p>
+
+        <div class="mini-h">仕組みにする手順</div>
+        <ol class="mini">
+          <li>うまくいった依頼文を、そのまま<b>コピーして保存</b>する</li>
+          <li>元データの<b>列名と順番を固定</b>する（ここが崩れると全部崩れます）</li>
+          <li>テーマごとの<b>プロジェクト</b>を作り、その部屋に置く（第1回STEP5）</li>
+          <li>部屋の指示欄に、出力形式と検算項目を固定で書いておく</li>
+          <li>翌月は「先月と同じ形式で。変化した点だけ強調して」と依頼する</li>
+          <li>結果は同じフォルダに日付つきで保存。半年で立派な経営資料になります</li>
+        </ol>
+        <p class="link-note">表計算のアドイン側には、<b>同じ作業手順を再利用できる「スキル」</b>と、<b>接続したデータを使える「アプリ連携」</b>も用意されています（パネルの「＋」から選び、@で呼び出す形が案内されています）。毎月の型が固まったら、この仕組みに載せるのが次の一手です。</p>
+
+        <div class="mini-h">コピペで使える：翌月以降の依頼</div>
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 月次アップデート用</span><button class="cb-btn">コピー</button></div>
+          <pre>前回<span class="fill">〔○年○月〕</span>と同じ形式で、今月分を集計してください。
+
+【前回の主要な数字】<span class="fill">〔3〜5個を貼り付け〕</span>
+【今回のデータ】添付ファイル（列の並びは前回と同じ）
+
+出力：
+ 1. 前回と同じ項目・同じ並びの集計表
+ 2. 前回から変わった点（前→後の順で、増減率つき）
+ 3. 変化が無かった項目は「変化なし」と明記
+ 4. 検算表（行数・合計・期間・除外行）
+
+条件：形式を勝手に変えない。列が増減していたら、先に指摘する。</pre>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 自動化の前に、必ず決めること</div>
+          定時実行は便利ですが、<b>誰も読まないレポートが毎月たまるだけ</b>になりがちです。設定する前に、①<b>誰が読むか</b>、②<b>読んで何を決めるか</b>、③<b>3か月使って読まなければ止める</b>——この3つを先に決めてください。自動化の失敗は、たいてい技術ではなく運用側で起きます。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>おすすめは、<b>まず1つの数字だけ</b>。月次の粗利でも、店舗別の客単価でもいい。半年続けると、「先月とどう違うか」が体の感覚になるよ。それ、AIには持てないものなんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="6"><span>STEP6 完了：依頼文を保存し、来月の型を決めた</span></label>
+      </div>
+    </div>
+
+    <div class="gain">
+      <div class="gt">🎁 ここまでで手に入ったもの</div>
+      <ul>
+        <li>AIが正しく読める「1行1件」の表の作り方</li>
+        <li>ファイルを渡して、集計・グラフ・Excel出力まで会話で終わらせる型</li>
+        <li>ExcelとGoogleスプレッドシートの中でChatGPTを動かす手順と、安全な頼み方</li>
+        <li>3分で終わる検算ルーティンと、そのまま添付できる確認表</li>
+        <li>集計を1枚の意思決定資料に変える型と、毎月回す仕組みの作り方</li>
+      </ul>
+      <p class="nx">この先は<b>「どの数字に使うか」</b>のカタログと、<b>費用対効果</b>、そして<b>自立型AIに数字仕事を任せるときの線引き</b>です。残り4分。</p>
+    </div>
+
+    <!-- テーマカタログ -->
+    <h3 class="blk" id="s7">局面別・分析テーマカタログ15種</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「何を分析すればいいか分からない」を消すための一覧です。まずこの中から、<b>今月あなたが実際に判断する予定のもの</b>を1つ選んでください。「効く問いの立て方」を真似るだけでも、結果は変わります。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>テーマ</th><th>効く問いの立て方</th><th>いちばんの落とし穴</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>① 月次売上の把握</th><td>前年同月と並べ、増減の大きい順に</td><td class="win">税込・税抜が混ざる</td></tr>
+          <tr><th>② 商品別の売れ筋</th><td>金額と数量の両方でランキング</td><td>金額だけ見て回転率を見落とす</td></tr>
+          <tr><th>③ 曜日・時間帯分析</th><td>客数と客単価を分けて出す</td><td>祝日・イベント日を除外しない</td></tr>
+          <tr><th>④ 原価率・粗利</th><td>商品別・期間別で、率と額を両方</td><td class="win">仕入の計上月がずれている</td></tr>
+          <tr><th>⑤ 人件費・シフト実績</th><td>売上高人件費率を日別で</td><td>個人が特定できる形で扱う</td></tr>
+          <tr><th>⑥ 在庫・ロス</th><td>廃棄率の高い品目を上位から</td><td>単位（個・kg）が混在する</td></tr>
+          <tr><th>⑦ 仕入単価の推移</th><td>品目ごとに時系列で並べる</td><td>数量割引と定価が混ざる</td></tr>
+          <tr><th>⑧ 客層・リピート率</th><td>期間を区切って新規と再来を分ける</td><td class="win">個人情報のまま集計する</td></tr>
+          <tr><th>⑨ アンケート自由記述</th><td>10分類にまとめて件数と代表例</td><td>少数の強い意見に引きずられる</td></tr>
+          <tr><th>⑩ クチコミ分析</th><td>良い点・不満点・要望に仕分け</td><td>投稿の転載範囲に注意</td></tr>
+          <tr><th>⑪ 広告・SNSの効果</th><td>投稿日と来店・問合せを突き合わせ</td><td>相関を因果と決めつける</td></tr>
+          <tr><th>⑫ 見積・受注率</th><td>金額帯別・担当別に受注率を出す</td><td>母数が少なく一般化できない</td></tr>
+          <tr><th>⑬ 資金繰り・入出金</th><td>月次の入金・出金を並べて谷を探す</td><td class="win">税務・会計の判断まで任せる</td></tr>
+          <tr><th>⑭ 採用・定着率</th><td>入社月別の在籍期間を集計</td><td class="win">個人の評価に転用する</td></tr>
+          <tr><th>⑮ 来期の予測</th><td>過去実績の傾向線＋前提を明示</td><td>予測値を実績のように扱う</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">この15種を、<b>プロジェクトの中に「分析テーマ集」として置いておく</b>と、2回目以降はテーマ名を言うだけで型が出てきます（STEP6参照）。<b>⑬⑭は、必ず専門家の確認とセットで</b>お使いください。とくに⑤⑧⑭は、<b>個人が特定できない形に加工してから</b>扱ってください。</p>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk" id="s8">費用対効果を「時間」で見える化する</h3>
+    <p class="sec-sub" style="margin-top:-6px;">AI導入の判断でいちばん確実なのは、削減できる<b>時間</b>で測ることです。売上インパクトは読みにくくても、時間は測れます。下は、整えたデータ＋検算ルーティンを使った場合に、現場でよく見る短縮幅の目安です（データの状態により変動します）。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>よくある数字仕事</th><th>これまで</th><th>AI＋検算</th><th>月1回で</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>月次の売上集計とグラフ</th><td>3時間</td><td>25分</td><td class="win">▲2.6時間</td></tr>
+          <tr><th>店舗別・商品別のクロス集計</th><td>2時間</td><td>15分</td><td class="win">▲1.8時間</td></tr>
+          <tr><th>関数・エラーの調べもの</th><td>40分</td><td>5分</td><td class="win">▲0.6時間</td></tr>
+          <tr><th>散らかった表の整形・名寄せ</th><td>2.5時間</td><td>20分</td><td class="win">▲2.2時間</td></tr>
+          <tr><th>アンケート自由記述の分類</th><td>4時間</td><td>25分</td><td class="win">▲3.6時間</td></tr>
+          <tr><th>前年比・前月比の資料づくり</th><td>1.5時間</td><td>15分</td><td class="win">▲1.3時間</td></tr>
+          <tr><th>他部門への説明資料への変換</th><td>1時間</td><td>10分</td><td class="win">▲0.8時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="combo">
+      <h4>📐 かんたんな損益分岐の出し方</h4>
+      <div class="flow">
+        <span class="b">月額 3,100円</span><span class="ar">÷</span>
+        <span class="b">自分の時給（例 2,500円）</span><span class="ar">＝</span>
+        <span class="b">月に約75分の時短で元が取れる</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:13.8px;color:var(--ink-soft);">上の表なら、<b>月次集計の1本だけで初月から超えます</b>。第6回は、<b>毎月必ず発生する作業</b>を削る回なので、効果が続くのが特徴です。ただし表計算のアドインは処理の重さに応じて<b>利用枠を消費する</b>案内があるため、<b>「毎日ちょっと」より「月に数回、しっかり」</b>のほうが費用対効果は出しやすくなります。<b>まず1業務、1か月、実測</b>。</p>
+    </div>
+    <div class="warn">
+      <div class="wt">⚠️ 数字を出すときの注意</div>
+      「3時間が25分になった」は、<b>データを整える時間と、検算の時間を含めて</b>測ってください。AIの下書きを鵜呑みにできない以上、確認時間は必ず発生します。ここを含めない試算は、社内で必ず崩れます。含めても十分に速い——それが正直な結論です。また、<b>1か月目は整える時間が長くかかります</b>。列名を固定した2か月目以降で測るほうが、実態に近い数字になります。
+    </div>
+
+    <!-- 落とし穴 -->
+    <h3 class="blk">プロが見ている、初心者がやりがちな8つの落とし穴</h3>
+    <p class="sec-sub" style="margin-top:-6px;">研修の現場で、実際にいちばん多い順に並べました。どれも一度知れば二度とやりません。</p>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>汚い表のまま渡す</div><p>結合セル・2段見出し・途中の小計行。<b>整えるのは2分</b>で、その2分が精度の9割を決めます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>合計を突き合わせない</div><p>第6回で起きうる事故の9割がこれ。<b>合計と件数</b>を元データと比べれば、3分で終わります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>「集計して」で止まる</div><p>集計は作業、判断は目的。<b>「だから何を決めたいか」</b>を1行足すだけで、返ってくるものが変わります。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>原本を直接いじらせる</div><p>必ず<b>複製で作業</b>。戻せる状態を作ってから始めるのが、表の中でAIを使う際の鉄則です。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>個人情報を消さずに渡す</div><p>氏名・連絡先は分析に不要です。<b>記号に置き換える</b>だけで、リスクはほぼ消えます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>相関を因果と決めつける</div><p>「投稿した月は売上が高い」は、原因とは限りません。<b>事実と推測を分けて書かせる</b>指定を入れてください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">7</span>予測を実績として扱う</div><p>「来期はこうなる見込み」は計算上の仮定です。<b>前提条件を必ず併記</b>させ、資料でも分けて示します。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">8</span>毎月フォーマットを変える</div><p>列名と並び順が変わると、翌月の自動化が崩れます。<b>固定するだけ</b>で、来月の自分が助かります。</p></div>
+    </div>
+
+    <!-- 局面別 -->
+    <h3 class="blk">数字が効く、局面別の使いどころ</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「データ分析」は経理や本部だけの話ではありません。判断の前に数字がいる場面は、すべて同じ型で扱えます。</p>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>店舗・現場で</h4>
+        <ul>
+          <li>日別・時間帯別の来客と、人員配置の見直し</li>
+          <li>商品別の売れ筋と、廃棄ロスの傾向</li>
+          <li>仕入単価の推移と、原価率の変化</li>
+          <li>クチコミ・アンケートの分類と、改善の優先順位</li>
+          <li>キャンペーン前後の売上比較</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>経営・管理で</h4>
+        <ul>
+          <li>月次の粗利・人件費率・固定費の推移</li>
+          <li>資金繰り表のたたき台づくり</li>
+          <li>事業別・拠点別の収益比較</li>
+          <li>金融機関に出す資料の、数字の整合チェック</li>
+          <li>来期計画の前提条件を変えたシナリオ比較</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで</h4>
+        <ul>
+          <li>家計簿CSVから、費目別の推移と削減候補</li>
+          <li>光熱費・通信費の1年比較と、プラン見直し</li>
+          <li>住宅ローンの返済シミュレーション</li>
+          <li>健康記録（体重・歩数など）の月次の傾向</li>
+          <li>旅行や行事の予算表づくり</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📣</span>発信・企画で</h4>
+        <ul>
+          <li>SNSの投稿別の反応を集計し、伸びた型を抽出</li>
+          <li>アクセス解析のCSVから、流入と離脱の傾向</li>
+          <li>過去の企画の実績を、成功パターンに整理</li>
+          <li>セミナー・研修アンケートの定量化</li>
+          <li>価格帯別の反応を比べて、次の打ち出しを決める</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 自立型AI -->
+    <h3 class="blk" id="s9">ここに「自立型AI」が加わると、何が変わるか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">数字仕事は、自立型AI（エージェント）がいちばん効きやすい領域です。手順がはっきりしていて、正解を検算で確かめられるからです。2026年の変化は、その入口が<b>表計算ソフトの中</b>まで来たことにあります。</p>
+
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>段階</th><th>できること</th><th>2026年の位置づけ</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>① 関数を聞く</th><td>数式やエラーの意味を教えてもらう</td><td>全プランで可能。今日からできる</td></tr>
+          <tr><th>② ファイルを渡す</th><td>集計・グラフ・Excel出力までを会話で</td><td class="win">この記事のSTEP2。無料でも可能</td></tr>
+          <tr><th>③ 表の中で動かす</th><td>開いているブックを直接読み、書き換える</td><td class="win">アドインで実現（STEP3）</td></tr>
+          <tr><th>④ 数字仕事ごと任せる</th><td>データ取得→集計→資料化→定期実行まで一括</td><td class="mid">Workなどのエージェント（第13回）</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>📌 2026年の最新動向（数字仕事に効く部分だけ）</h4>
+      <p style="margin:6px 0 0;font-size:13.9px;">2026年3月にExcel用の公式アドインが発表され、4月にはGoogleスプレッドシート版と、<b>スキル（作業手順の再利用）・アプリ連携（接続データの利用）</b>への対応が加わりました。あわせて、財務データを扱う外部サービスとの連携も広がっています。提供範囲は<b>無料プランを含む各プランへ拡大</b>し、Business／Enterpriseなどでは管理者が有効化してから利用する形が案内されています。「AIに表を渡す」から<b>「表の中にAIが常駐する」</b>へ——これが、いま現場でいちばん差が出ているポイントです。</p>
+      <p style="margin:10px 0 0;font-size:13.4px;color:var(--ink-soft);">※機能・上限・対応プラン・利用枠の扱いは改定が速い領域です。導入判断の前に、必ず<a href="https://help.openai.com/" target="_blank" rel="noopener">OpenAI ヘルプセンター</a>と<a href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener">公式の料金ページ</a>で最新情報をご確認ください。</p>
+    </div>
+
+    <div class="combo" style="border-left-color:var(--pine);">
+      <h4>🔭 いちばん大事な前提</h4>
+      <p style="margin:6px 0 0;font-size:13.9px;">自立型AIに数字仕事を任せられるかどうかは、<b>あなたが「正しい集計」を見分けられるか</b>にそのまま比例します。STEP1のデータの整え方とSTEP4の検算は、エージェントを使い始めたとき<b>そのまま効きます</b>。逆に、検算をしたことがない人がエージェントに数字を任せると、<b>誤った数字のまま資料と意思決定が積み上がる</b>——これがいちばん怖い形です。数字は、間違っていても見た目では分かりません。</p>
+    </div>
+
+    <div class="split" style="margin-top:16px;">
+      <div class="col work">
+        <div class="ch">✅ 任せやすい仕事 <span class="badge-mini">向いている</span></div>
+        <ul>
+          <li>決まった形式の月次集計と、グラフの作成</li>
+          <li>表記ゆれ・重複の整理と、名寄せの下作業</li>
+          <li>複数シートの照合と、差分の抽出</li>
+          <li>数式エラーの原因追跡と、修正案の提示</li>
+          <li>自由記述の分類と、件数の集計</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">⛔ まだ任せない仕事 <span class="badge-mini">要注意</span></div>
+        <ul>
+          <li>会計・税務の最終処理や、申告に使う数字の確定</li>
+          <li>人事評価・査定など、人の処遇に直結する集計</li>
+          <li>顧客の個人情報を含むデータの一括処理</li>
+          <li>検算しないまま、社外や金融機関に出す資料</li>
+          <li>原本ファイルへの、確認なしの直接書き換え</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:24px;">自立型AIに数字仕事を任せる前に決める6つ</div>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>検算は必ず人がやる</div><p>集計はAI、確認は人。この一行を社内ルールにするだけで、いちばん怖い事故は防げます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>原本と作業用を分ける</div><p>AIが触ってよいのは複製だけ。原本の置き場所と、更新できる人を先に決めておきます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>渡してよいデータを決める</div><p>個人情報を含む列は渡さない、と明文化。必要なら記号化してから扱う運用にします。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>接続先と権限を絞る</div><p>社内データへの接続は必要な範囲だけ。管理者側の有効化設定も、担当を決めて管理します。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">5</span>利用枠と費用の上限</div><p>処理の重さに応じて利用枠を消費します。「月にどこまで使うか」を先に決めておきます。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">6</span>まず1業務で1か月</div><p>全社展開の前に、1人・1業務で実測。削減時間と失敗パターンを掴んでから広げると、反発が起きません。</p></div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>「AIが集計してくれるなら、経理はいらない」って言われることがあるけど、逆だと思うんだ。<b>数える人は要らなくなって、確かめて意味を読む人の価値が上がった。</b>だから第6回でいちばん練習してほしいのは、分析じゃなくて<b>検算</b>なんだよ。</div>
+    </div>
+
+    <!-- つまずき -->
+    <h3 class="blk">つまずいたときのチェックリスト</h3>
+    <div class="compact">
+      <details>
+        <summary>Excelに「ChatGPT」のアドインが出てこない</summary>
+        <div class="ans">まず、対応プランのアカウントでサインインしているかを確認してください。次に、Excelの「ホーム」→「アドイン」から <b>ChatGPT</b> を検索できるか。会社のPCでは、<b>管理者側でアドインの追加が制限されている</b>ことがよくあります。その場合はMicrosoft 365の管理者から配布してもらう方法が案内されているので、情シスにご相談を。Googleスプレッドシート側も同様に、管理者による有効化が必要な場合があります。加えて、<b>提供元がOpenAIのものか</b>を必ず確認してください（同じ名前の第三者製アドインが複数あります）。</div>
+      </details>
+      <details>
+        <summary>集計した金額が、元のファイルと合わない</summary>
+        <div class="ans">ほぼ確実に、<b>読み込めなかった行</b>か<b>形式の解釈違い</b>です。「元データの行数・集計に使った行数・除外した行数と理由を出して」と聞いてください。多いのは、①文字コードの問題で一部の行が読めない、②日付形式のばらつき、③数値列に文字（「-」「約」「円」）が混ざっている、④全角と半角の混在。STEP1に戻って表を整え直すのが、結局いちばん早い解決です。</div>
+      </details>
+      <details>
+        <summary>グラフの日本語が四角い記号になってしまう</summary>
+        <div class="ans">グラフ画像を作る際のフォントの問題です。対処は3つ。①<b>「軸と凡例のラベルを英語にして」</b>と頼む、②<b>「グラフは不要。表の数字だけください」</b>と頼み、グラフはExcel側で作る、③表の中でAIを動かす方法（STEP3）に切り替える。実務では②がいちばん速く、体裁も自社の形に揃います。</div>
+      </details>
+      <details>
+        <summary>アドインに、いつもの会話やメモリの内容が引き継がれない</summary>
+        <div class="ans">仕様です。表計算の中でのやりとりは、<b>通常のChatGPTのチャット履歴とは分かれている</b>案内になっており、メモリも参照されません。そのため、第1回で設定した前提（業種・文体など）が必要な場合は、<b>その都度、指示文の中に短く書く</b>のが確実です。逆に言えば、うっかり社内文脈が混ざる心配が少ない、という利点でもあります。</div>
+      </details>
+      <details>
+        <summary>マクロ付きのファイルで、うまく動かない</summary>
+        <div class="ans">VBAやマクロは十分にサポートされていない場合があると案内されています。対処としては、①マクロを使わない<b>データ部分だけを別ファイルに複製</b>して作業する、②結果を受け取ってから、自分のマクロ付きファイルに貼り戻す、という進め方が安全です。マクロ付きの原本を直接AIに触らせるのは、現時点では避けてください。</div>
+      </details>
+      <details>
+        <summary>途中で処理が止まる／回答がとても遅い</summary>
+        <div class="ans">ファイルが大きい、シートが多い、指示が一度に多すぎる、のいずれかであることがほとんどです。①<b>1か月分・1シートだけ</b>に絞る、②作業を「整える→集計する→資料にする」の3回に分ける、③範囲を明示する（「A〜F列のみ」）。この3つで、たいてい解決します。処理の重さは利用枠の消費にも関係するため、分けて頼むほうが結果的に得です。</div>
+      </details>
+    </div>
+
+    <!-- 安全 -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item"><div class="si-h"><span class="no">1</span>個人が特定できる情報は渡さない</div><p>氏名・連絡先・住所・口座・個人識別情報は、分析に不要です。渡す前に削除するか、記号に置き換えてください。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">2</span>原本ではなく複製で作業する</div><p>AIはセルを書き換えられます。戻せる状態を先に作る——これが、表の中でAIを使う際の最重要ルールです。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">3</span>組織で使うなら統制ごと</div><p>Business／Enterpriseなら、管理者側で設定を統一でき、入力内容が学習に使われない扱いが標準です。「禁止」より「安全な選択肢を配る」ほうが機能します。</p></div>
+      <div class="safe-item"><div class="si-h"><span class="no">4</span>最終判断は人と専門家が</div><p>会計・税務・労務・法務・投資に関わる数字の最終確認は、必ず専門家と公式窓口へ。AIの集計は、あくまで下作業です。</p></div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料のままでも、この記事の内容はできますか？</summary>
+        <div class="ans">STEP1・STEP2（データを整えて、チャットに渡して集計・グラフ・検算）は、無料プランでも十分に体験できます。表計算ソフトのアドインも、<b>無料プランを含む各プランに提供されている</b>案内になっていますが、<b>利用量には制限</b>があります。まず無料の範囲で1か月分の集計を1本やってみて、上限に当たる頻度を見てから課金を検討するのが合理的です。回数や枠の扱いは改定が速いので、公式の最新表記をご確認ください。</div>
+      </details>
+      <details>
+        <summary>Excelの関数を、もう覚えなくてもいいのでしょうか？</summary>
+        <div class="ans">「書けなくてもいい」が、<b>「読めなくていい」ではありません</b>。AIが作った数式が何をしているかを、ざっくり説明できる程度の理解は必要です。とはいえ、覚え方は変わりました。<b>「この数式は何をしているか、日本語で説明して」</b>と聞けば、その場で学べます。関数を暗記する時間を、数字の意味を考える時間に回す——それが2026年の合理的な進め方です。</div>
+      </details>
+      <details>
+        <summary>Microsoft 365 Copilot や Gemini とは、どう違いますか？</summary>
+        <div class="ans">大まかには、Copilotは<b>Microsoft 365の環境全体と深くつながる</b>のが強み、GeminiはGoogle Workspace側との連携が自然、ChatGPTのアドインは<b>ExcelとGoogleスプレッドシートの両方に入れられる</b>のが特徴です。優劣ではなく、社内で何を使っているかで決まります。すでにMicrosoft 365やGoogle Workspaceを契約している会社は、<b>まず手持ちのライセンスで何ができるかを確認</b>してから、追加を検討するのが無駄がありません。使い分けは別記事でも比較しています。</div>
+      </details>
+      <details>
+        <summary>売上や原価のデータを入れても、外部に漏れませんか？</summary>
+        <div class="ans">入力内容の扱いは、プランと設定によって変わります。Business／Enterpriseでは学習に使われない扱いが標準で、個人プランでも設定画面から選択できる項目があります。加えて、表計算のアドインは<b>MicrosoftやGoogleの製品の中で動く</b>ため、それぞれの規約も適用される点は、社内説明で触れておくと丁寧です。最も確実なのは、<b>個人が特定できる情報を、そもそも入れないこと</b>。集計に必要なのは金額と数量であって、氏名ではありません。</div>
+      </details>
+      <details>
+        <summary>会計ソフトのデータは、どうやって取り出せばいいですか？</summary>
+        <div class="ans">多くの会計ソフト・販売管理ソフト・POSには、<b>CSVで書き出す機能</b>が付いています。「エクスポート」「データ出力」といったメニューを探してみてください。書き出したCSVをSTEP1の形に整えれば、そのまま使えます。列名が英語や記号の場合は、<b>「この列名の意味を推測して、日本語の対応表を作って」</b>と頼むと早いです。まずは1か月分から始めてください。</div>
+      </details>
+      <details>
+        <summary>研修として社内に導入する場合、助成金は使えますか？</summary>
+        <div class="ans">人材開発支援助成金など、要件を満たせば活用を検討できる制度があります。ただし対象コース・訓練時間・申請時期などの要件は毎年更新されるため、必ず最新の公募要領と、管轄の労働局へのご確認をお願いします。UGOKU AIでは、要件の整理からご相談いただけます。</div>
+      </details>
+    </div>
+
+    <!-- クイズ -->
+    <h3 class="blk" id="quiz">理解度チェック（3問・1分）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">読んだだけだと、たいてい3日で忘れます。3問だけ答えて、記憶に固定してから閉じてください。</p>
+    <div class="quiz" id="quizBox">
+      <div class="qh">🧠 3問クイズ</div>
+      <p class="qs">選ぶだけ。すぐに答えと解説が出ます。</p>
+
+      <div class="qitem" data-ans="2">
+        <div class="qq"><span class="qn">1</span><span>AIにデータを分析させるとき、結果をいちばん左右するのは？</span></div>
+        <div class="qopts">
+          <button class="qopt">できるだけ高性能なモデルを選ぶこと</button>
+          <button class="qopt">できるだけ多くの月のデータを一度に渡すこと</button>
+          <button class="qopt">渡す前に「1行1件」の形に整えておくこと</button>
+          <button class="qopt">グラフの種類を細かく指定すること</button>
+        </div>
+        <div class="qfb"><b>正解：渡す前に表を整えること。</b>結合セル・2段見出し・途中の小計行・文字混じりの数値は、読み違いの原因になります。整えるのは2分。その2分が、精度の9割を決めます。</div>
+      </div>
+
+      <div class="qitem" data-ans="1">
+        <div class="qq"><span class="qn">2</span><span>集計結果が返ってきました。次にやるべきことは？</span></div>
+        <div class="qopts">
+          <button class="qopt">グラフが出ているので、そのまま会議資料として配る</button>
+          <button class="qopt">合計・件数・期間を、元データと突き合わせる</button>
+          <button class="qopt">全部の行を1行ずつ、すべて手で検算する</button>
+          <button class="qopt">同じファイルをもう一度渡して、結果を見比べる</button>
+        </div>
+        <div class="qfb"><b>正解：合計・件数・期間の突き合わせ。</b>数字は、間違っていても見た目では分かりません。<b>全行の検算は不要</b>。合計と件数、そして除外された行の件数を聞くだけで、3分で終わります。</div>
+      </div>
+
+      <div class="qitem" data-ans="3">
+        <div class="qq"><span class="qn">3</span><span>表計算ソフトの中でAIを動かすとき、いちばん危ない進み方は？</span></div>
+        <div class="qopts">
+          <button class="qopt">練習用の小さなファイルから試す</button>
+          <button class="qopt">触ってよい範囲を、先に指示しておく</button>
+          <button class="qopt">大事な原本ファイルを、複製せずに直接触らせる</button>
+          <button class="qopt">編集の前に、変更する範囲の一覧を出させる</button>
+        </div>
+        <div class="qfb"><b>正解：原本を複製せずに触らせること。</b>AIはセルを書き換えられます。変更前に確認を求める作りにはなっていますが、<b>戻せる状態を先に作る</b>のが鉄則。複製・範囲指定・変更点の一覧、この3つで事故はほぼ防げます。</div>
+      </div>
+
+      <div class="qscore" id="qScore"></div>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全15回＋番外編）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">1回あたり10〜15分、上から順に積み上がる設計です。<b>読む→書く→作る→見せる→任せる→広げる</b>の順で進みます。第6回は、AIが<b>「自社の数字」に触れる最初の回</b>です。ここで検算の型を持っておくと、第13回の自立型AIが安全に使えます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>回</th><th>テーマ</th><th>この回で手に入るもの</th><th>時間</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>第1回</th><td>ChatGPTの基礎</td><td>毎回説明しなくていいワークスペース</td><td>15分</td></tr>
+          <tr><th>第2回</th><td>伝わる頼み方</td><td>10倍の結果を引き出すプロンプトの型</td><td>10分</td></tr>
+          <tr><th>第3回</th><td>ドキュメント分析</td><td>PDF・長文・紙の書類を数分で要点化</td><td>15分</td></tr>
+          <tr><th>第4回</th><td>メール＆文書</td><td>数秒でプロの文面。断り方・詫び方の型</td><td>10分</td></tr>
+          <tr><th>第5回</th><td>Deep Research</td><td>調査レポートの自動生成と、裏取りの手順</td><td>15分</td></tr>
+          <tr><th>第6回</th><td class="win">データ分析＆Excel連携（この記事）</td><td class="win">表計算の中でAIを直接動かす</td><td>10分</td></tr>
+          <tr><th>第7回</th><td>画像生成＆写真編集</td><td>POP・バナー・商品ビジュアルを内製化</td><td>15分</td></tr>
+          <tr><th>第8回</th><td>音声モード＆会議</td><td>ハンズフリー活用と、録音→議事録</td><td>10分</td></tr>
+          <tr><th>第9回</th><td>コンテンツ制作</td><td>SNS投稿・台本・コピーの量産（動画生成も）</td><td>15分</td></tr>
+          <tr><th>第10回</th><td>Canvas</td><td>会話ではなく“編集画面”で仕上げる</td><td>10分</td></tr>
+          <tr><th>第11回</th><td>マイGPT（GPTs）</td><td>自分専用AIを作り、社内に配る</td><td>15分</td></tr>
+          <tr><th>第12回</th><td>タスク自動化＆アプリ連携</td><td>定時実行と、Drive・カレンダー等との接続</td><td>10分</td></tr>
+          <tr><th>第13回</th><td>ChatGPT Work</td><td>自立型AIに“仕事”ごと渡す</td><td>15分</td></tr>
+          <tr><th>第14回</th><td>チーム導入</td><td>Business設定・共有・社内ルールづくり</td><td>10分</td></tr>
+          <tr><th>第15回</th><td>フルワークフロー</td><td>1〜14をつないだ完全AI自動化システム</td><td>15分</td></tr>
+          <tr><th>番外編</th><td>総括／セキュリティ</td><td>情報漏洩・コンプライアンス・社内規程の型</td><td>15分</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">合計 約190分（＋番外編15分）。第6回で身につけた「整えて、任せて、検算する」考え方は、第11回のマイGPT、第12回の定時実行、第13回の自立型AIまで、そのまま効き続けます。</p>
+
+    <div class="finish">
+      <div class="fk">COMPLETE</div>
+      <h4 id="fTtl">最後まで読んでくれて、ありがとう。</h4>
+      <p id="fMsg">上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。</p>
+      <div class="fbar"><i id="fBar"></i></div>
+      <div class="fnum"><b id="fNum">0</b> / 6 ステップ完了</div>
+    </div>
+
+    <div class="keystone" style="margin-top:32px;">
+      <span class="kl">🎓 第6回の宿題</span>
+      <p>この記事を閉じる前に、<strong>手元にある表を1つだけ「1行1件」に整えて、1か月分の集計を1本走らせてください</strong>。そして<strong>合計と件数を、元データと突き合わせる</strong>ところまで。それだけで第6回は合格です。次の第7回では、<strong>POP・バナー・商品ビジュアルを内製化する画像生成＆写真編集</strong> を扱います（所要15分）。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-05/"><span class="r-ic">🔍</span><span><span class="r-k">← 前の回（第5回）</span><span class="r-t">調査レポートの自動生成と、裏取りの手順<small>／ ChatGPT実践シリーズ 第5回（15分）</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🎨</span><span><span class="r-k">▶ 次に読む（第7回）</span><span class="r-t">画像生成＆写真編集：POP・バナーを内製化<small>／ ChatGPT実践シリーズ 第7回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/"><span class="r-ic">📄</span><span><span class="r-k">読ませる技術は</span><span class="r-t">PDF・長文・紙の書類を数分で要点化<small>／ ChatGPT実践シリーズ 第3回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-02/"><span class="r-ic">📝</span><span><span class="r-k">問いの立て方の土台は</span><span class="r-t">10倍の結果を引き出すプロンプトの型<small>／ ChatGPT実践シリーズ 第2回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">設定がまだの方は</span><span class="r-t">正しいAIワークスペースの設定方法<small>／ ChatGPT実践シリーズ 第1回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-06/"><span class="r-ic">🔁</span><span><span class="r-k">姉妹シリーズ・読み比べ</span><span class="r-t">Claude実践シリーズ 第6回<small>／ 同じテーマを、Claudeで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まだの方はこちらから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">ツールを比べるなら</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">💡</span><span><span class="r-k">型を増やすなら</span><span class="r-t">社長が今すぐ使えるプロンプト100選<small>／ 経営・営業・数字・私生活まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">社内ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener"><span class="r-ic">💳</span><span><span class="r-k">公式</span><span class="r-t">ChatGPTの料金プラン<small>／ 対応プラン・利用枠の最新情報</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://help.openai.com/" target="_blank" rel="noopener"><span class="r-ic">🛟</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">OpenAI ヘルプセンター<small>／ アドインの導入・設定の最新手順</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>集計に、もう半日もいらない。<br>次は、<span class="hl">あなたの会社の数字</span>を載せませんか？</h2>
+    <p>「どの業務から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の内容は2026年7月時点の公開情報に基づきます。各サービスの画面・機能・料金・対応プラン・利用量の上限は、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。また、会計・税務・労務・法務・投資に関する最終判断は、必ず公式窓口および専門家にご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── 1. 読了プログレス＋残り時間 ── */
+  var bar=document.getElementById('progBar'),
+      badge=document.getElementById('progBadge'),
+      minEl=document.getElementById('progMin'),
+      TOTAL=10, ticking=false;
+  function onScroll(){
+    var h=document.documentElement,
+        max=(h.scrollHeight-h.clientHeight)||1,
+        r=Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max));
+    bar.style.width=(r*100).toFixed(1)+'%';
+    var left=Math.max(1,Math.ceil(TOTAL*(1-r)));
+    minEl.textContent=left;
+    badge.classList.toggle('on', r>0.04 && r<0.97);
+    spy();
+    ticking=false;
+  }
+  /* ── 2. 目次のスクロール追従 ── */
+  var links=[].slice.call(document.querySelectorAll('.toc a')),
+      targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function spy(){
+    var best=-1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].getBoundingClientRect().top<140) best=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('cur',i===best);});
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+  },{passive:true});
+  onScroll();
+
+  /* ── 3. STEP完了チェック（保存つき・失敗しても動作継続） ── */
+  var KEY='ugoku_cm06_steps',
+      boxes=[].slice.call(document.querySelectorAll('.done input')),
+      fBar=document.getElementById('fBar'),
+      fNum=document.getElementById('fNum'),
+      fTtl=document.getElementById('fTtl'),
+      fMsg=document.getElementById('fMsg');
+  function load(){
+    try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];}
+  }
+  function save(v){ try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){} }
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    if(fBar) fBar.style.width=(n/6*100)+'%';
+    if(fNum) fNum.textContent=n;
+    if(!fTtl) return;
+    if(n===0){
+      fTtl.textContent='最後まで読んでくれて、ありがとう。';
+      fMsg.innerHTML='上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。';
+    }else if(n<3){
+      fTtl.textContent='いいスタートです。';
+      fMsg.innerHTML='読むだけで終わる人が大半のなか、あなたはもう手を動かしています。<b>次の1つ</b>をやると、数字仕事の型が体に入ります。';
+    }else if(n<6){
+      fTtl.textContent='もう「数字を任せられる人」です。';
+      fMsg.innerHTML='あとはSTEP4の検算まで。<b>合計と件数を元データと突き合わせる</b>——ここが、社内で使える数字になるかどうかの分かれ目です。';
+    }else{
+      fTtl.textContent='第6回、完全クリアです。おめでとう！';
+      fMsg.innerHTML='6ステップすべて実践しました。次は<b>その数字を「見せる」</b>番。第7回の画像生成と、第13回の自立型AIに直結します。';
+    }
+  }
+  var saved=load();
+  boxes.forEach(function(b){
+    if(saved.indexOf(b.dataset.step)>-1) b.checked=true;
+    b.addEventListener('change',function(){
+      save(boxes.filter(function(x){return x.checked;}).map(function(x){return x.dataset.step;}));
+      paint();
+    });
+  });
+  paint();
+
+  /* ── 4. 理解度クイズ ── */
+  var items=[].slice.call(document.querySelectorAll('.qitem')),
+      scoreEl=document.getElementById('qScore'), correct=0, answered=0;
+  items.forEach(function(it){
+    var ans=parseInt(it.dataset.ans,10),
+        opts=[].slice.call(it.querySelectorAll('.qopt')),
+        fb=it.querySelector('.qfb');
+    opts.forEach(function(btn,idx){
+      btn.addEventListener('click',function(){
+        if(it.dataset.locked) return;
+        it.dataset.locked='1'; answered++;
+        var hit=(idx===ans);
+        if(hit) correct++;
+        opts.forEach(function(o,i){
+          o.disabled=true;
+          if(i===ans) o.classList.add('ok');
+          else if(i===idx) o.classList.add('ng');
+        });
+        fb.classList.add('show');
+        if(answered===items.length && scoreEl){
+          var msg = correct===3 ? '完璧です。もう社内に教えられるレベル。'
+                  : correct===2 ? 'good。取りこぼした1問だけ、上に戻って確認を。'
+                  : '大丈夫、ここが伸びしろです。STEP1とSTEP4をもう一度どうぞ。';
+          scoreEl.innerHTML='🎯 <b>'+correct+' / 3 問正解</b>　'+msg;
+          scoreEl.classList.add('show');
+        }
+      });
+    });
+  });
+})();
+</script>
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

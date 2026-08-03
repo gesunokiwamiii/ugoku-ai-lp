@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-08/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第8回：音声モード＆会議｜ハンズフリー活用と録音→議事録（10分） ― UGOKU AI</title>
+<meta name="description" content="ChatGPT実践シリーズ第8回。運転中・現場・移動中に使うハンズフリー活用と、会議の録音から議事録・ToDoまでを10分で。2026年の音声モード（Live／Advanced）とChatGPT Recordの対応状況、録音前に必ず取る同意の伝え方、聞き間違いを潰す確認の型、コピペで使える議事録プロンプト、費用対効果、自立型AIとの組み合わせまで、案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第8回：音声モード＆会議 ― ハンズフリー活用と録音→議事録（10分）｜UGOKU AI">
+<meta property="og:description" content="会議のあと2時間、まだ議事録を書いていますか。打たずに相談し、録って、まとめる。声から始めるAI活用を、同意の取り方まで含めて10分で。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-08/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-08/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第8回：音声モード＆会議 ― ハンズフリー活用と録音→議事録 ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第8回：音声モード＆会議 ― ハンズフリー活用と録音→議事録（10分）｜UGOKU AI">
+<meta name="twitter:description" content="打つのが苦手な人ほど効く。運転中の壁打ちから、会議の議事録まで。声から始めるAI活用を10分で。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-08/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+  /* ═══ 読了率アップ施策 ═══ */
+  .prog{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(32,27,14,.16);z-index:999;}
+  .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);transition:width .1s linear;}
+  .prog-badge{position:fixed;top:12px;right:12px;z-index:999;background:rgba(32,27,14,.88);color:#F3F5F1;font-size:11.5px;font-weight:800;
+    padding:6px 13px;border-radius:100px;backdrop-filter:blur(6px);opacity:0;transition:.25s;pointer-events:none;letter-spacing:.02em;}
+  .prog-badge.on{opacity:1;}
+  .prog-badge b{color:var(--ember);}
+
+  .promise{padding:34px 0 0;}
+  .promise-card{background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;box-shadow:var(--shadow);}
+  .promise-k{display:inline-flex;align-items:center;gap:7px;background:var(--pine);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 14px;border-radius:100px;margin-bottom:14px;}
+  .promise-card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,4.8vw,27px);line-height:1.5;margin:0 0 6px;}
+  .promise-card h2 .hl{background:linear-gradient(transparent 58%,var(--ember-soft) 58%);padding:0 3px;}
+  .promise-card>p{color:var(--ink-soft);font-size:14.6px;margin:0 0 18px;}
+  .ba2{display:grid;gap:12px;align-items:stretch;}
+  @media(min-width:640px){.ba2{grid-template-columns:1fr 54px 1fr;}}
+  .ba2 .bx{border-radius:15px;padding:16px 17px;}
+  .ba2 .bx .bt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;margin-bottom:9px;}
+  .ba2 .bef{background:#F4F2EC;border:1px solid #DFD9C9;}
+  .ba2 .bef .bt{color:#8A8373;}
+  .ba2 .aft{background:linear-gradient(160deg,var(--pine),var(--pine-deep));border:1px solid var(--pine-deep);color:#F3F5F1;box-shadow:0 8px 22px rgba(32,27,14,.22);}
+  .ba2 .aft .bt{color:var(--ember);}
+  .ba2 ul{list-style:none;margin:0;padding:0;}
+  .ba2 li{position:relative;padding:5px 0 5px 21px;font-size:13.8px;border-bottom:1px dashed rgba(0,0,0,.09);}
+  .ba2 .aft li{border-bottom-color:rgba(255,255,255,.14);}
+  .ba2 li:last-child{border-bottom:none;}
+  .ba2 .bef li::before{content:"✕";position:absolute;left:0;top:5px;color:#B08A6A;font-weight:900;font-size:12px;}
+  .ba2 .aft li::before{content:"✓";position:absolute;left:0;top:5px;color:var(--ember);font-weight:900;font-size:12px;}
+  .ba2 .mid-ar{display:grid;place-items:center;font-size:26px;color:var(--ember-2);font-weight:900;}
+  @media(max-width:639px){.ba2 .mid-ar{transform:rotate(90deg);padding:2px 0;}}
+  .promise-foot{margin:16px 0 0;padding:14px 16px;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:13px;font-size:14px;color:#6B4A12;}
+  .promise-foot b{color:var(--ember-2);}
+
+  /* 目次 */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:20px 22px;margin:28px 0 8px;}
+  .toc .tt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+  .toc .ts{font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:2px;}
+  @media(min-width:640px){.toc ol{grid-template-columns:1fr 1fr;gap:2px 18px;}}
+  .toc li{counter-increment:t;}
+  .toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:13.9px;font-weight:600;padding:7px 8px;border-radius:9px;transition:.14s;}
+  .toc a:hover{background:#F6F3EA;}
+  .toc a::before{content:counter(t);flex:none;width:21px;height:21px;border-radius:7px;background:#F1EEE4;color:var(--pine);font-size:11px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .toc a.cur{background:var(--ember-soft);}
+  .toc a.cur::before{background:var(--ember);color:var(--pine-deep);}
+  .toc a .mn{margin-left:auto;font-size:11.5px;color:var(--ink-soft);font-weight:700;flex:none;}
+
+  /* 図解 */
+  figure.fig{margin:18px 0 6px;padding:0;}
+  figure.fig svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow-sm);}
+  figure.fig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:7px;text-align:center;}
+
+  /* STEP 完了チェック */
+  .done{display:flex;align-items:center;gap:10px;margin:18px 0 0;padding:12px 15px;background:#FCFCF9;border:1px dashed var(--line);border-radius:12px;cursor:pointer;user-select:none;transition:.15s;}
+  .done:hover{background:#F6F3EA;}
+  .done input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--accent,var(--pine));border-radius:7px;cursor:pointer;position:relative;margin:0;transition:.15s;}
+  .done input:checked{background:var(--accent,var(--pine));}
+  .done input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900;}
+  .done span{font-size:13.6px;font-weight:700;color:var(--ink-soft);}
+  .done input:checked + span{color:var(--accent,var(--pine));}
+
+  /* 章末ミニまとめ */
+  .gain{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--pine);border-radius:14px;padding:17px 20px;margin:26px 0 6px;box-shadow:var(--shadow-sm);}
+  .gain .gt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--pine);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+  .gain ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;}
+  .gain li{position:relative;padding-left:23px;font-size:14px;}
+  .gain li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ember-2);font-weight:900;font-size:13px;}
+  .gain .nx{margin:11px 0 0;font-size:13.6px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;}
+  .gain .nx b{color:var(--ember-2);}
+
+  /* 理解度クイズ */
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;}
+  .quiz .qh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:9px;}
+  .quiz .qs{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .qitem{border-top:1px solid var(--line);padding:16px 0 4px;}
+  .qitem:first-of-type{border-top:none;padding-top:4px;}
+  .qq{font-weight:800;font-size:14.8px;margin-bottom:10px;display:flex;gap:9px;}
+  .qq .qn{flex:none;width:23px;height:23px;border-radius:7px;background:var(--pine);color:#fff;font-size:12px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .qopts{display:grid;gap:8px;}
+  .qopt{text-align:left;background:#FCFCF9;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;font-size:13.8px;font-family:inherit;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.65;}
+  .qopt:hover{border-color:var(--pine-2);background:#F6F3EA;}
+  .qopt.ok{background:#FBEFC9;border-color:#E7C97A;font-weight:700;}
+  .qopt.ng{background:#FBECEC;border-color:#F0C2C2;opacity:.85;}
+  .qopt:disabled{cursor:default;}
+  .qfb{display:none;margin-top:10px;padding:12px 15px;border-radius:11px;font-size:13.6px;background:var(--ember-soft);border:1px solid #EBCF95;color:#6B4A12;}
+  .qfb.show{display:block;}
+  .qfb b{color:var(--ember-2);}
+  .qscore{margin-top:16px;padding:15px 17px;border-radius:13px;background:linear-gradient(160deg,var(--pine),var(--pine-deep));color:#F3F5F1;font-size:14px;display:none;}
+  .qscore.show{display:block;}
+  .qscore b{color:var(--ember);font-size:17px;}
+
+  /* 完読バッジ */
+  .finish{text-align:center;background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:26px 0 0;box-shadow:var(--shadow-sm);}
+  .finish .fk{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:10px;}
+  .finish h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(18px,4.2vw,23px);margin:0 0 10px;line-height:1.5;}
+  .finish p{font-size:14.3px;color:var(--ink-soft);margin:0 auto 14px;max-width:520px;}
+  .fbar{max-width:420px;margin:0 auto;background:#F1EEE4;border-radius:100px;height:12px;overflow:hidden;}
+  .fbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);border-radius:100px;transition:width .4s cubic-bezier(.2,.7,.3,1);}
+  .fnum{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;color:var(--pine);margin-top:9px;}
+  .fnum b{color:var(--ember-2);font-size:19px;}
+
+  /* 3段階レベルの階段 */
+  .ladder{display:grid;gap:11px;margin:14px 0 0;}
+  @media(min-width:700px){.ladder{grid-template-columns:repeat(3,1fr);align-items:stretch;}}
+  .lv{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--pine));border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .lv .lv-n{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;font-weight:900;letter-spacing:.1em;color:var(--accent,var(--pine));margin-bottom:5px;}
+  .lv h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 7px;line-height:1.45;}
+  .lv p{margin:0 0 8px;font-size:13.4px;color:var(--ink-soft);}
+  .lv .lv-t{display:inline-block;font-size:11px;font-weight:800;background:#F3EFE3;color:var(--pine);border-radius:7px;padding:3px 10px;}
+  /* 材料タグ */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;}
+  .tags span{background:#F3EFE3;border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:12.5px;font-weight:700;color:var(--pine);}
+  /* 言い換え表 */
+  .swap{display:grid;gap:9px;margin:12px 0 0;}
+  @media(min-width:620px){.swap{grid-template-columns:1fr 1fr;}}
+  .swap .sw{display:flex;align-items:center;gap:10px;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:10px 13px;font-size:13.3px;}
+  .swap .sw .x{color:#B23A3A;font-weight:800;white-space:nowrap;}
+  .swap .sw .ar{color:var(--ember-2);font-weight:900;flex:none;}
+  .swap .sw .o{color:var(--pine);font-weight:700;}
+
+  /* ═══ 第5回 追加パーツ（レポート断面カード・工程レイヤー） ═══ */
+  .mail{background:#FCFCF9;border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .mail .mh{display:flex;align-items:center;gap:9px;padding:10px 15px;background:#F1EEE4;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;color:var(--pine);}
+  .mail .mh .tagx{margin-left:auto;font-size:10.5px;font-weight:800;background:var(--pine);color:#fff;border-radius:6px;padding:2px 9px;}
+  .mail .mb{padding:15px 17px;font-size:13.9px;line-height:1.95;white-space:pre-wrap;}
+  .mail .mb .fill{color:var(--ember-2);font-weight:700;}
+  .mail .mnote{border-top:1px dashed var(--line);padding:11px 17px;font-size:12.6px;color:var(--ink-soft);background:#fff;}
+  .mail .mnote b{color:var(--pine);}
+  /* 型の5段構成 */
+  .layers{display:grid;gap:9px;margin:12px 0 0;counter-reset:ly;}
+  .layer{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent,var(--pine));border-radius:12px;padding:12px 15px;counter-increment:ly;}
+  .layer .ln{flex:none;width:25px;height:25px;border-radius:8px;background:var(--accent,var(--pine));color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12.5px;display:grid;place-items:center;}
+  .layer .lt{font-size:13.7px;}
+  .layer .lt b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.3px;margin-bottom:2px;}
+  .layer .lt .why{color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<!-- ═══ 読了プログレスバー ═══ -->
+<div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+<div class="prog-badge" id="progBadge">残り <b id="progMin">10</b> 分</div>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">ChatGPT実践シリーズ 第8回 ｜ 所要10分</span>
+      <h1>会議のあと2時間、<br><span class="hl">まだ議事録を書いていますか。</span></h1>
+      <p class="lead">1時間の会議に、議事録づくりと共有で2〜3時間。これ、多くの会社でいまも起きています。いっぽうで、<b>運転中・現場・移動中に相談したいことがあっても、両手がふさがっていて打てない</b>。2026年の音声機能は、この2つをまとめて解決する段階に入りました。この記事は、<b>打たずに相談する型</b>と、<b>録って議事録にする手順</b>を、10分で持ち帰るための手順書です。あわせて、<b>録音の前に必ずやるべきこと</b>も抜けなくお渡しします。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">10分で声の使い方を手に入れる <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 冒頭：結論先出し ═══ -->
+<div class="promise">
+  <div class="wrap">
+    <div class="promise-card">
+      <span class="promise-k">🏁 結論から言います</span>
+      <h2>音声で得するのは「入力が速いこと」ではありません。<br><span class="hl">考えながら話せることと、会議後の2時間です。</span></h2>
+      <p>キーボードを打つ速さの話だと思っていると、たぶん使いません。本当の価値は2つ。ひとつは<b>「まとまっていない考えを、話しながら整理できる」</b>こと。もうひとつは<b>「会議が終わった瞬間に、議事録の下書きが存在している」</b>ことです。第8回でいちばん練習してほしいのは、実は話し方ではなく<b>録音の前の3分</b>です。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">BEFORE ／ 今のあなた</div>
+          <ul>
+            <li>会議中はメモに必死で、議論に参加できていない</li>
+            <li>会議後、録音を聞き直しながら2時間かけて議事録を書く</li>
+            <li>決まったことと宿題が、あとから食い違う</li>
+            <li>移動中に思いついたことを、忘れてしまう</li>
+            <li>音声モードは触ったが、雑談で終わった</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">AFTER ／ 10分後のあなた</div>
+          <ul>
+            <li>両手がふさがっていても<b>相談・壁打ち</b>ができる</li>
+            <li>会議が終わった時点で<b>議事録の下書き</b>がある</li>
+            <li><b>決定事項とToDo</b>が、担当・期限つきで並ぶ</li>
+            <li><b>録音の同意</b>を、角を立てずに取れる言い方が手に入る</li>
+            <li>聞き間違いを<b>3分で潰す確認の型</b>が身につく</li>
+          </ul>
+        </div>
+      </div>
+      <div class="promise-foot">
+        📌 <b>この記事のいちばん新しい部分：</b>2026年、音声モードは新世代の <b>GPT-Live</b> が順次展開され、間の取り方まで自然な会話に近づきました。<b>音声でのライブ翻訳</b>も有料プラン向けに提供されています。いっぽう会議の録音（<b>ChatGPT Record</b>）は、<b>2026年7月時点でPlus・Pro・Business・Enterprise・Eduが対象、かつmacOSのデスクトップアプリ限定</b>という制約があります。<b>Windowsやスマホの方でも今日から回せる代替の手順</b>を、STEP4で必ずお渡しします。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「音声モード、面白かったけど仕事では使ってない」——これ、第8回でいちばん多い“もったいない”です。原因は簡単で、<b>雑談の相手として使ってしまっている</b>から。声の本領は<b>「手がふさがっている時間を、仕事に変えること」</b>なんだ。この記事を上から10分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>運転中・現場・家事中に使える<b>ハンズフリーの型</b>が手に入る</li>
+          <li>会議を録る前の<b>3分の準備</b>（同意・環境・前提）が分かる</li>
+          <li>録音から<b>議事録・決定事項・ToDo</b>まで一気に出せる</li>
+          <li>AIの<b>聞き間違いを潰す確認の型</b>が身につく</li>
+          <li>Windows・スマホでも回せる<b>代替の手順</b>が分かる</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">「AIを声で使う」って、<br>結局なにをするの？</h2>
+    <p class="sec-sub">大きく3つです。まったく別の使い方なので、混ぜて考えると迷子になります。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">🎙️</div>
+        <h4>1. 話す<br><span>＝ ハンズフリーで相談する</span></h4>
+        <p>運転中・現場・移動中・家事中に、声だけで相談・壁打ち・確認をする使い方。<b>打つのが苦手な人ほど効果が大きい</b>領域です。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">⏺️</div>
+        <h4>2. 録る<br><span>＝ 会議や訪問を記録する</span></h4>
+        <p>会議・商談・打合せを録音し、文字にする層。<b>ここだけは、必ず事前の同意が要ります</b>。技術の話より先に、段取りの話です。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">📋</div>
+        <h4>3. まとめる<br><span>＝ 議事録とToDoにする</span></h4>
+        <p>文字になった記録を、決定事項・宿題・共有文に変える層。<b>AIがいちばん得意なのは、実はここ</b>です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CHATGPT MASTER ｜ LESSON 08</div>
+    <h2 class="sec-title">第8回：音声モード＆会議<br>― ハンズフリー活用と、録音→議事録 ―</h2>
+    <p class="sec-sub">機械が苦手な方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計10分です。</p>
+
+    <!-- 目次 -->
+    <nav class="toc" id="toc">
+      <div class="tt">🗺️ この記事の地図（全6ステップ・10分）</div>
+      <p class="ts">気になるところから読んでも大丈夫。上から順に進めば10分で終わります。</p>
+      <ol>
+        <li><a href="#s1">音声モードを立ち上げて3分話す<span class="mn">2分</span></a></li>
+        <li><a href="#s2">★手がふさがっている時間の使い方<span class="mn">2分</span></a></li>
+        <li><a href="#s3">★録音の前にやる3つ（同意・環境・前提）<span class="mn">2分</span></a></li>
+        <li><a href="#s4">★録音を議事録に変える<span class="mn">2分</span></a></li>
+        <li><a href="#s5">議事録を「動く形」に変える<span class="mn">1分</span></a></li>
+        <li><a href="#s6">型を保存して、毎週回す<span class="mn">1分</span></a></li>
+        <li><a href="#s7">局面別・声で片づく15種<span class="mn">＋</span></a></li>
+        <li><a href="#s8">費用対効果を時間で測る<span class="mn">＋</span></a></li>
+        <li><a href="#s9">自立型AIが加わると<span class="mn">＋</span></a></li>
+        <li><a href="#quiz">理解度チェック（3問）<span class="mn">1分</span></a></li>
+      </ol>
+    </nav>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p>録音を始める前に、<strong>「録音してもいいですか」と口に出してください</strong>。技術的にはボタン1つで録れます。けれど、<strong>黙って録ることで失うもの</strong>——信頼、社内での立場、取引先との関係——は、時短で得られるものよりずっと大きい。<strong>ひとこと言えば、たいてい断られません。</strong>この記事で覚えて帰るべき最重要事項は、実はこれひとつです。</p>
+    </div>
+    <p class="link-note" style="margin:-28px 0 34px;">※本記事は<b>2026年7月時点</b>の公開情報に基づきます。音声機能・録音機能の対応プラン・対応OS・提供地域は、更新の速い領域です。導入判断の前には、必ず<a href="https://help.openai.com/" target="_blank" rel="noopener">OpenAI ヘルプセンター</a>の最新表記と、自社の情報取扱いルールをご確認ください。録音・個人情報の取扱いに関する最終判断は、必ず専門家にご相談ください。</p>
+
+    <!-- なぜ差がつくのか -->
+    <h3 class="blk">なぜ「同じ音声機能」で、ここまで差がつくのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">研修の現場で「音声、結局使ってない」という方に理由を聞くと、返ってくる答えはほぼ2つです。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>「使う場面」を決めていない</h4>
+        <p>デスクに座ってPCの前にいるなら、打ったほうが速いのは当たり前です。声が勝つのは<b>「打てない状況」</b>だけ。運転中、現場、階段の移動中、皿を洗いながら、寝る前の布団の中。<b>先に場面を決めていない人は、一生使いません。</b></p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>録音したまま、放置している</h4>
+        <p>録るところまでは、みんなできます。詰まるのは次です。<b>「文字にはなったが、読み返す時間がない」</b>。文字起こしは目的ではなく通過点。<b>決定事項・宿題・次回の論点</b>——この3つに変換するまでが1セットです（STEP5）。</p>
+      </div>
+    </div>
+
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>録音は、必ず事前に伝えてから</h4>
+        <p>日本では、自分が参加している会話の録音そのものが直ちに違法とされるわけではありません。<b>しかしそれは「法的な話」であって、信頼の話は別</b>です。あとから発覚したときの損失は、時短では取り返せません。<b>ひとこと言う。それだけです</b>（STEP3に言い方を用意しました）。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>出てきた議事録は、必ず人が読む</h4>
+        <p>AIは<b>聞き間違えます</b>。特に社名・人名・専門用語・金額・日付。しかも、間違っていても文章としては自然に読めてしまいます。<b>配る前に、決定事項と数字だけは目で確認</b>。ここを飛ばした議事録は、事故のもとです。</p>
+      </div>
+    </div>
+
+    <!-- 3段階レベル -->
+    <h3 class="blk">この記事のゴール：声の活用にも「3段階」がある</h3>
+    <p class="sec-sub" style="margin-top:-6px;">いきなり3段目を目指さないでください。1段目だけでも、通勤時間が仕事時間に変わります。</p>
+    <div class="ladder">
+      <div class="lv" style="--accent:var(--chatgpt);">
+        <div class="lv-n">LEVEL 1 ／ 話す</div>
+        <h4>手がふさがっている時間に、相談する</h4>
+        <p>運転中・現場・家事中の壁打ち。思いつきを声で預けておくだけでも、忘れなくなります。設定はほぼ不要です。</p>
+        <span class="lv-t">今日ここまで来れば合格</span>
+      </div>
+      <div class="lv" style="--accent:var(--ember-2);">
+        <div class="lv-n">LEVEL 2 ／ 録る</div>
+        <h4>会議を記録して、議事録にする</h4>
+        <p>同意を取り、録り、決定事項とToDoに変える。会議後の2時間が、10分になる段階です。効果がいちばん大きい。</p>
+        <span class="lv-t">ここが本命</span>
+      </div>
+      <div class="lv" style="--accent:var(--pine);">
+        <div class="lv-n">LEVEL 3 ／ 回す</div>
+        <h4>会議の型ごと、仕組みにする</h4>
+        <p>議事録の書式を固定し、宿題の追跡まで自動で回す。担当が代わっても品質が落ちない状態に。自立型AIの入口です。</p>
+        <span class="lv-t">第12回・第13回へ</span>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip" id="s1">VOICE ／ 所要2分</span>
+          <div class="st-ttl">まず、立ち上げて3分だけ話してみる</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">説明を読むより、1回話すほうが早いです。<b>スマホアプリがいちばん完成度が高い</b>ので、まずはスマホから。イヤホンがあれば、なお快適です。</p>
+
+        <div class="mini-h">手順（スマホアプリ）</div>
+        <ol class="mini">
+          <li>ChatGPTアプリを開き、入力欄のそばにある<b>音声（波形）のアイコン</b>をタップ</li>
+          <li>初回はマイクの利用を<b>「許可」</b>する</li>
+          <li>声（話し手のトーン）を選ぶ画面が出たら、好みのものを選ぶ</li>
+          <li>そのまま話しかける。<b>止めるときは画面の停止ボタン</b></li>
+          <li>終わったあと、<b>会話の文字起こしがチャットに残る</b>ので後から読み返せる</li>
+        </ol>
+        <p class="link-note">2026年は、より自然に会話できる新しい音声モデル（<b>GPT-Live</b>）が順次展開されています。提供開始時点では画面共有や動画の共有には対応しておらず、それらが必要な場合は従来の高度な音声モードを使う形です。<b>表示される名称やメニューは、プラン・地域・アプリのバージョンで異なります</b>ので、見当たらない場合はアプリを最新版に更新してみてください。</p>
+
+        <div class="mini-h">最初の3分で試すと、感覚がつかめる3つ</div>
+        <div class="ideas">
+          <div class="idea">
+            <h4><span class="e">🗣️</span>まとまっていない話をする</h4>
+            <ul>
+              <li>「来月の販促、まだ考えがまとまってないんだけど聞いて」</li>
+              <li>「今から言うこと、あとで整理して」</li>
+              <li>「話しながら考えたいから、途中で質問して」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🌐</span>通訳として使う</h4>
+            <ul>
+              <li>「これから日本語で言うことを、英語にして伝えて」</li>
+              <li>「相手の話は日本語に、私の話は相手の言語に」</li>
+              <li>「やさしい日本語に言い換えて」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🎧</span>読み上げてもらう</h4>
+            <ul>
+              <li>「この長い資料の要点を、声で読み上げて」</li>
+              <li>「移動中に聞きたいので、3分で話して」</li>
+              <li>「箇条書きじゃなく、話し言葉で」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🎭</span>練習相手になってもらう</h4>
+            <ul>
+              <li>「厳しめのお客様役をやって。私が謝罪の練習をする」</li>
+              <li>「面接官として、想定質問を投げて」</li>
+              <li>「英会話の相手を。私のレベルは初級」</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">音声でのライブ翻訳について</div>
+        <p style="font-size:14.4px;margin:6px 0 0;">音声モードには<b>会話をまたいで翻訳を続ける使い方</b>があり、有料プラン向けに提供されています。入力側は多くの言語に対応する一方、<b>出力できる言語は入力ほど多くありません</b>。多国籍のスタッフがいる現場や、海外からのお客様の対応で試す価値は十分にあります。ただし<b>契約や金額の交渉といった重要な場面では、通訳の代わりにはしない</b>——ここは線を引いてください。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>最初の1回は、<b>誰もいない車の中</b>で試すのがおすすめ。事務所で急に話しかけると、まわりに二度見されるからね（そして、それで恥ずかしくなってやめる人がすごく多い）。慣れたら、イヤホンで自然にできるようになるよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="1"><span>STEP1 完了：音声モードを立ち上げて、3分話してみた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip" id="s2">HANDS-FREE ／ 所要2分</span>
+          <div class="st-ttl">★ 手がふさがっている時間の、使い方</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここが、声がいちばん効くところです。<b>今まで「移動しているだけ」だった時間が、仕事の時間に変わります</b>。まずは自分の1日から、打てない時間を3つ書き出してみてください。</p>
+
+        <div class="mini-h">打てない時間 × できること</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>場面</th><th>できること</th><th>ひとことで頼むなら</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>運転中・移動中</th><td class="win">壁打ち・アイデア整理</td><td>「今から話す内容を、あとで箇条書きにして」</td></tr>
+              <tr><th>現場・作業中</th><td class="win">手順の確認・記録</td><td>「今の状況を記録して。あとで報告書にする」</td></tr>
+              <tr><th>訪問先からの帰り道</th><td class="win">商談メモの口述</td><td>「今の商談を思い出しながら話すので、要点にして」</td></tr>
+              <tr><th>家事・育児の合間</th><td>予定・買い物・献立</td><td>「冷蔵庫にあるもので作れる献立を3つ」</td></tr>
+              <tr><th>通勤・散歩</th><td>資料の聞き読み</td><td>「昨日の資料の要点を、話し言葉で3分に」</td></tr>
+              <tr><th>寝る前・起き抜け</th><td>思いつきの保管</td><td>「思いついたことを言うので、メモに残して」</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mini-h">声で頼むときの、3つのコツ</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">1</div>
+            <div class="lt"><b>最初に「これから何をするか」を言う</b><span class="why">「今から3分ぐらい、まとまっていない話をします。途中で口を挟まず、最後に要点にまとめて」。これを先に言うだけで、途中で相槌に遮られなくなります。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">2</div>
+            <div class="lt"><b>固有名詞は、あとで直す前提で話す</b><span class="why">走行中の車内は特に聞き取りが落ちます。社名や人名は「あとで直すので、聞こえたままでいい」と伝えておくと、話が止まりません。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">3</div>
+            <div class="lt"><b>最後に「文章にして」で締める</b><span class="why">声のやりとりは流れて消えます。終わりに「今の話を、箇条書きで残して」と言えば、テキストとしてチャットに残ります。ここまでが1セットです。</span></div>
+          </div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 移動中の壁打ち（口で言う内容）</span><button class="cb-btn">コピー</button></div>
+          <pre>これから3分ほど、まとまっていない話をします。
+途中で止めずに最後まで聞いてください。
+
+話し終わったら、次の形にまとめてください。
+ 1. 私が言いたかったことを、3行で
+ 2. 話の中の「事実」と「私の推測」を分けて
+ 3. 抜けている検討事項を3つ
+ 4. 次に私がやるべきことを、優先順に3つ
+
+聞き取れなかった固有名詞は、そのまま書いて「※要確認」と付けてください。</pre>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 訪問の帰り道・商談メモ</span><button class="cb-btn">コピー</button></div>
+          <pre>今の商談を思い出しながら話します。順不同で構いません。
+話し終わったら、次の形に整えてください。
+
+【訪問先】【日時】【同席者】
+【先方の課題】※発言に基づくもののみ
+【こちらが提案したこと】
+【先方の反応】※前向き／保留／否定に分ける
+【宿題】担当と期限つき
+【次回までに確認すべきこと】3つ
+
+推測で埋めないでください。話に出ていないことは「情報なし」と書いてください。</pre>
+        </div>
+        <p class="link-note">最後の1行が効きます。口述はどうしても抜けが出るので、<b>AIが気を利かせて埋めてしまう</b>のを止めておくのがコツです。第2回で扱った考え方が、そのまま声でも効きます。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 運転中に使うときは</div>
+          <b>操作は必ず停車中に。</b>走り出したら画面を見ない・触らない。これは当たり前のようで、いちばん事故が起きやすい部分です。地域の交通ルールに従い、<b>手に持たない・視線を移さない</b>使い方を徹底してください。便利さより、安全が先です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>打つのが苦手な人ほど、実は声のほうが<b>良いものが出る</b>んだ。文章を書こうとすると身構えるけど、話すときは自然に「なぜそう思うか」まで言うでしょ。<b>その情報量が、AIの答えの質になる</b>んだよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="2"><span>STEP2 完了：打てない時間を3つ書き出し、1つ試した</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip" id="s3">CONSENT ／ 所要2分</span>
+          <div class="st-ttl">★ 録音の前に、必ずやる3つ</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">技術の話の前に、ここです。<b>この3分を飛ばした会社が、あとで大きく損をしています</b>。難しくありません。同意・環境・前提の3つだけです。</p>
+
+        <div class="mini-h">① 同意を取る（いちばん大事）</div>
+        <p style="font-size:14.4px;margin:6px 0 10px;">日本では、自分が参加している会話を録音すること自体が、直ちに違法とされるわけではありません。ただし<b>それは刑事罰の話</b>であって、プライバシーの侵害として民事上の問題になる可能性は残ります。そして何より、<b>黙って録っていたと後で分かったときの信頼の失い方</b>は、取り返しがつきません。<b>ひとこと言えば、まず断られません。</b></p>
+
+        <div class="mini-h">角が立たない、伝え方の例</div>
+        <div class="swap">
+          <div class="sw"><span class="x">✕ 黙って録る</span><span class="ar">➜</span><span class="o">◎「議事録を正確に取りたいので、録音してもよろしいですか」</span></div>
+          <div class="sw"><span class="x">✕「AI使うんで録ります」</span><span class="ar">➜</span><span class="o">◎「メモを取る代わりに記録させてください。話に集中したいので」</span></div>
+          <div class="sw"><span class="x">✕ 事後報告</span><span class="ar">➜</span><span class="o">◎「記録は社内での議事録作成のみに使います」と用途も添える</span></div>
+          <div class="sw"><span class="x">✕ 断られたら押す</span><span class="ar">➜</span><span class="o">◎「では手書きにしますね」と即座に引く</span></div>
+        </div>
+        <p class="link-note">オンライン会議なら、<b>冒頭で全員に聞こえるように言う</b>のが確実です。社内会議であっても、参加者に伝えるのを標準の運用にしてください。「社内だからいい」で始めた習慣は、必ず社外にも漏れ出します。</p>
+
+        <div class="mini-h">② 環境を整える（精度が変わる）</div>
+        <ol class="mini">
+          <li>マイクを<b>発言者の中心</b>に置く（テーブルの端に置かない）</li>
+          <li>エアコン・換気扇・BGMを、可能なら<b>止めるか弱める</b></li>
+          <li>オンライン会議なら、<b>各自がミュートを適切に使う</b>ようお願いする</li>
+          <li>スマホで録るなら、<b>紙の資料の上に置かない</b>（めくる音が入ります）</li>
+          <li>長い会議は、<b>途中で一度切って分割</b>する（失敗したときの被害が半分になります）</li>
+        </ol>
+
+        <div class="mini-h">③ 前提を先に渡す（聞き間違いが激減する）</div>
+        <p style="font-size:14.4px;margin:6px 0 0;">これが、意外と知られていないコツです。会議の前に<b>参加者名・社名・専門用語・商品名を一覧で渡しておく</b>と、あとの文字起こしの誤りが目に見えて減ります。とくに珍しい社名や、業界特有の略語には効きます。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 会議前に渡す「前提シート」</span><button class="cb-btn">コピー</button></div>
+          <pre>これから会議の記録を作ります。先に前提を共有します。
+
+【会議名】<span class="fill">〔例：月次の販促定例〕</span>
+【日時】<span class="fill">〔例：2026年8月5日 10:00〜11:00〕</span>
+【参加者】<span class="fill">〔役職と苗字のみ。例：営業部長、店長A、担当B〕</span>
+【議題】<span class="fill">〔例：来月の企画、人員配置、在庫の見直し〕</span>
+【この会議で使う用語】
+ <span class="fill">〔略語や商品名を、正しい表記で列挙〕</span>
+
+このあと会議の記録を渡すので、上記の表記に合わせて整えてください。
+表記が違う箇所は、勝手に直さず「※原文：〇〇」と併記してください。</pre>
+        </div>
+        <p class="link-note">なお参加者は、<b>フルネームではなく役職や記号で</b>渡すのがおすすめです。外部に出す議事録に個人名が残ると、あとから扱いに困ります。<b>「必要以上の個人情報を、そもそも入れない」</b>——これが最も確実な情報管理です。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 録らない、と決めておくべき会議</div>
+          人事評価・懲戒・待遇の面談、健康や家庭の事情が出る面談、機微な相談。これらは<b>「録らない」と先に決めておく</b>ほうが健全です。また、顧客の個人情報・秘密保持契約の対象・未公表の経営数値が飛び交う会議も、慎重に。<b>会議AIは、参加者が「入力している」自覚のないまま情報が流れ続ける</b>という点で、通常のツールより注意が要ります。会社で使うなら、<b>①録ってよい会議 ②入れない情報 ③保存期間と消し方</b>——この3点を紙1枚にするところまでが第8回の宿題です。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「同意を取ると、会議がぎこちなくならない？」ってよく聞かれるけど、逆だよ。<b>「記録に残るなら、ちゃんと決めよう」</b>という空気になって、会議そのものが締まるんだ。ダラダラした会議が減った、という声のほうが多いよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="3"><span>STEP3 完了：同意の言い方を決め、録ってよい会議の線を引いた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip" id="s4">RECORD ／ 所要2分</span>
+          <div class="st-ttl">★ 録音を、議事録に変える</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここで、環境によってやり方が2つに分かれます。<b>どちらでも結果は出せます</b>ので、自分に当てはまるほうだけ読んでください。</p>
+
+        <div class="mini-h">まず、自分がどちらかを確認する</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>あなたの環境</th><th>やり方</th><th>手間</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>Macのデスクトップアプリ＋有料プラン</th><td class="win">A：ChatGPTの録音機能を使う</td><td class="win">最短</td></tr>
+              <tr><th>Windows・スマホ・Web版</th><td>B：別で録って、テキストを貼る</td><td>ひと手間</td></tr>
+              <tr><th>無料プラン</th><td>B：別で録って、テキストを貼る</td><td>ひと手間</td></tr>
+              <tr><th>オンライン会議が中心</th><td>B'：会議ツールの記録機能＋ChatGPT</td><td>ひと手間</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="link-note">2026年7月時点で、ChatGPTの録音機能（<b>ChatGPT Record</b>）は<b>Plus・Pro・Business・Enterprise・Edu</b>が対象で、<b>macOSのデスクトップアプリ限定</b>とされています。無料プランや、Windows・スマホ・ブラウザでは表示されません。<b>「見当たらない」のは、あなたの操作ミスではありません。</b>該当しない方は、下のBへどうぞ。</p>
+
+        <div class="mini-h">A：ChatGPTの録音機能を使う（Mac・有料プラン）</div>
+        <ol class="mini">
+          <li>デスクトップアプリを開き、<b>新しいチャット</b>を始める</li>
+          <li>入力欄まわりの<b>録音ボタン</b>を押す（先に同意を取ってから！）</li>
+          <li>会議を進める。<b>リアルタイムで文字起こしが進みます</b></li>
+          <li>終わったら停止。<b>要約・決定事項・宿題が自動で生成</b>されます</li>
+          <li>そのまま「メールの形にして」「報告書にして」と<b>形を変えられる</b></li>
+        </ol>
+        <p class="link-note">生成された内容は履歴に残るので、あとから検索して探せます。なお公開情報では、<b>音声そのものは文字起こし後に削除される</b>一方、<b>文字起こしや生成された内容の扱いは、プランとデータ管理の設定に従う</b>とされています。法人プランでは既定で学習に使われない扱いです。<b>自社の設定は、必ず一度確認してください。</b></p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 現時点での、いちばん大きな制約</div>
+          <b>「誰が話したか」の自動識別（話者分離）に対応していません。</b>複数人の会議では、発言が1本のテキストとしてつながって出てきます。1対1の打合せや個人メモでは問題になりませんが、<b>複数人の会議では、発言者の切り分けを人が補う</b>必要があります。対策は簡単で、<b>発言の頭に名前を言う運用</b>（「営業部長です。この件は——」）にするか、後述のプロンプトで「発言者不明の箇所は※印」と指定することです。
+        </div>
+
+        <div class="mini-h">B：別で録って、テキストを貼る（Windows・スマホ・無料プラン）</div>
+        <ol class="mini">
+          <li>スマホの<b>ボイスメモ</b>や、会議ツールの記録機能で録音する</li>
+          <li>文字起こしのツールで、<b>テキストに変換</b>する（無料枠のあるサービスが複数あります）</li>
+          <li>できたテキストを<b>ChatGPTに貼り付ける</b></li>
+          <li>下の議事録プロンプトを添えて送る</li>
+          <li>出てきた議事録を、<b>目で確認してから配る</b></li>
+        </ol>
+        <p class="link-note">遠回りに見えますが、<b>結果の質はほとんど変わりません</b>。というのも、AIがいちばん得意なのは録音ではなく<b>「テキストを整理すること」</b>だからです。むしろこの方法は、Windows・スマホ・無料プランのどれでも回せる分、<b>社内に広げやすい</b>という利点があります。なお、外部の文字起こしサービスを使う場合は、<b>そのサービスのデータの扱い（学習利用の有無・保存場所）を必ず確認</b>してください。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 基本の議事録プロンプト</span><button class="cb-btn">コピー</button></div>
+          <pre>以下は会議の記録です。これをもとに議事録を作ってください。
+
+【会議名】<span class="fill">〔　〕</span>　【日時】<span class="fill">〔　〕</span>　【参加者】<span class="fill">〔役職のみ〕</span>
+
+出力の形式：
+ 1. 会議の概要（200字以内）
+ 2. 議題ごとの議論の要点
+ 3. 決定事項（箇条書き。決まっていないことは書かない）
+ 4. 宿題（担当・期限つきの表。期限が不明なら「未定」）
+ 5. 次回に持ち越す論点
+ 6. 聞き取りが怪しい箇所の一覧（社名・人名・数字・日付を優先）
+
+条件：
+・推測で補わない。記録にないことは書かない
+・「決まったこと」と「意見が出ただけのこと」を混ぜない
+・発言者が特定できない箇所は「※発言者不明」と書く
+
+【会議の記録】
+<span class="fill">〔ここに文字起こしを貼り付け〕</span></pre>
+        </div>
+        <p class="link-note">この中でいちばん大事なのは<b>6番</b>です。AIに自分の怪しい箇所を申告させると、<b>確認すべき場所が数か所に絞れます</b>。全文を読み直す必要がなくなるので、確認が3分で終わります。</p>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 商談・訪問記録として整える</span><button class="cb-btn">コピー</button></div>
+          <pre>以下は商談の記録です。社内共有用の訪問報告に整えてください。
+
+出力の形式：
+【訪問先・日時・同席者】
+【先方の課題】※先方の発言に基づくもののみ
+【提案した内容】
+【先方の反応】前向き／保留／否定 に分類し、根拠となる発言を1行添える
+【金額・条件の話】出た数字をそのまま列挙。曖昧なものは「※要確認」
+【次アクション】担当・期限つき
+【所感】※ここだけは推測可。ただし「所感」と明示する
+
+条件：事実と解釈を必ず分けること。誇張しないこと。</pre>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>Bの方法を「妥協案」だと思わないでね。<b>会社に広げるなら、むしろBのほうが強い</b>んだ。特定のOSや上位プランに依存しないから、明日から全員が同じやり方でできる。<b>1人が最速でやるより、10人が同じやり方でできるほうが、会社は速くなる</b>よ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="4"><span>STEP4 完了：AかBの手順で、議事録の下書きを1本作った</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip" id="s5">ACTION ／ 所要1分</span>
+          <div class="st-ttl">議事録を「動く形」に変える</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">議事録を作って終わりでは、時短になりません。<b>読まれない議事録は、存在しないのと同じ</b>です。ここまでやって、はじめて会議が前に進みます。</p>
+
+        <div class="mini-h">同じ記録から、4つの形に変える</div>
+        <div class="ideas">
+          <div class="idea">
+            <h4><span class="e">📮</span>共有メッセージにする</h4>
+            <ul>
+              <li>「決定事項と宿題だけ、5行で。社内チャット用に」</li>
+              <li>「欠席者向けに、経緯が分かる形で300字」</li>
+              <li>「取引先に送る形で、丁寧な文面に」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">✅</span>タスク表にする</h4>
+            <ul>
+              <li>「宿題を、担当・期限・優先度の表に」</li>
+              <li>「期限が決まっていないものを、先頭に」</li>
+              <li>「私の宿題だけ抜き出して」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🗓️</span>次回の準備にする</h4>
+            <ul>
+              <li>「次回のアジェンダ案を作って」</li>
+              <li>「今回、結論が出なかった論点を整理して」</li>
+              <li>「次回までに集めるべき資料を挙げて」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🔎</span>会議そのものを点検する</h4>
+            <ul>
+              <li>「発言時間の偏りがあれば指摘して」</li>
+              <li>「決まらなかった理由を、3つに整理して」</li>
+              <li>「この会議、30分に短縮できる？改善案を」</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-h">配る前の「3分確認」</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">1</div>
+            <div class="lt"><b>数字・日付・金額を目で読む</b><span class="why">聞き間違いがいちばん出るのがここ。しかも間違っていても、文章としては自然に読めてしまいます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">2</div>
+            <div class="lt"><b>「決定事項」だけは全部読む</b><span class="why">意見が出ただけのことが、決定事項に紛れ込むことがあります。ここが食い違うと、あとで大きな手戻りになります。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">3</div>
+            <div class="lt"><b>AIが申告した「怪しい箇所」を確認する</b><span class="why">プロンプトの6番で出させたリスト。ここだけ見れば、全文を読み返す必要はありません。</span></div>
+          </div>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>ひとつだけ、絶対にやらないでほしいこと。<b>AIが作った議事録を、読まずにそのまま全員に送る</b>こと。速さの価値は、正しさの上にしか乗らないんだ。3分でいい。<b>数字と決定事項だけは、自分の目で。</b></div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="5"><span>STEP5 完了：議事録をToDo表と共有文に変え、3分確認をした</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip" id="s6">ROUTINE ／ 所要1分</span>
+          <div class="st-ttl">型を保存して、毎週回す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">1回できたら、次は<b>同じ形で回す</b>段階です。1分で終わります。</p>
+        <ol class="mini">
+          <li>第1回で作った<b>プロジェクト</b>に「会議・議事録」の部屋を用意する</li>
+          <li>STEP3の<b>前提シート</b>とSTEP4の<b>議事録プロンプト</b>を貼って保存する</li>
+          <li>社名・略語・商品名の<b>正しい表記の一覧</b>を、部屋の指示に書いておく</li>
+          <li>定例会議は、<b>毎回同じ書式</b>で出す（比較できるようになります）</li>
+          <li>前回の宿題を<b>冒頭で読み上げる</b>運用にする（やり残しが激減します）</li>
+        </ol>
+        <p class="link-note">ここまで来ると、<b>担当者が代わっても同じ品質の議事録が出せる</b>状態になります。さらに定時実行や他アプリとの連携まで進めたい方は<b>第12回</b>、会議まるごと任せる話は<b>第13回</b>へどうぞ。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「前回の宿題を冒頭で読み上げる」——地味だけど、これがいちばん会社を変えるよ。議事録の本当の目的は<b>記録じゃなくて、宿題が終わること</b>だからね。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="6"><span>STEP6 完了：議事録の型をプロジェクトに保存した</span></label>
+      </div>
+    </div>
+
+    <!-- テーマカタログ -->
+    <h3 class="blk" id="s7">局面別・声で片づく15種</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「何に使えばいいか分からない」を消すための一覧です。この中から、<b>自分が今週やる予定のもの</b>を1つだけ選んで試してください。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>＃</th><th>やること</th><th>ひとことで頼むなら</th><th>効き目</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>01</th><td>会議の議事録づくり</td><td>「決定事項と宿題を、担当・期限つきで」</td><td class="win">会議後の2時間</td></tr>
+          <tr><th>02</th><td>商談・訪問の報告</td><td>「帰り道に口述→訪問報告の形に」</td><td class="win">その日のうちに完了</td></tr>
+          <tr><th>03</th><td>移動中の壁打ち</td><td>「3分話すので、最後に要点にして」</td><td class="win">通勤が仕事時間に</td></tr>
+          <tr><th>04</th><td>現場の状況記録</td><td>「今の状況を話すので、報告書の形に」</td><td>手が汚れていてもOK</td></tr>
+          <tr><th>05</th><td>クレーム対応の練習</td><td>「厳しめのお客様役をやって」</td><td class="win">新人教育</td></tr>
+          <tr><th>06</th><td>面接・プレゼンの練習</td><td>「面接官として想定質問を投げて」</td><td>本番の精度</td></tr>
+          <tr><th>07</th><td>多国籍スタッフとの会話</td><td>「私の日本語を、相手の言語で伝えて」</td><td class="win">現場の即応</td></tr>
+          <tr><th>08</th><td>資料の聞き読み</td><td>「この資料の要点を、話し言葉で3分に」</td><td>移動中のインプット</td></tr>
+          <tr><th>09</th><td>英会話・語学の練習</td><td>「初級レベルで相手をして。間違いは指摘して」</td><td>継続しやすい</td></tr>
+          <tr><th>10</th><td>思いつきの保管</td><td>「今から言うことを、メモに残して」</td><td class="win">忘れなくなる</td></tr>
+          <tr><th>11</th><td>朝礼・伝達事項の整理</td><td>「話す内容を、3点にまとめて」</td><td>伝わり方</td></tr>
+          <tr><th>12</th><td>電話の前の準備</td><td>「これから話す要件を、順番に整理して」</td><td>言い忘れ防止</td></tr>
+          <tr><th>13</th><td>1on1・面談の振り返り</td><td>「※録音はせず、終わった後に口述で」</td><td>記憶が新しいうち</td></tr>
+          <tr><th>14</th><td>手順書の口述</td><td>「作業しながら話すので、手順書に」</td><td class="win">マニュアル化</td></tr>
+          <tr><th>15</th><td>1日の振り返り</td><td>「今日あったことを話すので、明日の優先順に」</td><td>私生活でも</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">色つきの<b>6つ</b>は、中小企業でとくに効果が出やすいものです。時間が取れない方は、ここから1つだけどうぞ。なお<b>13番は、あえて「録音しない」使い方</b>です。機微な面談は録らず、終わった後に自分の言葉で口述する。これが安全で、しかも十分に速い方法です。</p>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk" id="s8">費用対効果を「時間」で見える化する</h3>
+    <p class="sec-sub" style="margin-top:-6px;">議事録は、シリーズの中でも<b>削減時間がいちばん分かりやすい</b>回です。下は現場でよく見る幅の目安です（会議の性質・確認の厳しさにより変動します）。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>よくある業務</th><th>これまで</th><th>この記事の手順で</th><th>月の回数と削減</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>1時間の会議の議事録</th><td>120分</td><td>15分</td><td class="win">月4回で ▲7時間</td></tr>
+          <tr><th>商談の訪問報告</th><td>30分</td><td>8分</td><td class="win">月10回で ▲3.7時間</td></tr>
+          <tr><th>現場からの報告書</th><td>25分</td><td>7分</td><td>月8回で ▲2.4時間</td></tr>
+          <tr><th>朝礼・伝達内容の整理</th><td>15分</td><td>4分</td><td>月20回で ▲3.7時間</td></tr>
+          <tr><th>手順書の初稿づくり</th><td>90分</td><td>25分</td><td class="win">1本あたり ▲65分</td></tr>
+          <tr><th>移動中の「何もしない時間」</th><td>—</td><td>壁打ちに転用</td><td class="win">▲机上の作業時間</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>📐 かんたんな損益分岐の出し方</h4>
+      <div class="flow">
+        <span class="b">月額 3,100円</span><span class="ar">÷</span><span class="b">自分の時給（例 2,500円）</span><span class="ar">＝</span><span class="b">月に約75分</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;">この<b>約75分</b>を時短できれば元が取れる計算です。上の表なら、<b>1時間の会議1回分の議事録だけで超えます</b>。会議が多い会社ほど、初月から差し引きプラスになります。</p>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 数字を出すときの注意</div>
+      「120分が15分になった」は、<b>3分確認と、聞き間違いの修正を含めて</b>測ってください。AIの下書きをそのまま配れることは、まずありません。また、<b>音の環境が悪い会議</b>では文字起こしの精度が落ち、修正に時間がかかります。<b>ここを含めない試算は、社内で必ず崩れます。</b>含めても十分に速い。それが正直な結論です。そして<b>「議事録を速く作る」より「会議そのものを短くする」ほうが効果が大きい</b>——これも、あわせて検討する価値があります。
+    </div>
+
+    <!-- 落とし穴 -->
+    <h3 class="blk">プロが見ている、初心者がやりがちな8つの落とし穴</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>同意を取らずに録る</div>
+        <p>時短で得るものより、失うものが大きい。<b>ひとこと言うだけ</b>で、ほとんど断られません。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>文字起こしで満足する</div>
+        <p>全文テキストは、誰も読みません。<b>決定事項・宿題・次回の論点</b>まで変換して1セットです。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>数字を確認せず配る</div>
+        <p>聞き間違いは、文章として自然に読めてしまいます。<b>金額・日付・社名だけは目視</b>を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>前提を渡していない</div>
+        <p>参加者・略語・商品名を先に渡すだけで、誤りが目に見えて減ります。<b>1分の投資</b>です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>音の環境を無視している</div>
+        <p>マイクの位置と空調。この2つで精度が変わります。<b>紙の上にスマホを置かない</b>のも地味に重要。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>意見と決定を混ぜる</div>
+        <p>「言っただけ」が決定事項に紛れると、手戻りになります。<b>分けて出させる</b>指示を必ず。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">7</span>録音データを消していない</div>
+        <p>保存期間と消し方を決めていないと、リスクだけが溜まります。<b>期限を決めて消す</b>運用を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">8</span>機微な面談まで録る</div>
+        <p>評価・懲戒・健康・家庭の話は、<b>録らないと決めておく</b>ほうが健全です。線を先に引く。</p>
+      </div>
+    </div>
+
+    <!-- 局面別 -->
+    <h3 class="blk">声が効く、局面別の使いどころ</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🏪</span>店舗・現場で</h4>
+        <ul>
+          <li>手が汚れたまま、作業記録を声で残す</li>
+          <li>多国籍スタッフへの指示を、その場で翻訳して伝える</li>
+          <li>朝礼で話す内容を、直前に3点に整理する</li>
+          <li>クレーム対応の初動を、声で練習してから臨む</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>営業・管理で</h4>
+        <ul>
+          <li>訪問の帰り道に口述して、その日のうちに報告完了</li>
+          <li>会議の議事録を、終了10分後に共有する</li>
+          <li>前回の宿題を冒頭で読み上げ、やり残しを潰す</li>
+          <li>電話の前に、話す順番を声で整理する</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏠</span>暮らしで</h4>
+        <ul>
+          <li>料理をしながら、手順や分量を確認する</li>
+          <li>寝る前の思いつきを、声で預けておく</li>
+          <li>子どもの「なぜ？」に、一緒に声で聞いてみる</li>
+          <li>散歩しながら、1日の振り返りをする</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">📚</span>学び・練習で</h4>
+        <ul>
+          <li>英会話の相手として、毎日10分だけ話す</li>
+          <li>プレゼンや面接の想定問答を、声で回す</li>
+          <li>資格の要点を、聞き読みでインプットする</li>
+          <li>読んだ本の感想を口述して、メモに残す</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ツール使い分け -->
+    <h3 class="blk">ちなみに：専用の議事録ツールと、どう使い分ける？</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「ChatGPTだけで足りるの？」もよく聞かれます。結論は<b>会議の本数次第</b>。少ないならChatGPTだけで十分、多いなら専用ツールとの併用が合理的です。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>やりたいこと</th><th>ChatGPT単体</th><th>専用の議事録ツール</th><th>Web会議ツールの記録機能</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>録音と文字起こし</th><td>△（環境の制約あり）</td><td class="win">◎ 得意</td><td class="win">◎ 会議中なら</td></tr>
+          <tr><th>誰が話したかの識別</th><td class="mid">×（未対応）</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>要点整理・議事録化</th><td class="win">◎ いちばん得意</td><td>○</td><td>○</td></tr>
+          <tr><th>共有文・タスク表への変換</th><td class="win">◎ 自由自在</td><td>○</td><td>△</td></tr>
+          <tr><th>対面の会議・現場</th><td>○</td><td class="win">◎</td><td class="mid">×</td></tr>
+          <tr><th>追加費用</th><td class="win">◎ 既存プラン内</td><td>△ 別契約</td><td>○ 契約次第</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">実務でよくある組み合わせは、<b>「録音と文字起こしは専用ツール、整理と変換はChatGPT」</b>。AIの得意分野が違うので、無理に1つで完結させないほうが、結果的に速く・安くなります。なお外部サービスを選ぶときは、<b>①学習に使われないか ②データの保存場所と期間 ③削除の方法</b>——この3点を必ず確認してください。</p>
+
+    <!-- 自立型AI -->
+    <h3 class="blk" id="s9">ここに「自立型AI」が加わると、何が変わるか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">2026年7月、ChatGPTに業務エージェント <b>Work</b> が加わりました。目標を伝えると工程を自分で分解し、複数のアプリやファイルを横断して<b>完成した成果物</b>まで仕上げるモードです。会議は、この流れと相性がいい領域です。</p>
+
+    <div class="promise-card" style="margin-top:14px;">
+      <h4 style="font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:16px;margin:0 0 8px;">📌 何が変わるのか、ひとことで</h4>
+      <p style="margin:0 0 12px;font-size:14.4px;">これまでは<b>「会議を記録して、人が整理して、人が配る」</b>でした。自立型AIが入ると、<b>「会議が終わると、議事録・宿題の割り振り・次回の資料案まで揃っている」</b>に近づきます。会議が「記録するもの」から<b>「そのまま動き出すもの」</b>に変わる、ということです。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">今まで ／ 記録する</div>
+          <ul>
+            <li>録って、文字にして、整えて、配る</li>
+            <li>宿題の追跡は、人の記憶頼み</li>
+            <li>過去の議事録は、探せず埋もれる</li>
+            <li>次回の準備は、また一からやる</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">これから ／ 動き出す</div>
+          <ul>
+            <li>議事録と<b>共有文まで一気に</b>仕上がる</li>
+            <li>宿題が<b>担当ごとに整理</b>されて並ぶ</li>
+            <li>過去の会議を<b>横断して</b>参照できる</li>
+            <li><b>次回のアジェンダ案</b>まで用意される</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="split" style="margin-top:16px;">
+      <div class="col work">
+        <div class="ch">✅ 任せやすい仕事 <span class="badge-mini">向いている</span></div>
+        <ul>
+          <li>複数回の議事録を読み比べ、進捗の遅れを洗い出す</li>
+          <li>宿題を担当別・期限別に整理し、リマインド文を用意する</li>
+          <li>会議の内容から、次回のアジェンダ案を組み立てる</li>
+          <li>過去の決定事項を横断検索し、経緯をまとめる</li>
+          <li>議事録から、社内向けと社外向けの2種類を作り分ける</li>
+        </ul>
+      </div>
+      <div class="col life">
+        <div class="ch">⛔ まだ任せない仕事 <span class="badge-mini">要注意</span></div>
+        <ul>
+          <li>確認なしでの、社外への議事録送信</li>
+          <li>金額・納期・契約条件の確定と、その連絡</li>
+          <li>人事評価・懲戒・待遇に関わる面談の記録処理</li>
+          <li>個人情報を含む記録の、一括処理や外部連携</li>
+          <li>「決定事項」の最終確定（ここは必ず人が）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:22px;">自立型AIに会議を任せる前に、決めておく6つ</div>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>送信の直前に、人の承認を置く</div>
+        <p>社外への共有は必ず人が見る設計に。<b>まとめるのは任せて、送るのは任せない。</b></p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>録ってよい会議を、先に決める</div>
+        <p>会議の種類ごとに可否を決めて一覧にします。<b>迷ったら録らない</b>を既定に。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>保存期間と消し方を決める</div>
+        <p>音声・文字起こし・議事録で、それぞれ期限を設定。<b>溜めっぱなしが最大のリスク</b>です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>接続先を絞る</div>
+        <p>共有フォルダやチャットとの連携は、必要な範囲だけ。全部つなぐと、事故の範囲も全部になります。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>学習に使われない設定を確認する</div>
+        <p>法人プランでは既定で学習に使われない扱いです。<b>自社の設定を、一度は自分の目で確認</b>してください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>まず1つの定例で実証</div>
+        <p>全社展開の前に、1つの会議で1か月。削減時間と失敗パターンを実測してから広げる。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>会議AIは、ほかのツールより<b>ひとつ注意が要る</b>んだ。理由は、参加者が「情報を入力している」って自覚のないまま、発言がそのまま流れ続けるから。だからこそ<b>「録ってよい会議」と「入れない情報」を先に決める</b>——今日の宿題が、そのまま第13回の準備になってるよ。</div>
+    </div>
+
+    <!-- つまずき -->
+    <h3 class="blk">つまずいたときのチェックリスト</h3>
+    <div class="compact">
+      <details>
+        <summary>録音のボタンが、どこにも見当たらない</summary>
+        <div class="ans">2026年7月時点で、ChatGPTの録音機能はPlus・Pro・Business・Enterprise・Eduが対象で、<b>macOSのデスクトップアプリ限定</b>とされています。無料プランや、Windows・スマホ・ブラウザでは表示されません。<b>操作ミスではありません。</b>該当しない場合は、STEP4のB（別で録ってテキストを貼る）で同じ結果が出せます。なお提供範囲は変わることがあるので、アプリを最新版に更新したうえで、公式ヘルプの最新表記もご確認ください。</div>
+      </details>
+      <details>
+        <summary>文字起こしの精度が低い</summary>
+        <div class="ans">原因はたいてい環境です。①マイクを発言者の中心に置く ②空調・BGMを弱める ③紙の上に端末を置かない ④話す人が重ならないようにする。この4つで大きく変わります。加えて、STEP3の<b>前提シートで社名・略語・商品名を先に渡す</b>と、固有名詞の誤りが目に見えて減ります。それでも厳しい場合は、専用の文字起こしツールとの併用を検討してください。</div>
+      </details>
+      <details>
+        <summary>誰の発言か分からない議事録になる</summary>
+        <div class="ans">話者の自動識別には対応していないため、複数人の会議では発言がつながって出てきます。対策は2つ。①会議中の運用で、<b>発言の頭に立場を名乗る</b>（「店長です。この件は——」）。②プロンプトで<b>「発言者が特定できない箇所は※発言者不明と書く」</b>と指定し、あとで人が補う。厳密な発言者の記録が必要な会議では、話者識別に対応した専用ツールを使うのが確実です。</div>
+      </details>
+      <details>
+        <summary>音声ファイル（MP3など）をそのまま渡せない</summary>
+        <div class="ans">チャット画面へのファイルアップロードでは、音声形式が対象外とされています（対応状況は変わることがあります）。<b>音声を先にテキストへ変換してから貼り付ける</b>のが確実な手順です。文字起こしのサービスには無料枠のあるものが複数あるので、まずはそこで試してみてください。テキストになれば、あとはChatGPTのいちばん得意な領域です。</div>
+      </details>
+      <details>
+        <summary>会議中、リアルタイムで文字が流れると気が散る</summary>
+        <div class="ans">画面を伏せるか、別のウィンドウに切り替えて構いません。<b>会議中は議論に集中し、整理は終わってから</b>——これが本来の使い方です。むしろ「AIが記録しているから、メモを取らなくていい」と決めてしまったほうが、発言の質が上がります。記録係だった人が議論に参加できるようになる、というのが現場でいちばん喜ばれる変化です。</div>
+      </details>
+      <details>
+        <summary>録音データは、いつまで持っておけばいい？</summary>
+        <div class="ans">明確な正解はありませんが、実務では<b>「議事録が確定したら音声は消す」</b>という運用が扱いやすいです。テキストの議事録は業務上必要な期間だけ保管し、期限を決めておく。大事なのは<b>期間を決めて、決めたとおりに消すこと</b>です。溜めっぱなしが、いちばんリスクを増やします。社内ルールに落とすときは、保管場所とアクセスできる人も一緒に決めてください。</div>
+      </details>
+    </div>
+
+    <!-- 安全 -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>録る前に、必ず伝える</div>
+        <p>法的な話の前に、信頼の話です。<b>ひとこと言うだけ</b>で、ほとんどの問題は起きません。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>入れない情報の線を引く</div>
+        <p>顧客の個人情報、秘密保持契約の対象、未公表の経営数値。<b>録る会議を選ぶ</b>ところから始めます。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>データの扱いを確認する</div>
+        <p>学習に使われるか、どこに保存されるか、どう消せるか。<b>導入前に3点セットで確認</b>を。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>最後は人が確認して配る</div>
+        <p>AIは聞き間違えます。<b>数字と決定事項だけは目視</b>。速さの価値は、正しさの上に乗ります。</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料プランでも、音声機能は使えますか？</summary>
+        <div class="ans">音声での会話は、無料プランでも体験できます。ただし利用時間や使える機能には差があり、<b>音声でのライブ翻訳は有料プラン向け</b>とされています。会議の録音機能は無料プランの対象外です。まずは無料で音声会話を試し、<b>「打てない時間に使う習慣」がついてから</b>課金を検討するのが合理的です。先に課金して使い道を探すのが、いちばんもったいないパターンです。</div>
+      </details>
+      <details>
+        <summary>会議の録音は、法律的に問題ありませんか？</summary>
+        <div class="ans">日本では、自分が参加している会話を録音すること自体が直ちに違法とされるわけではありません。ただしそれは刑事罰の話であり、<b>プライバシー侵害として民事上の問題になる可能性</b>は残ります。加えて、録音データに個人情報が含まれる場合は個人情報保護法上の取扱いにも配慮が必要です。<b>実務上の結論はシンプルで、「事前にひとこと伝えて、用途を説明する」</b>。これで、リスクの大半は消えます。個別の判断は、必ず専門家にご相談ください。</div>
+      </details>
+      <details>
+        <summary>入力した会議の内容は、学習に使われますか？</summary>
+        <div class="ans">扱いはプランと設定によって変わります。法人向けプランでは、既定で学習に使われない扱いとされています。個人プランでも、データ管理の設定画面から選択できる項目があります。公開情報では、録音機能について<b>音声そのものは文字起こし後に削除される</b>一方、文字起こしや生成された内容の扱いはプランと設定に従うとされています。<b>会社で使うなら、導入前に設定を確認し、社内ルールと合わせて</b>ご確認ください。</div>
+      </details>
+      <details>
+        <summary>専用の議事録ツールを、別に契約すべきですか？</summary>
+        <div class="ans">会議の本数と、話者の識別が要るかどうかで決まります。<b>週に数本で、1対1や少人数が中心ならChatGPTだけで十分</b>。会議が多い、発言者の記録が要る、対面の会議が多い——このどれかに当てはまるなら、専用ツールとの併用が合理的です。おすすめの分担は「録音と文字起こしは専用ツール、整理と変換はChatGPT」。無理に1つで完結させないほうが、結果的に速く・安くなります。</div>
+      </details>
+      <details>
+        <summary>機械が苦手なスタッフでも使えますか？</summary>
+        <div class="ans">むしろ、<b>打つのが苦手な人ほど効果が出ます</b>。キーボードを避けてきた人が、声なら普通に相談できるからです。導入のコツは、いきなり議事録から始めないこと。まずは<b>「移動中に思いついたことを話して残す」</b>だけを、1週間やってもらう。それだけで「AIは怖くない」に変わります。会議の録音は、その次で十分です。</div>
+      </details>
+      <details>
+        <summary>研修として社内に導入する場合、助成金は使えますか？</summary>
+        <div class="ans">人材開発支援助成金など、要件を満たせば活用を検討できる制度があります。ただし対象コース・訓練時間・申請時期などの要件は毎年更新されるため、必ず最新の公募要領と、管轄の労働局へのご確認をお願いします。UGOKU AIでは、要件の整理からご相談いただけます。</div>
+      </details>
+    </div>
+
+    <!-- クイズ -->
+    <h3 class="blk" id="quiz">理解度チェック（3問・1分）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">読んだだけだと、たいてい3日で忘れます。3問だけ答えて、記憶に固定してから閉じてください。</p>
+    <div class="quiz" id="quizBox">
+      <div class="qh">🧠 3問クイズ</div>
+      <p class="qs">選ぶだけ。すぐに答えと解説が出ます。</p>
+
+      <div class="qitem" data-ans="2">
+        <div class="qq"><span class="qn">1</span><span>会議を録音してAIに議事録を作らせるとき、最初にやるべきことは？</span></div>
+        <div class="qopts">
+          <button class="qopt">できるだけ高性能なプランに加入する</button>
+          <button class="qopt">マイクの位置を調整する</button>
+          <button class="qopt">参加者に録音の同意を取り、用途を伝える</button>
+          <button class="qopt">議事録のテンプレートを用意する</button>
+        </div>
+        <div class="qfb"><b>正解：同意を取り、用途を伝えること。</b>技術的にはボタン1つですが、黙って録って後から発覚したときに失う信頼は、時短では取り返せません。<b>「議事録を正確に取りたいので、録音してもよろしいですか」</b>——このひとことで、ほぼ断られません。</div>
+      </div>
+
+      <div class="qitem" data-ans="1">
+        <div class="qq"><span class="qn">2</span><span>音声で相談するのが、いちばん効くのはどんな場面？</span></div>
+        <div class="qopts">
+          <button class="qopt">デスクに座って、じっくり文章を作りたいとき</button>
+          <button class="qopt">運転中・現場・移動中など、手がふさがっているとき</button>
+          <button class="qopt">正確な数字を大量に入力したいとき</button>
+          <button class="qopt">長い資料をコピーして貼り付けたいとき</button>
+        </div>
+        <div class="qfb"><b>正解：手がふさがっているとき。</b>PCの前なら打つほうが速いのが普通です。声が勝つのは<b>「打てない状況」</b>だけ。<b>先に「自分の打てない時間」を3つ書き出す</b>——これをやった人だけが、音声を使い続けられます。</div>
+      </div>
+
+      <div class="qitem" data-ans="3">
+        <div class="qq"><span class="qn">3</span><span>AIが作った議事録について、いちばん危ない進め方は？</span></div>
+        <div class="qopts">
+          <button class="qopt">決定事項と宿題を、担当・期限つきの形で出させる</button>
+          <button class="qopt">聞き取りが怪しい箇所を、AI自身に申告させる</button>
+          <button class="qopt">出てきた内容を読まずに、そのまま全員へ送る</button>
+          <button class="qopt">金額と日付だけを、目で読んで確認する</button>
+        </div>
+        <div class="qfb"><b>正解：読まずにそのまま送ること。</b>AIは社名・人名・金額・日付を聞き間違えます。しかも<b>間違っていても文章として自然に読めてしまう</b>のが厄介なところ。全文を読み返す必要はありません。<b>数字・決定事項・AIが申告した怪しい箇所</b>——この3点だけで、確認は3分で終わります。</div>
+      </div>
+
+      <div class="qscore" id="qScore"></div>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全15回＋番外編）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">1回あたり10〜15分、上から順に積み上がる設計です。<b>読む→書く→作る→見せる→任せる→広げる</b>の順で進みます。第8回は、AIが<b>「社内の会話そのもの」に触れる最初の回</b>です。だからこそ、同意と保管の型をここで持っておくと、以降ずっと効きます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>回</th><th>テーマ</th><th>この回で手に入るもの</th><th>時間</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>第1回</th><td>ChatGPTの基礎</td><td>毎回説明しなくていいワークスペース</td><td>15分</td></tr>
+          <tr><th>第2回</th><td>伝わる頼み方</td><td>10倍の結果を引き出すプロンプトの型</td><td>10分</td></tr>
+          <tr><th>第3回</th><td>ドキュメント分析</td><td>PDF・長文・紙の書類を数分で要点化</td><td>15分</td></tr>
+          <tr><th>第4回</th><td>メール＆文書</td><td>数秒でプロの文面。断り方・詫び方の型</td><td>10分</td></tr>
+          <tr><th>第5回</th><td>Deep Research</td><td>調査レポートの自動生成と、裏取りの手順</td><td>15分</td></tr>
+          <tr><th>第6回</th><td>データ分析＆Excel連携</td><td>表計算の中でAIを直接動かす</td><td>10分</td></tr>
+          <tr><th>第7回</th><td>画像生成＆写真編集</td><td>POP・バナー・商品ビジュアルを内製化</td><td>15分</td></tr>
+          <tr><th>第8回</th><td class="win">音声モード＆会議（この記事）</td><td class="win">ハンズフリー活用と、録音→議事録</td><td>10分</td></tr>
+          <tr><th>第9回</th><td>コンテンツ制作</td><td>SNS投稿・台本・コピーの量産（動画生成も）</td><td>15分</td></tr>
+          <tr><th>第10回</th><td>Canvas</td><td>会話ではなく“編集画面”で仕上げる</td><td>10分</td></tr>
+          <tr><th>第11回</th><td>マイGPT（GPTs）</td><td>自分専用AIを作り、社内に配る</td><td>15分</td></tr>
+          <tr><th>第12回</th><td>タスク自動化＆アプリ連携</td><td>定時実行と、Drive・カレンダー等との接続</td><td>10分</td></tr>
+          <tr><th>第13回</th><td>ChatGPT Work</td><td>自立型AIに“仕事”ごと渡す</td><td>15分</td></tr>
+          <tr><th>第14回</th><td>チーム導入</td><td>Business設定・共有・社内ルールづくり</td><td>10分</td></tr>
+          <tr><th>第15回</th><td>フルワークフロー</td><td>1〜14をつないだ完全AI自動化システム</td><td>15分</td></tr>
+          <tr><th>番外編</th><td>総括／セキュリティ</td><td>情報漏洩・コンプライアンス・社内規程の型</td><td>15分</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">合計 約190分（＋番外編15分）。第8回で身につけた「同意を取り、記録し、確認して配る」考え方は、第12回の自動化、第13回の自立型AI、第14回の社内ルールづくりまで、そのまま効き続けます。</p>
+
+    <div class="finish">
+      <div class="fk">COMPLETE</div>
+      <h4 id="fTtl">最後まで読んでくれて、ありがとう。</h4>
+      <p id="fMsg">上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。</p>
+      <div class="fbar"><i id="fBar"></i></div>
+      <div class="fnum"><b id="fNum">0</b> / 6 ステップ完了</div>
+    </div>
+
+    <div class="keystone" style="margin-top:32px;">
+      <span class="kl">🎓 第8回の宿題</span>
+      <p>この記事を閉じる前に、<strong>「自分が打てない時間」を3つ書き出して、そのうち1つで実際に声で話しかけてください</strong>。そして次の会議で、<strong>「録音してもよろしいですか」とひとこと言ってみる</strong>ところまで。それだけで第8回は合格です。次の第9回では、<strong>SNS投稿・台本・コピーを量産するコンテンツ制作</strong> を扱います（所要15分）。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-07/"><span class="r-ic">🎨</span><span><span class="r-k">← 前の回（第7回）</span><span class="r-t">POP・バナー・商品ビジュアルを内製化<small>／ ChatGPT実践シリーズ 第7回（15分）</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">✍️</span><span><span class="r-k">▶ 次に読む（第9回）</span><span class="r-t">コンテンツ制作：SNS・台本・コピーの量産<small>／ ChatGPT実践シリーズ 第9回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-04/"><span class="r-ic">📮</span><span><span class="r-k">議事録の次は</span><span class="r-t">数秒でプロの文面。断り方・詫び方の型<small>／ ChatGPT実践シリーズ 第4回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-03/"><span class="r-ic">📄</span><span><span class="r-k">長文を読ませる技術は</span><span class="r-t">PDF・長文・紙の書類を数分で要点化<small>／ ChatGPT実践シリーズ 第3回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">設定がまだの方は</span><span class="r-t">正しいAIワークスペースの設定方法<small>／ ChatGPT実践シリーズ 第1回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-08/"><span class="r-ic">🔁</span><span><span class="r-k">姉妹シリーズ・読み比べ</span><span class="r-t">Claude実践シリーズ 第8回<small>／ 同じテーマを、Claudeで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まだの方はこちらから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">録音ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">ツールを比べるなら</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">💡</span><span><span class="r-k">型を増やすなら</span><span class="r-t">社長が今すぐ使えるプロンプト100選<small>／ 経営・営業・数字・私生活まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://openai.com/chatgpt/pricing/" target="_blank" rel="noopener"><span class="r-ic">💳</span><span><span class="r-k">公式</span><span class="r-t">ChatGPTの料金プラン<small>／ 対応プラン・利用枠の最新情報</small></span></span><span class="r-arw">↗</span></a>
+      <a class="rel" href="https://help.openai.com/" target="_blank" rel="noopener"><span class="r-ic">🛟</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">OpenAI ヘルプセンター<small>／ 音声・録音機能の対応状況</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>議事録に、もう2時間もいらない。<br>次は、<span class="hl">あなたの会社の会議</span>を載せませんか？</h2>
+    <p>「どの業務から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の内容は2026年7月時点の公開情報に基づきます。各サービスの画面・機能・料金・対応プラン・対応OSは、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。また、録音の可否、個人情報の取扱い、労務・法務に関する最終判断は、必ず公式窓口および弁護士等の専門家にご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── 1. 読了プログレス＋残り時間 ── */
+  var bar=document.getElementById('progBar'),
+      badge=document.getElementById('progBadge'),
+      minEl=document.getElementById('progMin'),
+      TOTAL=10, ticking=false;
+  function onScroll(){
+    var h=document.documentElement,
+        max=(h.scrollHeight-h.clientHeight)||1,
+        r=Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max));
+    bar.style.width=(r*100).toFixed(1)+'%';
+    var left=Math.max(1,Math.ceil(TOTAL*(1-r)));
+    minEl.textContent=left;
+    badge.classList.toggle('on', r>0.04 && r<0.97);
+    spy();
+    ticking=false;
+  }
+  /* ── 2. 目次のスクロール追従 ── */
+  var links=[].slice.call(document.querySelectorAll('.toc a')),
+      targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function spy(){
+    var best=-1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].getBoundingClientRect().top<140) best=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('cur',i===best);});
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+  },{passive:true});
+  onScroll();
+
+  /* ── 3. STEP完了チェック（保存つき・失敗しても動作継続） ── */
+  var KEY='ugoku_cm08_steps',
+      boxes=[].slice.call(document.querySelectorAll('.done input')),
+      fBar=document.getElementById('fBar'),
+      fNum=document.getElementById('fNum'),
+      fTtl=document.getElementById('fTtl'),
+      fMsg=document.getElementById('fMsg');
+  function load(){
+    try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];}
+  }
+  function save(v){ try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){} }
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    if(fBar) fBar.style.width=(n/6*100)+'%';
+    if(fNum) fNum.textContent=n;
+    if(!fTtl) return;
+    if(n===0){
+      fTtl.textContent='最後まで読んでくれて、ありがとう。';
+      fMsg.innerHTML='上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。';
+    }else if(n<3){
+      fTtl.textContent='いいスタートです。';
+      fMsg.innerHTML='読むだけで終わる人が大半のなか、あなたはもう手を動かしています。<b>次の1つ</b>をやると、移動時間が仕事時間に変わります。';
+    }else if(n<6){
+      fTtl.textContent='もう「会議を任せられる人」です。';
+      fMsg.innerHTML='あとはSTEP5の3分確認まで。<b>数字と決定事項を自分の目で読む</b>——ここが、社内で信頼される議事録になるかどうかの分かれ目です。';
+    }else{
+      fTtl.textContent='第8回、完全クリアです。おめでとう！';
+      fMsg.innerHTML='6ステップすべて実践しました。次は<b>その言葉を、外に届ける</b>番。第9回のコンテンツ制作と、第12回の自動化に直結します。';
+    }
+  }
+  var saved=load();
+  boxes.forEach(function(b){
+    if(saved.indexOf(b.dataset.step)>-1) b.checked=true;
+    b.addEventListener('change',function(){
+      save(boxes.filter(function(x){return x.checked;}).map(function(x){return x.dataset.step;}));
+      paint();
+    });
+  });
+  paint();
+
+  /* ── 4. 理解度クイズ ── */
+  var items=[].slice.call(document.querySelectorAll('.qitem')),
+      scoreEl=document.getElementById('qScore'), correct=0, answered=0;
+  items.forEach(function(it){
+    var ans=parseInt(it.dataset.ans,10),
+        opts=[].slice.call(it.querySelectorAll('.qopt')),
+        fb=it.querySelector('.qfb');
+    opts.forEach(function(btn,idx){
+      btn.addEventListener('click',function(){
+        if(it.dataset.locked) return;
+        it.dataset.locked='1'; answered++;
+        var hit=(idx===ans);
+        if(hit) correct++;
+        opts.forEach(function(o,i){
+          o.disabled=true;
+          if(i===ans) o.classList.add('ok');
+          else if(i===idx) o.classList.add('ng');
+        });
+        fb.classList.add('show');
+        if(answered===items.length && scoreEl){
+          var msg = correct===3 ? '完璧です。もう社内に教えられるレベル。'
+                  : correct===2 ? 'good。取りこぼした1問だけ、上に戻って確認を。'
+                  : '大丈夫、ここが伸びしろです。STEP3とSTEP5をもう一度どうぞ。';
+          scoreEl.innerHTML='🎯 <b>'+correct+' / 3 問正解</b>　'+msg;
+          scoreEl.classList.add('show');
+        }
+      });
+    });
+  });
+})();
+</script>
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

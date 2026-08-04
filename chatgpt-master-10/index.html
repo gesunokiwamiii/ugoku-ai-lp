@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="canonical" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-10/" />
+    <!-- UGOKU Analytics -->
+    <script src="/ugoku-ai-lp/assets/ga.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第10回：Canvas｜会話でなく“編集画面”で仕上げる（10分） ― UGOKU AI</title>
+<meta name="description" content="ChatGPT実践シリーズ第10回。「そこだけ直して」が通じない原因は、画面にあります。Canvasは右側に開く編集パネル。部分選択して直す方法、5つのショートカット（編集を提案・長さを調整・読解レベルを変更・最終仕上げ・絵文字）、バージョン履歴で戻る安心、PDF/Word書き出しと共有の限界、チャットとの使い分けまで10分で。案内役のうごく君がやさしく解説します。">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="UGOKU AI">
+<meta property="og:title" content="第10回：Canvas ― 会話でなく“編集画面”で仕上げる（10分）｜UGOKU AI">
+<meta property="og:description" content="「そこだけ直して」が通じないのは、あなたの指示が悪いからではありません。画面が会話用だからです。仕上げ専用の作業場に移る10分。">
+<meta property="og:url" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-10/">
+<meta property="og:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-10/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="第10回：Canvas ― 会話でなく“編集画面”で仕上げる ― UGOKU AI">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="第10回：Canvas ― 会話でなく“編集画面”で仕上げる（10分）｜UGOKU AI">
+<meta name="twitter:description" content="直すたびに全部変わる。あの消耗、画面を変えるだけで終わります。無料プランでも使えます。">
+<meta name="twitter:image" content="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-10/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:#F6F3EA; --card:#FFFFFF; --ink:#211C12; --ink-soft:#5A5240; --line:#E7E1D2;
+    --pine:#2E2815; --pine-2:#443A1F; --pine-deep:#201B0E;
+    --ember:#EAA800; --ember-2:#9A7000; --ember-soft:#FBEFC9;
+    --google:#4285F4; --youtube:#FF0033; --chatgpt:#10A37F; --claude:#C4623C;
+    --shadow:0 2px 4px rgba(20,40,32,.05), 0 14px 34px rgba(20,40,32,.08);
+    --shadow-sm:0 1px 3px rgba(20,40,32,.06), 0 6px 16px rgba(20,40,32,.06);
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:16px;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",system-ui,sans-serif;line-height:1.9;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 20px;}
+  .mincho{font-family:"Shippori Mincho",serif;}
+  .msc{display:inline-block;vertical-align:middle;transform-origin:center bottom;will-change:transform;}
+  /* うごく君 プルプル */
+  @keyframes ug-jiggle{
+    0%,66%,100%{transform:rotate(0) scale(1,1);}
+    69%{transform:rotate(-6deg) scale(1.06,.94);}
+    72%{transform:rotate(6deg)  scale(.95,1.05);}
+    75%{transform:rotate(-5deg) scale(1.05,.95);}
+    78%{transform:rotate(4deg)  scale(.97,1.03);}
+    81%{transform:rotate(-3deg) scale(1.02,.98);}
+    84%{transform:rotate(2deg)  scale(1,1);}
+    87%{transform:rotate(-1deg);}
+  }
+  @keyframes ug-shiver{
+    0%,100%{transform:rotate(0) scale(1,1);}
+    15%{transform:rotate(-7deg) scale(1.07,.93);}
+    30%{transform:rotate(7deg)  scale(.94,1.06);}
+    45%{transform:rotate(-6deg) scale(1.05,.95);}
+    60%{transform:rotate(5deg)  scale(.97,1.03);}
+    75%{transform:rotate(-3deg) scale(1.02,.98);}
+    90%{transform:rotate(2deg)  scale(1,1);}
+  }
+  .av.msc,.guidehint .msc{animation:ug-jiggle 2.9s ease-in-out infinite;}
+  .hello-card:hover .av.msc,.tip:hover .av.msc{animation:ug-shiver .55s ease-in-out infinite;}
+  .msc:hover{animation:ug-shiver .5s ease-in-out;}
+  .logo:hover .msc{animation:ug-shiver .5s ease-in-out;}
+
+  /* ═══ HERO ═══ */
+  .hero{position:relative;overflow:hidden;color:#F3F5F1;
+    background:radial-gradient(130% 120% at 88% -20%, rgba(234,168,0,.30), transparent 52%),
+      radial-gradient(120% 130% at -10% 110%, rgba(68,58,31,.7), transparent 55%),
+      linear-gradient(158deg,var(--pine) 0%, var(--pine-deep) 100%);
+    padding:24px 0 60px;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;padding:6px 4px 30px;}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;letter-spacing:.02em;text-decoration:none;color:inherit;}
+  .logo small{display:block;font-size:10.5px;font-weight:500;color:#D8CBA1;letter-spacing:.1em;margin-top:-3px;}
+  .brandbar .nav-cta{text-decoration:none;color:var(--pine-deep);background:#F3F5F1;font-weight:800;font-size:13px;padding:9px 17px;border-radius:100px;white-space:nowrap;}
+  .hero-inner{animation:rise .7s cubic-bezier(.2,.7,.3,1) both;}
+  @keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--ember);border:1px solid rgba(224,145,42,.45);padding:6px 14px;border-radius:100px;margin-bottom:22px;}
+  .hero h1{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(28px,7vw,46px);line-height:1.42;letter-spacing:.005em;margin:0 0 20px;}
+  .hero h1 .hl{color:var(--pine-deep);background:var(--ember);padding:0 8px;border-radius:6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;}
+  .hero .lead{font-size:clamp(15px,3.7vw,18px);color:#E9E1CE;max-width:600px;margin:0 0 22px;font-weight:500;}
+  .hero .guidehint{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:10px 16px 10px 12px;margin:0 0 30px;font-size:13.5px;color:#E9E1CE;}
+  .hero .guidehint b{color:var(--ember);}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:800;font-size:15.5px;padding:15px 26px;border-radius:13px;transition:.16s;border:none;cursor:pointer;font-family:inherit;}
+  .btn-primary{background:var(--ember);color:var(--pine-deep);box-shadow:0 6px 18px rgba(224,145,42,.35);}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05);}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#F3F5F1;border:1px solid rgba(255,255,255,.28);}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .btn .arw{transition:transform .16s;}
+  .btn:hover .arw{transform:translateX(3px);}
+
+  /* ═══ うごく君 あいさつ ═══ */
+  .hello{padding:36px 0 6px;}
+  .hello-card{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px 24px;box-shadow:var(--shadow);}
+  .hello-card .av{flex:none;width:clamp(58px,15vw,80px);height:clamp(58px,15vw,80px);}
+  .hello-card .sp{flex:1;min-width:0;}
+  .hello-card .sp .nm{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;color:var(--ember-2);margin-bottom:4px;}
+  .hello-card .sp p{margin:0 0 12px;font-size:15px;}
+  .checklist{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:7px;}
+  .checklist li{position:relative;padding-left:28px;font-size:14.3px;font-weight:500;}
+  .checklist li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;background:var(--pine);color:#fff;border-radius:6px;font-size:12px;font-weight:900;display:grid;place-items:center;}
+
+  /* ═══ 3つの役割 ═══ */
+  .roles{padding:44px 0 6px;}
+  .sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:8px;}
+  .sec-title{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(22px,5vw,30px);line-height:1.45;margin:0 0 8px;}
+  .sec-sub{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;}
+  .role-grid{display:grid;gap:13px;}
+  @media(min-width:720px){.role-grid{grid-template-columns:repeat(3,1fr);}}
+  .role{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:16px;padding:20px;box-shadow:var(--shadow-sm);}
+  .role .ic{font-size:26px;margin-bottom:8px;}
+  .role h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin:0 0 6px;}
+  .role h4 span{color:var(--accent);}
+  .role p{margin:0;font-size:13.8px;color:var(--ink-soft);}
+
+  /* ═══ 記事本体 ═══ */
+  .article{padding:52px 0 20px;}
+  .keystone{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--ember);border-radius:16px;padding:24px 26px;margin:8px 0 40px;box-shadow:var(--shadow-sm);}
+  .keystone .kl{display:inline-flex;gap:7px;align-items:center;background:var(--ember-soft);color:#8A5300;font-weight:800;font-size:12.5px;padding:5px 13px;border-radius:8px;margin-bottom:12px;}
+  .keystone p{margin:0;font-size:16.5px;font-weight:500;}
+  .keystone strong{color:var(--pine);font-weight:900;background:linear-gradient(transparent 60%,var(--ember-soft) 60%);padding:0 3px;}
+
+  h3.blk{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:20px;margin:48px 0 14px;padding-left:15px;border-left:5px solid var(--ember);line-height:1.5;}
+  .rule2{display:grid;gap:14px;}
+  @media(min-width:600px){.rule2{grid-template-columns:1fr 1fr;}}
+  .rule-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow-sm);}
+  .rule-card .rn{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;color:var(--ember);font-size:13px;letter-spacing:.1em;margin-bottom:6px;}
+  .rule-card h4{font-weight:800;font-size:15.5px;margin:0 0 8px;}
+  .rule-card p{margin:0;font-size:14px;color:var(--ink-soft);}
+  .rule-card b{color:var(--pine);}
+
+  /* STEP */
+  .step{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:20px 0;overflow:hidden;border-top:4px solid var(--accent,var(--pine));}
+  .step-head{display:flex;align-items:center;gap:15px;padding:20px 22px 4px;}
+  .step-badge{flex:none;width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:var(--accent,var(--pine));color:#fff;box-shadow:0 5px 14px rgba(0,0,0,.14);font-family:"Zen Kaku Gothic New",sans-serif;line-height:1;text-align:center;}
+  .step-badge small{display:block;font-size:9px;font-weight:700;opacity:.85;letter-spacing:.08em;}
+  .step-badge b{font-size:22px;font-weight:900;}
+  .step-head .st-ttl{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:19px;line-height:1.4;}
+  .step-head .st-chip{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--accent,var(--pine));margin-bottom:2px;}
+  .step-body{padding:8px 22px 24px;}
+  .step-body>.desc{color:var(--ink-soft);font-size:14.6px;margin:6px 0 14px;}
+  .mini-h{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:14.5px;margin:20px 0 8px;display:flex;align-items:center;gap:8px;}
+  .mini-h::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--accent,var(--pine));}
+
+  a.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent,var(--pine));color:#fff;text-decoration:none;font-weight:800;font-size:14px;padding:11px 19px;border-radius:11px;margin:2px 0 4px;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:.15s;}
+  a.link-btn:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  .link-note{font-size:12.5px;color:var(--ink-soft);margin:5px 0 0;}
+  ol.mini{list-style:none;counter-reset:m;margin:10px 0 0;padding:0;}
+  ol.mini li{counter-increment:m;position:relative;padding:5px 0 5px 30px;font-size:14.4px;border-bottom:1px dashed var(--line);}
+  ol.mini li:last-child{border-bottom:none;}
+  ol.mini li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:7px;background:var(--accent,var(--pine));color:#fff;font-weight:800;font-size:11.5px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  code{background:#F1EEE4;color:var(--pine-deep);padding:1px 7px;border-radius:6px;font-size:12.6px;font-family:"SF Mono",Consolas,monospace;word-break:break-all;}
+  .use{list-style:none;margin:8px 0 0;padding:0;}
+  .use li{position:relative;padding:6px 0 6px 24px;font-size:14.3px;border-bottom:1px dashed var(--line);}
+  .use li:last-child{border-bottom:none;}
+  .use li::before{content:"";position:absolute;left:3px;top:14px;width:7px;height:7px;border-right:2.4px solid var(--accent,var(--pine));border-bottom:2.4px solid var(--accent,var(--pine));transform:rotate(-45deg);}
+  .use li b{font-weight:700;}
+  .warn{background:#FDECE6;border:1px solid #F2B79E;border-radius:12px;padding:13px 16px;margin:14px 0 2px;font-size:13.8px;}
+  .warn .wt{font-weight:900;color:#B34A22;display:flex;gap:7px;align-items:center;margin-bottom:4px;}
+
+  /* 仕事/プライベート split */
+  .split{display:grid;gap:13px;margin-top:8px;}
+  @media(min-width:620px){.split{grid-template-columns:1fr 1fr;}}
+  .split .col{border:1px solid var(--line);border-radius:13px;padding:15px 17px;background:#FCFCF9;}
+  .split .col .ch{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .split .col.work .ch{color:var(--pine);}
+  .split .col.life .ch{color:var(--ember-2);}
+  .split .col .badge-mini{font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:6px;}
+  .split .col.work .badge-mini{background:#EDE7D8;color:var(--pine);}
+  .split .col.life .badge-mini{background:var(--ember-soft);color:var(--ember-2);}
+  .split ul{list-style:none;margin:0;padding:0;}
+  .split li{position:relative;padding:5px 0 5px 18px;font-size:13.8px;color:#3B463E;border-bottom:1px dashed var(--line);}
+  .split li:last-child{border-bottom:none;}
+  .split li::before{content:"・";position:absolute;left:2px;color:var(--ink-soft);}
+
+  /* コピペプロンプト */
+  .copybox{background:var(--pine-deep);border-radius:13px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .copybox .cb-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:rgba(255,255,255,.06);}
+  .copybox .cb-lbl{font-size:11.5px;font-weight:800;letter-spacing:.05em;color:var(--ember);display:flex;align-items:center;gap:7px;}
+  .copybox .cb-btn{background:var(--ember);color:var(--pine-deep);border:none;cursor:pointer;font-weight:800;font-size:11.5px;padding:5px 12px;border-radius:7px;font-family:inherit;transition:.15s;}
+  .copybox .cb-btn:hover{filter:brightness(1.06);}
+  .copybox pre{margin:0;padding:15px 16px;color:#E9F1EB;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.75;white-space:pre-wrap;word-break:break-word;}
+  .copybox pre .fill{color:var(--ember);}
+
+  /* うごく君 ひとこと */
+  .tip{display:flex;gap:13px;align-items:flex-start;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:14px;padding:14px 16px;margin:16px 0 2px;}
+  .tip .av{flex:none;width:44px;height:44px;}
+  .tip .tx{font-size:13.8px;color:#6B4A12;}
+  .tip .tx b{color:var(--ember-2);font-weight:800;display:block;font-size:12.5px;margin-bottom:2px;font-family:"Zen Kaku Gothic New",sans-serif;}
+
+  /* 使い分け表 */
+  .cmp{padding:6px 0;}
+  .cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);background:#fff;}
+  table.cmp-t{width:100%;border-collapse:collapse;font-size:14px;min-width:520px;}
+  table.cmp-t th,table.cmp-t td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);}
+  table.cmp-t thead th{background:var(--pine);color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:800;font-size:13.5px;}
+  table.cmp-t thead th:first-child{background:var(--pine-deep);}
+  table.cmp-t tbody th{font-weight:700;color:var(--ink);background:#F7F8F5;white-space:nowrap;}
+  table.cmp-t .win{color:var(--ember-2);font-weight:800;}
+  table.cmp-t .mid{color:var(--ink-soft);}
+  .combo{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ember);border-radius:14px;padding:18px 20px;margin:16px 0 0;box-shadow:var(--shadow-sm);}
+  .combo h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;margin:0 0 8px;font-size:15.5px;}
+  .combo .flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0;}
+  .combo .flow .b{background:#F3EFE3;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:700;}
+  .combo .flow .ar{color:var(--ember-2);font-weight:900;}
+
+  /* プロンプトの型 */
+  .formula{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:var(--shadow-sm);}
+  .f-grid{display:grid;gap:10px;margin:14px 0;}
+  @media(min-width:560px){.f-grid{grid-template-columns:repeat(2,1fr);}}
+  .f-item{display:flex;gap:11px;align-items:flex-start;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:12px 13px;}
+  .f-item .no{flex:none;width:26px;height:26px;border-radius:8px;background:var(--pine);color:#fff;font-weight:900;font-size:13px;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .f-item .t{font-size:13.6px;}
+  .f-item .t b{display:block;font-weight:800;font-size:14px;margin-bottom:1px;}
+  .ba{display:grid;gap:11px;margin-top:12px;}
+  @media(min-width:560px){.ba{grid-template-columns:1fr 1fr;}}
+  .ba .c{border-radius:12px;padding:13px 15px;font-size:13.5px;}
+  .ba .bad{background:#FBECEC;border:1px solid #F0C2C2;}
+  .ba .good{background:#FBEFC9;border:1px solid #E7C97A;}
+  .ba .c .lb{font-weight:900;font-size:12px;margin-bottom:5px;}
+  .ba .bad .lb{color:#B23A3A;}
+  .ba .good .lb{color:var(--pine);}
+
+  /* アイデア集 */
+  .ideas{display:grid;gap:13px;}
+  @media(min-width:640px){.ideas{grid-template-columns:1fr 1fr;}}
+  .idea{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .idea h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.5px;margin:0 0 9px;display:flex;align-items:center;gap:8px;}
+  .idea h4 .e{font-size:18px;}
+  .idea ul{list-style:none;margin:0;padding:0;}
+  .idea li{position:relative;padding:4px 0 4px 16px;font-size:13.6px;color:#3B463E;}
+  .idea li::before{content:"›";position:absolute;left:2px;color:var(--ember-2);font-weight:900;}
+
+  /* 折りたたみ（困った・FAQ） */
+  .compact{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm);padding:6px 22px;margin:14px 0;}
+  .compact details{border-bottom:1px solid var(--line);}
+  .compact details:last-child{border-bottom:none;}
+  .compact summary{cursor:pointer;list-style:none;padding:15px 30px 15px 2px;position:relative;font-weight:700;font-size:14.8px;}
+  .compact summary::-webkit-details-marker{display:none;}
+  .compact summary::after{content:"+";position:absolute;right:4px;top:12px;font-size:21px;color:var(--pine);font-weight:400;transition:.2s;}
+  .compact details[open] summary::after{transform:rotate(45deg);}
+  .compact .ans{padding:0 2px 15px;font-size:14px;color:var(--ink-soft);}
+
+  .safe-grid{display:grid;gap:12px;}
+  @media(min-width:560px){.safe-grid{grid-template-columns:1fr 1fr;}}
+  .safe-item{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .safe-item .si-h{font-weight:800;font-size:14.3px;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .safe-item .si-h .no{background:var(--pine);color:#fff;width:22px;height:22px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;flex:none;}
+  .safe-item p{margin:0;font-size:13.5px;color:var(--ink-soft);}
+
+  /* 関連リンク */
+  .related{padding:40px 0 4px;}
+  .rel-grid{display:grid;gap:12px;margin-top:18px;}
+  @media(min-width:640px){.rel-grid{grid-template-columns:1fr 1fr;}}
+  a.rel{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow-sm);transition:.16s;}
+  a.rel:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--pine-2);}
+  a.rel .r-ic{flex:none;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-size:19px;background:var(--ember-soft);}
+  a.rel .r-k{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:1px;}
+  a.rel .r-t{display:block;font-weight:800;font-size:14.6px;line-height:1.4;}
+  a.rel .r-t small{font-weight:500;color:var(--ink-soft);}
+  a.rel .r-arw{margin-left:auto;color:var(--pine-2);font-weight:900;flex:none;}
+
+  /* CTA + フォーム */
+  .cta{margin:52px 0 0;color:#F3F5F1;border-radius:26px;overflow:hidden;text-align:center;
+    background:radial-gradient(120% 130% at 50% -30%, rgba(234,168,0,.34), transparent 55%),linear-gradient(160deg,var(--pine-2),var(--pine-deep));padding:50px 26px 46px;}
+  .cta .ce{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember);margin-bottom:14px;}
+  .cta h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(23px,5.4vw,34px);line-height:1.5;margin:0 0 14px;}
+  .cta h2 .hl{color:var(--ember);}
+  .cta p{color:#E9E1CE;font-size:15.5px;max-width:520px;margin:0 auto 26px;}
+  .cta-actions{max-width:430px;margin:4px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .cta-actions .cta-btn{justify-content:center;font-size:16.5px;padding:17px 26px;}
+  .cta .fineprint{margin-top:22px;font-size:12px;color:#B8AD8E;}
+
+  footer{padding:42px 0 60px;text-align:center;color:var(--ink-soft);font-size:13px;}
+  footer .flogo{display:inline-flex;align-items:center;gap:9px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:17px;color:var(--pine);margin-bottom:8px;}
+  footer .fmeta{font-size:12.5px;line-height:1.9;}
+  footer a{color:var(--pine);}
+
+  /* ═══ 読了率アップ施策 ═══ */
+  .prog{position:fixed;top:0;left:0;width:100%;height:4px;background:rgba(32,27,14,.16);z-index:999;}
+  .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);transition:width .1s linear;}
+  .prog-badge{position:fixed;top:12px;right:12px;z-index:999;background:rgba(32,27,14,.88);color:#F3F5F1;font-size:11.5px;font-weight:800;
+    padding:6px 13px;border-radius:100px;backdrop-filter:blur(6px);opacity:0;transition:.25s;pointer-events:none;letter-spacing:.02em;}
+  .prog-badge.on{opacity:1;}
+  .prog-badge b{color:var(--ember);}
+
+  .promise{padding:34px 0 0;}
+  .promise-card{background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:22px;padding:26px 24px 24px;box-shadow:var(--shadow);}
+  .promise-k{display:inline-flex;align-items:center;gap:7px;background:var(--pine);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 14px;border-radius:100px;margin-bottom:14px;}
+  .promise-card h2{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(20px,4.8vw,27px);line-height:1.5;margin:0 0 6px;}
+  .promise-card h2 .hl{background:linear-gradient(transparent 58%,var(--ember-soft) 58%);padding:0 3px;}
+  .promise-card>p{color:var(--ink-soft);font-size:14.6px;margin:0 0 18px;}
+  .ba2{display:grid;gap:12px;align-items:stretch;}
+  @media(min-width:640px){.ba2{grid-template-columns:1fr 54px 1fr;}}
+  .ba2 .bx{border-radius:15px;padding:16px 17px;}
+  .ba2 .bx .bt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12px;letter-spacing:.1em;margin-bottom:9px;}
+  .ba2 .bef{background:#F4F2EC;border:1px solid #DFD9C9;}
+  .ba2 .bef .bt{color:#8A8373;}
+  .ba2 .aft{background:linear-gradient(160deg,var(--pine),var(--pine-deep));border:1px solid var(--pine-deep);color:#F3F5F1;box-shadow:0 8px 22px rgba(32,27,14,.22);}
+  .ba2 .aft .bt{color:var(--ember);}
+  .ba2 ul{list-style:none;margin:0;padding:0;}
+  .ba2 li{position:relative;padding:5px 0 5px 21px;font-size:13.8px;border-bottom:1px dashed rgba(0,0,0,.09);}
+  .ba2 .aft li{border-bottom-color:rgba(255,255,255,.14);}
+  .ba2 li:last-child{border-bottom:none;}
+  .ba2 .bef li::before{content:"✕";position:absolute;left:0;top:5px;color:#B08A6A;font-weight:900;font-size:12px;}
+  .ba2 .aft li::before{content:"✓";position:absolute;left:0;top:5px;color:var(--ember);font-weight:900;font-size:12px;}
+  .ba2 .mid-ar{display:grid;place-items:center;font-size:26px;color:var(--ember-2);font-weight:900;}
+  @media(max-width:639px){.ba2 .mid-ar{transform:rotate(90deg);padding:2px 0;}}
+  .promise-foot{margin:16px 0 0;padding:14px 16px;background:var(--ember-soft);border:1px solid #EBCF95;border-radius:13px;font-size:14px;color:#6B4A12;}
+  .promise-foot b{color:var(--ember-2);}
+
+  /* 目次 */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-sm);padding:20px 22px;margin:28px 0 8px;}
+  .toc .tt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15px;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+  .toc .ts{font-size:12.8px;color:var(--ink-soft);margin:0 0 12px;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;display:grid;gap:2px;}
+  @media(min-width:640px){.toc ol{grid-template-columns:1fr 1fr;gap:2px 18px;}}
+  .toc li{counter-increment:t;}
+  .toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-size:13.9px;font-weight:600;padding:7px 8px;border-radius:9px;transition:.14s;}
+  .toc a:hover{background:#F6F3EA;}
+  .toc a::before{content:counter(t);flex:none;width:21px;height:21px;border-radius:7px;background:#F1EEE4;color:var(--pine);font-size:11px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .toc a.cur{background:var(--ember-soft);}
+  .toc a.cur::before{background:var(--ember);color:var(--pine-deep);}
+  .toc a .mn{margin-left:auto;font-size:11.5px;color:var(--ink-soft);font-weight:700;flex:none;}
+
+  /* 図解 */
+  figure.fig{margin:18px 0 6px;padding:0;}
+  figure.fig svg{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:var(--shadow-sm);}
+  figure.fig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:7px;text-align:center;}
+
+  /* STEP 完了チェック */
+  .done{display:flex;align-items:center;gap:10px;margin:18px 0 0;padding:12px 15px;background:#FCFCF9;border:1px dashed var(--line);border-radius:12px;cursor:pointer;user-select:none;transition:.15s;}
+  .done:hover{background:#F6F3EA;}
+  .done input{appearance:none;-webkit-appearance:none;flex:none;width:22px;height:22px;border:2px solid var(--accent,var(--pine));border-radius:7px;cursor:pointer;position:relative;margin:0;transition:.15s;}
+  .done input:checked{background:var(--accent,var(--pine));}
+  .done input:checked::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900;}
+  .done span{font-size:13.6px;font-weight:700;color:var(--ink-soft);}
+  .done input:checked + span{color:var(--accent,var(--pine));}
+
+  /* 章末ミニまとめ */
+  .gain{background:linear-gradient(135deg,#fff,#FBFBF7);border:1px solid var(--line);border-left:6px solid var(--pine);border-radius:14px;padding:17px 20px;margin:26px 0 6px;box-shadow:var(--shadow-sm);}
+  .gain .gt{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:13.5px;color:var(--pine);margin-bottom:7px;display:flex;align-items:center;gap:8px;}
+  .gain ul{list-style:none;margin:0;padding:0;display:grid;gap:4px;}
+  .gain li{position:relative;padding-left:23px;font-size:14px;}
+  .gain li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ember-2);font-weight:900;font-size:13px;}
+  .gain .nx{margin:11px 0 0;font-size:13.6px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;}
+  .gain .nx b{color:var(--ember-2);}
+
+  /* 理解度クイズ */
+  .quiz{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:22px;margin:16px 0;}
+  .quiz .qh{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:16px;margin-bottom:4px;display:flex;align-items:center;gap:9px;}
+  .quiz .qs{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px;}
+  .qitem{border-top:1px solid var(--line);padding:16px 0 4px;}
+  .qitem:first-of-type{border-top:none;padding-top:4px;}
+  .qq{font-weight:800;font-size:14.8px;margin-bottom:10px;display:flex;gap:9px;}
+  .qq .qn{flex:none;width:23px;height:23px;border-radius:7px;background:var(--pine);color:#fff;font-size:12px;font-weight:900;display:grid;place-items:center;font-family:"Zen Kaku Gothic New",sans-serif;}
+  .qopts{display:grid;gap:8px;}
+  .qopt{text-align:left;background:#FCFCF9;border:1.5px solid var(--line);border-radius:11px;padding:11px 14px;font-size:13.8px;font-family:inherit;color:var(--ink);cursor:pointer;transition:.14s;line-height:1.65;}
+  .qopt:hover{border-color:var(--pine-2);background:#F6F3EA;}
+  .qopt.ok{background:#FBEFC9;border-color:#E7C97A;font-weight:700;}
+  .qopt.ng{background:#FBECEC;border-color:#F0C2C2;opacity:.85;}
+  .qopt:disabled{cursor:default;}
+  .qfb{display:none;margin-top:10px;padding:12px 15px;border-radius:11px;font-size:13.6px;background:var(--ember-soft);border:1px solid #EBCF95;color:#6B4A12;}
+  .qfb.show{display:block;}
+  .qfb b{color:var(--ember-2);}
+  .qscore{margin-top:16px;padding:15px 17px;border-radius:13px;background:linear-gradient(160deg,var(--pine),var(--pine-deep));color:#F3F5F1;font-size:14px;display:none;}
+  .qscore.show{display:block;}
+  .qscore b{color:var(--ember);font-size:17px;}
+
+  /* 完読バッジ */
+  .finish{text-align:center;background:linear-gradient(150deg,#fff,#FBF8EF);border:1px solid var(--line);border-radius:20px;padding:26px 22px;margin:26px 0 0;box-shadow:var(--shadow-sm);}
+  .finish .fk{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--ember-2);margin-bottom:10px;}
+  .finish h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:clamp(18px,4.2vw,23px);margin:0 0 10px;line-height:1.5;}
+  .finish p{font-size:14.3px;color:var(--ink-soft);margin:0 auto 14px;max-width:520px;}
+  .fbar{max-width:420px;margin:0 auto;background:#F1EEE4;border-radius:100px;height:12px;overflow:hidden;}
+  .fbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ember),#FFD25E);border-radius:100px;transition:width .4s cubic-bezier(.2,.7,.3,1);}
+  .fnum{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14px;color:var(--pine);margin-top:9px;}
+  .fnum b{color:var(--ember-2);font-size:19px;}
+
+  /* 3段階レベルの階段 */
+  .ladder{display:grid;gap:11px;margin:14px 0 0;}
+  @media(min-width:700px){.ladder{grid-template-columns:repeat(3,1fr);align-items:stretch;}}
+  .lv{position:relative;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent,var(--pine));border-radius:14px;padding:16px 17px;box-shadow:var(--shadow-sm);}
+  .lv .lv-n{font-family:"Zen Kaku Gothic New",sans-serif;font-size:11.5px;font-weight:900;letter-spacing:.1em;color:var(--accent,var(--pine));margin-bottom:5px;}
+  .lv h4{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:15.5px;margin:0 0 7px;line-height:1.45;}
+  .lv p{margin:0 0 8px;font-size:13.4px;color:var(--ink-soft);}
+  .lv .lv-t{display:inline-block;font-size:11px;font-weight:800;background:#F3EFE3;color:var(--pine);border-radius:7px;padding:3px 10px;}
+  /* 材料タグ */
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;}
+  .tags span{background:#F3EFE3;border:1px solid var(--line);border-radius:100px;padding:5px 13px;font-size:12.5px;font-weight:700;color:var(--pine);}
+  /* 言い換え表 */
+  .swap{display:grid;gap:9px;margin:12px 0 0;}
+  @media(min-width:620px){.swap{grid-template-columns:1fr 1fr;}}
+  .swap .sw{display:flex;align-items:center;gap:10px;background:#FCFCF9;border:1px solid var(--line);border-radius:11px;padding:10px 13px;font-size:13.3px;}
+  .swap .sw .x{color:#B23A3A;font-weight:800;white-space:nowrap;}
+  .swap .sw .ar{color:var(--ember-2);font-weight:900;flex:none;}
+  .swap .sw .o{color:var(--pine);font-weight:700;}
+
+  /* ═══ 第5回 追加パーツ（レポート断面カード・工程レイヤー） ═══ */
+  .mail{background:#FCFCF9;border:1px solid var(--line);border-radius:14px;margin:12px 0;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .mail .mh{display:flex;align-items:center;gap:9px;padding:10px 15px;background:#F1EEE4;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;color:var(--pine);}
+  .mail .mh .tagx{margin-left:auto;font-size:10.5px;font-weight:800;background:var(--pine);color:#fff;border-radius:6px;padding:2px 9px;}
+  .mail .mb{padding:15px 17px;font-size:13.9px;line-height:1.95;white-space:pre-wrap;}
+  .mail .mb .fill{color:var(--ember-2);font-weight:700;}
+  .mail .mnote{border-top:1px dashed var(--line);padding:11px 17px;font-size:12.6px;color:var(--ink-soft);background:#fff;}
+  .mail .mnote b{color:var(--pine);}
+  /* 型の5段構成 */
+  .layers{display:grid;gap:9px;margin:12px 0 0;counter-reset:ly;}
+  .layer{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-left:4px solid var(--accent,var(--pine));border-radius:12px;padding:12px 15px;counter-increment:ly;}
+  .layer .ln{flex:none;width:25px;height:25px;border-radius:8px;background:var(--accent,var(--pine));color:#fff;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:12.5px;display:grid;place-items:center;}
+  .layer .lt{font-size:13.7px;}
+  .layer .lt b{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:900;font-size:14.3px;margin-bottom:2px;}
+  .layer .lt .why{color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<!-- ═══ 読了プログレスバー ═══ -->
+<div class="prog" aria-hidden="true"><i id="progBar"></i></div>
+<div class="prog-badge" id="progBadge">残り <b id="progMin">10</b> 分</div>
+
+<!-- うごく君 マスコット（再利用SVG） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <style>
+      @keyframes ug-blink{0%,90%,100%{transform:scaleY(1);}94%{transform:scaleY(.08);}}
+      .ug-eyes{transform-box:fill-box;transform-origin:center;animation:ug-blink 4.6s ease-in-out infinite;}
+      @media (prefers-reduced-motion:reduce){.ug-eyes{animation:none;}}
+    </style>
+  </defs>
+  <symbol id="ugoku" viewBox="0 0 100 100">
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="#E0912A"/>
+    <rect x="10" y="12" width="80" height="76" rx="20" fill="none" stroke="#C9761A" stroke-width="2"/>
+    <circle cx="27" cy="58" r="7" fill="#FF7A59" opacity=".5"/><circle cx="73" cy="58" r="7" fill="#FF7A59" opacity=".5"/>
+    <g class="ug-eyes">
+      <circle cx="37" cy="44" r="11" fill="#fff"/><circle cx="63" cy="44" r="11" fill="#fff"/>
+      <circle cx="39" cy="46" r="5" fill="#201B0E"/><circle cx="65" cy="46" r="5" fill="#201B0E"/>
+      <circle cx="41" cy="44" r="1.7" fill="#fff"/><circle cx="67" cy="44" r="1.7" fill="#fff"/>
+    </g>
+    <path d="M43 66 L43 80 L61 73 Z" fill="#201B0E"/>
+  </symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="brandbar">
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/" class="logo">
+        <svg class="msc" width="36" height="36"><use href="#ugoku"/></svg>
+        <span>UGOKU&nbsp;AI<small>動くAI ｜ 案内役：うごく君</small></span>
+      </a>
+      <a href="#cta" class="nav-cta">無料AI化診断</a>
+    </div>
+    <div class="hero-inner">
+      <span class="eyebrow">ChatGPT実践シリーズ 第10回 ｜ 所要10分</span>
+      <h1>「そこだけ直して」が通じないのは、<br><span class="hl">あなたの指示のせいじゃない。</span></h1>
+      <p class="lead">3段落目だけ直したいのに、全部が書き換わる。せっかく気に入っていた1行目まで消える。また指示し直して、また全部変わる——<b>この往復、心当たりはありませんか</b>。原因は指示の書き方ではなく、<b>チャットという画面が「会話用」だから</b>です。ChatGPTには、仕上げ専用の作業場があります。それが<b>Canvas（キャンバス）</b>。この記事は、<b>無料プランでも今すぐ使えるこの画面</b>を、10分で使いこなすための手順書です。</p>
+      <span class="guidehint">
+        <svg class="msc" width="34" height="34"><use href="#ugoku"/></svg>
+        <span>案内役はこの子、<b>うごく君</b>。つまずきやすいポイントを、先回りして教えます。</span>
+      </span>
+      <div class="hero-cta">
+        <a href="#guide" class="btn btn-primary">10分で編集画面を使いこなす <span class="arw">↓</span></a>
+        <a href="#cta" class="btn btn-ghost">無料でAI化診断する <span class="arw">→</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 冒頭：結論先出し ═══ -->
+<div class="promise">
+  <div class="wrap">
+    <div class="promise-card">
+      <span class="promise-k">🏁 結論から言います</span>
+      <h2>Canvasは、新しい機能ではありません。<br><span class="hl">「作業する場所」を変えるだけの話です。</span></h2>
+      <p>覚えることは、ほとんどありません。<b>チャットは相談する場所、Canvasは仕上げる場所</b>。この2つを分けるだけで、コピペの往復が消え、直した箇所以外が勝手に変わらなくなります。第10回でいちばん練習してほしいのは、実は操作ではなく<b>「そろそろCanvasに移る」と判断すること</b>です。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">BEFORE ／ 今のあなた</div>
+          <ul>
+            <li>「直して」と言うたび、全文が別物になる</li>
+            <li>気に入っていた1行が、いつのまにか消えている</li>
+            <li>チャットから毎回コピーして、Wordに貼っている</li>
+            <li>前のほうが良かったのに、戻せない</li>
+            <li>長い文章になると、どこを直したか分からなくなる</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">AFTER ／ 10分後のあなた</div>
+          <ul>
+            <li><b>選んだ部分だけ</b>を直せる</li>
+            <li>他の箇所は<b>一切さわられない</b></li>
+            <li>コピペせず、<b>そのまま書き出せる</b></li>
+            <li><b>前の版に戻せる</b>ので、思い切って試せる</li>
+            <li>相手に合わせて<b>難しさを1クリックで調整</b>できる</li>
+          </ul>
+        </div>
+      </div>
+      <div class="promise-foot">
+        📌 <b>この記事のいちばん大事な前提：</b>Canvasは<b>2024年10月に公開</b>され、<b>同年12月に無料プランを含む全ユーザーへ開放</b>されました。つまり<b>いま契約を増やさなくても、今日から使えます</b>。右側に開く編集パネルで、部分選択して直す・5つのショートカット・バージョン履歴・書き出しまで対応。ただし<b>「複数人で同時に編集する」用途には向きません</b>——この線引きを<b>STEP5</b>で正直にお伝えします。得意なことだけ使う。それが結局いちばん速い使い方です。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ うごく君 あいさつ ═══ -->
+<div class="hello">
+  <div class="wrap">
+    <div class="hello-card">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="sp">
+        <div class="nm">うごく君より</div>
+        <p>こんにちは、うごく君です。「AIに文章を直させると、毎回まるごと変わって疲れる」——これ、第10回でいちばん多い“もったいない”です。原因はね、<b>会話の画面で編集作業をしているから</b>。喫茶店で打ち合わせはできても、そこで製図はできないでしょ。<b>作業には作業台が要る</b>んだ。この記事を上から10分やり切ると、次の状態になります。</p>
+        <ul class="checklist">
+          <li>Canvasを<b>3つの方法</b>で開けるようになる</li>
+          <li><b>選んだ部分だけ</b>を直せるようになる</li>
+          <li>5つのショートカットで<b>1クリックで整えられる</b></li>
+          <li><b>前の版に戻せる</b>ので、失敗が怖くなくなる</li>
+          <li>チャットとCanvasの<b>使い分けの線</b>が引ける</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 3層 ═══ -->
+<div class="roles">
+  <div class="wrap">
+    <div class="sec-eyebrow">30秒でわかる</div>
+    <h2 class="sec-title">Canvasって、<br>結局なにをするものなの？</h2>
+    <p class="sec-sub">画面が左右に分かれます。<b>左は相談、右は原稿</b>。これだけ分かれば、もう半分は理解できています。</p>
+    <div class="role-grid">
+      <div class="role" style="--accent:var(--chatgpt);">
+        <div class="ic">💬</div>
+        <h4>左：チャット<br><span>＝ 相談する場所</span></h4>
+        <p>「もう少し柔らかく」「この段落は要らない」と指示を出す場所。<b>考えを伝える側</b>です。今までどおりの使い方で構いません。</p>
+      </div>
+      <div class="role" style="--accent:var(--ember-2);">
+        <div class="ic">📄</div>
+        <h4>右：Canvas<br><span>＝ 原稿そのもの</span></h4>
+        <p>できあがっていく文章が、ここに残り続けます。<b>自分で直接打ち込むこともできる</b>。Wordのような作業台だと思ってください。</p>
+      </div>
+      <div class="role" style="--accent:var(--pine);">
+        <div class="ic">🕐</div>
+        <h4>上：バージョン履歴<br><span>＝ 戻れる安心</span></h4>
+        <p>直す前の状態が、自動で残ります。<b>いつでも戻せる</b>から、思い切って試せる。これが実は、いちばん効く機能です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 記事本体 ═══ -->
+<div class="article" id="guide">
+  <div class="wrap">
+    <div class="sec-eyebrow">CHATGPT MASTER ｜ LESSON 10</div>
+    <h2 class="sec-title">第10回：Canvas<br>― 会話ではなく“編集画面”で仕上げる ―</h2>
+    <p class="sec-sub">パソコンが苦手な方でも、上から順に進めるだけで終わるように作りました。所要時間の目安は合計10分です。</p>
+
+    <!-- 目次 -->
+    <nav class="toc" id="toc">
+      <div class="tt">🗺️ この記事の地図（全6ステップ・10分）</div>
+      <p class="ts">気になるところから読んでも大丈夫。上から順に進めば10分で終わります。</p>
+      <ol>
+        <li><a href="#s1">Canvasを開く、3つの方法<span class="mn">2分</span></a></li>
+        <li><a href="#s2">★選んだ部分だけを直す<span class="mn">2分</span></a></li>
+        <li><a href="#s3">★5つのショートカットを使う<span class="mn">2分</span></a></li>
+        <li><a href="#s4">バージョン履歴で、戻れるようにする<span class="mn">1分</span></a></li>
+        <li><a href="#s5">書き出しと、共有の現実<span class="mn">1分</span></a></li>
+        <li><a href="#s6">チャットとの使い分けを決める<span class="mn">2分</span></a></li>
+        <li><a href="#s7">局面別・Canvasが効く15場面<span class="mn">＋</span></a></li>
+        <li><a href="#s8">費用対効果を時間で測る<span class="mn">＋</span></a></li>
+        <li><a href="#s9">自立型AIが加わると<span class="mn">＋</span></a></li>
+        <li><a href="#quiz">理解度チェック（3問）<span class="mn">1分</span></a></li>
+      </ol>
+    </nav>
+
+    <div class="keystone">
+      <span class="kl">💡 最初にこれだけ</span>
+      <p><strong>「これは、あとで人に見せる文章か？」</strong>——この問いに「はい」なら、Canvasを開いてください。相談・質問・アイデア出しはチャットのままで構いません。しかし<strong>提案書、案内文、規程、原稿、報告書</strong>のように<strong>完成させて外に出すもの</strong>は、最初からCanvasで作る。これだけで、コピペの往復と「勝手に変わる」問題が、まとめて消えます。</p>
+    </div>
+    <p class="link-note" style="margin:-28px 0 34px;">※本記事は<b>2026年7月時点</b>の公開情報に基づきます。画面の名称・ボタンの位置・対応プランは、提供元の更新により変わることがあります。最新の仕様は<a href="https://help.openai.com/" target="_blank" rel="noopener">OpenAI ヘルプセンター</a>をご確認ください。なお、ショートカットの表記が英語で出る場合があります。</p>
+
+    <!-- なぜ差がつくのか -->
+    <h3 class="blk">なぜ「同じChatGPT」で、ここまで差がつくのか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">研修の現場で「AIで文章を作るのは疲れる」という方の画面を見ると、原因はほぼこの2つです。</p>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">POINT 01</div>
+        <h4>会話の画面で、編集作業をしている</h4>
+        <p>チャットは<b>やりとりが下に流れていく</b>設計です。だから「さっきの版」を探すのが大変で、直すたびに全文が再生成される。<b>これは仕様であって、あなたの指示が悪いわけではありません。</b>作業台を変えるだけで解決します。</p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">POINT 02</div>
+        <h4>「どこを」直すか、指し示していない</h4>
+        <p>「もう少し丁寧に」だけだと、AIは全文が対象だと解釈します。<b>Canvasなら、直したい箇所をマウスで選んでから頼める</b>。指を差して「ここ」と言えるようになる——これが、Canvasの本質です。</p>
+      </div>
+    </div>
+
+    <h3 class="blk">失敗しないための、たった2つのルール</h3>
+    <div class="rule2">
+      <div class="rule-card">
+        <div class="rn">RULE 01</div>
+        <h4>大きく直すときほど、先に版を確認する</h4>
+        <p>Canvasは前の版に戻せますが、<b>戻せることを知らないまま大改造して青ざめる</b>人が多い。大きく変える前に「今の状態は残る」と確認してから進めれば、思い切って試せます。<b>戻れる安心が、実験の速さを作ります。</b></p>
+      </div>
+      <div class="rule-card">
+        <div class="rn">RULE 02</div>
+        <h4>最後は、必ず自分の手で1回読む</h4>
+        <p>Canvasは編集が快適な分、<b>「整った気」になりやすい</b>のが落とし穴です。文法が整っていることと、内容が正しいことは別。<b>数字・固有名詞・約束事</b>は、書き出す前に自分の目で。ここはシリーズ共通の作法です。</p>
+      </div>
+    </div>
+
+    <!-- 3段階レベル -->
+    <h3 class="blk">この記事のゴール：Canvasにも「3段階」がある</h3>
+    <p class="sec-sub" style="margin-top:-6px;">いきなり3段目を目指さないでください。1段目だけでも、往復のストレスが消えます。</p>
+    <div class="ladder">
+      <div class="lv" style="--accent:var(--chatgpt);">
+        <div class="lv-n">LEVEL 1 ／ 開く</div>
+        <h4>長い文章は、Canvasで書く</h4>
+        <p>「キャンバスで書いて」と言うだけ。これだけで、原稿が流れずに残り続けます。</p>
+        <span class="lv-t">今日ここまで来れば合格</span>
+      </div>
+      <div class="lv" style="--accent:var(--ember-2);">
+        <div class="lv-n">LEVEL 2 ／ 選ぶ</div>
+        <h4>部分を選んで、そこだけ直す</h4>
+        <p>直したい箇所をなぞってから頼む。他が変わらなくなるので、仕上げの速度が一気に上がります。</p>
+        <span class="lv-t">効果がいちばん大きい</span>
+      </div>
+      <div class="lv" style="--accent:var(--pine);">
+        <div class="lv-n">LEVEL 3 ／ 配る</div>
+        <h4>型を保存して、社内で回す</h4>
+        <p>よく使う文書のひな形をCanvasで整え、プロジェクトに保存。誰が書いても同じ品質になります。</p>
+        <span class="lv-t">第11回へ</span>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>1</b></div>
+        <div>
+          <span class="st-chip" id="s1">OPEN ／ 所要2分</span>
+          <div class="st-ttl">Canvasを開く、3つの方法</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">まずは開けるようになりましょう。<b>設定も申し込みも要りません</b>。3つの方法があるので、どれか1つ覚えれば十分です。</p>
+
+        <div class="mini-h">開き方は3通り</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">1</div>
+            <div class="lt"><b>ひとこと言うだけ（いちばん簡単）</b><span class="why">指示の最後に<b>「キャンバスで書いて」</b>と付けるだけ。英語で「use canvas」でも同じです。<b>これだけ覚えれば、もう十分です。</b></span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">2</div>
+            <div class="lt"><b>勝手に開くのを待つ</b><span class="why">長めの文章やコードを作らせると、<b>自動で右側に開く</b>ことがあります。「気づいたら画面が2つに分かれていた」——それがCanvasです。驚かないでください。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">3</div>
+            <div class="lt"><b>途中から移す</b><span class="why">チャットで作った文章を<b>「これをキャンバスに展開して」</b>と頼めば、その場で右側に移ります。<b>すでに書いたものを、あとから作業台に載せられる</b>ということです。</span></div>
+          </div>
+        </div>
+
+        <div class="copybox">
+          <div class="cb-top"><span class="cb-lbl">📋 最初の1回：これをそのまま送る</span><button class="cb-btn">コピー</button></div>
+          <pre>キャンバスで書いてください。
+
+<span class="fill">〔例：取引先へ送る、納期変更のお詫びと新しい日程の案内文〕</span>
+
+【相手】<span class="fill">〔例：取引先の担当者。付き合いは3年〕</span>
+【伝えたいこと】<span class="fill">〔箇条書きで。事実だけ〕</span>
+【長さ】<span class="fill">〔例：400字程度〕</span>
+【トーン】<span class="fill">〔例：丁寧だが、堅すぎない〕</span>
+
+まず全体を書いてください。そのあと私が部分ごとに直していきます。</pre>
+        </div>
+        <p class="link-note">最後の1行がポイントです。<b>「そのあと部分ごとに直す」</b>と宣言しておくと、AIも1発完成を狙わず、たたき台として出してくれます。第2回で扱った考え方が、ここでも効きます。</p>
+
+        <div class="mini-h">開いたら、まず確認する3か所</div>
+        <ol class="mini">
+          <li><b>右側の広い部分</b>＝原稿。ここは<b>自分で直接クリックして打ち込めます</b></li>
+          <li><b>右下のえんぴつマーク</b>＝ショートカットのメニュー（STEP3で使います）</li>
+          <li><b>上のほうの矢印</b>＝バージョン履歴。前の状態に戻せます（STEP4）</li>
+        </ol>
+        <p class="link-note">なお<b>ショートカットの表示が英語のまま</b>のことがあります。日本語の文章を書くこと自体には支障ありませんので、慌てないでください。STEP3に日本語での対応表を用意しました。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>スマホでも使えるけど、<b>Canvasは画面の広いパソコンのほうが断然ラク</b>だよ。左右に分かれる画面だからね。スマホは「相談」、パソコンは「仕上げ」——第8回の声と同じで、<b>道具は場面で持ち替える</b>のがコツだよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="1"><span>STEP1 完了：「キャンバスで書いて」と頼んで、右側に開いた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>2</b></div>
+        <div>
+          <span class="st-chip" id="s2">SELECT ／ 所要2分</span>
+          <div class="st-ttl">★ 選んだ部分だけを、直す</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">ここが第10回の中心です。<b>「そこだけ直して」が、はじめて本当に通じるようになります</b>。やることは、たった2手順です。</p>
+
+        <div class="mini-h">やり方（これだけ）</div>
+        <ol class="mini">
+          <li>右側の原稿で、直したい部分を<b>マウスでなぞって選ぶ</b></li>
+          <li>出てきた入力欄に、<b>どう直したいかを書く</b></li>
+        </ol>
+        <p class="link-note">以上です。選んだところ以外は<b>一切さわられません</b>。気に入っていた1行目が消える心配も、構成が丸ごと変わる心配もなくなります。<b>この安心感が、仕上げの速度を変えます。</b></p>
+
+        <div class="ba">
+          <div class="c bad">
+            <div class="lb">✕ 今までのやり方</div>
+            チャットで「3段落目をもう少し柔らかくして」<br>→ 全文が再生成され、1段落目の言い回しまで変わる。直すたびに、別のところが崩れる
+          </div>
+          <div class="c good">
+            <div class="lb">◎ Canvasのやり方</div>
+            3段落目をなぞって「もう少し柔らかく」<br>→ その段落だけが書き換わる。他は1文字も変わらない
+          </div>
+        </div>
+
+        <div class="mini-h">部分選択で、よく使う指示</div>
+        <div class="ideas">
+          <div class="idea">
+            <h4><span class="e">✂️</span>短く・長く</h4>
+            <ul>
+              <li>「ここを半分の長さに」</li>
+              <li>「ここだけ、もう少し具体的に」</li>
+              <li>「この一文を、2文に分けて」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🎚️</span>トーンを変える</h4>
+            <ul>
+              <li>「ここだけ、もう少し丁寧に」</li>
+              <li>「かたい言い方をやわらげて」</li>
+              <li>「言い切らず、含みを持たせて」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">🔤</span>言葉を直す</h4>
+            <ul>
+              <li>「専門用語を、一般の言葉に」</li>
+              <li>「同じ言葉の重複を減らして」</li>
+              <li>「主語を明確にして」</li>
+            </ul>
+          </div>
+          <div class="idea">
+            <h4><span class="e">➕</span>足す・削る</h4>
+            <ul>
+              <li>「ここに、具体例を1つ足して」</li>
+              <li>「この段落は削って、前後をつなげて」</li>
+              <li>「根拠を一言、添えて」</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ 「1、3、5番目の提案だけ反映して」は、うまく通りません</div>
+          番号で指定すると、<b>違うものが反映されることがあります</b>。確実なのは、<b>反映したい箇所を1つずつ選んで直す</b>方法です。手間に見えますが、<b>間違いを探して直す時間より、結局速い</b>です。「まとめて頼まない」——これはシリーズを通しての作法ですね。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>この部分選択、<b>自分で直接打ち込んでもいい</b>んだよ。「ここは自分の言葉で書きたい」というところは、手で打つ。<b>全部AIに任せなくていい</b>。むしろ大事な1文だけ自分で書いた文章は、読む人にちゃんと伝わるよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="2"><span>STEP2 完了：一部をなぞって、そこだけ直せた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" style="--accent:var(--ember-2);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>3</b></div>
+        <div>
+          <span class="st-chip" id="s3">SHORTCUT ／ 所要2分</span>
+          <div class="st-ttl">★ 5つのショートカットを使う</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">右下のえんぴつマークを押すと、<b>ワンクリックで使える道具</b>が5つ出てきます。指示を書かなくていいので、慣れると手放せません。</p>
+
+        <div class="mini-h">文章づくりの5つ（英語表記の場合の対応つき）</div>
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>名前</th><th>英語表記</th><th>何をしてくれるか</th><th>使いどころ</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>編集を提案</th><td>Suggest edits</td><td>直したほうがいい箇所に、印と提案を付ける</td><td class="win">自分では気づけない粗を探す</td></tr>
+              <tr><th>長さを調整</th><td>Adjust the length</td><td>つまみを動かして、短く／長くする</td><td class="win">「800字以内」の指定に合わせる</td></tr>
+              <tr><th>読解レベルを変更</th><td>Reading level</td><td>幼稚園〜大学院の範囲で、難しさを変える</td><td class="win">相手に合わせて言い換える</td></tr>
+              <tr><th>最終仕上げを追加</th><td>Add final polish</td><td>文法・分かりやすさ・表現の統一を整える</td><td class="win">送る直前の最終チェック</td></tr>
+              <tr><th>絵文字を追加</th><td>Add emojis</td><td>強調や彩りとして絵文字を入れる</td><td>SNS・社内チャット向け</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mini-h">中小企業でいちばん効くのは「読解レベルを変更」</div>
+        <p style="font-size:14.4px;margin:6px 0 12px;">これは知られていませんが、<b>実務でいちばん化ける機能</b>です。同じ内容を、相手に合わせて言い換えられます。たとえば——</p>
+        <ol class="mini">
+          <li>技術者が書いた仕様の説明を、<b>お客様が読める言葉</b>に落とす</li>
+          <li>難しい制度の案内を、<b>誰でも分かる掲示文</b>に変える</li>
+          <li>社内規程を、<b>新入社員でも分かる説明</b>に書き直す</li>
+          <li>専門的な提案書を、<b>決裁者向けの平易な要約</b>にする</li>
+          <li>子ども向け・高齢者向けの<b>案内文を作り分ける</b></li>
+        </ol>
+        <p class="link-note">これまでは「分かりやすく書き直す」のに30分かかっていた作業が、<b>つまみを動かすだけ</b>になります。しかも<b>元の文章はバージョン履歴に残る</b>ので、専門家向けと一般向けの2種類を、簡単に作り分けられます。</p>
+
+        <div class="mini-h">プログラムを扱う方へ（5つのコード用ショートカット）</div>
+        <p style="font-size:14.4px;margin:6px 0 0;">コードを書く場合は、<b>コードレビュー・バグを修正・ログを追加・コメントを追加・別の言語に移植</b>が使えます。ソフト開発をしない方は、この段落は読み飛ばして構いません。<b>Canvasはプログラマー専用の機能だと思われがちですが、文章のほうが恩恵は大きい</b>——これは強調しておきます。</p>
+
+        <div class="warn">
+          <div class="wt">⚠️ 「最終仕上げ」を通しても、内容は保証されません</div>
+          整えてくれるのは<b>文法・表現・一貫性</b>であって、<b>書かれている内容が事実かどうかは別</b>です。読みやすくなった結果、<b>間違いも読みやすくなる</b>——ここがいちばん怖いところ。金額・日付・固有名詞・約束事は、仕上げのあとに<b>もう一度自分の目で</b>確認してください。
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「編集を提案」は、<b>自分で書いた文章にも使える</b>よ。AIに書かせるんじゃなくて、<b>自分の文章を見てもらう</b>使い方。これ、文章がうまくなりたい人には最高の練習相手なんだ。指摘の理由まで聞けば、次から自分で書けるようになる。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="3"><span>STEP3 完了：読解レベルを変えて、言い換えを試した</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>4</b></div>
+        <div>
+          <span class="st-chip" id="s4">HISTORY ／ 所要1分</span>
+          <div class="st-ttl">バージョン履歴で、戻れるようにする</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">地味ですが、<b>使い心地をいちばん変えるのがここ</b>です。Canvasは編集の履歴を自動で残していて、<b>いつでも前の状態に戻せます</b>。</p>
+
+        <div class="mini-h">やり方</div>
+        <ol class="mini">
+          <li>Canvasの<b>上のほうにある矢印</b>（＜ ＞）を押す</li>
+          <li>前の版・次の版へ、<b>行ったり来たり</b>できる</li>
+          <li>戻したい版で止めれば、<b>その状態に復元</b>できる</li>
+          <li>保存の操作は不要。<b>編集内容は自動で保存</b>されます</li>
+        </ol>
+
+        <div class="mini-h">これがあると、何が変わるか</div>
+        <div class="layers">
+          <div class="layer" style="--accent:var(--chatgpt);">
+            <div class="ln">1</div>
+            <div class="lt"><b>思い切って試せるようになる</b><span class="why">「全部くだけた口調にしたらどうなるか」を、気軽に試せます。ダメなら戻すだけ。<b>戻れる安心が、実験の速さを作ります。</b></span></div>
+          </div>
+          <div class="layer" style="--accent:var(--ember-2);">
+            <div class="ln">2</div>
+            <div class="lt"><b>2種類を作り分けられる</b><span class="why">専門家向けの版と、一般向けの版。読解レベルを変えた前後がどちらも残るので、<b>両方をコピーして保存</b>できます。</span></div>
+          </div>
+          <div class="layer" style="--accent:var(--pine);">
+            <div class="ln">3</div>
+            <div class="lt"><b>「前のほうが良かった」に対応できる</b><span class="why">上司や取引先からのこの一言、これまでは絶望でした。今は戻せます。<b>実務でいちばん救われる場面</b>かもしれません。</span></div>
+          </div>
+        </div>
+
+        <div class="warn">
+          <div class="wt">⚠️ ただし、履歴を過信しないでください</div>
+          履歴はあくまで<b>ChatGPTの中の機能</b>です。会話ごと消してしまえば、履歴も一緒に消えます。<b>本当に大事な原稿は、書き出して社内のフォルダに保存</b>してください（STEP5）。「AIの中にだけある状態」は、担当者が代わったときに全部消えたのと同じになります。<b>これは第7回・第9回でもお伝えしている、共通の作法です。</b>
+        </div>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>大きく直す前に「今の状態は残るんだな」って一度確認しておくと、心理的にすごくラクになるよ。<b>戻れると分かっている人だけが、大胆に試せる</b>んだ。これ、仕事全般に言えることかもしれないね。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="4"><span>STEP4 完了：バージョン履歴を開いて、前の版に戻してみた</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" style="--accent:var(--pine);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>5</b></div>
+        <div>
+          <span class="st-chip" id="s5">EXPORT ／ 所要1分</span>
+          <div class="st-ttl">書き出しと、共有の現実</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">仕上がったら、外に出します。ここで<b>Canvasが得意なことと、苦手なこと</b>をはっきりさせておきましょう。<b>苦手を知っておくほうが、結果的に速く進みます。</b></p>
+
+        <div class="mini-h">できること</div>
+        <ol class="mini">
+          <li><b>PDF・Word・Markdown</b>など、形式を選んで書き出せる</li>
+          <li>コピーボタンで、<b>全文をそのままコピー</b>できる</li>
+          <li>書き出したファイルを、<b>社内フォルダやメール添付</b>に回せる</li>
+        </ol>
+
+        <div class="warn">
+          <div class="wt">⚠️ できないこと：Googleドキュメントのような同時編集</div>
+          2026年時点で、<b>複数人が同じCanvasを同時に開いて編集する使い方は想定されていません</b>。「チームで1つの原稿を、みんなで直す」用途には向きません。ここを期待して導入すると、必ず失望します。<b>Canvasは「1人で仕上げるための作業台」</b>だと割り切ってください。
+        </div>
+
+        <div class="mini-h">だから、こう使い分けます</div>
+        <div class="split">
+          <div class="col work">
+            <div class="ch">✅ Canvasで完結させる <span class="badge-mini">1人作業</span></div>
+            <ul>
+              <li>自分が担当する原稿を、仕上げる</li>
+              <li>相手に合わせて、難しさを調整する</li>
+              <li>案を2〜3パターン作って、比べる</li>
+              <li>自分の文章を、見てもらって直す</li>
+            </ul>
+          </div>
+          <div class="col life">
+            <div class="ch">⛔ 書き出して、別の場所へ <span class="badge-mini">複数人</span></div>
+            <ul>
+              <li>チームで回覧して、意見をもらう</li>
+              <li>承認をもらい、記録として残す</li>
+              <li>版を管理して、社内で共有する</li>
+              <li>正式な体裁を整えて、外部に提出する</li>
+            </ul>
+          </div>
+        </div>
+        <p class="link-note">実務での流れは、<b>「Canvasで仕上げる → 書き出す → 共有ドライブに置く → チームで確認」</b>。この順番が、いちばん摩擦がありません。<b>全部をChatGPTの中で完結させようとしない</b>——これは第9回の動画の話とまったく同じ構造です。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>「できないこと」を先に知っておくのって、実はすごく大事なんだ。<b>期待してから裏切られるのがいちばん時間の無駄</b>だからね。得意なところだけ使う。それが道具との、いちばんいい付き合い方だよ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="5"><span>STEP5 完了：書き出して、社内フォルダに保存した</span></label>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step" style="--accent:var(--chatgpt);">
+      <div class="step-head">
+        <div class="step-badge"><small>STEP</small><b>6</b></div>
+        <div>
+          <span class="st-chip" id="s6">ROUTINE ／ 所要2分</span>
+          <div class="st-ttl">チャットとの使い分けを決める</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p class="desc">最後に、線を引きます。<b>この判断を一度決めておくと、毎回迷わなくなります</b>。基準はひとつだけです。</p>
+
+        <div class="keystone" style="margin:0 0 22px;">
+          <span class="kl">🎯 判断はこれだけ</span>
+          <p><strong>「あとで人に見せる完成品か？」</strong>——はいならCanvas、いいえならチャット。それだけです。</p>
+        </div>
+
+        <div class="cmp-wrap">
+          <table class="cmp-t">
+            <thead>
+              <tr><th>やること</th><th>チャット</th><th>Canvas</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>質問する・調べる</th><td class="win">◎</td><td>△</td></tr>
+              <tr><th>アイデアを出す・壁打ち</th><td class="win">◎</td><td>△</td></tr>
+              <tr><th>短い返信メールを作る</th><td class="win">◎</td><td>○</td></tr>
+              <tr><th>提案書・案内文を仕上げる</th><td>△</td><td class="win">◎</td></tr>
+              <tr><th>長い文章を部分的に直す</th><td class="mid">×</td><td class="win">◎</td></tr>
+              <tr><th>相手に合わせて言い換える</th><td>○</td><td class="win">◎</td></tr>
+              <tr><th>案を2〜3本比べる</th><td>△</td><td class="win">◎</td></tr>
+              <tr><th>自分の文章を見てもらう</th><td>○</td><td class="win">◎</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mini-h">型を残して、社内で回す</div>
+        <ol class="mini">
+          <li>第1回で作った<b>プロジェクト</b>に「文書のひな形」の部屋を用意する</li>
+          <li>よく使う文書（見積送付状・お詫び文・案内文・提案書の骨子）を<b>Canvasで整えて保存</b></li>
+          <li>会社の言い回し・禁止表現・署名を、<b>部屋の指示</b>に書いておく</li>
+          <li>次からは<b>ひな形を開いて、中身だけ差し替える</b></li>
+          <li>担当が代わっても、<b>同じ品質の文書が出る</b>状態に</li>
+        </ol>
+        <p class="link-note">ここまで来ると、文書づくりが<b>「個人技」から「会社の資産」</b>に変わります。さらに進めて、この型を自分専用AIとして配りたい方は<b>第11回・マイGPT</b>へどうぞ。</p>
+
+        <div class="tip">
+          <svg class="av msc"><use href="#ugoku"/></svg>
+          <div class="tx"><b>うごく君のひとこと</b>迷ったら<b>とりあえずCanvasで開いちゃっていい</b>よ。開いて要らなければ閉じるだけだから。逆に、チャットで長文を作り込んでから「あ、Canvasにすればよかった」と気づくほうが、もったいないんだ。</div>
+        </div>
+
+        <label class="done"><input type="checkbox" data-step="6"><span>STEP6 完了：使い分けの線を決め、ひな形を1つ保存した</span></label>
+      </div>
+    </div>
+
+    <!-- テーマカタログ -->
+    <h3 class="blk" id="s7">局面別・Canvasが効く15場面</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「どんなときに開けばいいか分からない」を消すための一覧です。この中から、<b>今週作る予定のもの</b>を1つ選んでください。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>＃</th><th>作るもの</th><th>Canvasで効く理由</th><th>効き目</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>01</th><td>提案書・企画書</td><td>章ごとに直せる。全体は崩れない</td><td class="win">往復が消える</td></tr>
+          <tr><th>02</th><td>お客様向けの案内文</td><td>読解レベルを下げて、伝わる言葉に</td><td class="win">問い合わせが減る</td></tr>
+          <tr><th>03</th><td>お詫び・お断りの文書</td><td>1文ずつ、慎重に調整できる</td><td class="win">事故を防ぐ</td></tr>
+          <tr><th>04</th><td>社内規程・マニュアル</td><td>新人向けの平易版を同時に作れる</td><td class="win">教育コスト</td></tr>
+          <tr><th>05</th><td>ホームページの文章</td><td>長さをつまみで調整できる</td><td>枠に収まる</td></tr>
+          <tr><th>06</th><td>ブログ記事</td><td>見出しごとに部分編集</td><td class="win">1本の完成が速い</td></tr>
+          <tr><th>07</th><td>求人票・募集要項</td><td>硬さを段階的に調整できる</td><td>応募の入口</td></tr>
+          <tr><th>08</th><td>議事録の清書</td><td>第8回の下書きを、ここで仕上げる</td><td class="win">配れる形に</td></tr>
+          <tr><th>09</th><td>助成金・補助金の申請文</td><td>字数制限に合わせて調整</td><td>字数との戦いが楽に</td></tr>
+          <tr><th>10</th><td>あいさつ文・スピーチ原稿</td><td>話し言葉に整えやすい</td><td>本番の安心</td></tr>
+          <tr><th>11</th><td>商品説明文</td><td>複数パターンを比較できる</td><td>EC・カタログ</td></tr>
+          <tr><th>12</th><td>自分が書いた文章の推敲</td><td>「編集を提案」で粗を見つける</td><td class="win">文章力が上がる</td></tr>
+          <tr><th>13</th><td>多言語の案内文</td><td>やさしい日本語版も同時に</td><td>外国人スタッフ・観光</td></tr>
+          <tr><th>14</th><td>契約書のたたき台</td><td>条項ごとに検討できる</td><td>※最終は専門家へ</td></tr>
+          <tr><th>15</th><td>簡単な計算表・集計コード</td><td>コード用の道具も使える</td><td>第6回と組み合わせ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">色つきの<b>6つ</b>は、中小企業でとくに効果が出やすいものです。なお<b>14番は必ず専門家の確認</b>を経てください。AIが作れるのは、あくまで検討用のたたき台です。</p>
+
+    <!-- 費用対効果 -->
+    <h3 class="blk" id="s8">費用対効果を「時間」で見える化する</h3>
+    <p class="sec-sub" style="margin-top:-6px;">Canvasの効果は<b>「作る時間」より「直す時間」</b>に出ます。下は現場でよく見る幅の目安です（文書の性質により変動します）。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>よくある作業</th><th>チャットのみ</th><th>Canvasで</th><th>差の理由</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>提案書の推敲（5往復）</th><td>50分</td><td>15分</td><td class="win">全文の読み直しが不要</td></tr>
+          <tr><th>案内文を、相手向けに書き換え</th><td>30分</td><td>3分</td><td class="win">読解レベルのつまみ1つ</td></tr>
+          <tr><th>字数制限に合わせる調整</th><td>25分</td><td>5分</td><td class="win">長さのつまみ1つ</td></tr>
+          <tr><th>コピペしてWordへ移す</th><td>1回3分×10回</td><td>0分</td><td class="win">書き出しで完結</td></tr>
+          <tr><th>「前の版に戻したい」</th><td>不可（作り直し）</td><td>10秒</td><td class="win">履歴から復元</td></tr>
+          <tr><th>専門家版と一般版の作り分け</th><td>60分</td><td>10分</td><td class="win">履歴に両方残る</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="combo">
+      <h4>📐 かんたんな損益分岐の出し方</h4>
+      <div class="flow">
+        <span class="b">月額 3,100円</span><span class="ar">÷</span><span class="b">自分の時給（例 2,500円）</span><span class="ar">＝</span><span class="b">月に約75分</span>
+      </div>
+      <p style="margin:6px 0 0;font-size:14px;">この<b>約75分</b>を時短できれば元が取れる計算です。ただし第10回に関しては、<b>Canvasそのものは無料プランでも使えます</b>。つまり<b>今日の実践に、追加費用は1円もかかりません</b>。まず使ってみて、上限に当たる頻度を見てから課金を検討してください。</p>
+    </div>
+
+    <div class="warn">
+      <div class="wt">⚠️ 数字を出すときの注意</div>
+      「50分が15分に」は、<b>最終確認の時間を含めて</b>測ってください。Canvasは編集が快適な分、<b>「整った気」になって確認を飛ばしがち</b>です。文法が整っていることと、内容が正しいことは別物。<b>数字・固有名詞・約束事の確認時間は、必ず計上</b>してください。<b>ここを含めない試算は、社内で必ず崩れます。</b>含めても十分に速い。それが正直な結論です。
+    </div>
+
+    <!-- 落とし穴 -->
+    <h3 class="blk">プロが見ている、初心者がやりがちな8つの落とし穴</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>そもそも開いていない</div>
+        <p>いちばん多いのがこれ。<b>「キャンバスで書いて」の一言</b>を知らないまま、チャットで消耗し続けています。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>部分を選ばずに指示する</div>
+        <p>Canvasを開いても、チャット欄から「全体を直して」と頼んでは意味がありません。<b>なぞってから</b>頼む。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>バージョン履歴を知らない</div>
+        <p>戻せると知らないから、大きく試せない。<b>戻れる安心</b>が、実は最大の武器です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>まとめて何箇所も直させる</div>
+        <p>番号での一括指定は、うまく通りません。<b>1つずつ選んで直す</b>ほうが、結局速い。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>「最終仕上げ」で安心する</div>
+        <p>整うのは表現だけ。<b>間違いも読みやすくなる</b>のが怖いところ。内容の確認は別に必要です。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>書き出さずに放置する</div>
+        <p>会話を消せば、原稿も履歴も消えます。<b>大事なものは書き出して社内フォルダへ</b>。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">7</span>同時編集を期待する</div>
+        <p>チームで一斉に直す用途には向きません。<b>書き出してから共有</b>する流れにしてください。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">8</span>全部AIに書かせる</div>
+        <p>Canvasは<b>自分で打ち込めます</b>。大事な1文だけ自分の言葉で書くと、文章が生きます。</p>
+      </div>
+    </div>
+
+    <!-- 局面別 -->
+    <h3 class="blk">Canvasが効く、局面別の使いどころ</h3>
+    <div class="ideas">
+      <div class="idea">
+        <h4><span class="e">🧑‍💼</span>営業・提案で</h4>
+        <ul>
+          <li>提案書を、章ごとに詰めていく</li>
+          <li>同じ提案を、担当者向けと決裁者向けに分ける</li>
+          <li>断り文・値上げの案内を、慎重に1文ずつ</li>
+          <li>見積の説明文を、納得できる形に整える</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏪</span>店舗・現場で</h4>
+        <ul>
+          <li>掲示物の文章を、誰でも分かる言葉に</li>
+          <li>作業手順書を、新人向けにやさしく書き直す</li>
+          <li>外国人スタッフ向けに、やさしい日本語版を</li>
+          <li>お客様アンケートの依頼文を整える</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">🏢</span>管理・総務で</h4>
+        <ul>
+          <li>社内規程を、平易な説明版とセットで作る</li>
+          <li>助成金の申請文を、字数に合わせて調整</li>
+          <li>議事録の清書と、配布用の要約</li>
+          <li>就業ルールの周知文を、角が立たない表現に</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h4><span class="e">✍️</span>自分の文章力を上げる</h4>
+        <ul>
+          <li>自分で書いた文章に「編集を提案」を使う</li>
+          <li>指摘の理由まで聞いて、次から自分で書く</li>
+          <li>同じ内容を難易度違いで書き、違いを見る</li>
+          <li>1文だけ自分で書き、残りをAIと組む</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ツール使い分け -->
+    <h3 class="blk">ちなみに：WordやGoogleドキュメントと、どう使い分ける？</h3>
+    <p class="sec-sub" style="margin-top:-6px;">「Canvasがあれば、Wordは要らない？」もよく聞かれます。答えは<b>いいえ</b>。役割がまったく違います。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>やりたいこと</th><th>Canvas</th><th>Word</th><th>Googleドキュメント</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>AIと一緒に書く・直す</th><td class="win">◎ 圧倒的</td><td>△</td><td>△</td></tr>
+          <tr><th>相手に合わせて言い換える</th><td class="win">◎ つまみ1つ</td><td class="mid">×</td><td class="mid">×</td></tr>
+          <tr><th>複数人での同時編集</th><td class="mid">×</td><td>○</td><td class="win">◎</td></tr>
+          <tr><th>正式な体裁・レイアウト</th><td class="mid">×</td><td class="win">◎</td><td>○</td></tr>
+          <tr><th>コメントで意見をもらう</th><td class="mid">×</td><td class="win">◎</td><td class="win">◎</td></tr>
+          <tr><th>版の管理・記録として残す</th><td>△</td><td>○</td><td class="win">◎</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">実務での正解は、<b>「Canvasで中身を仕上げて、書き出して、体裁と共有は今までのツールで」</b>。Canvasは<b>文章の“中身”を作る場所</b>であって、<b>“書類”を作る場所ではありません</b>。ここを混同すると、どちらも中途半端になります。</p>
+
+    <!-- 自立型AI -->
+    <h3 class="blk" id="s9">ここに「自立型AI」が加わると、何が変わるか</h3>
+    <p class="sec-sub" style="margin-top:-6px;">2026年7月、ChatGPTに業務エージェント <b>Work</b> が加わりました。目標を伝えると工程を自分で分解し、複数のアプリやファイルを横断して<b>完成した成果物</b>まで仕上げるモードです。ここでCanvasの位置づけが、少し面白くなります。</p>
+
+    <div class="promise-card" style="margin-top:14px;">
+      <h4 style="font-family:'Zen Kaku Gothic New',sans-serif;font-weight:900;font-size:16px;margin:0 0 8px;">📌 Canvasは「人が並走する」ための道具です</h4>
+      <p style="margin:0 0 12px;font-size:14.4px;">ここは正直にお伝えします。Canvasは<b>「AIに指示だけ出して放置する」使い方を想定していません</b>。人が画面を見ながら、判断し、直し、確認する——<b>そういう設計思想の道具</b>です。だからこそ、自立型AIの時代でも役割が残ります。<b>任せる仕事と、自分で仕上げる仕事を分けるとき、Canvasは後者の作業台になる</b>ということです。</p>
+      <div class="ba2">
+        <div class="bx bef">
+          <div class="bt">自立型AIに任せる</div>
+          <ul>
+            <li>資料を集め、下書きを作る</li>
+            <li>複数の文書を横断して要点をまとめる</li>
+            <li>定型的な文書を、大量に用意する</li>
+            <li>形式を整えて、ファイルに書き出す</li>
+          </ul>
+        </div>
+        <div class="mid-ar">➜</div>
+        <div class="bx aft">
+          <div class="bt">Canvasで自分が仕上げる</div>
+          <ul>
+            <li>お客様に<b>直接届く言葉</b>を選ぶ</li>
+            <li>お詫び・お断りの<b>微妙な言い回し</b></li>
+            <li>会社の<b>意思を示す文章</b></li>
+            <li>相手に合わせた<b>最後の一手</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mini-h" style="margin-top:22px;">文書づくりを任せる前に、決めておく6つ</div>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>人が仕上げる文書を決めておく</div>
+        <p>お詫び、お断り、値上げ、人事。<b>会社の意思を示す文書は、人が書く</b>と先に決めておく。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>ひな形を先に整える</div>
+        <p>よく使う文書をCanvasで作り、プロジェクトに保存。<b>下敷きがあると、任せた結果が安定します。</b></p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>会社の言い回しを1枚にする</div>
+        <p>一人称、署名、禁止表現、敬称。渡しておくと、誰が書いても声が揃います。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>事実の一次情報を決める</div>
+        <p>価格・納期・仕様は<b>どのファイルが正か</b>を決める。AIに考えさせない項目を作っておく。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">5</span>送信の直前に承認を置く</div>
+        <p>作るのは任せて、<b>出すのは任せない</b>。文書は取り消しがきかないので、ここは譲らない。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">6</span>大事な原稿は書き出して保存</div>
+        <p>AIの中にだけある状態にしない。<b>社内フォルダに、形式を決めて保存</b>する運用を先に。</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <svg class="av msc"><use href="#ugoku"/></svg>
+      <div class="tx"><b>うごく君のひとこと</b>AIがどれだけ賢くなっても、<b>「この一文を、この人にどう届けるか」を決めるのは人</b>なんだ。Canvasはそのための作業台。だから第10回は、シリーズの中でいちばん<b>「人が主役」の回</b>だと思ってる。任せる技術と、自分で仕上げる技術。両方あって、はじめて強いよ。</div>
+    </div>
+
+    <!-- つまずき -->
+    <h3 class="blk">つまずいたときのチェックリスト</h3>
+    <div class="compact">
+      <details>
+        <summary>「キャンバスで書いて」と言っても、開かない</summary>
+        <div class="ans">まず、内容が短すぎないか確認してください。ひとことの返答ではCanvasが開かないことがあります。<b>ある程度の長さがある文章</b>を頼んでみてください。それでも開かない場合は、入力欄の「＋」ボタンからツールとして選ぶ方法や、英語で「use canvas」と書く方法を試してください。すでに作った文章がある場合は<b>「これをキャンバスに展開して」</b>が確実です。アプリを最新版に更新するのもお試しください。</div>
+      </details>
+      <details>
+        <summary>部分を選んでも、入力欄が出てこない</summary>
+        <div class="ans">スマホや画面の狭い環境では、操作しづらいことがあります。<b>Canvasはパソコンの広い画面での利用がおすすめ</b>です。また、なぞる範囲が短すぎると反応しないことがあるので、<b>文単位・段落単位</b>で選んでみてください。それでも出ない場合は、選んだ部分をコピーしてチャット欄に貼り、「この部分だけ、こう直して」と伝える方法でも同じ結果になります。</div>
+      </details>
+      <details>
+        <summary>ショートカットの表示が英語で分からない</summary>
+        <div class="ans">日本語の文章を扱う分には支障ありません。対応はSTEP3の表のとおりで、上から順に「編集を提案（Suggest edits）」「長さを調整（Adjust the length）」「読解レベルを変更（Reading level）」「最終仕上げを追加（Add final polish）」「絵文字を追加（Add emojis）」です。<b>いちばん使うのは3番目の読解レベル</b>なので、まずそこだけ覚えてください。</div>
+      </details>
+      <details>
+        <summary>長い原稿だと、動作が重い</summary>
+        <div class="ans">1万字を超えるような原稿は、<b>章ごとにCanvasを分ける</b>のが実用的です。1つのCanvasに全部を入れると、編集の反応が鈍くなります。分けたものは、最後に書き出してから1つの文書にまとめてください。また、長い文章を何度も直すと<b>無料プランでは利用の上限に当たりやすい</b>点にもご注意を。<b>「章ごとに分ける」は、上限対策としても有効です。</b></div>
+      </details>
+      <details>
+        <summary>作った原稿が、見つからなくなった</summary>
+        <div class="ans">Canvasは会話に紐づいているので、<b>その会話を開けば原稿も残っています</b>。会話の履歴から探してください。ただし会話を削除すると、原稿と履歴も一緒に消えます。<b>大事な原稿は必ず書き出して、社内のフォルダに保存</b>してください。第9回でもお伝えしましたが、<b>「AIの中にだけある状態」を作らない</b>のが、実務での鉄則です。</div>
+      </details>
+      <details>
+        <summary>チームで一緒に直したい</summary>
+        <div class="ans">2026年時点で、Googleドキュメントのような複数人の同時編集は想定されていません。実務では<b>「Canvasで仕上げる → 書き出す → 共有ドライブに置く → チームで確認」</b>の流れが摩擦がありません。逆に言えば、<b>1人で担当する文書ほどCanvasの効果が大きい</b>ということです。チーム作業は今までのツールで、と割り切ってください。</div>
+      </details>
+    </div>
+
+    <!-- 安全 -->
+    <h3 class="blk">安全に、かしこく使うために</h3>
+    <div class="safe-grid">
+      <div class="safe-item">
+        <div class="si-h"><span class="no">1</span>入れない情報の線を引く</div>
+        <p>顧客の個人情報、秘密保持の対象、未公表の経営数値。<b>Canvasも入力であることに変わりはありません。</b></p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">2</span>整った文章ほど、疑う</div>
+        <p>読みやすくなると、<b>間違いも読みやすくなります</b>。数字と固有名詞は、仕上げのあとにもう一度。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">3</span>大事な原稿は書き出す</div>
+        <p>AIの中にだけある状態にしない。<b>社内フォルダに保存</b>して、はじめて会社の資産になります。</p>
+      </div>
+      <div class="safe-item">
+        <div class="si-h"><span class="no">4</span>最終判断は、人がする</div>
+        <p>契約・法務・労務に関わる文書は、必ず専門家の確認を。<b>たたき台までがAIの役割</b>です。</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h3 class="blk">よくある質問</h3>
+    <div class="compact">
+      <details>
+        <summary>無料プランでも、Canvasは使えますか？</summary>
+        <div class="ans">使えます。2024年12月に無料プランを含む全ユーザーへ開放されました。<b>追加の契約なしで、今日から試せます</b>。ただし、長い文章を何度も編集すると利用回数の上限に当たりやすく、混雑時は応答が遅くなることがあります。<b>まず無料で試して、上限に当たる頻度を見てから</b>有料プランを検討するのが合理的です。第10回に関しては、実践に追加費用は1円もかかりません。</div>
+      </details>
+      <details>
+        <summary>Canvasは、プログラマー向けの機能では？</summary>
+        <div class="ans">そう思われがちですが、逆です。<b>文章のほうが恩恵は大きい</b>と考えています。コード用のショートカットが目立つので誤解されますが、部分編集・読解レベルの変更・バージョン履歴——これらはすべて<b>文書づくりでこそ効く機能</b>です。プログラムを扱わない方こそ、ぜひ使ってみてください。</div>
+      </details>
+      <details>
+        <summary>Wordの代わりになりますか？</summary>
+        <div class="ans">なりません。役割が違います。Canvasは<b>文章の「中身」を作る場所</b>、Wordは<b>「書類」の体裁を整える場所</b>です。実務での流れは「Canvasで中身を仕上げる → 書き出す → Wordで体裁を整えて提出」。どちらかに寄せようとすると、両方が中途半端になります。<b>得意なところだけ使う</b>のが、いちばん速い進め方です。</div>
+      </details>
+      <details>
+        <summary>「読解レベルを変更」は、どのくらい変わりますか？</summary>
+        <div class="ans">幼稚園から大学院までの範囲で、つまみを動かして調整できます。実務では<b>中学生レベルに下げると、お客様向けの案内文としてちょうどよくなる</b>ことが多いです。専門用語が言い換えられ、一文が短くなります。ただし<b>下げすぎると、必要な正確さが失われる</b>ことがあるので、法的な意味のある文言（契約条件や注意事項）は、下げたあとに必ず確認してください。</div>
+      </details>
+      <details>
+        <summary>手で書き直した部分は、AIに消されませんか？</summary>
+        <div class="ans">部分選択で直せば、選んでいない箇所はさわられません。ただし<b>「全体を書き直して」と頼めば、当然すべてが対象</b>になります。自分で書いた大事な1文を守りたいときは、①その部分を選ばない ②「ここは変えないで」と明示する ③大きく直す前にバージョン履歴を確認しておく——この3つで十分です。<b>戻せると分かっていれば、怖くありません。</b></div>
+      </details>
+      <details>
+        <summary>研修として社内に導入する場合、助成金は使えますか？</summary>
+        <div class="ans">人材開発支援助成金など、要件を満たせば活用を検討できる制度があります。ただし対象コース・訓練時間・申請時期などの要件は毎年更新されるため、必ず最新の公募要領と、管轄の労働局へのご確認をお願いします。UGOKU AIでは、要件の整理からご相談いただけます。</div>
+      </details>
+    </div>
+
+    <!-- クイズ -->
+    <h3 class="blk" id="quiz">理解度チェック（3問・1分）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">読んだだけだと、たいてい3日で忘れます。3問だけ答えて、記憶に固定してから閉じてください。</p>
+    <div class="quiz" id="quizBox">
+      <div class="qh">🧠 3問クイズ</div>
+      <p class="qs">選ぶだけ。すぐに答えと解説が出ます。</p>
+
+      <div class="qitem" data-ans="2">
+        <div class="qq"><span class="qn">1</span><span>「3段落目だけ直して」と頼んでも全文が変わってしまう。いちばんの原因は？</span></div>
+        <div class="qopts">
+          <button class="qopt">指示の書き方が丁寧すぎるから</button>
+          <button class="qopt">無料プランを使っているから</button>
+          <button class="qopt">会話用の画面で、編集作業をしているから</button>
+          <button class="qopt">文章が長すぎるから</button>
+        </div>
+        <div class="qfb"><b>正解：会話用の画面で編集していること。</b>チャットはやりとりが下に流れていく設計なので、直すたびに全文が再生成されます。<b>これは仕様であって、あなたの指示が悪いわけではありません。</b>Canvasに移り、直したい箇所を<b>なぞってから</b>頼めば解決します。</div>
+      </div>
+
+      <div class="qitem" data-ans="0">
+        <div class="qq"><span class="qn">2</span><span>Canvasを開くべきかどうか、判断する基準は？</span></div>
+        <div class="qopts">
+          <button class="qopt">あとで人に見せる完成品かどうか</button>
+          <button class="qopt">文字数が1000字を超えるかどうか</button>
+          <button class="qopt">有料プランに入っているかどうか</button>
+          <button class="qopt">コードを書くかどうか</button>
+        </div>
+        <div class="qfb"><b>正解：あとで人に見せる完成品かどうか。</b>相談・質問・アイデア出しはチャットのままで十分。<b>提案書・案内文・規程・原稿</b>のように完成させて外に出すものは、最初からCanvasで。迷ったら開いてしまって構いません。<b>要らなければ閉じるだけ</b>です。</div>
+      </div>
+
+      <div class="qitem" data-ans="3">
+        <div class="qq"><span class="qn">3</span><span>「最終仕上げを追加」を使ったあと、必ずやるべきことは？</span></div>
+        <div class="qopts">
+          <button class="qopt">絵文字を追加して、読みやすくする</button>
+          <button class="qopt">読解レベルを大学院に上げる</button>
+          <button class="qopt">もう一度、最終仕上げをかける</button>
+          <button class="qopt">数字・固有名詞・約束事を、自分の目で確認する</button>
+        </div>
+        <div class="qfb"><b>正解：数字・固有名詞・約束事の目視確認。</b>整えてくれるのは文法・表現・一貫性であって、<b>内容が事実かどうかは別</b>です。しかも読みやすくなった結果、<b>間違いも読みやすくなる</b>——ここがいちばん怖い。仕上げのあとに、必ずもう一度。</div>
+      </div>
+
+      <div class="qscore" id="qScore"></div>
+    </div>
+
+    <!-- シリーズ -->
+    <h3 class="blk">このシリーズの進み方（全15回＋番外編）</h3>
+    <p class="sec-sub" style="margin-top:-6px;">1回あたり10〜15分、上から順に積み上がる設計です。<b>読む→書く→作る→見せる→任せる→広げる</b>の順で進みます。第10回は、シリーズの中でいちばん<b>「人が主役」の回</b>。ここから先の第11回以降は、任せる話に入っていきます。</p>
+    <div class="cmp-wrap">
+      <table class="cmp-t">
+        <thead>
+          <tr><th>回</th><th>テーマ</th><th>この回で手に入るもの</th><th>時間</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>第1回</th><td>ChatGPTの基礎</td><td>毎回説明しなくていいワークスペース</td><td>15分</td></tr>
+          <tr><th>第2回</th><td>伝わる頼み方</td><td>10倍の結果を引き出すプロンプトの型</td><td>10分</td></tr>
+          <tr><th>第3回</th><td>ドキュメント分析</td><td>PDF・長文・紙の書類を数分で要点化</td><td>15分</td></tr>
+          <tr><th>第4回</th><td>メール＆文書</td><td>数秒でプロの文面。断り方・詫び方の型</td><td>10分</td></tr>
+          <tr><th>第5回</th><td>Deep Research</td><td>調査レポートの自動生成と、裏取りの手順</td><td>15分</td></tr>
+          <tr><th>第6回</th><td>データ分析＆Excel連携</td><td>表計算の中でAIを直接動かす</td><td>10分</td></tr>
+          <tr><th>第7回</th><td>画像生成＆写真編集</td><td>POP・バナー・商品ビジュアルを内製化</td><td>15分</td></tr>
+          <tr><th>第8回</th><td>音声モード＆会議</td><td>ハンズフリー活用と、録音→議事録</td><td>10分</td></tr>
+          <tr><th>第9回</th><td>コンテンツ制作</td><td>SNS投稿・台本・コピーの量産</td><td>15分</td></tr>
+          <tr><th>第10回</th><td class="win">Canvas（この記事）</td><td class="win">会話でなく“編集画面”で仕上げる</td><td>10分</td></tr>
+          <tr><th>第11回</th><td>マイGPT（GPTs）</td><td>自分専用AIを作り、社内に配る</td><td>15分</td></tr>
+          <tr><th>第12回</th><td>タスク自動化＆アプリ連携</td><td>定時実行と、Drive・カレンダー等との接続</td><td>10分</td></tr>
+          <tr><th>第13回</th><td>ChatGPT Work</td><td>自立型AIに“仕事”ごと渡す</td><td>15分</td></tr>
+          <tr><th>第14回</th><td>チーム導入</td><td>Business設定・共有・社内ルールづくり</td><td>10分</td></tr>
+          <tr><th>第15回</th><td>フルワークフロー</td><td>1〜14をつないだ完全AI自動化システム</td><td>15分</td></tr>
+          <tr><th>番外編</th><td>総括／セキュリティ</td><td>情報漏洩・コンプライアンス・社内規程の型</td><td>15分</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="link-note">合計 約190分（＋番外編15分）。第10回で身につけた「部分を指して直す」「戻れるから試せる」感覚は、第11回のマイGPTづくりでも、第13回の自立型AIの成果物を確認する場面でも、そのまま効き続けます。</p>
+
+    <div class="finish">
+      <div class="fk">COMPLETE</div>
+      <h4 id="fTtl">最後まで読んでくれて、ありがとう。</h4>
+      <p id="fMsg">上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。</p>
+      <div class="fbar"><i id="fBar"></i></div>
+      <div class="fnum"><b id="fNum">0</b> / 6 ステップ完了</div>
+    </div>
+
+    <div class="keystone" style="margin-top:32px;">
+      <span class="kl">🎓 第10回の宿題</span>
+      <p>この記事を閉じる前に、<strong>今週書く予定の文書を1つ「キャンバスで書いて」と頼んでください</strong>。そして<strong>一部をなぞって、そこだけ直す</strong>——この2つだけ体験すれば、第10回は合格です。余裕があれば、<strong>読解レベルを下げて、お客様向けの言葉に変える</strong>ところまで。次の第11回では、<strong>自分専用AIを作り、社内に配るマイGPT（GPTs）</strong> を扱います（所要15分）。</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ 関連リンク ═══ -->
+<div class="related">
+  <div class="wrap">
+    <div class="sec-eyebrow">RELATED LINKS</div>
+    <h2 class="sec-title" style="font-size:clamp(20px,4.6vw,26px);">あわせて読む・次のステップ</h2>
+    <div class="rel-grid">
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-09/"><span class="r-ic">✍️</span><span><span class="r-k">← 前の回（第9回）</span><span class="r-t">SNS投稿・台本・コピーの量産<small>／ ChatGPT実践シリーズ 第9回（15分）</small></span></span><span class="r-arw">←</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🤖</span><span><span class="r-k">▶ 次に読む（第11回）</span><span class="r-t">マイGPT：自分専用AIを作り、社内に配る<small>／ ChatGPT実践シリーズ 第11回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-04/"><span class="r-ic">📮</span><span><span class="r-k">文書づくりの土台は</span><span class="r-t">数秒でプロの文面。断り方・詫び方の型<small>／ ChatGPT実践シリーズ 第4回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-08/"><span class="r-ic">🎙️</span><span><span class="r-k">議事録の清書に使うなら</span><span class="r-t">ハンズフリー活用と、録音→議事録<small>／ ChatGPT実践シリーズ 第8回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-02/"><span class="r-ic">📝</span><span><span class="r-k">頼み方の土台は</span><span class="r-t">10倍の結果を引き出すプロンプトの型<small>／ ChatGPT実践シリーズ 第2回（10分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/chatgpt-master-01/"><span class="r-ic">🎓</span><span><span class="r-k">設定がまだの方は</span><span class="r-t">正しいAIワークスペースの設定方法<small>／ ChatGPT実践シリーズ 第1回（15分）</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/claude-master-10/"><span class="r-ic">🔁</span><span><span class="r-k">姉妹シリーズ・読み比べ</span><span class="r-t">Claude実践シリーズ 第10回<small>／ 同じテーマを、Claudeで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/start-guide/"><span class="r-ic">📘</span><span><span class="r-k">まだの方はこちらから</span><span class="r-t">はじめてのAI活用ガイド<small>／ Googleアカウント1つで始める</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/prompt100-guide/"><span class="r-ic">💡</span><span><span class="r-k">型を増やすなら</span><span class="r-t">社長が今すぐ使えるプロンプト100選<small>／ 経営・営業・数字・私生活まで</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/multi-ai-guide/"><span class="r-ic">⚖️</span><span><span class="r-k">ツールを比べるなら</span><span class="r-t">ChatGPT・Gemini・Claudeの使い分け<small>／ 1つ選ぶ時代ではない</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/security-guide/"><span class="r-ic">🛡️</span><span><span class="r-k">社内ルールづくりに</span><span class="r-t">はじめてのAIサイバーセキュリティガイド<small>／ 中小企業の実践マニュアル</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/"><span class="r-ic">🏠</span><span><span class="r-k">UGOKU AI 実装研修（本体）</span><span class="r-t">サービス全体を見る<small>／ 助成金活用の実装型AI研修</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://gesunokiwamiii.github.io/ugoku-ai-lp/#price"><span class="r-ic">🎓</span><span><span class="r-k">料金と助成金を見る</span><span class="r-t">助成金活用で導入する<small>／ 人材開発支援助成金 活用検討対応</small></span></span><span class="r-arw">→</span></a>
+      <a class="rel" href="https://help.openai.com/" target="_blank" rel="noopener"><span class="r-ic">🛟</span><span><span class="r-k">公式ヘルプ</span><span class="r-t">OpenAI ヘルプセンター<small>／ Canvasの仕様・ショートカットの最新情報</small></span></span><span class="r-arw">↗</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<div class="wrap">
+  <div class="cta" id="cta">
+    <div class="ce">無料AI化診断</div>
+    <h2>直すたびに全部変わる。<br>あの消耗は、<span class="hl">もう終わりです。</span></h2>
+    <p>「どの業務から任せればいいか分からない」で止まっている方へ。まずは無料のAI化診断から。Googleフォームで数分、あなたの会社に合うAIの使いどころが見えてきます。</p>
+    <div class="cta-actions">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeiFns2j3ToLQYV_5cdIZucxAPjZmFDSps3d33X2lpsof6kDw/viewform" class="btn btn-primary cta-btn" target="_blank" rel="noopener">🩺 無料AI化診断はこちら <span class="arw">→</span></a>
+    </div>
+    <div class="fineprint">所要時間は数分です。スマホからそのまま回答できます。</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo"><svg class="msc" width="24" height="24"><use href="#ugoku"/></svg> UGOKU AI</div>
+    <div class="fmeta">
+      現場で結果を出す、動くAI活用支援<br>
+      <a href="https://gesunokiwamiii.github.io/ugoku-ai-lp/">UGOKU AI 実装研修（本体）へ →</a><br>
+      <span style="color:var(--ink-soft);opacity:.8;">※本記事の内容は2026年7月時点の公開情報に基づきます。各サービスの画面・機能・名称・料金・対応プランは、提供元の更新により変わることがあります。最新情報は各公式サイトをご確認ください。また、契約・法務・労務に関わる文書の最終判断は、必ず弁護士等の専門家にご確認ください。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* ── 1. 読了プログレス＋残り時間 ── */
+  var bar=document.getElementById('progBar'),
+      badge=document.getElementById('progBadge'),
+      minEl=document.getElementById('progMin'),
+      TOTAL=10, ticking=false;
+  function onScroll(){
+    var h=document.documentElement,
+        max=(h.scrollHeight-h.clientHeight)||1,
+        r=Math.min(1,Math.max(0,(window.scrollY||h.scrollTop)/max));
+    bar.style.width=(r*100).toFixed(1)+'%';
+    var left=Math.max(1,Math.ceil(TOTAL*(1-r)));
+    minEl.textContent=left;
+    badge.classList.toggle('on', r>0.04 && r<0.97);
+    spy();
+    ticking=false;
+  }
+  /* ── 2. 目次のスクロール追従 ── */
+  var links=[].slice.call(document.querySelectorAll('.toc a')),
+      targets=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function spy(){
+    var best=-1;
+    for(var i=0;i<targets.length;i++){
+      if(targets[i] && targets[i].getBoundingClientRect().top<140) best=i;
+    }
+    links.forEach(function(a,i){a.classList.toggle('cur',i===best);});
+  }
+  window.addEventListener('scroll',function(){
+    if(!ticking){ticking=true;requestAnimationFrame(onScroll);}
+  },{passive:true});
+  onScroll();
+
+  /* ── 3. STEP完了チェック（保存つき・失敗しても動作継続） ── */
+  var KEY='ugoku_cm10_steps',
+      boxes=[].slice.call(document.querySelectorAll('.done input')),
+      fBar=document.getElementById('fBar'),
+      fNum=document.getElementById('fNum'),
+      fTtl=document.getElementById('fTtl'),
+      fMsg=document.getElementById('fMsg');
+  function load(){
+    try{return JSON.parse(localStorage.getItem(KEY))||[];}catch(e){return [];}
+  }
+  function save(v){ try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){} }
+  function paint(){
+    var n=boxes.filter(function(b){return b.checked;}).length;
+    if(fBar) fBar.style.width=(n/6*100)+'%';
+    if(fNum) fNum.textContent=n;
+    if(!fTtl) return;
+    if(n===0){
+      fTtl.textContent='最後まで読んでくれて、ありがとう。';
+      fMsg.innerHTML='上のチェックを埋めていくと、進み具合がここに出ます。全部でなくて大丈夫。<b>1つでも実際にやった人</b>から、確実に変わっていきます。';
+    }else if(n<3){
+      fTtl.textContent='いいスタートです。';
+      fMsg.innerHTML='読むだけで終わる人が大半のなか、あなたはもう手を動かしています。<b>次の1つ</b>をやると、往復の消耗が消えます。';
+    }else if(n<6){
+      fTtl.textContent='もう「仕上げられる人」です。';
+      fMsg.innerHTML='あとはSTEP5の書き出しまで。<b>大事な原稿を社内フォルダに残す</b>——ここまでやって、はじめて会社の資産になります。';
+    }else{
+      fTtl.textContent='第10回、完全クリアです。おめでとう！';
+      fMsg.innerHTML='6ステップすべて実践しました。ここまでが「自分でやる」編。次からは<b>任せる</b>編です。第11回のマイGPTで、あなたの型を社内に配りましょう。';
+    }
+  }
+  var saved=load();
+  boxes.forEach(function(b){
+    if(saved.indexOf(b.dataset.step)>-1) b.checked=true;
+    b.addEventListener('change',function(){
+      save(boxes.filter(function(x){return x.checked;}).map(function(x){return x.dataset.step;}));
+      paint();
+    });
+  });
+  paint();
+
+  /* ── 4. 理解度クイズ ── */
+  var items=[].slice.call(document.querySelectorAll('.qitem')),
+      scoreEl=document.getElementById('qScore'), correct=0, answered=0;
+  items.forEach(function(it){
+    var ans=parseInt(it.dataset.ans,10),
+        opts=[].slice.call(it.querySelectorAll('.qopt')),
+        fb=it.querySelector('.qfb');
+    opts.forEach(function(btn,idx){
+      btn.addEventListener('click',function(){
+        if(it.dataset.locked) return;
+        it.dataset.locked='1'; answered++;
+        var hit=(idx===ans);
+        if(hit) correct++;
+        opts.forEach(function(o,i){
+          o.disabled=true;
+          if(i===ans) o.classList.add('ok');
+          else if(i===idx) o.classList.add('ng');
+        });
+        fb.classList.add('show');
+        if(answered===items.length && scoreEl){
+          var msg = correct===3 ? '完璧です。もう社内に教えられるレベル。'
+                  : correct===2 ? 'good。取りこぼした1問だけ、上に戻って確認を。'
+                  : '大丈夫、ここが伸びしろです。STEP2とSTEP6をもう一度どうぞ。';
+          scoreEl.innerHTML='🎯 <b>'+correct+' / 3 問正解</b>　'+msg;
+          scoreEl.classList.add('show');
+        }
+      });
+    });
+  });
+})();
+</script>
+<script>
+  // コピペボタン
+  document.querySelectorAll('.copybox').forEach(function(box){
+    var btn = box.querySelector('.cb-btn');
+    var pre = box.querySelector('pre');
+    if(!btn || !pre) return;
+    btn.addEventListener('click', function(){
+      var text = pre.innerText;
+      navigator.clipboard.writeText(text).then(function(){
+        var old = btn.textContent; btn.textContent = 'コピーしました ✓';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      }).catch(function(){
+        var old = btn.textContent; btn.textContent = '長押しで選択';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
